@@ -958,12 +958,15 @@ function ZLECAfCalculator() {
 
       <div className="container mx-auto px-4 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-6 bg-gradient-to-r from-red-100 via-yellow-100 to-green-100 p-2 shadow-lg">
+          <TabsList className="grid w-full grid-cols-7 bg-gradient-to-r from-red-100 via-yellow-100 to-green-100 p-2 shadow-lg">
             <TabsTrigger value="calculator" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-600 data-[state=active]:to-blue-600 data-[state=active]:text-white font-bold">
               🧮 {t.calculatorTab}
             </TabsTrigger>
             <TabsTrigger value="statistics" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-600 data-[state=active]:to-pink-600 data-[state=active]:text-white font-bold">
               📈 {t.statisticsTab}
+            </TabsTrigger>
+            <TabsTrigger value="production" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-600 data-[state=active]:to-purple-600 data-[state=active]:text-white font-bold">
+              📊 {t.productionTab || 'Production'}
             </TabsTrigger>
             <TabsTrigger value="logistics" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-teal-600 data-[state=active]:text-white font-bold">
               🚢✈️ {t.logisticsTab}
