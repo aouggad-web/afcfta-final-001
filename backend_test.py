@@ -1828,6 +1828,22 @@ class ZLECAfAPITester:
         self.test_tariff_calculation()
         self.test_statistics()
         
+        # Tests du module Production
+        print("\n" + "=" * 80)
+        print("📊 TESTS MODULE PRODUCTION")
+        print("=" * 80)
+        self.test_production_statistics()
+        self.test_production_macro()
+        self.test_production_macro_country()
+        self.test_production_agriculture()
+        self.test_production_agriculture_country()
+        self.test_production_manufacturing()
+        self.test_production_manufacturing_country()
+        self.test_production_mining()
+        self.test_production_mining_country()
+        self.test_production_overview_country()
+        self.test_production_filtering()
+        
         # Résumé des résultats
         print("\n" + "=" * 80)
         print("📊 RÉSUMÉ DES TESTS")
