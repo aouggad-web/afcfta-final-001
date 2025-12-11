@@ -586,6 +586,7 @@ function ZLECAfCalculator() {
       subtitle: "Levier de développement de l'AFRIQUE",
       calculatorTab: "Calculateur",
       statisticsTab: "Statistiques", 
+      productionTab: "Production",
       rulesTab: "Règles d'Origine",
       profilesTab: "Profils Pays",
       toolsTab: "Outils",
