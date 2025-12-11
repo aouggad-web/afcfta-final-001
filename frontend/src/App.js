@@ -2645,6 +2645,11 @@ function ZLECAfCalculator() {
             </div>
           </TabsContent>
 
+          {/* PRODUCTION TAB */}
+          <TabsContent value="production">
+            <ProductionTab />
+          </TabsContent>
+
           {/* LOGISTICS TAB WITH SUB-TABS (MARITIME & AIR) */}
           <TabsContent value="logistics">
             <Tabs defaultValue="maritime" className="w-full">
