@@ -790,6 +790,1027 @@ class ZLECAfAPITester:
                 f"Erreur lors de la récupération des statistiques: {str(e)}",
                 {'error': str(e)}
             )
+
+    # ==========================================
+    # TESTS MODULE PRODUCTION AFRICAINE
+    # ==========================================
+    
+    def test_production_statistics(self):
+        """Test GET /api/production/statistics - Statistiques globales production"""
+        try:
+            response = self.session.get(f"{self.base_url}/production/statistics", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                stats = response.json()
+                
+                # Vérifier les champs obligatoires
+                required_fields = ['total_countries', 'countries_list', 'years_covered', 'dimensions']
+                missing_fields = [field for field in required_fields if field not in stats]
+                
+                if missing_fields:
+                    self.log_result(
+                        "Production Statistics", 
+                        False, 
+                        f"Champs manquants: {missing_fields}",
+                        {'stats': stats}
+                    )
+                    return
+                
+                # Vérifier les valeurs attendues
+                if stats['total_countries'] != 10:
+                    self.log_result(
+                        "Production Statistics", 
+                        False, 
+                        f"Nombre de pays incorrect: {stats['total_countries']} au lieu de 10",
+                        {'total_countries': stats['total_countries']}
+                    )
+                    return
+                
+                # Vérifier les pays pilotes
+                expected_countries = ['ZAF', 'NGA', 'EGY', 'KEN', 'GHA', 'ETH', 'CIV', 'TZA', 'MAR', 'SEN']
+                if not all(country in stats['countries_list'] for country in expected_countries):
+                    self.log_result(
+                        "Production Statistics", 
+                        False, 
+                        f"Pays pilotes manquants dans la liste",
+                        {'countries_list': stats['countries_list'], 'expected': expected_countries}
+                    )
+                    return
+                
+                # Vérifier les années (2021-2024)
+                expected_years = [2021, 2022, 2023, 2024]
+                if not all(year in stats['years_covered'] for year in expected_years):
+                    self.log_result(
+                        "Production Statistics", 
+                        False, 
+                        f"Années manquantes: attendu {expected_years}",
+                        {'years_covered': stats['years_covered']}
+                    )
+                    return
+                
+                # Vérifier les 4 dimensions
+                if stats['dimensions'] != 4:
+                    self.log_result(
+                        "Production Statistics", 
+                        False, 
+                        f"Nombre de dimensions incorrect: {stats['dimensions']} au lieu de 4",
+                        {'dimensions': stats['dimensions']}
+                    )
+                    return
+                
+                self.log_result(
+                    "Production Statistics", 
+                    True, 
+                    f"Statistiques production validées - {stats['total_countries']} pays, {stats['dimensions']} dimensions, années {min(stats['years_covered'])}-{max(stats['years_covered'])}",
+                    {
+                        'countries': stats['total_countries'],
+                        'dimensions': stats['dimensions'],
+                        'years': f"{min(stats['years_covered'])}-{max(stats['years_covered'])}",
+                        'pilot_countries': stats['countries_list']
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "Production Statistics", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "Production Statistics", 
+                False, 
+                f"Erreur lors de la récupération des statistiques production: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_production_macro(self):
+        """Test GET /api/production/macro - Production macro-économique"""
+        try:
+            # Test sans paramètres
+            response = self.session.get(f"{self.base_url}/production/macro", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                if not isinstance(data, list):
+                    self.log_result(
+                        "Production Macro", 
+                        False, 
+                        "La réponse n'est pas une liste",
+                        {'response_type': type(data).__name__}
+                    )
+                    return
+                
+                if len(data) == 0:
+                    self.log_result(
+                        "Production Macro", 
+                        False, 
+                        "Aucune donnée macro retournée",
+                        {'data_length': len(data)}
+                    )
+                    return
+                
+                # Vérifier la structure des données
+                sample_record = data[0]
+                required_fields = ['country_iso3', 'year', 'sector', 'value', 'sector_detail', 'indicator_label', 'unit', 'source']
+                missing_fields = [field for field in required_fields if field not in sample_record]
+                
+                if missing_fields:
+                    self.log_result(
+                        "Production Macro", 
+                        False, 
+                        f"Champs manquants dans les enregistrements: {missing_fields}",
+                        {'sample_record': sample_record}
+                    )
+                    return
+                
+                # Vérifier les valeurs
+                if sample_record['value'] <= 0:
+                    self.log_result(
+                        "Production Macro", 
+                        False, 
+                        f"Valeur invalide: {sample_record['value']}",
+                        {'sample_record': sample_record}
+                    )
+                    return
+                
+                # Vérifier l'unité (percent)
+                if sample_record['unit'] != 'percent':
+                    self.log_result(
+                        "Production Macro", 
+                        False, 
+                        f"Unité incorrecte: {sample_record['unit']} au lieu de 'percent'",
+                        {'unit': sample_record['unit']}
+                    )
+                    return
+                
+                # Vérifier la source (World Bank)
+                if 'World Bank' not in sample_record['source']:
+                    self.log_result(
+                        "Production Macro", 
+                        False, 
+                        f"Source incorrecte: {sample_record['source']}",
+                        {'source': sample_record['source']}
+                    )
+                    return
+                
+                self.log_result(
+                    "Production Macro", 
+                    True, 
+                    f"Données macro validées - {len(data)} enregistrements avec valeurs ajoutées sectorielles",
+                    {
+                        'records_count': len(data),
+                        'sample_country': sample_record['country_iso3'],
+                        'sample_sector': sample_record['sector'],
+                        'sample_value': sample_record['value'],
+                        'unit': sample_record['unit']
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "Production Macro", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "Production Macro", 
+                False, 
+                f"Erreur lors de la récupération des données macro: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_production_macro_country(self):
+        """Test GET /api/production/macro/{country_iso3} - Données macro par pays"""
+        test_country = 'ZAF'  # Afrique du Sud
+        
+        try:
+            response = self.session.get(f"{self.base_url}/production/macro/{test_country}", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Vérifier la structure
+                required_fields = ['country_iso3', 'data_by_sector']
+                missing_fields = [field for field in required_fields if field not in data]
+                
+                if missing_fields:
+                    self.log_result(
+                        f"Production Macro {test_country}", 
+                        False, 
+                        f"Champs manquants: {missing_fields}",
+                        {'data': data}
+                    )
+                    return
+                
+                # Vérifier que c'est le bon pays
+                if data['country_iso3'] != test_country:
+                    self.log_result(
+                        f"Production Macro {test_country}", 
+                        False, 
+                        f"Pays incorrect: {data['country_iso3']} au lieu de {test_country}",
+                        {'returned_country': data['country_iso3']}
+                    )
+                    return
+                
+                # Vérifier l'organisation par secteur
+                data_by_sector = data['data_by_sector']
+                expected_sectors = ['Agriculture', 'Industry', 'Manufacturing']
+                
+                if not isinstance(data_by_sector, dict):
+                    self.log_result(
+                        f"Production Macro {test_country}", 
+                        False, 
+                        "data_by_sector n'est pas un dictionnaire",
+                        {'data_by_sector_type': type(data_by_sector).__name__}
+                    )
+                    return
+                
+                # Vérifier qu'au moins un secteur est présent
+                if len(data_by_sector) == 0:
+                    self.log_result(
+                        f"Production Macro {test_country}", 
+                        False, 
+                        "Aucune donnée sectorielle trouvée",
+                        {'data_by_sector': data_by_sector}
+                    )
+                    return
+                
+                self.log_result(
+                    f"Production Macro {test_country}", 
+                    True, 
+                    f"Données macro {test_country} organisées par secteur - {len(data_by_sector)} secteurs",
+                    {
+                        'country': data['country_iso3'],
+                        'sectors_count': len(data_by_sector),
+                        'sectors': list(data_by_sector.keys())
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    f"Production Macro {test_country}", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                f"Production Macro {test_country}", 
+                False, 
+                f"Erreur lors de la récupération des données macro {test_country}: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_production_agriculture(self):
+        """Test GET /api/production/agriculture - Production agricole"""
+        try:
+            response = self.session.get(f"{self.base_url}/production/agriculture", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                if not isinstance(data, list):
+                    self.log_result(
+                        "Production Agriculture", 
+                        False, 
+                        "La réponse n'est pas une liste",
+                        {'response_type': type(data).__name__}
+                    )
+                    return
+                
+                if len(data) == 0:
+                    self.log_result(
+                        "Production Agriculture", 
+                        False, 
+                        "Aucune donnée agricole retournée",
+                        {'data_length': len(data)}
+                    )
+                    return
+                
+                # Vérifier la structure des données
+                sample_record = data[0]
+                required_fields = ['country_iso3', 'year', 'commodity', 'value', 'commodity_label', 'unit', 'source']
+                missing_fields = [field for field in required_fields if field not in sample_record]
+                
+                if missing_fields:
+                    self.log_result(
+                        "Production Agriculture", 
+                        False, 
+                        f"Champs manquants dans les enregistrements: {missing_fields}",
+                        {'sample_record': sample_record}
+                    )
+                    return
+                
+                # Vérifier les valeurs
+                if sample_record['value'] <= 0:
+                    self.log_result(
+                        "Production Agriculture", 
+                        False, 
+                        f"Valeur invalide: {sample_record['value']}",
+                        {'sample_record': sample_record}
+                    )
+                    return
+                
+                # Vérifier l'unité (tonnes)
+                if sample_record['unit'] != 'tonnes':
+                    self.log_result(
+                        "Production Agriculture", 
+                        False, 
+                        f"Unité incorrecte: {sample_record['unit']} au lieu de 'tonnes'",
+                        {'unit': sample_record['unit']}
+                    )
+                    return
+                
+                # Vérifier la source (FAO)
+                if 'FAO' not in sample_record['source']:
+                    self.log_result(
+                        "Production Agriculture", 
+                        False, 
+                        f"Source incorrecte: {sample_record['source']}",
+                        {'source': sample_record['source']}
+                    )
+                    return
+                
+                self.log_result(
+                    "Production Agriculture", 
+                    True, 
+                    f"Données agricoles validées - {len(data)} enregistrements avec productions par culture",
+                    {
+                        'records_count': len(data),
+                        'sample_country': sample_record['country_iso3'],
+                        'sample_commodity': sample_record['commodity'],
+                        'sample_value': sample_record['value'],
+                        'unit': sample_record['unit']
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "Production Agriculture", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "Production Agriculture", 
+                False, 
+                f"Erreur lors de la récupération des données agricoles: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_production_agriculture_country(self):
+        """Test GET /api/production/agriculture/{country_iso3} - Données agricoles par pays"""
+        test_country = 'ZAF'  # Afrique du Sud
+        
+        try:
+            response = self.session.get(f"{self.base_url}/production/agriculture/{test_country}", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Vérifier la structure
+                required_fields = ['country_iso3', 'data_by_commodity']
+                missing_fields = [field for field in required_fields if field not in data]
+                
+                if missing_fields:
+                    self.log_result(
+                        f"Production Agriculture {test_country}", 
+                        False, 
+                        f"Champs manquants: {missing_fields}",
+                        {'data': data}
+                    )
+                    return
+                
+                # Vérifier que c'est le bon pays
+                if data['country_iso3'] != test_country:
+                    self.log_result(
+                        f"Production Agriculture {test_country}", 
+                        False, 
+                        f"Pays incorrect: {data['country_iso3']} au lieu de {test_country}",
+                        {'returned_country': data['country_iso3']}
+                    )
+                    return
+                
+                # Vérifier l'organisation par culture
+                data_by_commodity = data['data_by_commodity']
+                
+                if not isinstance(data_by_commodity, dict):
+                    self.log_result(
+                        f"Production Agriculture {test_country}", 
+                        False, 
+                        "data_by_commodity n'est pas un dictionnaire",
+                        {'data_by_commodity_type': type(data_by_commodity).__name__}
+                    )
+                    return
+                
+                # Vérifier qu'au moins une culture est présente
+                if len(data_by_commodity) == 0:
+                    self.log_result(
+                        f"Production Agriculture {test_country}", 
+                        False, 
+                        "Aucune donnée de culture trouvée",
+                        {'data_by_commodity': data_by_commodity}
+                    )
+                    return
+                
+                self.log_result(
+                    f"Production Agriculture {test_country}", 
+                    True, 
+                    f"Données agricoles {test_country} organisées par culture - {len(data_by_commodity)} cultures",
+                    {
+                        'country': data['country_iso3'],
+                        'commodities_count': len(data_by_commodity),
+                        'commodities': list(data_by_commodity.keys())
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    f"Production Agriculture {test_country}", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                f"Production Agriculture {test_country}", 
+                False, 
+                f"Erreur lors de la récupération des données agricoles {test_country}: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_production_manufacturing(self):
+        """Test GET /api/production/manufacturing - Production manufacturière"""
+        try:
+            response = self.session.get(f"{self.base_url}/production/manufacturing", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                if not isinstance(data, list):
+                    self.log_result(
+                        "Production Manufacturing", 
+                        False, 
+                        "La réponse n'est pas une liste",
+                        {'response_type': type(data).__name__}
+                    )
+                    return
+                
+                if len(data) == 0:
+                    self.log_result(
+                        "Production Manufacturing", 
+                        False, 
+                        "Aucune donnée manufacturière retournée",
+                        {'data_length': len(data)}
+                    )
+                    return
+                
+                # Vérifier la structure des données
+                sample_record = data[0]
+                required_fields = ['country_iso3', 'year', 'isic_code', 'value', 'isic_label', 'unit', 'source']
+                missing_fields = [field for field in required_fields if field not in sample_record]
+                
+                if missing_fields:
+                    self.log_result(
+                        "Production Manufacturing", 
+                        False, 
+                        f"Champs manquants dans les enregistrements: {missing_fields}",
+                        {'sample_record': sample_record}
+                    )
+                    return
+                
+                # Vérifier les valeurs
+                if sample_record['value'] <= 0:
+                    self.log_result(
+                        "Production Manufacturing", 
+                        False, 
+                        f"Valeur invalide: {sample_record['value']}",
+                        {'sample_record': sample_record}
+                    )
+                    return
+                
+                # Vérifier l'unité (USD)
+                if sample_record['unit'] != 'USD':
+                    self.log_result(
+                        "Production Manufacturing", 
+                        False, 
+                        f"Unité incorrecte: {sample_record['unit']} au lieu de 'USD'",
+                        {'unit': sample_record['unit']}
+                    )
+                    return
+                
+                # Vérifier la source (UNIDO)
+                if 'UNIDO' not in sample_record['source']:
+                    self.log_result(
+                        "Production Manufacturing", 
+                        False, 
+                        f"Source incorrecte: {sample_record['source']}",
+                        {'source': sample_record['source']}
+                    )
+                    return
+                
+                self.log_result(
+                    "Production Manufacturing", 
+                    True, 
+                    f"Données manufacturières validées - {len(data)} enregistrements avec valeurs ajoutées ISIC",
+                    {
+                        'records_count': len(data),
+                        'sample_country': sample_record['country_iso3'],
+                        'sample_isic': sample_record['isic_code'],
+                        'sample_value': sample_record['value'],
+                        'unit': sample_record['unit']
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "Production Manufacturing", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "Production Manufacturing", 
+                False, 
+                f"Erreur lors de la récupération des données manufacturières: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_production_manufacturing_country(self):
+        """Test GET /api/production/manufacturing/{country_iso3} - Données manufacturières par pays"""
+        test_country = 'ZAF'  # Afrique du Sud
+        
+        try:
+            response = self.session.get(f"{self.base_url}/production/manufacturing/{test_country}", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Vérifier la structure
+                required_fields = ['country_iso3', 'data_by_isic']
+                missing_fields = [field for field in required_fields if field not in data]
+                
+                if missing_fields:
+                    self.log_result(
+                        f"Production Manufacturing {test_country}", 
+                        False, 
+                        f"Champs manquants: {missing_fields}",
+                        {'data': data}
+                    )
+                    return
+                
+                # Vérifier que c'est le bon pays
+                if data['country_iso3'] != test_country:
+                    self.log_result(
+                        f"Production Manufacturing {test_country}", 
+                        False, 
+                        f"Pays incorrect: {data['country_iso3']} au lieu de {test_country}",
+                        {'returned_country': data['country_iso3']}
+                    )
+                    return
+                
+                # Vérifier l'organisation par secteur ISIC
+                data_by_isic = data['data_by_isic']
+                
+                if not isinstance(data_by_isic, dict):
+                    self.log_result(
+                        f"Production Manufacturing {test_country}", 
+                        False, 
+                        "data_by_isic n'est pas un dictionnaire",
+                        {'data_by_isic_type': type(data_by_isic).__name__}
+                    )
+                    return
+                
+                # Vérifier qu'au moins un secteur ISIC est présent
+                if len(data_by_isic) == 0:
+                    self.log_result(
+                        f"Production Manufacturing {test_country}", 
+                        False, 
+                        "Aucune donnée ISIC trouvée",
+                        {'data_by_isic': data_by_isic}
+                    )
+                    return
+                
+                self.log_result(
+                    f"Production Manufacturing {test_country}", 
+                    True, 
+                    f"Données manufacturières {test_country} organisées par secteur ISIC - {len(data_by_isic)} secteurs",
+                    {
+                        'country': data['country_iso3'],
+                        'isic_sectors_count': len(data_by_isic),
+                        'isic_sectors': list(data_by_isic.keys())
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    f"Production Manufacturing {test_country}", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                f"Production Manufacturing {test_country}", 
+                False, 
+                f"Erreur lors de la récupération des données manufacturières {test_country}: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_production_mining(self):
+        """Test GET /api/production/mining - Production minière"""
+        try:
+            response = self.session.get(f"{self.base_url}/production/mining", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                if not isinstance(data, list):
+                    self.log_result(
+                        "Production Mining", 
+                        False, 
+                        "La réponse n'est pas une liste",
+                        {'response_type': type(data).__name__}
+                    )
+                    return
+                
+                if len(data) == 0:
+                    self.log_result(
+                        "Production Mining", 
+                        False, 
+                        "Aucune donnée minière retournée",
+                        {'data_length': len(data)}
+                    )
+                    return
+                
+                # Vérifier la structure des données
+                sample_record = data[0]
+                required_fields = ['country_iso3', 'year', 'commodity', 'value', 'commodity_label', 'unit', 'source']
+                missing_fields = [field for field in required_fields if field not in sample_record]
+                
+                if missing_fields:
+                    self.log_result(
+                        "Production Mining", 
+                        False, 
+                        f"Champs manquants dans les enregistrements: {missing_fields}",
+                        {'sample_record': sample_record}
+                    )
+                    return
+                
+                # Vérifier les valeurs
+                if sample_record['value'] <= 0:
+                    self.log_result(
+                        "Production Mining", 
+                        False, 
+                        f"Valeur invalide: {sample_record['value']}",
+                        {'sample_record': sample_record}
+                    )
+                    return
+                
+                # Vérifier l'unité (kg)
+                if sample_record['unit'] != 'kg':
+                    self.log_result(
+                        "Production Mining", 
+                        False, 
+                        f"Unité incorrecte: {sample_record['unit']} au lieu de 'kg'",
+                        {'unit': sample_record['unit']}
+                    )
+                    return
+                
+                # Vérifier la source (USGS)
+                if 'USGS' not in sample_record['source']:
+                    self.log_result(
+                        "Production Mining", 
+                        False, 
+                        f"Source incorrecte: {sample_record['source']}",
+                        {'source': sample_record['source']}
+                    )
+                    return
+                
+                self.log_result(
+                    "Production Mining", 
+                    True, 
+                    f"Données minières validées - {len(data)} enregistrements avec productions par minerai",
+                    {
+                        'records_count': len(data),
+                        'sample_country': sample_record['country_iso3'],
+                        'sample_commodity': sample_record['commodity'],
+                        'sample_value': sample_record['value'],
+                        'unit': sample_record['unit']
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "Production Mining", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "Production Mining", 
+                False, 
+                f"Erreur lors de la récupération des données minières: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_production_mining_country(self):
+        """Test GET /api/production/mining/{country_iso3} - Données minières par pays"""
+        test_country = 'ZAF'  # Afrique du Sud
+        
+        try:
+            response = self.session.get(f"{self.base_url}/production/mining/{test_country}", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Vérifier la structure
+                required_fields = ['country_iso3', 'data_by_commodity']
+                missing_fields = [field for field in required_fields if field not in data]
+                
+                if missing_fields:
+                    self.log_result(
+                        f"Production Mining {test_country}", 
+                        False, 
+                        f"Champs manquants: {missing_fields}",
+                        {'data': data}
+                    )
+                    return
+                
+                # Vérifier que c'est le bon pays
+                if data['country_iso3'] != test_country:
+                    self.log_result(
+                        f"Production Mining {test_country}", 
+                        False, 
+                        f"Pays incorrect: {data['country_iso3']} au lieu de {test_country}",
+                        {'returned_country': data['country_iso3']}
+                    )
+                    return
+                
+                # Vérifier l'organisation par minerai
+                data_by_commodity = data['data_by_commodity']
+                
+                if not isinstance(data_by_commodity, dict):
+                    self.log_result(
+                        f"Production Mining {test_country}", 
+                        False, 
+                        "data_by_commodity n'est pas un dictionnaire",
+                        {'data_by_commodity_type': type(data_by_commodity).__name__}
+                    )
+                    return
+                
+                # Vérifier qu'au moins un minerai est présent
+                if len(data_by_commodity) == 0:
+                    self.log_result(
+                        f"Production Mining {test_country}", 
+                        False, 
+                        "Aucune donnée de minerai trouvée",
+                        {'data_by_commodity': data_by_commodity}
+                    )
+                    return
+                
+                self.log_result(
+                    f"Production Mining {test_country}", 
+                    True, 
+                    f"Données minières {test_country} organisées par minerai - {len(data_by_commodity)} minerais",
+                    {
+                        'country': data['country_iso3'],
+                        'commodities_count': len(data_by_commodity),
+                        'commodities': list(data_by_commodity.keys())
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    f"Production Mining {test_country}", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                f"Production Mining {test_country}", 
+                False, 
+                f"Erreur lors de la récupération des données minières {test_country}: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_production_overview_country(self):
+        """Test GET /api/production/overview/{country_iso3} - Vue complète toutes dimensions"""
+        test_country = 'ZAF'  # Afrique du Sud
+        
+        try:
+            response = self.session.get(f"{self.base_url}/production/overview/{test_country}", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Vérifier la structure
+                required_fields = ['country_iso3', 'value_added', 'agriculture', 'manufacturing', 'mining']
+                missing_fields = [field for field in required_fields if field not in data]
+                
+                if missing_fields:
+                    self.log_result(
+                        f"Production Overview {test_country}", 
+                        False, 
+                        f"Champs manquants: {missing_fields}",
+                        {'data': data}
+                    )
+                    return
+                
+                # Vérifier que c'est le bon pays
+                if data['country_iso3'] != test_country:
+                    self.log_result(
+                        f"Production Overview {test_country}", 
+                        False, 
+                        f"Pays incorrect: {data['country_iso3']} au lieu de {test_country}",
+                        {'returned_country': data['country_iso3']}
+                    )
+                    return
+                
+                # Vérifier que chaque dimension contient des données
+                dimensions = ['value_added', 'agriculture', 'manufacturing', 'mining']
+                for dimension in dimensions:
+                    if dimension not in data or not data[dimension]:
+                        self.log_result(
+                            f"Production Overview {test_country}", 
+                            False, 
+                            f"Dimension {dimension} manquante ou vide",
+                            {dimension: data.get(dimension)}
+                        )
+                        return
+                
+                # Compter le total des enregistrements
+                total_records = 0
+                for dimension in dimensions:
+                    if isinstance(data[dimension], list):
+                        total_records += len(data[dimension])
+                    elif isinstance(data[dimension], dict):
+                        total_records += sum(len(v) if isinstance(v, list) else 1 for v in data[dimension].values())
+                
+                self.log_result(
+                    f"Production Overview {test_country}", 
+                    True, 
+                    f"Vue complète {test_country} validée - 4 dimensions avec {total_records} enregistrements totaux",
+                    {
+                        'country': data['country_iso3'],
+                        'dimensions': len(dimensions),
+                        'total_records': total_records,
+                        'value_added_count': len(data['value_added']) if isinstance(data['value_added'], list) else 'dict',
+                        'agriculture_count': len(data['agriculture']) if isinstance(data['agriculture'], list) else 'dict',
+                        'manufacturing_count': len(data['manufacturing']) if isinstance(data['manufacturing'], list) else 'dict',
+                        'mining_count': len(data['mining']) if isinstance(data['mining'], list) else 'dict'
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    f"Production Overview {test_country}", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                f"Production Overview {test_country}", 
+                False, 
+                f"Erreur lors de la récupération de la vue complète {test_country}: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_production_filtering(self):
+        """Test du filtrage des données de production"""
+        # Test filtrage par pays
+        try:
+            response = self.session.get(f"{self.base_url}/production/macro?country_iso3=ZAF", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Vérifier que tous les enregistrements sont pour ZAF
+                if not all(record['country_iso3'] == 'ZAF' for record in data):
+                    self.log_result(
+                        "Production Filtering Country", 
+                        False, 
+                        "Le filtrage par pays ne fonctionne pas correctement",
+                        {'sample_countries': [record['country_iso3'] for record in data[:5]]}
+                    )
+                    return
+                
+                self.log_result(
+                    "Production Filtering Country", 
+                    True, 
+                    f"Filtrage par pays ZAF validé - {len(data)} enregistrements",
+                    {'filtered_records': len(data), 'country': 'ZAF'}
+                )
+            else:
+                self.log_result(
+                    "Production Filtering Country", 
+                    False, 
+                    f"Erreur filtrage pays: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+        except Exception as e:
+            self.log_result(
+                "Production Filtering Country", 
+                False, 
+                f"Erreur test filtrage pays: {str(e)}",
+                {'error': str(e)}
+            )
+        
+        # Test filtrage par année
+        try:
+            response = self.session.get(f"{self.base_url}/production/macro?year=2024", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Vérifier que tous les enregistrements sont pour 2024
+                if not all(record['year'] == 2024 for record in data):
+                    self.log_result(
+                        "Production Filtering Year", 
+                        False, 
+                        "Le filtrage par année ne fonctionne pas correctement",
+                        {'sample_years': [record['year'] for record in data[:5]]}
+                    )
+                    return
+                
+                self.log_result(
+                    "Production Filtering Year", 
+                    True, 
+                    f"Filtrage par année 2024 validé - {len(data)} enregistrements",
+                    {'filtered_records': len(data), 'year': 2024}
+                )
+            else:
+                self.log_result(
+                    "Production Filtering Year", 
+                    False, 
+                    f"Erreur filtrage année: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+        except Exception as e:
+            self.log_result(
+                "Production Filtering Year", 
+                False, 
+                f"Erreur test filtrage année: {str(e)}",
+                {'error': str(e)}
+            )
+        
+        # Test filtrage agriculture par commodity
+        try:
+            response = self.session.get(f"{self.base_url}/production/agriculture?commodity=Maize", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Vérifier que tous les enregistrements sont pour Maize
+                if not all('Maize' in record.get('commodity_label', '') for record in data):
+                    self.log_result(
+                        "Production Filtering Commodity", 
+                        False, 
+                        "Le filtrage par commodity ne fonctionne pas correctement",
+                        {'sample_commodities': [record.get('commodity_label', '') for record in data[:5]]}
+                    )
+                    return
+                
+                self.log_result(
+                    "Production Filtering Commodity", 
+                    True, 
+                    f"Filtrage par commodity Maize validé - {len(data)} enregistrements",
+                    {'filtered_records': len(data), 'commodity': 'Maize'}
+                )
+            else:
+                self.log_result(
+                    "Production Filtering Commodity", 
+                    False, 
+                    f"Erreur filtrage commodity: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+        except Exception as e:
+            self.log_result(
+                "Production Filtering Commodity", 
+                False, 
+                f"Erreur test filtrage commodity: {str(e)}",
+                {'error': str(e)}
+            )
     
     def run_all_tests(self):
         """Exécuter tous les tests"""
