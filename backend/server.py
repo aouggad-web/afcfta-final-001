@@ -1277,6 +1277,18 @@ from logistics_land_data import (
     get_corridors_statistics,
     search_corridors
 )
+from production_data import (
+    get_value_added,
+    get_value_added_by_country,
+    get_agriculture_production,
+    get_agriculture_by_country,
+    get_manufacturing_production,
+    get_manufacturing_by_country,
+    get_mining_production,
+    get_mining_by_country,
+    get_production_statistics,
+    get_country_production_overview
+)
 
 @api_router.get("/logistics/land/corridors")
 async def get_land_corridors(
