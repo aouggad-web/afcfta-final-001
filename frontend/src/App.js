@@ -647,6 +647,7 @@ function ZLECAfCalculator() {
       subtitle: "AFRICA's Development Lever",
       calculatorTab: "Calculator",
       statisticsTab: "Statistics",
+      productionTab: "Production",
       rulesTab: "Rules of Origin", 
       profilesTab: "Country Profiles",
       toolsTab: "Tools",
