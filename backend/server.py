@@ -1379,6 +1379,124 @@ async def get_land_logistics_statistics():
     """Get global statistics about African land corridors"""
     return get_corridors_statistics()
 
+
+# ==========================================
+# PRODUCTION DATA ENDPOINTS
+# ==========================================
+
+@api_router.get("/production/statistics")
+async def get_production_stats():
+    """
+    Get global production statistics for all African countries
+    Returns overview of data coverage across 4 dimensions
+    """
+    return get_production_statistics()
+
+@api_router.get("/production/macro")
+async def get_macro_value_added(
+    country_iso3: Optional[str] = None,
+    year: Optional[int] = None,
+    sector: Optional[str] = None
+):
+    """
+    Get macro-level value added data (World Bank/IMF)
+    
+    Query parameters:
+    - country_iso3: ISO3 country code (e.g., 'ZAF')
+    - year: Year (2021-2024)
+    - sector: ISIC section ('A', 'B-F', 'C')
+    """
+    return get_value_added(country_iso3=country_iso3, year=year, sector=sector)
+
+@api_router.get("/production/macro/{country_iso3}")
+async def get_macro_by_country(country_iso3: str):
+    """
+    Get all macro value added series for a specific country
+    Organized by sector with time series
+    """
+    return get_value_added_by_country(country_iso3)
+
+@api_router.get("/production/agriculture")
+async def get_agri_production(
+    country_iso3: Optional[str] = None,
+    year: Optional[int] = None,
+    commodity: Optional[str] = None
+):
+    """
+    Get agricultural production data (FAOSTAT)
+    
+    Query parameters:
+    - country_iso3: ISO3 country code
+    - year: Year (2021-2024)
+    - commodity: Commodity name or code (e.g., 'Maize', '0015')
+    """
+    return get_agriculture_production(country_iso3=country_iso3, year=year, commodity=commodity)
+
+@api_router.get("/production/agriculture/{country_iso3}")
+async def get_agri_by_country(country_iso3: str):
+    """
+    Get all agricultural production for a specific country
+    Organized by commodity with time series
+    """
+    return get_agriculture_by_country(country_iso3)
+
+@api_router.get("/production/manufacturing")
+async def get_manuf_production(
+    country_iso3: Optional[str] = None,
+    year: Optional[int] = None,
+    isic_code: Optional[str] = None
+):
+    """
+    Get manufacturing production data (UNIDO)
+    
+    Query parameters:
+    - country_iso3: ISO3 country code
+    - year: Year (2021-2024)
+    - isic_code: ISIC Rev.4 code (e.g., '10', '11')
+    """
+    return get_manufacturing_production(country_iso3=country_iso3, year=year, isic_code=isic_code)
+
+@api_router.get("/production/manufacturing/{country_iso3}")
+async def get_manuf_by_country(country_iso3: str):
+    """
+    Get all manufacturing production for a specific country
+    Organized by ISIC sector with time series
+    """
+    return get_manufacturing_by_country(country_iso3)
+
+@api_router.get("/production/mining")
+async def get_mining_prod(
+    country_iso3: Optional[str] = None,
+    year: Optional[int] = None,
+    commodity: Optional[str] = None
+):
+    """
+    Get mining production data (USGS)
+    
+    Query parameters:
+    - country_iso3: ISO3 country code
+    - year: Year (2021-2024)
+    - commodity: Mineral name or code (e.g., 'Gold', 'AU')
+    """
+    return get_mining_production(country_iso3=country_iso3, year=year, commodity=commodity)
+
+@api_router.get("/production/mining/{country_iso3}")
+async def get_mining_by_country(country_iso3: str):
+    """
+    Get all mining production for a specific country
+    Organized by commodity with time series
+    """
+    return get_mining_by_country(country_iso3)
+
+@api_router.get("/production/overview/{country_iso3}")
+async def get_country_production_full_overview(country_iso3: str):
+    """
+    Get complete production overview for a country
+    Includes all 4 dimensions: macro, agriculture, manufacturing, mining
+    """
+    return get_country_production_overview(country_iso3)
+
+
 # Include the router in the main app
 app.include_router(api_router)
 
