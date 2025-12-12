@@ -24,7 +24,7 @@ function ProductionTab() {
           </CardDescription>
           <div className="flex gap-2 mt-3">
             <Badge className="bg-white text-purple-700 hover:bg-purple-50 text-sm px-3 py-1">
-              🌍 10 pays pilotes
+              🌍 54 pays africains
             </Badge>
             <Badge className="bg-white text-purple-700 hover:bg-purple-50 text-sm px-3 py-1">
               📊 4 dimensions
