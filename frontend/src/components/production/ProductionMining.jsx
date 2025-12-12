@@ -73,26 +73,19 @@ function ProductionMining() {
       {/* Country Selector */}
       <Card>
         <CardContent className="pt-6">
-          <div className="flex items-center gap-4">
-            <label className="text-sm font-semibold text-gray-700">Sélectionner un pays:</label>
-            <Select value={selectedCountry} onValueChange={setSelectedCountry}>
-              <SelectTrigger className="w-64">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {COUNTRIES_PILOT.map(country => (
-                  <SelectItem key={country.code} value={country.code}>
-                    {country.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {miningData && (
+          <CountrySelector
+            value={selectedCountry}
+            onChange={setSelectedCountry}
+            label="Pays"
+            showStats={false}
+          />
+          {miningData && (
+            <div className="mt-3">
               <Badge variant="outline" className="text-sm">
-                {miningData.total_records} enregistrements
+                {miningData.total_records} enregistrements • {Object.keys(miningData.data_by_commodity).length} minerais
               </Badge>
-            )}
-          </div>
+            </div>
+          )}
         </CardContent>
       </Card>
 
