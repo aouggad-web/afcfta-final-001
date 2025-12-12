@@ -252,15 +252,15 @@ def generate_mining_data(country_code, country_name, profile):
     """Générer des données minières pour un pays"""
     records = []
     
-    # Échelle de production basée sur les ressources minières
+    # Échelle de production basée sur les ressources minières (en tonnes)
     mining_scales = {
-        'major': 150000,    # Grands producteurs
-        'medium': 50000,    # Producteurs moyens
-        'small': 10000      # Petits producteurs
+        'major': 500000,      # Grands producteurs (500k tonnes)
+        'medium': 150000,     # Producteurs moyens (150k tonnes)
+        'small': 30000        # Petits producteurs (30k tonnes)
     }
     
-    # Déterminer l'échelle
-    if country_code in ['ZAF', 'GHA', 'TZA', 'MLI', 'COD', 'ZMB', 'BWA']:
+    # Déterminer l'échelle selon l'importance minière du pays
+    if country_code in ['ZAF', 'GHA', 'TZA', 'MLI', 'COD', 'ZMB', 'BWA', 'NGA', 'DZA', 'AGO']:
         scale = mining_scales['major']
     elif len(profile['minerals']) > 2:
         scale = mining_scales['medium']
@@ -282,7 +282,7 @@ def generate_mining_data(country_code, country_name, profile):
                 "indicator_code": "USGS_PROD",
                 "indicator_label": "Mine production",
                 "value": value,
-                "unit": "kg",
+                "unit": "tonnes",
                 "currency": None,
                 "price_base_year": None,
                 "source_institution": "USGS",
