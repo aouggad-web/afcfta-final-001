@@ -73,26 +73,19 @@ function ProductionAgriculture() {
       {/* Country Selector */}
       <Card>
         <CardContent className="pt-6">
-          <div className="flex items-center gap-4">
-            <label className="text-sm font-semibold text-gray-700">Sélectionner un pays:</label>
-            <Select value={selectedCountry} onValueChange={setSelectedCountry}>
-              <SelectTrigger className="w-64">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {COUNTRIES_PILOT.map(country => (
-                  <SelectItem key={country.code} value={country.code}>
-                    {country.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {agriData && (
+          <CountrySelector
+            value={selectedCountry}
+            onChange={setSelectedCountry}
+            label="Pays"
+            showStats={false}
+          />
+          {agriData && (
+            <div className="mt-3">
               <Badge variant="outline" className="text-sm">
-                {agriData.total_records} enregistrements
+                {agriData.total_records} enregistrements • {Object.keys(agriData.data_by_commodity).length} cultures
               </Badge>
-            )}
-          </div>
+            </div>
+          )}
         </CardContent>
       </Card>
 
