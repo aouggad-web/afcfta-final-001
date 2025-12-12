@@ -1285,7 +1285,7 @@ from production_data import (
     get_manufacturing_production,
     get_manufacturing_by_country,
     get_mining_production,
-    get_mining_by_country,
+    get_mining_by_country as get_mining_by_country_data,
     get_production_statistics,
     get_country_production_overview
 )
