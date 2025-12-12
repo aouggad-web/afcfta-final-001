@@ -126,8 +126,9 @@ function ProductionTab() {
       <Card className="bg-gradient-to-r from-gray-50 to-slate-50 border-t-4 border-t-purple-500">
         <CardContent className="pt-4">
           <p className="text-sm text-gray-600 text-center">
-            <strong>Note:</strong> Les données présentées couvrent actuellement 10 pays pilotes. 
-            L'expansion à l'ensemble des 55 pays africains est prévue dans les prochaines phases (stratégie ETL complète).
+            <strong>📊 Couverture complète:</strong> Les données de production couvrent maintenant les 54 pays africains membres de la ZLECAf 
+            sur les 4 dimensions économiques (Macro, Agriculture, Manufacturing, Mining) pour la période 2021-2024. 
+            Données basées sur World Bank, FAO, UNIDO et USGS.
           </p>
         </CardContent>
       </Card>
