@@ -67,26 +67,19 @@ function ProductionMacro() {
       {/* Country Selector */}
       <Card>
         <CardContent className="pt-6">
-          <div className="flex items-center gap-4">
-            <label className="text-sm font-semibold text-gray-700">Sélectionner un pays:</label>
-            <Select value={selectedCountry} onValueChange={setSelectedCountry}>
-              <SelectTrigger className="w-64">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {COUNTRIES_PILOT.map(country => (
-                  <SelectItem key={country.code} value={country.code}>
-                    {country.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {macroData && (
+          <CountrySelector
+            value={selectedCountry}
+            onChange={setSelectedCountry}
+            label="Pays"
+            showStats={false}
+          />
+          {macroData && (
+            <div className="mt-3">
               <Badge variant="outline" className="text-sm">
-                {macroData.total_records} enregistrements
+                {macroData.total_records} enregistrements • {Object.keys(macroData.data_by_sector).length} secteurs
               </Badge>
-            )}
-          </div>
+            </div>
+          )}
         </CardContent>
       </Card>
 
