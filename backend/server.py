@@ -1486,7 +1486,7 @@ async def get_mining_by_country(country_iso3: str):
     Get all mining production for a specific country
     Organized by commodity with time series
     """
-    return get_mining_by_country(country_iso3)
+    return get_mining_by_country_data(country_iso3)
 
 @api_router.get("/production/overview/{country_iso3}")
 async def get_country_production_full_overview(country_iso3: str):
