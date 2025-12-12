@@ -71,26 +71,19 @@ function ProductionManufacturing() {
       {/* Country Selector */}
       <Card>
         <CardContent className="pt-6">
-          <div className="flex items-center gap-4">
-            <label className="text-sm font-semibold text-gray-700">Sélectionner un pays:</label>
-            <Select value={selectedCountry} onValueChange={setSelectedCountry}>
-              <SelectTrigger className="w-64">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {COUNTRIES_PILOT.map(country => (
-                  <SelectItem key={country.code} value={country.code}>
-                    {country.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {manufData && (
+          <CountrySelector
+            value={selectedCountry}
+            onChange={setSelectedCountry}
+            label="Pays"
+            showStats={false}
+          />
+          {manufData && (
+            <div className="mt-3">
               <Badge variant="outline" className="text-sm">
-                {manufData.total_records} enregistrements
+                {manufData.total_records} enregistrements • {Object.keys(manufData.data_by_isic).length} secteurs ISIC
               </Badge>
-            )}
-          </div>
+            </div>
+          )}
         </CardContent>
       </Card>
 
