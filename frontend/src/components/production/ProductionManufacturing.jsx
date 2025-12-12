@@ -1,25 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { Badge } from '../ui/badge';
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import CountrySelector from './CountrySelector';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
-
-const COUNTRIES_PILOT = [
-  { code: 'ZAF', name: 'Afrique du Sud' },
-  { code: 'NGA', name: 'Nigéria' },
-  { code: 'EGY', name: 'Égypte' },
-  { code: 'KEN', name: 'Kenya' },
-  { code: 'GHA', name: 'Ghana' },
-  { code: 'ETH', name: 'Éthiopie' },
-  { code: 'CIV', name: 'Côte d\'Ivoire' },
-  { code: 'TZA', name: 'Tanzanie' },
-  { code: 'MAR', name: 'Maroc' },
-  { code: 'SEN', name: 'Sénégal' }
-];
 
 function ProductionManufacturing() {
   const [selectedCountry, setSelectedCountry] = useState('ZAF');
