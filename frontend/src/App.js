@@ -2405,54 +2405,6 @@ function ZLECAfCalculator() {
                     </CardContent>
                   </Card>
 
-                  <Card className="shadow-xl border-t-4 border-t-purple-600">
-                    <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50">
-                      <div className="mt-6">
-                        <h4 className="font-semibold mb-3 text-gray-800 text-xl">🏛️ Notations de Risque Souverain</h4>
-                          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                            <div className="bg-blue-50 p-3 rounded-lg text-center">
-                              <p className="text-lg font-bold text-blue-600">
-                                {countryProfile.risk_ratings?.sp || 'NR'}
-                              </p>
-                              <p className="text-xs text-gray-600">S&P (USA)</p>
-                            </div>
-                            <div className="bg-green-50 p-3 rounded-lg text-center">
-                              <p className="text-lg font-bold text-green-600">
-                                {countryProfile.risk_ratings?.moodys || 'NR'}
-                              </p>
-                              <p className="text-xs text-gray-600">Moody's (USA)</p>
-                            </div>
-                            <div className="bg-purple-50 p-3 rounded-lg text-center">
-                              <p className="text-lg font-bold text-purple-600">
-                                {countryProfile.risk_ratings?.fitch || 'NR'}
-                              </p>
-                              <p className="text-xs text-gray-600">Fitch (FR/USA)</p>
-                            </div>
-                            <div className="bg-orange-50 p-3 rounded-lg text-center">
-                              <p className="text-lg font-bold text-orange-600">
-                                {countryProfile.risk_ratings?.scope || 'NR'}
-                              </p>
-                              <p className="text-xs text-gray-600">Scope (Europe)</p>
-                            </div>
-                          </div>
-                          
-                          {/* Risque global */}
-                          <div className="mt-3 text-center">
-                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
-                              countryProfile.risk_ratings?.global_risk === 'Très Faible' ? 'bg-green-100 text-green-800' :
-                              countryProfile.risk_ratings?.global_risk === 'Faible' ? 'bg-green-100 text-green-700' :
-                              countryProfile.risk_ratings?.global_risk === 'Modéré' ? 'bg-yellow-100 text-yellow-800' :
-                              countryProfile.risk_ratings?.global_risk === 'Élevé' ? 'bg-orange-100 text-orange-800' :
-                              countryProfile.risk_ratings?.global_risk === 'Très Élevé' ? 'bg-red-100 text-red-800' :
-                              'bg-gray-100 text-gray-600'
-                            }`}>
-                              🏛️ Risque Global: {countryProfile.risk_ratings?.global_risk || 'Non évalué'}
-                            </span>
-                          </div>
-                      </div>
-                    </CardHeader>
-                  </Card>
-
                   {/* Section Douanes */}
                   {countryProfile.customs && countryProfile.customs.administration && (
                     <Card className="shadow-xl border-t-4 border-t-blue-600">
