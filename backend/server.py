@@ -525,6 +525,22 @@ async def get_country_profile(country_code: str) -> CountryEconomicProfile:
             "energy_cost_kwh": commerce_data.get('infrastructure', {}).get('energy_cost_usd_kwh', 0.20)
         }
         
+        # Gold reserves data
+        gold_data = GOLD_RESERVES_GAI_DATA['gold_reserves'].get(country['iso3'], {})
+        if gold_data:
+            profile.projections['gold_reserves_tonnes'] = gold_data.get('tonnes', 0.0)
+            profile.projections['gold_reserves_rank_africa'] = gold_data.get('rank_africa')
+            profile.projections['gold_reserves_rank_global'] = gold_data.get('rank_global')
+        
+        # Global Attractiveness Index 2025
+        gai_data = GOLD_RESERVES_GAI_DATA['global_attractiveness_index_2025'].get(country['iso3'], {})
+        if gai_data:
+            profile.projections['gai_2025_score'] = gai_data.get('score')
+            profile.projections['gai_2025_rank_africa'] = gai_data.get('rank_africa')
+            profile.projections['gai_2025_rank_global'] = gai_data.get('rank_global')
+            profile.projections['gai_2025_rating'] = gai_data.get('rating')
+            profile.projections['gai_2025_trend'] = gai_data.get('trend')
+        
         # Notations de risque 2024
         profile.risk_ratings = commerce_data['ratings']
         
