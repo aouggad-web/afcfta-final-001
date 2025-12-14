@@ -2255,6 +2255,76 @@ function ZLECAfCalculator() {
                         </div>
                       </div>
 
+                      {/* Gold Reserves & GAI 2025 - NEW */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        {/* Gold Reserves */}
+                        {countryProfile.projections?.gold_reserves_tonnes !== undefined && (
+                          <div className="bg-gradient-to-br from-yellow-50 to-amber-100 p-4 rounded-lg shadow-lg border-2 border-yellow-400">
+                            <div className="flex items-center gap-2 mb-2">
+                              <span className="text-2xl">🥇</span>
+                              <p className="text-sm font-bold text-yellow-800">Réserves d'Or</p>
+                            </div>
+                            <p className="text-3xl font-bold text-yellow-700 mb-2">
+                              {countryProfile.projections.gold_reserves_tonnes.toFixed(1)} <span className="text-xl">tonnes</span>
+                            </p>
+                            <div className="flex gap-3 text-xs">
+                              <span className="bg-yellow-200 text-yellow-800 px-2 py-1 rounded font-semibold">
+                                🌍 Afrique: #{countryProfile.projections.gold_reserves_rank_africa}
+                              </span>
+                              {countryProfile.projections.gold_reserves_rank_global && (
+                                <span className="bg-yellow-300 text-yellow-900 px-2 py-1 rounded font-semibold">
+                                  🌎 Mondial: #{countryProfile.projections.gold_reserves_rank_global}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Global Attractiveness Index 2025 */}
+                        {countryProfile.projections?.gai_2025_score !== undefined && (
+                          <div className="bg-gradient-to-br from-indigo-50 to-purple-100 p-4 rounded-lg shadow-lg border-2 border-indigo-400">
+                            <div className="flex items-center justify-between mb-2">
+                              <div className="flex items-center gap-2">
+                                <span className="text-2xl">📊</span>
+                                <p className="text-sm font-bold text-indigo-800">Global Attractiveness Index 2025</p>
+                              </div>
+                              <span className={`px-3 py-1 rounded-full font-bold text-sm ${
+                                countryProfile.projections.gai_2025_rating === 'A' ? 'bg-green-500 text-white' :
+                                countryProfile.projections.gai_2025_rating?.startsWith('A') ? 'bg-green-400 text-white' :
+                                countryProfile.projections.gai_2025_rating?.startsWith('B') ? 'bg-blue-400 text-white' :
+                                countryProfile.projections.gai_2025_rating?.startsWith('C') ? 'bg-yellow-400 text-white' :
+                                countryProfile.projections.gai_2025_rating?.startsWith('D') ? 'bg-orange-400 text-white' :
+                                'bg-red-400 text-white'
+                              }`}>
+                                {countryProfile.projections.gai_2025_rating}
+                              </span>
+                            </div>
+                            <div className="flex items-baseline gap-2 mb-2">
+                              <p className="text-4xl font-bold text-indigo-700">
+                                {countryProfile.projections.gai_2025_score.toFixed(1)}
+                              </p>
+                              <span className={`text-sm font-semibold px-2 py-1 rounded ${
+                                countryProfile.projections.gai_2025_trend === 'improving' ? 'bg-green-200 text-green-800' :
+                                countryProfile.projections.gai_2025_trend === 'declining' ? 'bg-red-200 text-red-800' :
+                                'bg-gray-200 text-gray-800'
+                              }`}>
+                                {countryProfile.projections.gai_2025_trend === 'improving' ? '📈 En hausse' :
+                                 countryProfile.projections.gai_2025_trend === 'declining' ? '📉 En baisse' :
+                                 '➡️ Stable'}
+                              </span>
+                            </div>
+                            <div className="flex gap-3 text-xs">
+                              <span className="bg-indigo-200 text-indigo-800 px-2 py-1 rounded font-semibold">
+                                🌍 Afrique: #{countryProfile.projections.gai_2025_rank_africa}
+                              </span>
+                              <span className="bg-purple-200 text-purple-800 px-2 py-1 rounded font-semibold">
+                                🌎 Mondial: #{countryProfile.projections.gai_2025_rank_global}
+                              </span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
                       {/* Nouveaux indicateurs - Infrastructure et Économie */}
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
                         <div className="bg-red-50 p-2 rounded border-l-2 border-red-500">
