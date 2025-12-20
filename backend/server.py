@@ -525,6 +525,13 @@ async def get_country_profile(country_code: str) -> CountryEconomicProfile:
             "energy_cost_kwh": commerce_data.get('infrastructure', {}).get('energy_cost_usd_kwh', 0.20)
         }
         
+        # World Bank Data360 indicators
+        wb_data = commerce_data.get('world_bank_data', {})
+        if wb_data:
+            for key, value in wb_data.items():
+                if value is not None:
+                    profile.projections[key] = value
+        
         # Gold reserves data
         gold_data = GOLD_RESERVES_GAI_DATA['gold_reserves'].get(country['iso3'], {})
         if gold_data:
