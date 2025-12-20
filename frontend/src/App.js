@@ -2325,6 +2325,179 @@ function ZLECAfCalculator() {
                         )}
                       </div>
 
+                      {/* World Bank Data360 Indicators - NEW SECTION */}
+                      {countryProfile.projections?.life_expectancy_2023 && (
+                        <div className="mb-4">
+                          <Card className="shadow-xl border-t-4 border-t-blue-600">
+                            <CardHeader className="bg-gradient-to-r from-blue-50 to-cyan-50">
+                              <CardTitle className="text-xl font-bold text-blue-700 flex items-center gap-2">
+                                <span>🌐</span>
+                                <span>Indicateurs World Bank Data360 (2024)</span>
+                              </CardTitle>
+                              <p className="text-sm text-blue-600 mt-1">
+                                Données officielles de la Banque Mondiale - Mis à jour 2024
+                              </p>
+                            </CardHeader>
+                            <CardContent className="pt-6">
+                              {/* Section 1: People (Social) */}
+                              <div className="mb-6">
+                                <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                                  <span>👥</span>
+                                  <span>Indicateurs Sociaux</span>
+                                </h4>
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-3 rounded-lg border-l-4 border-green-500">
+                                    <p className="text-xs font-semibold text-green-700">🏥 Espérance de vie</p>
+                                    <p className="text-2xl font-bold text-green-600">
+                                      {countryProfile.projections.life_expectancy_2023}
+                                    </p>
+                                    <p className="text-xs text-gray-600">ans (2023)</p>
+                                  </div>
+                                  
+                                  {countryProfile.projections.gini_index_2024 && (
+                                    <div className="bg-gradient-to-br from-orange-50 to-amber-50 p-3 rounded-lg border-l-4 border-orange-500">
+                                      <p className="text-xs font-semibold text-orange-700">📊 Indice Gini</p>
+                                      <p className="text-2xl font-bold text-orange-600">
+                                        {parseFloat(countryProfile.projections.gini_index_2024).toFixed(1)}
+                                      </p>
+                                      <p className="text-xs text-gray-600">sur 100 (2024)</p>
+                                    </div>
+                                  )}
+                                  
+                                  {countryProfile.projections.poverty_rate_3usd_2024 && (
+                                    <div className="bg-gradient-to-br from-red-50 to-rose-50 p-3 rounded-lg border-l-4 border-red-500">
+                                      <p className="text-xs font-semibold text-red-700">💰 Pauvreté ($3/jour)</p>
+                                      <p className="text-2xl font-bold text-red-600">
+                                        {parseFloat(countryProfile.projections.poverty_rate_3usd_2024).toFixed(1)}%
+                                      </p>
+                                      <p className="text-xs text-gray-600">population (2024)</p>
+                                    </div>
+                                  )}
+                                  
+                                  {countryProfile.projections.urban_population_pct_2024 && (
+                                    <div className="bg-gradient-to-br from-purple-50 to-indigo-50 p-3 rounded-lg border-l-4 border-purple-500">
+                                      <p className="text-xs font-semibold text-purple-700">🏙️ Population urbaine</p>
+                                      <p className="text-2xl font-bold text-purple-600">
+                                        {parseFloat(countryProfile.projections.urban_population_pct_2024).toFixed(1)}%
+                                      </p>
+                                      <p className="text-xs text-gray-600">du total (2024)</p>
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+
+                              {/* Section 2: Digital & Infrastructure */}
+                              <div className="mb-6">
+                                <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                                  <span>💻</span>
+                                  <span>Digital & Connectivité</span>
+                                </h4>
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                  {countryProfile.projections.internet_users_pct_2024 && (
+                                    <div className="bg-gradient-to-br from-blue-50 to-sky-50 p-3 rounded-lg border-l-4 border-blue-500">
+                                      <p className="text-xs font-semibold text-blue-700">🌐 Accès Internet</p>
+                                      <p className="text-2xl font-bold text-blue-600">
+                                        {parseFloat(countryProfile.projections.internet_users_pct_2024).toFixed(1)}%
+                                      </p>
+                                      <p className="text-xs text-gray-600">population (2024)</p>
+                                    </div>
+                                  )}
+                                  
+                                  {countryProfile.projections.cybersecurity_index_2024 && (
+                                    <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-3 rounded-lg border-l-4 border-indigo-500">
+                                      <p className="text-xs font-semibold text-indigo-700">🔒 Cybersécurité</p>
+                                      <p className="text-2xl font-bold text-indigo-600">
+                                        {parseFloat(countryProfile.projections.cybersecurity_index_2024).toFixed(1)}
+                                      </p>
+                                      <p className="text-xs text-gray-600">ITU GCI (2024)</p>
+                                    </div>
+                                  )}
+                                  
+                                  {countryProfile.projections.electricity_access_2022 && (
+                                    <div className="bg-gradient-to-br from-yellow-50 to-amber-50 p-3 rounded-lg border-l-4 border-yellow-500">
+                                      <p className="text-xs font-semibold text-yellow-700">⚡ Accès Électricité</p>
+                                      <p className="text-2xl font-bold text-yellow-600">
+                                        {parseFloat(countryProfile.projections.electricity_access_2022).toFixed(0)}%
+                                      </p>
+                                      <p className="text-xs text-gray-600">population (2022)</p>
+                                    </div>
+                                  )}
+                                  
+                                  {countryProfile.projections.mobile_3g_coverage_2024 && (
+                                    <div className="bg-gradient-to-br from-teal-50 to-cyan-50 p-3 rounded-lg border-l-4 border-teal-500">
+                                      <p className="text-xs font-semibold text-teal-700">📱 Couverture 3G</p>
+                                      <p className="text-2xl font-bold text-teal-600">
+                                        {parseFloat(countryProfile.projections.mobile_3g_coverage_2024).toFixed(0)}%
+                                      </p>
+                                      <p className="text-xs text-gray-600">population (2024)</p>
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+
+                              {/* Section 3: Environment & Gender */}
+                              <div>
+                                <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                                  <span>🌍</span>
+                                  <span>Environnement & Égalité</span>
+                                </h4>
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                  {countryProfile.projections.female_labor_force_pct_2024 && (
+                                    <div className="bg-gradient-to-br from-pink-50 to-rose-50 p-3 rounded-lg border-l-4 border-pink-500">
+                                      <p className="text-xs font-semibold text-pink-700">👩‍💼 Femmes actives</p>
+                                      <p className="text-2xl font-bold text-pink-600">
+                                        {parseFloat(countryProfile.projections.female_labor_force_pct_2024).toFixed(1)}%
+                                      </p>
+                                      <p className="text-xs text-gray-600">pop. fém. (2024)</p>
+                                    </div>
+                                  )}
+                                  
+                                  {countryProfile.projections.water_stress_2022 && (
+                                    <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-3 rounded-lg border-l-4 border-blue-500">
+                                      <p className="text-xs font-semibold text-blue-700">💧 Stress hydrique</p>
+                                      <p className="text-2xl font-bold text-blue-600">
+                                        {parseFloat(countryProfile.projections.water_stress_2022).toFixed(1)}%
+                                      </p>
+                                      <p className="text-xs text-gray-600">ressources (2022)</p>
+                                    </div>
+                                  )}
+                                  
+                                  {countryProfile.projections.ghg_emissions_mt_2022 && (
+                                    <div className="bg-gradient-to-br from-gray-50 to-slate-50 p-3 rounded-lg border-l-4 border-gray-500">
+                                      <p className="text-xs font-semibold text-gray-700">🏭 Émissions GES</p>
+                                      <p className="text-2xl font-bold text-gray-600">
+                                        {parseFloat(countryProfile.projections.ghg_emissions_mt_2022).toFixed(1)}
+                                      </p>
+                                      <p className="text-xs text-gray-600">Mt CO₂e (2022)</p>
+                                    </div>
+                                  )}
+                                  
+                                  {countryProfile.projections.learning_poverty_2023 && (
+                                    <div className="bg-gradient-to-br from-violet-50 to-purple-50 p-3 rounded-lg border-l-4 border-violet-500">
+                                      <p className="text-xs font-semibold text-violet-700">📚 Pauvreté éducative</p>
+                                      <p className="text-2xl font-bold text-violet-600">
+                                        {parseFloat(countryProfile.projections.learning_poverty_2023).toFixed(1)}%
+                                      </p>
+                                      <p className="text-xs text-gray-600">enfants (2023)</p>
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                              
+                              {/* Source footer */}
+                              <div className="mt-4 pt-4 border-t border-gray-200">
+                                <p className="text-xs text-gray-500 text-center">
+                                  Source: <strong>World Bank Data360</strong> - Données officielles de la Banque Mondiale (2024) • 
+                                  <a href="https://data360.worldbank.org" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline ml-1">
+                                    data360.worldbank.org
+                                  </a>
+                                </p>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        </div>
+                      )}
+
                       {/* Nouveaux indicateurs - Infrastructure et Économie */}
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
                         <div className="bg-red-50 p-2 rounded border-l-2 border-red-500">
