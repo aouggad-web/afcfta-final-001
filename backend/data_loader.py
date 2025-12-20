@@ -89,6 +89,22 @@ def get_country_commerce_profile(country_code: str) -> Optional[Dict]:
         'energy_cost_usd_kwh': float(row['Cout_Energie_USD_kWh']) if pd.notna(row.get('Cout_Energie_USD_kWh')) else 0.20
     }
     
+    # World Bank Data360 indicators (2024)
+    world_bank_data = {
+        'life_expectancy_2023': float(row['Life_Expectancy_2023']) if pd.notna(row.get('Life_Expectancy_2023')) else None,
+        'gini_index_2024': float(row['Gini_Index_2024']) if pd.notna(row.get('Gini_Index_2024')) else None,
+        'poverty_rate_3usd_2024': float(row['Poverty_Rate_3USD_2024']) if pd.notna(row.get('Poverty_Rate_3USD_2024')) else None,
+        'urban_population_pct_2024': float(row['Urban_Population_Pct_2024']) if pd.notna(row.get('Urban_Population_Pct_2024')) else None,
+        'electricity_access_2022': float(row['Electricity_Access_2022']) if pd.notna(row.get('Electricity_Access_2022')) else None,
+        'internet_users_pct_2024': float(row['Internet_Users_Pct_2024']) if pd.notna(row.get('Internet_Users_Pct_2024')) else None,
+        'cybersecurity_index_2024': float(row['Cybersecurity_Index_2024']) if pd.notna(row.get('Cybersecurity_Index_2024')) else None,
+        'female_labor_force_pct_2024': float(row['Female_Labor_Force_Pct_2024']) if pd.notna(row.get('Female_Labor_Force_Pct_2024')) else None,
+        'learning_poverty_2023': float(row['Learning_Poverty_2023']) if pd.notna(row.get('Learning_Poverty_2023')) else None,
+        'water_stress_2022': float(row['Water_Stress_2022']) if pd.notna(row.get('Water_Stress_2022')) else None,
+        'ghg_emissions_mt_2022': float(row['GHG_Emissions_Mt_2022']) if pd.notna(row.get('GHG_Emissions_Mt_2022')) else None,
+        'mobile_3g_coverage_2024': float(row['Mobile_3G_Coverage_2024']) if pd.notna(row.get('Mobile_3G_Coverage_2024')) else None
+    }
+    
     return {
         'country': row['Pays'],
         'code': row['Code_ISO'],
