@@ -122,6 +122,7 @@ def get_country_commerce_profile(country_code: str) -> Optional[Dict]:
         'import_partners': import_partners,
         'ratings': ratings,
         'infrastructure': infrastructure,
+        'world_bank_data': world_bank_data,
         'zlecaf_ratified': row.get('ZLECAf_Ratifie', 'Non'),
         'zlecaf_ratification_date': row.get('Date_Ratification_ZLECAf', None),
         'sources': row.get('Sources_Principales', ''),
