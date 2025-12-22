@@ -1,0 +1,136 @@
+
+{
+  "DZA": [
+    {
+      "titre": "Ligne Ferroviaire Minière Béchar-Tindouf-Gara Djebilet",
+      "secteur": "Mines & Transport",
+      "statut": "En construction (Avancé)",
+      "budget": "Est. 1.5 - 2 Mrd USD (Rail)",
+      "echeance": "Janvier 2026 (Premier train)",
+      "description": "Mégaprojet ferroviaire de 950 km reliant le gisement de fer de Gara Djebilet (Tindouf) au réseau national à Béchar. Le projet est crucial pour l'exploitation de l'une des plus grandes réserves de fer au monde (3.5 Mrd tonnes).",
+      "impact": "Acheminement de 40-50M tonnes/an de minerai vers le port d'Arzew/Oran. Création de 15,000 emplois directs. Désenclavement du Sud-Ouest.",
+      "partenaires": "Partenariat Algéro-Chinois (CRCC)",
+      "source": "Ministère des Travaux Publics / ANESRIF 2025"
+    },
+    {
+      "titre": "Projet Phosphate Intégré (PPI) - Bled El Hadba",
+      "secteur": "Industrie & Mines",
+      "statut": "Études finales / Début Construction",
+      "budget": "7 Milliards USD",
+      "echeance": "2027 (Entrée en production)",
+      "description": "Projet intégré couvrant l'extraction à Tébessa (Bled El Hadba), la transformation à Souk Ahras et la production d'engrais à Skikda/Annaba. Vise à placer l'Algérie dans le Top 3 mondial des exportateurs d'engrais.",
+      "impact": "Production de 6M tonnes d'engrais/an. Revenus d'exportation attendus > 2 Mrd USD/an. 12,000 emplois en phase construction.",
+      "partenaires": "Asmidal, Manal, Partenaires Chinois (Wuhuan) & Allemands",
+      "source": "Sonatrach / Ministère de l'Énergie 2025"
+    },
+    {
+      "titre": "Dorsale Ferroviaire Transsaharienne (Alger-Tamanrasset)",
+      "secteur": "Transport & Logistique",
+      "statut": "Lancement 2025 / Études partielles achevées",
+      "budget": "Multi-milliards USD (747M€ prêt BAD pour section)",
+      "echeance": "2027-2028 (Phasé)",
+      "description": "Ligne ferroviaire nord-sud de plus de 2000 km, reliant Alger à Tamanrasset. Conçue comme un corridor logistique stratégique vers l'Afrique subsaharienne.",
+      "impact": "Désenclavement total du Grand Sud. Support logistique pour le commerce avec le Sahel. Vitesse commerciale 220 km/h sur tronçons nord.",
+      "partenaires": "ANESRIF, BAD (Banque Africaine de Développement)",
+      "source": "Présidence de la République / ANESRIF"
+    }
+  ],
+  "EGY": [
+    {
+      "titre": "Nouvelle Capitale Administrative",
+      "secteur": "Urbanisme & Infrastructure",
+      "statut": "En construction (Phase 1 opérationnelle)",
+      "budget": "58 Milliards USD",
+      "echeance": "2025-2030 (Phases successives)",
+      "description": "Construction d'une nouvelle ville intelligente à 45km du Caire pour désengorger la capitale. Inclut le plus haut gratte-ciel d'Afrique (Iconic Tower).",
+      "impact": "Centre administratif et économique moderne pour 6.5 millions d'habitants.",
+      "partenaires": "CSCEC (Chine), Gouvernement Égyptien",
+      "source": "ACUD Egypt"
+    },
+    {
+      "titre": "Centrale Nucléaire El Dabaa",
+      "secteur": "Énergie",
+      "statut": "En construction",
+      "budget": "25-30 Milliards USD",
+      "echeance": "2028 (Premier réacteur)",
+      "description": "Première centrale nucléaire d'Égypte composée de 4 réacteurs VVER-1200.",
+      "impact": "4.8 GW de capacité électrique bas-carbone. Diversification du mix énergétique.",
+      "partenaires": "Rosatom (Russie)",
+      "source": "NPPA Egypt"
+    }
+  ],
+  "MAR": [
+    {
+      "titre": "Port Dakhla Atlantique",
+      "secteur": "Logistique Maritime",
+      "statut": "En construction",
+      "budget": "1.2 Milliards USD",
+      "echeance": "2028",
+      "description": "Nouveau port en eau profonde sur la façade atlantique sud, incluant zones industrielles et logistiques.",
+      "impact": "Hub maritime vers l'Afrique de l'Ouest. Support aux secteurs pêche et énergies renouvelables.",
+      "partenaires": "SGTM, Somagec",
+      "source": "Ministère de l'Équipement"
+    },
+    {
+      "titre": "Extension LGV (Kénitra-Marrakech)",
+      "secteur": "Transport",
+      "statut": "Lancement travaux",
+      "budget": "Est. 3 Milliards USD",
+      "echeance": "2029 (Avant Mondial 2030)",
+      "description": "Extension de la ligne à grande vitesse Al Boraq vers le sud pour relier Marrakech.",
+      "impact": "Réduction temps trajet Casablanca-Tanger. Préparation Coupe du Monde 2030.",
+      "partenaires": "ONCF",
+      "source": "ONCF"
+    }
+  ],
+  "NGA": [
+    {
+      "titre": "Ligne Ferroviaire Kano-Maradi",
+      "secteur": "Transport",
+      "statut": "En construction",
+      "budget": "1.9 Milliards USD",
+      "echeance": "2026",
+      "description": "Ligne reliant le nord du Nigéria au Niger (Maradi), facilitant le commerce transfrontalier.",
+      "impact": "Accès à la mer pour le Niger via les ports nigérians. Boost du commerce régional.",
+      "partenaires": "Mota-Engil",
+      "source": "Federal Ministry of Transportation"
+    },
+    {
+      "titre": "Gazoduc Ajaokuta-Kaduna-Kano (AKK)",
+      "secteur": "Énergie",
+      "statut": "En construction (Avancé)",
+      "budget": "2.8 Milliards USD",
+      "echeance": "2025",
+      "description": "Gazoduc de 614 km reliant le sud gazier au nord industriel du Nigéria.",
+      "impact": "Alimentation électrique du Nord, relance industrielle, export vers trans-saharien.",
+      "partenaires": "NNPC",
+      "source": "NNPC"
+    }
+  ],
+  "SEN": [
+    {
+      "titre": "Port du Futur à Ndayane",
+      "secteur": "Logistique Maritime",
+      "statut": "En construction",
+      "budget": "1.1 Milliards USD (Phase 1)",
+      "echeance": "2027",
+      "description": "Nouveau port en eau profonde à 50km de Dakar pour suppléer le port historique saturé.",
+      "impact": "Hub logistique régional. Capacité d'accueil des plus grands porte-conteneurs (Post-Panamax).",
+      "partenaires": "DP World",
+      "source": "Port Autonome de Dakar"
+    }
+  ],
+  "COD": [
+    {
+      "titre": "Port en eaux profondes de Banana",
+      "secteur": "Logistique Maritime",
+      "statut": "En construction",
+      "budget": "1.2 Milliards USD",
+      "echeance": "2027",
+      "description": "Premier port en eau profonde de la RDC, ouvrant un accès direct à l'océan sans transbordement.",
+      "impact": "Indépendance logistique de la RDC. Réduction coûts import/export.",
+      "partenaires": "DP World",
+      "source": "Gouvernement RDC"
+    }
+  ]
+}
