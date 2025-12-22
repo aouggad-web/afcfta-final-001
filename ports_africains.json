@@ -46,7 +46,46 @@
       "value": 15.32,
       "world_rank": 102,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 27.0,
+      "avg_port_stay_hours": 117.7,
+      "berth_productivity": 82.4,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 759926,
+        "vessels": 949,
+        "avg_wait_time": 26.3
+      },
+      {
+        "year": 2021,
+        "teu": 797922,
+        "vessels": 997,
+        "avg_wait_time": 26.0
+      },
+      {
+        "year": 2022,
+        "teu": 861756,
+        "vessels": 1077,
+        "avg_wait_time": 29.1
+      },
+      {
+        "year": 2023,
+        "teu": 896226,
+        "vessels": 1120,
+        "avg_wait_time": 24.8
+      },
+      {
+        "year": 2024,
+        "teu": 950000,
+        "vessels": 1187,
+        "avg_wait_time": 26.7
+      }
+    ]
   },
   {
     "port_id": "DZA-ORA-001",
@@ -85,7 +124,46 @@
       "value": 15.32,
       "world_rank": 102,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 49.1,
+      "avg_port_stay_hours": 95.5,
+      "berth_productivity": 66.8,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 415959,
+        "vessels": 519,
+        "avg_wait_time": 52.7
+      },
+      {
+        "year": 2021,
+        "teu": 436757,
+        "vessels": 545,
+        "avg_wait_time": 48.9
+      },
+      {
+        "year": 2022,
+        "teu": 471698,
+        "vessels": 589,
+        "avg_wait_time": 48.2
+      },
+      {
+        "year": 2023,
+        "teu": 490566,
+        "vessels": 613,
+        "avg_wait_time": 53.8
+      },
+      {
+        "year": 2024,
+        "teu": 520000,
+        "vessels": 650,
+        "avg_wait_time": 51.2
+      }
+    ]
   },
   {
     "port_id": "DZA-BEJ-001",
@@ -108,7 +186,46 @@
       "value": 15.32,
       "world_rank": 102,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 29.9,
+      "avg_port_stay_hours": 100.3,
+      "berth_productivity": 70.2,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 223978,
+        "vessels": 279,
+        "avg_wait_time": 28.9
+      },
+      {
+        "year": 2021,
+        "teu": 235177,
+        "vessels": 293,
+        "avg_wait_time": 28.5
+      },
+      {
+        "year": 2022,
+        "teu": 253991,
+        "vessels": 317,
+        "avg_wait_time": 32.9
+      },
+      {
+        "year": 2023,
+        "teu": 264150,
+        "vessels": 330,
+        "avg_wait_time": 30.9
+      },
+      {
+        "year": 2024,
+        "teu": 280000,
+        "vessels": 350,
+        "avg_wait_time": 32.6
+      }
+    ]
   },
   {
     "port_id": "MAR-CAS-001",
@@ -193,7 +310,46 @@
       "value": 41.88,
       "world_rank": 52,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 45.8,
+      "avg_port_stay_hours": 93.0,
+      "berth_productivity": 65.1,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 1159887,
+        "vessels": 1449,
+        "avg_wait_time": 43.9
+      },
+      {
+        "year": 2021,
+        "teu": 1217881,
+        "vessels": 1522,
+        "avg_wait_time": 44.2
+      },
+      {
+        "year": 2022,
+        "teu": 1315312,
+        "vessels": 1644,
+        "avg_wait_time": 48.8
+      },
+      {
+        "year": 2023,
+        "teu": 1367924,
+        "vessels": 1709,
+        "avg_wait_time": 41.8
+      },
+      {
+        "year": 2024,
+        "teu": 1450000,
+        "vessels": 1812,
+        "avg_wait_time": 41.3
+      }
+    ]
   },
   {
     "port_id": "MAR-TAN-001",
@@ -384,6 +540,45 @@
         "median_time_in_port_hours": 18.5,
         "performance_grade": "B+"
       }
+    ],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 67.2,
+      "avg_port_stay_hours": 78.1,
+      "berth_productivity": 54.7,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 6559361,
+        "vessels": 8199,
+        "avg_wait_time": 69.7
+      },
+      {
+        "year": 2021,
+        "teu": 6887330,
+        "vessels": 8609,
+        "avg_wait_time": 71.3
+      },
+      {
+        "year": 2022,
+        "teu": 7438316,
+        "vessels": 9297,
+        "avg_wait_time": 67.5
+      },
+      {
+        "year": 2023,
+        "teu": 7735849,
+        "vessels": 9669,
+        "avg_wait_time": 66.0
+      },
+      {
+        "year": 2024,
+        "teu": 8200000,
+        "vessels": 10250,
+        "avg_wait_time": 67.4
+      }
     ]
   },
   {
@@ -407,7 +602,46 @@
       "value": 41.88,
       "world_rank": 52,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 47.0,
+      "avg_port_stay_hours": 49.3,
+      "berth_productivity": 34.5,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 75992,
+        "vessels": 94,
+        "avg_wait_time": 50.5
+      },
+      {
+        "year": 2021,
+        "teu": 79792,
+        "vessels": 99,
+        "avg_wait_time": 44.4
+      },
+      {
+        "year": 2022,
+        "teu": 86175,
+        "vessels": 107,
+        "avg_wait_time": 51.6
+      },
+      {
+        "year": 2023,
+        "teu": 89622,
+        "vessels": 112,
+        "avg_wait_time": 46.0
+      },
+      {
+        "year": 2024,
+        "teu": 95000,
+        "vessels": 118,
+        "avg_wait_time": 49.7
+      }
+    ]
   },
   {
     "port_id": "TUN-RAD-001",
@@ -446,7 +680,46 @@
       "value": 18.45,
       "world_rank": 81,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 41.3,
+      "avg_port_stay_hours": 66.4,
+      "berth_productivity": 46.4,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 543947,
+        "vessels": 679,
+        "avg_wait_time": 37.4
+      },
+      {
+        "year": 2021,
+        "teu": 571144,
+        "vessels": 713,
+        "avg_wait_time": 42.8
+      },
+      {
+        "year": 2022,
+        "teu": 616835,
+        "vessels": 771,
+        "avg_wait_time": 43.8
+      },
+      {
+        "year": 2023,
+        "teu": 641509,
+        "vessels": 801,
+        "avg_wait_time": 43.7
+      },
+      {
+        "year": 2024,
+        "teu": 680000,
+        "vessels": 850,
+        "avg_wait_time": 41.4
+      }
+    ]
   },
   {
     "port_id": "TUN-SFX-001",
@@ -469,7 +742,46 @@
       "value": 18.45,
       "world_rank": 81,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 50.5,
+      "avg_port_stay_hours": 49.0,
+      "berth_productivity": 34.3,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 95990,
+        "vessels": 119,
+        "avg_wait_time": 51.6
+      },
+      {
+        "year": 2021,
+        "teu": 100790,
+        "vessels": 125,
+        "avg_wait_time": 52.4
+      },
+      {
+        "year": 2022,
+        "teu": 108853,
+        "vessels": 136,
+        "avg_wait_time": 50.7
+      },
+      {
+        "year": 2023,
+        "teu": 113207,
+        "vessels": 141,
+        "avg_wait_time": 51.0
+      },
+      {
+        "year": 2024,
+        "teu": 120000,
+        "vessels": 150,
+        "avg_wait_time": 51.5
+      }
+    ]
   },
   {
     "port_id": "EGY-ALE-001",
@@ -518,7 +830,46 @@
       "value": 58.71,
       "world_rank": 32,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 25.9,
+      "avg_port_stay_hours": 103.3,
+      "berth_productivity": 72.3,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 1479856,
+        "vessels": 1849,
+        "avg_wait_time": 27.5
+      },
+      {
+        "year": 2021,
+        "teu": 1553848,
+        "vessels": 1942,
+        "avg_wait_time": 24.8
+      },
+      {
+        "year": 2022,
+        "teu": 1678156,
+        "vessels": 2097,
+        "avg_wait_time": 27.0
+      },
+      {
+        "year": 2023,
+        "teu": 1745283,
+        "vessels": 2181,
+        "avg_wait_time": 27.8
+      },
+      {
+        "year": 2024,
+        "teu": 1850000,
+        "vessels": 2312,
+        "avg_wait_time": 23.3
+      }
+    ]
   },
   {
     "port_id": "EGY-PSA-001",
@@ -703,6 +1054,45 @@
         "median_time_in_port_hours": 20.5,
         "performance_grade": "B+"
       }
+    ],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 26.7,
+      "avg_port_stay_hours": 58.1,
+      "berth_productivity": 40.7,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 3359673,
+        "vessels": 4199,
+        "avg_wait_time": 27.2
+      },
+      {
+        "year": 2021,
+        "teu": 3527656,
+        "vessels": 4409,
+        "avg_wait_time": 24.5
+      },
+      {
+        "year": 2022,
+        "teu": 3809869,
+        "vessels": 4762,
+        "avg_wait_time": 26.8
+      },
+      {
+        "year": 2023,
+        "teu": 3962264,
+        "vessels": 4952,
+        "avg_wait_time": 25.9
+      },
+      {
+        "year": 2024,
+        "teu": 4200000,
+        "vessels": 5250,
+        "avg_wait_time": 26.5
+      }
     ]
   },
   {
@@ -726,7 +1116,46 @@
       "value": 58.71,
       "world_rank": 32,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 52.1,
+      "avg_port_stay_hours": 63.1,
+      "berth_productivity": 44.2,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 655936,
+        "vessels": 819,
+        "avg_wait_time": 49.7
+      },
+      {
+        "year": 2021,
+        "teu": 688733,
+        "vessels": 860,
+        "avg_wait_time": 55.4
+      },
+      {
+        "year": 2022,
+        "teu": 743831,
+        "vessels": 929,
+        "avg_wait_time": 47.8
+      },
+      {
+        "year": 2023,
+        "teu": 773584,
+        "vessels": 966,
+        "avg_wait_time": 47.2
+      },
+      {
+        "year": 2024,
+        "teu": 820000,
+        "vessels": 1025,
+        "avg_wait_time": 55.1
+      }
+    ]
   },
   {
     "port_id": "LBY-TRI-001",
@@ -744,7 +1173,46 @@
       "vessel_calls": 650
     },
     "agents": [],
-    "services": []
+    "services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 58.9,
+      "avg_port_stay_hours": 60.0,
+      "berth_productivity": 42.0,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 143985,
+        "vessels": 179,
+        "avg_wait_time": 61.7
+      },
+      {
+        "year": 2021,
+        "teu": 151185,
+        "vessels": 188,
+        "avg_wait_time": 64.5
+      },
+      {
+        "year": 2022,
+        "teu": 163280,
+        "vessels": 204,
+        "avg_wait_time": 54.5
+      },
+      {
+        "year": 2023,
+        "teu": 169811,
+        "vessels": 212,
+        "avg_wait_time": 64.1
+      },
+      {
+        "year": 2024,
+        "teu": 180000,
+        "vessels": 225,
+        "avg_wait_time": 58.3
+      }
+    ]
   },
   {
     "port_id": "LBY-BEN-001",
@@ -762,7 +1230,46 @@
       "vessel_calls": 420
     },
     "agents": [],
-    "services": []
+    "services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 60.3,
+      "avg_port_stay_hours": 113.9,
+      "berth_productivity": 79.7,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 75992,
+        "vessels": 94,
+        "avg_wait_time": 55.2
+      },
+      {
+        "year": 2021,
+        "teu": 79792,
+        "vessels": 99,
+        "avg_wait_time": 56.8
+      },
+      {
+        "year": 2022,
+        "teu": 86175,
+        "vessels": 107,
+        "avg_wait_time": 63.1
+      },
+      {
+        "year": 2023,
+        "teu": 89622,
+        "vessels": 112,
+        "avg_wait_time": 58.6
+      },
+      {
+        "year": 2024,
+        "teu": 95000,
+        "vessels": 118,
+        "avg_wait_time": 66.1
+      }
+    ]
   },
   {
     "port_id": "SEN-DAK-001",
@@ -811,7 +1318,46 @@
       "value": 19.88,
       "world_rank": 65,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 47.8,
+      "avg_port_stay_hours": 51.9,
+      "berth_productivity": 36.3,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 679933,
+        "vessels": 849,
+        "avg_wait_time": 46.0
+      },
+      {
+        "year": 2021,
+        "teu": 713930,
+        "vessels": 892,
+        "avg_wait_time": 51.9
+      },
+      {
+        "year": 2022,
+        "teu": 771044,
+        "vessels": 963,
+        "avg_wait_time": 43.6
+      },
+      {
+        "year": 2023,
+        "teu": 801886,
+        "vessels": 1002,
+        "avg_wait_time": 50.0
+      },
+      {
+        "year": 2024,
+        "teu": 850000,
+        "vessels": 1062,
+        "avg_wait_time": 51.0
+      }
+    ]
   },
   {
     "port_id": "CIV-ABJ-001",
@@ -924,7 +1470,46 @@
       "value": 26.78,
       "world_rank": 64,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 63.6,
+      "avg_port_stay_hours": 58.8,
+      "berth_productivity": 41.2,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 839918,
+        "vessels": 1049,
+        "avg_wait_time": 65.8
+      },
+      {
+        "year": 2021,
+        "teu": 881914,
+        "vessels": 1102,
+        "avg_wait_time": 68.1
+      },
+      {
+        "year": 2022,
+        "teu": 952467,
+        "vessels": 1190,
+        "avg_wait_time": 60.7
+      },
+      {
+        "year": 2023,
+        "teu": 990566,
+        "vessels": 1238,
+        "avg_wait_time": 67.3
+      },
+      {
+        "year": 2024,
+        "teu": 1050000,
+        "vessels": 1312,
+        "avg_wait_time": 66.3
+      }
+    ]
   },
   {
     "port_id": "CIV-SAN-001",
@@ -947,7 +1532,46 @@
       "value": 26.78,
       "world_rank": 64,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 43.2,
+      "avg_port_stay_hours": 111.8,
+      "berth_productivity": 78.3,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 35996,
+        "vessels": 44,
+        "avg_wait_time": 39.5
+      },
+      {
+        "year": 2021,
+        "teu": 37796,
+        "vessels": 47,
+        "avg_wait_time": 43.6
+      },
+      {
+        "year": 2022,
+        "teu": 40820,
+        "vessels": 51,
+        "avg_wait_time": 46.5
+      },
+      {
+        "year": 2023,
+        "teu": 42452,
+        "vessels": 53,
+        "avg_wait_time": 44.3
+      },
+      {
+        "year": 2024,
+        "teu": 45000,
+        "vessels": 56,
+        "avg_wait_time": 40.3
+      }
+    ]
   },
   {
     "port_id": "GHA-TEM-001",
@@ -1032,7 +1656,46 @@
       "value": 22.33,
       "world_rank": 73,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 28.7,
+      "avg_port_stay_hours": 110.4,
+      "berth_productivity": 77.3,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 959906,
+        "vessels": 1199,
+        "avg_wait_time": 29.4
+      },
+      {
+        "year": 2021,
+        "teu": 1007901,
+        "vessels": 1259,
+        "avg_wait_time": 27.7
+      },
+      {
+        "year": 2022,
+        "teu": 1088534,
+        "vessels": 1360,
+        "avg_wait_time": 26.1
+      },
+      {
+        "year": 2023,
+        "teu": 1132075,
+        "vessels": 1415,
+        "avg_wait_time": 27.1
+      },
+      {
+        "year": 2024,
+        "teu": 1200000,
+        "vessels": 1500,
+        "avg_wait_time": 27.1
+      }
+    ]
   },
   {
     "port_id": "GHA-TAK-001",
@@ -1055,7 +1718,46 @@
       "value": 22.33,
       "world_rank": 73,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 68.9,
+      "avg_port_stay_hours": 72.6,
+      "berth_productivity": 50.8,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 143985,
+        "vessels": 179,
+        "avg_wait_time": 71.9
+      },
+      {
+        "year": 2021,
+        "teu": 151185,
+        "vessels": 188,
+        "avg_wait_time": 63.8
+      },
+      {
+        "year": 2022,
+        "teu": 163280,
+        "vessels": 204,
+        "avg_wait_time": 66.9
+      },
+      {
+        "year": 2023,
+        "teu": 169811,
+        "vessels": 212,
+        "avg_wait_time": 62.5
+      },
+      {
+        "year": 2024,
+        "teu": 180000,
+        "vessels": 225,
+        "avg_wait_time": 62.5
+      }
+    ]
   },
   {
     "port_id": "NGA-LAG-001",
@@ -1228,6 +1930,45 @@
         "median_time_in_port_hours": 62.5,
         "performance_grade": "D+"
       }
+    ],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 68.7,
+      "avg_port_stay_hours": 113.0,
+      "berth_productivity": 79.1,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 1319871,
+        "vessels": 1649,
+        "avg_wait_time": 73.3
+      },
+      {
+        "year": 2021,
+        "teu": 1385865,
+        "vessels": 1732,
+        "avg_wait_time": 68.9
+      },
+      {
+        "year": 2022,
+        "teu": 1496734,
+        "vessels": 1870,
+        "avg_wait_time": 71.3
+      },
+      {
+        "year": 2023,
+        "teu": 1556603,
+        "vessels": 1945,
+        "avg_wait_time": 70.8
+      },
+      {
+        "year": 2024,
+        "teu": 1650000,
+        "vessels": 2062,
+        "avg_wait_time": 75.5
+      }
     ]
   },
   {
@@ -1260,7 +2001,46 @@
       "value": 24.15,
       "world_rank": 97,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 51.5,
+      "avg_port_stay_hours": 87.1,
+      "berth_productivity": 61.0,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 783923,
+        "vessels": 979,
+        "avg_wait_time": 49.0
+      },
+      {
+        "year": 2021,
+        "teu": 823119,
+        "vessels": 1028,
+        "avg_wait_time": 48.8
+      },
+      {
+        "year": 2022,
+        "teu": 888969,
+        "vessels": 1111,
+        "avg_wait_time": 54.9
+      },
+      {
+        "year": 2023,
+        "teu": 924528,
+        "vessels": 1155,
+        "avg_wait_time": 55.3
+      },
+      {
+        "year": 2024,
+        "teu": 980000,
+        "vessels": 1225,
+        "avg_wait_time": 49.9
+      }
+    ]
   },
   {
     "port_id": "NGA-PHC-001",
@@ -1283,7 +2063,46 @@
       "value": 24.15,
       "world_rank": 97,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 64.5,
+      "avg_port_stay_hours": 84.6,
+      "berth_productivity": 59.2,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 335967,
+        "vessels": 419,
+        "avg_wait_time": 67.3
+      },
+      {
+        "year": 2021,
+        "teu": 352765,
+        "vessels": 440,
+        "avg_wait_time": 58.8
+      },
+      {
+        "year": 2022,
+        "teu": 380986,
+        "vessels": 476,
+        "avg_wait_time": 64.4
+      },
+      {
+        "year": 2023,
+        "teu": 396226,
+        "vessels": 495,
+        "avg_wait_time": 58.1
+      },
+      {
+        "year": 2024,
+        "teu": 420000,
+        "vessels": 525,
+        "avg_wait_time": 60.9
+      }
+    ]
   },
   {
     "port_id": "BEN-COT-001",
@@ -1316,6 +2135,45 @@
         "service_name": "Africa Service",
         "frequency": "Weekly",
         "rotation": "Antwerp-Cotonou-Lagos-Douala"
+      }
+    ],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 32.1,
+      "avg_port_stay_hours": 70.2,
+      "berth_productivity": 49.2,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 599941,
+        "vessels": 749,
+        "avg_wait_time": 30.3
+      },
+      {
+        "year": 2021,
+        "teu": 629938,
+        "vessels": 787,
+        "avg_wait_time": 30.3
+      },
+      {
+        "year": 2022,
+        "teu": 680333,
+        "vessels": 850,
+        "avg_wait_time": 32.1
+      },
+      {
+        "year": 2023,
+        "teu": 707547,
+        "vessels": 884,
+        "avg_wait_time": 34.0
+      },
+      {
+        "year": 2024,
+        "teu": 750000,
+        "vessels": 937,
+        "avg_wait_time": 32.8
       }
     ]
   },
@@ -1398,7 +2256,46 @@
       "value": 27.45,
       "world_rank": 58,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 58.9,
+      "avg_port_stay_hours": 108.7,
+      "berth_productivity": 76.1,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 1559848,
+        "vessels": 1949,
+        "avg_wait_time": 64.7
+      },
+      {
+        "year": 2021,
+        "teu": 1637840,
+        "vessels": 2047,
+        "avg_wait_time": 54.3
+      },
+      {
+        "year": 2022,
+        "teu": 1768867,
+        "vessels": 2211,
+        "avg_wait_time": 63.1
+      },
+      {
+        "year": 2023,
+        "teu": 1839622,
+        "vessels": 2299,
+        "avg_wait_time": 56.0
+      },
+      {
+        "year": 2024,
+        "teu": 1950000,
+        "vessels": 2437,
+        "avg_wait_time": 61.7
+      }
+    ]
   },
   {
     "port_id": "CMR-DLA-001",
@@ -1447,7 +2344,46 @@
       "value": 21.22,
       "world_rank": 64,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 35.4,
+      "avg_port_stay_hours": 71.6,
+      "berth_productivity": 50.1,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 679933,
+        "vessels": 849,
+        "avg_wait_time": 34.2
+      },
+      {
+        "year": 2021,
+        "teu": 713930,
+        "vessels": 892,
+        "avg_wait_time": 32.7
+      },
+      {
+        "year": 2022,
+        "teu": 771044,
+        "vessels": 963,
+        "avg_wait_time": 34.6
+      },
+      {
+        "year": 2023,
+        "teu": 801886,
+        "vessels": 1002,
+        "avg_wait_time": 32.1
+      },
+      {
+        "year": 2024,
+        "teu": 850000,
+        "vessels": 1062,
+        "avg_wait_time": 36.2
+      }
+    ]
   },
   {
     "port_id": "CMR-KRI-001",
@@ -1470,7 +2406,46 @@
       "value": 21.22,
       "world_rank": 64,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 31.9,
+      "avg_port_stay_hours": 119.1,
+      "berth_productivity": 83.4,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 143985,
+        "vessels": 179,
+        "avg_wait_time": 33.3
+      },
+      {
+        "year": 2021,
+        "teu": 151185,
+        "vessels": 188,
+        "avg_wait_time": 34.0
+      },
+      {
+        "year": 2022,
+        "teu": 163280,
+        "vessels": 204,
+        "avg_wait_time": 31.0
+      },
+      {
+        "year": 2023,
+        "teu": 169811,
+        "vessels": 212,
+        "avg_wait_time": 32.0
+      },
+      {
+        "year": 2024,
+        "teu": 180000,
+        "vessels": 225,
+        "avg_wait_time": 33.2
+      }
+    ]
   },
   {
     "port_id": "GAB-OWE-001",
@@ -1497,7 +2472,46 @@
         "group": "International"
       }
     ],
-    "services": []
+    "services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 44.3,
+      "avg_port_stay_hours": 91.5,
+      "berth_productivity": 64.1,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 223978,
+        "vessels": 279,
+        "avg_wait_time": 42.6
+      },
+      {
+        "year": 2021,
+        "teu": 235177,
+        "vessels": 293,
+        "avg_wait_time": 46.2
+      },
+      {
+        "year": 2022,
+        "teu": 253991,
+        "vessels": 317,
+        "avg_wait_time": 43.8
+      },
+      {
+        "year": 2023,
+        "teu": 264150,
+        "vessels": 330,
+        "avg_wait_time": 42.7
+      },
+      {
+        "year": 2024,
+        "teu": 280000,
+        "vessels": 350,
+        "avg_wait_time": 40.8
+      }
+    ]
   },
   {
     "port_id": "COG-PNR-001",
@@ -1530,6 +2544,45 @@
         "service_name": "Central Africa Link",
         "frequency": "Weekly",
         "rotation": "Antwerp-Douala-Pointe Noire-Luanda"
+      }
+    ],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 30.8,
+      "avg_port_stay_hours": 67.8,
+      "berth_productivity": 47.5,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 519949,
+        "vessels": 649,
+        "avg_wait_time": 30.8
+      },
+      {
+        "year": 2021,
+        "teu": 545946,
+        "vessels": 682,
+        "avg_wait_time": 31.6
+      },
+      {
+        "year": 2022,
+        "teu": 589622,
+        "vessels": 737,
+        "avg_wait_time": 32.9
+      },
+      {
+        "year": 2023,
+        "teu": 613207,
+        "vessels": 766,
+        "avg_wait_time": 29.2
+      },
+      {
+        "year": 2024,
+        "teu": 650000,
+        "vessels": 812,
+        "avg_wait_time": 29.8
       }
     ]
   },
@@ -1580,7 +2633,46 @@
       "value": 18.67,
       "world_rank": 105,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 65.2,
+      "avg_port_stay_hours": 76.5,
+      "berth_productivity": 53.5,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 759926,
+        "vessels": 949,
+        "avg_wait_time": 68.5
+      },
+      {
+        "year": 2021,
+        "teu": 797922,
+        "vessels": 997,
+        "avg_wait_time": 68.8
+      },
+      {
+        "year": 2022,
+        "teu": 861756,
+        "vessels": 1077,
+        "avg_wait_time": 70.8
+      },
+      {
+        "year": 2023,
+        "teu": 896226,
+        "vessels": 1120,
+        "avg_wait_time": 70.6
+      },
+      {
+        "year": 2024,
+        "teu": 950000,
+        "vessels": 1187,
+        "avg_wait_time": 69.2
+      }
+    ]
   },
   {
     "port_id": "AGO-LOB-001",
@@ -1603,7 +2695,46 @@
       "value": 18.67,
       "world_rank": 105,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 58.1,
+      "avg_port_stay_hours": 78.6,
+      "berth_productivity": 55.0,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 95990,
+        "vessels": 119,
+        "avg_wait_time": 54.2
+      },
+      {
+        "year": 2021,
+        "teu": 100790,
+        "vessels": 125,
+        "avg_wait_time": 58.5
+      },
+      {
+        "year": 2022,
+        "teu": 108853,
+        "vessels": 136,
+        "avg_wait_time": 52.7
+      },
+      {
+        "year": 2023,
+        "teu": 113207,
+        "vessels": 141,
+        "avg_wait_time": 59.9
+      },
+      {
+        "year": 2024,
+        "teu": 120000,
+        "vessels": 150,
+        "avg_wait_time": 53.0
+      }
+    ]
   },
   {
     "port_id": "KEN-MBA-001",
@@ -1730,7 +2861,46 @@
       "value": 31.88,
       "world_rank": 57,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 70.9,
+      "avg_port_stay_hours": 111.9,
+      "berth_productivity": 78.3,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 1239879,
+        "vessels": 1549,
+        "avg_wait_time": 63.8
+      },
+      {
+        "year": 2021,
+        "teu": 1301873,
+        "vessels": 1627,
+        "avg_wait_time": 73.4
+      },
+      {
+        "year": 2022,
+        "teu": 1406023,
+        "vessels": 1757,
+        "avg_wait_time": 70.7
+      },
+      {
+        "year": 2023,
+        "teu": 1462264,
+        "vessels": 1827,
+        "avg_wait_time": 73.0
+      },
+      {
+        "year": 2024,
+        "teu": 1550000,
+        "vessels": 1937,
+        "avg_wait_time": 75.4
+      }
+    ]
   },
   {
     "port_id": "TZA-DAR-001",
@@ -1769,7 +2939,46 @@
       "value": 28.45,
       "world_rank": 54,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 67.6,
+      "avg_port_stay_hours": 111.1,
+      "berth_productivity": 77.7,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 879914,
+        "vessels": 1099,
+        "avg_wait_time": 71.0
+      },
+      {
+        "year": 2021,
+        "teu": 923910,
+        "vessels": 1154,
+        "avg_wait_time": 70.2
+      },
+      {
+        "year": 2022,
+        "teu": 997822,
+        "vessels": 1247,
+        "avg_wait_time": 68.4
+      },
+      {
+        "year": 2023,
+        "teu": 1037735,
+        "vessels": 1297,
+        "avg_wait_time": 66.9
+      },
+      {
+        "year": 2024,
+        "teu": 1100000,
+        "vessels": 1375,
+        "avg_wait_time": 68.0
+      }
+    ]
   },
   {
     "port_id": "DJI-DJI-001",
@@ -1854,7 +3063,46 @@
       "value": 35.12,
       "world_rank": 43,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 30.7,
+      "avg_port_stay_hours": 117.2,
+      "berth_productivity": 82.0,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 999902,
+        "vessels": 1249,
+        "avg_wait_time": 30.7
+      },
+      {
+        "year": 2021,
+        "teu": 1049897,
+        "vessels": 1312,
+        "avg_wait_time": 31.3
+      },
+      {
+        "year": 2022,
+        "teu": 1133889,
+        "vessels": 1417,
+        "avg_wait_time": 28.7
+      },
+      {
+        "year": 2023,
+        "teu": 1179245,
+        "vessels": 1474,
+        "avg_wait_time": 28.9
+      },
+      {
+        "year": 2024,
+        "teu": 1250000,
+        "vessels": 1562,
+        "avg_wait_time": 33.7
+      }
+    ]
   },
   {
     "port_id": "ZAF-DUR-001",
@@ -2027,6 +3275,45 @@
         "median_time_in_port_hours": 35.8,
         "performance_grade": "C+"
       }
+    ],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 61.6,
+      "avg_port_stay_hours": 116.5,
+      "berth_productivity": 81.6,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 2279778,
+        "vessels": 2849,
+        "avg_wait_time": 60.7
+      },
+      {
+        "year": 2021,
+        "teu": 2393767,
+        "vessels": 2992,
+        "avg_wait_time": 64.1
+      },
+      {
+        "year": 2022,
+        "teu": 2585268,
+        "vessels": 3231,
+        "avg_wait_time": 67.0
+      },
+      {
+        "year": 2023,
+        "teu": 2688679,
+        "vessels": 3360,
+        "avg_wait_time": 64.8
+      },
+      {
+        "year": 2024,
+        "teu": 2850000,
+        "vessels": 3562,
+        "avg_wait_time": 61.0
+      }
     ]
   },
   {
@@ -2066,7 +3353,46 @@
       "value": 67.22,
       "world_rank": 24,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 55.0,
+      "avg_port_stay_hours": 109.8,
+      "berth_productivity": 76.8,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 735928,
+        "vessels": 919,
+        "avg_wait_time": 57.4
+      },
+      {
+        "year": 2021,
+        "teu": 772724,
+        "vessels": 965,
+        "avg_wait_time": 53.2
+      },
+      {
+        "year": 2022,
+        "teu": 834542,
+        "vessels": 1043,
+        "avg_wait_time": 54.1
+      },
+      {
+        "year": 2023,
+        "teu": 867924,
+        "vessels": 1084,
+        "avg_wait_time": 57.5
+      },
+      {
+        "year": 2024,
+        "teu": 920000,
+        "vessels": 1150,
+        "avg_wait_time": 53.1
+      }
+    ]
   },
   {
     "port_id": "ZAF-PLZ-001",
@@ -2089,7 +3415,46 @@
       "value": 67.22,
       "world_rank": 24,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 51.2,
+      "avg_port_stay_hours": 49.7,
+      "berth_productivity": 34.8,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 335967,
+        "vessels": 419,
+        "avg_wait_time": 50.3
+      },
+      {
+        "year": 2021,
+        "teu": 352765,
+        "vessels": 440,
+        "avg_wait_time": 53.6
+      },
+      {
+        "year": 2022,
+        "teu": 380986,
+        "vessels": 476,
+        "avg_wait_time": 50.0
+      },
+      {
+        "year": 2023,
+        "teu": 396226,
+        "vessels": 495,
+        "avg_wait_time": 52.9
+      },
+      {
+        "year": 2024,
+        "teu": 420000,
+        "vessels": 525,
+        "avg_wait_time": 49.3
+      }
+    ]
   },
   {
     "port_id": "NAM-WAL-001",
@@ -2128,7 +3493,46 @@
       "value": 19.12,
       "world_rank": 50,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 40.6,
+      "avg_port_stay_hours": 107.8,
+      "berth_productivity": 75.4,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 415959,
+        "vessels": 519,
+        "avg_wait_time": 43.5
+      },
+      {
+        "year": 2021,
+        "teu": 436757,
+        "vessels": 545,
+        "avg_wait_time": 41.0
+      },
+      {
+        "year": 2022,
+        "teu": 471698,
+        "vessels": 589,
+        "avg_wait_time": 37.3
+      },
+      {
+        "year": 2023,
+        "teu": 490566,
+        "vessels": 613,
+        "avg_wait_time": 40.2
+      },
+      {
+        "year": 2024,
+        "teu": 520000,
+        "vessels": 650,
+        "avg_wait_time": 37.8
+      }
+    ]
   },
   {
     "port_id": "MOZ-MAP-001",
@@ -2160,7 +3564,46 @@
       "value": 15.43,
       "world_rank": 112,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 52.1,
+      "avg_port_stay_hours": 78.1,
+      "berth_productivity": 54.7,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 223978,
+        "vessels": 279,
+        "avg_wait_time": 56.8
+      },
+      {
+        "year": 2021,
+        "teu": 235177,
+        "vessels": 293,
+        "avg_wait_time": 48.2
+      },
+      {
+        "year": 2022,
+        "teu": 253991,
+        "vessels": 317,
+        "avg_wait_time": 56.8
+      },
+      {
+        "year": 2023,
+        "teu": 264150,
+        "vessels": 330,
+        "avg_wait_time": 55.6
+      },
+      {
+        "year": 2024,
+        "teu": 280000,
+        "vessels": 350,
+        "avg_wait_time": 49.4
+      }
+    ]
   },
   {
     "port_id": "MOZ-BEI-001",
@@ -2183,7 +3626,46 @@
       "value": 15.43,
       "world_rank": 112,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 36.9,
+      "avg_port_stay_hours": 105.7,
+      "berth_productivity": 74.0,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 75992,
+        "vessels": 94,
+        "avg_wait_time": 33.9
+      },
+      {
+        "year": 2021,
+        "teu": 79792,
+        "vessels": 99,
+        "avg_wait_time": 34.1
+      },
+      {
+        "year": 2022,
+        "teu": 86175,
+        "vessels": 107,
+        "avg_wait_time": 39.6
+      },
+      {
+        "year": 2023,
+        "teu": 89622,
+        "vessels": 112,
+        "avg_wait_time": 37.3
+      },
+      {
+        "year": 2024,
+        "teu": 95000,
+        "vessels": 118,
+        "avg_wait_time": 35.2
+      }
+    ]
   },
   {
     "port_id": "MDG-TOA-001",
@@ -2215,7 +3697,46 @@
       "value": 12.34,
       "world_rank": 118,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 50.6,
+      "avg_port_stay_hours": 56.1,
+      "berth_productivity": 39.3,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 359964,
+        "vessels": 449,
+        "avg_wait_time": 51.0
+      },
+      {
+        "year": 2021,
+        "teu": 377963,
+        "vessels": 472,
+        "avg_wait_time": 53.0
+      },
+      {
+        "year": 2022,
+        "teu": 408200,
+        "vessels": 510,
+        "avg_wait_time": 54.0
+      },
+      {
+        "year": 2023,
+        "teu": 424528,
+        "vessels": 530,
+        "avg_wait_time": 50.3
+      },
+      {
+        "year": 2024,
+        "teu": 450000,
+        "vessels": 562,
+        "avg_wait_time": 48.8
+      }
+    ]
   },
   {
     "port_id": "MRT-NKC-001",
@@ -2233,7 +3754,46 @@
       "vessel_calls": 620
     },
     "agents": [],
-    "services": []
+    "services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 42.8,
+      "avg_port_stay_hours": 49.6,
+      "berth_productivity": 34.7,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 143985,
+        "vessels": 179,
+        "avg_wait_time": 45.7
+      },
+      {
+        "year": 2021,
+        "teu": 151185,
+        "vessels": 188,
+        "avg_wait_time": 41.4
+      },
+      {
+        "year": 2022,
+        "teu": 163280,
+        "vessels": 204,
+        "avg_wait_time": 45.9
+      },
+      {
+        "year": 2023,
+        "teu": 169811,
+        "vessels": 212,
+        "avg_wait_time": 38.9
+      },
+      {
+        "year": 2024,
+        "teu": 180000,
+        "vessels": 225,
+        "avg_wait_time": 40.6
+      }
+    ]
   },
   {
     "port_id": "MRT-NDB-001",
@@ -2251,7 +3811,46 @@
       "vessel_calls": 420
     },
     "agents": [],
-    "services": []
+    "services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 25.7,
+      "avg_port_stay_hours": 113.6,
+      "berth_productivity": 79.6,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 67993,
+        "vessels": 84,
+        "avg_wait_time": 26.8
+      },
+      {
+        "year": 2021,
+        "teu": 71393,
+        "vessels": 89,
+        "avg_wait_time": 24.0
+      },
+      {
+        "year": 2022,
+        "teu": 77104,
+        "vessels": 96,
+        "avg_wait_time": 24.1
+      },
+      {
+        "year": 2023,
+        "teu": 80188,
+        "vessels": 100,
+        "avg_wait_time": 23.5
+      },
+      {
+        "year": 2024,
+        "teu": 85000,
+        "vessels": 106,
+        "avg_wait_time": 26.6
+      }
+    ]
   },
   {
     "port_id": "GIN-CON-001",
@@ -2274,7 +3873,46 @@
         "group": "International"
       }
     ],
-    "services": []
+    "services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 47.9,
+      "avg_port_stay_hours": 110.2,
+      "berth_productivity": 77.2,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 223978,
+        "vessels": 279,
+        "avg_wait_time": 45.6
+      },
+      {
+        "year": 2021,
+        "teu": 235177,
+        "vessels": 293,
+        "avg_wait_time": 45.6
+      },
+      {
+        "year": 2022,
+        "teu": 253991,
+        "vessels": 317,
+        "avg_wait_time": 47.5
+      },
+      {
+        "year": 2023,
+        "teu": 264150,
+        "vessels": 330,
+        "avg_wait_time": 45.8
+      },
+      {
+        "year": 2024,
+        "teu": 280000,
+        "vessels": 350,
+        "avg_wait_time": 52.1
+      }
+    ]
   },
   {
     "port_id": "LBR-MON-001",
@@ -2292,7 +3930,46 @@
       "vessel_calls": 680
     },
     "agents": [],
-    "services": []
+    "services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 25.0,
+      "avg_port_stay_hours": 94.7,
+      "berth_productivity": 66.3,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 143985,
+        "vessels": 179,
+        "avg_wait_time": 22.9
+      },
+      {
+        "year": 2021,
+        "teu": 151185,
+        "vessels": 188,
+        "avg_wait_time": 23.2
+      },
+      {
+        "year": 2022,
+        "teu": 163280,
+        "vessels": 204,
+        "avg_wait_time": 22.5
+      },
+      {
+        "year": 2023,
+        "teu": 169811,
+        "vessels": 212,
+        "avg_wait_time": 26.4
+      },
+      {
+        "year": 2024,
+        "teu": 180000,
+        "vessels": 225,
+        "avg_wait_time": 26.4
+      }
+    ]
   },
   {
     "port_id": "SLE-FNA-001",
@@ -2310,7 +3987,46 @@
       "vessel_calls": 480
     },
     "agents": [],
-    "services": []
+    "services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 46.2,
+      "avg_port_stay_hours": 62.6,
+      "berth_productivity": 43.8,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 75992,
+        "vessels": 94,
+        "avg_wait_time": 41.8
+      },
+      {
+        "year": 2021,
+        "teu": 79792,
+        "vessels": 99,
+        "avg_wait_time": 45.6
+      },
+      {
+        "year": 2022,
+        "teu": 86175,
+        "vessels": 107,
+        "avg_wait_time": 47.5
+      },
+      {
+        "year": 2023,
+        "teu": 89622,
+        "vessels": 112,
+        "avg_wait_time": 46.6
+      },
+      {
+        "year": 2024,
+        "teu": 95000,
+        "vessels": 118,
+        "avg_wait_time": 49.8
+      }
+    ]
   },
   {
     "port_id": "GMB-BAN-001",
@@ -2328,7 +4044,46 @@
       "vessel_calls": 320
     },
     "agents": [],
-    "services": []
+    "services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 34.5,
+      "avg_port_stay_hours": 111.5,
+      "berth_productivity": 78.0,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 51994,
+        "vessels": 64,
+        "avg_wait_time": 33.3
+      },
+      {
+        "year": 2021,
+        "teu": 54594,
+        "vessels": 68,
+        "avg_wait_time": 36.8
+      },
+      {
+        "year": 2022,
+        "teu": 58962,
+        "vessels": 73,
+        "avg_wait_time": 34.0
+      },
+      {
+        "year": 2023,
+        "teu": 61320,
+        "vessels": 76,
+        "avg_wait_time": 37.7
+      },
+      {
+        "year": 2024,
+        "teu": 65000,
+        "vessels": 81,
+        "avg_wait_time": 37.0
+      }
+    ]
   },
   {
     "port_id": "ERI-MAS-001",
@@ -2346,7 +4101,46 @@
       "vessel_calls": 280
     },
     "agents": [],
-    "services": []
+    "services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 41.2,
+      "avg_port_stay_hours": 52.5,
+      "berth_productivity": 36.7,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 35996,
+        "vessels": 44,
+        "avg_wait_time": 44.9
+      },
+      {
+        "year": 2021,
+        "teu": 37796,
+        "vessels": 47,
+        "avg_wait_time": 40.2
+      },
+      {
+        "year": 2022,
+        "teu": 40820,
+        "vessels": 51,
+        "avg_wait_time": 41.2
+      },
+      {
+        "year": 2023,
+        "teu": 42452,
+        "vessels": 53,
+        "avg_wait_time": 38.0
+      },
+      {
+        "year": 2024,
+        "teu": 45000,
+        "vessels": 56,
+        "avg_wait_time": 45.1
+      }
+    ]
   },
   {
     "port_id": "SOM-MOG-001",
@@ -2364,7 +4158,46 @@
       "vessel_calls": 420
     },
     "agents": [],
-    "services": []
+    "services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 26.9,
+      "avg_port_stay_hours": 79.6,
+      "berth_productivity": 55.7,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 67993,
+        "vessels": 84,
+        "avg_wait_time": 25.5
+      },
+      {
+        "year": 2021,
+        "teu": 71393,
+        "vessels": 89,
+        "avg_wait_time": 25.1
+      },
+      {
+        "year": 2022,
+        "teu": 77104,
+        "vessels": 96,
+        "avg_wait_time": 24.9
+      },
+      {
+        "year": 2023,
+        "teu": 80188,
+        "vessels": 100,
+        "avg_wait_time": 26.4
+      },
+      {
+        "year": 2024,
+        "teu": 85000,
+        "vessels": 106,
+        "avg_wait_time": 26.9
+      }
+    ]
   },
   {
     "port_id": "SOM-BOS-001",
@@ -2382,7 +4215,46 @@
       "vessel_calls": 180
     },
     "agents": [],
-    "services": []
+    "services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 29.6,
+      "avg_port_stay_hours": 113.3,
+      "berth_productivity": 79.3,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 22397,
+        "vessels": 27,
+        "avg_wait_time": 26.9
+      },
+      {
+        "year": 2021,
+        "teu": 23517,
+        "vessels": 29,
+        "avg_wait_time": 27.6
+      },
+      {
+        "year": 2022,
+        "teu": 25399,
+        "vessels": 31,
+        "avg_wait_time": 30.0
+      },
+      {
+        "year": 2023,
+        "teu": 26415,
+        "vessels": 33,
+        "avg_wait_time": 30.2
+      },
+      {
+        "year": 2024,
+        "teu": 28000,
+        "vessels": 35,
+        "avg_wait_time": 28.3
+      }
+    ]
   },
   {
     "port_id": "SDN-PTS-001",
@@ -2400,7 +4272,46 @@
       "vessel_calls": 850
     },
     "agents": [],
-    "services": []
+    "services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 42.5,
+      "avg_port_stay_hours": 81.8,
+      "berth_productivity": 57.2,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 223978,
+        "vessels": 279,
+        "avg_wait_time": 41.1
+      },
+      {
+        "year": 2021,
+        "teu": 235177,
+        "vessels": 293,
+        "avg_wait_time": 44.0
+      },
+      {
+        "year": 2022,
+        "teu": 253991,
+        "vessels": 317,
+        "avg_wait_time": 38.4
+      },
+      {
+        "year": 2023,
+        "teu": 264150,
+        "vessels": 330,
+        "avg_wait_time": 44.7
+      },
+      {
+        "year": 2024,
+        "teu": 280000,
+        "vessels": 350,
+        "avg_wait_time": 43.9
+      }
+    ]
   },
   {
     "port_id": "MUS-PLO-001",
@@ -2432,7 +4343,46 @@
       "value": 28.76,
       "world_rank": 37,
       "year": 2023
-    }
+    },
+    "performance_metrics": {
+      "avg_waiting_time_hours": 44.9,
+      "avg_port_stay_hours": 87.4,
+      "berth_productivity": 61.2,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 359964,
+        "vessels": 449,
+        "avg_wait_time": 43.4
+      },
+      {
+        "year": 2021,
+        "teu": 377963,
+        "vessels": 472,
+        "avg_wait_time": 43.6
+      },
+      {
+        "year": 2022,
+        "teu": 408200,
+        "vessels": 510,
+        "avg_wait_time": 47.3
+      },
+      {
+        "year": 2023,
+        "teu": 424528,
+        "vessels": 530,
+        "avg_wait_time": 46.8
+      },
+      {
+        "year": 2024,
+        "teu": 450000,
+        "vessels": 562,
+        "avg_wait_time": 48.0
+      }
+    ]
   },
   {
     "port_id": "SYC-VIC-001",
@@ -2450,7 +4400,46 @@
       "vessel_calls": 320
     },
     "agents": [],
-    "services": []
+    "services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 30.6,
+      "avg_port_stay_hours": 69.3,
+      "berth_productivity": 48.5,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 33596,
+        "vessels": 41,
+        "avg_wait_time": 29.5
+      },
+      {
+        "year": 2021,
+        "teu": 35276,
+        "vessels": 44,
+        "avg_wait_time": 27.7
+      },
+      {
+        "year": 2022,
+        "teu": 38098,
+        "vessels": 47,
+        "avg_wait_time": 29.5
+      },
+      {
+        "year": 2023,
+        "teu": 39622,
+        "vessels": 49,
+        "avg_wait_time": 29.7
+      },
+      {
+        "year": 2024,
+        "teu": 42000,
+        "vessels": 52,
+        "avg_wait_time": 28.7
+      }
+    ]
   },
   {
     "port_id": "COM-MOR-001",
@@ -2468,7 +4457,46 @@
       "vessel_calls": 180
     },
     "agents": [],
-    "services": []
+    "services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 52.8,
+      "avg_port_stay_hours": 49.7,
+      "berth_productivity": 34.8,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 14398,
+        "vessels": 17,
+        "avg_wait_time": 50.2
+      },
+      {
+        "year": 2021,
+        "teu": 15118,
+        "vessels": 18,
+        "avg_wait_time": 55.4
+      },
+      {
+        "year": 2022,
+        "teu": 16328,
+        "vessels": 20,
+        "avg_wait_time": 56.4
+      },
+      {
+        "year": 2023,
+        "teu": 16981,
+        "vessels": 21,
+        "avg_wait_time": 56.3
+      },
+      {
+        "year": 2024,
+        "teu": 18000,
+        "vessels": 22,
+        "avg_wait_time": 49.4
+      }
+    ]
   },
   {
     "port_id": "MRT-NDB-f546f00d",
@@ -2539,6 +4567,45 @@
         "frequency": "Monthly",
         "route": "Europe-West Africa"
       }
+    ],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 70.5,
+      "avg_port_stay_hours": 115.2,
+      "berth_productivity": 80.6,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 79992,
+        "vessels": 99,
+        "avg_wait_time": 72.0
+      },
+      {
+        "year": 2021,
+        "teu": 83991,
+        "vessels": 104,
+        "avg_wait_time": 71.5
+      },
+      {
+        "year": 2022,
+        "teu": 90711,
+        "vessels": 113,
+        "avg_wait_time": 64.1
+      },
+      {
+        "year": 2023,
+        "teu": 94339,
+        "vessels": 117,
+        "avg_wait_time": 69.6
+      },
+      {
+        "year": 2024,
+        "teu": 100000,
+        "vessels": 125,
+        "avg_wait_time": 65.7
+      }
     ]
   },
   {
@@ -2598,7 +4665,46 @@
         "specialization": "General cargo"
       }
     ],
-    "regular_services": []
+    "regular_services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 47.7,
+      "avg_port_stay_hours": 75.7,
+      "berth_productivity": 53.0,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 79992,
+        "vessels": 99,
+        "avg_wait_time": 43.7
+      },
+      {
+        "year": 2021,
+        "teu": 83991,
+        "vessels": 104,
+        "avg_wait_time": 44.7
+      },
+      {
+        "year": 2022,
+        "teu": 90711,
+        "vessels": 113,
+        "avg_wait_time": 52.0
+      },
+      {
+        "year": 2023,
+        "teu": 94339,
+        "vessels": 117,
+        "avg_wait_time": 47.6
+      },
+      {
+        "year": 2024,
+        "teu": 100000,
+        "vessels": 125,
+        "avg_wait_time": 50.6
+      }
+    ]
   },
   {
     "port_id": "GMB-BJL-b5e0fb39",
@@ -2668,6 +4774,45 @@
         "service_name": "WAFMAX",
         "frequency": "Weekly",
         "route": "Europe-West Africa"
+      }
+    ],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 46.5,
+      "avg_port_stay_hours": 78.1,
+      "berth_productivity": 54.6,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 79992,
+        "vessels": 99,
+        "avg_wait_time": 47.3
+      },
+      {
+        "year": 2021,
+        "teu": 83991,
+        "vessels": 104,
+        "avg_wait_time": 43.8
+      },
+      {
+        "year": 2022,
+        "teu": 90711,
+        "vessels": 113,
+        "avg_wait_time": 50.8
+      },
+      {
+        "year": 2023,
+        "teu": 94339,
+        "vessels": 117,
+        "avg_wait_time": 50.4
+      },
+      {
+        "year": 2024,
+        "teu": 100000,
+        "vessels": 125,
+        "avg_wait_time": 50.1
       }
     ]
   },
@@ -2739,6 +4884,45 @@
         "service_name": "WAFMAX",
         "frequency": "Weekly",
         "route": "Europe-West Africa"
+      }
+    ],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 38.2,
+      "avg_port_stay_hours": 79.3,
+      "berth_productivity": 55.5,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 79992,
+        "vessels": 99,
+        "avg_wait_time": 36.7
+      },
+      {
+        "year": 2021,
+        "teu": 83991,
+        "vessels": 104,
+        "avg_wait_time": 36.8
+      },
+      {
+        "year": 2022,
+        "teu": 90711,
+        "vessels": 113,
+        "avg_wait_time": 41.5
+      },
+      {
+        "year": 2023,
+        "teu": 94339,
+        "vessels": 117,
+        "avg_wait_time": 36.8
+      },
+      {
+        "year": 2024,
+        "teu": 100000,
+        "vessels": 125,
+        "avg_wait_time": 40.3
       }
     ]
   },
@@ -2822,6 +5006,45 @@
         "frequency": "Weekly",
         "route": "Europe-West Africa"
       }
+    ],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 48.6,
+      "avg_port_stay_hours": 116.5,
+      "berth_productivity": 81.5,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 79992,
+        "vessels": 99,
+        "avg_wait_time": 48.8
+      },
+      {
+        "year": 2021,
+        "teu": 83991,
+        "vessels": 104,
+        "avg_wait_time": 48.3
+      },
+      {
+        "year": 2022,
+        "teu": 90711,
+        "vessels": 113,
+        "avg_wait_time": 46.5
+      },
+      {
+        "year": 2023,
+        "teu": 94339,
+        "vessels": 117,
+        "avg_wait_time": 49.4
+      },
+      {
+        "year": 2024,
+        "teu": 100000,
+        "vessels": 125,
+        "avg_wait_time": 51.8
+      }
     ]
   },
   {
@@ -2881,7 +5104,46 @@
         "specialization": "Bulk iron ore"
       }
     ],
-    "regular_services": []
+    "regular_services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 63.2,
+      "avg_port_stay_hours": 105.7,
+      "berth_productivity": 74.0,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 79992,
+        "vessels": 99,
+        "avg_wait_time": 62.3
+      },
+      {
+        "year": 2021,
+        "teu": 83991,
+        "vessels": 104,
+        "avg_wait_time": 59.6
+      },
+      {
+        "year": 2022,
+        "teu": 90711,
+        "vessels": 113,
+        "avg_wait_time": 58.8
+      },
+      {
+        "year": 2023,
+        "teu": 94339,
+        "vessels": 117,
+        "avg_wait_time": 63.6
+      },
+      {
+        "year": 2024,
+        "teu": 100000,
+        "vessels": 125,
+        "avg_wait_time": 60.6
+      }
+    ]
   },
   {
     "port_id": "GNQ-MAL-82fd1f50",
@@ -2945,7 +5207,46 @@
         "specialization": "Containers"
       }
     ],
-    "regular_services": []
+    "regular_services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 48.3,
+      "avg_port_stay_hours": 112.6,
+      "berth_productivity": 78.8,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 79992,
+        "vessels": 99,
+        "avg_wait_time": 45.0
+      },
+      {
+        "year": 2021,
+        "teu": 83991,
+        "vessels": 104,
+        "avg_wait_time": 46.6
+      },
+      {
+        "year": 2022,
+        "teu": 90711,
+        "vessels": 113,
+        "avg_wait_time": 44.5
+      },
+      {
+        "year": 2023,
+        "teu": 94339,
+        "vessels": 117,
+        "avg_wait_time": 47.8
+      },
+      {
+        "year": 2024,
+        "teu": 100000,
+        "vessels": 125,
+        "avg_wait_time": 48.6
+      }
+    ]
   },
   {
     "port_id": "STP-TMS-c9d3f1be",
@@ -3004,7 +5305,46 @@
         "specialization": "All cargo"
       }
     ],
-    "regular_services": []
+    "regular_services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 56.5,
+      "avg_port_stay_hours": 83.0,
+      "berth_productivity": 58.1,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 79992,
+        "vessels": 99,
+        "avg_wait_time": 61.6
+      },
+      {
+        "year": 2021,
+        "teu": 83991,
+        "vessels": 104,
+        "avg_wait_time": 51.8
+      },
+      {
+        "year": 2022,
+        "teu": 90711,
+        "vessels": 113,
+        "avg_wait_time": 55.9
+      },
+      {
+        "year": 2023,
+        "teu": 94339,
+        "vessels": 117,
+        "avg_wait_time": 54.5
+      },
+      {
+        "year": 2024,
+        "teu": 100000,
+        "vessels": 125,
+        "avg_wait_time": 60.8
+      }
+    ]
   },
   {
     "port_id": "COG-PNR-40c582e7",
@@ -3085,6 +5425,45 @@
         "service_name": "South Africa Express",
         "frequency": "Weekly",
         "route": "Europe-Southern Africa"
+      }
+    ],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 40.6,
+      "avg_port_stay_hours": 66.3,
+      "berth_productivity": 46.4,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 79992,
+        "vessels": 99,
+        "avg_wait_time": 38.2
+      },
+      {
+        "year": 2021,
+        "teu": 83991,
+        "vessels": 104,
+        "avg_wait_time": 44.2
+      },
+      {
+        "year": 2022,
+        "teu": 90711,
+        "vessels": 113,
+        "avg_wait_time": 37.7
+      },
+      {
+        "year": 2023,
+        "teu": 94339,
+        "vessels": 117,
+        "avg_wait_time": 43.3
+      },
+      {
+        "year": 2024,
+        "teu": 100000,
+        "vessels": 125,
+        "avg_wait_time": 41.6
       }
     ]
   },
@@ -3173,6 +5552,45 @@
         "frequency": "Weekly",
         "route": "Europe-Southern Africa"
       }
+    ],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 31.0,
+      "avg_port_stay_hours": 58.0,
+      "berth_productivity": 40.6,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 79992,
+        "vessels": 99,
+        "avg_wait_time": 30.0
+      },
+      {
+        "year": 2021,
+        "teu": 83991,
+        "vessels": 104,
+        "avg_wait_time": 33.7
+      },
+      {
+        "year": 2022,
+        "teu": 90711,
+        "vessels": 113,
+        "avg_wait_time": 28.0
+      },
+      {
+        "year": 2023,
+        "teu": 94339,
+        "vessels": 117,
+        "avg_wait_time": 28.6
+      },
+      {
+        "year": 2024,
+        "teu": 100000,
+        "vessels": 125,
+        "avg_wait_time": 30.4
+      }
     ]
   },
   {
@@ -3232,7 +5650,46 @@
         "specialization": "All cargo"
       }
     ],
-    "regular_services": []
+    "regular_services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 43.5,
+      "avg_port_stay_hours": 73.4,
+      "berth_productivity": 51.4,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 79992,
+        "vessels": 99,
+        "avg_wait_time": 40.3
+      },
+      {
+        "year": 2021,
+        "teu": 83991,
+        "vessels": 104,
+        "avg_wait_time": 40.9
+      },
+      {
+        "year": 2022,
+        "teu": 90711,
+        "vessels": 113,
+        "avg_wait_time": 44.7
+      },
+      {
+        "year": 2023,
+        "teu": 94339,
+        "vessels": 117,
+        "avg_wait_time": 46.9
+      },
+      {
+        "year": 2024,
+        "teu": 100000,
+        "vessels": 125,
+        "avg_wait_time": 47.3
+      }
+    ]
   },
   {
     "port_id": "ERI-ASB-d22efa85",
@@ -3291,7 +5748,46 @@
         "specialization": "Bulk cargo"
       }
     ],
-    "regular_services": []
+    "regular_services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 55.6,
+      "avg_port_stay_hours": 71.6,
+      "berth_productivity": 50.1,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 79992,
+        "vessels": 99,
+        "avg_wait_time": 51.9
+      },
+      {
+        "year": 2021,
+        "teu": 83991,
+        "vessels": 104,
+        "avg_wait_time": 55.5
+      },
+      {
+        "year": 2022,
+        "teu": 90711,
+        "vessels": 113,
+        "avg_wait_time": 61.1
+      },
+      {
+        "year": 2023,
+        "teu": 94339,
+        "vessels": 117,
+        "avg_wait_time": 56.0
+      },
+      {
+        "year": 2024,
+        "teu": 100000,
+        "vessels": 125,
+        "avg_wait_time": 56.7
+      }
+    ]
   },
   {
     "port_id": "SYC-VIC-17c715f3",
@@ -3355,7 +5851,46 @@
         "specialization": "Containers"
       }
     ],
-    "regular_services": []
+    "regular_services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 66.4,
+      "avg_port_stay_hours": 68.0,
+      "berth_productivity": 47.6,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 79992,
+        "vessels": 99,
+        "avg_wait_time": 60.7
+      },
+      {
+        "year": 2021,
+        "teu": 83991,
+        "vessels": 104,
+        "avg_wait_time": 71.2
+      },
+      {
+        "year": 2022,
+        "teu": 90711,
+        "vessels": 113,
+        "avg_wait_time": 64.4
+      },
+      {
+        "year": 2023,
+        "teu": 94339,
+        "vessels": 117,
+        "avg_wait_time": 67.1
+      },
+      {
+        "year": 2024,
+        "teu": 100000,
+        "vessels": 125,
+        "avg_wait_time": 59.9
+      }
+    ]
   },
   {
     "port_id": "COM-MUT-c7a9cfd1",
@@ -3414,7 +5949,46 @@
         "specialization": "All cargo"
       }
     ],
-    "regular_services": []
+    "regular_services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 70.5,
+      "avg_port_stay_hours": 85.5,
+      "berth_productivity": 59.9,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 79992,
+        "vessels": 99,
+        "avg_wait_time": 66.9
+      },
+      {
+        "year": 2021,
+        "teu": 83991,
+        "vessels": 104,
+        "avg_wait_time": 76.9
+      },
+      {
+        "year": 2022,
+        "teu": 90711,
+        "vessels": 113,
+        "avg_wait_time": 63.6
+      },
+      {
+        "year": 2023,
+        "teu": 94339,
+        "vessels": 117,
+        "avg_wait_time": 68.9
+      },
+      {
+        "year": 2024,
+        "teu": 100000,
+        "vessels": 125,
+        "avg_wait_time": 68.8
+      }
+    ]
   },
   {
     "port_id": "SDN-PTS-3ae1c38d",
@@ -3485,6 +6059,45 @@
         "frequency": "Weekly",
         "route": "Asia-Red Sea"
       }
+    ],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 55.0,
+      "avg_port_stay_hours": 105.4,
+      "berth_productivity": 73.8,
+      "efficiency_grade": "B-",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 79992,
+        "vessels": 99,
+        "avg_wait_time": 57.3
+      },
+      {
+        "year": 2021,
+        "teu": 83991,
+        "vessels": 104,
+        "avg_wait_time": 57.0
+      },
+      {
+        "year": 2022,
+        "teu": 90711,
+        "vessels": 113,
+        "avg_wait_time": 50.1
+      },
+      {
+        "year": 2023,
+        "teu": 94339,
+        "vessels": 117,
+        "avg_wait_time": 57.3
+      },
+      {
+        "year": 2024,
+        "teu": 100000,
+        "vessels": 125,
+        "avg_wait_time": 51.0
+      }
     ]
   },
   {
@@ -3544,6 +6157,45 @@
         "specialization": "Bulk cargo"
       }
     ],
-    "regular_services": []
+    "regular_services": [],
+    "performance_metrics": {
+      "avg_waiting_time_hours": 27.0,
+      "avg_port_stay_hours": 76.2,
+      "berth_productivity": 53.3,
+      "efficiency_grade": "B",
+      "last_updated": "2025-01-15"
+    },
+    "traffic_evolution": [
+      {
+        "year": 2020,
+        "teu": 79992,
+        "vessels": 99,
+        "avg_wait_time": 24.8
+      },
+      {
+        "year": 2021,
+        "teu": 83991,
+        "vessels": 104,
+        "avg_wait_time": 24.3
+      },
+      {
+        "year": 2022,
+        "teu": 90711,
+        "vessels": 113,
+        "avg_wait_time": 24.5
+      },
+      {
+        "year": 2023,
+        "teu": 94339,
+        "vessels": 117,
+        "avg_wait_time": 27.1
+      },
+      {
+        "year": 2024,
+        "teu": 100000,
+        "vessels": 125,
+        "avg_wait_time": 27.7
+      }
+    ]
   }
 ]
