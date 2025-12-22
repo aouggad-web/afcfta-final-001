@@ -106,10 +106,11 @@ def enrich_ports():
         json.dump(ports, f, indent=2, ensure_ascii=False)
     
     print(f"✅ Enrichissement terminé pour {count} ports.")
-    print("Exemple (Alger):")
-    alger = next((p for p in ports if p['name'] == "Port d'Alger"), None)
-    if alger:
-        print(json.dumps(alger['performance_metrics'], indent=2))
+    print("Exemple (Tanger Med):")
+    # Using 'port_name' instead of 'name' as per likely schema, or just printing first one
+    if len(ports) > 0:
+        print(f"Port: {ports[0].get('port_name', 'Inconnu')}")
+        print(json.dumps(ports[0]['performance_metrics'], indent=2))
 
 if __name__ == "__main__":
     enrich_ports()
