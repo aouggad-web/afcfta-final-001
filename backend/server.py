@@ -621,6 +621,8 @@ async def get_country_profile(country_code: str) -> CountryEconomicProfile:
         customs_info = get_country_customs_info(country['name'])
         profile.customs = customs_info if customs_info else {}
         
+        # Projets structurants
+        profile.ongoing_projects = get_country_ongoing_projects(country['iso3'])
         # Infrastructure ranking
         infra_ranking = get_country_infrastructure_ranking(country['name'])
         profile.infrastructure_ranking = infra_ranking if infra_ranking else {}
