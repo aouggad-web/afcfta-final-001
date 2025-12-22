@@ -2665,11 +2665,11 @@ function ZLECAfCalculator() {
                           </div>
                           
                           <div className="bg-orange-50 p-3 rounded-lg text-center">
-                            <p className="text-xs font-semibold text-orange-700 mb-1">🚚 Score AIDI</p>
+                            <p className="text-xs font-semibold text-orange-700 mb-1">🏗️ Score AIDI 2024</p>
                             <p className="text-2xl font-bold text-orange-600">
                               {countryProfile.infrastructure_ranking.aidi_transport_score}/100
                             </p>
-                            <p className="text-xs text-orange-600 mt-1">Transport</p>
+                            <p className="text-xs text-orange-600 mt-1">Indice Global</p>
                           </div>
                         </div>
                         
@@ -2677,7 +2677,7 @@ function ZLECAfCalculator() {
                           <p className="text-xs text-gray-700">
                             <strong>IPL (Indice de Performance Logistique)</strong> : Évalue la qualité des infrastructures liées au commerce et au transport.
                             <br />
-                            <strong>AIDI (Africa Infrastructure Development Index)</strong> : Mesure le développement des réseaux routiers, aériens et portuaires.
+                            <strong>AIDI (Africa Infrastructure Development Index)</strong> : Mesure composite du développement des infrastructures (Transport, Électricité, TIC, Eau).
                           </p>
                         </div>
                       </CardContent>
