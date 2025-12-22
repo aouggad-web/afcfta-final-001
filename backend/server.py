@@ -559,6 +559,8 @@ async def get_country_profile(country_code: str) -> CountryEconomicProfile:
         
         # Infrastructure ranking
         infra_ranking = get_country_infrastructure_ranking(commerce_data['country'])
+        # Projets structurants
+        profile.ongoing_projects = get_country_ongoing_projects(country['iso3'])
         profile.infrastructure_ranking = infra_ranking if infra_ranking else {}
     else:
         # Fallback to old data
