@@ -1,0 +1,13 @@
+
+import json
+
+def check_tanger():
+    with open('/app/ports_africains.json', 'r') as f:
+        ports = json.load(f)
+    
+    tanger = next((p for p in ports if "Tanger" in p['port_name']), None)
+    if tanger:
+        print(json.dumps(tanger, indent=2))
+
+if __name__ == "__main__":
+    check_tanger()
