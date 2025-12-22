@@ -38,6 +38,7 @@ from logistics_air_data import (
     get_top_airports_by_cargo,
     search_airports
 )
+from projects_data import get_country_ongoing_projects
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
