@@ -4,7 +4,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Progress } from '../ui/progress';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, Legend } from 'recharts';
+import { 
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
+  LineChart, Line, Legend, AreaChart, Area 
+} from 'recharts';
 
 function PortDetailsModal({ isOpen, onClose, port }) {
   if (!port) return null;
@@ -90,7 +93,7 @@ function PortDetailsModal({ isOpen, onClose, port }) {
             {/* Evolution Chart */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg text-gray-700">📈 Évolution du Trafic (2020-2024)</CardTitle>
+                <CardTitle className="text-lg text-gray-700">📉 Évolution du Trafic (2020-2024)</CardTitle>
               </CardHeader>
               <CardContent className="h-[300px]">
                 <ResponsiveContainer width="100%" height="100%">
