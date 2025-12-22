@@ -2497,6 +2497,57 @@ function ZLECAfCalculator() {
                           </Card>
                         </div>
                       )}
+                      {/* Section Perspectives & Projets Structurants */}
+                      {countryProfile.ongoing_projects && countryProfile.ongoing_projects.length > 0 && (
+                        <div className="mb-4">
+                          <Card className="shadow-xl border-t-4 border-t-emerald-600">
+                            <CardHeader className="bg-gradient-to-r from-emerald-50 to-teal-50">
+                              <CardTitle className="text-xl font-bold text-emerald-700 flex items-center gap-2">
+                                <span>🏗️</span>
+                                <span>Projets Structurants & Perspectives 2030</span>
+                              </CardTitle>
+                              <CardDescription className="font-semibold text-gray-700">
+                                Investissements majeurs en cours de réalisation
+                              </CardDescription>
+                            </CardHeader>
+                            <CardContent className="pt-6">
+                              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {countryProfile.ongoing_projects.map((project, index) => (
+                                  <div key={index} className="bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition-shadow overflow-hidden flex flex-col">
+                                    <div className="bg-emerald-600 text-white p-3">
+                                      <h5 className="font-bold text-sm leading-tight">{project.titre}</h5>
+                                    </div>
+                                    <div className="p-4 flex-grow flex flex-col gap-3">
+                                      <div className="flex justify-between items-start">
+                                        <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200">
+                                          {project.secteur}
+                                        </Badge>
+                                        <span className="text-xs font-bold text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                                          🏁 {project.echeance}
+                                        </span>
+                                      </div>
+                                      
+                                      <div className="space-y-2 text-sm text-gray-600 flex-grow">
+                                        <p className="line-clamp-3">{project.description}</p>
+                                        
+                                        <div className="bg-gray-50 p-2 rounded text-xs border border-gray-100">
+                                          <p><strong>💰 Budget:</strong> {project.budget}</p>
+                                          <p><strong>🚀 Impact:</strong> {project.impact}</p>
+                                        </div>
+                                      </div>
+                                      
+                                      <div className="mt-auto pt-3 border-t border-gray-100 text-xs text-gray-400 flex justify-between items-center">
+                                        <span className="truncate max-w-[70%]">🤝 {project.partenaires}</span>
+                                        <span className="italic">{project.statut}</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </CardContent>
+                          </Card>
+                        </div>
+                      )}
 
                       {/* Nouveaux indicateurs - Infrastructure et Économie */}
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
