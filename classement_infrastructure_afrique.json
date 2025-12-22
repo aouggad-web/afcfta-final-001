@@ -1,27 +1,198 @@
 [
-  {"rang_afrique": 1, "pays": "Afrique du Sud", "score_infrastructure_ipl": 3.4, "rang_mondial_ipl": 24, "score_transport_aidi": 78.9},
-  {"rang_afrique": 2, "pays": "Égypte", "score_infrastructure_ipl": 3.3, "rang_mondial_ipl": 32, "score_transport_aidi": 100.0},
-  {"rang_afrique": 3, "pays": "Maurice", "score_infrastructure_ipl": 3.2, "rang_mondial_ipl": 37, "score_transport_aidi": 56.5},
-  {"rang_afrique": 4, "pays": "Djibouti", "score_infrastructure_ipl": 3.1, "rang_mondial_ipl": 43, "score_transport_aidi": 29.8},
-  {"rang_afrique": 5, "pays": "Botswana", "score_infrastructure_ipl": 3.0, "rang_mondial_ipl": 46, "score_transport_aidi": 23.3},
-  {"rang_afrique": 6, "pays": "Namibie", "score_infrastructure_ipl": 2.9, "rang_mondial_ipl": 50, "score_transport_aidi": 33.0},
-  {"rang_afrique": 7, "pays": "Maroc", "score_infrastructure_ipl": 2.9, "rang_mondial_ipl": 52, "score_transport_aidi": 82.5},
-  {"rang_afrique": 8, "pays": "Tanzanie", "score_infrastructure_ipl": 2.9, "rang_mondial_ipl": 54, "score_transport_aidi": 22.1},
-  {"rang_afrique": 9, "pays": "Kenya", "score_infrastructure_ipl": 2.8, "rang_mondial_ipl": 57, "score_transport_aidi": 41.2},
-  {"rang_afrique": 10, "pays": "Togo", "score_infrastructure_ipl": 2.8, "rang_mondial_ipl": 58, "score_transport_aidi": 53.6},
-  {"rang_afrique": 11, "pays": "Côte d'Ivoire", "score_infrastructure_ipl": 2.7, "rang_mondial_ipl": 64, "score_transport_aidi": 33.1},
-  {"rang_afrique": 12, "pays": "Sénégal", "score_infrastructure_ipl": 2.7, "rang_mondial_ipl": 65, "score_transport_aidi": 39.8},
-  {"rang_afrique": 13, "pays": "Rwanda", "score_infrastructure_ipl": 2.7, "rang_mondial_ipl": 69, "score_transport_aidi": 20.8},
-  {"rang_afrique": 14, "pays": "Ghana", "score_infrastructure_ipl": 2.6, "rang_mondial_ipl": 73, "score_transport_aidi": 31.6},
-  {"rang_afrique": 15, "pays": "Bénin", "score_infrastructure_ipl": 2.6, "rang_mondial_ipl": 76, "score_transport_aidi": 32.1},
-  {"rang_afrique": 16, "pays": "Tunisie", "score_infrastructure_ipl": 2.5, "rang_mondial_ipl": 81, "score_transport_aidi": 74.3},
-  {"rang_afrique": 17, "pays": "Gabon", "score_infrastructure_ipl": 2.5, "rang_mondial_ipl": 84, "score_transport_aidi": 35.8},
-  {"rang_afrique": 18, "pays": "Ouganda", "score_infrastructure_ipl": 2.5, "rang_mondial_ipl": 87, "score_transport_aidi": 15.6},
-  {"rang_afrique": 19, "pays": "Zambie", "score_infrastructure_ipl": 2.4, "rang_mondial_ipl": 93, "score_transport_aidi": 16.5},
-  {"rang_afrique": 20, "pays": "Nigéria", "score_infrastructure_ipl": 2.4, "rang_mondial_ipl": 97, "score_transport_aidi": 25.1},
-  {"rang_afrique": 21, "pays": "Algérie", "score_infrastructure_ipl": 2.3, "rang_mondial_ipl": 102, "score_transport_aidi": 68.2},
-  {"rang_afrique": 22, "pays": "Angola", "score_infrastructure_ipl": 2.3, "rang_mondial_ipl": 105, "score_transport_aidi": 28.4},
-  {"rang_afrique": 23, "pays": "Cameroun", "score_infrastructure_ipl": 2.2, "rang_mondial_ipl": 110, "score_transport_aidi": 31.8},
-  {"rang_afrique": 24, "pays": "Mozambique", "score_infrastructure_ipl": 2.2, "rang_mondial_ipl": 112, "score_transport_aidi": 19.7},
-  {"rang_afrique": 25, "pays": "Éthiopie", "score_infrastructure_ipl": 2.1, "rang_mondial_ipl": 118, "score_transport_aidi": 21.5}
+  {
+    "pays": "Seychelles",
+    "score_infrastructure_ipl": 2.8,
+    "rang_mondial_ipl": 80,
+    "score_aidi_2024": 99.77,
+    "rang_afrique": 1
+  },
+  {
+    "rang_afrique": 2,
+    "pays": "Égypte",
+    "score_infrastructure_ipl": 3.1,
+    "rang_mondial_ipl": 40,
+    "score_aidi_2024": 91.43
+  },
+  {
+    "pays": "Libye",
+    "score_infrastructure_ipl": 1.9,
+    "rang_mondial_ipl": 120,
+    "score_aidi_2024": 84.84,
+    "rang_afrique": 3
+  },
+  {
+    "rang_afrique": 4,
+    "pays": "Maurice",
+    "score_infrastructure_ipl": 3.0,
+    "rang_mondial_ipl": 60,
+    "score_aidi_2024": 82.77
+  },
+  {
+    "rang_afrique": 5,
+    "pays": "Afrique du Sud",
+    "score_infrastructure_ipl": 3.4,
+    "rang_mondial_ipl": 24,
+    "score_aidi_2024": 82.54
+  },
+  {
+    "rang_afrique": 6,
+    "pays": "Tunisie",
+    "score_infrastructure_ipl": 2.5,
+    "rang_mondial_ipl": 81,
+    "score_aidi_2024": 74.18
+  },
+  {
+    "rang_afrique": 7,
+    "pays": "Maroc",
+    "score_infrastructure_ipl": 2.8,
+    "rang_mondial_ipl": 80,
+    "score_aidi_2024": 70.32
+  },
+  {
+    "rang_afrique": 8,
+    "pays": "Algérie",
+    "score_infrastructure_ipl": 2.3,
+    "rang_mondial_ipl": 120,
+    "score_aidi_2024": 61.65
+  },
+  {
+    "rang_afrique": 9,
+    "pays": "Togo",
+    "score_infrastructure_ipl": 2.8,
+    "rang_mondial_ipl": 80,
+    "score_aidi_2024": 53.6
+  },
+  {
+    "pays": "Cap-Vert",
+    "score_infrastructure_ipl": 2.6,
+    "rang_mondial_ipl": 80,
+    "score_aidi_2024": 51.51,
+    "rang_afrique": 10
+  },
+  {
+    "rang_afrique": 11,
+    "pays": "Botswana",
+    "score_infrastructure_ipl": 3.4,
+    "rang_mondial_ipl": 24,
+    "score_aidi_2024": 42.13
+  },
+  {
+    "rang_afrique": 12,
+    "pays": "Kenya",
+    "score_infrastructure_ipl": 2.7,
+    "rang_mondial_ipl": 80,
+    "score_aidi_2024": 41.2
+  },
+  {
+    "rang_afrique": 13,
+    "pays": "Sénégal",
+    "score_infrastructure_ipl": 2.5,
+    "rang_mondial_ipl": 100,
+    "score_aidi_2024": 39.8
+  },
+  {
+    "rang_afrique": 14,
+    "pays": "Gabon",
+    "score_infrastructure_ipl": 2.5,
+    "rang_mondial_ipl": 84,
+    "score_aidi_2024": 35.8
+  },
+  {
+    "rang_afrique": 15,
+    "pays": "Côte d'Ivoire",
+    "score_infrastructure_ipl": 2.8,
+    "rang_mondial_ipl": 80,
+    "score_aidi_2024": 33.1
+  },
+  {
+    "rang_afrique": 16,
+    "pays": "Namibie",
+    "score_infrastructure_ipl": 2.9,
+    "rang_mondial_ipl": 60,
+    "score_aidi_2024": 33.0
+  },
+  {
+    "rang_afrique": 17,
+    "pays": "Bénin",
+    "score_infrastructure_ipl": 3.0,
+    "rang_mondial_ipl": 60,
+    "score_aidi_2024": 32.1
+  },
+  {
+    "rang_afrique": 18,
+    "pays": "Cameroun",
+    "score_infrastructure_ipl": 2.2,
+    "rang_mondial_ipl": 120,
+    "score_aidi_2024": 31.8
+  },
+  {
+    "rang_afrique": 19,
+    "pays": "Ghana",
+    "score_infrastructure_ipl": 2.7,
+    "rang_mondial_ipl": 80,
+    "score_aidi_2024": 31.6
+  },
+  {
+    "rang_afrique": 20,
+    "pays": "Djibouti",
+    "score_infrastructure_ipl": 2.6,
+    "rang_mondial_ipl": 80,
+    "score_aidi_2024": 29.8
+  },
+  {
+    "rang_afrique": 21,
+    "pays": "Angola",
+    "score_infrastructure_ipl": 2.2,
+    "rang_mondial_ipl": 120,
+    "score_aidi_2024": 28.4
+  },
+  {
+    "rang_afrique": 22,
+    "pays": "Nigéria",
+    "score_infrastructure_ipl": 2.6,
+    "rang_mondial_ipl": 80,
+    "score_aidi_2024": 25.1
+  },
+  {
+    "rang_afrique": 23,
+    "pays": "Tanzanie",
+    "score_infrastructure_ipl": 2.5,
+    "rang_mondial_ipl": 100,
+    "score_aidi_2024": 22.1
+  },
+  {
+    "rang_afrique": 24,
+    "pays": "Éthiopie",
+    "score_infrastructure_ipl": 2.1,
+    "rang_mondial_ipl": 120,
+    "score_aidi_2024": 21.5
+  },
+  {
+    "rang_afrique": 25,
+    "pays": "Rwanda",
+    "score_infrastructure_ipl": 2.9,
+    "rang_mondial_ipl": 60,
+    "score_aidi_2024": 20.8
+  },
+  {
+    "rang_afrique": 26,
+    "pays": "Mozambique",
+    "score_infrastructure_ipl": 2.1,
+    "rang_mondial_ipl": 120,
+    "score_aidi_2024": 19.7
+  },
+  {
+    "rang_afrique": 27,
+    "pays": "Zambie",
+    "score_infrastructure_ipl": 2.4,
+    "rang_mondial_ipl": 93,
+    "score_aidi_2024": 16.5
+  },
+  {
+    "rang_afrique": 28,
+    "pays": "Ouganda",
+    "score_infrastructure_ipl": 2.4,
+    "rang_mondial_ipl": 100,
+    "score_aidi_2024": 15.6
+  }
 ]
