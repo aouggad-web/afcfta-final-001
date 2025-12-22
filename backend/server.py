@@ -393,6 +393,7 @@ class CountryEconomicProfile(BaseModel):
     risk_ratings: Dict[str, Any] = {}
     customs: Dict[str, Any] = {}
     infrastructure_ranking: Dict[str, Any] = {}
+    ongoing_projects: List[Dict[str, Any]] = []
 
 # Routes
 @api_router.get("/")
