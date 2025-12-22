@@ -373,7 +373,10 @@
     "agents": [
       {
         "agent_name": "APM Terminals Tangier",
-        "group": "International (Maersk Group)"
+        "group": "International (Maersk Group)",
+        "address": "Quai de l'Ouest, Port Tanger Med",
+        "website": "https://www.apmterminals.com",
+        "contact": "+212 539 33 22 00"
       },
       {
         "agent_name": "Eurogate Tanger",
@@ -385,7 +388,10 @@
       },
       {
         "agent_name": "CMA CGM Morocco",
-        "group": "International (France)"
+        "group": "International (France)",
+        "address": "Immeuble CMA CGM, Zone Franche, Tanger Med",
+        "website": "https://www.cma-cgm.com",
+        "contact": "+212 539 33 80 00"
       },
       {
         "agent_name": "MSC Morocco",
@@ -417,7 +423,10 @@
       },
       {
         "agent_name": "Maersk Line Morocco",
-        "group": "International (Denmark)"
+        "group": "International (Denmark)",
+        "address": "Centre d'Affaires Tanger Med",
+        "website": "https://www.maersk.com",
+        "contact": "+212 539 32 99 00"
       },
       {
         "agent_name": "Yang Ming Marine Transport",
@@ -542,44 +551,51 @@
       }
     ],
     "performance_metrics": {
-      "avg_waiting_time_hours": 52.8,
-      "avg_port_stay_hours": 60.9,
-      "berth_productivity": 42.7,
-      "efficiency_grade": "B-",
-      "last_updated": "2025-01-15"
+      "avg_waiting_time_hours": 2.5,
+      "avg_port_stay_hours": 16.0,
+      "berth_productivity": 125.0,
+      "efficiency_grade": "A+",
+      "last_updated": "2025-01-16"
     },
     "traffic_evolution": [
       {
         "year": 2020,
         "teu": 6559361,
         "vessels": 8199,
-        "avg_wait_time": 52.2
+        "avg_wait_time": 4.2
       },
       {
         "year": 2021,
         "teu": 6887330,
         "vessels": 8609,
-        "avg_wait_time": 57.1
+        "avg_wait_time": 2.4
       },
       {
         "year": 2022,
         "teu": 7438316,
         "vessels": 9297,
-        "avg_wait_time": 50.9
+        "avg_wait_time": 4.5
       },
       {
         "year": 2023,
         "teu": 7735849,
         "vessels": 9669,
-        "avg_wait_time": 48.9
+        "avg_wait_time": 3.2
       },
       {
         "year": 2024,
         "teu": 8200000,
         "vessels": 10250,
-        "avg_wait_time": 51.2
+        "avg_wait_time": 2.7
       }
-    ]
+    ],
+    "port_authority": {
+      "name": "Tanger Med Port Authority (TMPA)",
+      "address": "Zone Franche Logistique, Route de Rabat, Tanger, Maroc",
+      "website": "https://www.tangermed.ma",
+      "contact_phone": "+212 539 33 70 00",
+      "contact_email": "info@tangermed.ma"
+    }
   },
   {
     "port_id": "MAR-AGD-001",
