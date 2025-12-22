@@ -1,9 +1,10 @@
 import React from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '../ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Progress } from '../ui/progress';
+import { Button } from '../ui/button';
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
   LineChart, Line, Legend, AreaChart, Area 
@@ -14,6 +15,7 @@ function PortDetailsModal({ isOpen, onClose, port }) {
 
   const getEfficiencyColor = (grade) => {
     switch (grade) {
+      case 'A+': return 'bg-emerald-600';
       case 'A': return 'bg-green-500';
       case 'B': return 'bg-blue-500';
       case 'B-': return 'bg-yellow-500';
@@ -25,27 +27,33 @@ function PortDetailsModal({ isOpen, onClose, port }) {
 
   const metrics = port.performance_metrics || {};
   const history = port.traffic_evolution || [];
+  const authority = port.port_authority;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 rounded-t-lg -mx-6 -mt-6">
-          <div className="flex justify-between items-start">
+      <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader className="bg-gradient-to-r from-blue-700 to-indigo-800 text-white p-6 rounded-t-lg -mx-6 -mt-6 shadow-lg">
+          <div className="flex flex-col md:flex-row justify-between items-start gap-4">
             <div>
-              <DialogTitle className="text-3xl font-bold flex items-center gap-3">
-                <span>⚓</span>
-                {port.port_name}
-              </DialogTitle>
-              <DialogDescription className="text-blue-100 mt-2 text-lg">
-                {port.city}, {port.country_name}
-              </DialogDescription>
+              <div className="flex items-center gap-3">
+                <span className="text-4xl">⚓</span>
+                <div>
+                  <DialogTitle className="text-3xl font-bold text-white">
+                    {port.port_name}
+                  </DialogTitle>
+                  <DialogDescription className="text-blue-100 mt-1 text-lg flex items-center gap-2">
+                    <span>📍 {port.city}, {port.country_name}</span>
+                    {port.un_locode && <Badge variant="outline" className="text-white border-white/30 text-xs">{port.un_locode}</Badge>}
+                  </DialogDescription>
+                </div>
+              </div>
             </div>
             <div className="flex flex-col items-end gap-2">
-              <Badge variant="outline" className="bg-white text-blue-700 font-bold px-3 py-1 text-sm">
+              <Badge className="bg-white/20 hover:bg-white/30 text-white border-0 px-3 py-1">
                 {port.port_type}
               </Badge>
               {metrics.efficiency_grade && (
-                <Badge className={`${getEfficiencyColor(metrics.efficiency_grade)} text-white font-bold px-3 py-1`}>
+                <Badge className={`${getEfficiencyColor(metrics.efficiency_grade)} text-white font-bold px-4 py-1 text-base shadow-sm border border-white/20`}>
                   Grade {metrics.efficiency_grade}
                 </Badge>
               )}
@@ -54,14 +62,40 @@ function PortDetailsModal({ isOpen, onClose, port }) {
         </DialogHeader>
 
         <Tabs defaultValue="overview" className="mt-6">
-          <TabsList className="grid w-full grid-cols-3 bg-blue-50">
-            <TabsTrigger value="overview">Vue d'ensemble</TabsTrigger>
-            <TabsTrigger value="performance">Performance & Délais</TabsTrigger>
-            <TabsTrigger value="connectivity">Connectivité</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-3 bg-blue-50/50 p-1 rounded-lg">
+            <TabsTrigger value="overview" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">Vue d'ensemble</TabsTrigger>
+            <TabsTrigger value="performance" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">Performance & Délais</TabsTrigger>
+            <TabsTrigger value="connectivity" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">Connectivité & Réseau</TabsTrigger>
           </TabsList>
 
           {/* ONGLET VUE D'ENSEMBLE */}
-          <TabsContent value="overview" className="space-y-6 mt-4">
+          <TabsContent value="overview" className="space-y-6 mt-6">
+            
+            {/* Port Authority Section (if available) */}
+            {authority && (
+              <Card className="border-l-4 border-l-blue-800 bg-gradient-to-r from-blue-50 to-white">
+                <CardContent className="pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                  <div>
+                    <h4 className="text-sm font-bold text-blue-800 uppercase tracking-wide mb-1">Autorité Portuaire</h4>
+                    <h3 className="text-xl font-bold text-gray-900">{authority.name}</h3>
+                    {authority.address && <p className="text-sm text-gray-600 mt-1">📍 {authority.address}</p>}
+                  </div>
+                  <div className="flex gap-3">
+                    {authority.website && (
+                      <Button variant="outline" size="sm" className="bg-white hover:bg-blue-50" asChild>
+                        <a href={authority.website} target="_blank" rel="noopener noreferrer">🌐 Site Officiel</a>
+                      </Button>
+                    )}
+                    {authority.contact_phone && (
+                      <Button variant="outline" size="sm" className="bg-white hover:bg-blue-50">
+                        📞 {authority.contact_phone}
+                      </Button>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
             {/* KPI Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <Card className="bg-blue-50 border-blue-200">
@@ -70,6 +104,7 @@ function PortDetailsModal({ isOpen, onClose, port }) {
                   <p className="text-3xl font-bold text-blue-800">
                     {(port.latest_stats?.container_throughput_teu || 0).toLocaleString()}
                   </p>
+                  <p className="text-xs text-blue-500 mt-1">{port.latest_stats?.year || 2024}</p>
                 </CardContent>
               </Card>
               <Card className="bg-indigo-50 border-indigo-200">
@@ -78,6 +113,7 @@ function PortDetailsModal({ isOpen, onClose, port }) {
                   <p className="text-3xl font-bold text-indigo-800">
                     {(port.latest_stats?.cargo_throughput_tons || 0).toLocaleString()}
                   </p>
+                  <p className="text-xs text-indigo-500 mt-1">tonnes</p>
                 </CardContent>
               </Card>
               <Card className="bg-teal-50 border-teal-200">
@@ -86,6 +122,7 @@ function PortDetailsModal({ isOpen, onClose, port }) {
                   <p className="text-3xl font-bold text-teal-800">
                     {(port.latest_stats?.vessel_calls || 0).toLocaleString()}
                   </p>
+                  <p className="text-xs text-teal-500 mt-1">navires</p>
                 </CardContent>
               </Card>
             </div>
@@ -93,7 +130,9 @@ function PortDetailsModal({ isOpen, onClose, port }) {
             {/* Evolution Chart */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg text-gray-700">📉 Évolution du Trafic (2020-2024)</CardTitle>
+                <CardTitle className="text-lg text-gray-700 flex items-center gap-2">
+                  📉 Évolution du Trafic (2020-2024)
+                </CardTitle>
               </CardHeader>
               <CardContent className="h-[300px]">
                 <ResponsiveContainer width="100%" height="100%">
@@ -126,38 +165,39 @@ function PortDetailsModal({ isOpen, onClose, port }) {
           </TabsContent>
 
           {/* ONGLET PERFORMANCE */}
-          <TabsContent value="performance" className="space-y-6 mt-4">
+          <TabsContent value="performance" className="space-y-6 mt-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Waiting Times */}
               <Card className="border-l-4 border-l-yellow-500 shadow-md">
                 <CardHeader>
                   <CardTitle className="text-lg flex items-center gap-2">
-                    ⏳ Temps d'Attente
+                    ⏳ Temps d'Attente & Opérations
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     <div>
-                      <div className="flex justify-between mb-1">
-                        <span className="text-sm font-medium">Attente au mouillage</span>
-                        <span className="text-sm font-bold">{metrics.avg_waiting_time_hours || 0} h</span>
+                      <div className="flex justify-between mb-2">
+                        <span className="text-sm font-medium text-gray-700">Attente au mouillage</span>
+                        <span className="text-sm font-bold text-yellow-700">{metrics.avg_waiting_time_hours || 0} heures</span>
                       </div>
-                      <Progress value={Math.min((metrics.avg_waiting_time_hours / 72) * 100, 100)} className="h-2 bg-gray-100" indicatorClassName="bg-yellow-500" />
-                      <p className="text-xs text-gray-500 mt-1">Moyenne régionale: 48h</p>
+                      <Progress value={Math.min((metrics.avg_waiting_time_hours / 48) * 100, 100)} className="h-3 bg-gray-100" indicatorClassName="bg-yellow-500" />
+                      <p className="text-xs text-gray-500 mt-1">Indicateur de congestion</p>
                     </div>
                     
                     <div>
-                      <div className="flex justify-between mb-1">
-                        <span className="text-sm font-medium">Temps à quai (Opérations)</span>
-                        <span className="text-sm font-bold">{metrics.berth_productivity || 0} h</span>
+                      <div className="flex justify-between mb-2">
+                        <span className="text-sm font-medium text-gray-700">Temps à quai (Opérations)</span>
+                        <span className="text-sm font-bold text-blue-700">{metrics.berth_productivity || 0} heures</span>
                       </div>
-                      <Progress value={Math.min((metrics.berth_productivity / 48) * 100, 100)} className="h-2 bg-gray-100" indicatorClassName="bg-blue-500" />
+                      <Progress value={Math.min((metrics.berth_productivity / 72) * 100, 100)} className="h-3 bg-gray-100" indicatorClassName="bg-blue-500" />
+                      <p className="text-xs text-gray-500 mt-1">Durée moyenne de chargement/déchargement</p>
                     </div>
 
-                    <div className="pt-4 border-t">
-                      <div className="flex justify-between items-center">
-                        <span className="text-base font-bold text-gray-700">Temps Total au Port</span>
-                        <span className="text-2xl font-extrabold text-blue-700">{metrics.avg_port_stay_hours || 0} h</span>
+                    <div className="pt-4 border-t bg-gray-50 -mx-6 px-6 pb-2 mt-4">
+                      <div className="flex justify-between items-center py-2">
+                        <span className="text-base font-bold text-gray-700">Temps Total de Rotation</span>
+                        <span className="text-2xl font-extrabold text-blue-800">{metrics.avg_port_stay_hours || 0} h</span>
                       </div>
                     </div>
                   </div>
@@ -172,24 +212,25 @@ function PortDetailsModal({ isOpen, onClose, port }) {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="bg-gray-50 p-4 rounded-lg flex items-center justify-between">
+                  <div className="bg-green-50 p-4 rounded-lg flex items-center justify-between border border-green-100">
                     <div>
-                      <p className="text-sm text-gray-600">Mouvements / Heure</p>
-                      <p className="text-2xl font-bold text-gray-800">
-                        {port.port_type === 'Hub Transhipment' ? '45+' : '25-30'}
+                      <p className="text-sm text-green-800 font-semibold">Mouvements / Heure</p>
+                      <p className="text-3xl font-bold text-green-900">
+                        {port.latest_stats?.berth_productivity_moves_per_hour || (port.port_type === 'Hub Transhipment' ? '45+' : '25-30')}
                       </p>
                     </div>
-                    <Badge variant="secondary">Est.</Badge>
+                    <div className="text-3xl">🏗️</div>
                   </div>
                   
-                  <div className="bg-gray-50 p-4 rounded-lg flex items-center justify-between">
+                  <div className="bg-blue-50 p-4 rounded-lg flex items-center justify-between border border-blue-100">
                     <div>
-                      <p className="text-sm text-gray-600">Connectivité LSCI</p>
-                      <p className="text-2xl font-bold text-gray-800">
-                        {port.port_type === 'Hub Transhipment' ? 'High' : 'Medium'}
+                      <p className="text-sm text-blue-800 font-semibold">Connectivité LSCI</p>
+                      <p className="text-3xl font-bold text-blue-900">
+                        {port.lsci?.value || (port.port_type === 'Hub Transhipment' ? 'High' : 'Medium')}
                       </p>
+                      {port.lsci?.world_rank && <p className="text-xs text-blue-600">Rang mondial: #{port.lsci.world_rank}</p>}
                     </div>
-                    <div className="text-2xl">🌍</div>
+                    <div className="text-3xl">🌍</div>
                   </div>
                 </CardContent>
               </Card>
@@ -198,7 +239,7 @@ function PortDetailsModal({ isOpen, onClose, port }) {
             {/* Waiting Time Evolution Chart */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg text-gray-700">📉 Historique des temps d'attente</CardTitle>
+                <CardTitle className="text-lg text-gray-700">📉 Historique des temps d'attente (Heures)</CardTitle>
               </CardHeader>
               <CardContent className="h-[250px]">
                 <ResponsiveContainer width="100%" height="100%">
@@ -223,34 +264,101 @@ function PortDetailsModal({ isOpen, onClose, port }) {
           </TabsContent>
 
           {/* ONGLET CONNECTIVITÉ */}
-          <TabsContent value="connectivity" className="space-y-6 mt-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">🚢 Lignes Régulières</CardTitle>
+          <TabsContent value="connectivity" className="space-y-6 mt-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              
+              {/* Lignes Régulières */}
+              <Card className="shadow-md h-full">
+                <CardHeader className="bg-gray-50 border-b">
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    🚢 Lignes Régulières & Itinéraires
+                  </CardTitle>
+                  <CardDescription>
+                    Connexions directes et rotations
+                  </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {(port.connectivity?.liner_services || ['Service MSC West Africa', 'CMA CGM Africa Express', 'Maersk Euraf']).map((service, idx) => (
-                      <li key={idx} className="flex items-center gap-2 p-2 bg-gray-50 rounded hover:bg-gray-100">
-                        <span className="text-blue-500">●</span>
-                        <span className="font-medium text-gray-700">{service}</span>
+                <CardContent className="pt-4 max-h-[500px] overflow-y-auto">
+                  <ul className="space-y-4">
+                    {(port.services || port.connectivity?.liner_services || []).map((service, idx) => (
+                      <li key={idx} className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-sm transition-shadow">
+                        {typeof service === 'object' ? (
+                          <>
+                            <div className="flex justify-between items-start mb-2">
+                              <span className="font-bold text-blue-800">{service.service_name || service.carrier}</span>
+                              <Badge variant="secondary" className="text-xs">{service.frequency || 'Régulier'}</Badge>
+                            </div>
+                            <div className="text-sm text-gray-600 mb-1">
+                              <span className="font-semibold">Armateur:</span> {service.carrier}
+                            </div>
+                            {service.rotation && (
+                              <div className="text-xs bg-gray-50 p-2 rounded mt-2 border-l-2 border-blue-400">
+                                <span className="font-semibold text-gray-700 block mb-1">Rotation:</span>
+                                <span className="text-gray-600 leading-relaxed">{service.rotation}</span>
+                              </div>
+                            )}
+                          </>
+                        ) : (
+                          <div className="flex items-center gap-2">
+                            <span className="text-blue-500">●</span>
+                            <span className="font-medium text-gray-700">{service}</span>
+                          </div>
+                        )}
                       </li>
                     ))}
+                    {(!port.services && !port.connectivity?.liner_services) && (
+                      <p className="text-gray-500 italic text-center py-4">Aucune donnée de ligne régulière disponible.</p>
+                    )}
                   </ul>
                 </CardContent>
               </Card>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">🏢 Agents Maritimes</CardTitle>
+              {/* Agents Maritimes */}
+              <Card className="shadow-md h-full">
+                <CardHeader className="bg-gray-50 border-b">
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    🏢 Agents Maritimes
+                  </CardTitle>
+                  <CardDescription>
+                    Représentants et contacts locaux
+                  </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {(port.connectivity?.shipping_agents || ['Bolloré Transport', 'CMA CGM Agency', 'Maersk Logistics']).map((agent, idx) => (
-                      <li key={idx} className="flex items-center gap-2 p-2 bg-gray-50 rounded hover:bg-gray-100">
-                        <span className="text-green-500">●</span>
-                        <span className="font-medium text-gray-700">{agent}</span>
+                <CardContent className="pt-4 max-h-[500px] overflow-y-auto">
+                  <ul className="space-y-3">
+                    {(port.agents || port.connectivity?.shipping_agents || []).map((agent, idx) => (
+                      <li key={idx} className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-sm transition-shadow">
+                        {typeof agent === 'object' ? (
+                          <div>
+                            <div className="flex justify-between items-start">
+                              <span className="font-bold text-gray-800">{agent.agent_name}</span>
+                              {agent.group && <Badge variant="outline" className="text-xs text-gray-500">{agent.group}</Badge>}
+                            </div>
+                            
+                            {agent.address && (
+                              <div className="flex items-start gap-2 mt-2 text-xs text-gray-600">
+                                <span>📍</span>
+                                <span>{agent.address}</span>
+                              </div>
+                            )}
+                            
+                            <div className="flex gap-3 mt-3">
+                              {agent.website && (
+                                <a href={agent.website} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 hover:underline flex items-center gap-1">
+                                  🌐 Site Web
+                                </a>
+                              )}
+                              {agent.contact && (
+                                <span className="text-xs text-green-600 flex items-center gap-1">
+                                  📞 {agent.contact}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="flex items-center gap-2">
+                            <span className="text-green-500">●</span>
+                            <span className="font-medium text-gray-700">{agent}</span>
+                          </div>
+                        )}
                       </li>
                     ))}
                   </ul>
