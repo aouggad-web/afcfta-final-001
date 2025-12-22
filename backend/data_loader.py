@@ -203,6 +203,6 @@ def get_country_infrastructure_ranking(country_name: str) -> Optional[Dict]:
                 'africa_rank': entry['rang_afrique'],
                 'lpi_infrastructure_score': entry['score_infrastructure_ipl'],
                 'lpi_world_rank': entry['rang_mondial_ipl'],
-                'aidi_transport_score': entry['score_transport_aidi']
+                'aidi_transport_score': entry.get('score_aidi_2024', entry.get('score_transport_aidi', 0))
             }
     return None
