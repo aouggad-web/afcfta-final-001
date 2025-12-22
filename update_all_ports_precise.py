@@ -196,6 +196,8 @@ def update_ports():
     count = 0
     for port in ports:
         un_locode = port.get('un_locode', '')
+        # Fallback pour le nom de la ville si 'city' est manquant
+        city_name = port.get('city', port.get('port_name', 'Unknown').replace('Port de ', '').replace('Port of ', ''))
         
         # Données spécifiques si disponibles
         master_info = MASTER_DATA.get(un_locode)
@@ -205,9 +207,9 @@ def update_ports():
             # Templating Algérie
             master_info = {
                 "authority": {
-                    "name": f"Entreprise Portuaire de {port['city']}",
+                    "name": f"Entreprise Portuaire de {city_name}",
                     "site": "www.transports.gov.dz", # Fallback ministère
-                    "addr": f"Zone Portuaire, {port['city']}, Algérie"
+                    "addr": f"Zone Portuaire, {city_name}, Algérie"
                 },
                 "grade": "B-", "wait": 40.0
             }
@@ -250,16 +252,16 @@ def update_ports():
             selected_agents = random.sample(AGENTS_POOL, 3)
             for ag in selected_agents:
                 port['agents'].append({
-                    "agent_name": f"{ag['name']} {port['country_name']}",
+                    "agent_name": f"{ag['name']} {port.get('country_name', '')}",
                     "group": "International",
-                    "address": f"Zone Portuaire, {port['city']}",
+                    "address": f"Zone Portuaire, {city_name}",
                     "website": ag['site']
                 })
         else:
             # Enrichir agents existants si pas d'adresse
             for ag in port['agents']:
                 if 'address' not in ag:
-                    ag['address'] = f"Zone Portuaire, {port['city']}"
+                    ag['address'] = f"Zone Portuaire, {city_name}"
                 if 'website' not in ag:
                     # Tenter de deviner ou generic
                     if "Maersk" in ag['agent_name']: ag['website'] = "www.maersk.com"
@@ -275,9 +277,14 @@ def update_ports():
 
     print(f"✅ Mise à jour précise terminée pour {count} ports.")
     print("Exemples:")
-    print(f"- Durban Wait: {next(p['performance_metrics']['avg_waiting_time_hours'] for p in ports if p['un_locode']=='ZADUR')}h")
-    print(f"- Mombasa Wait: {next(p['performance_metrics']['avg_waiting_time_hours'] for p in ports if p['un_locode']=='KEMBA')}h")
-    print(f"- Lomé Wait: {next(p['performance_metrics']['avg_waiting_time_hours'] for p in ports if p['un_locode']=='TGLFW')}h")
+    # Helper pour safely get
+    def get_wait(code):
+        p = next((x for x in ports if x.get('un_locode') == code), None)
+        return p['performance_metrics']['avg_waiting_time_hours'] if p else "N/A"
+
+    print(f"- Durban Wait: {get_wait('ZADUR')}h")
+    print(f"- Mombasa Wait: {get_wait('KEMBA')}h")
+    print(f"- Lomé Wait: {get_wait('TGLFW')}h")
 
 if __name__ == "__main__":
     update_ports()
