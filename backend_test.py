@@ -1812,6 +1812,459 @@ class ZLECAfAPITester:
                 {'error': str(e)}
             )
     
+    def test_country_profile_algeria_ongoing_projects_infrastructure(self):
+        """Test spécifique du profil Algérie - Vérification ongoing_projects et infrastructure_ranking selon review request"""
+        country_code = 'DZ'  # Algeria
+        
+        try:
+            response = self.session.get(f"{self.base_url}/country-profile/{country_code}", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                profile = response.json()
+                
+                # Vérifier les champs obligatoires de base
+                required_fields = ['country_code', 'country_name', 'ongoing_projects', 'infrastructure_ranking']
+                missing_fields = [field for field in required_fields if field not in profile]
+                
+                if missing_fields:
+                    self.log_result(
+                        f"Algeria Profile - ongoing_projects & infrastructure_ranking", 
+                        False, 
+                        f"Champs manquants: {missing_fields}",
+                        {'profile_keys': list(profile.keys())}
+                    )
+                    return
+                
+                # Vérifier ongoing_projects
+                ongoing_projects = profile.get('ongoing_projects', [])
+                if not isinstance(ongoing_projects, list):
+                    self.log_result(
+                        f"Algeria Profile - ongoing_projects & infrastructure_ranking", 
+                        False, 
+                        f"ongoing_projects n'est pas une liste: {type(ongoing_projects)}",
+                        {'ongoing_projects': ongoing_projects}
+                    )
+                    return
+                
+                # Vérifier infrastructure_ranking
+                infrastructure_ranking = profile.get('infrastructure_ranking', {})
+                if not isinstance(infrastructure_ranking, dict):
+                    self.log_result(
+                        f"Algeria Profile - ongoing_projects & infrastructure_ranking", 
+                        False, 
+                        f"infrastructure_ranking n'est pas un dictionnaire: {type(infrastructure_ranking)}",
+                        {'infrastructure_ranking': infrastructure_ranking}
+                    )
+                    return
+                
+                # Vérifier le contenu des projets en cours
+                projects_valid = True
+                projects_details = {}
+                
+                if len(ongoing_projects) > 0:
+                    sample_project = ongoing_projects[0]
+                    expected_project_fields = ['name', 'description', 'status', 'budget_usd', 'start_date']
+                    missing_project_fields = [field for field in expected_project_fields if field not in sample_project]
+                    
+                    if missing_project_fields:
+                        projects_valid = False
+                        projects_details = {
+                            'missing_fields': missing_project_fields,
+                            'sample_project': sample_project
+                        }
+                    else:
+                        projects_details = {
+                            'count': len(ongoing_projects),
+                            'sample_project_name': sample_project.get('name'),
+                            'sample_budget': sample_project.get('budget_usd')
+                        }
+                else:
+                    projects_details = {'count': 0, 'note': 'Aucun projet en cours'}
+                
+                # Vérifier le contenu du classement infrastructure
+                ranking_valid = True
+                ranking_details = {}
+                
+                if infrastructure_ranking:
+                    expected_ranking_fields = ['africa_rank', 'global_rank', 'score', 'index_name']
+                    available_ranking_fields = [field for field in expected_ranking_fields if field in infrastructure_ranking]
+                    
+                    if len(available_ranking_fields) > 0:
+                        ranking_details = {
+                            'available_fields': available_ranking_fields,
+                            'africa_rank': infrastructure_ranking.get('africa_rank'),
+                            'global_rank': infrastructure_ranking.get('global_rank'),
+                            'score': infrastructure_ranking.get('score')
+                        }
+                    else:
+                        ranking_valid = False
+                        ranking_details = {
+                            'error': 'Aucun champ de classement infrastructure trouvé',
+                            'available_keys': list(infrastructure_ranking.keys())
+                        }
+                else:
+                    ranking_details = {'note': 'Données de classement infrastructure vides'}
+                
+                # Résultat final
+                if projects_valid and ranking_valid:
+                    self.log_result(
+                        f"Algeria Profile - ongoing_projects & infrastructure_ranking", 
+                        True, 
+                        f"✅ Algérie: ongoing_projects ({len(ongoing_projects)} projets) et infrastructure_ranking présents et valides",
+                        {
+                            'country': profile.get('country_name'),
+                            'projects': projects_details,
+                            'infrastructure_ranking': ranking_details
+                        }
+                    )
+                else:
+                    self.log_result(
+                        f"Algeria Profile - ongoing_projects & infrastructure_ranking", 
+                        False, 
+                        f"Problèmes de validation - Projects valid: {projects_valid}, Ranking valid: {ranking_valid}",
+                        {
+                            'projects': projects_details,
+                            'infrastructure_ranking': ranking_details
+                        }
+                    )
+                    
+            else:
+                self.log_result(
+                    f"Algeria Profile - ongoing_projects & infrastructure_ranking", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                f"Algeria Profile - ongoing_projects & infrastructure_ranking", 
+                False, 
+                f"Erreur lors de la récupération du profil Algérie: {str(e)}",
+                {'error': str(e)}
+            )
+
+    def test_country_profile_egypt_ongoing_projects_infrastructure(self):
+        """Test spécifique du profil Égypte - Vérification ongoing_projects et infrastructure_ranking selon review request"""
+        country_code = 'EG'  # Egypt
+        
+        try:
+            response = self.session.get(f"{self.base_url}/country-profile/{country_code}", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                profile = response.json()
+                
+                # Vérifier les champs obligatoires de base
+                required_fields = ['country_code', 'country_name', 'ongoing_projects', 'infrastructure_ranking']
+                missing_fields = [field for field in required_fields if field not in profile]
+                
+                if missing_fields:
+                    self.log_result(
+                        f"Egypt Profile - ongoing_projects & infrastructure_ranking", 
+                        False, 
+                        f"Champs manquants: {missing_fields}",
+                        {'profile_keys': list(profile.keys())}
+                    )
+                    return
+                
+                # Vérifier ongoing_projects
+                ongoing_projects = profile.get('ongoing_projects', [])
+                if not isinstance(ongoing_projects, list):
+                    self.log_result(
+                        f"Egypt Profile - ongoing_projects & infrastructure_ranking", 
+                        False, 
+                        f"ongoing_projects n'est pas une liste: {type(ongoing_projects)}",
+                        {'ongoing_projects': ongoing_projects}
+                    )
+                    return
+                
+                # Vérifier infrastructure_ranking
+                infrastructure_ranking = profile.get('infrastructure_ranking', {})
+                if not isinstance(infrastructure_ranking, dict):
+                    self.log_result(
+                        f"Egypt Profile - ongoing_projects & infrastructure_ranking", 
+                        False, 
+                        f"infrastructure_ranking n'est pas un dictionnaire: {type(infrastructure_ranking)}",
+                        {'infrastructure_ranking': infrastructure_ranking}
+                    )
+                    return
+                
+                # Vérifier le contenu des projets en cours
+                projects_valid = True
+                projects_details = {}
+                
+                if len(ongoing_projects) > 0:
+                    sample_project = ongoing_projects[0]
+                    expected_project_fields = ['name', 'description', 'status', 'budget_usd', 'start_date']
+                    missing_project_fields = [field for field in expected_project_fields if field not in sample_project]
+                    
+                    if missing_project_fields:
+                        projects_valid = False
+                        projects_details = {
+                            'missing_fields': missing_project_fields,
+                            'sample_project': sample_project
+                        }
+                    else:
+                        projects_details = {
+                            'count': len(ongoing_projects),
+                            'sample_project_name': sample_project.get('name'),
+                            'sample_budget': sample_project.get('budget_usd')
+                        }
+                else:
+                    projects_details = {'count': 0, 'note': 'Aucun projet en cours'}
+                
+                # Vérifier le contenu du classement infrastructure
+                ranking_valid = True
+                ranking_details = {}
+                
+                if infrastructure_ranking:
+                    expected_ranking_fields = ['africa_rank', 'global_rank', 'score', 'index_name']
+                    available_ranking_fields = [field for field in expected_ranking_fields if field in infrastructure_ranking]
+                    
+                    if len(available_ranking_fields) > 0:
+                        ranking_details = {
+                            'available_fields': available_ranking_fields,
+                            'africa_rank': infrastructure_ranking.get('africa_rank'),
+                            'global_rank': infrastructure_ranking.get('global_rank'),
+                            'score': infrastructure_ranking.get('score')
+                        }
+                    else:
+                        ranking_valid = False
+                        ranking_details = {
+                            'error': 'Aucun champ de classement infrastructure trouvé',
+                            'available_keys': list(infrastructure_ranking.keys())
+                        }
+                else:
+                    ranking_details = {'note': 'Données de classement infrastructure vides'}
+                
+                # Résultat final
+                if projects_valid and ranking_valid:
+                    self.log_result(
+                        f"Egypt Profile - ongoing_projects & infrastructure_ranking", 
+                        True, 
+                        f"✅ Égypte: ongoing_projects ({len(ongoing_projects)} projets) et infrastructure_ranking présents et valides",
+                        {
+                            'country': profile.get('country_name'),
+                            'projects': projects_details,
+                            'infrastructure_ranking': ranking_details
+                        }
+                    )
+                else:
+                    self.log_result(
+                        f"Egypt Profile - ongoing_projects & infrastructure_ranking", 
+                        False, 
+                        f"Problèmes de validation - Projects valid: {projects_valid}, Ranking valid: {ranking_valid}",
+                        {
+                            'projects': projects_details,
+                            'infrastructure_ranking': ranking_details
+                        }
+                    )
+                    
+            else:
+                self.log_result(
+                    f"Egypt Profile - ongoing_projects & infrastructure_ranking", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                f"Egypt Profile - ongoing_projects & infrastructure_ranking", 
+                False, 
+                f"Erreur lors de la récupération du profil Égypte: {str(e)}",
+                {'error': str(e)}
+            )
+
+    def test_tanger_med_port_performance_metrics_authority(self):
+        """Test spécifique du Port de Tanger Med - Vérification performance metrics et authority details selon review request"""
+        
+        try:
+            # D'abord, récupérer la liste des ports pour trouver Tanger Med
+            response = self.session.get(f"{self.base_url}/logistics/ports?country_iso=MAR", timeout=TIMEOUT)
+            
+            if response.status_code != 200:
+                self.log_result(
+                    "Tanger Med Port - Performance & Authority", 
+                    False, 
+                    f"Impossible de récupérer la liste des ports marocains: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                return
+            
+            ports_data = response.json()
+            ports = ports_data.get('ports', [])
+            
+            # Chercher le port de Tanger Med
+            tanger_med_port = None
+            for port in ports:
+                if 'tanger' in port.get('port_name', '').lower() and 'med' in port.get('port_name', '').lower():
+                    tanger_med_port = port
+                    break
+            
+            if not tanger_med_port:
+                self.log_result(
+                    "Tanger Med Port - Performance & Authority", 
+                    False, 
+                    "Port de Tanger Med non trouvé dans la liste des ports marocains",
+                    {'available_ports': [p.get('port_name') for p in ports]}
+                )
+                return
+            
+            port_id = tanger_med_port.get('port_id')
+            if not port_id:
+                self.log_result(
+                    "Tanger Med Port - Performance & Authority", 
+                    False, 
+                    "ID du port Tanger Med non trouvé",
+                    {'tanger_med_port': tanger_med_port}
+                )
+                return
+            
+            # Récupérer les détails du port
+            response = self.session.get(f"{self.base_url}/logistics/ports/{port_id}", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                port_details = response.json()
+                
+                # Vérifier les métriques de performance
+                performance_valid = True
+                performance_details = {}
+                
+                # Chercher les métriques de performance dans différentes sections
+                latest_stats = port_details.get('latest_stats', {})
+                performance_metrics = port_details.get('performance_metrics', {})
+                
+                # Métriques attendues
+                expected_performance_fields = [
+                    'container_throughput_teu', 'cargo_throughput_tons', 
+                    'vessel_calls', 'port_time_hours', 'waiting_time_hours',
+                    'productivity_moves_per_hour', 'lsci_score'
+                ]
+                
+                found_performance_fields = []
+                performance_values = {}
+                
+                # Vérifier dans latest_stats
+                for field in expected_performance_fields:
+                    if field in latest_stats and latest_stats[field] is not None:
+                        found_performance_fields.append(field)
+                        performance_values[field] = latest_stats[field]
+                
+                # Vérifier dans performance_metrics
+                for field in expected_performance_fields:
+                    if field in performance_metrics and performance_metrics[field] is not None:
+                        if field not in found_performance_fields:
+                            found_performance_fields.append(field)
+                        performance_values[field] = performance_metrics[field]
+                
+                if len(found_performance_fields) < 3:  # Au moins 3 métriques de performance
+                    performance_valid = False
+                    performance_details = {
+                        'error': 'Métriques de performance insuffisantes',
+                        'found_fields': found_performance_fields,
+                        'expected_fields': expected_performance_fields,
+                        'latest_stats': latest_stats,
+                        'performance_metrics': performance_metrics
+                    }
+                else:
+                    performance_details = {
+                        'found_fields': found_performance_fields,
+                        'values': performance_values,
+                        'count': len(found_performance_fields)
+                    }
+                
+                # Vérifier les détails de l'autorité portuaire
+                authority_valid = True
+                authority_details = {}
+                
+                # Chercher les informations d'autorité
+                port_authority = port_details.get('port_authority', {})
+                management = port_details.get('management', {})
+                contact_info = port_details.get('contact_info', {})
+                
+                expected_authority_fields = ['name', 'type', 'website', 'contact_email', 'phone']
+                found_authority_fields = []
+                authority_values = {}
+                
+                # Vérifier dans port_authority
+                for field in expected_authority_fields:
+                    if field in port_authority and port_authority[field] is not None:
+                        found_authority_fields.append(field)
+                        authority_values[field] = port_authority[field]
+                
+                # Vérifier dans management
+                for field in expected_authority_fields:
+                    if field in management and management[field] is not None:
+                        if field not in found_authority_fields:
+                            found_authority_fields.append(field)
+                        authority_values[field] = management[field]
+                
+                # Vérifier dans contact_info
+                for field in expected_authority_fields:
+                    if field in contact_info and contact_info[field] is not None:
+                        if field not in found_authority_fields:
+                            found_authority_fields.append(field)
+                        authority_values[field] = contact_info[field]
+                
+                if len(found_authority_fields) < 2:  # Au moins 2 informations d'autorité
+                    authority_valid = False
+                    authority_details = {
+                        'error': 'Informations d\'autorité portuaire insuffisantes',
+                        'found_fields': found_authority_fields,
+                        'expected_fields': expected_authority_fields,
+                        'port_authority': port_authority,
+                        'management': management,
+                        'contact_info': contact_info
+                    }
+                else:
+                    authority_details = {
+                        'found_fields': found_authority_fields,
+                        'values': authority_values,
+                        'count': len(found_authority_fields)
+                    }
+                
+                # Résultat final
+                if performance_valid and authority_valid:
+                    self.log_result(
+                        "Tanger Med Port - Performance & Authority", 
+                        True, 
+                        f"✅ Port de Tanger Med: Performance metrics ({len(found_performance_fields)} métriques) et authority details ({len(found_authority_fields)} infos) présents et valides",
+                        {
+                            'port_name': port_details.get('port_name'),
+                            'port_id': port_id,
+                            'performance_metrics': performance_details,
+                            'authority_details': authority_details
+                        }
+                    )
+                else:
+                    self.log_result(
+                        "Tanger Med Port - Performance & Authority", 
+                        False, 
+                        f"Problèmes de validation - Performance valid: {performance_valid}, Authority valid: {authority_valid}",
+                        {
+                            'port_name': port_details.get('port_name'),
+                            'performance_metrics': performance_details,
+                            'authority_details': authority_details
+                        }
+                    )
+                    
+            else:
+                self.log_result(
+                    "Tanger Med Port - Performance & Authority", 
+                    False, 
+                    f"Code de statut incorrect pour les détails du port: {response.status_code}",
+                    {'status_code': response.status_code, 'port_id': port_id}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "Tanger Med Port - Performance & Authority", 
+                False, 
+                f"Erreur lors de la récupération des détails du port Tanger Med: {str(e)}",
+                {'error': str(e)}
+            )
+    
     def run_all_tests(self):
         """Exécuter tous les tests"""
         print(f"🚀 Début des tests de l'API ZLECAf")
