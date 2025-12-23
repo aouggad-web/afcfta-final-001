@@ -547,12 +547,12 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Module Production nouvellement implémenté - Tests backend et frontend complets requis"
-    - "Vérification intégration des 4 dimensions: Macro, Agriculture, Manufacturing, Mining"
+    - "Review Request - Country profiles Algeria & Egypt ongoing_projects + infrastructure_ranking"
+    - "Review Request - Port Tanger Med performance metrics + authority details"
   stuck_tasks:
     - "Profils pays multiples - Données infrastructure Nigeria, Égypte, Afrique du Sud"
   test_all: false
-  test_priority: "production_module_testing"
+  test_priority: "review_request_completed"
 
 agent_communication:
     - agent: "testing"
