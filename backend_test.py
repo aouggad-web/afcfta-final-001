@@ -2281,6 +2281,14 @@ class ZLECAfAPITester:
         self.test_tariff_calculation()
         self.test_statistics()
         
+        # Tests spécifiques de la review request
+        print("\n" + "=" * 80)
+        print("🎯 TESTS SPÉCIFIQUES REVIEW REQUEST")
+        print("=" * 80)
+        self.test_country_profile_algeria_ongoing_projects_infrastructure()
+        self.test_country_profile_egypt_ongoing_projects_infrastructure()
+        self.test_tanger_med_port_performance_metrics_authority()
+        
         # Tests du module Production
         print("\n" + "=" * 80)
         print("📊 TESTS MODULE PRODUCTION")
