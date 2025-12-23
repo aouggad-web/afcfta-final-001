@@ -515,6 +515,30 @@ frontend:
           agent: "main"
           comment: "✅ IMPLÉMENTATION ET TESTS VISUELS VALIDÉS: Module Production 100% opérationnel. BACKEND: Tous endpoints /api/production/* fonctionnent (macro, agriculture, manufacturing, mining, statistics, overview). Test API réussi: Statistics endpoint retourne 1 pays (ZAF), 4 ans (2021-2024), 4 dimensions (12 records macro, 4 agri, 2 manuf, 4 mining). FRONTEND: Onglet Production visible avec header 'Capacité de Production Africaine', 4 sous-onglets avec code couleur (violet=Macro, vert=Agriculture, bleu=Manufacturing, orange=Mining). Sources de données officielles affichées (World Bank WDI, FAO FAOSTAT, UNIDO INDSTAT4, USGS MCS). TESTS NAVIGATION: Tous sous-onglets fonctionnent. TESTS VISUALISATIONS: Macro montre graphiques évolution valeur ajoutée 3 secteurs, Agriculture affiche production maïs ZAF (14.5M-17.1M tonnes 2021-2024), Manufacturing montre valeur ajoutée alimentaire ($28.5B-29.8B 2021-2022), Mining prêt (données limitées ZAF). Sélecteur pays fonctionnel pour 10 pays pilotes. PRÊT POUR TESTS AUTOMATISÉS COMPLETS."
 
+  - task: "Review Request - Country profiles Algeria & Egypt ongoing_projects + infrastructure_ranking"
+    implemented: true
+    working: false
+    file: "backend/server.py, backend/projects_data.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: false
+          agent: "testing"
+          comment: "❌ PROBLÈME STRUCTURE DONNÉES: ongoing_projects présent pour Algérie et Égypte mais utilise des noms de champs différents ('titre' au lieu de 'name', 'statut' au lieu de 'status', 'budget' au lieu de 'budget_usd', 'echeance' au lieu de 'start_date'). infrastructure_ranking valide (Algérie: africa_rank 8, Égypte: africa_rank 4). Les données sont présentes mais la structure ne correspond pas aux attentes de l'API."
+
+  - task: "Review Request - Port Tanger Med performance metrics + authority details"
+    implemented: true
+    working: true
+    file: "backend/server.py, backend/logistics_data.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "✅ VALIDÉ: Port de Tanger Med (ID: MAR-TAN-001) avec performance metrics (3 métriques: container_throughput_teu, cargo_throughput_tons, vessel_calls) et authority details (3 infos: name, type, website) présents et valides. API /api/logistics/ports/{port_id} fonctionne correctement."
+
 metadata:
   created_by: "testing_agent"
   version: "6.0"
