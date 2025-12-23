@@ -28,6 +28,7 @@ function PortDetailsModal({ isOpen, onClose, port }) {
   const metrics = port.performance_metrics || {};
   const history = port.traffic_evolution || [];
   const authority = port.port_authority;
+  const trs = port.trs_analysis;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -64,7 +65,7 @@ function PortDetailsModal({ isOpen, onClose, port }) {
         <Tabs defaultValue="overview" className="mt-6">
           <TabsList className="grid w-full grid-cols-3 bg-blue-50/50 p-1 rounded-lg">
             <TabsTrigger value="overview" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">Vue d'ensemble</TabsTrigger>
-            <TabsTrigger value="performance" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">Performance & Délais</TabsTrigger>
+            <TabsTrigger value="performance" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">Performance & TRS (WCO)</TabsTrigger>
             <TabsTrigger value="connectivity" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">Connectivité & Réseau</TabsTrigger>
           </TabsList>
 
@@ -164,14 +165,65 @@ function PortDetailsModal({ isOpen, onClose, port }) {
             </Card>
           </TabsContent>
 
-          {/* ONGLET PERFORMANCE */}
+          {/* ONGLET PERFORMANCE & TRS */}
           <TabsContent value="performance" className="space-y-6 mt-6">
+            
+            {/* WCO TRS SECTION (NOUVEAU) */}
+            {trs && (
+              <Card className="border-t-4 border-t-purple-600 shadow-md">
+                <CardHeader className="bg-purple-50">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <CardTitle className="text-xl text-purple-900 flex items-center gap-2">
+                        ⏱️ Étude sur le Temps de Mainlevée (TRS)
+                      </CardTitle>
+                      <CardDescription>
+                        Analyse détaillée des délais de séjour marchandise (Dwell Time) selon la méthodologie WCO
+                      </CardDescription>
+                    </div>
+                    <Badge className="bg-purple-600 text-white text-lg px-4 py-2">
+                      Total: {trs.total_dwell_time_days} Jours
+                    </Badge>
+                  </div>
+                </CardHeader>
+                <CardContent className="pt-6">
+                  <div className="space-y-6">
+                    {trs.steps.map((step, idx) => {
+                      // Calcul pourcentage pour la barre visuelle
+                      const percent = (step.duration_hours / (trs.total_dwell_time_days * 24)) * 100;
+                      return (
+                        <div key={idx} className="relative">
+                          <div className="flex justify-between items-end mb-1">
+                            <div className="flex items-center gap-2">
+                              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-purple-100 text-purple-700 text-xs font-bold border border-purple-200">
+                                {step.step_id}
+                              </span>
+                              <div>
+                                <span className="text-sm font-bold text-gray-800">{step.label}</span>
+                                <span className="text-xs text-gray-500 ml-2">({step.description})</span>
+                              </div>
+                            </div>
+                            <span className="text-sm font-bold text-purple-700">{step.duration_hours} h</span>
+                          </div>
+                          <Progress value={percent} className="h-2 bg-gray-100" indicatorClassName="bg-purple-500" />
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="mt-6 p-3 bg-gray-50 rounded-lg text-xs text-gray-500 flex justify-between">
+                    <span>Méthodologie: {trs.methodology}</span>
+                    <span>Dernier audit: {trs.last_audit}</span>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Waiting Times */}
+              {/* Waiting Times (Ship) */}
               <Card className="border-l-4 border-l-yellow-500 shadow-md">
                 <CardHeader>
                   <CardTitle className="text-lg flex items-center gap-2">
-                    ⏳ Temps d'Attente & Opérations
+                    ⏳ Temps d'Attente Navire
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -182,18 +234,9 @@ function PortDetailsModal({ isOpen, onClose, port }) {
                         <span className="text-sm font-bold text-yellow-700">{metrics.avg_waiting_time_hours || 0} heures</span>
                       </div>
                       <Progress value={Math.min((metrics.avg_waiting_time_hours / 48) * 100, 100)} className="h-3 bg-gray-100" indicatorClassName="bg-yellow-500" />
-                      <p className="text-xs text-gray-500 mt-1">Indicateur de congestion</p>
+                      <p className="text-xs text-gray-500 mt-1">Indicateur de congestion nautique</p>
                     </div>
                     
-                    <div>
-                      <div className="flex justify-between mb-2">
-                        <span className="text-sm font-medium text-gray-700">Temps à quai (Opérations)</span>
-                        <span className="text-sm font-bold text-blue-700">{metrics.berth_productivity || 0} heures</span>
-                      </div>
-                      <Progress value={Math.min((metrics.berth_productivity / 72) * 100, 100)} className="h-3 bg-gray-100" indicatorClassName="bg-blue-500" />
-                      <p className="text-xs text-gray-500 mt-1">Durée moyenne de chargement/déchargement</p>
-                    </div>
-
                     <div className="pt-4 border-t bg-gray-50 -mx-6 px-6 pb-2 mt-4">
                       <div className="flex justify-between items-center py-2">
                         <span className="text-base font-bold text-gray-700">Temps Total de Rotation</span>
@@ -208,7 +251,7 @@ function PortDetailsModal({ isOpen, onClose, port }) {
               <Card className="border-l-4 border-l-green-500 shadow-md">
                 <CardHeader>
                   <CardTitle className="text-lg flex items-center gap-2">
-                    🏗️ Productivité & Efficacité
+                    🏗️ Productivité
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -235,32 +278,6 @@ function PortDetailsModal({ isOpen, onClose, port }) {
                 </CardContent>
               </Card>
             </div>
-
-            {/* Waiting Time Evolution Chart */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg text-gray-700">📉 Historique des temps d'attente (Heures)</CardTitle>
-              </CardHeader>
-              <CardContent className="h-[250px]">
-                <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={history}>
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                    <XAxis dataKey="year" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line 
-                      type="monotone" 
-                      dataKey="avg_wait_time" 
-                      name="Temps d'attente (h)" 
-                      stroke="#f59e0b" 
-                      strokeWidth={3}
-                      dot={{ r: 4 }}
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
-              </CardContent>
-            </Card>
           </TabsContent>
 
           {/* ONGLET CONNECTIVITÉ */}
