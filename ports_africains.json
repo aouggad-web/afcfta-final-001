@@ -19,19 +19,25 @@
         "agent_name": "Algérie Ferries",
         "group": "National",
         "address": "Zone Portuaire, Port d'Alger",
-        "website": "Non disponible"
+        "website": "https://www.algerieferries.dz",
+        "contact": "+213 21 42 24 24",
+        "email": "contact@algerieferries.dz"
       },
       {
         "agent_name": "CNAN Group",
         "group": "National",
         "address": "Zone Portuaire, Port d'Alger",
-        "website": "Non disponible"
+        "website": "https://www.cnan.dz",
+        "contact": "+213 21 63 20 20",
+        "email": "commercial@cnan.dz"
       },
       {
         "agent_name": "Maersk Algeria",
         "group": "International",
         "address": "Zone Portuaire, Port d'Alger",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       }
     ],
     "services": [
@@ -285,7 +291,9 @@
         "agent_name": "Bolloré Transport & Logistics (AGL) Algérie",
         "group": "International",
         "address": "Zone Portuaire, Bejaia",
-        "website": "www.aglgroup.com"
+        "website": "www.aglgroup.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       },
       {
         "agent_name": "Ocean Network Express (ONE) Algérie",
@@ -414,37 +422,49 @@
         "agent_name": "CMA CGM Maroc",
         "group": "International (France)",
         "address": "Zone Portuaire, Casablanca",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "MSC Morocco",
         "group": "International (Switzerland)",
         "address": "Zone Portuaire, Casablanca",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       },
       {
         "agent_name": "Maersk Line Morocco",
         "group": "International (Denmark)",
         "address": "Zone Portuaire, Casablanca",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "Bolloré Africa Logistics",
         "group": "International (France)",
         "address": "Zone Portuaire, Casablanca",
-        "website": "Non disponible"
+        "website": "https://www.bollore-logistics.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       },
       {
         "agent_name": "COSCO Shipping Lines",
         "group": "International (China)",
         "address": "Zone Portuaire, Casablanca",
-        "website": "Non disponible"
+        "website": "https://www.cosco.com",
+        "contact": "+86 10 6649 2288",
+        "email": "info@cosco.com"
       },
       {
         "agent_name": "Hapag-Lloyd",
         "group": "International (Germany)",
         "address": "Zone Portuaire, Casablanca",
-        "website": "Non disponible"
+        "website": "https://www.hapag-lloyd.com",
+        "contact": "+49 40 3001 0",
+        "email": "info@hlag.com"
       },
       {
         "agent_name": "Grimaldi Lines",
@@ -468,7 +488,9 @@
         "agent_name": "PIL (Pacific International Lines)",
         "group": "International (Singapore)",
         "address": "Zone Portuaire, Casablanca",
-        "website": "Non disponible"
+        "website": "https://www.pilship.com",
+        "contact": "+65 6220 7888",
+        "email": "info@pilship.com"
       }
     ],
     "services": [
@@ -597,7 +619,8 @@
         "group": "International (Maersk Group)",
         "address": "Quai de l'Ouest, Port Tanger Med",
         "website": "https://www.apmterminals.com",
-        "contact": "+212 539 33 22 00"
+        "contact": "+212 539 33 22 00",
+        "email": "info@apmterminals.com"
       },
       {
         "agent_name": "Eurogate Tanger",
@@ -616,31 +639,40 @@
         "group": "International (France)",
         "address": "Immeuble CMA CGM, Zone Franche, Tanger Med",
         "website": "https://www.cma-cgm.com",
-        "contact": "+212 539 33 80 00"
+        "contact": "+212 539 33 80 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "MSC Morocco",
         "group": "International (Switzerland)",
         "address": "Zone Portuaire, Tanger Med",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       },
       {
         "agent_name": "Hapag-Lloyd Morocco",
         "group": "International (Germany)",
         "address": "Zone Portuaire, Tanger Med",
-        "website": "Non disponible"
+        "website": "https://www.hapag-lloyd.com",
+        "contact": "+49 40 3001 0",
+        "email": "info@hlag.com"
       },
       {
         "agent_name": "COSCO Shipping Morocco",
         "group": "International (China)",
         "address": "Zone Portuaire, Tanger Med",
-        "website": "Non disponible"
+        "website": "https://www.cosco.com",
+        "contact": "+86 10 6649 2288",
+        "email": "info@cosco.com"
       },
       {
         "agent_name": "Evergreen Shipping Agency",
         "group": "International (Taiwan)",
         "address": "Zone Portuaire, Tanger Med",
-        "website": "Non disponible"
+        "website": "https://www.evergreen-line.com",
+        "contact": "+886 2 2505 7766",
+        "email": "service@evergreen.com"
       },
       {
         "agent_name": "ONE (Ocean Network Express)",
@@ -658,14 +690,17 @@
         "agent_name": "Bolloré Africa Logistics Morocco",
         "group": "International (France)",
         "address": "Zone Portuaire, Tanger Med",
-        "website": "Non disponible"
+        "website": "https://www.bollore-logistics.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       },
       {
         "agent_name": "Maersk Line Morocco",
         "group": "International (Denmark)",
         "address": "Centre d'Affaires Tanger Med",
         "website": "https://www.maersk.com",
-        "contact": "+212 539 32 99 00"
+        "contact": "+212 539 32 99 00",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "Yang Ming Marine Transport",
@@ -683,7 +718,9 @@
         "agent_name": "ZIM Integrated Shipping",
         "group": "International (Israel)",
         "address": "Zone Portuaire, Tanger Med",
-        "website": "Non disponible"
+        "website": "https://www.zim.com",
+        "contact": "+972 4 865 2111",
+        "email": "info@zim.com"
       }
     ],
     "services": [
@@ -897,13 +934,17 @@
         "agent_name": "Bolloré Transport & Logistics (AGL) Maroc",
         "group": "International",
         "address": "Zone Portuaire, Port d'Agadir",
-        "website": "www.aglgroup.com"
+        "website": "www.aglgroup.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       },
       {
         "agent_name": "CMA CGM Agency Maroc",
         "group": "International",
         "address": "Zone Portuaire, Port d'Agadir",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "Hull Blyth Maroc",
@@ -1026,7 +1067,9 @@
         "agent_name": "CMA CGM Tunisia",
         "group": "International",
         "address": "Zone Portuaire, Radès",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       }
     ],
     "services": [
@@ -1150,7 +1193,9 @@
         "agent_name": "MSC Agency Tunisie",
         "group": "International",
         "address": "Zone Portuaire, Sfax",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       },
       {
         "agent_name": "Grimaldi Agency Tunisie",
@@ -1273,13 +1318,17 @@
         "agent_name": "Maersk Egypt",
         "group": "International",
         "address": "Zone Portuaire, Port d'Alexandrie",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "MSC Egypt",
         "group": "International",
         "address": "Zone Portuaire, Port d'Alexandrie",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       }
     ],
     "services": [
@@ -1413,37 +1462,49 @@
         "agent_name": "APM Terminals Port Said",
         "group": "International (Maersk Group)",
         "address": "Zone Portuaire, Port Saïd",
-        "website": "Non disponible"
+        "website": "https://www.apmterminals.com",
+        "contact": "+31 70 304 2100",
+        "email": "info@apmterminals.com"
       },
       {
         "agent_name": "CMA CGM Egypt",
         "group": "International (France)",
         "address": "Zone Portuaire, Port Saïd",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "MSC Egypt",
         "group": "International (Switzerland)",
         "address": "Zone Portuaire, Port Saïd",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       },
       {
         "agent_name": "Maersk Line Egypt",
         "group": "International (Denmark)",
         "address": "Zone Portuaire, Port Saïd",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "COSCO Shipping Egypt",
         "group": "International (China)",
         "address": "Zone Portuaire, Port Saïd",
-        "website": "Non disponible"
+        "website": "https://www.cosco.com",
+        "contact": "+86 10 6649 2288",
+        "email": "info@cosco.com"
       },
       {
         "agent_name": "Evergreen Shipping Agency Egypt",
         "group": "International (Taiwan)",
         "address": "Zone Portuaire, Port Saïd",
-        "website": "Non disponible"
+        "website": "https://www.evergreen-line.com",
+        "contact": "+886 2 2505 7766",
+        "email": "service@evergreen.com"
       },
       {
         "agent_name": "ONE Egypt",
@@ -1455,13 +1516,17 @@
         "agent_name": "Hapag-Lloyd Egypt",
         "group": "International (Germany)",
         "address": "Zone Portuaire, Port Saïd",
-        "website": "Non disponible"
+        "website": "https://www.hapag-lloyd.com",
+        "contact": "+49 40 3001 0",
+        "email": "info@hlag.com"
       },
       {
         "agent_name": "ZIM Egypt",
         "group": "International (Israel)",
         "address": "Zone Portuaire, Port Saïd",
-        "website": "Non disponible"
+        "website": "https://www.zim.com",
+        "contact": "+972 4 865 2111",
+        "email": "info@zim.com"
       },
       {
         "agent_name": "Yang Ming Egypt",
@@ -1485,7 +1550,9 @@
         "agent_name": "PIL Egypt",
         "group": "International (Singapore)",
         "address": "Zone Portuaire, Port Saïd",
-        "website": "Non disponible"
+        "website": "https://www.pilship.com",
+        "contact": "+65 6220 7888",
+        "email": "info@pilship.com"
       },
       {
         "agent_name": "Arkas Egypt",
@@ -1699,13 +1766,17 @@
         "agent_name": "CMA CGM Agency Égypte",
         "group": "International",
         "address": "Zone Portuaire, Damiette",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "Maersk Line Égypte",
         "group": "International",
         "address": "Zone Portuaire, Damiette",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "OMA Group Égypte",
@@ -1822,7 +1893,9 @@
         "agent_name": "CMA CGM Agency Libye",
         "group": "International",
         "address": "Zone Portuaire, Tripoli",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "Hull Blyth Libye",
@@ -1834,7 +1907,9 @@
         "agent_name": "Maersk Line Libye",
         "group": "International",
         "address": "Zone Portuaire, Tripoli",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       }
     ],
     "services": [],
@@ -1946,13 +2021,17 @@
         "agent_name": "Maersk Line Libye",
         "group": "International",
         "address": "Zone Portuaire, Benghazi",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "MSC Agency Libye",
         "group": "International",
         "address": "Zone Portuaire, Benghazi",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       }
     ],
     "services": [],
@@ -2058,19 +2137,25 @@
         "agent_name": "DP World Dakar",
         "group": "International",
         "address": "Zone Portuaire, Dakar",
-        "website": "Non disponible"
+        "website": "https://www.dpworld.com",
+        "contact": "+971 4 881 1110",
+        "email": "info@dpworld.com"
       },
       {
         "agent_name": "CMA CGM Sénégal",
         "group": "International",
         "address": "Zone Portuaire, Dakar",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "Maersk Sénégal",
         "group": "International",
         "address": "Zone Portuaire, Dakar",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       }
     ],
     "services": [
@@ -2198,43 +2283,57 @@
         "agent_name": "APMT Abidjan (Maersk)",
         "group": "International (Denmark)",
         "address": "Zone Portuaire, Port d'Abidjan",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "Bolloré Africa Logistics Côte d'Ivoire",
         "group": "International (France)",
         "address": "Zone Portuaire, Port d'Abidjan",
-        "website": "Non disponible"
+        "website": "https://www.bollore-logistics.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       },
       {
         "agent_name": "MSC Côte d'Ivoire",
         "group": "International (Switzerland)",
         "address": "Zone Portuaire, Port d'Abidjan",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       },
       {
         "agent_name": "CMA CGM Côte d'Ivoire",
         "group": "International (France)",
         "address": "Zone Portuaire, Port d'Abidjan",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "Maersk Line Côte d'Ivoire",
         "group": "International (Denmark)",
         "address": "Zone Portuaire, Port d'Abidjan",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "Hapag-Lloyd Côte d'Ivoire",
         "group": "International (Germany)",
         "address": "Zone Portuaire, Port d'Abidjan",
-        "website": "Non disponible"
+        "website": "https://www.hapag-lloyd.com",
+        "contact": "+49 40 3001 0",
+        "email": "info@hlag.com"
       },
       {
         "agent_name": "COSCO Shipping Côte d'Ivoire",
         "group": "International (China)",
         "address": "Zone Portuaire, Port d'Abidjan",
-        "website": "Non disponible"
+        "website": "https://www.cosco.com",
+        "contact": "+86 10 6649 2288",
+        "email": "info@cosco.com"
       },
       {
         "agent_name": "ONE Côte d'Ivoire",
@@ -2246,7 +2345,9 @@
         "agent_name": "PIL Côte d'Ivoire",
         "group": "International (Singapore)",
         "address": "Zone Portuaire, Port d'Abidjan",
-        "website": "Non disponible"
+        "website": "https://www.pilship.com",
+        "contact": "+65 6220 7888",
+        "email": "info@pilship.com"
       },
       {
         "agent_name": "Grimaldi Côte d'Ivoire",
@@ -2418,7 +2519,9 @@
         "agent_name": "MSC Agency Côte d'Ivoire",
         "group": "International",
         "address": "Zone Portuaire, San Pedro",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       },
       {
         "agent_name": "Grimaldi Agency Côte d'Ivoire",
@@ -2541,31 +2644,41 @@
         "agent_name": "Maersk Ghana",
         "group": "International (Denmark)",
         "address": "Zone Portuaire, Tema",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "MSC Ghana",
         "group": "International (Switzerland)",
         "address": "Zone Portuaire, Tema",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       },
       {
         "agent_name": "CMA CGM Ghana",
         "group": "International (France)",
         "address": "Zone Portuaire, Tema",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "Hapag-Lloyd Ghana",
         "group": "International (Germany)",
         "address": "Zone Portuaire, Tema",
-        "website": "Non disponible"
+        "website": "https://www.hapag-lloyd.com",
+        "contact": "+49 40 3001 0",
+        "email": "info@hlag.com"
       },
       {
         "agent_name": "COSCO Shipping Ghana",
         "group": "International (China)",
         "address": "Zone Portuaire, Tema",
-        "website": "Non disponible"
+        "website": "https://www.cosco.com",
+        "contact": "+86 10 6649 2288",
+        "email": "info@cosco.com"
       },
       {
         "agent_name": "ONE Ghana",
@@ -2577,13 +2690,17 @@
         "agent_name": "PIL Ghana",
         "group": "International (Singapore)",
         "address": "Zone Portuaire, Tema",
-        "website": "Non disponible"
+        "website": "https://www.pilship.com",
+        "contact": "+65 6220 7888",
+        "email": "info@pilship.com"
       },
       {
         "agent_name": "Bolloré Africa Logistics Ghana",
         "group": "International (France)",
         "address": "Zone Portuaire, Tema",
-        "website": "Non disponible"
+        "website": "https://www.bollore-logistics.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       },
       {
         "agent_name": "Safmarine Ghana",
@@ -2725,7 +2842,9 @@
         "agent_name": "CMA CGM Agency Ghana",
         "group": "International",
         "address": "Zone Portuaire, Takoradi",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "Ocean Network Express (ONE) Ghana",
@@ -2852,37 +2971,49 @@
         "agent_name": "APM Terminals Apapa",
         "group": "International (Maersk Group)",
         "address": "Zone Portuaire, Port d'Apapa (Lagos)",
-        "website": "Non disponible"
+        "website": "https://www.apmterminals.com",
+        "contact": "+31 70 304 2100",
+        "email": "info@apmterminals.com"
       },
       {
         "agent_name": "Maersk Nigeria",
         "group": "International (Denmark)",
         "address": "Zone Portuaire, Port d'Apapa (Lagos)",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "CMA CGM Nigeria",
         "group": "International (France)",
         "address": "Zone Portuaire, Port d'Apapa (Lagos)",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "MSC Nigeria",
         "group": "International (Switzerland)",
         "address": "Zone Portuaire, Port d'Apapa (Lagos)",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       },
       {
         "agent_name": "Hapag-Lloyd Nigeria",
         "group": "International (Germany)",
         "address": "Zone Portuaire, Port d'Apapa (Lagos)",
-        "website": "Non disponible"
+        "website": "https://www.hapag-lloyd.com",
+        "contact": "+49 40 3001 0",
+        "email": "info@hlag.com"
       },
       {
         "agent_name": "COSCO Shipping Nigeria",
         "group": "International (China)",
         "address": "Zone Portuaire, Port d'Apapa (Lagos)",
-        "website": "Non disponible"
+        "website": "https://www.cosco.com",
+        "contact": "+86 10 6649 2288",
+        "email": "info@cosco.com"
       },
       {
         "agent_name": "ONE Nigeria",
@@ -2894,13 +3025,17 @@
         "agent_name": "PIL Nigeria",
         "group": "International (Singapore)",
         "address": "Zone Portuaire, Port d'Apapa (Lagos)",
-        "website": "Non disponible"
+        "website": "https://www.pilship.com",
+        "contact": "+65 6220 7888",
+        "email": "info@pilship.com"
       },
       {
         "agent_name": "Bolloré Africa Logistics Nigeria",
         "group": "International (France)",
         "address": "Zone Portuaire, Port d'Apapa (Lagos)",
-        "website": "Non disponible"
+        "website": "https://www.bollore-logistics.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       },
       {
         "agent_name": "Grimaldi Nigeria",
@@ -2912,7 +3047,9 @@
         "agent_name": "Evergreen Nigeria",
         "group": "International (Taiwan)",
         "address": "Zone Portuaire, Port d'Apapa (Lagos)",
-        "website": "Non disponible"
+        "website": "https://www.evergreen-line.com",
+        "contact": "+886 2 2505 7766",
+        "email": "service@evergreen.com"
       },
       {
         "agent_name": "Yang Ming Nigeria",
@@ -3249,13 +3386,17 @@
         "agent_name": "Bolloré Transport & Logistics (AGL) Nigéria",
         "group": "International",
         "address": "Zone Portuaire, Port Harcourt",
-        "website": "www.aglgroup.com"
+        "website": "www.aglgroup.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       },
       {
         "agent_name": "MSC Agency Nigéria",
         "group": "International",
         "address": "Zone Portuaire, Port Harcourt",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       },
       {
         "agent_name": "OMA Group Nigéria",
@@ -3372,13 +3513,17 @@
         "agent_name": "Bolloré Africa Logistics",
         "group": "International",
         "address": "Zone Portuaire, Cotonou",
-        "website": "Non disponible"
+        "website": "https://www.bollore-logistics.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       },
       {
         "agent_name": "CMA CGM Bénin",
         "group": "International",
         "address": "Zone Portuaire, Cotonou",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       }
     ],
     "services": [
@@ -3501,31 +3646,41 @@
         "agent_name": "MSC Togo",
         "group": "International (Switzerland)",
         "address": "Zone Portuaire, Lomé",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       },
       {
         "agent_name": "Maersk Togo",
         "group": "International (Denmark)",
         "address": "Zone Portuaire, Lomé",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "CMA CGM Togo",
         "group": "International (France)",
         "address": "Zone Portuaire, Lomé",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "Hapag-Lloyd Togo",
         "group": "International (Germany)",
         "address": "Zone Portuaire, Lomé",
-        "website": "Non disponible"
+        "website": "https://www.hapag-lloyd.com",
+        "contact": "+49 40 3001 0",
+        "email": "info@hlag.com"
       },
       {
         "agent_name": "COSCO Shipping Togo",
         "group": "International (China)",
         "address": "Zone Portuaire, Lomé",
-        "website": "Non disponible"
+        "website": "https://www.cosco.com",
+        "contact": "+86 10 6649 2288",
+        "email": "info@cosco.com"
       },
       {
         "agent_name": "ONE Togo",
@@ -3537,7 +3692,9 @@
         "agent_name": "Bolloré Africa Logistics Togo",
         "group": "International (France)",
         "address": "Zone Portuaire, Lomé",
-        "website": "Non disponible"
+        "website": "https://www.bollore-logistics.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       },
       {
         "agent_name": "SDV Togo",
@@ -3685,7 +3842,9 @@
         "agent_name": "MSC Cameroun",
         "group": "International",
         "address": "Zone Portuaire, Douala",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       }
     ],
     "services": [
@@ -3809,7 +3968,9 @@
         "agent_name": "MSC Agency Cameroun",
         "group": "International",
         "address": "Zone Portuaire, Kribi",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       },
       {
         "agent_name": "Grimaldi Agency Cameroun",
@@ -4169,13 +4330,17 @@
         "agent_name": "Maersk Angola",
         "group": "International",
         "address": "Zone Portuaire, Luanda",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "MSC Angola",
         "group": "International",
         "address": "Zone Portuaire, Luanda",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       }
     ],
     "services": [
@@ -4305,13 +4470,17 @@
         "agent_name": "CMA CGM Agency Angola",
         "group": "International",
         "address": "Zone Portuaire, Lobito",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "Bolloré Transport & Logistics (AGL) Angola",
         "group": "International",
         "address": "Zone Portuaire, Lobito",
-        "website": "www.aglgroup.com"
+        "website": "www.aglgroup.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       }
     ],
     "services": [],
@@ -4432,31 +4601,41 @@
         "agent_name": "Maersk Kenya",
         "group": "International (Denmark)",
         "address": "Zone Portuaire, Mombasa",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "MSC Kenya",
         "group": "International (Switzerland)",
         "address": "Zone Portuaire, Mombasa",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       },
       {
         "agent_name": "CMA CGM Kenya",
         "group": "International (France)",
         "address": "Zone Portuaire, Mombasa",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "Hapag-Lloyd Kenya",
         "group": "International (Germany)",
         "address": "Zone Portuaire, Mombasa",
-        "website": "Non disponible"
+        "website": "https://www.hapag-lloyd.com",
+        "contact": "+49 40 3001 0",
+        "email": "info@hlag.com"
       },
       {
         "agent_name": "COSCO Shipping Kenya",
         "group": "International (China)",
         "address": "Zone Portuaire, Mombasa",
-        "website": "Non disponible"
+        "website": "https://www.cosco.com",
+        "contact": "+86 10 6649 2288",
+        "email": "info@cosco.com"
       },
       {
         "agent_name": "ONE Kenya",
@@ -4468,13 +4647,17 @@
         "agent_name": "Evergreen Kenya",
         "group": "International (Taiwan)",
         "address": "Zone Portuaire, Mombasa",
-        "website": "Non disponible"
+        "website": "https://www.evergreen-line.com",
+        "contact": "+886 2 2505 7766",
+        "email": "service@evergreen.com"
       },
       {
         "agent_name": "PIL Kenya",
         "group": "International (Singapore)",
         "address": "Zone Portuaire, Mombasa",
-        "website": "Non disponible"
+        "website": "https://www.pilship.com",
+        "contact": "+65 6220 7888",
+        "email": "info@pilship.com"
       },
       {
         "agent_name": "Safmarine Kenya",
@@ -4786,37 +4969,49 @@
         "agent_name": "DP World Djibouti",
         "group": "International (UAE)",
         "address": "Zone Portuaire, Djibouti",
-        "website": "Non disponible"
+        "website": "https://www.dpworld.com",
+        "contact": "+971 4 881 1110",
+        "email": "info@dpworld.com"
       },
       {
         "agent_name": "CMA CGM Djibouti",
         "group": "International (France)",
         "address": "Zone Portuaire, Djibouti",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "Maersk Djibouti",
         "group": "International (Denmark)",
         "address": "Zone Portuaire, Djibouti",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "MSC Djibouti",
         "group": "International (Switzerland)",
         "address": "Zone Portuaire, Djibouti",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       },
       {
         "agent_name": "COSCO Shipping Djibouti",
         "group": "International (China)",
         "address": "Zone Portuaire, Djibouti",
-        "website": "Non disponible"
+        "website": "https://www.cosco.com",
+        "contact": "+86 10 6649 2288",
+        "email": "info@cosco.com"
       },
       {
         "agent_name": "Hapag-Lloyd Djibouti",
         "group": "International (Germany)",
         "address": "Zone Portuaire, Djibouti",
-        "website": "Non disponible"
+        "website": "https://www.hapag-lloyd.com",
+        "contact": "+49 40 3001 0",
+        "email": "info@hlag.com"
       },
       {
         "agent_name": "ONE Djibouti",
@@ -4828,19 +5023,25 @@
         "agent_name": "Evergreen Djibouti",
         "group": "International (Taiwan)",
         "address": "Zone Portuaire, Djibouti",
-        "website": "Non disponible"
+        "website": "https://www.evergreen-line.com",
+        "contact": "+886 2 2505 7766",
+        "email": "service@evergreen.com"
       },
       {
         "agent_name": "PIL Djibouti",
         "group": "International (Singapore)",
         "address": "Zone Portuaire, Djibouti",
-        "website": "Non disponible"
+        "website": "https://www.pilship.com",
+        "contact": "+65 6220 7888",
+        "email": "info@pilship.com"
       },
       {
         "agent_name": "Bolloré Africa Logistics Djibouti",
         "group": "International (France)",
         "address": "Zone Portuaire, Djibouti",
-        "website": "Non disponible"
+        "website": "https://www.bollore-logistics.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       },
       {
         "agent_name": "GAC Djibouti",
@@ -4980,31 +5181,41 @@
         "agent_name": "Maersk South Africa",
         "group": "International (Denmark)",
         "address": "Zone Portuaire, Durban",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "MSC South Africa",
         "group": "International (Switzerland)",
         "address": "Zone Portuaire, Durban",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       },
       {
         "agent_name": "CMA CGM South Africa",
         "group": "International (France)",
         "address": "Zone Portuaire, Durban",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "Hapag-Lloyd South Africa",
         "group": "International (Germany)",
         "address": "Zone Portuaire, Durban",
-        "website": "Non disponible"
+        "website": "https://www.hapag-lloyd.com",
+        "contact": "+49 40 3001 0",
+        "email": "info@hlag.com"
       },
       {
         "agent_name": "COSCO Shipping South Africa",
         "group": "International (China)",
         "address": "Zone Portuaire, Durban",
-        "website": "Non disponible"
+        "website": "https://www.cosco.com",
+        "contact": "+86 10 6649 2288",
+        "email": "info@cosco.com"
       },
       {
         "agent_name": "ONE South Africa",
@@ -5016,7 +5227,9 @@
         "agent_name": "Evergreen South Africa",
         "group": "International (Taiwan)",
         "address": "Zone Portuaire, Durban",
-        "website": "Non disponible"
+        "website": "https://www.evergreen-line.com",
+        "contact": "+886 2 2505 7766",
+        "email": "service@evergreen.com"
       },
       {
         "agent_name": "Yang Ming South Africa",
@@ -5028,13 +5241,17 @@
         "agent_name": "PIL South Africa",
         "group": "International (Singapore)",
         "address": "Zone Portuaire, Durban",
-        "website": "Non disponible"
+        "website": "https://www.pilship.com",
+        "contact": "+65 6220 7888",
+        "email": "info@pilship.com"
       },
       {
         "agent_name": "Safmarine (Maersk)",
         "group": "Regional (South Africa)",
         "address": "Zone Portuaire, Durban",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "Grindrod Freight Services",
@@ -5378,13 +5595,17 @@
         "agent_name": "MSC Agency Afrique du Sud",
         "group": "International",
         "address": "Zone Portuaire, Port Elizabeth",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       },
       {
         "agent_name": "CMA CGM Agency Afrique du Sud",
         "group": "International",
         "address": "Zone Portuaire, Port Elizabeth",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "OMA Group Afrique du Sud",
@@ -5507,7 +5728,9 @@
         "agent_name": "Maersk Namibia",
         "group": "International",
         "address": "Zone Portuaire, Walvis Bay",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       }
     ],
     "services": [
@@ -5742,7 +5965,9 @@
         "agent_name": "Maersk Line Mozambique",
         "group": "International",
         "address": "Zone Portuaire, Beira",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "Grimaldi Agency Mozambique",
@@ -5754,7 +5979,9 @@
         "agent_name": "MSC Agency Mozambique",
         "group": "International",
         "address": "Zone Portuaire, Beira",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       }
     ],
     "services": [],
@@ -5982,7 +6209,9 @@
         "agent_name": "Bolloré Transport & Logistics (AGL) Mauritanie",
         "group": "International",
         "address": "Zone Portuaire, Nouakchott",
-        "website": "www.aglgroup.com"
+        "website": "www.aglgroup.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       },
       {
         "agent_name": "Grimaldi Agency Mauritanie",
@@ -6112,7 +6341,9 @@
         "agent_name": "Maersk Line Mauritanie",
         "group": "International",
         "address": "Zone Portuaire, Nouadhibou",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       }
     ],
     "services": [],
@@ -6218,7 +6449,9 @@
         "agent_name": "Bolloré Transport & Logistics (AGL) Guinée",
         "group": "International",
         "address": "Zone Portuaire, Conakry",
-        "website": "www.aglgroup.com"
+        "website": "www.aglgroup.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       },
       {
         "agent_name": "Hull Blyth Guinée",
@@ -6230,7 +6463,9 @@
         "agent_name": "Maersk Line Guinée",
         "group": "International",
         "address": "Zone Portuaire, Conakry",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       }
     ],
     "services": [],
@@ -6342,13 +6577,17 @@
         "agent_name": "CMA CGM Agency Libéria",
         "group": "International",
         "address": "Zone Portuaire, Freeport of Monrovia",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "MSC Agency Libéria",
         "group": "International",
         "address": "Zone Portuaire, Freeport of Monrovia",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       }
     ],
     "services": [],
@@ -6454,7 +6693,9 @@
         "agent_name": "CMA CGM Agency Sierra Leone",
         "group": "International",
         "address": "Zone Portuaire, Freetown",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "Hull Blyth Sierra Leone",
@@ -6466,7 +6707,9 @@
         "agent_name": "Bolloré Transport & Logistics (AGL) Sierra Leone",
         "group": "International",
         "address": "Zone Portuaire, Freetown",
-        "website": "www.aglgroup.com"
+        "website": "www.aglgroup.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       }
     ],
     "services": [],
@@ -6578,13 +6821,17 @@
         "agent_name": "Maersk Line Gambie",
         "group": "International",
         "address": "Zone Portuaire, Banjul",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "MSC Agency Gambie",
         "group": "International",
         "address": "Zone Portuaire, Banjul",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       }
     ],
     "services": [],
@@ -6696,7 +6943,9 @@
         "agent_name": "CMA CGM Agency Érythrée",
         "group": "International",
         "address": "Zone Portuaire, Massawa",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "Hull Blyth Érythrée",
@@ -6808,7 +7057,9 @@
         "agent_name": "Maersk Line Somalie",
         "group": "International",
         "address": "Zone Portuaire, Mogadiscio",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "Hull Blyth Somalie",
@@ -6926,7 +7177,9 @@
         "agent_name": "MSC Agency Somalie",
         "group": "International",
         "address": "Zone Portuaire, Bossaso",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       },
       {
         "agent_name": "OMA Group Somalie",
@@ -7050,7 +7303,9 @@
         "agent_name": "Maersk Line Soudan",
         "group": "International",
         "address": "Zone Portuaire, Port-Soudan",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "Ocean Network Express (ONE) Soudan",
@@ -7168,7 +7423,9 @@
         "agent_name": "CMA CGM Maurice",
         "group": "International",
         "address": "Zone Portuaire, Port Louis",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       }
     ],
     "services": [],
@@ -7279,19 +7536,25 @@
         "agent_name": "CMA CGM Agency Seychelles",
         "group": "International",
         "address": "Zone Portuaire, Port Victoria",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "Maersk Line Seychelles",
         "group": "International",
         "address": "Zone Portuaire, Port Victoria",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "MSC Agency Seychelles",
         "group": "International",
         "address": "Zone Portuaire, Port Victoria",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       }
     ],
     "services": [],
@@ -7397,13 +7660,17 @@
         "agent_name": "Bolloré Transport & Logistics (AGL) Comores",
         "group": "International",
         "address": "Zone Portuaire, Moroni",
-        "website": "www.aglgroup.com"
+        "website": "www.aglgroup.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       },
       {
         "agent_name": "CMA CGM Agency Comores",
         "group": "International",
         "address": "Zone Portuaire, Moroni",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "OMA Group Comores",
@@ -7558,7 +7825,9 @@
         "agent_type": "freight_forwarder",
         "specialization": "General cargo",
         "address": "Zone Portuaire, Nouadhibou",
-        "website": "Non disponible"
+        "website": "https://www.bollore-logistics.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       }
     ],
     "regular_services": [
@@ -7718,7 +7987,9 @@
         "agent_name": "Maersk Line Sénégal",
         "group": "International",
         "address": "Zone Portuaire, Ziguinchor",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       }
     ],
     "regular_services": [],
@@ -7867,7 +8138,9 @@
         "agent_type": "shipping_agent",
         "specialization": "Containers",
         "address": "Zone Portuaire, Banjul",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       }
     ],
     "regular_services": [
@@ -8023,7 +8296,9 @@
         "agent_type": "shipping_agent",
         "specialization": "Containers",
         "address": "Zone Portuaire, Freetown",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       }
     ],
     "regular_services": [
@@ -8172,21 +8447,27 @@
         "agent_type": "terminal_operator",
         "specialization": "Containers",
         "address": "Zone Portuaire, Monrovia",
-        "website": "Non disponible"
+        "website": "https://www.apmterminals.com",
+        "contact": "+31 70 304 2100",
+        "email": "info@apmterminals.com"
       },
       {
         "agent_name": "Maersk Liberia",
         "agent_type": "shipping_agent",
         "specialization": "Containers",
         "address": "Zone Portuaire, Monrovia",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "MSC Liberia",
         "agent_type": "shipping_agent",
         "specialization": "Containers",
         "address": "Zone Portuaire, Monrovia",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       }
     ],
     "regular_services": [
@@ -8340,7 +8621,9 @@
         "agent_name": "CMA CGM Agency Libéria",
         "group": "International",
         "address": "Zone Portuaire, Buchanan",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "Ocean Network Express (ONE) Libéria",
@@ -8501,7 +8784,9 @@
         "agent_type": "shipping_agent",
         "specialization": "Containers",
         "address": "Zone Portuaire, Malabo",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       }
     ],
     "regular_services": [],
@@ -8642,7 +8927,9 @@
         "agent_name": "MSC Agency São Tomé-et-Príncipe",
         "group": "International",
         "address": "Zone Portuaire, São Tomé",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       },
       {
         "agent_name": "Grimaldi Agency São Tomé-et-Príncipe",
@@ -8796,21 +9083,27 @@
         "agent_type": "terminal_operator",
         "specialization": "Containers",
         "address": "Zone Portuaire, Pointe-Noire",
-        "website": "Non disponible"
+        "website": "https://www.bollore-logistics.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       },
       {
         "agent_name": "CMA CGM Congo",
         "agent_type": "shipping_agent",
         "specialization": "Containers",
         "address": "Zone Portuaire, Pointe-Noire",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       },
       {
         "agent_name": "MSC Congo",
         "agent_type": "shipping_agent",
         "specialization": "Containers",
         "address": "Zone Portuaire, Pointe-Noire",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       }
     ],
     "regular_services": [
@@ -8972,21 +9265,27 @@
         "agent_type": "shipping_agent",
         "specialization": "Containers",
         "address": "Zone Portuaire, Walvis Bay",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "MSC Namibia",
         "agent_type": "shipping_agent",
         "specialization": "Containers",
         "address": "Zone Portuaire, Walvis Bay",
-        "website": "www.msc.com"
+        "website": "www.msc.com",
+        "contact": "+41 22 703 8888",
+        "email": "info@msc.com"
       },
       {
         "agent_name": "CMA CGM Namibia",
         "agent_type": "shipping_agent",
         "specialization": "Containers",
         "address": "Zone Portuaire, Walvis Bay",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       }
     ],
     "regular_services": [
@@ -9152,7 +9451,9 @@
         "agent_name": "Bolloré Transport & Logistics (AGL) Érythrée",
         "group": "International",
         "address": "Zone Portuaire, Massawa",
-        "website": "www.aglgroup.com"
+        "website": "www.aglgroup.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       }
     ],
     "regular_services": [],
@@ -9299,13 +9600,17 @@
         "agent_name": "Maersk Line Érythrée",
         "group": "International",
         "address": "Zone Portuaire, Assab",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       },
       {
         "agent_name": "CMA CGM Agency Érythrée",
         "group": "International",
         "address": "Zone Portuaire, Assab",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       }
     ],
     "regular_services": [],
@@ -9454,7 +9759,9 @@
         "agent_type": "shipping_agent",
         "specialization": "Containers",
         "address": "Zone Portuaire, Victoria",
-        "website": "www.maersk.com"
+        "website": "www.maersk.com",
+        "contact": "+45 3363 3363",
+        "email": "contact@maersk.com"
       }
     ],
     "regular_services": [],
@@ -9601,7 +9908,9 @@
         "agent_name": "Bolloré Transport & Logistics (AGL) Comores",
         "group": "International",
         "address": "Zone Portuaire, Mutsamudu",
-        "website": "www.aglgroup.com"
+        "website": "www.aglgroup.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       },
       {
         "agent_name": "Hull Blyth Comores",
@@ -9756,7 +10065,9 @@
         "agent_type": "shipping_agent",
         "specialization": "Containers",
         "address": "Zone Portuaire, Port Sudan",
-        "website": "www.cma-cgm.com"
+        "website": "www.cma-cgm.com",
+        "contact": "+33 4 88 91 90 00",
+        "email": "customerservice@cma-cgm.com"
       }
     ],
     "regular_services": [
@@ -9904,7 +10215,9 @@
         "agent_name": "Bolloré Transport & Logistics (AGL) Soudan",
         "group": "International",
         "address": "Zone Portuaire, Sawakin",
-        "website": "www.aglgroup.com"
+        "website": "www.aglgroup.com",
+        "contact": "+33 1 46 96 44 33",
+        "email": "contact@bollore.com"
       },
       {
         "agent_name": "Hull Blyth Soudan",
