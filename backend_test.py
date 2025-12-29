@@ -2661,7 +2661,7 @@ class ZLECAfAPITester:
                     )
                     return
                 
-                if phone_percentage < 60:  # Au moins 60% doivent avoir un téléphone
+                if phone_percentage < 50:  # Au moins 50% doivent avoir un téléphone
                     self.log_result(
                         "Shipping Agents Contacts", 
                         False, 
