@@ -93,11 +93,11 @@
       }
     ],
     "port_authority": {
-      "name": "Entreprise Portuaire de Port d'Alger",
-      "address": "Zone Portuaire, Port d'Alger, Algérie",
-      "website": "www.transports.gov.dz",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "name": "Entreprise Portuaire d'Alger (EPAL)",
+      "address": "Boulevard Amirouche, 16000 Alger, Algérie",
+      "website": "https://www.portalger.com.dz",
+      "contact_phone": "+213 21 42 34 48",
+      "contact_email": "contact@portalger.com.dz"
     },
     "trs_analysis": {
       "total_dwell_time_days": 7.2,
@@ -220,8 +220,8 @@
       "name": "Entreprise Portuaire d'Oran (EPO)",
       "address": "BP 106, Oran",
       "website": "www.port-oran.dz",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "contact_phone": "",
+      "contact_email": ""
     },
     "trs_analysis": {
       "total_dwell_time_days": 6.7,
@@ -343,8 +343,8 @@
       "name": "Entreprise Portuaire de Béjaïa (EPB)",
       "address": "13 Avenue des Frères Amrani, Béjaïa",
       "website": "www.portdebejaia.dz",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "contact_phone": "",
+      "contact_email": ""
     },
     "trs_analysis": {
       "total_dwell_time_days": 6.6,
@@ -530,11 +530,11 @@
       }
     ],
     "port_authority": {
-      "name": "Agence Nationale des Ports (ANP)",
-      "address": "Lotissement Mandarona 300, Sidi Maârouf, Casablanca",
-      "website": "www.anp.org.ma",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "name": "Marsa Maroc - Port de Casablanca",
+      "address": "175 Boulevard Mohamed Zerktouni, Casablanca, Maroc",
+      "website": "https://www.marsamaroc.co.ma",
+      "contact_phone": "+212 522 23 23 24",
+      "contact_email": "contact@marsamaroc.co.ma"
     },
     "trs_analysis": {
       "total_dwell_time_days": 6.5,
@@ -838,8 +838,8 @@
       "name": "Tanger Med Port Authority",
       "address": "Zone Franche Logistique, Tanger",
       "website": "www.tangermed.ma",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "contact_phone": "",
+      "contact_email": ""
     },
     "trs_analysis": {
       "total_dwell_time_days": 3.1,
@@ -1108,6 +1108,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Office de la Marine Marchande et des Ports (OMMP)",
+      "address": "Port de Radès, 2040 Radès, Tunisie",
+      "website": "https://www.ommp.nat.tn",
+      "contact_phone": "+216 71 448 200",
+      "contact_email": "ommp@ommp.nat.tn"
     }
   },
   {
@@ -1323,8 +1330,8 @@
       "name": "Alexandria Port Authority",
       "address": "106 El Horreya Avenue, Alexandria",
       "website": "www.apa.gov.eg",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "contact_phone": "",
+      "contact_email": ""
     },
     "trs_analysis": {
       "total_dwell_time_days": 6.6,
@@ -1619,8 +1626,8 @@
       "name": "Suez Canal Economic Zone (SCZone)",
       "address": "Port Said, Egypt",
       "website": "www.sczone.eg",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "contact_phone": "",
+      "contact_email": ""
     },
     "trs_analysis": {
       "total_dwell_time_days": 2.7,
@@ -1740,10 +1747,10 @@
     ],
     "port_authority": {
       "name": "Damietta Port Authority",
-      "address": "Damietta Port, Damietta",
-      "website": "www.dpa.gov.eg",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "address": "Industrial Zone, Damietta, Egypt",
+      "website": "https://www.dpa.gov.eg",
+      "contact_phone": "+20 57 229 0700",
+      "contact_email": "info@dpa.gov.eg"
     },
     "trs_analysis": {
       "total_dwell_time_days": 6.6,
@@ -1860,8 +1867,8 @@
       "name": "Libyan Ports Company",
       "address": "Tripoli Port, Libya",
       "website": "www.lpclibya.com",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "contact_phone": "",
+      "contact_email": ""
     },
     "trs_analysis": {
       "total_dwell_time_days": 18.5,
@@ -2107,8 +2114,8 @@
       "name": "Port Autonome de Dakar (PAD)",
       "address": "21 Boulevard de la Libération, BP 3195, Dakar",
       "website": "www.portdakar.sn",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "contact_phone": "",
+      "contact_email": ""
     },
     "trs_analysis": {
       "total_dwell_time_days": 8.6,
@@ -2323,10 +2330,10 @@
     ],
     "port_authority": {
       "name": "Port Autonome d'Abidjan (PAA)",
-      "address": "BP V 85 Abidjan, Côte d'Ivoire",
-      "website": "www.paa.ci",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "address": "BP V 85, Abidjan, Côte d'Ivoire",
+      "website": "https://www.portabidjan.ci",
+      "contact_phone": "+225 27 21 23 80 00",
+      "contact_email": "paa@portabidjan.ci"
     },
     "trs_analysis": {
       "total_dwell_time_days": 6.6,
@@ -2629,10 +2636,10 @@
     ],
     "port_authority": {
       "name": "Ghana Ports and Harbours Authority (GPHA)",
-      "address": "P.O. Box 150, Tema",
-      "website": "www.ghanaports.gov.gh",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "address": "P.O. Box 150, Tema, Ghana",
+      "website": "https://www.ghanaports.gov.gh",
+      "contact_phone": "+233 303 212 631",
+      "contact_email": "info@ghanaports.gov.gh"
     },
     "trs_analysis": {
       "total_dwell_time_days": 8.5,
@@ -3171,6 +3178,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Nigerian Ports Authority - Tin Can Island",
+      "address": "Tin Can Island, Apapa, Lagos, Nigeria",
+      "website": "https://www.nigerianports.gov.ng",
+      "contact_phone": "+234 1 587 0100",
+      "contact_email": "tincan@nigerianports.gov.ng"
     }
   },
   {
@@ -3287,6 +3301,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Nigerian Ports Authority - Port Harcourt",
+      "address": "Port Harcourt, Rivers State, Nigeria",
+      "website": "https://www.nigerianports.gov.ng",
+      "contact_phone": "+234 84 230 760",
+      "contact_email": "portharcourt@nigerianports.gov.ng"
     }
   },
   {
@@ -3367,10 +3388,10 @@
     ],
     "port_authority": {
       "name": "Port Autonome de Cotonou (PAC)",
-      "address": "Boulevard de la Marina, BP 927, Cotonou",
-      "website": "www.portcotonou.com",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "address": "BP 927, Cotonou, Bénin",
+      "website": "https://www.portcotonou.com",
+      "contact_phone": "+229 21 31 28 90",
+      "contact_email": "pac@portcotonou.com"
     },
     "trs_analysis": {
       "total_dwell_time_days": 6.8,
@@ -3550,9 +3571,9 @@
     "port_authority": {
       "name": "Port Autonome de Lomé (PAL)",
       "address": "BP 1225, Lomé, Togo",
-      "website": "www.togo-port.net",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "website": "https://www.togo-port.net",
+      "contact_phone": "+228 22 27 47 42",
+      "contact_email": "info@togo-port.net"
     },
     "trs_analysis": {
       "total_dwell_time_days": 2.3,
@@ -3685,10 +3706,10 @@
     ],
     "port_authority": {
       "name": "Port Autonome de Douala (PAD)",
-      "address": "BP 4020, Douala",
-      "website": "www.portdedouala-cameroun.com",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "address": "BP 4020, Douala, Cameroun",
+      "website": "https://www.pad.cm",
+      "contact_phone": "+237 233 42 01 33",
+      "contact_email": "info@pad.cm"
     },
     "trs_analysis": {
       "total_dwell_time_days": 11.2,
@@ -3810,8 +3831,8 @@
       "name": "Port Autonome de Kribi (PAK)",
       "address": "Immeuble PAK, Kribi, Cameroun",
       "website": "www.pak.cm",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "contact_phone": "",
+      "contact_email": ""
     },
     "trs_analysis": {
       "total_dwell_time_days": 3.6,
@@ -4032,10 +4053,10 @@
     ],
     "port_authority": {
       "name": "Port Autonome de Pointe-Noire (PAPN)",
-      "address": "BP 711, Pointe-Noire",
-      "website": "www.papn-congo.org",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "address": "BP 711, Pointe-Noire, Congo",
+      "website": "https://www.papn-cg.com",
+      "contact_phone": "+242 22 294 19 85",
+      "contact_email": "info@papn-cg.com"
     },
     "trs_analysis": {
       "total_dwell_time_days": 6.6,
@@ -4168,10 +4189,10 @@
     ],
     "port_authority": {
       "name": "Porto de Luanda",
-      "address": "Largo 4 de Fevereiro, Luanda",
-      "website": "www.portoluanda.co.ao",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "address": "Rua Rainha Ginga, Luanda, Angola",
+      "website": "https://www.portoluanda.co.ao",
+      "contact_phone": "+244 222 310 505",
+      "contact_email": "info@portoluanda.co.ao"
     },
     "trs_analysis": {
       "total_dwell_time_days": 13.6,
@@ -4290,11 +4311,11 @@
       }
     ],
     "port_authority": {
-      "name": "Empresa Portuária do Lobito",
-      "address": "Avenida da Independência, Lobito",
-      "website": "www.portlobito.co.ao",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "name": "Porto do Lobito",
+      "address": "Avenida 4 de Fevereiro, Lobito, Angola",
+      "website": "https://www.portolobito.co.ao",
+      "contact_phone": "+244 272 222 800",
+      "contact_email": "info@portolobito.co.ao"
     },
     "trs_analysis": {
       "total_dwell_time_days": 6.9,
@@ -4527,10 +4548,10 @@
     ],
     "port_authority": {
       "name": "Kenya Ports Authority (KPA)",
-      "address": "P.O. Box 95009, Mombasa",
-      "website": "www.kpa.co.ke",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "address": "P.O. Box 95009, Mombasa, Kenya",
+      "website": "https://www.kpa.co.ke",
+      "contact_phone": "+254 41 211 2999",
+      "contact_email": "info@kpa.co.ke"
     },
     "trs_analysis": {
       "total_dwell_time_days": 7.7,
@@ -4651,10 +4672,10 @@
     ],
     "port_authority": {
       "name": "Tanzania Ports Authority (TPA)",
-      "address": "One Bandari Road, Dar es Salaam",
-      "website": "www.ports.go.tz",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "address": "P.O. Box 9184, Dar es Salaam, Tanzania",
+      "website": "https://www.ports.go.tz",
+      "contact_phone": "+255 22 211 0551",
+      "contact_email": "dg@ports.go.tz"
     },
     "trs_analysis": {
       "total_dwell_time_days": 14.5,
@@ -4838,11 +4859,11 @@
       }
     ],
     "port_authority": {
-      "name": "Port of Djibouti SA (PDSA)",
+      "name": "Djibouti Ports & Free Zones Authority (DPFZA)",
       "address": "BP 2107, Djibouti",
-      "website": "www.portdejibouti.com",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "website": "https://www.dpfza.gov.dj",
+      "contact_phone": "+253 21 35 28 73",
+      "contact_email": "info@dpfza.gov.dj"
     },
     "trs_analysis": {
       "total_dwell_time_days": 2.3,
@@ -5122,11 +5143,11 @@
       }
     ],
     "port_authority": {
-      "name": "Transnet National Ports Authority (TNPA)",
-      "address": "Ocean Terminal Building, Durban",
-      "website": "www.transnetnationalportsauthority.net",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "name": "Transnet Port Terminals - Durban",
+      "address": "Maydon Wharf, Durban, South Africa",
+      "website": "https://www.transnetnationalportsauthority.net",
+      "contact_phone": "+27 31 361 8000",
+      "contact_email": "durban@transnet.net"
     },
     "trs_analysis": {
       "total_dwell_time_days": 12.4,
@@ -5246,11 +5267,11 @@
       }
     ],
     "port_authority": {
-      "name": "Transnet National Ports Authority (TNPA)",
-      "address": "Port of Cape Town, 8001",
-      "website": "www.transnetnationalportsauthority.net",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "name": "Transnet Port Terminals - Cape Town",
+      "address": "Ben Schoeman Dock, Cape Town, South Africa",
+      "website": "https://www.transnetnationalportsauthority.net",
+      "contact_phone": "+27 21 449 3911",
+      "contact_email": "capetown@transnet.net"
     },
     "trs_analysis": {
       "total_dwell_time_days": 11.5,
@@ -5372,8 +5393,8 @@
       "name": "Transnet National Ports Authority",
       "address": "Gqeberha",
       "website": "www.transnet.net",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "contact_phone": "",
+      "contact_email": ""
     },
     "trs_analysis": {
       "total_dwell_time_days": 7.9,
@@ -5526,6 +5547,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Namibian Ports Authority (Namport) - Walvis Bay",
+      "address": "17 Rikumbi Kandanga Road, Walvis Bay, Namibia",
+      "website": "https://www.namport.com.na",
+      "contact_phone": "+264 64 208 2111",
+      "contact_email": "marketing@namport.com.na"
     }
   },
   {
@@ -5606,8 +5634,8 @@
       "name": "Maputo Port Development Company (MPDC)",
       "address": "Praça dos Trabalhadores, Maputo",
       "website": "www.portmaputo.com",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "contact_phone": "",
+      "contact_email": ""
     },
     "trs_analysis": {
       "total_dwell_time_days": 7.6,
@@ -5726,11 +5754,11 @@
       }
     ],
     "port_authority": {
-      "name": "Cornelder de Moçambique",
-      "address": "Porto da Beira, Beira",
-      "website": "www.cornelder.co.mz",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "name": "Cornelder de Moçambique - Beira",
+      "address": "Porto da Beira, Beira, Mozambique",
+      "website": "https://www.cornelder.co.mz",
+      "contact_phone": "+258 23 322 046",
+      "contact_email": "info@cornelder.co.mz"
     },
     "trs_analysis": {
       "total_dwell_time_days": 10.8,
@@ -5987,6 +6015,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Port Autonome de Nouakchott (Port de l'Amitié)",
+      "address": "BP 5658, Nouakchott, Mauritanie",
+      "website": "https://www.portamitie.mr",
+      "contact_phone": "+222 45 25 40 11",
+      "contact_email": "panpa@portamitie.mr"
     }
   },
   {
@@ -6098,6 +6133,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Port Autonome de Nouadhibou",
+      "address": "BP 236, Nouadhibou, Mauritanie",
+      "website": "https://www.panpa.mr",
+      "contact_phone": "+222 45 74 50 00",
+      "contact_email": "info@panpa.mr"
     }
   },
   {
@@ -6431,6 +6473,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Sierra Leone Ports Authority",
+      "address": "Cline Town, Freetown, Sierra Leone",
+      "website": "https://www.slpa.sl",
+      "contact_phone": "+232 22 229 400",
+      "contact_email": "info@slpa.sl"
     }
   },
   {
@@ -6956,8 +7005,8 @@
       "name": "Sea Ports Corporation (SPC)",
       "address": "Port Sudan, Red Sea State",
       "website": "www.sudanports.gov.sd",
-      "contact_phone": "Voir site officiel",
-      "contact_email": "contact@authority.com"
+      "contact_phone": "",
+      "contact_email": ""
     },
     "trs_analysis": {
       "total_dwell_time_days": 20.5,
@@ -7103,6 +7152,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Mauritius Ports Authority (MPA)",
+      "address": "H. Ramnarain Building, Port Louis, Mauritius",
+      "website": "https://www.mauport.com",
+      "contact_phone": "+230 206 5400",
+      "contact_email": "mlouis@mauport.com"
     }
   },
   {
@@ -7214,6 +7270,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Seychelles Ports Authority (SPA)",
+      "address": "P.O. Box 47, Victoria, Mahe, Seychelles",
+      "website": "https://www.sportsauthority.sc",
+      "contact_phone": "+248 4 294 700",
+      "contact_email": "info@sportsauthority.sc"
     }
   },
   {
