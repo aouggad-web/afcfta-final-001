@@ -20,7 +20,7 @@ TRS_OFFICIAL_DATA = {
     # =============================================================================
     # MAROC
     # =============================================================================
-    "MAR-TNG-001": {  # Tanger Med
+    "MAR-TAN-001": {  # Tanger Med
         "container_dwell_time_days": 7.8,
         "source": "Beacon Port Congestion Report / Tanger Med Port Authority",
         "data_year": 2024,
