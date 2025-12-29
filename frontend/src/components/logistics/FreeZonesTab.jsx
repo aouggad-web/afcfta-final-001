@@ -183,6 +183,27 @@ export default function FreeZonesTab() {
                   <p><strong>🌍 Impact:</strong> {zone.impact}</p>
                   <p><strong>⚓ Connexion:</strong> {zone.connection}</p>
                 </div>
+
+                {zone.authority && (
+                  <div className="bg-blue-50 p-3 rounded-lg border border-blue-200 mt-3">
+                    <p className="font-semibold text-blue-800 mb-2">🏛️ Autorité Gérante:</p>
+                    <div className="text-xs text-blue-700 space-y-1">
+                      <p className="font-medium">{zone.authority.name}</p>
+                      {zone.authority.address && (
+                        <p>📍 {zone.authority.address}</p>
+                      )}
+                      {zone.authority.phone && (
+                        <p>📞 <a href={`tel:${zone.authority.phone}`} className="hover:underline">{zone.authority.phone}</a></p>
+                      )}
+                      {zone.authority.email && (
+                        <p>✉️ <a href={`mailto:${zone.authority.email}`} className="text-blue-600 hover:underline">{zone.authority.email}</a></p>
+                      )}
+                      {zone.authority.website && (
+                        <p>🌐 <a href={zone.authority.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{zone.authority.website}</a></p>
+                      )}
+                    </div>
+                  </div>
+                )}
               </CardContent>
             </Card>
           ))}
