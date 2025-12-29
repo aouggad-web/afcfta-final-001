@@ -420,7 +420,7 @@ frontend:
     status_history:
         - working: true
           agent: "testing"
-          comment: "✅ VALIDÉ: Intégration complète réussie - URL API externe https://tradeafrica-stats.preview.emergentagent.com/api fonctionnelle, appels API countries/statistics/country-profile opérationnels."
+          comment: "✅ VALIDÉ: Intégration complète réussie - URL API externe https://tradeanalytics-16.preview.emergentagent.com/api fonctionnelle, appels API countries/statistics/country-profile opérationnels."
 
   - task: "Profil pays Algérie - Données complètes et alignement"
     implemented: true
@@ -556,7 +556,7 @@ test_plan:
 
 agent_communication:
     - agent: "testing"
-      message: "🎉 TESTS COMPLETS RÉUSSIS - API ZLECAf avec nouvelles données Excel validées. TOUS LES TESTS PASSENT (10/10 - 100%). Nouvelles données intégrées avec succès: Nigeria (374.984 Mds PIB), Algérie (269.128 Mds), Afrique du Sud (377.782 Mds), Égypte (331.59 Mds). Calculs tarifaires fonctionnels, règles d'origine complètes, intégration MongoDB opérationnelle. API prête pour production avec URL externe https://tradeafrica-stats.preview.emergentagent.com/api"
+      message: "🎉 TESTS COMPLETS RÉUSSIS - API ZLECAf avec nouvelles données Excel validées. TOUS LES TESTS PASSENT (10/10 - 100%). Nouvelles données intégrées avec succès: Nigeria (374.984 Mds PIB), Algérie (269.128 Mds), Afrique du Sud (377.782 Mds), Égypte (331.59 Mds). Calculs tarifaires fonctionnels, règles d'origine complètes, intégration MongoDB opérationnelle. API prête pour production avec URL externe https://tradeanalytics-16.preview.emergentagent.com/api"
     - agent: "testing"
       message: "🎯 TESTS FRONTEND COMPLETS RÉUSSIS - Application ZLECAf React entièrement fonctionnelle. DIAGNOSTIC: Les 'profils de pays' et 'statistiques' signalés comme non fonctionnels par l'utilisateur FONCTIONNENT PARFAITEMENT. ✅ Calculateur: 54 pays ZLECAf chargés, sélections opérationnelles ✅ Statistiques: $64,500 économies affichées, projections 2025/2030 présentes ✅ Profils Pays: Sélecteur fonctionnel, données Algérie/Nigeria affichées (PIB, population) ✅ Intégration API: Tous endpoints opérationnels. CONCLUSION: Application prête pour production, aucun problème détecté."
     - agent: "testing"
