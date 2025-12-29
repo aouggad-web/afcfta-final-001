@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui
 import MaritimeLogisticsTab from './MaritimeLogisticsTab';
 import AirLogisticsTab from './AirLogisticsTab';
 import LandLogisticsTab from './LandLogisticsTab';
+import FreeZonesTab from './FreeZonesTab';
 
 export default function LogisticsTab() {
   return (
@@ -15,13 +16,13 @@ export default function LogisticsTab() {
             <span>Plateforme Logistique Multimodale</span>
           </CardTitle>
           <CardDescription className="text-blue-100 text-lg">
-            Analyse intégrée des corridors maritimes, aériens et terrestres de la ZLECAf
+            Analyse intégrée des corridors maritimes, aériens, terrestres et zones franches de la ZLECAf
           </CardDescription>
         </CardHeader>
       </Card>
 
       <Tabs defaultValue="maritime" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-3 bg-white shadow-md p-1 h-14">
+        <TabsList className="grid w-full grid-cols-4 bg-white shadow-md p-1 h-14">
           <TabsTrigger value="maritime" className="text-base font-semibold data-[state=active]:bg-blue-100 data-[state=active]:text-blue-800">
             🚢 Maritime (Ports)
           </TabsTrigger>
@@ -30,6 +31,9 @@ export default function LogisticsTab() {
           </TabsTrigger>
           <TabsTrigger value="land" className="text-base font-semibold data-[state=active]:bg-slate-100 data-[state=active]:text-slate-800">
             🚛 Terrestre (Corridors)
+          </TabsTrigger>
+          <TabsTrigger value="zones" className="text-base font-semibold data-[state=active]:bg-orange-100 data-[state=active]:text-orange-800">
+            🏭 Zones Franches
           </TabsTrigger>
         </TabsList>
 
@@ -43,6 +47,10 @@ export default function LogisticsTab() {
 
         <TabsContent value="land" className="mt-6">
           <LandLogisticsTab />
+        </TabsContent>
+
+        <TabsContent value="zones" className="mt-6">
+          <FreeZonesTab />
         </TabsContent>
       </Tabs>
     </div>
