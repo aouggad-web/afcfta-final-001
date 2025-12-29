@@ -108,21 +108,36 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "notes": "Aucune étude TRS publiée. Estimation régionale AfDB: 20 jours (moyenne Afrique).",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
       "cppi_rank": "NA",
       "cppi_year": "NA",
-      "wco_trs_status": "NA"
+      "regional_estimate_days": 20,
+      "regional_estimate_source": "African Development Bank",
+      "source_reliability_label": "NA"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.4,
+      "customs_score": 2.2,
+      "timeliness_score": 2.7,
+      "world_rank": 117,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -216,21 +231,34 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "notes": "Aucune étude TRS publiée pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
       "cppi_rank": "NA",
       "cppi_year": "NA",
-      "wco_trs_status": "NA"
+      "source_reliability_label": "NA"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.4,
+      "customs_score": 2.2,
+      "timeliness_score": 2.7,
+      "world_rank": 117,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -325,21 +353,34 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "notes": "Aucune étude TRS publiée pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
       "cppi_rank": "NA",
       "cppi_year": "NA",
-      "wco_trs_status": "NA"
+      "source_reliability_label": "NA"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.4,
+      "customs_score": 2.2,
+      "timeliness_score": 2.7,
+      "world_rank": 117,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -513,21 +554,34 @@
     "trs_analysis": {
       "container_dwell_time_days": 8.4,
       "source": "Aujourd'hui le Maroc / ANP Maroc",
+      "source_type": "PORT_AUTHORITY",
+      "source_reliability_level": 2,
       "data_year": 2023,
       "methodology": "Port Authority Annual Report",
       "publication_date": "2024-01",
-      "notes": "Import containers. Export: ~9 jours. Amélioration vs 14 jours en 2007.",
+      "notes": "Import containers. Export: ~9 jours. Amélioration significative vs 14 jours en 2007.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
       "cppi_rank": "NA",
       "cppi_year": 2023,
-      "wco_trs_status": "NA"
+      "source_reliability_label": "Autorité Portuaire"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.5,
+      "customs_score": 2.3,
+      "timeliness_score": 2.8,
+      "world_rank": 106,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -817,21 +871,35 @@
     "trs_analysis": {
       "container_dwell_time_days": 7.8,
       "source": "Beacon Port Congestion Report / Tanger Med Port Authority",
+      "source_type": "INDUSTRY_REPORT",
+      "source_reliability_level": 3,
       "data_year": 2024,
-      "methodology": "Port Authority Statistics",
+      "methodology": "Port Authority Statistics / Industry Analysis",
       "publication_date": "2024-09",
-      "notes": "Données septembre 2024. Port catégorie 0.5-4M TEU. Congestion Méditerranée Ouest.",
+      "notes": "Données septembre 2024. Port catégorie 0.5-4M TEU. Rang CPPI #4 mondial (2023).",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": "⚠️ Donnée de source industrielle (Beacon). Non issue d'une étude TRS officielle WCO.",
       "last_updated": "2025-12-29",
       "cppi_rank": 4,
       "cppi_year": 2023,
-      "wco_trs_status": "NA"
+      "teu_throughput_2024": 10241392,
+      "source_reliability_label": "Rapport Industriel"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.5,
+      "customs_score": 2.3,
+      "timeliness_score": 2.8,
+      "world_rank": 106,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -921,13 +989,19 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune donnée TRS officielle disponible.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
-      "last_updated": "2025-12-29"
+      "warning": null,
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "source_reliability_label": "NA"
     },
     "port_authority": {
       "name": "Agence Nationale des Ports - Agadir",
@@ -937,9 +1011,19 @@
       "contact_email": "agadir@anp.org.ma"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.5,
+      "customs_score": 2.3,
+      "timeliness_score": 2.8,
+      "world_rank": 106,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -1028,16 +1112,19 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "notes": "Aucune étude TRS publiée pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
       "cppi_rank": "NA",
       "cppi_year": "NA",
-      "wco_trs_status": "NA"
+      "source_reliability_label": "NA"
     },
     "port_authority": {
       "name": "Office de la Marine Marchande et des Ports (OMMP)",
@@ -1047,9 +1134,19 @@
       "contact_email": "ommp@ommp.nat.tn"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.4,
+      "customs_score": 2.2,
+      "timeliness_score": 2.8,
+      "world_rank": 112,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -1137,16 +1234,19 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "notes": "Aucune étude TRS publiée pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
       "cppi_rank": "NA",
       "cppi_year": "NA",
-      "wco_trs_status": "NA"
+      "source_reliability_label": "NA"
     },
     "port_authority": {
       "name": "Office de la Marine Marchande - Port de Sfax",
@@ -1156,9 +1256,19 @@
       "contact_email": "sfax@ommp.nat.tn"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.4,
+      "customs_score": 2.2,
+      "timeliness_score": 2.8,
+      "world_rank": 112,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -1266,23 +1376,41 @@
       "contact_email": "info@apa.gov.eg"
     },
     "trs_analysis": {
-      "container_dwell_time_days": "NA",
-      "source": "NA",
-      "data_year": "NA",
-      "methodology": "NA",
-      "publication_date": "NA",
-      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "container_dwell_time_days": 8.64,
+      "source": "Egypt Customs Authority - Time Release Study #2",
+      "source_type": "NATIONAL_TRS",
+      "source_reliability_level": 2,
+      "data_year": 2024,
+      "methodology": "National Time Release Study (21-27 April 2024)",
+      "publication_date": "2024-04",
+      "notes": "Réduction de 46.1% vs TRS#1 (2021: 16.08 jours). Amélioration significative.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
+      "trs_2021_baseline_days": 16.08,
+      "improvement_percent": 46.1,
+      "anchor_to_unload_days": 1.04,
+      "unloading_duration_hours": 11.35,
       "cppi_rank": "NA",
       "cppi_year": "NA",
-      "wco_trs_status": "NA"
+      "source_url": "https://assets.mof.gov.eg/files/d06136d0-b7aa-11ef-9d21-798cef5fccf4.pdf",
+      "source_reliability_label": "TRS National"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.8,
+      "customs_score": 2.5,
+      "timeliness_score": 3.0,
+      "world_rank": 77,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -1566,18 +1694,31 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.8,
+      "customs_score": 2.5,
+      "timeliness_score": 3.0,
+      "world_rank": 77,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -1672,23 +1813,37 @@
       "contact_email": "info@dpa.gov.eg"
     },
     "trs_analysis": {
-      "container_dwell_time_days": "NA",
-      "source": "NA",
-      "data_year": "NA",
-      "methodology": "NA",
-      "publication_date": "NA",
-      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "container_dwell_time_days": 8.09,
+      "source": "Egypt Customs Authority - Time Release Study #2",
+      "source_type": "NATIONAL_TRS",
+      "source_reliability_level": 2,
+      "data_year": 2024,
+      "methodology": "National Time Release Study (21-27 April 2024)",
+      "publication_date": "2024-04",
+      "notes": "Port de Damiette inclus dans l'étude TRS nationale égyptienne.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
       "cppi_rank": "NA",
       "cppi_year": "NA",
-      "wco_trs_status": "NA"
+      "source_url": "https://assets.mof.gov.eg/files/d06136d0-b7aa-11ef-9d21-798cef5fccf4.pdf",
+      "source_reliability_label": "TRS National"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.8,
+      "customs_score": 2.5,
+      "timeliness_score": 3.0,
+      "world_rank": 77,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -1780,21 +1935,23 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
-      "last_updated": "2025-12-29",
-      "cppi_rank": "NA",
-      "cppi_year": "NA",
-      "wco_trs_status": "NA"
+      "warning": null,
+      "last_updated": "2025-12-29"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -1879,12 +2036,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -1895,9 +2055,11 @@
       "contact_email": "benghazi@lpclibya.com"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -2009,18 +2171,31 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.6,
+      "customs_score": 2.4,
+      "timeliness_score": 3.0,
+      "world_rank": 92,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -2222,23 +2397,41 @@
       "contact_email": "paa@portabidjan.ci"
     },
     "trs_analysis": {
-      "container_dwell_time_days": "NA",
-      "source": "NA",
-      "data_year": "NA",
-      "methodology": "NA",
-      "publication_date": "NA",
-      "notes": "Second terminal conteneurs opérationnel depuis 2022 (Côte d'Ivoire Terminal). Dwell time non publié.",
+      "container_dwell_time_days": 3.54,
+      "source": "Port Autonome d'Abidjan - PAA Infos Magazine",
+      "source_type": "PORT_AUTHORITY",
+      "source_reliability_level": 2,
+      "data_year": 2023,
+      "methodology": "Port Authority Statistics",
+      "publication_date": "2023-08",
+      "notes": "Moyenne 2023. Ancrage amélioré: 0.58 jours (vs 0.88 en Q1 2022). Cargo local: 3-5 jours. Transit: 5 jours.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
+      "anchorage_wait_days_2023": 0.58,
+      "anchorage_wait_days_2022_q1": 0.88,
+      "local_cargo_dwell_days": "3-5",
+      "transit_cargo_dwell_days": 5,
       "cppi_rank": "NA",
       "cppi_year": "NA",
-      "wco_trs_status": "NA"
+      "source_url": "https://www.portabidjan.ci/sites/default/files/paa_infos_magazine_ndeg112_-_juillet_et_aout_2023.pdf",
+      "source_reliability_label": "Autorité Portuaire"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.8,
+      "customs_score": 2.4,
+      "timeliness_score": 3.2,
+      "world_rank": 79,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -2326,12 +2519,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -2342,9 +2538,19 @@
       "contact_email": "info@sanpedro-portci.com"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.8,
+      "customs_score": 2.4,
+      "timeliness_score": 3.2,
+      "world_rank": 79,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -2516,23 +2722,38 @@
       "contact_email": "info@ghanaports.gov.gh"
     },
     "trs_analysis": {
-      "container_dwell_time_days": "NA",
-      "source": "NA",
-      "data_year": "NA",
-      "methodology": "NA",
-      "publication_date": "NA",
-      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "container_dwell_time_days": "6-12",
+      "source": "Ghana News / GPHA Reports",
+      "source_type": "INDUSTRY_REPORT",
+      "source_reliability_level": 3,
+      "data_year": 2024,
+      "methodology": "Industry Analysis",
+      "publication_date": "2024",
+      "notes": "Plage estimée. Benchmark global: 3-4 jours. ICUMS permet clearance en heures si docs complets. 95% du trafic Ghana.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": "⚠️ Plage indicative (6-12 jours). Non issue d'étude TRS officielle.",
       "last_updated": "2025-12-29",
       "cppi_rank": "NA",
       "cppi_year": "NA",
-      "wco_trs_status": "NA"
+      "teu_throughput_2024": 1668688,
+      "percent_ghana_traffic": 95,
+      "source_reliability_label": "Rapport Industriel"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.6,
+      "customs_score": 2.3,
+      "timeliness_score": 3.0,
+      "world_rank": 95,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -2620,12 +2841,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -2636,9 +2860,19 @@
       "contact_email": "takoradi@ghanaports.gov.gh"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.6,
+      "customs_score": 2.3,
+      "timeliness_score": 3.0,
+      "world_rank": 95,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -2901,15 +3135,24 @@
       }
     ],
     "trs_analysis": {
-      "container_dwell_time_days": "NA",
-      "source": "NA",
-      "data_year": "NA",
-      "methodology": "NA",
-      "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "container_dwell_time_days": 16.73,
+      "source": "Academic Study - Port Reforms Analysis (2007-2021)",
+      "source_type": "ACADEMIC_STUDY",
+      "source_reliability_level": 3,
+      "data_year": 2021,
+      "methodology": "Post-reform performance analysis",
+      "publication_date": "2024-03",
+      "notes": "Délai moyen post-réforme 2007. 313.82% au-dessus du benchmark mondial (4 jours). Moyenne nigériane: 20-28 jours.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
-      "last_updated": "2025-12-29"
+      "warning": "⚠️ Source académique (2021). Données de recherche post-réformes. Situation peut avoir évolué.",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "benchmark_global_days": 4,
+      "above_benchmark_percent": 313.82,
+      "source_url": "https://www.gjournals.org/2024/03/13/022324028-mbachu-et-al/",
+      "source_reliability_label": "Étude Académique"
     },
     "port_authority": {
       "name": "Nigerian Ports Authority - Apapa",
@@ -2927,9 +3170,11 @@
       "year": 2023
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -3009,16 +3254,20 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "WCO - Time Release Study Launched",
+      "source_type": "OFFICIAL_WCO_TRS",
+      "source_reliability_level": 1,
       "data_year": 2024,
       "methodology": "WCO TRS (En cours)",
       "publication_date": "2024-02",
-      "notes": "TRS lancée février 2024. Premier d'une série au Nigeria. Rapport attendu sous 6 mois.",
+      "notes": "TRS lancée février 2024. Premier d'une série au Nigeria. Rapport final attendu.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
+      "wco_trs_in_progress": true,
       "cppi_rank": "NA",
       "cppi_year": "NA",
-      "wco_trs_status": "En cours"
+      "source_reliability_label": "Officiel WCO"
     },
     "port_authority": {
       "name": "Nigerian Ports Authority - Tin Can Island",
@@ -3036,9 +3285,11 @@
       "year": 2023
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -3128,12 +3379,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -3152,9 +3406,11 @@
       "year": 2023
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -3246,22 +3502,27 @@
     },
     "trs_analysis": {
       "container_dwell_time_days": "NA",
-      "source": "NA",
-      "data_year": "NA",
-      "methodology": "NA",
-      "publication_date": "NA",
-      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "source": "World Bank CPPI 2023",
+      "source_type": "WORLD_BANK_CPPI",
+      "source_reliability_level": 2,
+      "data_year": 2023,
+      "methodology": "World Bank Container Port Performance Index",
+      "publication_date": "2023",
+      "notes": "Rang CPPI 401/405. Performance vessel time in port. Cargo dwell non publié.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
-      "cppi_rank": "NA",
-      "cppi_year": "NA",
-      "wco_trs_status": "NA"
+      "cppi_rank": 401,
+      "cppi_year": 2023,
+      "source_reliability_label": "World Bank CPPI"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -3425,21 +3686,26 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "notes": "Hub régional majeur. Dwell time non publié officiellement.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
       "cppi_rank": "NA",
       "cppi_year": "NA",
-      "wco_trs_status": "NA"
+      "source_reliability_label": "NA"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -3546,22 +3812,38 @@
     },
     "trs_analysis": {
       "container_dwell_time_days": "NA",
-      "source": "Transit Fruits Eagle - Tarifs Surestaries 2024/2025",
+      "source": "Transit Fruits Eagle - Tarifs Surestaries",
+      "source_type": "INDUSTRY_REPORT",
+      "source_reliability_level": 3,
       "data_year": 2024,
       "methodology": "Port Tariff Documentation",
       "publication_date": "2024-12",
-      "notes": "Franchise 10 jours (incluant jour d'escale). Surestaries à partir J+11. Dwell time réel non publié.",
+      "notes": "Franchise 10 jours (incluant jour d'escale). Surestaries à partir J+11. LSCI +54% en 2024.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": "⚠️ Franchise (free time) ≠ Dwell time réel. Donnée indicative uniquement.",
       "last_updated": "2025-12-29",
+      "free_time_days": 10,
+      "demurrage_start_day": 11,
       "cppi_rank": "NA",
       "cppi_year": "NA",
-      "wco_trs_status": "NA"
+      "lsci_improvement_2024_percent": 54,
+      "source_reliability_label": "Rapport Industriel"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.4,
+      "customs_score": 2.1,
+      "timeliness_score": 2.8,
+      "world_rank": 115,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -3656,21 +3938,34 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "LSCI +54% en 2024 (meilleure progression Afrique). Dwell time non publié.",
+      "notes": "Port moderne en eau profonde. LSCI +54% en 2024. Dwell time non publié.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
       "cppi_rank": "NA",
       "cppi_year": "NA",
-      "wco_trs_status": "NA"
+      "source_reliability_label": "NA"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.4,
+      "customs_score": 2.1,
+      "timeliness_score": 2.8,
+      "world_rank": 115,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -3745,12 +4040,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -3761,9 +4059,11 @@
       "contact_email": "owendo@gpm.ga"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -3852,21 +4152,26 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "notes": "Aucune donnée TRS publiée.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
       "cppi_rank": "NA",
       "cppi_year": "NA",
-      "wco_trs_status": "NA"
+      "source_reliability_label": "NA"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -3976,21 +4281,26 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "notes": "Aucune donnée TRS publiée.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
       "cppi_rank": "NA",
       "cppi_year": "NA",
-      "wco_trs_status": "NA"
+      "source_reliability_label": "NA"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -4087,18 +4397,23 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -4318,21 +4633,38 @@
     "trs_analysis": {
       "container_dwell_time_days": 3.5,
       "source": "Kenya Ports Authority (KPA) Official Statistics",
+      "source_type": "PORT_AUTHORITY",
+      "source_reliability_level": 2,
       "data_year": 2023,
       "methodology": "KPA Annual Performance Report",
       "publication_date": "2024-01",
-      "notes": "Moyenne annuelle 2023. Amélioration de 3.9 jours (2022). Avril 2024: 2.73 jours.",
+      "notes": "Moyenne 2023. Amélioration vs 3.9 jours (2022). Avril 2024: record de 2.73 jours. Cible: 60 heures.",
       "vessel_turnaround_hours": 64.1,
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
+      "import_cargo_dwell_hours_q1_2023": 86,
+      "target_dwell_hours": 60,
+      "best_performance_days": 2.73,
+      "best_performance_date": "2024-04",
       "cppi_rank": 335,
       "cppi_year": 2023,
-      "wco_trs_status": "NA"
+      "source_reliability_label": "Autorité Portuaire"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.8,
+      "customs_score": 2.6,
+      "timeliness_score": 3.3,
+      "world_rank": 68,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -4426,21 +4758,34 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
       "notes": "LSCI +50% depuis 2006. Améliorations clearance 2022. Dwell time officiel non publié.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
       "cppi_rank": "NA",
       "cppi_year": "NA",
-      "wco_trs_status": "NA"
+      "source_reliability_label": "NA"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.5,
+      "customs_score": 2.3,
+      "timeliness_score": 2.9,
+      "world_rank": 100,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -4615,22 +4960,31 @@
     },
     "trs_analysis": {
       "container_dwell_time_days": "NA",
-      "source": "NA",
-      "data_year": "NA",
-      "methodology": "NA",
-      "publication_date": "NA",
-      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "source": "SGTD Terminal Report",
+      "source_type": "PORT_AUTHORITY",
+      "source_reliability_level": 2,
+      "data_year": 2024,
+      "methodology": "Terminal Operator Statistics",
+      "publication_date": "2024-11",
+      "notes": "Record 1.24M TEU en 2024. CPPI controversé (379e vs 26e en 2022). Dwell cargo non publié.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
-      "cppi_rank": "NA",
-      "cppi_year": "NA",
-      "wco_trs_status": "NA"
+      "quay_productivity_moves_per_hour": 120,
+      "utilization_percent": 40,
+      "teu_throughput_2024": 1236769,
+      "cppi_rank": 379,
+      "cppi_year": 2023,
+      "cppi_2022_rank": 26,
+      "source_reliability_label": "Autorité Portuaire"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -4900,16 +5254,20 @@
     "trs_analysis": {
       "container_dwell_time_days": 2.7,
       "source": "Transnet Port Terminals Official Report",
+      "source_type": "PORT_AUTHORITY",
+      "source_reliability_level": 2,
       "data_year": 2024,
       "methodology": "Transnet Performance Metrics",
       "publication_date": "2024-Q4",
-      "notes": "Pier 1 Import containers. Amélioration significative vs 21 jours précédemment.",
+      "notes": "Pier 1 Import containers. Amélioration majeure vs 21 jours précédemment. Pier 2: 83.2h turnaround.",
       "vessel_turnaround_hours": 83.2,
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
+      "vessel_turnaround_source": "SAAFF Analysis 2023 (Pier 2)",
       "cppi_rank": "NA",
       "cppi_year": 2023,
-      "wco_trs_status": "NA"
+      "source_reliability_label": "Autorité Portuaire"
     },
     "lpi_2023": {
       "overall_score": 3.7,
@@ -4920,9 +5278,11 @@
       "year": 2023
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -5015,17 +5375,21 @@
     },
     "trs_analysis": {
       "container_dwell_time_days": "NA",
-      "source": "NA",
-      "data_year": "NA",
-      "methodology": "NA",
-      "publication_date": "NA",
-      "notes": "Amélioration CPPI +237.9 points en 2024 vs 2023. Dwell time non publié.",
+      "source": "World Bank CPPI 2024",
+      "source_type": "WORLD_BANK_CPPI",
+      "source_reliability_level": 2,
+      "data_year": 2024,
+      "methodology": "World Bank Container Port Performance Index",
+      "publication_date": "2024",
+      "notes": "Amélioration CPPI +237.9 points en 2024 vs 2023. Dwell time cargo non publié.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
       "cppi_rank": 405,
-      "cppi_year": 2023,
-      "wco_trs_status": "NA"
+      "cppi_improvement_points": 237.9,
+      "cppi_year": 2024,
+      "source_reliability_label": "World Bank CPPI"
     },
     "lpi_2023": {
       "overall_score": 3.7,
@@ -5036,9 +5400,11 @@
       "year": 2023
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -5135,12 +5501,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "lpi_2023": {
@@ -5152,9 +5521,11 @@
       "year": 2023
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -5243,17 +5614,21 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "WCO / NAMRA Time Release Study Report",
+      "source_type": "OFFICIAL_WCO_TRS",
+      "source_reliability_level": 1,
       "data_year": 2023,
       "methodology": "WCO Time Release Study (Standard)",
       "publication_date": "2023-12-01",
-      "notes": "Étude TRS officielle WCO. Mesure de 'entry inwards' à 'out of charge'. Goulots identifiés: usage limité ASYCUDA World, inspections hors-port.",
+      "notes": "Étude TRS officielle WCO publiée. Mesure 'entry inwards' à 'out of charge'. Goulots: usage limité ASYCUDA World, inspections hors-port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
+      "wco_trs_published": true,
+      "wco_report_url": "https://www.namra.org.na/documents/cms/uploaded/time-release-study-report--1-december-2023-9de0a050c1.pdf",
       "cppi_rank": "NA",
       "cppi_year": "NA",
-      "wco_report_url": "https://www.namra.org.na/documents/cms/uploaded/time-release-study-report--1-december-2023-9de0a050c1.pdf",
-      "wco_trs_status": "Publiée"
+      "source_reliability_label": "Officiel WCO"
     },
     "port_authority": {
       "name": "Namibian Ports Authority (Namport) - Walvis Bay",
@@ -5263,9 +5638,11 @@
       "contact_email": "marketing@namport.com.na"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -5352,18 +5729,23 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -5460,18 +5842,23 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -5551,12 +5938,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -5567,9 +5957,11 @@
       "contact_email": "contact@spat.mg"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -5652,12 +6044,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -5668,9 +6063,11 @@
       "contact_email": "panpa@portamitie.mr"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -5753,12 +6150,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -5769,9 +6169,11 @@
       "contact_email": "info@panpa.mr"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -5856,12 +6258,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -5872,9 +6277,11 @@
       "contact_email": "info@portconakry.com"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -5959,12 +6366,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -5975,9 +6385,11 @@
       "contact_email": "info@npaliberia.com"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -6062,12 +6474,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -6078,9 +6493,11 @@
       "contact_email": "info@slpa.sl"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -6165,12 +6582,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -6189,9 +6609,11 @@
       "year": 2023
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -6274,12 +6696,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -6290,9 +6715,11 @@
       "contact_email": "info@portmassawa.gov.er"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -6375,12 +6802,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -6391,9 +6821,11 @@
       "contact_email": "info@portofmogadishu.so"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -6476,12 +6908,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -6492,9 +6927,11 @@
       "contact_email": "info@bossasoport.com"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -6584,18 +7021,23 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -6677,16 +7119,19 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "notes": "Hub de transbordement. Dwell time non publié.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29",
       "cppi_rank": "NA",
       "cppi_year": "NA",
-      "wco_trs_status": "NA"
+      "source_reliability_label": "NA"
     },
     "port_authority": {
       "name": "Mauritius Ports Authority (MPA)",
@@ -6696,9 +7141,11 @@
       "contact_email": "mlouis@mauport.com"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -6785,12 +7232,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -6801,9 +7251,11 @@
       "contact_email": "info@sportsauthority.sc"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -6888,12 +7340,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -6904,9 +7359,11 @@
       "contact_email": "port.moroni@comorestelecom.km"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -7027,12 +7484,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -7043,9 +7503,11 @@
       "contact_email": "info@panpa.mr"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -7163,12 +7625,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -7179,9 +7644,19 @@
       "contact_email": "ziguinchor@portdakar.sn"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
+    },
+    "lpi_2023": {
+      "overall_score": 2.6,
+      "customs_score": 2.4,
+      "timeliness_score": 3.0,
+      "world_rank": 92,
+      "source": "World Bank LPI 2023",
+      "year": 2023
     }
   },
   {
@@ -7302,12 +7777,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -7326,9 +7804,11 @@
       "year": 2023
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -7449,12 +7929,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -7465,9 +7948,11 @@
       "contact_email": "info@slpa.sl"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -7605,12 +8090,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -7621,9 +8109,11 @@
       "contact_email": "info@npaliberia.com"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -7741,12 +8231,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -7757,9 +8250,11 @@
       "contact_email": "buchanan@npaliberia.com"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -7873,12 +8368,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -7889,9 +8387,11 @@
       "contact_email": "puerto@malabo.gq"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -8009,12 +8509,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -8025,9 +8528,11 @@
       "contact_email": "info@enaport.st"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -8165,12 +8670,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -8181,9 +8689,11 @@
       "contact_email": "info@papn-cg.com"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -8328,12 +8838,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -8344,9 +8857,11 @@
       "contact_email": "marketing@namport.com.na"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -8464,12 +8979,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -8480,9 +8998,11 @@
       "contact_email": "info@portmassawa.gov.er"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -8602,12 +9122,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -8618,9 +9141,11 @@
       "contact_email": "assab@portmassawa.gov.er"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -8734,12 +9259,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -8750,9 +9278,11 @@
       "contact_email": "info@sportsauthority.sc"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -8870,12 +9400,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -8886,9 +9419,11 @@
       "contact_email": "mutsamudu@comores-ports.km"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -9009,12 +9544,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -9025,9 +9563,11 @@
       "contact_email": "info@sudanports.gov.sd"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   },
   {
@@ -9145,12 +9685,15 @@
     "trs_analysis": {
       "container_dwell_time_days": "NA",
       "source": "NA",
+      "source_type": "NO_DATA",
+      "source_reliability_level": 99,
       "data_year": "NA",
       "methodology": "NA",
       "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
+      "warning": null,
       "last_updated": "2025-12-29"
     },
     "port_authority": {
@@ -9161,9 +9704,11 @@
       "contact_email": "sawakin@sudanports.gov.sd"
     },
     "global_benchmarks": {
-      "africa_avg_dwell_days_2023": 2.6,
+      "africa_avg_dwell_days": 20,
+      "africa_avg_source": "African Development Bank",
+      "africa_avg_note": "Moyenne continentale. Performance très variable selon les ports.",
       "global_median_dwell_days_h2_2023": 1.1,
-      "source": "UNCTAD Review of Maritime Transport 2024"
+      "source": "UNCTAD Review of Maritime Transport 2024 / African Development Bank"
     }
   }
 ]
