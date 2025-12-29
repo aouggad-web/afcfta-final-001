@@ -2673,7 +2673,7 @@ class ZLECAfAPITester:
                 self.log_result(
                     "Shipping Agents Contacts", 
                     True, 
-                    f"158 agents de transport validés avec contacts mis à jour",
+                    f"{total_agents} agents de transport validés avec contacts mis à jour",
                     {
                         'total_agents': total_agents,
                         'agents_with_website': agents_with_website,
