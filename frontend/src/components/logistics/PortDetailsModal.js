@@ -75,22 +75,73 @@ function PortDetailsModal({ isOpen, onClose, port }) {
             {/* Port Authority Section (if available) */}
             {authority && (
               <Card className="border-l-4 border-l-blue-800 bg-gradient-to-r from-blue-50 to-white">
-                <CardContent className="pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-                  <div>
-                    <h4 className="text-sm font-bold text-blue-800 uppercase tracking-wide mb-1">Autorité Portuaire</h4>
-                    <h3 className="text-xl font-bold text-gray-900">{authority.name}</h3>
-                    {authority.address && <p className="text-sm text-gray-600 mt-1">📍 {authority.address}</p>}
+                <CardContent className="pt-6">
+                  <div className="flex flex-col md:flex-row justify-between items-start gap-4">
+                    <div>
+                      <h4 className="text-sm font-bold text-blue-800 uppercase tracking-wide mb-1">🏛️ Autorité Portuaire</h4>
+                      <h3 className="text-xl font-bold text-gray-900">{authority.name}</h3>
+                      {authority.address && <p className="text-sm text-gray-600 mt-1">📍 {authority.address}</p>}
+                    </div>
                   </div>
-                  <div className="flex gap-3">
-                    {authority.website && (
-                      <Button variant="outline" size="sm" className="bg-white hover:bg-blue-50" asChild>
-                        <a href={authority.website} target="_blank" rel="noopener noreferrer">🌐 Site Officiel</a>
-                      </Button>
+                  
+                  {/* Contact Details Grid */}
+                  <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+                    {authority.website && authority.website !== 'N/A' && authority.website !== 'Non disponible' && (
+                      <a 
+                        href={authority.website.startsWith('http') ? authority.website : `https://${authority.website}`}
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 p-3 bg-white rounded-lg border border-blue-200 hover:bg-blue-50 hover:border-blue-400 transition-colors"
+                      >
+                        <span className="text-xl">🌐</span>
+                        <div>
+                          <p className="text-xs text-gray-500 font-medium">Site Web</p>
+                          <p className="text-sm text-blue-600 font-semibold truncate max-w-[150px]">
+                            {authority.website.replace('https://', '').replace('http://', '')}
+                          </p>
+                        </div>
+                      </a>
                     )}
-                    {authority.contact_phone && (
-                      <Button variant="outline" size="sm" className="bg-white hover:bg-blue-50">
-                        📞 {authority.contact_phone}
-                      </Button>
+                    
+                    {authority.contact_phone && authority.contact_phone !== 'Voir site officiel' && authority.contact_phone !== '' && (
+                      <a 
+                        href={`tel:${authority.contact_phone.replace(/\s/g, '')}`}
+                        className="flex items-center gap-2 p-3 bg-white rounded-lg border border-green-200 hover:bg-green-50 hover:border-green-400 transition-colors"
+                      >
+                        <span className="text-xl">📞</span>
+                        <div>
+                          <p className="text-xs text-gray-500 font-medium">Téléphone</p>
+                          <p className="text-sm text-green-700 font-semibold">{authority.contact_phone}</p>
+                        </div>
+                      </a>
+                    )}
+                    
+                    {authority.contact_email && authority.contact_email !== 'contact@authority.com' && authority.contact_email !== '' && (
+                      <a 
+                        href={`mailto:${authority.contact_email}`}
+                        className="flex items-center gap-2 p-3 bg-white rounded-lg border border-orange-200 hover:bg-orange-50 hover:border-orange-400 transition-colors"
+                      >
+                        <span className="text-xl">✉️</span>
+                        <div>
+                          <p className="text-xs text-gray-500 font-medium">Email</p>
+                          <p className="text-sm text-orange-700 font-semibold truncate max-w-[150px]">{authority.contact_email}</p>
+                        </div>
+                      </a>
+                    )}
+                    
+                    {authority.address && (
+                      <a 
+                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(authority.address)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 p-3 bg-white rounded-lg border border-purple-200 hover:bg-purple-50 hover:border-purple-400 transition-colors"
+                      >
+                        <span className="text-xl">📍</span>
+                        <div>
+                          <p className="text-xs text-gray-500 font-medium">Localisation</p>
+                          <p className="text-sm text-purple-700 font-semibold">Voir sur Google Maps</p>
+                        </div>
+                      </a>
                     )}
                   </div>
                 </CardContent>
