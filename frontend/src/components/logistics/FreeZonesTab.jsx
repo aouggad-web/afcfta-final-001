@@ -131,7 +131,7 @@ export default function FreeZonesTab() {
                 icon={freeZoneIcon}
               >
                 <Popup>
-                  <div className="p-2 min-w-[250px]">
+                  <div className="p-2 min-w-[280px]">
                     <h3 className="font-bold text-lg text-orange-700 mb-1">{zone.name}</h3>
                     <Badge className="bg-orange-100 text-orange-800 mb-2">{zone.type}</Badge>
                     <p className="text-sm text-gray-600 mb-2">{zone.country}</p>
@@ -140,6 +140,16 @@ export default function FreeZonesTab() {
                       <p><strong>📏 Surface:</strong> {zone.surface_ha} ha</p>
                       <p><strong>🔗 Connexion:</strong> {zone.connection}</p>
                     </div>
+                    {zone.authority && (
+                      <div className="mt-2 pt-2 border-t border-gray-200">
+                        <p className="text-xs font-semibold text-blue-700">🏛️ {zone.authority.name}</p>
+                        {zone.authority.website && (
+                          <a href={zone.authority.website} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-500 hover:underline">
+                            {zone.authority.website}
+                          </a>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </Popup>
                 <Tooltip>{zone.name}</Tooltip>
