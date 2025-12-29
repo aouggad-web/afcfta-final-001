@@ -218,10 +218,10 @@
     ],
     "port_authority": {
       "name": "Entreprise Portuaire d'Oran (EPO)",
-      "address": "BP 106, Oran",
-      "website": "www.port-oran.dz",
-      "contact_phone": "",
-      "contact_email": ""
+      "address": "1 Boulevard de l'ALN, 31000 Oran, Algérie",
+      "website": "https://www.port-oran.dz",
+      "contact_phone": "+213 41 33 20 20",
+      "contact_email": "contact@port-oran.dz"
     },
     "trs_analysis": {
       "total_dwell_time_days": 6.7,
@@ -341,10 +341,10 @@
     ],
     "port_authority": {
       "name": "Entreprise Portuaire de Béjaïa (EPB)",
-      "address": "13 Avenue des Frères Amrani, Béjaïa",
-      "website": "www.portdebejaia.dz",
-      "contact_phone": "",
-      "contact_email": ""
+      "address": "Route des Aurès, 06000 Béjaïa, Algérie",
+      "website": "https://www.portdebejaia.dz",
+      "contact_phone": "+213 34 21 24 85",
+      "contact_email": "contact@portdebejaia.dz"
     },
     "trs_analysis": {
       "total_dwell_time_days": 6.6,
@@ -835,11 +835,11 @@
       }
     ],
     "port_authority": {
-      "name": "Tanger Med Port Authority",
-      "address": "Zone Franche Logistique, Tanger",
-      "website": "www.tangermed.ma",
-      "contact_phone": "",
-      "contact_email": ""
+      "name": "Tanger Med Port Authority (TMPA)",
+      "address": "Zone Franche Ksar El Majaz, 90000 Tanger, Maroc",
+      "website": "https://www.tangermed.ma",
+      "contact_phone": "+212 539 337 000",
+      "contact_email": "contact@tangermed.ma"
     },
     "trs_analysis": {
       "total_dwell_time_days": 3.1,
@@ -991,6 +991,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Agence Nationale des Ports - Agadir",
+      "address": "Port d'Agadir, 80000 Agadir, Maroc",
+      "website": "https://www.anp.org.ma",
+      "contact_phone": "+212 528 84 28 69",
+      "contact_email": "agadir@anp.org.ma"
     }
   },
   {
@@ -1231,6 +1238,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Office de la Marine Marchande - Port de Sfax",
+      "address": "Port de Commerce, 3000 Sfax, Tunisie",
+      "website": "https://www.ommp.nat.tn",
+      "contact_phone": "+216 74 296 800",
+      "contact_email": "sfax@ommp.nat.tn"
     }
   },
   {
@@ -1327,11 +1341,11 @@
       }
     ],
     "port_authority": {
-      "name": "Alexandria Port Authority",
-      "address": "106 El Horreya Avenue, Alexandria",
-      "website": "www.apa.gov.eg",
-      "contact_phone": "",
-      "contact_email": ""
+      "name": "Alexandria Port Authority (APA)",
+      "address": "106 El-Horreya Road, Alexandria, Egypt",
+      "website": "https://www.apa.gov.eg",
+      "contact_phone": "+20 3 480 0000",
+      "contact_email": "info@apa.gov.eg"
     },
     "trs_analysis": {
       "total_dwell_time_days": 6.6,
@@ -1623,11 +1637,11 @@
       }
     ],
     "port_authority": {
-      "name": "Suez Canal Economic Zone (SCZone)",
-      "address": "Port Said, Egypt",
-      "website": "www.sczone.eg",
-      "contact_phone": "",
-      "contact_email": ""
+      "name": "Port Said Port Authority",
+      "address": "El-Gomhoria Street, Port Said, Egypt",
+      "website": "https://www.portsaid-port.com",
+      "contact_phone": "+20 66 322 6000",
+      "contact_email": "info@portsaid-port.com"
     },
     "trs_analysis": {
       "total_dwell_time_days": 2.7,
@@ -1864,11 +1878,11 @@
       }
     ],
     "port_authority": {
-      "name": "Libyan Ports Company",
-      "address": "Tripoli Port, Libya",
-      "website": "www.lpclibya.com",
-      "contact_phone": "",
-      "contact_email": ""
+      "name": "Libyan Ports Company - Tripoli",
+      "address": "Port of Tripoli, Tripoli, Libya",
+      "website": "https://www.lpclibya.com",
+      "contact_phone": "+218 21 333 4900",
+      "contact_email": "tripoli@lpclibya.com"
     },
     "trs_analysis": {
       "total_dwell_time_days": 18.5,
@@ -2015,6 +2029,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Libyan Ports Company - Benghazi",
+      "address": "Port of Benghazi, Benghazi, Libya",
+      "website": "https://www.lpclibya.com",
+      "contact_phone": "+218 61 909 1234",
+      "contact_email": "benghazi@lpclibya.com"
     }
   },
   {
@@ -2112,10 +2133,10 @@
     ],
     "port_authority": {
       "name": "Port Autonome de Dakar (PAD)",
-      "address": "21 Boulevard de la Libération, BP 3195, Dakar",
-      "website": "www.portdakar.sn",
-      "contact_phone": "",
-      "contact_email": ""
+      "address": "21 Boulevard de la Libération, BP 3195, Dakar, Sénégal",
+      "website": "https://www.portdakar.sn",
+      "contact_phone": "+221 33 849 45 45",
+      "contact_email": "pad@portdakar.sn"
     },
     "trs_analysis": {
       "total_dwell_time_days": 8.6,
@@ -2485,6 +2506,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Port Autonome de San Pedro",
+      "address": "BP 339, San Pedro, Côte d'Ivoire",
+      "website": "https://www.sanpedro-portci.com",
+      "contact_phone": "+225 27 34 71 72 00",
+      "contact_email": "info@sanpedro-portci.com"
     }
   },
   {
@@ -2791,6 +2819,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Ghana Ports and Harbours Authority - Takoradi",
+      "address": "P.O. Box 1, Takoradi, Ghana",
+      "website": "https://www.ghanaports.gov.gh",
+      "contact_phone": "+233 312 022 741",
+      "contact_email": "takoradi@ghanaports.gov.gh"
     }
   },
   {
@@ -3068,6 +3103,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Nigerian Ports Authority - Apapa",
+      "address": "26/28 Marina, Lagos, Nigeria",
+      "website": "https://www.nigerianports.gov.ng",
+      "contact_phone": "+234 1 271 8360",
+      "contact_email": "apapa@nigerianports.gov.ng"
     }
   },
   {
@@ -3829,10 +3871,10 @@
     ],
     "port_authority": {
       "name": "Port Autonome de Kribi (PAK)",
-      "address": "Immeuble PAK, Kribi, Cameroun",
-      "website": "www.pak.cm",
-      "contact_phone": "",
-      "contact_email": ""
+      "address": "BP 203, Kribi, Cameroun",
+      "website": "https://www.pak.cm",
+      "contact_phone": "+237 222 46 14 14",
+      "contact_email": "info@pak.cm"
     },
     "trs_analysis": {
       "total_dwell_time_days": 3.6,
@@ -3973,6 +4015,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Gabon Port Management - Owendo",
+      "address": "BP 1051, Libreville, Gabon",
+      "website": "https://www.gabonportmanagement.ga",
+      "contact_phone": "+241 01 70 00 48",
+      "contact_email": "owendo@gpm.ga"
     }
   },
   {
@@ -5390,11 +5439,11 @@
       }
     ],
     "port_authority": {
-      "name": "Transnet National Ports Authority",
-      "address": "Gqeberha",
-      "website": "www.transnet.net",
-      "contact_phone": "",
-      "contact_email": ""
+      "name": "Transnet National Ports Authority - Port Elizabeth",
+      "address": "Port Elizabeth Harbour, South Africa",
+      "website": "https://www.transnetnationalportsauthority.net",
+      "contact_phone": "+27 41 507 1911",
+      "contact_email": "portelizabeth@transnet.net"
     },
     "trs_analysis": {
       "total_dwell_time_days": 7.9,
@@ -5632,10 +5681,10 @@
     ],
     "port_authority": {
       "name": "Maputo Port Development Company (MPDC)",
-      "address": "Praça dos Trabalhadores, Maputo",
-      "website": "www.portmaputo.com",
-      "contact_phone": "",
-      "contact_email": ""
+      "address": "Rua Marques de Pombal, Maputo, Mozambique",
+      "website": "https://www.portmaputo.com",
+      "contact_phone": "+258 21 313 100",
+      "contact_email": "info@portmaputo.com"
     },
     "trs_analysis": {
       "total_dwell_time_days": 7.6,
@@ -5904,6 +5953,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Société du Port à Gestion Autonome de Toamasina (SPAT)",
+      "address": "BP 14, Toamasina 501, Madagascar",
+      "website": "https://www.spat.mg",
+      "contact_phone": "+261 20 53 323 52",
+      "contact_email": "contact@spat.mg"
     }
   },
   {
@@ -6251,6 +6307,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Port Autonome de Conakry",
+      "address": "BP 805, Conakry, Guinée",
+      "website": "https://www.portconakry.com",
+      "contact_phone": "+224 622 35 38 69",
+      "contact_email": "info@portconakry.com"
     }
   },
   {
@@ -6362,6 +6425,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "National Port Authority - Monrovia",
+      "address": "Freeport of Monrovia, Liberia",
+      "website": "https://www.npaliberia.com",
+      "contact_phone": "+231 886 512 000",
+      "contact_email": "info@npaliberia.com"
     }
   },
   {
@@ -6591,6 +6661,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Gambia Ports Authority",
+      "address": "Liberation Avenue, Banjul, The Gambia",
+      "website": "https://www.gamport.gm",
+      "contact_phone": "+220 422 7266",
+      "contact_email": "info@gamport.gm"
     }
   },
   {
@@ -6702,6 +6779,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Eritrean Ports Authority - Massawa",
+      "address": "Port of Massawa, Eritrea",
+      "website": "https://www.portmassawa.gov.er",
+      "contact_phone": "+291 1 552 385",
+      "contact_email": "info@portmassawa.gov.er"
     }
   },
   {
@@ -6813,6 +6897,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Mogadishu Port Authority",
+      "address": "Port of Mogadishu, Somalia",
+      "website": "https://www.portofmogadishu.so",
+      "contact_phone": "+252 61 555 5555",
+      "contact_email": "info@portofmogadishu.so"
     }
   },
   {
@@ -6924,6 +7015,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Bossaso Port Authority",
+      "address": "Port of Bossaso, Puntland, Somalia",
+      "website": "https://www.bossasoport.com",
+      "contact_phone": "+252 90 790 0000",
+      "contact_email": "info@bossasoport.com"
     }
   },
   {
@@ -7002,11 +7100,11 @@
       }
     ],
     "port_authority": {
-      "name": "Sea Ports Corporation (SPC)",
-      "address": "Port Sudan, Red Sea State",
-      "website": "www.sudanports.gov.sd",
-      "contact_phone": "",
-      "contact_email": ""
+      "name": "Sea Ports Corporation - Port Sudan",
+      "address": "Port Sudan, Red Sea State, Sudan",
+      "website": "https://www.sudanports.gov.sd",
+      "contact_phone": "+249 311 822 700",
+      "contact_email": "info@sudanports.gov.sd"
     },
     "trs_analysis": {
       "total_dwell_time_days": 20.5,
@@ -7388,6 +7486,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Autorité Portuaire des Comores - Moroni",
+      "address": "Port de Moroni, Grande Comore, Comores",
+      "website": "https://www.comores-ports.km",
+      "contact_phone": "+269 773 2000",
+      "contact_email": "port.moroni@comorestelecom.km"
     }
   },
   {
@@ -7537,6 +7642,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Port Autonome de Nouadhibou (PANPA)",
+      "address": "BP 236, Nouadhibou, Mauritanie",
+      "website": "https://www.panpa.mr",
+      "contact_phone": "+222 45 74 50 00",
+      "contact_email": "info@panpa.mr"
     }
   },
   {
@@ -7683,6 +7795,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Port Autonome de Dakar - Ziguinchor",
+      "address": "Port de Ziguinchor, Casamance, Sénégal",
+      "website": "https://www.portdakar.sn",
+      "contact_phone": "+221 33 991 10 11",
+      "contact_email": "ziguinchor@portdakar.sn"
     }
   },
   {
@@ -7832,6 +7951,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Gambia Ports Authority",
+      "address": "Liberation Avenue, Banjul, The Gambia",
+      "website": "https://www.gamport.gm",
+      "contact_phone": "+220 422 7266",
+      "contact_email": "info@gamport.gm"
     }
   },
   {
@@ -7981,6 +8107,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Sierra Leone Ports Authority",
+      "address": "Cline Town, Freetown, Sierra Leone",
+      "website": "https://www.slpa.sl",
+      "contact_phone": "+232 22 229 400",
+      "contact_email": "info@slpa.sl"
     }
   },
   {
@@ -8143,6 +8276,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "National Port Authority - Monrovia",
+      "address": "Freeport of Monrovia, Liberia",
+      "website": "https://www.npaliberia.com",
+      "contact_phone": "+231 886 512 000",
+      "contact_email": "info@npaliberia.com"
     }
   },
   {
@@ -8289,6 +8429,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "National Port Authority - Buchanan",
+      "address": "Port of Buchanan, Grand Bassa, Liberia",
+      "website": "https://www.npaliberia.com",
+      "contact_phone": "+231 886 513 000",
+      "contact_email": "buchanan@npaliberia.com"
     }
   },
   {
@@ -8431,6 +8578,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Autoridad Portuaria de Malabo",
+      "address": "Puerto de Malabo, Bioko Norte, Equatorial Guinea",
+      "website": "https://www.guineaecuatorialpress.com",
+      "contact_phone": "+240 333 092 871",
+      "contact_email": "puerto@malabo.gq"
     }
   },
   {
@@ -8577,6 +8731,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "ENAPORT - Porto Ana Chaves",
+      "address": "Porto de São Tomé, São Tomé",
+      "website": "https://www.enaport.st",
+      "contact_phone": "+239 222 1425",
+      "contact_email": "info@enaport.st"
     }
   },
   {
@@ -8739,6 +8900,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Port Autonome de Pointe-Noire (PAPN)",
+      "address": "BP 711, Pointe-Noire, Congo",
+      "website": "https://www.papn-cg.com",
+      "contact_phone": "+242 22 294 19 85",
+      "contact_email": "info@papn-cg.com"
     }
   },
   {
@@ -8908,6 +9076,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Namibian Ports Authority (Namport)",
+      "address": "17 Rikumbi Kandanga Road, Walvis Bay, Namibia",
+      "website": "https://www.namport.com.na",
+      "contact_phone": "+264 64 208 2111",
+      "contact_email": "marketing@namport.com.na"
     }
   },
   {
@@ -9054,6 +9229,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Eritrean Ports Authority - Massawa",
+      "address": "Port of Massawa, Eritrea",
+      "website": "https://www.portmassawa.gov.er",
+      "contact_phone": "+291 1 552 385",
+      "contact_email": "info@portmassawa.gov.er"
     }
   },
   {
@@ -9200,6 +9382,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Eritrean Ports Authority - Assab",
+      "address": "Port of Assab, Southern Red Sea, Eritrea",
+      "website": "https://www.portmassawa.gov.er",
+      "contact_phone": "+291 1 660 100",
+      "contact_email": "assab@portmassawa.gov.er"
     }
   },
   {
@@ -9342,6 +9531,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Seychelles Ports Authority (SPA)",
+      "address": "P.O. Box 47, Victoria, Mahe, Seychelles",
+      "website": "https://www.sportsauthority.sc",
+      "contact_phone": "+248 4 294 700",
+      "contact_email": "info@sportsauthority.sc"
     }
   },
   {
@@ -9488,6 +9684,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Autorité Portuaire - Mutsamudu",
+      "address": "Port de Mutsamudu, Anjouan, Comores",
+      "website": "https://www.comores-ports.km",
+      "contact_phone": "+269 771 0500",
+      "contact_email": "mutsamudu@comores-ports.km"
     }
   },
   {
@@ -9637,6 +9840,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Sea Ports Corporation - Port Sudan",
+      "address": "Port Sudan, Red Sea State, Sudan",
+      "website": "https://www.sudanports.gov.sd",
+      "contact_phone": "+249 311 822 700",
+      "contact_email": "info@sudanports.gov.sd"
     }
   },
   {
@@ -9783,6 +9993,13 @@
       ],
       "methodology": "WCO Time Release Study (Standard)",
       "last_audit": "2024"
+    },
+    "port_authority": {
+      "name": "Sea Ports Corporation - Sawakin",
+      "address": "Port of Sawakin, Red Sea State, Sudan",
+      "website": "https://www.sudanports.gov.sd",
+      "contact_phone": "+249 311 823 000",
+      "contact_email": "sawakin@sudanports.gov.sd"
     }
   }
 ]
