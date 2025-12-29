@@ -106,39 +106,23 @@
       "contact_email": "contact@portalger.com.dz"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 7.2,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 25.9,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 77.6,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 43.1,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 25.9,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_trs_status": "NA"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -230,39 +214,23 @@
       "contact_email": "contact@port-oran.dz"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 6.7,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 24.2,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 72.6,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 40.3,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 24.2,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_trs_status": "NA"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -355,39 +323,23 @@
       "contact_email": "contact@portdebejaia.dz"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 6.6,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 23.8,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 71.3,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 39.6,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 23.8,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_trs_status": "NA"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -559,39 +511,23 @@
       "contact_email": "contact@marsamaroc.co.ma"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 6.5,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 23.4,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 70.3,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 39.1,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 23.4,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": 8.4,
+      "source": "Aujourd'hui le Maroc / ANP Maroc",
+      "data_year": 2023,
+      "methodology": "Port Authority Annual Report",
+      "publication_date": "2024-01",
+      "notes": "Import containers. Export: ~9 jours. Amélioration vs 14 jours en 2007.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": 2023,
+      "wco_trs_status": "NA"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -879,39 +815,20 @@
       "contact_email": "contact@tangermed.ma"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 3.1,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 11.0,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 33.1,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 18.4,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 11.0,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -999,39 +916,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 8.9,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 32.1,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 96.3,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 53.5,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 32.1,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Agence Nationale des Ports - Agadir",
@@ -1039,6 +932,11 @@
       "website": "https://www.anp.org.ma",
       "contact_phone": "+212 528 84 28 69",
       "contact_email": "agadir@anp.org.ma"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -1125,39 +1023,18 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 8.7,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 31.2,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 93.6,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 52.0,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 31.2,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_trs_status": "NA"
     },
     "port_authority": {
       "name": "Office de la Marine Marchande et des Ports (OMMP)",
@@ -1165,6 +1042,11 @@
       "website": "https://www.ommp.nat.tn",
       "contact_phone": "+216 71 448 200",
       "contact_email": "ommp@ommp.nat.tn"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -1250,39 +1132,18 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 7.3,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 26.2,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 78.5,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 43.6,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 26.2,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_trs_status": "NA"
     },
     "port_authority": {
       "name": "Office de la Marine Marchande - Port de Sfax",
@@ -1290,6 +1151,11 @@
       "website": "https://www.ommp.nat.tn",
       "contact_phone": "+216 74 296 800",
       "contact_email": "sfax@ommp.nat.tn"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -1397,39 +1263,23 @@
       "contact_email": "info@apa.gov.eg"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 6.6,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 23.8,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 71.3,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 39.6,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 23.8,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_trs_status": "NA"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -1711,39 +1561,20 @@
       "contact_email": "info@portsaid-port.com"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 2.7,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 9.6,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 28.8,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 16.0,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 9.6,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -1838,39 +1669,23 @@
       "contact_email": "info@dpa.gov.eg"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 6.6,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 23.9,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 71.6,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 39.8,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 23.9,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_trs_status": "NA"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -1960,39 +1775,23 @@
       "contact_email": "tripoli@lpclibya.com"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 18.5,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 66.7,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 200.2,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 111.2,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 66.7,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_trs_status": "NA"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -2075,39 +1874,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 8.3,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 29.8,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 89.5,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 49.7,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 29.8,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Libyan Ports Company - Benghazi",
@@ -2115,6 +1890,11 @@
       "website": "https://www.lpclibya.com",
       "contact_phone": "+218 61 909 1234",
       "contact_email": "benghazi@lpclibya.com"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -2224,39 +2004,20 @@
       "contact_email": "pad@portdakar.sn"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 8.6,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 30.9,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 92.8,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 51.6,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 30.9,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -2458,39 +2219,23 @@
       "contact_email": "paa@portabidjan.ci"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 6.6,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 23.6,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 70.8,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 39.3,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 23.6,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Second terminal conteneurs opérationnel depuis 2022 (Côte d'Ivoire Terminal). Dwell time non publié.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_trs_status": "NA"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -2576,39 +2321,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 6.3,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 22.5,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 67.6,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 37.6,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 22.5,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Port Autonome de San Pedro",
@@ -2616,6 +2337,11 @@
       "website": "https://www.sanpedro-portci.com",
       "contact_phone": "+225 27 34 71 72 00",
       "contact_email": "info@sanpedro-portci.com"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -2787,39 +2513,23 @@
       "contact_email": "info@ghanaports.gov.gh"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 8.5,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 30.5,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 91.6,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 50.9,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 30.5,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_trs_status": "NA"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -2905,39 +2615,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 8.1,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 29.3,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 87.8,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 48.8,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 29.3,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Ghana Ports and Harbours Authority - Takoradi",
@@ -2945,6 +2631,11 @@
       "website": "https://www.ghanaports.gov.gh",
       "contact_phone": "+233 312 022 741",
       "contact_email": "takoradi@ghanaports.gov.gh"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -3207,39 +2898,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 7.7,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 27.8,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 83.5,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 46.4,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 27.8,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Nigerian Ports Authority - Apapa",
@@ -3247,6 +2914,19 @@
       "website": "https://www.nigerianports.gov.ng",
       "contact_phone": "+234 1 271 8360",
       "contact_email": "apapa@nigerianports.gov.ng"
+    },
+    "lpi_2023": {
+      "overall_score": 2.6,
+      "customs_score": 2.4,
+      "timeliness_score": 3.1,
+      "world_rank": 88,
+      "source": "World Bank LPI 2023",
+      "year": 2023
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -3324,39 +3004,18 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 7.4,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 26.7,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 80.1,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 44.5,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 26.7,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "WCO - Time Release Study Launched",
+      "data_year": 2024,
+      "methodology": "WCO TRS (En cours)",
+      "publication_date": "2024-02",
+      "notes": "TRS lancée février 2024. Premier d'une série au Nigeria. Rapport attendu sous 6 mois.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_trs_status": "En cours"
     },
     "port_authority": {
       "name": "Nigerian Ports Authority - Tin Can Island",
@@ -3364,6 +3023,19 @@
       "website": "https://www.nigerianports.gov.ng",
       "contact_phone": "+234 1 587 0100",
       "contact_email": "tincan@nigerianports.gov.ng"
+    },
+    "lpi_2023": {
+      "overall_score": 2.6,
+      "customs_score": 2.4,
+      "timeliness_score": 3.1,
+      "world_rank": 88,
+      "source": "World Bank LPI 2023",
+      "year": 2023
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -3451,39 +3123,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 7.9,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 28.5,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 85.4,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 47.5,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 28.5,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Nigerian Ports Authority - Port Harcourt",
@@ -3491,6 +3139,19 @@
       "website": "https://www.nigerianports.gov.ng",
       "contact_phone": "+234 84 230 760",
       "contact_email": "portharcourt@nigerianports.gov.ng"
+    },
+    "lpi_2023": {
+      "overall_score": 2.6,
+      "customs_score": 2.4,
+      "timeliness_score": 3.1,
+      "world_rank": 88,
+      "source": "World Bank LPI 2023",
+      "year": 2023
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -3581,39 +3242,23 @@
       "contact_email": "pac@portcotonou.com"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 6.8,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 24.6,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 73.9,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 41.0,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 24.6,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_trs_status": "NA"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -3775,39 +3420,23 @@
       "contact_email": "info@togo-port.net"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 2.3,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 8.3,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 25.0,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 13.9,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 8.3,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_trs_status": "NA"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -3913,39 +3542,23 @@
       "contact_email": "info@pad.cm"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 11.2,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 40.4,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 121.1,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 67.3,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 40.4,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "Transit Fruits Eagle - Tarifs Surestaries 2024/2025",
+      "data_year": 2024,
+      "methodology": "Port Tariff Documentation",
+      "publication_date": "2024-12",
+      "notes": "Franchise 10 jours (incluant jour d'escale). Surestaries à partir J+11. Dwell time réel non publié.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_trs_status": "NA"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -4038,39 +3651,23 @@
       "contact_email": "info@pak.cm"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 3.6,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 12.9,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 38.7,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 21.5,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 12.9,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "LSCI +54% en 2024 (meilleure progression Afrique). Dwell time non publié.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_trs_status": "NA"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -4143,39 +3740,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 7.4,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 26.5,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 79.5,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 44.2,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 26.5,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Gabon Port Management - Owendo",
@@ -4183,6 +3756,11 @@
       "website": "https://www.gabonportmanagement.ga",
       "contact_phone": "+241 01 70 00 48",
       "contact_email": "owendo@gpm.ga"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -4269,39 +3847,23 @@
       "contact_email": "info@papn-cg.com"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 6.6,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 23.7,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 71.1,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 39.5,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 23.7,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_trs_status": "NA"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -4409,39 +3971,23 @@
       "contact_email": "info@portoluanda.co.ao"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 13.6,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 48.9,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 146.8,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 81.6,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 48.9,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_trs_status": "NA"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -4536,39 +4082,20 @@
       "contact_email": "info@portolobito.co.ao"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 6.9,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 24.9,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 74.8,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 41.6,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 24.9,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -4786,39 +4313,23 @@
       "contact_email": "info@kpa.co.ke"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 7.7,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 27.7,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 83.1,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 46.2,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 27.7,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": 3.5,
+      "source": "Kenya Ports Authority (KPA) Official Statistics",
+      "data_year": 2023,
+      "methodology": "KPA Annual Performance Report",
+      "publication_date": "2024-01",
+      "notes": "Moyenne annuelle 2023. Amélioration de 3.9 jours (2022). Avril 2024: 2.73 jours.",
+      "vessel_turnaround_hours": 64.1,
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": 335,
+      "cppi_year": 2023,
+      "wco_trs_status": "NA"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -4910,39 +4421,23 @@
       "contact_email": "dg@ports.go.tz"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 14.5,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 52.1,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 156.3,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 86.9,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 52.1,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "LSCI +50% depuis 2006. Améliorations clearance 2022. Dwell time officiel non publié.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_trs_status": "NA"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -5116,39 +4611,23 @@
       "contact_email": "info@dpfza.gov.dj"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 2.3,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 8.2,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 24.6,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 13.7,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 8.2,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_trs_status": "NA"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -5416,39 +4895,31 @@
       "contact_email": "durban@transnet.net"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 12.4,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 44.7,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 134.1,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 74.5,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 44.7,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": 2.7,
+      "source": "Transnet Port Terminals Official Report",
+      "data_year": 2024,
+      "methodology": "Transnet Performance Metrics",
+      "publication_date": "2024-Q4",
+      "notes": "Pier 1 Import containers. Amélioration significative vs 21 jours précédemment.",
+      "vessel_turnaround_hours": 83.2,
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": 2023,
+      "wco_trs_status": "NA"
+    },
+    "lpi_2023": {
+      "overall_score": 3.7,
+      "customs_score": 3.3,
+      "timeliness_score": 3.8,
+      "world_rank": 19,
+      "source": "World Bank LPI 2023",
+      "year": 2023
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -5540,39 +5011,31 @@
       "contact_email": "capetown@transnet.net"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 11.5,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 41.5,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 124.4,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 69.1,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 41.5,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Amélioration CPPI +237.9 points en 2024 vs 2023. Dwell time non publié.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": 405,
+      "cppi_year": 2023,
+      "wco_trs_status": "NA"
+    },
+    "lpi_2023": {
+      "overall_score": 3.7,
+      "customs_score": 3.3,
+      "timeliness_score": 3.8,
+      "world_rank": 19,
+      "source": "World Bank LPI 2023",
+      "year": 2023
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -5667,39 +5130,28 @@
       "contact_email": "portelizabeth@transnet.net"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 7.9,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 28.3,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 85.0,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 47.2,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 28.3,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
+    },
+    "lpi_2023": {
+      "overall_score": 3.7,
+      "customs_score": 3.3,
+      "timeliness_score": 3.8,
+      "world_rank": 19,
+      "source": "World Bank LPI 2023",
+      "year": 2023
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -5786,39 +5238,19 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 7.6,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 27.4,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 82.3,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 45.7,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 27.4,
-          "status": "Logistique"
-        }
-      ],
+      "container_dwell_time_days": "NA",
+      "source": "WCO / NAMRA Time Release Study Report",
+      "data_year": 2023,
       "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "publication_date": "2023-12-01",
+      "notes": "Étude TRS officielle WCO. Mesure de 'entry inwards' à 'out of charge'. Goulots identifiés: usage limité ASYCUDA World, inspections hors-port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_report_url": "https://www.namra.org.na/documents/cms/uploaded/time-release-study-report--1-december-2023-9de0a050c1.pdf",
+      "wco_trs_status": "Publiée"
     },
     "port_authority": {
       "name": "Namibian Ports Authority (Namport) - Walvis Bay",
@@ -5826,6 +5258,11 @@
       "website": "https://www.namport.com.na",
       "contact_phone": "+264 64 208 2111",
       "contact_email": "marketing@namport.com.na"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -5910,39 +5347,20 @@
       "contact_email": "info@portmaputo.com"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 7.6,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 27.2,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 81.7,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 45.4,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 27.2,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -6037,39 +5455,20 @@
       "contact_email": "info@cornelder.co.mz"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 10.8,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 38.8,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 116.4,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 64.7,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 38.8,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -6147,39 +5546,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 8.6,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 31.1,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 93.2,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 51.8,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 31.1,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Société du Port à Gestion Autonome de Toamasina (SPAT)",
@@ -6187,6 +5562,11 @@
       "website": "https://www.spat.mg",
       "contact_phone": "+261 20 53 323 52",
       "contact_email": "contact@spat.mg"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -6267,39 +5647,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 6.3,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 22.7,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 68.1,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 37.9,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 22.7,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Port Autonome de Nouakchott (Port de l'Amitié)",
@@ -6307,6 +5663,11 @@
       "website": "https://www.portamitie.mr",
       "contact_phone": "+222 45 25 40 11",
       "contact_email": "panpa@portamitie.mr"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -6387,39 +5748,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 7.4,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 26.5,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 79.5,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 44.2,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 26.5,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Port Autonome de Nouadhibou",
@@ -6427,6 +5764,11 @@
       "website": "https://www.panpa.mr",
       "contact_phone": "+222 45 74 50 00",
       "contact_email": "info@panpa.mr"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -6509,39 +5851,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 8.3,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 29.9,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 89.7,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 49.8,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 29.9,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Port Autonome de Conakry",
@@ -6549,6 +5867,11 @@
       "website": "https://www.portconakry.com",
       "contact_phone": "+224 622 35 38 69",
       "contact_email": "info@portconakry.com"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -6631,39 +5954,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 7.1,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 25.7,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 77.0,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 42.8,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 25.7,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "National Port Authority - Monrovia",
@@ -6671,6 +5970,11 @@
       "website": "https://www.npaliberia.com",
       "contact_phone": "+231 886 512 000",
       "contact_email": "info@npaliberia.com"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -6753,39 +6057,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 7.0,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 25.2,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 75.7,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 42.0,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 25.2,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Sierra Leone Ports Authority",
@@ -6793,6 +6073,11 @@
       "website": "https://www.slpa.sl",
       "contact_phone": "+232 22 229 400",
       "contact_email": "info@slpa.sl"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -6875,39 +6160,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 7.9,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 28.4,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 85.1,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 47.3,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 28.4,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Gambia Ports Authority",
@@ -6915,6 +6176,19 @@
       "website": "https://www.gamport.gm",
       "contact_phone": "+220 422 7266",
       "contact_email": "info@gamport.gm"
+    },
+    "lpi_2023": {
+      "overall_score": 2.3,
+      "customs_score": 1.8,
+      "timeliness_score": "NA",
+      "world_rank": 123,
+      "source": "World Bank LPI 2023",
+      "year": 2023
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -6995,39 +6269,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 6.2,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 22.3,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 67.0,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 37.2,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 22.3,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Eritrean Ports Authority - Massawa",
@@ -7035,6 +6285,11 @@
       "website": "https://www.portmassawa.gov.er",
       "contact_phone": "+291 1 552 385",
       "contact_email": "info@portmassawa.gov.er"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -7115,39 +6370,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 7.7,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 27.9,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 83.6,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 46.4,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 27.9,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Mogadishu Port Authority",
@@ -7155,6 +6386,11 @@
       "website": "https://www.portofmogadishu.so",
       "contact_phone": "+252 61 555 5555",
       "contact_email": "info@portofmogadishu.so"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -7235,39 +6471,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 7.2,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 25.9,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 77.6,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 43.1,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 25.9,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Bossaso Port Authority",
@@ -7275,6 +6487,11 @@
       "website": "https://www.bossasoport.com",
       "contact_phone": "+252 90 790 0000",
       "contact_email": "info@bossasoport.com"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -7362,39 +6579,20 @@
       "contact_email": "info@sudanports.gov.sd"
     },
     "trs_analysis": {
-      "total_dwell_time_days": 20.5,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 73.7,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 221.1,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 122.8,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 73.7,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -7474,39 +6672,18 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 5.3,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 19.0,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 56.9,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 31.6,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 19.0,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS WCO publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29",
+      "cppi_rank": "NA",
+      "cppi_year": "NA",
+      "wco_trs_status": "NA"
     },
     "port_authority": {
       "name": "Mauritius Ports Authority (MPA)",
@@ -7514,6 +6691,11 @@
       "website": "https://www.mauport.com",
       "contact_phone": "+230 206 5400",
       "contact_email": "mlouis@mauport.com"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -7598,39 +6780,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 8.8,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 31.8,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 95.3,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 53.0,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 31.8,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Seychelles Ports Authority (SPA)",
@@ -7638,6 +6796,11 @@
       "website": "https://www.sportsauthority.sc",
       "contact_phone": "+248 4 294 700",
       "contact_email": "info@sportsauthority.sc"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -7720,39 +6883,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 7.4,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 26.8,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 80.4,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 44.7,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 26.8,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Autorité Portuaire des Comores - Moroni",
@@ -7760,6 +6899,11 @@
       "website": "https://www.comores-ports.km",
       "contact_phone": "+269 773 2000",
       "contact_email": "port.moroni@comorestelecom.km"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -7878,39 +7022,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 7.1,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 25.4,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 76.1,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 42.3,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 25.4,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Port Autonome de Nouadhibou (PANPA)",
@@ -7918,6 +7038,11 @@
       "website": "https://www.panpa.mr",
       "contact_phone": "+222 45 74 50 00",
       "contact_email": "info@panpa.mr"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -8033,39 +7158,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 6.0,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 21.7,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 65.1,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 36.2,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 21.7,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Port Autonome de Dakar - Ziguinchor",
@@ -8073,6 +7174,11 @@
       "website": "https://www.portdakar.sn",
       "contact_phone": "+221 33 991 10 11",
       "contact_email": "ziguinchor@portdakar.sn"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -8191,39 +7297,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 7.9,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 28.6,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 85.8,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 47.7,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 28.6,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Gambia Ports Authority",
@@ -8231,6 +7313,19 @@
       "website": "https://www.gamport.gm",
       "contact_phone": "+220 422 7266",
       "contact_email": "info@gamport.gm"
+    },
+    "lpi_2023": {
+      "overall_score": 2.3,
+      "customs_score": 1.8,
+      "timeliness_score": "NA",
+      "world_rank": 123,
+      "source": "World Bank LPI 2023",
+      "year": 2023
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -8349,39 +7444,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 7.4,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 26.8,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 80.4,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 44.7,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 26.8,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Sierra Leone Ports Authority",
@@ -8389,6 +7460,11 @@
       "website": "https://www.slpa.sl",
       "contact_phone": "+232 22 229 400",
       "contact_email": "info@slpa.sl"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -8524,39 +7600,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 6.7,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 24.0,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 72.1,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 40.0,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 24.0,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "National Port Authority - Monrovia",
@@ -8564,6 +7616,11 @@
       "website": "https://www.npaliberia.com",
       "contact_phone": "+231 886 512 000",
       "contact_email": "info@npaliberia.com"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -8679,39 +7736,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 7.2,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 25.8,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 77.4,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 43.0,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 25.8,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "National Port Authority - Buchanan",
@@ -8719,6 +7752,11 @@
       "website": "https://www.npaliberia.com",
       "contact_phone": "+231 886 513 000",
       "contact_email": "buchanan@npaliberia.com"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -8830,39 +7868,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 6.9,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 24.7,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 74.0,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 41.1,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 24.7,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Autoridad Portuaria de Malabo",
@@ -8870,6 +7884,11 @@
       "website": "https://www.guineaecuatorialpress.com",
       "contact_phone": "+240 333 092 871",
       "contact_email": "puerto@malabo.gq"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -8985,39 +8004,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 7.3,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 26.1,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 78.4,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 43.5,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 26.1,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "ENAPORT - Porto Ana Chaves",
@@ -9025,6 +8020,11 @@
       "website": "https://www.enaport.st",
       "contact_phone": "+239 222 1425",
       "contact_email": "info@enaport.st"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -9160,39 +8160,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 6.1,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 22.1,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 66.4,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 36.9,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 22.1,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Port Autonome de Pointe-Noire (PAPN)",
@@ -9200,6 +8176,11 @@
       "website": "https://www.papn-cg.com",
       "contact_phone": "+242 22 294 19 85",
       "contact_email": "info@papn-cg.com"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -9342,39 +8323,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 8.1,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 29.2,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 87.6,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 48.7,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 29.2,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Namibian Ports Authority (Namport)",
@@ -9382,6 +8339,11 @@
       "website": "https://www.namport.com.na",
       "contact_phone": "+264 64 208 2111",
       "contact_email": "marketing@namport.com.na"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -9497,39 +8459,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 6.5,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 23.4,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 70.3,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 39.1,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 23.4,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Eritrean Ports Authority - Massawa",
@@ -9537,6 +8475,11 @@
       "website": "https://www.portmassawa.gov.er",
       "contact_phone": "+291 1 552 385",
       "contact_email": "info@portmassawa.gov.er"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -9654,39 +8597,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 6.8,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 24.4,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 73.1,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 40.6,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 24.4,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Eritrean Ports Authority - Assab",
@@ -9694,6 +8613,11 @@
       "website": "https://www.portmassawa.gov.er",
       "contact_phone": "+291 1 660 100",
       "contact_email": "assab@portmassawa.gov.er"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -9805,39 +8729,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 7.9,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 28.3,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 85.0,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 47.2,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 28.3,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Seychelles Ports Authority (SPA)",
@@ -9845,6 +8745,11 @@
       "website": "https://www.sportsauthority.sc",
       "contact_phone": "+248 4 294 700",
       "contact_email": "info@sportsauthority.sc"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -9960,39 +8865,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 6.3,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 22.8,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 68.3,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 37.9,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 22.8,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Autorité Portuaire - Mutsamudu",
@@ -10000,6 +8881,11 @@
       "website": "https://www.comores-ports.km",
       "contact_phone": "+269 771 0500",
       "contact_email": "mutsamudu@comores-ports.km"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -10118,39 +9004,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 8.4,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 30.1,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 90.2,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 50.1,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 30.1,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Sea Ports Corporation - Port Sudan",
@@ -10158,6 +9020,11 @@
       "website": "https://www.sudanports.gov.sd",
       "contact_phone": "+249 311 822 700",
       "contact_email": "info@sudanports.gov.sd"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   },
   {
@@ -10273,39 +9140,15 @@
       }
     ],
     "trs_analysis": {
-      "total_dwell_time_days": 6.1,
-      "steps": [
-        {
-          "step_id": 1,
-          "label": "Arrivée & Déchargement",
-          "description": "Accostage, déchargement et mise sur parc",
-          "duration_hours": 21.9,
-          "status": "Opérationnel"
-        },
-        {
-          "step_id": 2,
-          "label": "Procédures Douanières",
-          "description": "Enregistrement déclaration et évaluation",
-          "duration_hours": 65.6,
-          "status": "Administratif"
-        },
-        {
-          "step_id": 3,
-          "label": "Inspection & Contrôle",
-          "description": "Scanner, visite physique et conformité",
-          "duration_hours": 36.5,
-          "status": "Réglementaire"
-        },
-        {
-          "step_id": 4,
-          "label": "Mainlevée & Sortie",
-          "description": "Paiement droits et Gate Out",
-          "duration_hours": 21.9,
-          "status": "Logistique"
-        }
-      ],
-      "methodology": "WCO Time Release Study (Standard)",
-      "last_audit": "2024"
+      "container_dwell_time_days": "NA",
+      "source": "NA",
+      "data_year": "NA",
+      "methodology": "NA",
+      "publication_date": "NA",
+      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "vessel_turnaround_hours": "NA",
+      "customs_clearance_hours": "NA",
+      "last_updated": "2025-12-29"
     },
     "port_authority": {
       "name": "Sea Ports Corporation - Sawakin",
@@ -10313,6 +9156,11 @@
       "website": "https://www.sudanports.gov.sd",
       "contact_phone": "+249 311 823 000",
       "contact_email": "sawakin@sudanports.gov.sd"
+    },
+    "global_benchmarks": {
+      "africa_avg_dwell_days_2023": 2.6,
+      "global_median_dwell_days_h2_2023": 1.1,
+      "source": "UNCTAD Review of Maritime Transport 2024"
     }
   }
 ]
