@@ -1244,6 +1244,27 @@ async def get_airports(country_iso: Optional[str] = None):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error loading airports data: {str(e)}")
 
+# ==========================================
+# FREE ZONES ENDPOINTS
+# ==========================================
+
+@api_router.get("/logistics/free-zones")
+async def get_free_zones(country_iso: Optional[str] = None):
+    """
+    Get African Free Trade Zones (Zones Franches)
+    Query params:
+    - country_iso: Filter by country (e.g., MAR, DZA, EGY)
+    """
+    try:
+        zones = get_free_zones_by_country(country_iso)
+        return {
+            "count": len(zones),
+            "zones": zones
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error loading free zones data: {str(e)}")
+
+
 @api_router.get("/logistics/air/airports/{airport_id}")
 async def get_airport_details(airport_id: str):
     """
