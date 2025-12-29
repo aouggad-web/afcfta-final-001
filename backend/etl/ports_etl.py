@@ -97,9 +97,9 @@ class PortsETL:
     
     def update_trs_data(self):
         """
-        Met à jour les données TRS (Time Release Study) avec les données officielles.
+        Met à jour les données TRS (Time Release Study) avec les données officielles et fiables.
         
-        RÈGLE: Aucune estimation. Si pas de données officielles → "NA"
+        RÈGLE: Données officielles prioritaires. Sources fiables avec avertissement si non-officielles.
         """
         logger.info("🚀 Mise à jour des données TRS...")
         updated_count = 0
@@ -108,46 +108,39 @@ class PortsETL:
         for port in self.ports:
             port_id = port.get('port_id')
             
-            # Récupérer les données TRS officielles
+            # Récupérer les données TRS
             trs_data = TRS_OFFICIAL_DATA.get(port_id)
             
             # Construire la nouvelle structure TRS
             new_trs = {
                 "container_dwell_time_days": "NA",
                 "source": "NA",
+                "source_type": "NO_DATA",
+                "source_reliability_level": 99,
                 "data_year": "NA",
                 "methodology": "NA",
                 "publication_date": "NA",
-                "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+                "notes": "Aucune étude TRS (Time Release Study) disponible pour ce port.",
                 "vessel_turnaround_hours": "NA",
                 "customs_clearance_hours": "NA",
+                "warning": None,
                 "last_updated": datetime.now(timezone.utc).strftime("%Y-%m-%d")
             }
             
             if trs_data:
-                # Mettre à jour avec les données officielles
-                for key in ['container_dwell_time_days', 'source', 'data_year', 
-                           'methodology', 'publication_date', 'notes',
-                           'vessel_turnaround_hours', 'customs_clearance_hours']:
-                    if key in trs_data:
-                        new_trs[key] = trs_data[key]
+                # Mettre à jour avec les données disponibles
+                for key in trs_data.keys():
+                    new_trs[key] = trs_data[key]
                 
-                # Ajouter les données CPPI si disponibles
-                if 'cppi_rank' in trs_data:
-                    new_trs['cppi_rank'] = trs_data['cppi_rank']
-                    new_trs['cppi_year'] = trs_data.get('cppi_year', 'NA')
+                # Ajouter les informations de fiabilité
+                from .trs_official_data import get_source_reliability
+                source_info = get_source_reliability(trs_data.get('source_type', 'NO_DATA'))
+                new_trs['source_reliability_level'] = source_info['level']
+                new_trs['source_reliability_label'] = source_info['label']
                 
-                # Ajouter URL rapport WCO si disponible
-                if trs_data.get('wco_report_url'):
-                    new_trs['wco_report_url'] = trs_data['wco_report_url']
-                
-                # Indiquer si TRS en cours
-                if trs_data.get('wco_trs_in_progress'):
-                    new_trs['wco_trs_status'] = "En cours"
-                elif trs_data.get('wco_trs_published'):
-                    new_trs['wco_trs_status'] = "Publiée"
-                else:
-                    new_trs['wco_trs_status'] = "NA"
+                # Avertissement de la source si non-officielle
+                if source_info.get('warning') and not new_trs.get('warning'):
+                    new_trs['warning'] = source_info['warning']
                 
                 if new_trs['container_dwell_time_days'] != "NA":
                     updated_count += 1
@@ -173,8 +166,8 @@ class PortsETL:
             if 'wco_trs_modeled' in port:
                 del port['wco_trs_modeled']
         
-        logger.info(f"✅ TRS mis à jour: {updated_count} ports avec données officielles")
-        logger.info(f"⚠️ TRS = NA: {na_count} ports sans données officielles")
+        logger.info(f"✅ TRS mis à jour: {updated_count} ports avec données")
+        logger.info(f"⚠️ TRS = NA: {na_count} ports sans données")
         
         return updated_count, na_count
     
