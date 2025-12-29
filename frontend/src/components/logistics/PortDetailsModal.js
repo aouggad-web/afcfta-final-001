@@ -219,7 +219,7 @@ function PortDetailsModal({ isOpen, onClose, port }) {
           {/* ONGLET PERFORMANCE & TRS */}
           <TabsContent value="performance" className="space-y-6 mt-6">
             
-            {/* WCO TRS SECTION - DONNÉES OFFICIELLES */}
+            {/* WCO TRS SECTION - DONNÉES MULTI-SOURCES */}
             <Card className="border-t-4 border-t-purple-600 shadow-md">
               <CardHeader className="bg-purple-50">
                 <div className="flex justify-between items-start">
@@ -228,12 +228,21 @@ function PortDetailsModal({ isOpen, onClose, port }) {
                       ⏱️ Temps de Séjour Conteneur (Dwell Time)
                     </CardTitle>
                     <CardDescription>
-                      Données officielles - Étude TRS (Time Release Study) WCO
+                      {trs?.source_reliability_label ? (
+                        <span className="flex items-center gap-2">
+                          Source: <Badge variant="outline" className={
+                            trs.source_reliability_level === 1 ? "bg-green-100 text-green-800" :
+                            trs.source_reliability_level === 2 ? "bg-blue-100 text-blue-800" :
+                            trs.source_reliability_level === 3 ? "bg-yellow-100 text-yellow-800" :
+                            "bg-gray-100 text-gray-600"
+                          }>{trs.source_reliability_label}</Badge>
+                        </span>
+                      ) : "Données TRS (Time Release Study)"}
                     </CardDescription>
                   </div>
                   {trs?.container_dwell_time_days && trs.container_dwell_time_days !== "NA" ? (
                     <Badge className="bg-purple-600 text-white text-lg px-4 py-2">
-                      {trs.container_dwell_time_days} Jours
+                      {typeof trs.container_dwell_time_days === 'number' ? `${trs.container_dwell_time_days} Jours` : trs.container_dwell_time_days}
                     </Badge>
                   ) : (
                     <Badge className="bg-gray-400 text-white text-lg px-4 py-2">
@@ -245,11 +254,20 @@ function PortDetailsModal({ isOpen, onClose, port }) {
               <CardContent className="pt-6">
                 {trs?.container_dwell_time_days && trs.container_dwell_time_days !== "NA" ? (
                   <div className="space-y-4">
+                    {/* Avertissement si source non-officielle */}
+                    {trs.warning && (
+                      <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm text-amber-800">
+                        {trs.warning}
+                      </div>
+                    )}
+                    
                     {/* Données disponibles */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       <div className="bg-purple-50 p-4 rounded-lg text-center">
                         <p className="text-xs font-semibold text-purple-600">Dwell Time</p>
-                        <p className="text-2xl font-bold text-purple-800">{trs.container_dwell_time_days}</p>
+                        <p className="text-2xl font-bold text-purple-800">
+                          {typeof trs.container_dwell_time_days === 'number' ? trs.container_dwell_time_days : trs.container_dwell_time_days}
+                        </p>
                         <p className="text-xs text-purple-500">jours</p>
                       </div>
                       {trs.vessel_turnaround_hours && trs.vessel_turnaround_hours !== "NA" && (
@@ -269,7 +287,7 @@ function PortDetailsModal({ isOpen, onClose, port }) {
                       <div className="bg-orange-50 p-4 rounded-lg text-center">
                         <p className="text-xs font-semibold text-orange-600">Année Données</p>
                         <p className="text-2xl font-bold text-orange-800">{trs.data_year}</p>
-                        <p className="text-xs text-orange-500">officiel</p>
+                        <p className="text-xs text-orange-500">{trs.source_reliability_label || ''}</p>
                       </div>
                     </div>
                     
@@ -290,6 +308,16 @@ function PortDetailsModal({ isOpen, onClose, port }) {
                           <p className="text-xs text-gray-500">💡 {trs.notes}</p>
                         </div>
                       )}
+                      {trs.source_url && (
+                        <a 
+                          href={trs.source_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-3 inline-flex items-center gap-2 text-sm text-purple-600 hover:text-purple-800"
+                        >
+                          📄 Voir le rapport source
+                        </a>
+                      )}
                       {trs.wco_report_url && (
                         <a 
                           href={trs.wco_report_url}
@@ -297,7 +325,7 @@ function PortDetailsModal({ isOpen, onClose, port }) {
                           rel="noopener noreferrer"
                           className="mt-3 inline-flex items-center gap-2 text-sm text-purple-600 hover:text-purple-800"
                         >
-                          📄 Voir le rapport TRS officiel
+                          📄 Voir le rapport TRS officiel WCO
                         </a>
                       )}
                     </div>
@@ -307,36 +335,47 @@ function PortDetailsModal({ isOpen, onClose, port }) {
                     <div className="text-6xl mb-4">📊</div>
                     <h3 className="text-lg font-semibold text-gray-700 mb-2">Données TRS Non Disponibles</h3>
                     <p className="text-sm text-gray-500 max-w-md mx-auto mb-4">
-                      Aucune étude officielle TRS (Time Release Study) de l'Organisation Mondiale des Douanes (WCO) 
-                      n'a été publiée pour ce port.
+                      Aucune étude TRS (Time Release Study) n'a été publiée pour ce port.
                     </p>
-                    {trs?.wco_trs_status === "En cours" && (
+                    {trs?.wco_trs_in_progress && (
                       <Badge className="bg-yellow-100 text-yellow-800 border border-yellow-300">
-                        ⏳ Étude TRS en cours
+                        ⏳ Étude TRS WCO en cours
                       </Badge>
                     )}
-                    {trs?.notes && trs.notes !== "Aucune étude TRS (Time Release Study) officielle publiée pour ce port." && (
+                    {trs?.notes && trs.notes !== "Aucune étude TRS (Time Release Study) disponible pour ce port." && (
                       <p className="text-xs text-gray-400 mt-4">{trs.notes}</p>
                     )}
                     
                     {/* Benchmarks de comparaison */}
                     {port.global_benchmarks && (
                       <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200 text-left">
-                        <p className="text-sm font-semibold text-blue-800 mb-2">📈 Benchmarks de référence (UNCTAD 2023)</p>
+                        <p className="text-sm font-semibold text-blue-800 mb-2">📈 Benchmarks de référence</p>
                         <div className="grid grid-cols-2 gap-4 text-sm">
                           <div>
                             <p className="text-blue-600">Moyenne Afrique:</p>
-                            <p className="font-bold text-blue-800">{port.global_benchmarks.africa_avg_dwell_days_2023} jours</p>
+                            <p className="font-bold text-blue-800">{port.global_benchmarks.africa_avg_dwell_days} jours</p>
+                            <p className="text-xs text-blue-500">{port.global_benchmarks.africa_avg_source}</p>
                           </div>
                           <div>
                             <p className="text-blue-600">Médiane Mondiale:</p>
                             <p className="font-bold text-blue-800">{port.global_benchmarks.global_median_dwell_days_h2_2023} jour</p>
+                            <p className="text-xs text-blue-500">UNCTAD H2 2023</p>
                           </div>
                         </div>
+                        <p className="text-xs text-blue-400 mt-2 italic">{port.global_benchmarks.africa_avg_note}</p>
                       </div>
                     )}
                   </div>
                 )}
+                
+                {/* Note sur la couverture TRS en petit caractère */}
+                <div className="mt-6 pt-4 border-t border-gray-200">
+                  <p className="text-xs text-gray-400 italic leading-relaxed">
+                    📊 <strong>Note sur la couverture TRS:</strong> La couverture des données TRS officielles pour les ports africains est limitée (~15-20% des ports majeurs). 
+                    Cela reflète la réalité: peu d'études TRS WCO ont été conduites pour l'Afrique, et les autorités portuaires ne publient pas systématiquement leurs données de performance.
+                    Sources: Études TRS WCO officielles, TRS nationales (ex: Egypt Customs), Autorités portuaires (KPA, Transnet, PAA), World Bank CPPI.
+                  </p>
+                </div>
               </CardContent>
             </Card>
 
