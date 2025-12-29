@@ -202,7 +202,9 @@ class PortsETL:
         """
         for port in self.ports:
             port['global_benchmarks'] = {
-                "africa_avg_dwell_days_2023": GLOBAL_BENCHMARKS['container_dwell_time_days_africa_avg_2023'],
+                "africa_avg_dwell_days": GLOBAL_BENCHMARKS['container_dwell_time_days_africa_avg'],
+                "africa_avg_source": GLOBAL_BENCHMARKS['container_dwell_time_days_africa_avg_source'],
+                "africa_avg_note": GLOBAL_BENCHMARKS['container_dwell_time_days_afdb_note'],
                 "global_median_dwell_days_h2_2023": GLOBAL_BENCHMARKS['container_dwell_time_days_global_median_h2_2023'],
                 "source": GLOBAL_BENCHMARKS['source']
             }
