@@ -39,6 +39,7 @@ from logistics_air_data import (
     search_airports
 )
 from projects_data import get_country_ongoing_projects
+from free_zones_data import load_free_zones, get_free_zones_by_country
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
