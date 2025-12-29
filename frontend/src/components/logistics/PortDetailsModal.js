@@ -408,16 +408,32 @@ function PortDetailsModal({ isOpen, onClose, port }) {
                               </div>
                             )}
                             
-                            <div className="flex gap-3 mt-3">
-                              {agent.website && (
-                                <a href={agent.website} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 hover:underline flex items-center gap-1">
+                            <div className="flex flex-wrap gap-3 mt-3">
+                              {agent.website && agent.website !== 'Non disponible' && agent.website !== 'N/A' && (
+                                <a 
+                                  href={agent.website.startsWith('http') ? agent.website : `https://${agent.website}`}
+                                  target="_blank" 
+                                  rel="noopener noreferrer" 
+                                  className="text-xs text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1 bg-blue-50 px-2 py-1 rounded"
+                                >
                                   🌐 Site Web
                                 </a>
                               )}
-                              {agent.contact && (
-                                <span className="text-xs text-green-600 flex items-center gap-1">
+                              {agent.contact && agent.contact !== 'N/A' && (
+                                <a 
+                                  href={`tel:${agent.contact.replace(/\s/g, '')}`}
+                                  className="text-xs text-green-600 hover:text-green-800 flex items-center gap-1 bg-green-50 px-2 py-1 rounded"
+                                >
                                   📞 {agent.contact}
-                                </span>
+                                </a>
+                              )}
+                              {agent.email && (
+                                <a 
+                                  href={`mailto:${agent.email}`}
+                                  className="text-xs text-orange-600 hover:text-orange-800 flex items-center gap-1 bg-orange-50 px-2 py-1 rounded"
+                                >
+                                  ✉️ Email
+                                </a>
                               )}
                             </div>
                           </div>
