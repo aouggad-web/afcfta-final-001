@@ -89,10 +89,31 @@ export default function FreeZonesTab() {
                   <SelectItem value="MAR">🇲🇦 Maroc</SelectItem>
                   <SelectItem value="DZA">🇩🇿 Algérie</SelectItem>
                   <SelectItem value="EGY">🇪🇬 Égypte</SelectItem>
+                  <SelectItem value="TUN">🇹🇳 Tunisie</SelectItem>
                   <SelectItem value="NGA">🇳🇬 Nigéria</SelectItem>
-                  <SelectItem value="DJI">🇩🇯 Djibouti</SelectItem>
-                  <SelectItem value="GAB">🇬🇦 Gabon</SelectItem>
+                  <SelectItem value="GHA">🇬🇭 Ghana</SelectItem>
+                  <SelectItem value="CIV">🇨🇮 Côte d'Ivoire</SelectItem>
                   <SelectItem value="SEN">🇸🇳 Sénégal</SelectItem>
+                  <SelectItem value="BEN">🇧🇯 Bénin</SelectItem>
+                  <SelectItem value="TGO">🇹🇬 Togo</SelectItem>
+                  <SelectItem value="CMR">🇨🇲 Cameroun</SelectItem>
+                  <SelectItem value="GAB">🇬🇦 Gabon</SelectItem>
+                  <SelectItem value="COD">🇨🇩 RD Congo</SelectItem>
+                  <SelectItem value="AGO">🇦🇴 Angola</SelectItem>
+                  <SelectItem value="ZAF">🇿🇦 Afrique du Sud</SelectItem>
+                  <SelectItem value="KEN">🇰🇪 Kenya</SelectItem>
+                  <SelectItem value="ETH">🇪🇹 Éthiopie</SelectItem>
+                  <SelectItem value="TZA">🇹🇿 Tanzanie</SelectItem>
+                  <SelectItem value="UGA">🇺🇬 Ouganda</SelectItem>
+                  <SelectItem value="RWA">🇷🇼 Rwanda</SelectItem>
+                  <SelectItem value="MOZ">🇲🇿 Mozambique</SelectItem>
+                  <SelectItem value="ZMB">🇿🇲 Zambie</SelectItem>
+                  <SelectItem value="MWI">🇲🇼 Malawi</SelectItem>
+                  <SelectItem value="NAM">🇳🇦 Namibie</SelectItem>
+                  <SelectItem value="BWA">🇧🇼 Botswana</SelectItem>
+                  <SelectItem value="DJI">🇩🇯 Djibouti</SelectItem>
+                  <SelectItem value="MUS">🇲🇺 Maurice</SelectItem>
+                  <SelectItem value="MDG">🇲🇬 Madagascar</SelectItem>
                 </SelectContent>
               </Select>
             </div>
