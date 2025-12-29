@@ -2265,6 +2265,537 @@ class ZLECAfAPITester:
                 {'error': str(e)}
             )
     
+    # ==========================================
+    # TESTS MARITIME LOGISTICS CONTACTS UPDATE
+    # ==========================================
+    
+    def test_maritime_ports_list(self):
+        """Test GET /api/logistics/ports - Liste complète des 68 ports avec contacts"""
+        try:
+            response = self.session.get(f"{self.base_url}/logistics/ports", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Vérifier la structure de base
+                if 'count' not in data or 'ports' not in data:
+                    self.log_result(
+                        "Maritime Ports List", 
+                        False, 
+                        "Structure de réponse incorrecte - manque 'count' ou 'ports'",
+                        {'response_keys': list(data.keys())}
+                    )
+                    return
+                
+                ports = data['ports']
+                port_count = data['count']
+                
+                # Vérifier le nombre de ports (68 attendus)
+                if port_count != 68:
+                    self.log_result(
+                        "Maritime Ports List", 
+                        False, 
+                        f"Nombre de ports incorrect: {port_count} au lieu de 68",
+                        {'actual_count': port_count}
+                    )
+                    return
+                
+                if len(ports) != 68:
+                    self.log_result(
+                        "Maritime Ports List", 
+                        False, 
+                        f"Longueur de la liste incorrecte: {len(ports)} au lieu de 68",
+                        {'actual_length': len(ports)}
+                    )
+                    return
+                
+                # Vérifier la structure des ports
+                sample_port = ports[0]
+                required_fields = ['port_id', 'port_name', 'country_iso', 'country_name', 'port_authority']
+                missing_fields = [field for field in required_fields if field not in sample_port]
+                
+                if missing_fields:
+                    self.log_result(
+                        "Maritime Ports List", 
+                        False, 
+                        f"Champs manquants dans les ports: {missing_fields}",
+                        {'sample_port_keys': list(sample_port.keys())}
+                    )
+                    return
+                
+                # Vérifier la structure port_authority
+                port_authority = sample_port['port_authority']
+                required_authority_fields = ['name', 'address', 'website', 'contact_phone', 'contact_email']
+                missing_authority_fields = [field for field in required_authority_fields if field not in port_authority]
+                
+                if missing_authority_fields:
+                    self.log_result(
+                        "Maritime Ports List", 
+                        False, 
+                        f"Champs manquants dans port_authority: {missing_authority_fields}",
+                        {'port_authority': port_authority}
+                    )
+                    return
+                
+                # Vérifier les formats des données
+                website = port_authority['website']
+                phone = port_authority['contact_phone']
+                
+                # Vérifier que les URLs commencent par https://
+                if not website.startswith('https://'):
+                    self.log_result(
+                        "Maritime Ports List", 
+                        False, 
+                        f"URL du site web ne commence pas par https://: {website}",
+                        {'website': website}
+                    )
+                    return
+                
+                # Vérifier le format international du téléphone
+                if not phone.startswith('+'):
+                    self.log_result(
+                        "Maritime Ports List", 
+                        False, 
+                        f"Numéro de téléphone pas en format international: {phone}",
+                        {'phone': phone}
+                    )
+                    return
+                
+                self.log_result(
+                    "Maritime Ports List", 
+                    True, 
+                    f"Liste des 68 ports validée avec contacts complets",
+                    {
+                        'total_ports': port_count,
+                        'sample_port': sample_port['port_name'],
+                        'sample_authority': port_authority['name'],
+                        'sample_website': website,
+                        'sample_phone': phone
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "Maritime Ports List", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "Maritime Ports List", 
+                False, 
+                f"Erreur lors de la récupération des ports: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_specific_port_data_alger(self):
+        """Test des données spécifiques du Port d'Alger"""
+        try:
+            # Chercher le port d'Alger
+            response = self.session.get(f"{self.base_url}/logistics/ports?country_iso=DZA", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                ports = data['ports']
+                
+                # Trouver le Port d'Alger
+                alger_port = None
+                for port in ports:
+                    if 'Alger' in port['port_name']:
+                        alger_port = port
+                        break
+                
+                if not alger_port:
+                    self.log_result(
+                        "Port d'Alger Specific Data", 
+                        False, 
+                        "Port d'Alger non trouvé dans la liste",
+                        {'available_ports': [p['port_name'] for p in ports]}
+                    )
+                    return
+                
+                # Vérifier les données spécifiques
+                authority = alger_port['port_authority']
+                expected_phone = "+213 21 42 34 48"
+                
+                if authority['contact_phone'] != expected_phone:
+                    self.log_result(
+                        "Port d'Alger Specific Data", 
+                        False, 
+                        f"Téléphone incorrect: {authority['contact_phone']} au lieu de {expected_phone}",
+                        {'actual_phone': authority['contact_phone'], 'expected_phone': expected_phone}
+                    )
+                    return
+                
+                # Vérifier le nom de l'autorité
+                expected_authority_name = "Entreprise Portuaire d'Alger (EPAL)"
+                if expected_authority_name not in authority['name']:
+                    self.log_result(
+                        "Port d'Alger Specific Data", 
+                        False, 
+                        f"Nom de l'autorité incorrect: {authority['name']}",
+                        {'actual_name': authority['name'], 'expected_contains': expected_authority_name}
+                    )
+                    return
+                
+                self.log_result(
+                    "Port d'Alger Specific Data", 
+                    True, 
+                    f"Données spécifiques du Port d'Alger validées",
+                    {
+                        'port_name': alger_port['port_name'],
+                        'authority_name': authority['name'],
+                        'phone': authority['contact_phone'],
+                        'website': authority['website'],
+                        'email': authority['contact_email']
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "Port d'Alger Specific Data", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "Port d'Alger Specific Data", 
+                False, 
+                f"Erreur lors de la vérification du Port d'Alger: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_specific_port_data_tanger_med(self):
+        """Test des données spécifiques du Port de Tanger Med"""
+        try:
+            # Chercher le port de Tanger Med
+            response = self.session.get(f"{self.base_url}/logistics/ports?country_iso=MAR", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                ports = data['ports']
+                
+                # Trouver le Port de Tanger Med
+                tanger_port = None
+                for port in ports:
+                    if 'Tanger Med' in port['port_name']:
+                        tanger_port = port
+                        break
+                
+                if not tanger_port:
+                    self.log_result(
+                        "Port de Tanger Med Specific Data", 
+                        False, 
+                        "Port de Tanger Med non trouvé dans la liste",
+                        {'available_ports': [p['port_name'] for p in ports]}
+                    )
+                    return
+                
+                # Vérifier les données spécifiques
+                authority = tanger_port['port_authority']
+                expected_website = "https://www.tangermed.ma"
+                
+                if authority['website'] != expected_website:
+                    self.log_result(
+                        "Port de Tanger Med Specific Data", 
+                        False, 
+                        f"Site web incorrect: {authority['website']} au lieu de {expected_website}",
+                        {'actual_website': authority['website'], 'expected_website': expected_website}
+                    )
+                    return
+                
+                self.log_result(
+                    "Port de Tanger Med Specific Data", 
+                    True, 
+                    f"Données spécifiques du Port de Tanger Med validées",
+                    {
+                        'port_name': tanger_port['port_name'],
+                        'authority_name': authority['name'],
+                        'website': authority['website'],
+                        'phone': authority['contact_phone'],
+                        'email': authority['contact_email']
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "Port de Tanger Med Specific Data", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "Port de Tanger Med Specific Data", 
+                False, 
+                f"Erreur lors de la vérification du Port de Tanger Med: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_specific_port_data_dakar(self):
+        """Test des données spécifiques du Port de Dakar"""
+        try:
+            # Chercher le port de Dakar
+            response = self.session.get(f"{self.base_url}/logistics/ports?country_iso=SEN", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                ports = data['ports']
+                
+                # Trouver le Port de Dakar
+                dakar_port = None
+                for port in ports:
+                    if 'Dakar' in port['port_name']:
+                        dakar_port = port
+                        break
+                
+                if not dakar_port:
+                    self.log_result(
+                        "Port de Dakar Specific Data", 
+                        False, 
+                        "Port de Dakar non trouvé dans la liste",
+                        {'available_ports': [p['port_name'] for p in ports]}
+                    )
+                    return
+                
+                # Vérifier les données spécifiques
+                authority = dakar_port['port_authority']
+                expected_authority_contains = "Port Autonome de Dakar"
+                
+                if expected_authority_contains not in authority['name']:
+                    self.log_result(
+                        "Port de Dakar Specific Data", 
+                        False, 
+                        f"Nom de l'autorité ne contient pas '{expected_authority_contains}': {authority['name']}",
+                        {'actual_name': authority['name'], 'expected_contains': expected_authority_contains}
+                    )
+                    return
+                
+                self.log_result(
+                    "Port de Dakar Specific Data", 
+                    True, 
+                    f"Données spécifiques du Port de Dakar validées",
+                    {
+                        'port_name': dakar_port['port_name'],
+                        'authority_name': authority['name'],
+                        'website': authority['website'],
+                        'phone': authority['contact_phone'],
+                        'email': authority['contact_email']
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "Port de Dakar Specific Data", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "Port de Dakar Specific Data", 
+                False, 
+                f"Erreur lors de la vérification du Port de Dakar: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_shipping_agents_contacts(self):
+        """Test des contacts des agents de transport maritime (158 agents)"""
+        try:
+            # Récupérer tous les ports
+            response = self.session.get(f"{self.base_url}/logistics/ports", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                ports = data['ports']
+                
+                total_agents = 0
+                agents_with_website = 0
+                agents_with_phone = 0
+                agents_with_email = 0
+                
+                # Parcourir tous les ports et compter les agents
+                for port in ports:
+                    if 'agents' in port:
+                        port_agents = port['agents']
+                        total_agents += len(port_agents)
+                        
+                        for agent in port_agents:
+                            # Vérifier les contacts des agents
+                            if 'website' in agent and agent['website'] and agent['website'] != "Non disponible":
+                                agents_with_website += 1
+                            
+                            if 'contact' in agent and agent['contact']:
+                                agents_with_phone += 1
+                            
+                            if 'email' in agent and agent['email']:
+                                agents_with_email += 1
+                
+                # Vérifier le nombre total d'agents (158 attendus)
+                if total_agents != 158:
+                    self.log_result(
+                        "Shipping Agents Contacts", 
+                        False, 
+                        f"Nombre total d'agents incorrect: {total_agents} au lieu de 158",
+                        {'actual_agents': total_agents}
+                    )
+                    return
+                
+                # Vérifier que la majorité des agents ont des contacts
+                website_percentage = (agents_with_website / total_agents) * 100
+                phone_percentage = (agents_with_phone / total_agents) * 100
+                email_percentage = (agents_with_email / total_agents) * 100
+                
+                if website_percentage < 50:  # Au moins 50% doivent avoir un site web
+                    self.log_result(
+                        "Shipping Agents Contacts", 
+                        False, 
+                        f"Trop peu d'agents avec site web: {website_percentage:.1f}% ({agents_with_website}/{total_agents})",
+                        {'website_percentage': website_percentage}
+                    )
+                    return
+                
+                if phone_percentage < 60:  # Au moins 60% doivent avoir un téléphone
+                    self.log_result(
+                        "Shipping Agents Contacts", 
+                        False, 
+                        f"Trop peu d'agents avec téléphone: {phone_percentage:.1f}% ({agents_with_phone}/{total_agents})",
+                        {'phone_percentage': phone_percentage}
+                    )
+                    return
+                
+                self.log_result(
+                    "Shipping Agents Contacts", 
+                    True, 
+                    f"158 agents de transport validés avec contacts mis à jour",
+                    {
+                        'total_agents': total_agents,
+                        'agents_with_website': agents_with_website,
+                        'agents_with_phone': agents_with_phone,
+                        'agents_with_email': agents_with_email,
+                        'website_coverage': f"{website_percentage:.1f}%",
+                        'phone_coverage': f"{phone_percentage:.1f}%",
+                        'email_coverage': f"{email_percentage:.1f}%"
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "Shipping Agents Contacts", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "Shipping Agents Contacts", 
+                False, 
+                f"Erreur lors de la vérification des agents: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_port_details_endpoint(self):
+        """Test GET /api/logistics/ports/{port_id} - Détails d'un port spécifique"""
+        try:
+            # Tester avec le Port d'Alger
+            port_id = "DZA-ALG-001"
+            response = self.session.get(f"{self.base_url}/logistics/ports/{port_id}", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                port = response.json()
+                
+                # Vérifier la structure complète
+                required_fields = ['port_id', 'port_name', 'country_iso', 'port_authority', 'agents']
+                missing_fields = [field for field in required_fields if field not in port]
+                
+                if missing_fields:
+                    self.log_result(
+                        "Port Details Endpoint", 
+                        False, 
+                        f"Champs manquants dans les détails du port: {missing_fields}",
+                        {'port_keys': list(port.keys())}
+                    )
+                    return
+                
+                # Vérifier que c'est le bon port
+                if port['port_id'] != port_id:
+                    self.log_result(
+                        "Port Details Endpoint", 
+                        False, 
+                        f"Port ID incorrect: {port['port_id']} au lieu de {port_id}",
+                        {'returned_id': port['port_id']}
+                    )
+                    return
+                
+                # Vérifier les détails de l'autorité portuaire
+                authority = port['port_authority']
+                authority_fields = ['name', 'address', 'website', 'contact_phone', 'contact_email']
+                missing_authority_fields = [field for field in authority_fields if field not in authority]
+                
+                if missing_authority_fields:
+                    self.log_result(
+                        "Port Details Endpoint", 
+                        False, 
+                        f"Champs manquants dans port_authority: {missing_authority_fields}",
+                        {'authority_keys': list(authority.keys())}
+                    )
+                    return
+                
+                # Vérifier les agents
+                agents = port['agents']
+                if not isinstance(agents, list) or len(agents) == 0:
+                    self.log_result(
+                        "Port Details Endpoint", 
+                        False, 
+                        f"Agents manquants ou format incorrect: {type(agents)} avec {len(agents) if isinstance(agents, list) else 'N/A'} éléments",
+                        {'agents_type': type(agents).__name__}
+                    )
+                    return
+                
+                self.log_result(
+                    "Port Details Endpoint", 
+                    True, 
+                    f"Détails du port {port_id} validés avec autorité et {len(agents)} agents",
+                    {
+                        'port_id': port['port_id'],
+                        'port_name': port['port_name'],
+                        'authority_name': authority['name'],
+                        'agents_count': len(agents),
+                        'website': authority['website'],
+                        'phone': authority['contact_phone']
+                    }
+                )
+                
+            elif response.status_code == 404:
+                self.log_result(
+                    "Port Details Endpoint", 
+                    False, 
+                    f"Port {port_id} non trouvé",
+                    {'status_code': response.status_code}
+                )
+            else:
+                self.log_result(
+                    "Port Details Endpoint", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "Port Details Endpoint", 
+                False, 
+                f"Erreur lors de la récupération des détails du port: {str(e)}",
+                {'error': str(e)}
+            )
+
     def run_all_tests(self):
         """Exécuter tous les tests"""
         print(f"🚀 Début des tests de l'API ZLECAf")
