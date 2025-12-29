@@ -2836,6 +2836,17 @@ class ZLECAfAPITester:
         self.test_production_overview_country()
         self.test_production_filtering()
         
+        # Tests Maritime Logistics Contacts Update
+        print("\n" + "=" * 80)
+        print("🚢 TESTS MARITIME LOGISTICS CONTACTS UPDATE")
+        print("=" * 80)
+        self.test_maritime_ports_list()
+        self.test_specific_port_data_alger()
+        self.test_specific_port_data_tanger_med()
+        self.test_specific_port_data_dakar()
+        self.test_shipping_agents_contacts()
+        self.test_port_details_endpoint()
+        
         # Résumé des résultats
         print("\n" + "=" * 80)
         print("📊 RÉSUMÉ DES TESTS")
