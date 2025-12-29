@@ -815,15 +815,18 @@
       "contact_email": "contact@tangermed.ma"
     },
     "trs_analysis": {
-      "container_dwell_time_days": "NA",
-      "source": "NA",
-      "data_year": "NA",
-      "methodology": "NA",
-      "publication_date": "NA",
-      "notes": "Aucune étude TRS (Time Release Study) officielle publiée pour ce port.",
+      "container_dwell_time_days": 7.8,
+      "source": "Beacon Port Congestion Report / Tanger Med Port Authority",
+      "data_year": 2024,
+      "methodology": "Port Authority Statistics",
+      "publication_date": "2024-09",
+      "notes": "Données septembre 2024. Port catégorie 0.5-4M TEU. Congestion Méditerranée Ouest.",
       "vessel_turnaround_hours": "NA",
       "customs_clearance_hours": "NA",
-      "last_updated": "2025-12-29"
+      "last_updated": "2025-12-29",
+      "cppi_rank": 4,
+      "cppi_year": 2023,
+      "wco_trs_status": "NA"
     },
     "global_benchmarks": {
       "africa_avg_dwell_days_2023": 2.6,

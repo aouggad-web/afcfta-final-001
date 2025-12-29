@@ -542,5 +542,549 @@
     "old_value": "N/A",
     "new_value": "NA",
     "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697091+00:00",
+    "port_id": "DZA-ALG-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697105+00:00",
+    "port_id": "DZA-ORA-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697113+00:00",
+    "port_id": "DZA-BEJ-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697119+00:00",
+    "port_id": "MAR-CAS-001",
+    "field": "trs_analysis",
+    "old_value": 8.4,
+    "new_value": 8.4,
+    "source": "Aujourd'hui le Maroc / ANP Maroc"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697124+00:00",
+    "port_id": "MAR-TAN-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": 7.8,
+    "source": "Beacon Port Congestion Report / Tanger Med Port Authority"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697128+00:00",
+    "port_id": "MAR-AGD-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697133+00:00",
+    "port_id": "TUN-RAD-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697139+00:00",
+    "port_id": "TUN-SFX-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697144+00:00",
+    "port_id": "EGY-ALE-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697148+00:00",
+    "port_id": "EGY-PSA-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697153+00:00",
+    "port_id": "EGY-DAM-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697158+00:00",
+    "port_id": "LBY-TRI-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697162+00:00",
+    "port_id": "LBY-BEN-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697166+00:00",
+    "port_id": "SEN-DAK-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697171+00:00",
+    "port_id": "CIV-ABJ-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697175+00:00",
+    "port_id": "CIV-SAN-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697180+00:00",
+    "port_id": "GHA-TEM-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697203+00:00",
+    "port_id": "GHA-TAK-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697208+00:00",
+    "port_id": "NGA-LAG-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697213+00:00",
+    "port_id": "NGA-TIN-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "WCO - Time Release Study Launched"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697217+00:00",
+    "port_id": "NGA-PHC-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697222+00:00",
+    "port_id": "BEN-COT-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697227+00:00",
+    "port_id": "TGO-LOM-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697233+00:00",
+    "port_id": "CMR-DLA-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "Transit Fruits Eagle - Tarifs Surestaries 2024/2025"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697238+00:00",
+    "port_id": "CMR-KRI-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697242+00:00",
+    "port_id": "GAB-OWE-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697247+00:00",
+    "port_id": "COG-PNR-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697252+00:00",
+    "port_id": "AGO-LUA-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697256+00:00",
+    "port_id": "AGO-LOB-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697261+00:00",
+    "port_id": "KEN-MBA-001",
+    "field": "trs_analysis",
+    "old_value": 3.5,
+    "new_value": 3.5,
+    "source": "Kenya Ports Authority (KPA) Official Statistics"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697266+00:00",
+    "port_id": "TZA-DAR-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697271+00:00",
+    "port_id": "DJI-DJI-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697276+00:00",
+    "port_id": "ZAF-DUR-001",
+    "field": "trs_analysis",
+    "old_value": 2.7,
+    "new_value": 2.7,
+    "source": "Transnet Port Terminals Official Report"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697281+00:00",
+    "port_id": "ZAF-CPT-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697285+00:00",
+    "port_id": "ZAF-PLZ-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697290+00:00",
+    "port_id": "NAM-WAL-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "WCO / NAMRA Time Release Study Report"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697294+00:00",
+    "port_id": "MOZ-MAP-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697299+00:00",
+    "port_id": "MOZ-BEI-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697302+00:00",
+    "port_id": "MDG-TOA-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697306+00:00",
+    "port_id": "MRT-NKC-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697310+00:00",
+    "port_id": "MRT-NDB-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697315+00:00",
+    "port_id": "GIN-CON-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697318+00:00",
+    "port_id": "LBR-MON-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697322+00:00",
+    "port_id": "SLE-FNA-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697326+00:00",
+    "port_id": "GMB-BAN-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697329+00:00",
+    "port_id": "ERI-MAS-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697333+00:00",
+    "port_id": "SOM-MOG-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697337+00:00",
+    "port_id": "SOM-BOS-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697341+00:00",
+    "port_id": "SDN-PTS-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697346+00:00",
+    "port_id": "MUS-PLO-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697350+00:00",
+    "port_id": "SYC-VIC-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697353+00:00",
+    "port_id": "COM-MOR-001",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697357+00:00",
+    "port_id": "MRT-NDB-f546f00d",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697361+00:00",
+    "port_id": "SEN-ZIG-f7f4da70",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697365+00:00",
+    "port_id": "GMB-BJL-b5e0fb39",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697369+00:00",
+    "port_id": "SLE-FNA-9b70b534",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697372+00:00",
+    "port_id": "LBR-MLW-2d027bfe",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697376+00:00",
+    "port_id": "LBR-BUC-9895806e",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697380+00:00",
+    "port_id": "GNQ-MAL-82fd1f50",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697384+00:00",
+    "port_id": "STP-TMS-c9d3f1be",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697388+00:00",
+    "port_id": "COG-PNR-40c582e7",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697392+00:00",
+    "port_id": "NAM-WVB-77bf36b5",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697396+00:00",
+    "port_id": "ERI-MSW-8ba28755",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697400+00:00",
+    "port_id": "ERI-ASB-d22efa85",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697405+00:00",
+    "port_id": "SYC-VIC-17c715f3",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697409+00:00",
+    "port_id": "COM-MUT-c7a9cfd1",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697413+00:00",
+    "port_id": "SDN-PTS-3ae1c38d",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
+  },
+  {
+    "timestamp": "2025-12-29T21:07:14.697416+00:00",
+    "port_id": "SDN-SAW-598088f7",
+    "field": "trs_analysis",
+    "old_value": "NA",
+    "new_value": "NA",
+    "source": "NA"
   }
 ]
