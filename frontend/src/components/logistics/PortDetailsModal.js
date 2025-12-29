@@ -219,55 +219,126 @@ function PortDetailsModal({ isOpen, onClose, port }) {
           {/* ONGLET PERFORMANCE & TRS */}
           <TabsContent value="performance" className="space-y-6 mt-6">
             
-            {/* WCO TRS SECTION (NOUVEAU) */}
-            {trs && (
-              <Card className="border-t-4 border-t-purple-600 shadow-md">
-                <CardHeader className="bg-purple-50">
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <CardTitle className="text-xl text-purple-900 flex items-center gap-2">
-                        ⏱️ Étude sur le Temps de Mainlevée (TRS)
-                      </CardTitle>
-                      <CardDescription>
-                        Analyse détaillée des délais de séjour marchandise (Dwell Time) selon la méthodologie WCO
-                      </CardDescription>
-                    </div>
+            {/* WCO TRS SECTION - DONNÉES OFFICIELLES */}
+            <Card className="border-t-4 border-t-purple-600 shadow-md">
+              <CardHeader className="bg-purple-50">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <CardTitle className="text-xl text-purple-900 flex items-center gap-2">
+                      ⏱️ Temps de Séjour Conteneur (Dwell Time)
+                    </CardTitle>
+                    <CardDescription>
+                      Données officielles - Étude TRS (Time Release Study) WCO
+                    </CardDescription>
+                  </div>
+                  {trs?.container_dwell_time_days && trs.container_dwell_time_days !== "NA" ? (
                     <Badge className="bg-purple-600 text-white text-lg px-4 py-2">
-                      Total: {trs.total_dwell_time_days} Jours
+                      {trs.container_dwell_time_days} Jours
                     </Badge>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-6">
-                  <div className="space-y-6">
-                    {trs.steps.map((step, idx) => {
-                      // Calcul pourcentage pour la barre visuelle
-                      const percent = (step.duration_hours / (trs.total_dwell_time_days * 24)) * 100;
-                      return (
-                        <div key={idx} className="relative">
-                          <div className="flex justify-between items-end mb-1">
-                            <div className="flex items-center gap-2">
-                              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-purple-100 text-purple-700 text-xs font-bold border border-purple-200">
-                                {step.step_id}
-                              </span>
-                              <div>
-                                <span className="text-sm font-bold text-gray-800">{step.label}</span>
-                                <span className="text-xs text-gray-500 ml-2">({step.description})</span>
-                              </div>
-                            </div>
-                            <span className="text-sm font-bold text-purple-700">{step.duration_hours} h</span>
-                          </div>
-                          <Progress value={percent} className="h-2 bg-gray-100" indicatorClassName="bg-purple-500" />
+                  ) : (
+                    <Badge className="bg-gray-400 text-white text-lg px-4 py-2">
+                      NA
+                    </Badge>
+                  )}
+                </div>
+              </CardHeader>
+              <CardContent className="pt-6">
+                {trs?.container_dwell_time_days && trs.container_dwell_time_days !== "NA" ? (
+                  <div className="space-y-4">
+                    {/* Données disponibles */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div className="bg-purple-50 p-4 rounded-lg text-center">
+                        <p className="text-xs font-semibold text-purple-600">Dwell Time</p>
+                        <p className="text-2xl font-bold text-purple-800">{trs.container_dwell_time_days}</p>
+                        <p className="text-xs text-purple-500">jours</p>
+                      </div>
+                      {trs.vessel_turnaround_hours && trs.vessel_turnaround_hours !== "NA" && (
+                        <div className="bg-blue-50 p-4 rounded-lg text-center">
+                          <p className="text-xs font-semibold text-blue-600">Rotation Navire</p>
+                          <p className="text-2xl font-bold text-blue-800">{trs.vessel_turnaround_hours}</p>
+                          <p className="text-xs text-blue-500">heures</p>
                         </div>
-                      );
-                    })}
+                      )}
+                      {trs.cppi_rank && trs.cppi_rank !== "NA" && (
+                        <div className="bg-green-50 p-4 rounded-lg text-center">
+                          <p className="text-xs font-semibold text-green-600">Rang CPPI</p>
+                          <p className="text-2xl font-bold text-green-800">#{trs.cppi_rank}</p>
+                          <p className="text-xs text-green-500">{trs.cppi_year || ''}</p>
+                        </div>
+                      )}
+                      <div className="bg-orange-50 p-4 rounded-lg text-center">
+                        <p className="text-xs font-semibold text-orange-600">Année Données</p>
+                        <p className="text-2xl font-bold text-orange-800">{trs.data_year}</p>
+                        <p className="text-xs text-orange-500">officiel</p>
+                      </div>
+                    </div>
+                    
+                    {/* Source et méthodologie */}
+                    <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                        <div>
+                          <p className="font-semibold text-gray-700">📊 Source:</p>
+                          <p className="text-gray-600">{trs.source}</p>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-gray-700">📋 Méthodologie:</p>
+                          <p className="text-gray-600">{trs.methodology}</p>
+                        </div>
+                      </div>
+                      {trs.notes && (
+                        <div className="mt-3 pt-3 border-t border-gray-200">
+                          <p className="text-xs text-gray-500">💡 {trs.notes}</p>
+                        </div>
+                      )}
+                      {trs.wco_report_url && (
+                        <a 
+                          href={trs.wco_report_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-3 inline-flex items-center gap-2 text-sm text-purple-600 hover:text-purple-800"
+                        >
+                          📄 Voir le rapport TRS officiel
+                        </a>
+                      )}
+                    </div>
                   </div>
-                  <div className="mt-6 p-3 bg-gray-50 rounded-lg text-xs text-gray-500 flex justify-between">
-                    <span>Méthodologie: {trs.methodology}</span>
-                    <span>Dernier audit: {trs.last_audit}</span>
+                ) : (
+                  <div className="text-center py-8">
+                    <div className="text-6xl mb-4">📊</div>
+                    <h3 className="text-lg font-semibold text-gray-700 mb-2">Données TRS Non Disponibles</h3>
+                    <p className="text-sm text-gray-500 max-w-md mx-auto mb-4">
+                      Aucune étude officielle TRS (Time Release Study) de l'Organisation Mondiale des Douanes (WCO) 
+                      n'a été publiée pour ce port.
+                    </p>
+                    {trs?.wco_trs_status === "En cours" && (
+                      <Badge className="bg-yellow-100 text-yellow-800 border border-yellow-300">
+                        ⏳ Étude TRS en cours
+                      </Badge>
+                    )}
+                    {trs?.notes && trs.notes !== "Aucune étude TRS (Time Release Study) officielle publiée pour ce port." && (
+                      <p className="text-xs text-gray-400 mt-4">{trs.notes}</p>
+                    )}
+                    
+                    {/* Benchmarks de comparaison */}
+                    {port.global_benchmarks && (
+                      <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200 text-left">
+                        <p className="text-sm font-semibold text-blue-800 mb-2">📈 Benchmarks de référence (UNCTAD 2023)</p>
+                        <div className="grid grid-cols-2 gap-4 text-sm">
+                          <div>
+                            <p className="text-blue-600">Moyenne Afrique:</p>
+                            <p className="font-bold text-blue-800">{port.global_benchmarks.africa_avg_dwell_days_2023} jours</p>
+                          </div>
+                          <div>
+                            <p className="text-blue-600">Médiane Mondiale:</p>
+                            <p className="font-bold text-blue-800">{port.global_benchmarks.global_median_dwell_days_h2_2023} jour</p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                </CardContent>
-              </Card>
-            )}
+                )}
+              </CardContent>
+            </Card>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Waiting Times (Ship) */}
