@@ -308,6 +308,38 @@ function PortDetailsModal({ isOpen, onClose, port }) {
                           <p className="text-xs text-gray-500">💡 {trs.notes}</p>
                         </div>
                       )}
+                      
+                      {/* Méthodologie d'estimation si applicable */}
+                      {trs.estimation_methodology && (
+                        <details className="mt-4">
+                          <summary className="cursor-pointer text-sm font-semibold text-amber-700 hover:text-amber-800">
+                            📐 Voir la méthodologie d'estimation
+                          </summary>
+                          <div className="mt-2 p-3 bg-amber-50 rounded-lg border border-amber-200 text-xs text-amber-800 whitespace-pre-line font-mono">
+                            {trs.estimation_methodology}
+                          </div>
+                        </details>
+                      )}
+                      
+                      {/* Raison de l'absence de données officielles */}
+                      {trs.no_official_data_reason && (
+                        <div className="mt-3 p-2 bg-gray-100 rounded text-xs text-gray-600 italic">
+                          ℹ️ Pourquoi pas de données officielles: {trs.no_official_data_reason}
+                        </div>
+                      )}
+                      
+                      {/* Données factuelles utilisées */}
+                      {trs.factual_data_points && trs.factual_data_points.length > 0 && (
+                        <div className="mt-3 p-2 bg-blue-50 rounded text-xs">
+                          <p className="font-semibold text-blue-700 mb-1">📊 Données factuelles utilisées:</p>
+                          <ul className="list-disc list-inside text-blue-600">
+                            {trs.factual_data_points.map((point, idx) => (
+                              <li key={idx}>{point}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      
                       {trs.source_url && (
                         <a 
                           href={trs.source_url}
@@ -337,6 +369,11 @@ function PortDetailsModal({ isOpen, onClose, port }) {
                     <p className="text-sm text-gray-500 max-w-md mx-auto mb-4">
                       Aucune étude TRS (Time Release Study) n'a été publiée pour ce port.
                     </p>
+                    {trs?.no_official_data_reason && (
+                      <p className="text-xs text-gray-400 mb-4 italic">
+                        ℹ️ {trs.no_official_data_reason}
+                      </p>
+                    )}
                     {trs?.wco_trs_in_progress && (
                       <Badge className="bg-yellow-100 text-yellow-800 border border-yellow-300">
                         ⏳ Étude TRS WCO en cours
