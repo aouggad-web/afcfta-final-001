@@ -1697,6 +1697,133 @@ async def get_country_production_full_overview(country_iso3: str):
     return get_country_production_overview(country_iso3)
 
 
+# ==========================================
+# FAOSTAT ENRICHED DATA ENDPOINTS
+# ==========================================
+
+from etl import (
+    get_faostat_country_data,
+    get_africa_top_producers,
+    get_all_commodities,
+    get_all_faostat_data,
+    get_fisheries_rankings,
+    get_faostat_statistics,
+    get_unido_country_data,
+    get_all_unido_data,
+    get_isic_sectors,
+    get_countries_by_mva,
+    get_sector_analysis,
+    get_unido_statistics
+)
+
+@api_router.get("/production/faostat/statistics")
+async def get_faostat_stats():
+    """
+    Get global FAOSTAT statistics for all African countries
+    """
+    return get_faostat_statistics()
+
+@api_router.get("/production/faostat/commodities")
+async def get_faostat_commodities():
+    """
+    Get list of all agricultural commodities available in FAOSTAT data
+    """
+    return {"commodities": get_all_commodities()}
+
+@api_router.get("/production/faostat/top-producers/{commodity}")
+async def get_commodity_top_producers(commodity: str):
+    """
+    Get top African producers for a specific commodity
+    """
+    producers = get_africa_top_producers(commodity)
+    if not producers:
+        return {"message": f"No ranking data available for '{commodity}'", "commodity": commodity, "producers": []}
+    return {"commodity": commodity, "producers": producers}
+
+@api_router.get("/production/faostat/fisheries")
+async def get_fisheries_data():
+    """
+    Get fisheries and aquaculture rankings for Africa
+    """
+    return get_fisheries_rankings()
+
+@api_router.get("/production/faostat/{country_iso3}")
+async def get_faostat_country(country_iso3: str):
+    """
+    Get detailed FAOSTAT agricultural data for a specific country
+    Includes: main crops, production, evolution, livestock, fisheries, key indicators
+    """
+    data = get_faostat_country_data(country_iso3.upper())
+    if not data:
+        return {"message": f"No FAOSTAT data available for country '{country_iso3}'", "country_iso3": country_iso3}
+    return data
+
+@api_router.get("/production/faostat")
+async def get_all_faostat():
+    """
+    Get all FAOSTAT data for all African countries
+    """
+    return get_all_faostat_data()
+
+
+# ==========================================
+# UNIDO ENRICHED DATA ENDPOINTS
+# ==========================================
+
+@api_router.get("/production/unido/statistics")
+async def get_unido_stats():
+    """
+    Get global UNIDO industrial statistics for Africa
+    """
+    return get_unido_statistics()
+
+@api_router.get("/production/unido/isic-sectors")
+async def get_unido_isic_sectors():
+    """
+    Get ISIC Rev.4 sector classification
+    """
+    return {"sectors": get_isic_sectors()}
+
+@api_router.get("/production/unido/ranking")
+async def get_unido_mva_ranking():
+    """
+    Get countries ranked by Manufacturing Value Added (MVA)
+    """
+    return {"ranking": get_countries_by_mva()}
+
+@api_router.get("/production/unido/sector-analysis/{isic_code}")
+async def get_unido_sector(isic_code: str):
+    """
+    Get analysis of a specific ISIC sector across all African countries
+    """
+    analysis = get_sector_analysis(isic_code)
+    sectors = get_isic_sectors()
+    sector_name = sectors.get(isic_code, "Unknown")
+    return {
+        "isic_code": isic_code,
+        "sector_name": sector_name,
+        "countries": analysis
+    }
+
+@api_router.get("/production/unido/{country_iso3}")
+async def get_unido_country(country_iso3: str):
+    """
+    Get detailed UNIDO industrial data for a specific country
+    Includes: MVA, top sectors, growth rate, key products, industrial zones
+    """
+    data = get_unido_country_data(country_iso3.upper())
+    if not data:
+        return {"message": f"No UNIDO data available for country '{country_iso3}'", "country_iso3": country_iso3}
+    return data
+
+@api_router.get("/production/unido")
+async def get_all_unido():
+    """
+    Get all UNIDO industrial data for all African countries
+    """
+    return get_all_unido_data()
+
+
 # Include the router in the main app
 app.include_router(api_router)
 
