@@ -1,0 +1,310 @@
+import React, { useState, useMemo, useRef, useEffect } from 'react';
+import { Card, CardContent } from '../ui/card';
+import { Input } from '../ui/input';
+import { Badge } from '../ui/badge';
+import { Search, ChevronDown, X, Globe, Star } from 'lucide-react';
+
+// Tous les pays africains regroupés par région
+const AFRICAN_COUNTRIES_BY_REGION = {
+  "Afrique du Nord": [
+    { code: 'DZA', name: 'Algérie', flag: '🇩🇿' },
+    { code: 'EGY', name: 'Égypte', flag: '🇪🇬' },
+    { code: 'LBY', name: 'Libye', flag: '🇱🇾' },
+    { code: 'MAR', name: 'Maroc', flag: '🇲🇦' },
+    { code: 'TUN', name: 'Tunisie', flag: '🇹🇳' },
+  ],
+  "Afrique de l'Ouest": [
+    { code: 'BEN', name: 'Bénin', flag: '🇧🇯' },
+    { code: 'BFA', name: 'Burkina Faso', flag: '🇧🇫' },
+    { code: 'CPV', name: 'Cap-Vert', flag: '🇨🇻' },
+    { code: 'CIV', name: "Côte d'Ivoire", flag: '🇨🇮' },
+    { code: 'GMB', name: 'Gambie', flag: '🇬🇲' },
+    { code: 'GHA', name: 'Ghana', flag: '🇬🇭' },
+    { code: 'GIN', name: 'Guinée', flag: '🇬🇳' },
+    { code: 'GNB', name: 'Guinée-Bissau', flag: '🇬🇼' },
+    { code: 'LBR', name: 'Libéria', flag: '🇱🇷' },
+    { code: 'MLI', name: 'Mali', flag: '🇲🇱' },
+    { code: 'MRT', name: 'Mauritanie', flag: '🇲🇷' },
+    { code: 'NER', name: 'Niger', flag: '🇳🇪' },
+    { code: 'NGA', name: 'Nigéria', flag: '🇳🇬' },
+    { code: 'SEN', name: 'Sénégal', flag: '🇸🇳' },
+    { code: 'SLE', name: 'Sierra Leone', flag: '🇸🇱' },
+    { code: 'TGO', name: 'Togo', flag: '🇹🇬' },
+  ],
+  "Afrique Centrale": [
+    { code: 'AGO', name: 'Angola', flag: '🇦🇴' },
+    { code: 'CMR', name: 'Cameroun', flag: '🇨🇲' },
+    { code: 'CAF', name: 'Rép. Centrafricaine', flag: '🇨🇫' },
+    { code: 'TCD', name: 'Tchad', flag: '🇹🇩' },
+    { code: 'COG', name: 'Congo', flag: '🇨🇬' },
+    { code: 'COD', name: 'RD Congo', flag: '🇨🇩' },
+    { code: 'GNQ', name: 'Guinée Équatoriale', flag: '🇬🇶' },
+    { code: 'GAB', name: 'Gabon', flag: '🇬🇦' },
+    { code: 'STP', name: 'São Tomé', flag: '🇸🇹' },
+  ],
+  "Afrique de l'Est": [
+    { code: 'BDI', name: 'Burundi', flag: '🇧🇮' },
+    { code: 'COM', name: 'Comores', flag: '🇰🇲' },
+    { code: 'DJI', name: 'Djibouti', flag: '🇩🇯' },
+    { code: 'ERI', name: 'Érythrée', flag: '🇪🇷' },
+    { code: 'ETH', name: 'Éthiopie', flag: '🇪🇹' },
+    { code: 'KEN', name: 'Kenya', flag: '🇰🇪' },
+    { code: 'MDG', name: 'Madagascar', flag: '🇲🇬' },
+    { code: 'MWI', name: 'Malawi', flag: '🇲🇼' },
+    { code: 'MUS', name: 'Maurice', flag: '🇲🇺' },
+    { code: 'MOZ', name: 'Mozambique', flag: '🇲🇿' },
+    { code: 'RWA', name: 'Rwanda', flag: '🇷🇼' },
+    { code: 'SYC', name: 'Seychelles', flag: '🇸🇨' },
+    { code: 'SOM', name: 'Somalie', flag: '🇸🇴' },
+    { code: 'SSD', name: 'Soudan du Sud', flag: '🇸🇸' },
+    { code: 'SDN', name: 'Soudan', flag: '🇸🇩' },
+    { code: 'TZA', name: 'Tanzanie', flag: '🇹🇿' },
+    { code: 'UGA', name: 'Ouganda', flag: '🇺🇬' },
+  ],
+  "Afrique Australe": [
+    { code: 'BWA', name: 'Botswana', flag: '🇧🇼' },
+    { code: 'LSO', name: 'Lesotho', flag: '🇱🇸' },
+    { code: 'NAM', name: 'Namibie', flag: '🇳🇦' },
+    { code: 'ZAF', name: 'Afrique du Sud', flag: '🇿🇦' },
+    { code: 'SWZ', name: 'Eswatini', flag: '🇸🇿' },
+    { code: 'ZMB', name: 'Zambie', flag: '🇿🇲' },
+    { code: 'ZWE', name: 'Zimbabwe', flag: '🇿🇼' },
+  ],
+};
+
+// Grandes économies à mettre en avant
+const MAJOR_ECONOMIES = ['ZAF', 'NGA', 'EGY', 'KEN', 'GHA', 'ETH', 'MAR', 'DZA', 'TZA', 'CIV'];
+
+function EnhancedCountrySelector({ value, onChange, label = "Sélectionner un pays", variant = "default" }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const dropdownRef = useRef(null);
+  const inputRef = useRef(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Obtenir tous les pays dans une liste plate
+  const allCountries = useMemo(() => {
+    const countries = [];
+    Object.values(AFRICAN_COUNTRIES_BY_REGION).forEach(region => {
+      countries.push(...region);
+    });
+    return countries;
+  }, []);
+
+  // Trouver le pays sélectionné
+  const selectedCountry = useMemo(() => {
+    return allCountries.find(c => c.code === value);
+  }, [value, allCountries]);
+
+  // Filtrer les pays selon la recherche
+  const filteredRegions = useMemo(() => {
+    if (!searchTerm) return AFRICAN_COUNTRIES_BY_REGION;
+
+    const filtered = {};
+    Object.entries(AFRICAN_COUNTRIES_BY_REGION).forEach(([region, countries]) => {
+      const matchedCountries = countries.filter(country =>
+        country.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        country.code.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      if (matchedCountries.length > 0) {
+        filtered[region] = matchedCountries;
+      }
+    });
+    return filtered;
+  }, [searchTerm]);
+
+  // Grandes économies filtrées
+  const majorEconomiesFiltered = useMemo(() => {
+    const majors = allCountries.filter(c => MAJOR_ECONOMIES.includes(c.code));
+    if (!searchTerm) return majors;
+    return majors.filter(country =>
+      country.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      country.code.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [searchTerm, allCountries]);
+
+  const handleSelect = (country) => {
+    onChange(country.code);
+    setIsOpen(false);
+    setSearchTerm('');
+  };
+
+  const handleClear = (e) => {
+    e.stopPropagation();
+    onChange('');
+  };
+
+  // Style variants
+  const isProminent = variant === "prominent";
+
+  return (
+    <div className="relative w-full" ref={dropdownRef}>
+      {/* Label */}
+      <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
+        <Globe className="w-4 h-4" />
+        {label}
+      </label>
+      
+      {/* Main selector button */}
+      <div
+        onClick={() => { setIsOpen(!isOpen); if (!isOpen && inputRef.current) inputRef.current.focus(); }}
+        className={`
+          w-full cursor-pointer rounded-xl border-2 transition-all duration-200
+          ${isOpen 
+            ? 'border-green-500 ring-4 ring-green-100 shadow-lg' 
+            : 'border-gray-200 hover:border-green-300 hover:shadow-md'
+          }
+          ${isProminent 
+            ? 'bg-gradient-to-r from-green-50 to-emerald-50 p-4' 
+            : 'bg-white p-3'
+          }
+        `}
+      >
+        <div className="flex items-center justify-between">
+          {selectedCountry ? (
+            <div className="flex items-center gap-3">
+              <span className="text-3xl">{selectedCountry.flag}</span>
+              <div>
+                <p className={`font-bold ${isProminent ? 'text-lg' : 'text-base'} text-gray-800`}>
+                  {selectedCountry.name}
+                </p>
+                <p className="text-xs text-gray-500">Code: {selectedCountry.code}</p>
+              </div>
+              {MAJOR_ECONOMIES.includes(selectedCountry.code) && (
+                <Badge className="bg-amber-100 text-amber-700 ml-2">
+                  <Star className="w-3 h-3 mr-1" /> Top 10
+                </Badge>
+              )}
+            </div>
+          ) : (
+            <div className="flex items-center gap-2 text-gray-400">
+              <Search className="w-5 h-5" />
+              <span className={isProminent ? 'text-base' : 'text-sm'}>Rechercher un pays africain...</span>
+            </div>
+          )}
+          <div className="flex items-center gap-2">
+            {selectedCountry && (
+              <button
+                onClick={handleClear}
+                className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <X className="w-4 h-4 text-gray-400" />
+              </button>
+            )}
+            <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+          </div>
+        </div>
+      </div>
+
+      {/* Dropdown */}
+      {isOpen && (
+        <div className="absolute z-50 w-full mt-2 bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+          {/* Search input */}
+          <div className="p-3 border-b border-gray-100 bg-gray-50">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Input
+                ref={inputRef}
+                type="text"
+                placeholder="Tapez le nom ou code du pays..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 w-full border-green-200 focus:border-green-500 focus:ring-green-200"
+                autoFocus
+              />
+            </div>
+            <p className="text-xs text-gray-500 mt-2 flex items-center gap-1">
+              <Globe className="w-3 h-3" />
+              {allCountries.length} pays africains disponibles
+              {searchTerm && ` • ${Object.values(filteredRegions).flat().length} résultats`}
+            </p>
+          </div>
+
+          {/* Scrollable list */}
+          <div className="max-h-80 overflow-y-auto">
+            {/* Major economies section */}
+            {!searchTerm && majorEconomiesFiltered.length > 0 && (
+              <div className="p-2">
+                <div className="flex items-center gap-2 px-3 py-2 text-xs font-bold text-amber-700 bg-amber-50 rounded-lg mb-2">
+                  <Star className="w-4 h-4" />
+                  Grandes Économies Africaines
+                </div>
+                <div className="grid grid-cols-2 gap-1">
+                  {majorEconomiesFiltered.map(country => (
+                    <button
+                      key={country.code}
+                      onClick={() => handleSelect(country)}
+                      className={`
+                        flex items-center gap-2 px-3 py-2 rounded-lg text-left transition-colors
+                        ${value === country.code 
+                          ? 'bg-green-100 text-green-800' 
+                          : 'hover:bg-gray-50'
+                        }
+                      `}
+                    >
+                      <span className="text-xl">{country.flag}</span>
+                      <span className="text-sm font-medium truncate">{country.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Divider */}
+            {!searchTerm && <div className="border-t border-gray-100 my-2" />}
+
+            {/* Regions */}
+            {Object.entries(filteredRegions).map(([region, countries]) => (
+              <div key={region} className="p-2">
+                <div className="flex items-center gap-2 px-3 py-1 text-xs font-semibold text-gray-600 bg-gray-50 rounded-lg mb-1">
+                  {region} ({countries.length})
+                </div>
+                <div className="space-y-0.5">
+                  {countries.map(country => (
+                    <button
+                      key={country.code}
+                      onClick={() => handleSelect(country)}
+                      className={`
+                        w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-colors
+                        ${value === country.code 
+                          ? 'bg-green-100 text-green-800 font-medium' 
+                          : 'hover:bg-gray-50'
+                        }
+                      `}
+                    >
+                      <span className="text-xl">{country.flag}</span>
+                      <span className="flex-1 text-sm">{country.name}</span>
+                      <Badge variant="outline" className="text-xs text-gray-400 font-mono">
+                        {country.code}
+                      </Badge>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
+
+            {/* No results */}
+            {Object.keys(filteredRegions).length === 0 && (
+              <div className="p-8 text-center text-gray-500">
+                <Search className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                <p>Aucun pays trouvé pour "{searchTerm}"</p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default EnhancedCountrySelector;
