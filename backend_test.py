@@ -2796,6 +2796,810 @@ class ZLECAfAPITester:
                 {'error': str(e)}
             )
 
+    # ==========================================
+    # TESTS FAOSTAT ENDPOINTS
+    # ==========================================
+    
+    def test_faostat_statistics(self):
+        """Test GET /api/production/faostat/statistics"""
+        try:
+            response = self.session.get(f"{self.base_url}/production/faostat/statistics", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                stats = response.json()
+                
+                # Vérifier les champs obligatoires selon la demande
+                required_fields = ['total_countries', 'total_commodities', 'data_year']
+                missing_fields = [field for field in required_fields if field not in stats]
+                
+                if missing_fields:
+                    self.log_result(
+                        "FAOSTAT Statistics", 
+                        False, 
+                        f"Champs manquants: {missing_fields}",
+                        {'stats': stats}
+                    )
+                    return
+                
+                # Vérifier les valeurs attendues selon la demande
+                if stats['total_countries'] != 54:
+                    self.log_result(
+                        "FAOSTAT Statistics", 
+                        False, 
+                        f"Nombre de pays incorrect: {stats['total_countries']} au lieu de 54",
+                        {'total_countries': stats['total_countries']}
+                    )
+                    return
+                
+                if stats['total_commodities'] != 47:
+                    self.log_result(
+                        "FAOSTAT Statistics", 
+                        False, 
+                        f"Nombre de commodités incorrect: {stats['total_commodities']} au lieu de 47",
+                        {'total_commodities': stats['total_commodities']}
+                    )
+                    return
+                
+                if stats['data_year'] != 2023:
+                    self.log_result(
+                        "FAOSTAT Statistics", 
+                        False, 
+                        f"Année de données incorrecte: {stats['data_year']} au lieu de 2023",
+                        {'data_year': stats['data_year']}
+                    )
+                    return
+                
+                self.log_result(
+                    "FAOSTAT Statistics", 
+                    True, 
+                    f"Statistiques FAOSTAT validées - {stats['total_countries']} pays, {stats['total_commodities']} commodités, année {stats['data_year']}",
+                    {
+                        'total_countries': stats['total_countries'],
+                        'total_commodities': stats['total_commodities'],
+                        'data_year': stats['data_year']
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "FAOSTAT Statistics", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "FAOSTAT Statistics", 
+                False, 
+                f"Erreur lors de la récupération des statistiques FAOSTAT: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_faostat_country_civ(self):
+        """Test GET /api/production/faostat/CIV - Côte d'Ivoire"""
+        try:
+            response = self.session.get(f"{self.base_url}/production/faostat/CIV", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Vérifier les champs obligatoires
+                required_fields = ['country_name', 'region', 'main_crops']
+                missing_fields = [field for field in required_fields if field not in data]
+                
+                if missing_fields:
+                    self.log_result(
+                        "FAOSTAT CIV", 
+                        False, 
+                        f"Champs manquants: {missing_fields}",
+                        {'data': data}
+                    )
+                    return
+                
+                # Vérifier les valeurs attendues selon la demande
+                if data['country_name'] != "Côte d'Ivoire":
+                    self.log_result(
+                        "FAOSTAT CIV", 
+                        False, 
+                        f"Nom de pays incorrect: {data['country_name']} au lieu de 'Côte d'Ivoire'",
+                        {'country_name': data['country_name']}
+                    )
+                    return
+                
+                if data['region'] != "Afrique de l'Ouest":
+                    self.log_result(
+                        "FAOSTAT CIV", 
+                        False, 
+                        f"Région incorrecte: {data['region']} au lieu de 'Afrique de l'Ouest'",
+                        {'region': data['region']}
+                    )
+                    return
+                
+                # Vérifier que Cacao est dans main_crops
+                if 'Cacao' not in str(data['main_crops']):
+                    self.log_result(
+                        "FAOSTAT CIV", 
+                        False, 
+                        f"Cacao manquant dans main_crops: {data['main_crops']}",
+                        {'main_crops': data['main_crops']}
+                    )
+                    return
+                
+                self.log_result(
+                    "FAOSTAT CIV", 
+                    True, 
+                    f"Données CIV validées - {data['country_name']}, région {data['region']}, Cacao présent",
+                    {
+                        'country_name': data['country_name'],
+                        'region': data['region'],
+                        'main_crops': data['main_crops']
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "FAOSTAT CIV", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "FAOSTAT CIV", 
+                False, 
+                f"Erreur lors de la récupération des données CIV: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_faostat_country_egy(self):
+        """Test GET /api/production/faostat/EGY - Égypte"""
+        try:
+            response = self.session.get(f"{self.base_url}/production/faostat/EGY", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Vérifier les champs obligatoires
+                required_fields = ['country_name', 'production_2023']
+                missing_fields = [field for field in required_fields if field not in data]
+                
+                if missing_fields:
+                    self.log_result(
+                        "FAOSTAT EGY", 
+                        False, 
+                        f"Champs manquants: {missing_fields}",
+                        {'data': data}
+                    )
+                    return
+                
+                # Vérifier les valeurs attendues selon la demande
+                if data['country_name'] != "Égypte":
+                    self.log_result(
+                        "FAOSTAT EGY", 
+                        False, 
+                        f"Nom de pays incorrect: {data['country_name']} au lieu de 'Égypte'",
+                        {'country_name': data['country_name']}
+                    )
+                    return
+                
+                # Vérifier que Blé et Riz sont dans production_2023
+                production_str = str(data['production_2023'])
+                if 'Blé' not in production_str:
+                    self.log_result(
+                        "FAOSTAT EGY", 
+                        False, 
+                        f"Blé manquant dans production_2023: {data['production_2023']}",
+                        {'production_2023': data['production_2023']}
+                    )
+                    return
+                
+                if 'Riz' not in production_str:
+                    self.log_result(
+                        "FAOSTAT EGY", 
+                        False, 
+                        f"Riz manquant dans production_2023: {data['production_2023']}",
+                        {'production_2023': data['production_2023']}
+                    )
+                    return
+                
+                self.log_result(
+                    "FAOSTAT EGY", 
+                    True, 
+                    f"Données EGY validées - {data['country_name']}, Blé et Riz présents",
+                    {
+                        'country_name': data['country_name'],
+                        'production_2023': data['production_2023']
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "FAOSTAT EGY", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "FAOSTAT EGY", 
+                False, 
+                f"Erreur lors de la récupération des données EGY: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_faostat_top_producers_cacao(self):
+        """Test GET /api/production/faostat/top-producers/Cacao"""
+        try:
+            response = self.session.get(f"{self.base_url}/production/faostat/top-producers/Cacao", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                if not isinstance(data, list):
+                    self.log_result(
+                        "FAOSTAT Top Producers Cacao", 
+                        False, 
+                        "La réponse n'est pas une liste",
+                        {'response_type': type(data).__name__}
+                    )
+                    return
+                
+                if len(data) == 0:
+                    self.log_result(
+                        "FAOSTAT Top Producers Cacao", 
+                        False, 
+                        "Aucun producteur de cacao retourné",
+                        {'data_length': len(data)}
+                    )
+                    return
+                
+                # Vérifier que CIV est #1 et GHA est #2 selon la demande
+                if len(data) >= 2:
+                    first_producer = data[0]
+                    second_producer = data[1]
+                    
+                    if 'CIV' not in str(first_producer):
+                        self.log_result(
+                            "FAOSTAT Top Producers Cacao", 
+                            False, 
+                            f"CIV n'est pas le premier producteur: {first_producer}",
+                            {'first_producer': first_producer}
+                        )
+                        return
+                    
+                    if 'GHA' not in str(second_producer):
+                        self.log_result(
+                            "FAOSTAT Top Producers Cacao", 
+                            False, 
+                            f"GHA n'est pas le deuxième producteur: {second_producer}",
+                            {'second_producer': second_producer}
+                        )
+                        return
+                
+                self.log_result(
+                    "FAOSTAT Top Producers Cacao", 
+                    True, 
+                    f"Classement cacao validé - {len(data)} producteurs, CIV #1, GHA #2",
+                    {
+                        'producers_count': len(data),
+                        'top_2': data[:2] if len(data) >= 2 else data
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "FAOSTAT Top Producers Cacao", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "FAOSTAT Top Producers Cacao", 
+                False, 
+                f"Erreur lors de la récupération du classement cacao: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_faostat_commodities(self):
+        """Test GET /api/production/faostat/commodities"""
+        try:
+            response = self.session.get(f"{self.base_url}/production/faostat/commodities", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                if not isinstance(data, list):
+                    self.log_result(
+                        "FAOSTAT Commodities", 
+                        False, 
+                        "La réponse n'est pas une liste",
+                        {'response_type': type(data).__name__}
+                    )
+                    return
+                
+                if len(data) == 0:
+                    self.log_result(
+                        "FAOSTAT Commodities", 
+                        False, 
+                        "Aucune commodité retournée",
+                        {'data_length': len(data)}
+                    )
+                    return
+                
+                self.log_result(
+                    "FAOSTAT Commodities", 
+                    True, 
+                    f"Liste des commodités agricoles validée - {len(data)} commodités",
+                    {
+                        'commodities_count': len(data),
+                        'sample_commodities': data[:5] if len(data) >= 5 else data
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "FAOSTAT Commodities", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "FAOSTAT Commodities", 
+                False, 
+                f"Erreur lors de la récupération des commodités: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_faostat_fisheries(self):
+        """Test GET /api/production/faostat/fisheries"""
+        try:
+            response = self.session.get(f"{self.base_url}/production/faostat/fisheries", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Vérifier que la réponse contient des données de pêche
+                if not data:
+                    self.log_result(
+                        "FAOSTAT Fisheries", 
+                        False, 
+                        "Aucune donnée de pêche retournée",
+                        {'data': data}
+                    )
+                    return
+                
+                self.log_result(
+                    "FAOSTAT Fisheries", 
+                    True, 
+                    "Données de pêche et aquaculture validées",
+                    {
+                        'fisheries_data': data
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "FAOSTAT Fisheries", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "FAOSTAT Fisheries", 
+                False, 
+                f"Erreur lors de la récupération des données de pêche: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    # ==========================================
+    # TESTS UNIDO ENDPOINTS
+    # ==========================================
+    
+    def test_unido_statistics(self):
+        """Test GET /api/production/unido/statistics"""
+        try:
+            response = self.session.get(f"{self.base_url}/production/unido/statistics", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                stats = response.json()
+                
+                # Vérifier les champs obligatoires selon la demande
+                required_fields = ['total_countries', 'total_mva_bln_usd']
+                missing_fields = [field for field in required_fields if field not in stats]
+                
+                if missing_fields:
+                    self.log_result(
+                        "UNIDO Statistics", 
+                        False, 
+                        f"Champs manquants: {missing_fields}",
+                        {'stats': stats}
+                    )
+                    return
+                
+                # Vérifier les valeurs attendues selon la demande
+                if stats['total_countries'] != 54:
+                    self.log_result(
+                        "UNIDO Statistics", 
+                        False, 
+                        f"Nombre de pays incorrect: {stats['total_countries']} au lieu de 54",
+                        {'total_countries': stats['total_countries']}
+                    )
+                    return
+                
+                # Vérifier que total_mva_bln_usd est proche de 289.9
+                expected_mva = 289.9
+                actual_mva = stats['total_mva_bln_usd']
+                if abs(actual_mva - expected_mva) > 10:  # Tolérance de 10 milliards
+                    self.log_result(
+                        "UNIDO Statistics", 
+                        False, 
+                        f"MVA total incorrect: {actual_mva} au lieu de ~{expected_mva}",
+                        {'total_mva_bln_usd': actual_mva}
+                    )
+                    return
+                
+                self.log_result(
+                    "UNIDO Statistics", 
+                    True, 
+                    f"Statistiques UNIDO validées - {stats['total_countries']} pays, MVA total ${actual_mva}B",
+                    {
+                        'total_countries': stats['total_countries'],
+                        'total_mva_bln_usd': actual_mva
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "UNIDO Statistics", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "UNIDO Statistics", 
+                False, 
+                f"Erreur lors de la récupération des statistiques UNIDO: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_unido_country_mar(self):
+        """Test GET /api/production/unido/MAR - Maroc"""
+        try:
+            response = self.session.get(f"{self.base_url}/production/unido/MAR", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Vérifier les champs obligatoires
+                required_fields = ['country_name', 'mva_2023_mln_usd', 'mva_gdp_percent']
+                missing_fields = [field for field in required_fields if field not in data]
+                
+                if missing_fields:
+                    self.log_result(
+                        "UNIDO MAR", 
+                        False, 
+                        f"Champs manquants: {missing_fields}",
+                        {'data': data}
+                    )
+                    return
+                
+                # Vérifier les valeurs attendues selon la demande
+                if data['country_name'] != "Maroc":
+                    self.log_result(
+                        "UNIDO MAR", 
+                        False, 
+                        f"Nom de pays incorrect: {data['country_name']} au lieu de 'Maroc'",
+                        {'country_name': data['country_name']}
+                    )
+                    return
+                
+                expected_mva = 32500
+                actual_mva = data['mva_2023_mln_usd']
+                if abs(actual_mva - expected_mva) > 1000:  # Tolérance de 1 milliard
+                    self.log_result(
+                        "UNIDO MAR", 
+                        False, 
+                        f"MVA 2023 incorrect: {actual_mva} au lieu de {expected_mva}",
+                        {'mva_2023_mln_usd': actual_mva}
+                    )
+                    return
+                
+                expected_gdp_percent = 24.8
+                actual_gdp_percent = data['mva_gdp_percent']
+                if abs(actual_gdp_percent - expected_gdp_percent) > 2:  # Tolérance de 2%
+                    self.log_result(
+                        "UNIDO MAR", 
+                        False, 
+                        f"MVA/PIB incorrect: {actual_gdp_percent}% au lieu de {expected_gdp_percent}%",
+                        {'mva_gdp_percent': actual_gdp_percent}
+                    )
+                    return
+                
+                self.log_result(
+                    "UNIDO MAR", 
+                    True, 
+                    f"Données MAR validées - {data['country_name']}, MVA ${actual_mva}M, MVA/PIB {actual_gdp_percent}%",
+                    {
+                        'country_name': data['country_name'],
+                        'mva_2023_mln_usd': actual_mva,
+                        'mva_gdp_percent': actual_gdp_percent
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "UNIDO MAR", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "UNIDO MAR", 
+                False, 
+                f"Erreur lors de la récupération des données MAR: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_unido_country_zaf(self):
+        """Test GET /api/production/unido/ZAF - Afrique du Sud"""
+        try:
+            response = self.session.get(f"{self.base_url}/production/unido/ZAF", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Vérifier les champs obligatoires
+                required_fields = ['country_name', 'top_sectors']
+                missing_fields = [field for field in required_fields if field not in data]
+                
+                if missing_fields:
+                    self.log_result(
+                        "UNIDO ZAF", 
+                        False, 
+                        f"Champs manquants: {missing_fields}",
+                        {'data': data}
+                    )
+                    return
+                
+                # Vérifier les valeurs attendues selon la demande
+                if data['country_name'] != "Afrique du Sud":
+                    self.log_result(
+                        "UNIDO ZAF", 
+                        False, 
+                        f"Nom de pays incorrect: {data['country_name']} au lieu de 'Afrique du Sud'",
+                        {'country_name': data['country_name']}
+                    )
+                    return
+                
+                # Vérifier que automobile est dans top_sectors
+                top_sectors_str = str(data['top_sectors'])
+                if 'automobile' not in top_sectors_str.lower():
+                    self.log_result(
+                        "UNIDO ZAF", 
+                        False, 
+                        f"Automobile manquant dans top_sectors: {data['top_sectors']}",
+                        {'top_sectors': data['top_sectors']}
+                    )
+                    return
+                
+                self.log_result(
+                    "UNIDO ZAF", 
+                    True, 
+                    f"Données ZAF validées - {data['country_name']}, automobile présent dans top_sectors",
+                    {
+                        'country_name': data['country_name'],
+                        'top_sectors': data['top_sectors']
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "UNIDO ZAF", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "UNIDO ZAF", 
+                False, 
+                f"Erreur lors de la récupération des données ZAF: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_unido_ranking(self):
+        """Test GET /api/production/unido/ranking"""
+        try:
+            response = self.session.get(f"{self.base_url}/production/unido/ranking", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                if not isinstance(data, list):
+                    self.log_result(
+                        "UNIDO Ranking", 
+                        False, 
+                        "La réponse n'est pas une liste",
+                        {'response_type': type(data).__name__}
+                    )
+                    return
+                
+                if len(data) == 0:
+                    self.log_result(
+                        "UNIDO Ranking", 
+                        False, 
+                        "Aucun classement retourné",
+                        {'data_length': len(data)}
+                    )
+                    return
+                
+                # Vérifier que ZAF, EGY, NGA sont dans le top selon la demande
+                top_countries = [item.get('country_code', '') for item in data[:5]]
+                expected_top = ['ZAF', 'EGY', 'NGA']
+                
+                for country in expected_top:
+                    if country not in top_countries:
+                        self.log_result(
+                            "UNIDO Ranking", 
+                            False, 
+                            f"{country} manquant dans le top 5: {top_countries}",
+                            {'top_5': top_countries}
+                        )
+                        return
+                
+                self.log_result(
+                    "UNIDO Ranking", 
+                    True, 
+                    f"Classement MVA validé - {len(data)} pays, ZAF/EGY/NGA dans le top",
+                    {
+                        'countries_count': len(data),
+                        'top_5': top_countries
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "UNIDO Ranking", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "UNIDO Ranking", 
+                False, 
+                f"Erreur lors de la récupération du classement: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_unido_sector_analysis(self):
+        """Test GET /api/production/unido/sector-analysis/10"""
+        try:
+            response = self.session.get(f"{self.base_url}/production/unido/sector-analysis/10", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Vérifier que la réponse contient une analyse du secteur alimentaire
+                if not data:
+                    self.log_result(
+                        "UNIDO Sector Analysis 10", 
+                        False, 
+                        "Aucune analyse sectorielle retournée",
+                        {'data': data}
+                    )
+                    return
+                
+                self.log_result(
+                    "UNIDO Sector Analysis 10", 
+                    True, 
+                    "Analyse du secteur alimentaire (ISIC 10) validée",
+                    {
+                        'sector_analysis': data
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "UNIDO Sector Analysis 10", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "UNIDO Sector Analysis 10", 
+                False, 
+                f"Erreur lors de la récupération de l'analyse sectorielle: {str(e)}",
+                {'error': str(e)}
+            )
+    
+    def test_unido_isic_sectors(self):
+        """Test GET /api/production/unido/isic-sectors"""
+        try:
+            response = self.session.get(f"{self.base_url}/production/unido/isic-sectors", timeout=TIMEOUT)
+            
+            if response.status_code == 200:
+                data = response.json()
+                
+                if not isinstance(data, list):
+                    self.log_result(
+                        "UNIDO ISIC Sectors", 
+                        False, 
+                        "La réponse n'est pas une liste",
+                        {'response_type': type(data).__name__}
+                    )
+                    return
+                
+                if len(data) == 0:
+                    self.log_result(
+                        "UNIDO ISIC Sectors", 
+                        False, 
+                        "Aucun secteur ISIC retourné",
+                        {'data_length': len(data)}
+                    )
+                    return
+                
+                # Vérifier que les codes ISIC 10-33 sont présents selon la demande
+                isic_codes = [str(item.get('code', '')) for item in data if isinstance(item, dict)]
+                if not isic_codes:
+                    # Si c'est une liste simple de codes
+                    isic_codes = [str(item) for item in data]
+                
+                expected_range = [str(i) for i in range(10, 34)]  # 10-33
+                missing_codes = [code for code in expected_range if code not in isic_codes]
+                
+                if missing_codes:
+                    self.log_result(
+                        "UNIDO ISIC Sectors", 
+                        False, 
+                        f"Codes ISIC manquants (10-33): {missing_codes}",
+                        {'isic_codes': isic_codes}
+                    )
+                    return
+                
+                self.log_result(
+                    "UNIDO ISIC Sectors", 
+                    True, 
+                    f"Classification ISIC Rev.4 validée - {len(data)} secteurs, codes 10-33 présents",
+                    {
+                        'sectors_count': len(data),
+                        'sample_codes': isic_codes[:10]
+                    }
+                )
+                
+            else:
+                self.log_result(
+                    "UNIDO ISIC Sectors", 
+                    False, 
+                    f"Code de statut incorrect: {response.status_code}",
+                    {'status_code': response.status_code}
+                )
+                
+        except Exception as e:
+            self.log_result(
+                "UNIDO ISIC Sectors", 
+                False, 
+                f"Erreur lors de la récupération des secteurs ISIC: {str(e)}",
+                {'error': str(e)}
+            )
+
     def run_all_tests(self):
         """Exécuter tous les tests"""
         print(f"🚀 Début des tests de l'API ZLECAf")
