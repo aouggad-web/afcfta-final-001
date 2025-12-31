@@ -32,6 +32,11 @@ export default function StatisticsTab() {
       
       <div className="my-8"></div>
       
+      {/* Top 20 Trade Products Tables */}
+      <TradeProductsTable />
+      
+      <div className="my-8"></div>
+      
       {/* Intégration du composant Comparaisons dans Statistiques */}
       <TradeComparison />
       
