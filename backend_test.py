@@ -3124,31 +3124,42 @@ class ZLECAfAPITester:
             if response.status_code == 200:
                 data = response.json()
                 
-                if not isinstance(data, list):
+                # Vérifier que la réponse contient 'commodities'
+                if 'commodities' not in data:
                     self.log_result(
                         "FAOSTAT Commodities", 
                         False, 
-                        "La réponse n'est pas une liste",
-                        {'response_type': type(data).__name__}
+                        "Champ 'commodities' manquant dans la réponse",
+                        {'data': data}
                     )
                     return
                 
-                if len(data) == 0:
+                commodities = data['commodities']
+                if not isinstance(commodities, list):
+                    self.log_result(
+                        "FAOSTAT Commodities", 
+                        False, 
+                        "Le champ 'commodities' n'est pas une liste",
+                        {'commodities_type': type(commodities).__name__}
+                    )
+                    return
+                
+                if len(commodities) == 0:
                     self.log_result(
                         "FAOSTAT Commodities", 
                         False, 
                         "Aucune commodité retournée",
-                        {'data_length': len(data)}
+                        {'commodities_length': len(commodities)}
                     )
                     return
                 
                 self.log_result(
                     "FAOSTAT Commodities", 
                     True, 
-                    f"Liste des commodités agricoles validée - {len(data)} commodités",
+                    f"Liste des commodités agricoles validée - {len(commodities)} commodités",
                     {
-                        'commodities_count': len(data),
-                        'sample_commodities': data[:5] if len(data) >= 5 else data
+                        'commodities_count': len(commodities),
+                        'sample_commodities': commodities[:5] if len(commodities) >= 5 else commodities
                     }
                 )
                 
