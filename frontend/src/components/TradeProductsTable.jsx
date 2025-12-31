@@ -1,0 +1,328 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './ui/card';
+import { Badge } from './ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
+import { 
+  ArrowDownToLine, ArrowUpFromLine, Globe, Handshake, 
+  TrendingUp, TrendingDown, Package, Info, Loader2 
+} from 'lucide-react';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
+
+function TradeProductsTable() {
+  const [importsWorld, setImportsWorld] = useState(null);
+  const [exportsWorld, setExportsWorld] = useState(null);
+  const [intraImports, setIntraImports] = useState(null);
+  const [intraExports, setIntraExports] = useState(null);
+  const [summary, setSummary] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState('imports-world');
+
+  useEffect(() => {
+    fetchAllData();
+  }, []);
+
+  const fetchAllData = async () => {
+    setLoading(true);
+    try {
+      const [importsRes, exportsRes, intraImpRes, intraExpRes, summaryRes] = await Promise.all([
+        axios.get(`${API}/statistics/trade-products/imports-world`),
+        axios.get(`${API}/statistics/trade-products/exports-world`),
+        axios.get(`${API}/statistics/trade-products/intra-imports`),
+        axios.get(`${API}/statistics/trade-products/intra-exports`),
+        axios.get(`${API}/statistics/trade-products/summary`)
+      ]);
+      
+      setImportsWorld(importsRes.data);
+      setExportsWorld(exportsRes.data);
+      setIntraImports(intraImpRes.data);
+      setIntraExports(intraExpRes.data);
+      setSummary(summaryRes.data);
+    } catch (error) {
+      console.error('Error fetching trade products data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const formatValue = (value) => {
+    if (value >= 1000) {
+      return `$${(value / 1000).toFixed(1)}B`;
+    }
+    return `$${value}M`;
+  };
+
+  const renderGrowthBadge = (growth) => {
+    if (growth > 0) {
+      return (
+        <Badge className="bg-green-100 text-green-700 font-mono">
+          <TrendingUp className="w-3 h-3 mr-1" />
+          +{growth}%
+        </Badge>
+      );
+    } else if (growth < 0) {
+      return (
+        <Badge className="bg-red-100 text-red-700 font-mono">
+          <TrendingDown className="w-3 h-3 mr-1" />
+          {growth}%
+        </Badge>
+      );
+    }
+    return <Badge className="bg-gray-100 text-gray-700">0%</Badge>;
+  };
+
+  const renderProductTable = (data, type) => {
+    if (!data || !data.products) return null;
+    
+    const isExport = type.includes('export');
+    const isIntra = type.includes('intra');
+    
+    return (
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className={`${isIntra ? 'bg-purple-50' : isExport ? 'bg-green-50' : 'bg-blue-50'}`}>
+              <th className="px-3 py-3 text-left font-bold text-gray-700 w-12">#</th>
+              <th className="px-3 py-3 text-left font-bold text-gray-700">Produit</th>
+              <th className="px-3 py-3 text-left font-bold text-gray-700 w-20">Code HS</th>
+              <th className="px-3 py-3 text-right font-bold text-gray-700 w-28">Valeur</th>
+              <th className="px-3 py-3 text-right font-bold text-gray-700 w-20">Part</th>
+              <th className="px-3 py-3 text-center font-bold text-gray-700 w-28">Croissance</th>
+              <th className="px-3 py-3 text-left font-bold text-gray-700">{isExport ? 'Top Exportateurs' : 'Top Importateurs'}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.products.map((product, index) => (
+              <tr 
+                key={product.rank} 
+                className={`border-b border-gray-100 hover:bg-gray-50 transition-colors ${index < 3 ? 'bg-yellow-50/30' : ''}`}
+              >
+                <td className="px-3 py-3">
+                  <span className={`
+                    inline-flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold
+                    ${index === 0 ? 'bg-yellow-400 text-white' : 
+                      index === 1 ? 'bg-gray-300 text-gray-700' : 
+                      index === 2 ? 'bg-amber-600 text-white' : 
+                      'bg-gray-100 text-gray-600'}
+                  `}>
+                    {product.rank}
+                  </span>
+                </td>
+                <td className="px-3 py-3">
+                  <div className="font-medium text-gray-800">{product.product}</div>
+                </td>
+                <td className="px-3 py-3">
+                  <Badge variant="outline" className="font-mono text-xs">
+                    {product.hs_code}
+                  </Badge>
+                </td>
+                <td className="px-3 py-3 text-right">
+                  <span className={`font-bold ${isExport ? 'text-green-600' : 'text-blue-600'}`}>
+                    {formatValue(product.value_mln_usd)}
+                  </span>
+                </td>
+                <td className="px-3 py-3 text-right">
+                  <span className="text-gray-600">{product.share_percent}%</span>
+                </td>
+                <td className="px-3 py-3 text-center">
+                  {renderGrowthBadge(product.growth_2022_2023)}
+                </td>
+                <td className="px-3 py-3">
+                  <div className="flex flex-wrap gap-1">
+                    {(isExport ? product.top_exporters : product.top_importers)?.slice(0, 3).map((country, i) => (
+                      <Badge key={i} variant="outline" className="text-xs bg-white">
+                        {country}
+                      </Badge>
+                    ))}
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  };
+
+  if (loading) {
+    return (
+      <Card className="shadow-xl">
+        <CardContent className="flex items-center justify-center h-64">
+          <div className="text-center">
+            <Loader2 className="w-12 h-12 animate-spin text-blue-600 mx-auto" />
+            <p className="mt-4 text-gray-600">Chargement des données commerciales...</p>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Header Card */}
+      <Card className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white shadow-xl">
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold flex items-center gap-3">
+            <Package className="w-8 h-8" />
+            Top 20 Produits Commerciaux Africains
+          </CardTitle>
+          <CardDescription className="text-indigo-100 text-base">
+            Analyse détaillée des principaux produits échangés (Import/Export Monde & Intra-Africain)
+          </CardDescription>
+        </CardHeader>
+        {summary && (
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="bg-white/10 backdrop-blur rounded-xl p-4">
+                <p className="text-indigo-200 text-xs uppercase">Import du Monde (Top 20)</p>
+                <p className="text-2xl font-bold">{formatValue(summary.top_20_imports_world_total_mln_usd)}</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur rounded-xl p-4">
+                <p className="text-indigo-200 text-xs uppercase">Export vers le Monde (Top 20)</p>
+                <p className="text-2xl font-bold">{formatValue(summary.top_20_exports_world_total_mln_usd)}</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur rounded-xl p-4">
+                <p className="text-indigo-200 text-xs uppercase">Import Intra-Africain (Top 20)</p>
+                <p className="text-2xl font-bold">{formatValue(summary.top_20_intra_imports_total_mln_usd)}</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur rounded-xl p-4">
+                <p className="text-indigo-200 text-xs uppercase">Export Intra-Africain (Top 20)</p>
+                <p className="text-2xl font-bold">{formatValue(summary.top_20_intra_exports_total_mln_usd)}</p>
+              </div>
+            </div>
+          </CardContent>
+        )}
+      </Card>
+
+      {/* Tabs for different tables */}
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <TabsList className="grid w-full grid-cols-4 bg-gray-100 p-1 h-auto gap-1">
+          <TabsTrigger 
+            value="imports-world" 
+            className="data-[state=active]:bg-blue-600 data-[state=active]:text-white py-3 flex items-center gap-2"
+          >
+            <ArrowDownToLine className="w-4 h-4" />
+            <span className="hidden sm:inline">Import</span> Monde
+          </TabsTrigger>
+          <TabsTrigger 
+            value="exports-world" 
+            className="data-[state=active]:bg-green-600 data-[state=active]:text-white py-3 flex items-center gap-2"
+          >
+            <ArrowUpFromLine className="w-4 h-4" />
+            <span className="hidden sm:inline">Export</span> Monde
+          </TabsTrigger>
+          <TabsTrigger 
+            value="intra-imports" 
+            className="data-[state=active]:bg-purple-600 data-[state=active]:text-white py-3 flex items-center gap-2"
+          >
+            <Handshake className="w-4 h-4" />
+            <span className="hidden sm:inline">Import</span> Intra-AF
+          </TabsTrigger>
+          <TabsTrigger 
+            value="intra-exports" 
+            className="data-[state=active]:bg-pink-600 data-[state=active]:text-white py-3 flex items-center gap-2"
+          >
+            <Globe className="w-4 h-4" />
+            <span className="hidden sm:inline">Export</span> Intra-AF
+          </TabsTrigger>
+        </TabsList>
+
+        {/* Imports from World */}
+        <TabsContent value="imports-world">
+          <Card className="shadow-lg border-t-4 border-t-blue-500">
+            <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50">
+              <CardTitle className="text-xl text-blue-700 flex items-center gap-2">
+                <ArrowDownToLine className="w-6 h-6" />
+                {importsWorld?.title}
+              </CardTitle>
+              <CardDescription className="flex items-center gap-2">
+                <Info className="w-4 h-4" />
+                Source: {importsWorld?.source} | Année: {importsWorld?.year}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="p-0">
+              {renderProductTable(importsWorld, 'imports-world')}
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Exports to World */}
+        <TabsContent value="exports-world">
+          <Card className="shadow-lg border-t-4 border-t-green-500">
+            <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-50">
+              <CardTitle className="text-xl text-green-700 flex items-center gap-2">
+                <ArrowUpFromLine className="w-6 h-6" />
+                {exportsWorld?.title}
+              </CardTitle>
+              <CardDescription className="flex items-center gap-2">
+                <Info className="w-4 h-4" />
+                Source: {exportsWorld?.source} | Année: {exportsWorld?.year}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="p-0">
+              {renderProductTable(exportsWorld, 'exports-world')}
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Intra-African Imports */}
+        <TabsContent value="intra-imports">
+          <Card className="shadow-lg border-t-4 border-t-purple-500">
+            <CardHeader className="bg-gradient-to-r from-purple-50 to-violet-50">
+              <CardTitle className="text-xl text-purple-700 flex items-center gap-2">
+                <Handshake className="w-6 h-6" />
+                {intraImports?.title}
+              </CardTitle>
+              <CardDescription className="flex items-center gap-2">
+                <Info className="w-4 h-4" />
+                Source: {intraImports?.source} | Année: {intraImports?.year}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="p-0">
+              {renderProductTable(intraImports, 'intra-imports')}
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Intra-African Exports */}
+        <TabsContent value="intra-exports">
+          <Card className="shadow-lg border-t-4 border-t-pink-500">
+            <CardHeader className="bg-gradient-to-r from-pink-50 to-rose-50">
+              <CardTitle className="text-xl text-pink-700 flex items-center gap-2">
+                <Globe className="w-6 h-6" />
+                {intraExports?.title}
+              </CardTitle>
+              <CardDescription className="flex items-center gap-2">
+                <Info className="w-4 h-4" />
+                Source: {intraExports?.source} | Année: {intraExports?.year}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="p-0">
+              {renderProductTable(intraExports, 'intra-exports')}
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
+
+      {/* Footer Info */}
+      <Card className="bg-gray-50 border-gray-200">
+        <CardContent className="py-4">
+          <div className="flex items-start gap-3">
+            <Info className="w-5 h-5 text-gray-400 mt-0.5" />
+            <div className="text-sm text-gray-600">
+              <p><strong>Sources:</strong> UNCTAD COMTRADE, ITC Trade Map, African Development Bank, AfCFTA Secretariat</p>
+              <p className="mt-1">
+                Les données représentent les 20 principaux produits par valeur commerciale. 
+                Classification selon le Système Harmonisé (HS). Données 2023.
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+export default TradeProductsTable;
