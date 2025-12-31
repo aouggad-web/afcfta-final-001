@@ -3451,26 +3451,37 @@ class ZLECAfAPITester:
             if response.status_code == 200:
                 data = response.json()
                 
-                if not isinstance(data, list):
+                # Vérifier que la réponse contient 'ranking'
+                if 'ranking' not in data:
                     self.log_result(
                         "UNIDO Ranking", 
                         False, 
-                        "La réponse n'est pas une liste",
-                        {'response_type': type(data).__name__}
+                        "Champ 'ranking' manquant dans la réponse",
+                        {'data': data}
                     )
                     return
                 
-                if len(data) == 0:
+                ranking = data['ranking']
+                if not isinstance(ranking, list):
+                    self.log_result(
+                        "UNIDO Ranking", 
+                        False, 
+                        "Le champ 'ranking' n'est pas une liste",
+                        {'ranking_type': type(ranking).__name__}
+                    )
+                    return
+                
+                if len(ranking) == 0:
                     self.log_result(
                         "UNIDO Ranking", 
                         False, 
                         "Aucun classement retourné",
-                        {'data_length': len(data)}
+                        {'ranking_length': len(ranking)}
                     )
                     return
                 
                 # Vérifier que ZAF, EGY, NGA sont dans le top selon la demande
-                top_countries = [item.get('country_code', '') for item in data[:5]]
+                top_countries = [item.get('country_iso3', '') for item in ranking[:5]]
                 expected_top = ['ZAF', 'EGY', 'NGA']
                 
                 for country in expected_top:
@@ -3486,9 +3497,9 @@ class ZLECAfAPITester:
                 self.log_result(
                     "UNIDO Ranking", 
                     True, 
-                    f"Classement MVA validé - {len(data)} pays, ZAF/EGY/NGA dans le top",
+                    f"Classement MVA validé - {len(ranking)} pays, ZAF/EGY/NGA dans le top",
                     {
-                        'countries_count': len(data),
+                        'countries_count': len(ranking),
                         'top_5': top_countries
                     }
                 )
