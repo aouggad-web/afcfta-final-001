@@ -3571,30 +3571,37 @@ class ZLECAfAPITester:
             if response.status_code == 200:
                 data = response.json()
                 
-                if not isinstance(data, list):
+                # Vérifier que la réponse contient 'sectors'
+                if 'sectors' not in data:
                     self.log_result(
                         "UNIDO ISIC Sectors", 
                         False, 
-                        "La réponse n'est pas une liste",
-                        {'response_type': type(data).__name__}
+                        "Champ 'sectors' manquant dans la réponse",
+                        {'data': data}
                     )
                     return
                 
-                if len(data) == 0:
+                sectors = data['sectors']
+                if not isinstance(sectors, dict):
+                    self.log_result(
+                        "UNIDO ISIC Sectors", 
+                        False, 
+                        "Le champ 'sectors' n'est pas un dictionnaire",
+                        {'sectors_type': type(sectors).__name__}
+                    )
+                    return
+                
+                if len(sectors) == 0:
                     self.log_result(
                         "UNIDO ISIC Sectors", 
                         False, 
                         "Aucun secteur ISIC retourné",
-                        {'data_length': len(data)}
+                        {'sectors_length': len(sectors)}
                     )
                     return
                 
                 # Vérifier que les codes ISIC 10-33 sont présents selon la demande
-                isic_codes = [str(item.get('code', '')) for item in data if isinstance(item, dict)]
-                if not isic_codes:
-                    # Si c'est une liste simple de codes
-                    isic_codes = [str(item) for item in data]
-                
+                isic_codes = list(sectors.keys())
                 expected_range = [str(i) for i in range(10, 34)]  # 10-33
                 missing_codes = [code for code in expected_range if code not in isic_codes]
                 
@@ -3610,10 +3617,10 @@ class ZLECAfAPITester:
                 self.log_result(
                     "UNIDO ISIC Sectors", 
                     True, 
-                    f"Classification ISIC Rev.4 validée - {len(data)} secteurs, codes 10-33 présents",
+                    f"Classification ISIC Rev.4 validée - {len(sectors)} secteurs, codes 10-33 présents",
                     {
-                        'sectors_count': len(data),
-                        'sample_codes': isic_codes[:10]
+                        'sectors_count': len(sectors),
+                        'sample_codes': list(sectors.keys())[:10]
                     }
                 )
                 
