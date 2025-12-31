@@ -85,11 +85,21 @@ function EnhancedCountrySelector({ value, onChange, label = "Sélectionner un pa
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
+        setSearchTerm('');
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  // Focus input when dropdown opens
+  useEffect(() => {
+    if (isOpen && inputRef.current) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
+    }
+  }, [isOpen]);
 
   // Obtenir tous les pays dans une liste plate
   const allCountries = useMemo(() => {
@@ -109,12 +119,14 @@ function EnhancedCountrySelector({ value, onChange, label = "Sélectionner un pa
   const filteredRegions = useMemo(() => {
     if (!searchTerm) return AFRICAN_COUNTRIES_BY_REGION;
 
+    const normalizedSearch = searchTerm.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     const filtered = {};
     Object.entries(AFRICAN_COUNTRIES_BY_REGION).forEach(([region, countries]) => {
-      const matchedCountries = countries.filter(country =>
-        country.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        country.code.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      const matchedCountries = countries.filter(country => {
+        const normalizedName = country.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        return normalizedName.includes(normalizedSearch) ||
+               country.code.toLowerCase().includes(normalizedSearch);
+      });
       if (matchedCountries.length > 0) {
         filtered[region] = matchedCountries;
       }
@@ -126,22 +138,41 @@ function EnhancedCountrySelector({ value, onChange, label = "Sélectionner un pa
   const majorEconomiesFiltered = useMemo(() => {
     const majors = allCountries.filter(c => MAJOR_ECONOMIES.includes(c.code));
     if (!searchTerm) return majors;
-    return majors.filter(country =>
-      country.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      country.code.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const normalizedSearch = searchTerm.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return majors.filter(country => {
+      const normalizedName = country.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      return normalizedName.includes(normalizedSearch) ||
+             country.code.toLowerCase().includes(normalizedSearch);
+    });
   }, [searchTerm, allCountries]);
 
-  const handleSelect = (country) => {
+  const handleToggle = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsOpen(prev => !prev);
+  }, []);
+
+  const handleSelect = useCallback((country) => {
     onChange(country.code);
     setIsOpen(false);
     setSearchTerm('');
-  };
+  }, [onChange]);
 
-  const handleClear = (e) => {
+  const handleClear = useCallback((e) => {
+    e.preventDefault();
     e.stopPropagation();
     onChange('');
-  };
+    setSearchTerm('');
+  }, [onChange]);
+
+  const handleSearchChange = useCallback((e) => {
+    e.stopPropagation();
+    setSearchTerm(e.target.value);
+  }, []);
+
+  const handleSearchClick = useCallback((e) => {
+    e.stopPropagation();
+  }, []);
 
   // Style variants
   const isProminent = variant === "prominent";
