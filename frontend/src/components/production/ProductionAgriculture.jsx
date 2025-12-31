@@ -141,16 +141,18 @@ function ProductionAgriculture() {
       </Card>
 
       {/* Enhanced Country Selector */}
-      <Card className="border-2 border-green-200 shadow-lg overflow-visible" style={{ zIndex: 50 }}>
-        <CardContent className="pt-6 overflow-visible">
-          <EnhancedCountrySelector
-            value={selectedCountry}
-            onChange={setSelectedCountry}
-            label="Sélectionner un pays africain"
-            variant="prominent"
-          />
-        </CardContent>
-      </Card>
+      <div style={{ position: 'relative', zIndex: 100 }}>
+        <Card className="border-2 border-green-200 shadow-lg" style={{ overflow: 'visible' }}>
+          <CardContent className="pt-6" style={{ overflow: 'visible' }}>
+            <EnhancedCountrySelector
+              value={selectedCountry}
+              onChange={setSelectedCountry}
+              label="Sélectionner un pays africain"
+              variant="prominent"
+            />
+          </CardContent>
+        </Card>
+      </div>
 
       {/* Loading State */}
       {loading && (
