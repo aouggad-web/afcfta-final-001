@@ -349,6 +349,7 @@ function EnhancedCountrySelector({ value, onChange, label = "Sélectionner un pa
             )}
           </div>
         </div>
+        </>
       )}
     </div>
   );
