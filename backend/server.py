@@ -1824,6 +1824,82 @@ async def get_all_unido():
     return get_all_unido_data()
 
 
+# ==========================================
+# TRADE PRODUCTS ENDPOINTS (TOP 20)
+# ==========================================
+
+from etl.trade_products_data import (
+    get_top_imports_from_world,
+    get_top_exports_to_world,
+    get_top_intra_african_imports,
+    get_top_intra_african_exports,
+    get_all_trade_products_data,
+    get_trade_summary
+)
+
+@api_router.get("/statistics/trade-products/summary")
+async def get_trade_products_summary():
+    """
+    Get summary of trade products data
+    """
+    return get_trade_summary()
+
+@api_router.get("/statistics/trade-products/imports-world")
+async def get_imports_from_world():
+    """
+    Get Top 20 products imported by Africa from the world
+    """
+    return {
+        "title": "Top 20 Produits Importés par l'Afrique du Monde",
+        "source": "UNCTAD/ITC Trade Map 2023",
+        "year": 2023,
+        "products": get_top_imports_from_world()
+    }
+
+@api_router.get("/statistics/trade-products/exports-world")
+async def get_exports_to_world():
+    """
+    Get Top 20 products exported by Africa to the world
+    """
+    return {
+        "title": "Top 20 Produits Exportés par l'Afrique vers le Monde",
+        "source": "UNCTAD/ITC Trade Map 2023",
+        "year": 2023,
+        "products": get_top_exports_to_world()
+    }
+
+@api_router.get("/statistics/trade-products/intra-imports")
+async def get_intra_imports():
+    """
+    Get Top 20 products imported in intra-African trade
+    """
+    return {
+        "title": "Top 20 Produits Importés en Commerce Intra-Africain",
+        "source": "UNCTAD/AfCFTA Secretariat 2023",
+        "year": 2023,
+        "products": get_top_intra_african_imports()
+    }
+
+@api_router.get("/statistics/trade-products/intra-exports")
+async def get_intra_exports():
+    """
+    Get Top 20 products exported in intra-African trade
+    """
+    return {
+        "title": "Top 20 Produits Exportés en Commerce Intra-Africain",
+        "source": "UNCTAD/AfCFTA Secretariat 2023",
+        "year": 2023,
+        "products": get_top_intra_african_exports()
+    }
+
+@api_router.get("/statistics/trade-products")
+async def get_all_trade_products():
+    """
+    Get all trade products data (imports, exports, intra-African)
+    """
+    return get_all_trade_products_data()
+
+
 # Include the router in the main app
 app.include_router(api_router)
 
