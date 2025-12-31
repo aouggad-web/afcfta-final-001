@@ -1,5 +1,4 @@
-import React, { useState, useMemo, useRef, useEffect } from 'react';
-import { Card, CardContent } from '../ui/card';
+import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
 import { Input } from '../ui/input';
 import { Badge } from '../ui/badge';
 import { Search, ChevronDown, X, Globe, Star } from 'lucide-react';
