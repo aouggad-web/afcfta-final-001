@@ -240,11 +240,16 @@ function EnhancedCountrySelector({ value, onChange, label = "Sélectionner un pa
       {/* Dropdown */}
       {isOpen && (
         <div 
-          className="absolute left-0 right-0 mt-2 bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden"
-          style={{ zIndex: 9999 }}
+          className="absolute left-0 right-0 mt-2 bg-white rounded-xl shadow-2xl border border-gray-200"
+          style={{ 
+            zIndex: 99999,
+            position: 'absolute',
+            top: '100%',
+            maxHeight: '400px'
+          }}
         >
           {/* Search input */}
-          <div className="p-3 border-b border-gray-100 bg-gray-50" onClick={handleSearchClick}>
+          <div className="p-3 border-b border-gray-100 bg-gray-50 sticky top-0" onClick={handleSearchClick}>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
               <input
