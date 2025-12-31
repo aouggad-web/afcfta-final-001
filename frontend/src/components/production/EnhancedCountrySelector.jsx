@@ -270,7 +270,7 @@ function EnhancedCountrySelector({ value, onChange, label = "Sélectionner un pa
           </div>
 
           {/* Scrollable list */}
-          <div className="max-h-72 overflow-y-auto bg-white">
+          <div className="max-h-64 overflow-y-auto bg-white" style={{ overflowY: 'auto' }}>
             {/* Major economies section - only show when no search */}
             {!searchTerm && majorEconomiesFiltered.length > 0 && (
               <div className="p-2">
