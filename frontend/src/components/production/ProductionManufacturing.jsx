@@ -130,8 +130,8 @@ function ProductionManufacturing() {
       </Card>
 
       {/* Enhanced Country Selector */}
-      <Card className="border-2 border-blue-200 shadow-lg">
-        <CardContent className="pt-6">
+      <Card className="border-2 border-blue-200 shadow-lg overflow-visible" style={{ zIndex: 50 }}>
+        <CardContent className="pt-6 overflow-visible">
           <EnhancedCountrySelector
             value={selectedCountry}
             onChange={setSelectedCountry}
