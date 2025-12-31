@@ -186,10 +186,11 @@ function EnhancedCountrySelector({ value, onChange, label = "Sélectionner un pa
       </label>
       
       {/* Main selector button */}
-      <div
-        onClick={() => { setIsOpen(!isOpen); if (!isOpen && inputRef.current) inputRef.current.focus(); }}
+      <button
+        type="button"
+        onClick={handleToggle}
         className={`
-          w-full cursor-pointer rounded-xl border-2 transition-all duration-200
+          w-full text-left cursor-pointer rounded-xl border-2 transition-all duration-200
           ${isOpen 
             ? 'border-green-500 ring-4 ring-green-100 shadow-lg' 
             : 'border-gray-200 hover:border-green-300 hover:shadow-md'
@@ -224,33 +225,33 @@ function EnhancedCountrySelector({ value, onChange, label = "Sélectionner un pa
           )}
           <div className="flex items-center gap-2">
             {selectedCountry && (
-              <button
+              <span
                 onClick={handleClear}
-                className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                className="p-1 hover:bg-gray-100 rounded-full transition-colors cursor-pointer"
               >
                 <X className="w-4 h-4 text-gray-400" />
-              </button>
+              </span>
             )}
             <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
           </div>
         </div>
-      </div>
+      </button>
 
       {/* Dropdown */}
       {isOpen && (
-        <div className="absolute z-50 w-full mt-2 bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="absolute z-50 w-full mt-2 bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden">
           {/* Search input */}
-          <div className="p-3 border-b border-gray-100 bg-gray-50">
+          <div className="p-3 border-b border-gray-100 bg-gray-50" onClick={handleSearchClick}>
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-              <Input
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+              <input
                 ref={inputRef}
                 type="text"
                 placeholder="Tapez le nom ou code du pays..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 w-full border-green-200 focus:border-green-500 focus:ring-green-200"
-                autoFocus
+                onChange={handleSearchChange}
+                onClick={handleSearchClick}
+                className="w-full pl-10 pr-4 py-2 border border-green-200 rounded-lg focus:border-green-500 focus:ring-2 focus:ring-green-200 focus:outline-none text-sm"
               />
             </div>
             <p className="text-xs text-gray-500 mt-2 flex items-center gap-1">
@@ -273,6 +274,7 @@ function EnhancedCountrySelector({ value, onChange, label = "Sélectionner un pa
                   {majorEconomiesFiltered.map(country => (
                     <button
                       key={country.code}
+                      type="button"
                       onClick={() => handleSelect(country)}
                       className={`
                         flex items-center gap-2 px-3 py-2 rounded-lg text-left transition-colors
@@ -303,6 +305,7 @@ function EnhancedCountrySelector({ value, onChange, label = "Sélectionner un pa
                   {countries.map(country => (
                     <button
                       key={country.code}
+                      type="button"
                       onClick={() => handleSelect(country)}
                       className={`
                         w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-colors
