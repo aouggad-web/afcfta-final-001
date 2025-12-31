@@ -3038,30 +3038,41 @@ class ZLECAfAPITester:
             if response.status_code == 200:
                 data = response.json()
                 
-                if not isinstance(data, list):
+                # Vérifier que la réponse contient 'producers'
+                if 'producers' not in data:
                     self.log_result(
                         "FAOSTAT Top Producers Cacao", 
                         False, 
-                        "La réponse n'est pas une liste",
-                        {'response_type': type(data).__name__}
+                        "Champ 'producers' manquant dans la réponse",
+                        {'data': data}
                     )
                     return
                 
-                if len(data) == 0:
+                producers = data['producers']
+                if not isinstance(producers, list):
+                    self.log_result(
+                        "FAOSTAT Top Producers Cacao", 
+                        False, 
+                        "Le champ 'producers' n'est pas une liste",
+                        {'producers_type': type(producers).__name__}
+                    )
+                    return
+                
+                if len(producers) == 0:
                     self.log_result(
                         "FAOSTAT Top Producers Cacao", 
                         False, 
                         "Aucun producteur de cacao retourné",
-                        {'data_length': len(data)}
+                        {'producers_length': len(producers)}
                     )
                     return
                 
                 # Vérifier que CIV est #1 et GHA est #2 selon la demande
-                if len(data) >= 2:
-                    first_producer = data[0]
-                    second_producer = data[1]
+                if len(producers) >= 2:
+                    first_producer = producers[0]
+                    second_producer = producers[1]
                     
-                    if 'CIV' not in str(first_producer):
+                    if first_producer.get('country') != 'CIV':
                         self.log_result(
                             "FAOSTAT Top Producers Cacao", 
                             False, 
@@ -3070,7 +3081,7 @@ class ZLECAfAPITester:
                         )
                         return
                     
-                    if 'GHA' not in str(second_producer):
+                    if second_producer.get('country') != 'GHA':
                         self.log_result(
                             "FAOSTAT Top Producers Cacao", 
                             False, 
@@ -3082,10 +3093,10 @@ class ZLECAfAPITester:
                 self.log_result(
                     "FAOSTAT Top Producers Cacao", 
                     True, 
-                    f"Classement cacao validé - {len(data)} producteurs, CIV #1, GHA #2",
+                    f"Classement cacao validé - {len(producers)} producteurs, CIV #1, GHA #2",
                     {
-                        'producers_count': len(data),
-                        'top_2': data[:2] if len(data) >= 2 else data
+                        'producers_count': len(producers),
+                        'top_2': producers[:2] if len(producers) >= 2 else producers
                     }
                 )
                 
