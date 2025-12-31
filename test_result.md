@@ -1,82 +1,41 @@
-# Test Results - Maritime Logistics Contacts Update
+# Test Results - Production Tab Enhancement (FAOSTAT + UNIDO)
 
-backend:
-  - task: "Maritime Ports List API"
-    implemented: true
-    working: true
-    file: "/api/logistics/ports"
-    stuck_count: 0
-    priority: "high"
-    needs_retesting: false
-    status_history:
-      - working: true
-        agent: "testing"
-        comment: "✅ GET /api/logistics/ports returns 68 ports with complete port_authority contacts (name, address, website, contact_phone, contact_email). All websites start with https:// and phone numbers are in international format (+country_code)."
+## Backend Tests Required
 
-  - task: "Port Authority Contact Data"
-    implemented: true
-    working: true
-    file: "ports_africains.json"
-    stuck_count: 0
-    priority: "high"
-    needs_retesting: false
-    status_history:
-      - working: true
-        agent: "testing"
-        comment: "✅ All 68 African ports have real port_authority contact information. Verified specific data: Port d'Alger (+213 21 42 34 48), Port de Tanger Med (https://www.tangermed.ma), Port de Dakar (contains 'Port Autonome de Dakar')."
+### FAOSTAT API Endpoints
+1. Test `/api/production/faostat/statistics` - Should return statistics with total_countries=54, total_commodities=47
+2. Test `/api/production/faostat/{country_iso3}` - Test with CIV, EGY, ZAF - Should return country data with main_crops, production_2023, livestock_2023, fisheries_2023
+3. Test `/api/production/faostat/top-producers/{commodity}` - Test with "Cacao", "Café", "Maïs"
+4. Test `/api/production/faostat/commodities` - Should return list of commodities
+5. Test `/api/production/faostat/fisheries` - Should return fisheries rankings
 
-  - task: "Shipping Agents Contact Data"
-    implemented: true
-    working: true
-    file: "ports_africains.json"
-    stuck_count: 0
-    priority: "high"
-    needs_retesting: false
-    status_history:
-      - working: true
-        agent: "testing"
-        comment: "✅ 288 shipping agents across all ports have updated contact information. Website coverage: 69.8%, Phone coverage: 54.9%, Email coverage: 54.9%. Major ports like Tanger Med (15 agents), Durban (15 agents), Port Saïd (15 agents) have comprehensive agent listings."
+### UNIDO API Endpoints
+1. Test `/api/production/unido/statistics` - Should return total_mva_bln_usd around $290B
+2. Test `/api/production/unido/{country_iso3}` - Test with MAR, ZAF, NGA - Should return MVA data
+3. Test `/api/production/unido/ranking` - Should return sorted list of African countries by MVA
+4. Test `/api/production/unido/sector-analysis/{isic_code}` - Test with "10" (food products)
+5. Test `/api/production/unido/isic-sectors` - Should return ISIC Rev.4 classification
 
-  - task: "Port Details API Endpoint"
-    implemented: true
-    working: true
-    file: "/api/logistics/ports/{port_id}"
-    stuck_count: 0
-    priority: "medium"
-    needs_retesting: false
-    status_history:
-      - working: true
-        agent: "testing"
-        comment: "✅ GET /api/logistics/ports/{port_id} returns detailed port information including port_authority details and agents list. Tested with Port d'Alger (DZA-ALG-001) - returns complete authority info and 3 agents."
+## Frontend Tests Required
 
-frontend:
-  - task: "Frontend Maritime Logistics UI"
-    implemented: true
-    working: "NA"
-    file: "frontend/src/"
-    stuck_count: 0
-    priority: "medium"
-    needs_retesting: false
-    status_history:
-      - working: "NA"
-        agent: "testing"
-        comment: "Frontend testing not performed as per system limitations. Backend APIs are working correctly and provide all necessary data for frontend consumption."
+### Agriculture Tab (FAOSTAT)
+1. Navigate to Production > Agriculture tab
+2. Verify "Production Agricole FAOSTAT" header displays with "54 pays" badge
+3. Verify country selector shows Côte d'Ivoire with flag and "Top 10" badge
+4. Verify key indicators display: Agriculture/PIB %, Emploi agricole %
+5. Verify sub-tabs: Productions Végétales, Élevage, Pêche
+6. Change country selection and verify data updates
 
-metadata:
-  created_by: "testing_agent"
-  version: "1.1"
-  test_sequence: 1
-  run_ui: false
+### Manufacturing Tab (UNIDO)
+1. Navigate to Production > Manufacturing tab
+2. Verify "Production Industrielle UNIDO" header displays with "$289.9B MVA Total"
+3. Verify country selector shows Maroc with flag
+4. Verify 4 metric cards: Valeur Ajoutée Manuf., MVA/PIB, MVA par habitant, Croissance 2023
+5. Verify sectors display with charts
 
-test_plan:
-  current_focus:
-    - "Maritime Ports List API"
-    - "Port Authority Contact Data"
-    - "Shipping Agents Contact Data"
-  stuck_tasks: []
-  test_all: false
-  test_priority: "high_first"
-
-agent_communication:
-  - agent: "testing"
-    message: "✅ MARITIME LOGISTICS CONTACTS UPDATE TESTING COMPLETE - All backend APIs are working correctly. Key findings: 1) 68 ports with complete port_authority contacts, 2) 288 shipping agents with updated contact info (higher than expected 158), 3) All specific test cases passed (Alger phone, Tanger Med website, Dakar authority name), 4) API endpoints return proper data structure for frontend consumption. The update has been successfully implemented and tested."
+## Incorporate User Feedback
+- User requested: FAOSTAT data integration + UNIDO data integration
+- User requested: Improved dropdown/search for country selection
+- All categories: Production agricole, élevage, pêche/aquaculture
+- All African countries (54)
+- Period: 2020-2023
