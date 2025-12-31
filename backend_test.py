@@ -3640,6 +3640,28 @@ class ZLECAfAPITester:
         self.test_production_overview_country()
         self.test_production_filtering()
         
+        # Tests FAOSTAT (nouveaux)
+        print("\n" + "=" * 80)
+        print("🌾 TESTS FAOSTAT PRODUCTION AGRICOLE")
+        print("=" * 80)
+        self.test_faostat_statistics()
+        self.test_faostat_country_civ()
+        self.test_faostat_country_egy()
+        self.test_faostat_top_producers_cacao()
+        self.test_faostat_commodities()
+        self.test_faostat_fisheries()
+        
+        # Tests UNIDO (nouveaux)
+        print("\n" + "=" * 80)
+        print("🏭 TESTS UNIDO PRODUCTION INDUSTRIELLE")
+        print("=" * 80)
+        self.test_unido_statistics()
+        self.test_unido_country_mar()
+        self.test_unido_country_zaf()
+        self.test_unido_ranking()
+        self.test_unido_sector_analysis()
+        self.test_unido_isic_sectors()
+        
         # Tests Maritime Logistics Contacts Update
         print("\n" + "=" * 80)
         print("🚢 TESTS MARITIME LOGISTICS CONTACTS UPDATE")
