@@ -19,23 +19,34 @@ Application web d'analyse des statistiques commerciales et économiques africain
   - Export vers le Monde  
   - Import Intra-Africain
   - Export Intra-Africain
+- **Indicateur de source** en bas de page
 
 ### 3. Production (Onglet)
 - **Agriculture (FAOSTAT)**: Données 54 pays (2020-2023)
 - **Manufacturing (UNIDO)**: Statistiques industrielles
+- **Mining (USGS)**: Statistiques minières
+- **Macro (World Bank/IMF)**: Valeur ajoutée
 
 ### 4. Logistique (Onglet)
-- Temps de dédouanement TRS
-- Statistiques portuaires
+- Maritime (Ports)
+- Aérien (Fret)
+- Terrestre (Corridors)
+- Zones Franches
+- **Interface upload TRS** pour données officielles
+- **Sources UNCTAD** intégrées
 
 ### 5. Outils
-- Règles d'origine
-- Profils pays détaillés
+- Obstacles Non Tarifaires (NTB)
+- Protocole Commerce Digital
+- Guided Trade Initiative
+- PAPSS - Système Panafricain de Paiements
+- Ressources additionnelles
 
-### 6. Internationalisation (i18n)
+### 6. Internationalisation (i18n) - Complète
 - Support complet français/anglais ✅
-- Tous les composants traduisibles
-- Données API traduites selon la langue
+- Tous les composants traduisibles ✅
+- Données API traduites selon la langue ✅
+- **Indicateurs de source** en petit caractère ✅
 
 ## Corrections et Améliorations (31/12/2024 - 08/01/2025)
 
@@ -44,25 +55,29 @@ Mise à jour selon FMI World Economic Outlook (Oct 2024):
 - **Algérie**: 260.1 → 266.5 Mds USD (Rang 3)
 - **Nigéria**: 268.5 → 253.0 Mds USD (Rang 4)
 
-Classement correct:
-1. Afrique du Sud - 377.78 Mds USD
-2. Égypte - 348.0 Mds USD
-3. Algérie - 266.5 Mds USD
-4. Nigéria - 253.0 Mds USD
-5. Éthiopie - 156.1 Mds USD
-
 ### Internationalisation Complete (08/01/2025)
-- Ajout des traductions pour tous les textes UI (français/anglais)
-- Création du fichier `/app/backend/etl/translations.py` pour les traductions backend
-- APIs avec paramètre `?lang=en` pour les données traduites
-- Noms de produits et pays traduits dynamiquement
+- Tous les onglets traduits : Statistics, Production, Logistics, Tools
+- Fichier traductions backend : `/app/backend/etl/translations.py`
+- APIs avec paramètre `?lang=en`
+- Interface upload TRS dans Logistics
+
+### Données UNCTAD (08/01/2025)
+- Nouveau fichier : `/app/backend/etl/unctad_data.py`
+- APIs UNCTAD : `/api/statistics/unctad/ports`, `/api/statistics/unctad/trade-flows`, `/api/statistics/unctad/lsci`
+- Statistiques portuaires africaines
+- Flux commerciaux
+- Indice de connectivité maritime (LSCI)
 
 ## Architecture Technique
 
 ### Backend (FastAPI)
 - `/app/backend/server.py` - API principale
-- `/app/backend/etl/` - Données ETL (FAOSTAT, UNIDO, Trade Products)
-- `/app/backend/etl/translations.py` - Traductions produits/pays
+- `/app/backend/etl/` - Données ETL
+  - `faostat_data.py` - Agriculture
+  - `unido_data.py` - Manufacturing
+  - `trade_products_data.py` - Produits commerciaux
+  - `translations.py` - Traductions
+  - `unctad_data.py` - Données UNCTAD (NEW)
 - `/app/backend/data_loader.py` - Chargement données CSV
 
 ### Frontend (React)
@@ -73,20 +88,32 @@ Classement correct:
 ### Données Sources
 - `/app/ZLECAf_ENRICHI_2024_COMMERCE.csv` - Données principales 54 pays
 
-## Backlog (P1-P2)
+## APIs Principales
+- `GET /api/statistics` - Statistiques générales
+- `GET /api/statistics/trade-products/imports-world?lang=en` - Import monde (traduit)
+- `GET /api/statistics/unctad` - Données UNCTAD
+- `GET /api/production/faostat/all` - Données agriculture
+- `GET /api/production/unido/all` - Données industrie
 
-### P1 - À faire
-- Intégrer d'autres sources officielles (UNCTAD)
-- Améliorer la visualisation des données
+## Backlog
+
+### Complété ✅
+- Traductions tous les onglets
+- Données UNCTAD
+- Interface upload TRS
+- Indicateurs de source
 
 ### P2 - Futur
-- Mécanisme upload données TRS officielles
 - Export PDF des rapports
+- Graphiques interactifs améliorés
+- Dashboard personnalisable
 
 ## Sources de Données
 - FMI World Economic Outlook 2024
-- Banque Mondiale
+- Banque Mondiale WDI
 - FAOSTAT
 - UNIDO INDSTAT4
-- UNCTAD COMTRADE
+- **UNCTAD COMTRADE** (NEW)
+- **UNCTAD Maritime Transport Review** (NEW)
 - AfCFTA Secretariat
+- African Development Bank
