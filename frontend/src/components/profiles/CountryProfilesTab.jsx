@@ -281,18 +281,18 @@ export default function CountryProfilesTab({ language = 'fr' }) {
                   <div className="bg-gradient-to-br from-yellow-50 to-amber-100 p-4 rounded-lg shadow-lg border-2 border-yellow-400">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-2xl">🥇</span>
-                      <p className="text-sm font-bold text-yellow-800">Réserves d'Or</p>
+                      <p className="text-sm font-bold text-yellow-800">{t.goldReserves}</p>
                     </div>
                     <p className="text-3xl font-bold text-yellow-700 mb-2">
-                      {countryProfile.projections.gold_reserves_tonnes.toFixed(1)} <span className="text-xl">tonnes</span>
+                      {countryProfile.projections.gold_reserves_tonnes.toFixed(1)} <span className="text-xl">{t.tonnes}</span>
                     </p>
                     <div className="flex gap-3 text-xs">
                       <span className="bg-yellow-200 text-yellow-800 px-2 py-1 rounded font-semibold">
-                        🌍 Afrique: #{countryProfile.projections.gold_reserves_rank_africa}
+                        🌍 {t.africa}: #{countryProfile.projections.gold_reserves_rank_africa}
                       </span>
                       {countryProfile.projections.gold_reserves_rank_global && (
                         <span className="bg-yellow-300 text-yellow-900 px-2 py-1 rounded font-semibold">
-                          🌎 Mondial: #{countryProfile.projections.gold_reserves_rank_global}
+                          🌎 {t.global}: #{countryProfile.projections.gold_reserves_rank_global}
                         </span>
                       )}
                     </div>
@@ -305,7 +305,7 @@ export default function CountryProfilesTab({ language = 'fr' }) {
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
                         <span className="text-2xl">📊</span>
-                        <p className="text-sm font-bold text-indigo-800">Global Attractiveness Index 2025</p>
+                        <p className="text-sm font-bold text-indigo-800">{t.gaiTitle}</p>
                       </div>
                       <span className={`px-3 py-1 rounded-full font-bold text-sm ${
                         countryProfile.projections.gai_2025_rating === 'A' ? 'bg-green-500 text-white' :
@@ -327,17 +327,17 @@ export default function CountryProfilesTab({ language = 'fr' }) {
                         countryProfile.projections.gai_2025_trend === 'declining' ? 'bg-red-200 text-red-800' :
                         'bg-gray-200 text-gray-800'
                       }`}>
-                        {countryProfile.projections.gai_2025_trend === 'improving' ? '📈 En hausse' :
-                         countryProfile.projections.gai_2025_trend === 'declining' ? '📉 En baisse' :
-                         '➡️ Stable'}
+                        {countryProfile.projections.gai_2025_trend === 'improving' ? `📈 ${t.improving}` :
+                         countryProfile.projections.gai_2025_trend === 'declining' ? `📉 ${t.declining}` :
+                         `➡️ ${t.stable}`}
                       </span>
                     </div>
                     <div className="flex gap-3 text-xs">
                       <span className="bg-indigo-200 text-indigo-800 px-2 py-1 rounded font-semibold">
-                        🌍 Afrique: #{countryProfile.projections.gai_2025_rank_africa}
+                        🌍 {t.africa}: #{countryProfile.projections.gai_2025_rank_africa}
                       </span>
                       <span className="bg-purple-200 text-purple-800 px-2 py-1 rounded font-semibold">
-                        🌎 Mondial: #{countryProfile.projections.gai_2025_rank_global}
+                        🌎 {t.global}: #{countryProfile.projections.gai_2025_rank_global}
                       </span>
                     </div>
                   </div>
