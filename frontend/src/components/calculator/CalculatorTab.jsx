@@ -42,7 +42,40 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
       calculateBtn: "Calculer avec Données Officielles",
       calculatorTitle: "Calculateur ZLECAf Complet",
       calculatorDesc: "Calculs basés sur les données officielles des organismes internationaux",
-      rulesOrigin: "Règles d'Origine ZLECAf"
+      rulesOrigin: "Règles d'Origine ZLECAf",
+      missingFields: "Champs manquants",
+      fillAllFields: "Veuillez remplir tous les champs",
+      invalidHsCode: "Code SH6 invalide",
+      hsCodeMust6: "Le code SH6 doit contenir exactement 6 chiffres",
+      calculationSuccess: "Calcul réussi",
+      potentialSavings: "Économie potentielle",
+      calculationError: "Erreur de calcul",
+      calculating: "Calcul en cours...",
+      detailedResults: "Résultats Détaillés",
+      completeComparison: "Comparaison Complète: Valeur + DD + TVA + Autres Taxes",
+      merchandiseValue: "Valeur marchandise",
+      customsDuties: "Droits douane",
+      vat: "TVA",
+      otherTaxes: "Autres taxes",
+      nfpTariff: "Tarif NPF",
+      zlecafTariff: "Tarif ZLECAf",
+      totalSavings: "ÉCONOMIE TOTALE (avec toutes les taxes)",
+      totalSavingsPercent: "d'économie totale",
+      totalCostComparison: "Sur un coût total de",
+      vs: "vs",
+      calculationJournal: "Journal de Calcul Détaillé (Ordre Officiel)",
+      step: "Étape",
+      component: "Composant",
+      base: "Base",
+      rate: "Taux",
+      amount: "Montant",
+      cumulative: "Cumulatif",
+      legalRef: "Référence Légale",
+      ruleType: "Type",
+      requirement: "Exigence",
+      minRegionalContent: "Contenu régional minimum",
+      african: "africain",
+      sectorPrefix: "Secteur"
     },
     en: {
       originCountry: "Origin Country",
@@ -52,7 +85,40 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
       calculateBtn: "Calculate with Official Data",
       calculatorTitle: "Complete AfCFTA Calculator",
       calculatorDesc: "Calculations based on official data from international organizations",
-      rulesOrigin: "AfCFTA Rules of Origin"
+      rulesOrigin: "AfCFTA Rules of Origin",
+      missingFields: "Missing Fields",
+      fillAllFields: "Please fill in all fields",
+      invalidHsCode: "Invalid HS6 Code",
+      hsCodeMust6: "HS6 code must contain exactly 6 digits",
+      calculationSuccess: "Calculation Successful",
+      potentialSavings: "Potential Savings",
+      calculationError: "Calculation Error",
+      calculating: "Calculating...",
+      detailedResults: "Detailed Results",
+      completeComparison: "Complete Comparison: Value + Duties + VAT + Other Taxes",
+      merchandiseValue: "Merchandise Value",
+      customsDuties: "Customs Duties",
+      vat: "VAT",
+      otherTaxes: "Other Taxes",
+      nfpTariff: "MFN Tariff",
+      zlecafTariff: "AfCFTA Tariff",
+      totalSavings: "TOTAL SAVINGS (including all taxes)",
+      totalSavingsPercent: "total savings",
+      totalCostComparison: "On a total cost of",
+      vs: "vs",
+      calculationJournal: "Detailed Calculation Journal (Official Order)",
+      step: "Step",
+      component: "Component",
+      base: "Base",
+      rate: "Rate",
+      amount: "Amount",
+      cumulative: "Cumulative",
+      legalRef: "Legal Reference",
+      ruleType: "Type",
+      requirement: "Requirement",
+      minRegionalContent: "Minimum regional content",
+      african: "African",
+      sectorPrefix: "Sector"
     }
   };
 
@@ -60,14 +126,21 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
 
   const getSectorName = (hsCode) => {
     const sector = hsCode.substring(0, 2);
-    // Simple mapping for display purposes - extend as needed
     const sectorNames = {
-      '01': 'Animaux vivants', '02': 'Viandes', '03': 'Poissons', '04': 'Lait & Œufs',
-      '05': 'Autres produits animaux', '06': 'Plantes', '07': 'Légumes', '08': 'Fruits',
-      '09': 'Café/Thé', '10': 'Céréales', '27': 'Combustibles minéraux', '84': 'Machines',
-      '85': 'Électrique', '87': 'Véhicules'
+      fr: {
+        '01': 'Animaux vivants', '02': 'Viandes', '03': 'Poissons', '04': 'Lait & Œufs',
+        '05': 'Autres produits animaux', '06': 'Plantes', '07': 'Légumes', '08': 'Fruits',
+        '09': 'Café/Thé', '10': 'Céréales', '27': 'Combustibles minéraux', '84': 'Machines',
+        '85': 'Électrique', '87': 'Véhicules'
+      },
+      en: {
+        '01': 'Live Animals', '02': 'Meat', '03': 'Fish', '04': 'Dairy & Eggs',
+        '05': 'Other Animal Products', '06': 'Plants', '07': 'Vegetables', '08': 'Fruits',
+        '09': 'Coffee/Tea', '10': 'Cereals', '27': 'Mineral Fuels', '84': 'Machinery',
+        '85': 'Electrical', '87': 'Vehicles'
+      }
     };
-    return sectorNames[sector] || `Secteur ${sector}`;
+    return sectorNames[language][sector] || `${t.sectorPrefix} ${sector}`;
   };
 
   const formatCurrency = (amount) => {
@@ -86,8 +159,8 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
   const calculateTariff = async () => {
     if (!originCountry || !destinationCountry || !hsCode || !value) {
       toast({
-        title: "Champs manquants",
-        description: "Veuillez remplir tous les champs",
+        title: t.missingFields,
+        description: t.fillAllFields,
         variant: "destructive"
       });
       return;
@@ -95,8 +168,8 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
 
     if (hsCode.length !== 6) {
       toast({
-        title: "Code SH6 invalide",
-        description: "Le code SH6 doit contenir exactement 6 chiffres",
+        title: t.invalidHsCode,
+        description: t.hsCodeMust6,
         variant: "destructive"
       });
       return;
@@ -114,14 +187,14 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
       setResult(response.data);
       
       toast({
-        title: "Calcul réussi",
-        description: `Économie potentielle: ${formatCurrency(response.data.savings)}`,
+        title: t.calculationSuccess,
+        description: `${t.potentialSavings}: ${formatCurrency(response.data.savings)}`,
       });
     } catch (error) {
-      console.error('Erreur lors du calcul:', error);
+      console.error('Calculation error:', error);
       toast({
-        title: "Erreur de calcul",
-        description: error.response?.data?.detail || "Erreur lors du calcul",
+        title: t.calculationError,
+        description: error.response?.data?.detail || t.calculationError,
         variant: "destructive"
       });
     } finally {
