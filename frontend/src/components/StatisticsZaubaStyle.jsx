@@ -6,11 +6,125 @@ import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, L
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
 
-const StatisticsZaubaStyle = () => {
+const StatisticsZaubaStyle = ({ language = 'fr' }) => {
   const [loading, setLoading] = useState(true);
   const [statistics, setStatistics] = useState(null);
   const [selectedYear, setSelectedYear] = useState('2024');
   const [selectedFilter, setSelectedFilter] = useState('all');
+
+  const texts = {
+    fr: {
+      loading: "Chargement des statistiques...",
+      noData: "Aucune donnée disponible",
+      analysisTitle: "Analyse du Commerce Africain - ZLECAf 2024",
+      totalTradeValue: "Valeur Totale Commerce",
+      combinedGDP: "PIB Combiné",
+      totalExports: "Exportations Totales",
+      totalImports: "Importations Totales",
+      estimated2024: "2024 Estimé",
+      memberCountries: "Pays Membres",
+      top10Exporters: "Top 10 Exportateurs",
+      top10Importers: "Top 10 Importateurs",
+      ofTotal: "du total",
+      intraAfricanEvolution: "Évolution du Commerce Intra-Africain",
+      trend2023_2030: "Tendance 2023-2024 avec projections 2025-2030",
+      billionUSD: "Milliards USD",
+      intraAfricanTrade: "Commerce Intra-Africain",
+      top5GDP: "Top 5 PIB Africains - Comparaison Commerce",
+      worldVsIntraAfrican: "Commerce Mondial vs Commerce Intra-Africain (2024)",
+      detailByCountry: "Détail par Pays (Milliards USD)",
+      expWorld: "Exp. Monde",
+      expIntraAfr: "Exp. Intra-Afr",
+      impWorld: "Imp. Monde",
+      impIntraAfr: "Imp. Intra-Afr",
+      sectorPerformance: "Performance par Secteur",
+      sectorDistribution: "Distribution des exportations par secteur économique",
+      sectorDetails: "Détail des Secteurs",
+      exportsWorld: "Exports Monde",
+      exportsIntraAfr: "Exports Intra-Afr.",
+      importsWorld: "Imports Monde",
+      importsIntraAfr: "Imports Intra-Afr."
+    },
+    en: {
+      loading: "Loading statistics...",
+      noData: "No data available",
+      analysisTitle: "African Trade Analysis - AfCFTA 2024",
+      totalTradeValue: "Total Trade Value",
+      combinedGDP: "Combined GDP",
+      totalExports: "Total Exports",
+      totalImports: "Total Imports",
+      estimated2024: "2024 Estimated",
+      memberCountries: "Member Countries",
+      top10Exporters: "Top 10 Exporters",
+      top10Importers: "Top 10 Importers",
+      ofTotal: "of total",
+      intraAfricanEvolution: "Intra-African Trade Evolution",
+      trend2023_2030: "2023-2024 trend with 2025-2030 projections",
+      billionUSD: "Billion USD",
+      intraAfricanTrade: "Intra-African Trade",
+      top5GDP: "Top 5 African GDP - Trade Comparison",
+      worldVsIntraAfrican: "World Trade vs Intra-African Trade (2024)",
+      detailByCountry: "Detail by Country (Billion USD)",
+      expWorld: "Exp. World",
+      expIntraAfr: "Exp. Intra-Afr",
+      impWorld: "Imp. World",
+      impIntraAfr: "Imp. Intra-Afr",
+      sectorPerformance: "Sector Performance",
+      sectorDistribution: "Export distribution by economic sector",
+      sectorDetails: "Sector Details",
+      exportsWorld: "World Exports",
+      exportsIntraAfr: "Intra-Afr. Exports",
+      importsWorld: "World Imports",
+      importsIntraAfr: "Intra-Afr. Imports"
+    }
+  };
+
+  // Country name translations
+  const countryNames = {
+    fr: {
+      "South Africa": "Afrique du Sud",
+      "Egypt": "Égypte",
+      "Nigeria": "Nigéria",
+      "Algeria": "Algérie",
+      "Morocco": "Maroc",
+      "Ethiopia": "Éthiopie",
+      "Kenya": "Kenya",
+      "Angola": "Angola",
+      "Ghana": "Ghana",
+      "Tanzania": "Tanzanie",
+      "Côte d'Ivoire": "Côte d'Ivoire",
+      "Tunisia": "Tunisie",
+      "DR Congo": "RD Congo",
+      "Cameroon": "Cameroun",
+      "Uganda": "Ouganda"
+    },
+    en: {
+      "Afrique du Sud": "South Africa",
+      "Égypte": "Egypt",
+      "Nigéria": "Nigeria",
+      "Algérie": "Algeria",
+      "Maroc": "Morocco",
+      "Éthiopie": "Ethiopia",
+      "Kenya": "Kenya",
+      "Angola": "Angola",
+      "Ghana": "Ghana",
+      "Tanzanie": "Tanzania",
+      "Côte d'Ivoire": "Côte d'Ivoire",
+      "Tunisie": "Tunisia",
+      "RD Congo": "DR Congo",
+      "Cameroun": "Cameroon",
+      "Ouganda": "Uganda"
+    }
+  };
+
+  const t = texts[language];
+
+  const translateCountry = (name) => {
+    if (language === 'en' && countryNames.en[name]) {
+      return countryNames.en[name];
+    }
+    return name;
+  };
 
   useEffect(() => {
     fetchStatistics();
