@@ -9,8 +9,29 @@ import TradeProductsTable from '../TradeProductsTable';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-export default function StatisticsTab() {
+export default function StatisticsTab({ language = 'fr' }) {
   const [statistics, setStatistics] = useState(null);
+
+  const texts = {
+    fr: {
+      topExporters: "Top 10 Pays Exportateurs (2023-2024)",
+      topImporters: "Top 10 Pays Importateurs (2023-2024)",
+      exportsEvolution: "Évolution des exportations en milliards USD",
+      importsVolume: "Volume des importations en milliards USD",
+      exports: "Exportations (USD)",
+      imports: "Importations (USD)"
+    },
+    en: {
+      topExporters: "Top 10 Exporting Countries (2023-2024)",
+      topImporters: "Top 10 Importing Countries (2023-2024)",
+      exportsEvolution: "Export evolution in billion USD",
+      importsVolume: "Import volume in billion USD",
+      exports: "Exports (USD)",
+      imports: "Imports (USD)"
+    }
+  };
+
+  const t = texts[language];
 
   useEffect(() => {
     fetchStatistics();
@@ -21,24 +42,24 @@ export default function StatisticsTab() {
       const response = await axios.get(`${API}/statistics`);
       setStatistics(response.data);
     } catch (error) {
-      console.error('Erreur lors du chargement des statistiques:', error);
+      console.error('Error loading statistics:', error);
     }
   };
 
   return (
     <div className="space-y-6">
       {/* Nouveau composant Style Zauba */}
-      <StatisticsZaubaStyle />
+      <StatisticsZaubaStyle language={language} />
       
       <div className="my-8"></div>
       
       {/* Top 20 Trade Products Tables */}
-      <TradeProductsTable />
+      <TradeProductsTable language={language} />
       
       <div className="my-8"></div>
       
       {/* Intégration du composant Comparaisons dans Statistiques */}
-      <TradeComparison />
+      <TradeComparison language={language} />
       
       {/* Top 10 Exporters and Importers Charts */}
       {statistics && statistics.top_exporters_2024 && statistics.top_importers_2024 && (
