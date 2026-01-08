@@ -4,11 +4,6 @@ import { Badge } from '../ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
-const formatNumber = (num) => {
-  if (num === null || num === undefined) return 'N/A';
-  return new Intl.NumberFormat('fr-FR').format(num);
-};
-
 const getTypeIcon = (type) => {
   if (type === 'road') return '🛣️';
   if (type === 'rail') return '🚂';
@@ -79,6 +74,13 @@ export default function CorridorDetailsModal({ corridor, open, onClose, language
   };
 
   const t = texts[language];
+
+  const formatNumber = (num) => {
+    if (num === null || num === undefined) return 'N/A';
+    return language === 'en' 
+      ? new Intl.NumberFormat('en-US').format(num)
+      : new Intl.NumberFormat('fr-FR').format(num);
+  };
 
   if (!corridor) return null;
 
