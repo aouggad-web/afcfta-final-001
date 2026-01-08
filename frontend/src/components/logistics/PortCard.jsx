@@ -2,12 +2,39 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card';
 import { Button } from '../ui/button';
 
-const formatNumber = (num) => {
-  if (num === null || num === undefined) return 'N/A';
-  return new Intl.NumberFormat('fr-FR').format(num);
-};
+export default function PortCard({ port, onOpenDetails, language = 'fr' }) {
+  const texts = {
+    fr: {
+      containersTeu: "Conteneurs (TEU)",
+      totalTonnage: "Tonnage Total",
+      tonsYear: "tonnes/an",
+      calls: "Escales",
+      shipsYear: "navires/an",
+      maritimeAgents: "Agents Maritimes",
+      regularLines: "Lignes Régulières",
+      viewDetails: "Voir les détails complets"
+    },
+    en: {
+      containersTeu: "Containers (TEU)",
+      totalTonnage: "Total Tonnage",
+      tonsYear: "tons/year",
+      calls: "Calls",
+      shipsYear: "vessels/year",
+      maritimeAgents: "Maritime Agents",
+      regularLines: "Regular Lines",
+      viewDetails: "View full details"
+    }
+  };
 
-export default function PortCard({ port, onOpenDetails }) {
+  const t = texts[language];
+
+  const formatNumber = (num) => {
+    if (num === null || num === undefined) return 'N/A';
+    return language === 'en'
+      ? new Intl.NumberFormat('en-US').format(num)
+      : new Intl.NumberFormat('fr-FR').format(num);
+  };
+
   const stats = port?.latest_stats;
 
   return (
@@ -30,7 +57,7 @@ export default function PortCard({ port, onOpenDetails }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           {/* Conteneurs TEU */}
           <div className="bg-blue-50 p-3 rounded-lg border-l-4 border-blue-500">
-            <p className="text-xs font-semibold text-blue-700 mb-1">📦 Conteneurs (TEU)</p>
+            <p className="text-xs font-semibold text-blue-700 mb-1">📦 {t.containersTeu}</p>
             <p className="text-xl font-bold text-blue-600">
               {formatNumber(stats?.container_throughput_teu)}
             </p>
@@ -41,33 +68,33 @@ export default function PortCard({ port, onOpenDetails }) {
 
           {/* Tonnage Total */}
           <div className="bg-green-50 p-3 rounded-lg border-l-4 border-green-500">
-            <p className="text-xs font-semibold text-green-700 mb-1">⚖️ Tonnage Total</p>
+            <p className="text-xs font-semibold text-green-700 mb-1">⚖️ {t.totalTonnage}</p>
             <p className="text-xl font-bold text-green-600">
               {formatNumber(stats?.cargo_throughput_tons)}
             </p>
-            <p className="text-xs text-gray-600 mt-1">tonnes/an</p>
+            <p className="text-xs text-gray-600 mt-1">{t.tonsYear}</p>
           </div>
 
           {/* Escales Navires */}
           <div className="bg-purple-50 p-3 rounded-lg border-l-4 border-purple-500">
-            <p className="text-xs font-semibold text-purple-700 mb-1">⚓ Escales</p>
+            <p className="text-xs font-semibold text-purple-700 mb-1">⚓ {t.calls}</p>
             <p className="text-xl font-bold text-purple-600">
               {formatNumber(stats?.vessel_calls)}
             </p>
-            <p className="text-xs text-gray-600 mt-1">navires/an</p>
+            <p className="text-xs text-gray-600 mt-1">{t.shipsYear}</p>
           </div>
         </div>
 
         {/* Agents et Services - Aperçu rapide */}
         <div className="grid grid-cols-2 gap-3 mb-4">
           <div className="bg-gray-50 p-2 rounded">
-            <p className="text-xs font-semibold text-gray-700">👥 Agents Maritimes</p>
+            <p className="text-xs font-semibold text-gray-700">👥 {t.maritimeAgents}</p>
             <p className="text-sm font-bold text-gray-900">
               {port.agents?.length || 0}
             </p>
           </div>
           <div className="bg-gray-50 p-2 rounded">
-            <p className="text-xs font-semibold text-gray-700">🚢 Lignes Régulières</p>
+            <p className="text-xs font-semibold text-gray-700">🚢 {t.regularLines}</p>
             <p className="text-sm font-bold text-gray-900">
               {port.services?.length || 0}
             </p>
@@ -78,7 +105,7 @@ export default function PortCard({ port, onOpenDetails }) {
           onClick={() => onOpenDetails(port)} 
           className="w-full bg-blue-600 hover:bg-blue-700 text-white"
         >
-          🔍 Voir les détails complets
+          🔍 {t.viewDetails}
         </Button>
       </CardContent>
     </Card>
