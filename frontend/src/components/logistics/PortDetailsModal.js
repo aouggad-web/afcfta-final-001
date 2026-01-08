@@ -152,7 +152,7 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
               </Badge>
               {metrics.efficiency_grade && (
                 <Badge className={`${getEfficiencyColor(metrics.efficiency_grade)} text-white font-bold px-4 py-1 text-base shadow-sm border border-white/20`}>
-                  Grade {metrics.efficiency_grade}
+                  {t.grade} {metrics.efficiency_grade}
                 </Badge>
               )}
             </div>
@@ -161,9 +161,9 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
 
         <Tabs defaultValue="overview" className="mt-6">
           <TabsList className="grid w-full grid-cols-3 bg-blue-50/50 p-1 rounded-lg">
-            <TabsTrigger value="overview" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">Vue d'ensemble</TabsTrigger>
-            <TabsTrigger value="performance" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">Performance & TRS (WCO)</TabsTrigger>
-            <TabsTrigger value="connectivity" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">Connectivité & Réseau</TabsTrigger>
+            <TabsTrigger value="overview" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">{t.overview}</TabsTrigger>
+            <TabsTrigger value="performance" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">{t.performance}</TabsTrigger>
+            <TabsTrigger value="connectivity" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">{t.connectivity}</TabsTrigger>
           </TabsList>
 
           {/* ONGLET VUE D'ENSEMBLE */}
@@ -175,7 +175,7 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                 <CardContent className="pt-6">
                   <div className="flex flex-col md:flex-row justify-between items-start gap-4">
                     <div>
-                      <h4 className="text-sm font-bold text-blue-800 uppercase tracking-wide mb-1">🏛️ Autorité Portuaire</h4>
+                      <h4 className="text-sm font-bold text-blue-800 uppercase tracking-wide mb-1">🏛️ {t.portAuthority}</h4>
                       <h3 className="text-xl font-bold text-gray-900">{authority.name}</h3>
                       {authority.address && <p className="text-sm text-gray-600 mt-1">📍 {authority.address}</p>}
                     </div>
