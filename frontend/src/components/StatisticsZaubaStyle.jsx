@@ -143,11 +143,11 @@ const StatisticsZaubaStyle = ({ language = 'fr' }) => {
   };
 
   if (loading) {
-    return <div className="text-center py-10">Chargement des statistiques...</div>;
+    return <div className="text-center py-10">{t.loading}</div>;
   }
 
   if (!statistics) {
-    return <div className="text-center py-10">Aucune donnée disponible</div>;
+    return <div className="text-center py-10">{t.noData}</div>;
   }
 
   const COLORS = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4', '#84cc16'];
@@ -157,41 +157,41 @@ const StatisticsZaubaStyle = ({ language = 'fr' }) => {
       {/* Section Résumé - Style Zauba */}
       <div className="bg-white p-6 rounded-lg shadow-lg border-2 border-gray-200">
         <h2 className="text-2xl font-bold mb-4 text-gray-800">
-          📊 Analyse du Commerce Africain - ZLECAf 2024
+          📊 {t.analysisTitle}
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
           {/* Valeur Totale */}
           <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-4 rounded-lg border border-blue-200">
-            <p className="text-xs font-semibold text-gray-600 mb-1">Valeur Totale Commerce</p>
+            <p className="text-xs font-semibold text-gray-600 mb-1">{t.totalTradeValue}</p>
             <p className="text-3xl font-extrabold text-blue-700">
               ${statistics.overview?.estimated_combined_gdp ? 
                 (statistics.overview.estimated_combined_gdp / 1000000000).toFixed(0) : '2706'}B
             </p>
-            <p className="text-xs text-gray-500 mt-1">PIB Combiné</p>
+            <p className="text-xs text-gray-500 mt-1">{t.combinedGDP}</p>
           </div>
 
           {/* Volume Total */}
           <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-4 rounded-lg border border-green-200">
-            <p className="text-xs font-semibold text-gray-600 mb-1">Exportations Totales</p>
+            <p className="text-xs font-semibold text-gray-600 mb-1">{t.totalExports}</p>
             <p className="text-3xl font-extrabold text-green-700">$1,434B</p>
-            <p className="text-xs text-gray-500 mt-1">2024 Estimé</p>
+            <p className="text-xs text-gray-500 mt-1">{t.estimated2024}</p>
           </div>
 
           {/* Prix Moyen */}
           <div className="bg-gradient-to-br from-orange-50 to-amber-50 p-4 rounded-lg border border-orange-200">
-            <p className="text-xs font-semibold text-gray-600 mb-1">Importations Totales</p>
+            <p className="text-xs font-semibold text-gray-600 mb-1">{t.totalImports}</p>
             <p className="text-3xl font-extrabold text-orange-700">$1,272B</p>
-            <p className="text-xs text-gray-500 mt-1">2024 Estimé</p>
+            <p className="text-xs text-gray-500 mt-1">{t.estimated2024}</p>
           </div>
 
           {/* Nombre de pays */}
           <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-4 rounded-lg border border-purple-200">
-            <p className="text-xs font-semibold text-gray-600 mb-1">Pays Membres</p>
+            <p className="text-xs font-semibold text-gray-600 mb-1">{t.memberCountries}</p>
             <p className="text-3xl font-extrabold text-purple-700">
               {statistics.overview?.african_countries_members || 54}
             </p>
-            <p className="text-xs text-gray-500 mt-1">ZLECAf</p>
+            <p className="text-xs text-gray-500 mt-1">AfCFTA</p>
           </div>
         </div>
 
@@ -201,18 +201,18 @@ const StatisticsZaubaStyle = ({ language = 'fr' }) => {
           <div>
             <h3 className="text-lg font-bold mb-3 text-green-700 flex items-center gap-2">
               <span>📤</span>
-              <span>Top 10 Exportateurs</span>
+              <span>{t.top10Exporters}</span>
             </h3>
             <div className="space-y-2">
               {statistics.top_exporters_2024?.slice(0, 10).map((exporter, index) => (
                 <div key={index} className="flex justify-between items-center p-2 bg-green-50 rounded hover:bg-green-100 transition-colors border-l-4 border-green-500">
                   <div className="flex items-center gap-2">
                     <Badge className="bg-green-600 text-white text-xs">{index + 1}</Badge>
-                    <span className="text-sm font-semibold text-gray-800">{exporter.name}</span>
+                    <span className="text-sm font-semibold text-gray-800">{translateCountry(exporter.name)}</span>
                   </div>
                   <div className="text-right">
                     <p className="text-sm font-bold text-green-700">${exporter.exports}B</p>
-                    <p className="text-xs text-gray-500">{exporter.share}% du total</p>
+                    <p className="text-xs text-gray-500">{exporter.share}% {t.ofTotal}</p>
                   </div>
                 </div>
               ))}
@@ -223,18 +223,18 @@ const StatisticsZaubaStyle = ({ language = 'fr' }) => {
           <div>
             <h3 className="text-lg font-bold mb-3 text-blue-700 flex items-center gap-2">
               <span>📥</span>
-              <span>Top 10 Importateurs</span>
+              <span>{t.top10Importers}</span>
             </h3>
             <div className="space-y-2">
               {statistics.top_importers_2024?.slice(0, 10).map((importer, index) => (
                 <div key={index} className="flex justify-between items-center p-2 bg-blue-50 rounded hover:bg-blue-100 transition-colors border-l-4 border-blue-500">
                   <div className="flex items-center gap-2">
                     <Badge className="bg-blue-600 text-white text-xs">{index + 1}</Badge>
-                    <span className="text-sm font-semibold text-gray-800">{importer.name}</span>
+                    <span className="text-sm font-semibold text-gray-800">{translateCountry(importer.name)}</span>
                   </div>
                   <div className="text-right">
                     <p className="text-sm font-bold text-blue-700">${importer.imports}B</p>
-                    <p className="text-xs text-gray-500">{importer.share}% du total</p>
+                    <p className="text-xs text-gray-500">{importer.share}% {t.ofTotal}</p>
                   </div>
                 </div>
               ))}
@@ -246,8 +246,8 @@ const StatisticsZaubaStyle = ({ language = 'fr' }) => {
       {/* Graphique Évolution Commerce */}
       <Card className="shadow-lg">
         <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50">
-          <CardTitle className="text-xl font-bold">📈 Évolution du Commerce Intra-Africain</CardTitle>
-          <CardDescription className="text-sm">Tendance 2023-2024 avec projections 2025-2030</CardDescription>
+          <CardTitle className="text-xl font-bold">📈 {t.intraAfricanEvolution}</CardTitle>
+          <CardDescription className="text-sm">{t.trend2023_2030}</CardDescription>
         </CardHeader>
         <CardContent className="pt-6">
           {statistics.trade_evolution && (
@@ -261,10 +261,10 @@ const StatisticsZaubaStyle = ({ language = 'fr' }) => {
                 ]}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="année" tick={{ fontSize: 12, fontWeight: 'bold' }} />
-                  <YAxis tick={{ fontSize: 11 }} label={{ value: 'Milliards USD', angle: -90, position: 'insideLeft', style: { fontSize: 12 } }} />
-                  <Tooltip formatter={(value) => [`$${value.toFixed(1)}B`, 'Commerce']} />
+                  <YAxis tick={{ fontSize: 11 }} label={{ value: t.billionUSD, angle: -90, position: 'insideLeft', style: { fontSize: 12 } }} />
+                  <Tooltip formatter={(value) => [`$${value.toFixed(1)}B`, language === 'en' ? 'Trade' : 'Commerce']} />
                   <Legend />
-                  <Line type="monotone" dataKey="valeur" stroke="#10b981" strokeWidth={3} name="Commerce Intra-Africain" />
+                  <Line type="monotone" dataKey="valeur" stroke="#10b981" strokeWidth={3} name={t.intraAfricanTrade} />
                 </LineChart>
               </ResponsiveContainer>
             </div>
