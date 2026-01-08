@@ -100,8 +100,8 @@ function App() {
                   {t.subtitle}
                 </p>
                 <div className="flex items-center gap-2 mt-2">
-                  <Badge className="bg-white text-green-700 hover:bg-yellow-100">54 Pays Membres</Badge>
-                  <Badge className="bg-white text-red-700 hover:bg-yellow-100">1.3B+ Population</Badge>
+                  <Badge className="bg-white text-green-700 hover:bg-yellow-100">{t.memberCountries}</Badge>
+                  <Badge className="bg-white text-red-700 hover:bg-yellow-100">{t.population}</Badge>
                 </div>
               </div>
             </div>
