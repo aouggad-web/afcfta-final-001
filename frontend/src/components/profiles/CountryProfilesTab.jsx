@@ -351,10 +351,10 @@ export default function CountryProfilesTab({ language = 'fr' }) {
                     <CardHeader className="bg-gradient-to-r from-emerald-50 to-teal-50">
                       <CardTitle className="text-xl font-bold text-emerald-700 flex items-center gap-2">
                         <span>🏗️</span>
-                        <span>Projets Structurants & Perspectives 2030</span>
+                        <span>{t.structuringProjects}</span>
                       </CardTitle>
                       <CardDescription className="font-semibold text-gray-700">
-                        Investissements majeurs en cours de réalisation (Rail, Ports, Mines, Énergie)
+                        {t.majorInvestments}
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="pt-6">
@@ -378,8 +378,8 @@ export default function CountryProfilesTab({ language = 'fr' }) {
                                 <p className="line-clamp-3">{project.description}</p>
                                 
                                 <div className="bg-gray-50 p-2 rounded text-xs border border-gray-100">
-                                  <p><strong>💰 Budget:</strong> {project.budget}</p>
-                                  <p><strong>🚀 Impact:</strong> {project.impact}</p>
+                                  <p><strong>💰 {t.budget}:</strong> {project.budget}</p>
+                                  <p><strong>🚀 {t.impact}:</strong> {project.impact}</p>
                                 </div>
                               </div>
                               
