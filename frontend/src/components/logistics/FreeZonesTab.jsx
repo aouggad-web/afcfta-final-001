@@ -30,11 +30,52 @@ const freeZoneIcon = new L.Icon({
   shadowSize: [41, 41]
 });
 
-export default function FreeZonesTab() {
+export default function FreeZonesTab({ language = 'fr' }) {
   const [zones, setZones] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCountry, setSelectedCountry] = useState('ALL');
   const [viewMode, setViewMode] = useState('map');
+
+  const texts = {
+    fr: {
+      title: "Zones Franches & Industrielles",
+      description: "Cartographie des pôles de compétitivité, zones franches d'exportation et hubs industriels",
+      filterByCountry: "Filtrer par pays:",
+      allCountries: "Tous les pays",
+      map: "Carte",
+      list: "Liste",
+      error: "Erreur",
+      loadError: "Impossible de charger les données des zones franches",
+      industries: "Industries",
+      surface: "Surface",
+      connection: "Connexion",
+      keyIndustries: "Industries Clés",
+      incentives: "Incitations",
+      keyTenants: "Locataires clés",
+      impact: "Impact",
+      managingAuthority: "Autorité Gérante"
+    },
+    en: {
+      title: "Free Zones & Industrial Parks",
+      description: "Mapping of competitiveness hubs, export free zones and industrial hubs",
+      filterByCountry: "Filter by country:",
+      allCountries: "All countries",
+      map: "Map",
+      list: "List",
+      error: "Error",
+      loadError: "Unable to load free zones data",
+      industries: "Industries",
+      surface: "Surface",
+      connection: "Connection",
+      keyIndustries: "Key Industries",
+      incentives: "Incentives",
+      keyTenants: "Key Tenants",
+      impact: "Impact",
+      managingAuthority: "Managing Authority"
+    }
+  };
+
+  const t = texts[language];
 
   useEffect(() => {
     fetchZones(selectedCountry);
@@ -52,8 +93,8 @@ export default function FreeZonesTab() {
     } catch (error) {
       console.error('Error fetching free zones:', error);
       toast({
-        title: "Erreur",
-        description: "Impossible de charger les données des zones franches",
+        title: t.error,
+        description: t.loadError,
         variant: "destructive",
       });
     } finally {
@@ -67,10 +108,10 @@ export default function FreeZonesTab() {
         <CardHeader>
           <CardTitle className="text-3xl font-bold flex items-center gap-3">
             <span>🏭</span>
-            <span>Zones Franches & Industrielles</span>
+            <span>{t.title}</span>
           </CardTitle>
           <CardDescription className="text-orange-100 text-lg">
-            Cartographie des pôles de compétitivité, zones franches d'exportation et hubs industriels
+            {t.description}
           </CardDescription>
         </CardHeader>
       </Card>
@@ -79,13 +120,13 @@ export default function FreeZonesTab() {
         <CardContent className="pt-6">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
             <div className="flex items-center gap-3 w-full md:w-auto">
-              <span className="text-sm font-semibold text-gray-700">Filtrer par pays:</span>
+              <span className="text-sm font-semibold text-gray-700">{t.filterByCountry}</span>
               <Select value={selectedCountry} onValueChange={setSelectedCountry}>
                 <SelectTrigger className="w-64">
-                  <SelectValue placeholder="Tous les pays" />
+                  <SelectValue placeholder={t.allCountries} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="ALL">🌍 Tous les pays</SelectItem>
+                  <SelectItem value="ALL">🌍 {t.allCountries}</SelectItem>
                   <SelectItem value="MAR">🇲🇦 Maroc</SelectItem>
                   <SelectItem value="DZA">🇩🇿 Algérie</SelectItem>
                   <SelectItem value="EGY">🇪🇬 Égypte</SelectItem>
@@ -124,14 +165,14 @@ export default function FreeZonesTab() {
                 variant={viewMode === 'map' ? 'default' : 'outline'}
                 className={viewMode === 'map' ? 'bg-orange-600 hover:bg-orange-700' : ''}
               >
-                🗺️ Carte
+                🗺️ {t.map}
               </Button>
               <Button
                 onClick={() => setViewMode('list')}
                 variant={viewMode === 'list' ? 'default' : 'outline'}
                 className={viewMode === 'list' ? 'bg-orange-600 hover:bg-orange-700' : ''}
               >
-                📋 Liste
+                📋 {t.list}
               </Button>
             </div>
           </div>
@@ -157,9 +198,9 @@ export default function FreeZonesTab() {
                     <Badge className="bg-orange-100 text-orange-800 mb-2">{zone.type}</Badge>
                     <p className="text-sm text-gray-600 mb-2">{zone.country}</p>
                     <div className="text-xs space-y-1">
-                      <p><strong>🏗️ Industries:</strong> {zone.industries.join(', ')}</p>
-                      <p><strong>📏 Surface:</strong> {zone.surface_ha} ha</p>
-                      <p><strong>🔗 Connexion:</strong> {zone.connection}</p>
+                      <p><strong>🏗️ {t.industries}:</strong> {zone.industries.join(', ')}</p>
+                      <p><strong>📏 {t.surface}:</strong> {zone.surface_ha} ha</p>
+                      <p><strong>🔗 {t.connection}:</strong> {zone.connection}</p>
                     </div>
                     {zone.authority && (
                       <div className="mt-2 pt-2 border-t border-gray-200">
@@ -194,7 +235,7 @@ export default function FreeZonesTab() {
               </CardHeader>
               <CardContent className="text-sm space-y-4">
                 <div>
-                  <p className="font-semibold text-gray-700 mb-1">Industries Clés:</p>
+                  <p className="font-semibold text-gray-700 mb-1">{t.keyIndustries}:</p>
                   <div className="flex flex-wrap gap-1">
                     {zone.industries.map((ind, i) => (
                       <Badge key={i} variant="secondary" className="bg-gray-100 text-gray-600 text-xs">
@@ -205,19 +246,19 @@ export default function FreeZonesTab() {
                 </div>
                 
                 <div className="bg-orange-50 p-3 rounded-lg border border-orange-100">
-                  <p className="font-semibold text-orange-800 mb-1">💡 Incitations:</p>
+                  <p className="font-semibold text-orange-800 mb-1">💡 {t.incentives}:</p>
                   <p className="text-xs text-orange-700">{zone.incentives}</p>
                 </div>
 
                 <div className="space-y-1 text-gray-600">
-                  <p><strong>🏢 Locataires clés:</strong> {zone.key_tenants.join(', ')}</p>
-                  <p><strong>🌍 Impact:</strong> {zone.impact}</p>
-                  <p><strong>⚓ Connexion:</strong> {zone.connection}</p>
+                  <p><strong>🏢 {t.keyTenants}:</strong> {zone.key_tenants.join(', ')}</p>
+                  <p><strong>🌍 {t.impact}:</strong> {zone.impact}</p>
+                  <p><strong>⚓ {t.connection}:</strong> {zone.connection}</p>
                 </div>
 
                 {zone.authority && (
                   <div className="bg-blue-50 p-3 rounded-lg border border-blue-200 mt-3">
-                    <p className="font-semibold text-blue-800 mb-2">🏛️ Autorité Gérante:</p>
+                    <p className="font-semibold text-blue-800 mb-2">🏛️ {t.managingAuthority}:</p>
                     <div className="text-xs text-blue-700 space-y-1">
                       <p className="font-medium">{zone.authority.name}</p>
                       {zone.authority.address && (
