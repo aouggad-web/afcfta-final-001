@@ -170,10 +170,10 @@ export default function CountryProfilesTab({ language = 'fr' }) {
       const response = await axios.get(`${API}/countries`);
       setCountries(response.data);
     } catch (error) {
-      console.error('Erreur lors du chargement des pays:', error);
+      console.error('Error loading countries:', error);
       toast({
-        title: "Erreur",
-        description: "Impossible de charger la liste des pays",
+        title: t.error,
+        description: t.loadError,
         variant: "destructive"
       });
     }
@@ -194,10 +194,10 @@ export default function CountryProfilesTab({ language = 'fr' }) {
         <CardHeader className="bg-gradient-to-r from-blue-50 to-cyan-50">
           <CardTitle className="text-2xl font-bold text-blue-700 flex items-center gap-2">
             <span>🌍</span>
-            <span>Profils Économiques des Pays</span>
+            <span>{t.title}</span>
           </CardTitle>
           <CardDescription className="font-semibold text-gray-700">
-            Sélectionnez un pays pour consulter son profil économique complet, ses infrastructures et ses projets structurants (2025-2030)
+            {t.description}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -209,7 +209,7 @@ export default function CountryProfilesTab({ language = 'fr' }) {
             }}
           >
             <SelectTrigger className="text-lg font-semibold border-2 border-blue-300 focus:border-blue-500">
-              <SelectValue placeholder="🔍 Choisir un pays" />
+              <SelectValue placeholder={t.selectPlaceholder} />
             </SelectTrigger>
             <SelectContent>
               {countries.map((country) => (
@@ -231,7 +231,7 @@ export default function CountryProfilesTab({ language = 'fr' }) {
                 <span className="font-bold text-green-700">{countryProfile.country_name}</span>
               </CardTitle>
               <CardDescription className="text-lg font-semibold text-gray-700">
-                {countryProfile.region} • 👥 Population: {formatNumber(countryProfile.population)} habitants
+                {countryProfile.region} • 👥 {t.population}: {formatNumber(countryProfile.population)} {t.inhabitants}
               </CardDescription>
             </CardHeader>
             <CardContent className="pt-4">
@@ -239,38 +239,38 @@ export default function CountryProfilesTab({ language = 'fr' }) {
               <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-4">
                 {countryProfile.gdp_usd && (
                   <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-3 rounded-lg shadow border border-green-300 text-center">
-                    <p className="text-xs font-semibold text-green-700 mb-1">💰 PIB Total</p>
+                    <p className="text-xs font-semibold text-green-700 mb-1">💰 {t.totalGdp}</p>
                     <p className="text-2xl font-bold text-green-600">
                       ${(countryProfile.gdp_usd / 1000000000).toFixed(1)}B
                     </p>
-                    <p className="text-xs text-green-600 mt-1">Rang: #{countryProfile.projections?.africa_rank || 'N/A'}</p>
+                    <p className="text-xs text-green-600 mt-1">{t.rank}: #{countryProfile.projections?.africa_rank || 'N/A'}</p>
                   </div>
                 )}
                 
                 {countryProfile.gdp_per_capita && (
                   <div className="bg-gradient-to-br from-blue-50 to-cyan-100 p-3 rounded-lg shadow border border-blue-300 text-center">
-                    <p className="text-xs font-semibold text-blue-700 mb-1">👤 PIB/Habitant</p>
+                    <p className="text-xs font-semibold text-blue-700 mb-1">👤 {t.gdpPerCapita}</p>
                     <p className="text-2xl font-bold text-blue-600">
                       ${formatNumber(Math.round(countryProfile.gdp_per_capita))}
                     </p>
-                    <p className="text-xs text-blue-600 mt-1">USD/personne</p>
+                    <p className="text-xs text-blue-600 mt-1">{t.perPerson}</p>
                   </div>
                 )}
                 
                 <div className="bg-gradient-to-br from-purple-50 to-pink-100 p-3 rounded-lg shadow border border-purple-300 text-center">
-                  <p className="text-xs font-semibold text-purple-700 mb-1">📊 IDH 2024</p>
+                  <p className="text-xs font-semibold text-purple-700 mb-1">📊 {t.hdi2024}</p>
                   <p className="text-2xl font-bold text-purple-600">
                     {countryProfile.projections?.development_index || 'N/A'}
                   </p>
-                  <p className="text-xs text-purple-600 mt-1">Indice Dév. Humain</p>
+                  <p className="text-xs text-purple-600 mt-1">{t.hdiDesc}</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-orange-50 to-amber-100 p-3 rounded-lg shadow border border-orange-300 text-center">
-                  <p className="text-xs font-semibold text-orange-700 mb-1">👥 Population</p>
+                  <p className="text-xs font-semibold text-orange-700 mb-1">👥 {t.population}</p>
                   <p className="text-2xl font-bold text-orange-600">
                     {(countryProfile.population / 1000000).toFixed(1)}M
                   </p>
-                  <p className="text-xs text-orange-600 mt-1">Millions d'habitants</p>
+                  <p className="text-xs text-orange-600 mt-1">{t.millionsInhabitants}</p>
                 </div>
               </div>
 
