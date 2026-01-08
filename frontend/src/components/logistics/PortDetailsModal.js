@@ -192,7 +192,7 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                       >
                         <span className="text-xl">🌐</span>
                         <div>
-                          <p className="text-xs text-gray-500 font-medium">Site Web</p>
+                          <p className="text-xs text-gray-500 font-medium">{t.website}</p>
                           <p className="text-sm text-blue-600 font-semibold truncate max-w-[150px]">
                             {authority.website.replace('https://', '').replace('http://', '')}
                           </p>
@@ -207,7 +207,7 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                       >
                         <span className="text-xl">📞</span>
                         <div>
-                          <p className="text-xs text-gray-500 font-medium">Téléphone</p>
+                          <p className="text-xs text-gray-500 font-medium">{t.phone}</p>
                           <p className="text-sm text-green-700 font-semibold">{authority.contact_phone}</p>
                         </div>
                       </a>
