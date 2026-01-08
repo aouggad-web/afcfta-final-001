@@ -192,29 +192,29 @@ export default function LogisticsMap({ onPortClick, selectedCountry = 'ALL', lan
 
       {/* Légende */}
       <div className="absolute bottom-4 right-4 bg-white p-3 rounded-lg shadow-lg z-10 border border-gray-300">
-        <p className="text-xs font-bold text-gray-700 mb-2">Type de Port</p>
+        <p className="text-xs font-bold text-gray-700 mb-2">{language === 'en' ? 'Port Type' : 'Type de Port'}</p>
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded-full bg-red-500"></div>
-            <span className="text-xs">Hub Transhipment</span>
+            <span className="text-xs">{t.hubTransshipment}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded-full bg-orange-500"></div>
-            <span className="text-xs">Hub Régional</span>
+            <span className="text-xs">{t.hubRegional}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded-full bg-blue-500"></div>
-            <span className="text-xs">Commercial</span>
+            <span className="text-xs">{t.commercial}</span>
           </div>
         </div>
         <p className="text-xs text-gray-500 mt-2">
-          Taille = Trafic TEU
+          {t.sizeTraffic}
         </p>
       </div>
 
       {/* Info bulle nombre de ports */}
       <div className="absolute top-4 left-4 bg-blue-600 text-white p-3 rounded-lg shadow-lg z-10">
-        <p className="text-sm font-bold">🚢 {ports.length} Ports Affichés</p>
+        <p className="text-sm font-bold">🚢 {ports.length} {t.portsDisplayed}</p>
       </div>
     </div>
   );
