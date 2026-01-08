@@ -19,10 +19,39 @@ function MapController({ center, zoom }) {
   return null;
 }
 
-export default function AirLogisticsMap({ onAirportClick, selectedCountry }) {
+export default function AirLogisticsMap({ onAirportClick, selectedCountry, language = 'fr' }) {
   const [airports, setAirports] = useState([]);
   const [mapCenter, setMapCenter] = useState([0, 20]); // Center of Africa
   const [mapZoom, setMapZoom] = useState(3);
+
+  const texts = {
+    fr: {
+      legend: "Légende",
+      majorHub: "Hub Majeur (>400k tonnes)",
+      largeHub: "Hub Large (200-400k tonnes)",
+      mediumHub: "Hub Moyen (100-200k tonnes)",
+      regional: "Régional (<100k tonnes)",
+      freight: "Fret",
+      mail: "Courrier",
+      cargoMovements: "Mouvements Cargo",
+      viewDetails: "Voir détails complets",
+      tons: "tonnes"
+    },
+    en: {
+      legend: "Legend",
+      majorHub: "Major Hub (>400k tons)",
+      largeHub: "Large Hub (200-400k tons)",
+      mediumHub: "Medium Hub (100-200k tons)",
+      regional: "Regional (<100k tons)",
+      freight: "Freight",
+      mail: "Mail",
+      cargoMovements: "Cargo Movements",
+      viewDetails: "View full details",
+      tons: "tons"
+    }
+  };
+
+  const t = texts[language];
 
   useEffect(() => {
     fetchAirports();
@@ -79,30 +108,32 @@ export default function AirLogisticsMap({ onAirportClick, selectedCountry }) {
 
   const formatNumber = (num) => {
     if (num === null || num === undefined) return 'N/A';
-    return new Intl.NumberFormat('fr-FR').format(num);
+    return language === 'en' 
+      ? new Intl.NumberFormat('en-US').format(num)
+      : new Intl.NumberFormat('fr-FR').format(num);
   };
 
   return (
     <div className="relative">
       {/* Map Legend */}
       <div className="absolute top-4 right-4 z-[1000] bg-white p-4 rounded-lg shadow-lg">
-        <h4 className="font-bold text-sm mb-2">Légende</h4>
+        <h4 className="font-bold text-sm mb-2">{t.legend}</h4>
         <div className="space-y-1 text-xs">
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded-full bg-[#dc2626]"></div>
-            <span>Hub Majeur (&gt;400k tonnes)</span>
+            <span>{t.majorHub}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-[#ea580c]"></div>
-            <span>Hub Large (200-400k tonnes)</span>
+            <span>{t.largeHub}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-[#0284c7]"></div>
-            <span>Hub Moyen (100-200k tonnes)</span>
+            <span>{t.mediumHub}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-[#06b6d4]"></div>
-            <span>Régional (&lt;100k tonnes)</span>
+            <span>{t.regional}</span>
           </div>
         </div>
       </div>
@@ -147,17 +178,17 @@ export default function AirLogisticsMap({ onAirportClick, selectedCountry }) {
                   
                   <div className="space-y-2 text-sm">
                     <div className="bg-sky-50 p-2 rounded">
-                      <p className="font-semibold text-sky-800">📦 Fret {stats.year}</p>
-                      <p className="text-sky-600 font-bold">{formatNumber(stats.cargo_throughput_tons)} tonnes</p>
+                      <p className="font-semibold text-sky-800">📦 {t.freight} {stats.year}</p>
+                      <p className="text-sky-600 font-bold">{formatNumber(stats.cargo_throughput_tons)} {t.tons}</p>
                     </div>
                     
                     <div className="bg-amber-50 p-2 rounded">
-                      <p className="font-semibold text-amber-800">📬 Courrier {stats.year}</p>
-                      <p className="text-amber-600 font-bold">{formatNumber(stats.mail_throughput_tons)} tonnes</p>
+                      <p className="font-semibold text-amber-800">📬 {t.mail} {stats.year}</p>
+                      <p className="text-amber-600 font-bold">{formatNumber(stats.mail_throughput_tons)} {t.tons}</p>
                     </div>
                     
                     <div className="bg-green-50 p-2 rounded">
-                      <p className="font-semibold text-green-800">🛩️ Mouvements Cargo</p>
+                      <p className="font-semibold text-green-800">🛩️ {t.cargoMovements}</p>
                       <p className="text-green-600 font-bold">{formatNumber(stats.cargo_aircraft_movements)}</p>
                     </div>
                   </div>
@@ -166,7 +197,7 @@ export default function AirLogisticsMap({ onAirportClick, selectedCountry }) {
                     onClick={() => onAirportClick(airport)}
                     className="mt-3 w-full bg-sky-600 text-white px-3 py-2 rounded hover:bg-sky-700 text-sm font-semibold"
                   >
-                    Voir détails complets
+                    {t.viewDetails}
                   </button>
                 </div>
               </Popup>
