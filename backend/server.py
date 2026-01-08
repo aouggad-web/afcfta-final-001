@@ -1836,6 +1836,25 @@ from etl.trade_products_data import (
     get_all_trade_products_data,
     get_trade_summary
 )
+from etl.translations import translate_product, translate_country_list
+
+def translate_products_list(products: list, language: str = 'fr') -> list:
+    """Translate product names and country names in a products list"""
+    if language == 'fr':
+        return products
+    
+    translated = []
+    for product in products:
+        translated_product = product.copy()
+        translated_product['product'] = translate_product(product['product'], language)
+        if 'top_importers' in product:
+            translated_product['top_importers'] = translate_country_list(product['top_importers'], language)
+        if 'top_exporters' in product:
+            translated_product['top_exporters'] = translate_country_list(product['top_exporters'], language)
+        if 'main_origins' in product:
+            translated_product['main_origins'] = translate_country_list(product['main_origins'], language)
+        translated.append(translated_product)
+    return translated
 
 @api_router.get("/statistics/trade-products/summary")
 async def get_trade_products_summary():
@@ -1845,51 +1864,67 @@ async def get_trade_products_summary():
     return get_trade_summary()
 
 @api_router.get("/statistics/trade-products/imports-world")
-async def get_imports_from_world():
+async def get_imports_from_world(lang: str = 'fr'):
     """
     Get Top 20 products imported by Africa from the world
     """
+    titles = {
+        'fr': "Top 20 Produits Importés par l'Afrique du Monde",
+        'en': "Top 20 Products Imported by Africa from the World"
+    }
     return {
-        "title": "Top 20 Produits Importés par l'Afrique du Monde",
+        "title": titles.get(lang, titles['fr']),
         "source": "UNCTAD/ITC Trade Map 2023",
         "year": 2023,
-        "products": get_top_imports_from_world()
+        "products": translate_products_list(get_top_imports_from_world(), lang)
     }
 
 @api_router.get("/statistics/trade-products/exports-world")
-async def get_exports_to_world():
+async def get_exports_to_world(lang: str = 'fr'):
     """
     Get Top 20 products exported by Africa to the world
     """
+    titles = {
+        'fr': "Top 20 Produits Exportés par l'Afrique vers le Monde",
+        'en': "Top 20 Products Exported by Africa to the World"
+    }
     return {
-        "title": "Top 20 Produits Exportés par l'Afrique vers le Monde",
+        "title": titles.get(lang, titles['fr']),
         "source": "UNCTAD/ITC Trade Map 2023",
         "year": 2023,
-        "products": get_top_exports_to_world()
+        "products": translate_products_list(get_top_exports_to_world(), lang)
     }
 
 @api_router.get("/statistics/trade-products/intra-imports")
-async def get_intra_imports():
+async def get_intra_imports(lang: str = 'fr'):
     """
     Get Top 20 products imported in intra-African trade
     """
+    titles = {
+        'fr': "Top 20 Produits Importés en Commerce Intra-Africain",
+        'en': "Top 20 Products Imported in Intra-African Trade"
+    }
     return {
-        "title": "Top 20 Produits Importés en Commerce Intra-Africain",
+        "title": titles.get(lang, titles['fr']),
         "source": "UNCTAD/AfCFTA Secretariat 2023",
         "year": 2023,
-        "products": get_top_intra_african_imports()
+        "products": translate_products_list(get_top_intra_african_imports(), lang)
     }
 
 @api_router.get("/statistics/trade-products/intra-exports")
-async def get_intra_exports():
+async def get_intra_exports(lang: str = 'fr'):
     """
     Get Top 20 products exported in intra-African trade
     """
+    titles = {
+        'fr': "Top 20 Produits Exportés en Commerce Intra-Africain",
+        'en': "Top 20 Products Exported in Intra-African Trade"
+    }
     return {
-        "title": "Top 20 Produits Exportés en Commerce Intra-Africain",
+        "title": titles.get(lang, titles['fr']),
         "source": "UNCTAD/AfCFTA Secretariat 2023",
         "year": 2023,
-        "products": get_top_intra_african_exports()
+        "products": translate_products_list(get_top_intra_african_exports(), lang)
     }
 
 @api_router.get("/statistics/trade-products")
