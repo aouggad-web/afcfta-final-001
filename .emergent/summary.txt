@@ -1,85 +1,88 @@
 <analysis>**original_problem_statement:**
-The user initially requested the integration of FAOSTAT agricultural data and UNIDO industrial statistics into the Productions tab, along with an improved UI featuring a better search/filter tool for country selection. During the implementation, the user reported a bug where the new search bar was not functioning correctly. After fixing the bug, the user requested a new feature: adding four new tables to the Statistiques tab to display the top 20 traded products.
-
-The specific tables requested are:
-1.  Top 20 products imported by African countries from the rest of the world.
-2.  Top 20 products exported by African countries to the rest of the world.
-3.  Top 20 products imported in intra-African trade.
-4.  Top 20 products exported in intra-African trade.
+The user initially requested the integration of FAOSTAT agricultural data and UNIDO industrial statistics into the Productions tab and an improved UI for country selection. After this was implemented, the user reported several issues and requested new features iteratively:
+1.  A bug in the new search bar's functionality.
+2.  A new feature to add four tables in the Statistiques tab displaying the top 20 traded products.
+3.  A data bug where Algeria's GDP ranking was displayed incorrectly as 4th instead of 3rd.
+4.  A request to ensure the entire application is fully functional in English, as many parts remained in French.
+5.  A request to translate the remaining tabs: Production, Logistique, and Outils.
+6.  A request to add a data source indicator, an interface to upload official TRS data, and integrate new UNCTAD data.
+7.  A bug report that the ports and airports detail pages within the Logistique tab were not translated.
+8.  A final request to systematically verify all application components to ensure complete translation.
 
 **User's preferred language**: French. The next agent MUST respond in French.
 
 **what currently exists?**
-The Production tab has been successfully enhanced with two new, fully functional sub-sections:
-1.  **Agriculture (FAOSTAT):** Displays detailed agricultural statistics (production, land use, employment) for all 54 African countries from 2020-2023, sourced from a new ETL script ().
-2.  **Manufacturing (UNIDO):** Displays key industrial statistics (MVA, growth, employment) for all 54 African countries, sourced from a new ETL script ().
+The application has undergone significant development. The Production tab is complete with FAOSTAT and UNIDO data and a functional search bar. The Statistiques tab now includes four fully functional and bilingual tables for the Top 20 Trade Products. The GDP data for Algeria has been corrected.
 
-Both sections use a new, improved country selector component () with a fully functional search and filter dropdown. A critical bug preventing the dropdown from rendering correctly over other page elements has been fixed.
+A comprehensive internationalization (i18n) system has been implemented. The main tabs (, , , ) and key sub-components (, , and their detail modals) have been refactored to support both French and English. The backend APIs for trade data have also been internationalized.
 
-The implementation for the new Top 20 Trade Products feature on the Statistiques tab has begun. The backend data () and API endpoints have been created and tested successfully via curl. A new frontend component () has been created and integrated into the main  component.
+New features have been partially implemented: a data source indicator is now visible on the statistics page, a UI button for uploading TRS data has been added to the , and backend endpoints and data files for new UNCTAD statistics have been created.
 
 **Last working item**:
--   **Last item agent was working**: Verifying the frontend implementation of the new Top 20 Trade Products feature on the Statistiques tab. The backend APIs are confirmed to be working. The agent was in the process of taking screenshots and scrolling down the page to visually confirm that the four new tables are rendering correctly.
+-   **Last item agent was working**: The agent was about to begin a systematic audit of all frontend components to identify and translate any remaining hardcoded French text, following the user's request to verify all components of the app. The agent had just listed all component files to begin the review.
 -   **Status**: IN PROGRESS
--   **Agent Testing Done**: N (Only backend APIs were tested with curl)
--   **Which testing method agent to use?**: both
-    1.  **Frontend**: Use the screenshot tool to finish the current visual verification. Once confirmed, use the frontend testing agent to ensure the new tables are correctly displayed and don't introduce regressions.
-    2.  **Backend**: The backend testing agent can be used to create permanent tests for the new trade statistics endpoints.
+-   **Agent Testing Done**: N
+-   **Which testing method agent to use?**: frontend testing agent. Given the task is to verify UI text across the entire application, the frontend testing agent is the most efficient method to systematically check all components for translation completeness without requiring dozens of individual screenshots.
 -   **User Testing Done**: N
 
 **All Pending/In progress Issue list**:
--   None. The previously reported search bar issue has been resolved and verified.
+-   None. All previously reported bugs have been resolved.
 
 **In progress Task List**:
--   **Task 1: Finalize and Verify Top 20 Trade Products Feature (P0)**
-    -   **Where to resume**: The agent was trying to view the new component on the Statistiques page. The next action is to scroll down the page () within the Statistiques tab and take a screenshot to confirm the four new trade tables are visible and correctly rendered.
-    -   **What will be achieved with this?**: The user's request for detailed trade statistics tables will be fulfilled, adding a new layer of data analysis to the application.
+-   **Task 1: Complete Full Application Internationalization (P0)**
+    -   **Where to resume**: The agent has listed all component files. The next step is to systematically review the remaining components that were not explicitly translated in the last session (e.g., , , and potentially other sub-components in  and ). For each component with hardcoded French text, implement the established i18n pattern by accepting the  prop and using a translation dictionary.
+    -   **What will be achieved with this?**: The entire application will be fully and consistently bilingual (French/English), fulfilling the user's primary request.
     -   **Status**: IN PROGRESS
-    -   **Should Test frontend/backend/both after fix?**: Both.
+    -   **Should Test frontend/backend/both after fix?**: Frontend.
     -   **Blocked on something**: No.
 
 **Upcoming and Future Tasks**
+-   **Upcoming Tasks**:
+    -   **Integrate UNCTAD data on the frontend (P1)**: The backend API endpoints (, ) are ready. This data needs to be fetched and visualized in a new or existing frontend component, likely within the .
+    -   **Implement TRS data upload functionality (P1)**: The Import official TRS data button in  is currently a placeholder. This requires creating a backend endpoint to handle file uploads and implementing the frontend logic to manage the file selection and upload process.
 -   **Future Tasks**:
-    -   **Integrate other official data sources (P1)**: Expand the ETL pipeline to incorporate data from other sources like UNIDO (for more detailed industrial stats beyond what was just added) or UNCTAD.
-    -   **Provide a mechanism for user-input TRS data (P2)**: Create an interface for the user to upload or input official Time Release Study (TRS) data to replace estimations in the Logistics tab.
+    -   **Integrate other official data sources (P2)**: Expand the ETL pipeline to incorporate more data from sources like UNCTAD or the World Trade Organization (WTO) to further enrich the application.
+    -   **Translate remaining Logistics sub-components (P2)**: The agent noted that while the main logistics tabs are done, the  and  sub-tabs may still contain untranslated text. These should be verified and translated as part of the final i18n sweep.
 
 **Completed work in this session**
--   **FAOSTAT Agricultural Data Integration (DONE)**:
-    -   Created  with detailed data for 54 African countries (2020-2023).
-    -   Integrated the data into a new Agriculture view within the Production tab.
--   **UNIDO Industrial Data Integration (DONE)**:
-    -   Created  with MVA data for 54 African countries.
-    -   Integrated the data into a new Manufacturing view within the Production tab.
--   **Enhanced Production Tab UI (DONE)**:
-    -   Created a new  component with a search/filter dropdown.
-    -   Replaced the old selector in the  and  components.
--   **Search Bar Bug Fix (DONE)**:
-    -   Diagnosed and fixed a z-index/positioning issue in  and its parent components (, ) that prevented the country list dropdown from rendering correctly. The fix was verified via screenshots.
+-   **Top 20 Trade Products Feature (DONE)**: Implemented backend data, internationalized API endpoints, and created the  frontend component. Verified functionality and translation for all four tables.
+-   **Algeria GDP Ranking Bug Fix (DONE)**: Corrected the data in  to reflect Algeria's correct GDP ranking, and verified the fix in the UI.
+-   **Application Internationalization (Majority DONE)**: Implemented a language switcher and refactored , , , , , , and their detail modals to be fully bilingual. The backend trade data API was also internationalized.
+-   **Data Source Indicator (DONE)**: Added a footer to the statistics page listing the data sources (IMF, World Bank, UNCTAD, etc.).
+-   **TRS Upload UI Stub (DONE)**: Added the Import official TRS data button to the  component.
+-   **UNCTAD Data Backend (DONE)**: Created the data file  and added corresponding API endpoints in .
+
+**Earlier issues found/mentioned but not fixed**
+-   The agent noted during the translation process that some nested sub-components within the  tab (e.g., for land corridors and free zones) might still contain hardcoded French text. This is covered by the in-progress task to complete the full application internationalization.
+
+**Known issue recurrence from previous fork**
+-   None.
 
 **Code Architecture**
 
 
 **Key Technical Concepts**
--   **Component-Based UI Development**: Created a new reusable component () to display the four requested data tables, promoting code reuse.
--   **CSS Stacking Context**: Debugged and solved a complex CSS issue involving , , and  properties to ensure a dropdown menu correctly renders above other elements on the page.
-
-**key DB schema**
--   No DB schema changes. New data is provided via flat Python files in the  directory and served through the API.
-
-**changes in tech stack**
--   No changes to the core technology stack.
+-   **Frontend Internationalization (i18n)**: A robust translation system was implemented by passing a  prop down from the root  component. UI text is stored in local dictionary objects within each component and rendered conditionally based on the  prop's value ( or ).
+-   **Backend Internationalization**: The backend API was enhanced to accept a language query parameter (e.g., ) to return translated data for dynamic content like product and country names, effectively separating data from presentation logic.
+-   **Data-Driven UI**: The application's UI, including charts, lists, and tables, is dynamically rendered from data fetched from the backend API.
+-   **Static Data Correction**: A data integrity issue was resolved by directly editing a static  file in the repository after verifying the correct data from official external sources.
 
 **All files of reference**
--   **/app/frontend/src/components/statistics/StatisticsTab.jsx**: The parent component for the current task.
--   **/app/frontend/src/components/TradeProductsTable.jsx**: The new component created to display the trade tables.
--   **/app/backend/etl/trade_products_data.py**: The new backend data file for the trade tables.
--   **/app/backend/server.py**: Contains the new API endpoints for the trade data.
--   **/app/frontend/src/components/production/EnhancedCountrySelector.jsx**: File containing the fixed search dropdown component.
--   **/app/frontend/src/components/production/ProductionAgriculture.jsx**: Parent card component whose styling was adjusted for the dropdown fix.
--   **/app/frontend/src/components/production/ProductionManufacturing.jsx**: Parent card component whose styling was adjusted for the dropdown fix.
+-   **/app/frontend/src/App.js**: Core of the i18n implementation.
+-   **/app/frontend/src/components/**: Most components within this directory have been modified for i18n, particularly within , , , and . Key files include:
+    -   
+    -   
+    -   
+    -   
+    -   
+    -   , , , 
+-   **/app/backend/server.py**: Contains i18n logic for API endpoints and new UNCTAD endpoints.
+-   **/app/backend/etl/translations.py**: New file for storing backend data translations.
+-   **/app/backend/data/ZLECAf_ENRICHI_2024_COMMERCE.csv**: The CSV file where the GDP data was corrected.
+-   **/app/memory/PRD.md**: Project requirements document, created and updated throughout the session.
 
 **Areas that need refactoring**:
--   None.
+-   None identified. The agent followed a consistent pattern for internationalization which is scalable.
 
 **key api endpoints**
 -   
@@ -87,48 +90,44 @@ The implementation for the new Top 20 Trade Products feature on the Statistiques
 -   
 -   
 -   
--   
--   
+-    (New, not yet used in frontend)
+-    (New, not yet used in frontend)
 
 **Critical Info for New Agent**
--   The fix for the search bar dropdown involved modifying the parent  components in  and  to create a new stacking context (, ). This pattern might be needed if similar dropdowns are implemented elsewhere.
--   The current task is to visually verify the  component on the Statistics page. You need to scroll down to find it.
+-   The primary remaining task is to complete the full internationalization of the application. The established pattern is to pass the  prop from parent to child components and use a  dictionary for translations.
+-   The user is highly engaged and provides iterative feedback. Expect to receive further requests or bug reports after completing the current task.
+-   Backend work for UNCTAD data and a UI stub for TRS uploads are complete, but the frontend implementation and backend file handling logic are still pending. These are the next logical features to tackle after the i18n work is finished.
 
 **documents and test reports created in this job**
 -   
 -   
 -   
--   
--    (created by testing agent)
 
 **Last 10 User Messages and any pending HUMAN messages**
-1.  **User (Msg 92):** ameliorer le volet production 1 la barre de rechercche ne foctionne pas correctement notament pour agriculture (Improve the production section, the search bar is not working correctly, especially for agriculture). (COMPLETED/FIXED)
-2.  **Agent (Msg 167):** Confirms the search bar is now fixed and fully functional, showing the Nigeria example. (ACKNOWLEDGED)
-3.  **Agent (Msg 168):** Finishes the task and asks the user to test the search on both Agriculture and Manufacturing tabs.
-4.  **User (Msg 169):** dans le volet statistique rajouter 2 tableaux par le top 20 des produits importer par pays africains du monde et exorter vers le monde et 2 tableaux du top 20 des produits importer en intraafricain commerce (in the statistics section, add 2 tables for the top 20 products imported... and 2 tables for intra-african trade). (IN PROGRESS)
-5.  **Agent (Msg 170):** Confirms understanding of the request for 4 new tables and begins exploration. (ACKNOWLEDGED)
-6.  **Agent (Msg 190):** Reports backend has restarted after adding new files and endpoints. (ACKNOWLEDGED)
-7.  **Agent (Msg 192):** Reports successful  tests of the new trade statistics API endpoints. (ACKNOWLEDGED)
-8.  **Agent (Msg 194):** Takes the first screenshot of the Statistics tab. (ACKNOWLEDGED)
-9.  **Agent (Msg 196):** Takes a second screenshot after scrolling, noting the new component is not yet visible. (ACKNOWLEDGED)
-10. **Agent (Msg 197):** States intent to scroll further down to find the new Top 20 Produits Commerciaux component. (PENDING ACTION)
+10. **User**: apres (approving the agent's initial plan)
+9.  **User**: Asks to verify that the English version of the app is fully functional, including titles and data.
+8.  **User**: ok continue (giving the agent the go-ahead while it was in the middle of a large refactoring task for translations).
+7.  **User**: Requests checking other tabs (Production, Logistics, Tools) for missing translations, adding UNCTAD data, adding a TRS upload interface, and displaying a data source indicator. (IN PROGRESS)
+6.  **User**: Points out that the ports and airports details are not translated. (COMPLETED/FIXED)
+5.  **User**: Asks the agent to verify all the components of the app. (IN PROGRESS - THIS IS THE CURRENT TASK)
+The user is actively testing the application and providing specific, actionable feedback to guide development. The main pending action is the final verification of all components for translation completeness.
 
 **Project Health Check:**
--   **Working**: The application is stable and all previously implemented features, including the FAOSTAT/UNIDO integration and the fixed search bar, are fully functional.
+-   **Working**: The application is stable. All major features are functional in both French and English.
 -   **Broken**: None.
--   **Mocked/Estimated**: Yes, some TRS data in the logistics tab is still estimated, which is by design and clearly marked in the UI.
+-   **Mocked/Estimated**: Yes, some data in the  is marked as Estimated by design, pending the implementation of the official TRS data upload feature.
 
 **3rd Party Integrations**
--   None. Data for FAOSTAT, UNIDO, and Trade statistics is currently sourced from static Python files within the project.
+-   None. All data is currently sourced from static data files within the project repository.
 
 **Testing status**
--   **Testing agent used after significant changes**: YES, for the FAOSTAT/UNIDO feature. It helped identify a potential tab navigation issue.
+-   **Testing agent used after significant changes**: NO, the agent primarily used iterative screenshots to verify changes. A full test run is recommended after the final i18n sweep.
 -   **Troubleshoot agent used after agent stuck in loop**: NO.
--   **Test files created**: .
+-   **Test files created**: None in this session.
 -   **Known regressions**: None.
 
 **Credentials to test flow:**
 -   N/A
 
 **What agent forgot to execute**
--   Nothing has been forgotten. The agent is logically progressing through the user's latest request.</analysis>
+-   The agent correctly identified but has not yet translated the remaining sub-components in the Logistics tab (Land Corridors, Free Zones). This is part of the current task to verify all components.</analysis>
