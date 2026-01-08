@@ -32,7 +32,12 @@ Application web d'analyse des statistiques commerciales et économiques africain
 - Règles d'origine
 - Profils pays détaillés
 
-## Corrections Récentes (31/12/2024)
+### 6. Internationalisation (i18n)
+- Support complet français/anglais ✅
+- Tous les composants traduisibles
+- Données API traduites selon la langue
+
+## Corrections et Améliorations (31/12/2024 - 08/01/2025)
 
 ### Correction PIB - Classement Afrique
 Mise à jour selon FMI World Economic Outlook (Oct 2024):
@@ -46,16 +51,24 @@ Classement correct:
 4. Nigéria - 253.0 Mds USD
 5. Éthiopie - 156.1 Mds USD
 
+### Internationalisation Complete (08/01/2025)
+- Ajout des traductions pour tous les textes UI (français/anglais)
+- Création du fichier `/app/backend/etl/translations.py` pour les traductions backend
+- APIs avec paramètre `?lang=en` pour les données traduites
+- Noms de produits et pays traduits dynamiquement
+
 ## Architecture Technique
 
 ### Backend (FastAPI)
 - `/app/backend/server.py` - API principale
 - `/app/backend/etl/` - Données ETL (FAOSTAT, UNIDO, Trade Products)
+- `/app/backend/etl/translations.py` - Traductions produits/pays
 - `/app/backend/data_loader.py` - Chargement données CSV
 
 ### Frontend (React)
 - `/app/frontend/src/components/` - Composants UI
 - Shadcn/UI pour les composants
+- Système de traduction via props `language`
 
 ### Données Sources
 - `/app/ZLECAf_ENRICHI_2024_COMMERCE.csv` - Données principales 54 pays
