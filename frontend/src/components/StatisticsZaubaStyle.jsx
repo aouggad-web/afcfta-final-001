@@ -276,8 +276,8 @@ const StatisticsZaubaStyle = ({ language = 'fr' }) => {
       {statistics.top_5_gdp_trade_comparison && statistics.top_5_gdp_trade_comparison.length > 0 && (
         <Card className="shadow-lg">
           <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50">
-            <CardTitle className="text-xl font-bold">💰 Top 5 PIB Africains - Comparaison Commerce</CardTitle>
-            <CardDescription className="text-sm">Commerce Mondial vs Commerce Intra-Africain (2024)</CardDescription>
+            <CardTitle className="text-xl font-bold">💰 {t.top5GDP}</CardTitle>
+            <CardDescription className="text-sm">{t.worldVsIntraAfrican}</CardDescription>
           </CardHeader>
           <CardContent className="pt-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -286,11 +286,11 @@ const StatisticsZaubaStyle = ({ language = 'fr' }) => {
                 <ResponsiveContainer width="100%" height={330}>
                   <BarChart 
                     data={statistics.top_5_gdp_trade_comparison.map(country => ({
-                      pays: country.country,
-                      'Exports Monde': parseFloat(country.exports_world),
-                      'Exports Intra-Afr.': parseFloat(country.exports_intra_african),
-                      'Imports Monde': parseFloat(country.imports_world),
-                      'Imports Intra-Afr.': parseFloat(country.imports_intra_african)
+                      pays: translateCountry(country.country),
+                      [t.exportsWorld]: parseFloat(country.exports_world),
+                      [t.exportsIntraAfr]: parseFloat(country.exports_intra_african),
+                      [t.importsWorld]: parseFloat(country.imports_world),
+                      [t.importsIntraAfr]: parseFloat(country.imports_intra_african)
                     }))}
                     layout="vertical"
                     margin={{ left: 10, right: 30, top: 10, bottom: 10 }}
@@ -298,7 +298,7 @@ const StatisticsZaubaStyle = ({ language = 'fr' }) => {
                     <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                     <XAxis 
                       type="number" 
-                      label={{ value: 'Milliards USD', position: 'bottom', style: { fontSize: 12, fontWeight: 'bold' } }}
+                      label={{ value: t.billionUSD, position: 'bottom', style: { fontSize: 12, fontWeight: 'bold' } }}
                       tick={{ fontSize: 11 }}
                     />
                     <YAxis 
@@ -317,39 +317,39 @@ const StatisticsZaubaStyle = ({ language = 'fr' }) => {
                       }}
                     />
                     <Legend wrapperStyle={{ fontSize: '11px', fontWeight: 'bold' }} />
-                    <Bar dataKey="Exports Monde" fill="#10b981" radius={[0, 4, 4, 0]} />
-                    <Bar dataKey="Exports Intra-Afr." fill="#6ee7b7" radius={[0, 4, 4, 0]} />
-                    <Bar dataKey="Imports Monde" fill="#3b82f6" radius={[0, 4, 4, 0]} />
-                    <Bar dataKey="Imports Intra-Afr." fill="#93c5fd" radius={[0, 4, 4, 0]} />
+                    <Bar dataKey={t.exportsWorld} fill="#10b981" radius={[0, 4, 4, 0]} />
+                    <Bar dataKey={t.exportsIntraAfr} fill="#6ee7b7" radius={[0, 4, 4, 0]} />
+                    <Bar dataKey={t.importsWorld} fill="#3b82f6" radius={[0, 4, 4, 0]} />
+                    <Bar dataKey={t.importsIntraAfr} fill="#93c5fd" radius={[0, 4, 4, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
 
               {/* Tableau Détaillé */}
               <div>
-                <h4 className="text-sm font-bold mb-3 text-gray-700">Détail par Pays (Milliards USD)</h4>
+                <h4 className="text-sm font-bold mb-3 text-gray-700">{t.detailByCountry}</h4>
                 <div className="space-y-2">
                   {statistics.top_5_gdp_trade_comparison.map((country, index) => (
                     <div key={index} className="bg-gray-50 p-3 rounded-lg border-l-4 border-blue-500">
                       <div className="flex justify-between items-center mb-2">
-                        <span className="text-sm font-bold text-gray-800">{country.country}</span>
-                        <Badge className="bg-purple-600 text-white text-xs">PIB: ${country.gdp_2024}B</Badge>
+                        <span className="text-sm font-bold text-gray-800">{translateCountry(country.country)}</span>
+                        <Badge className="bg-purple-600 text-white text-xs">{language === 'en' ? 'GDP' : 'PIB'}: ${country.gdp_2024}B</Badge>
                       </div>
                       <div className="grid grid-cols-2 gap-2 text-xs">
                         <div>
-                          <p className="text-gray-500">Exp. Monde:</p>
+                          <p className="text-gray-500">{t.expWorld}:</p>
                           <p className="font-bold text-green-700">${country.exports_world.toFixed(1)}B</p>
                         </div>
                         <div>
-                          <p className="text-gray-500">Exp. Intra-Afr:</p>
+                          <p className="text-gray-500">{t.expIntraAfr}:</p>
                           <p className="font-bold text-green-600">${country.exports_intra_african.toFixed(1)}B ({country.intra_african_percentage}%)</p>
                         </div>
                         <div>
-                          <p className="text-gray-500">Imp. Monde:</p>
+                          <p className="text-gray-500">{t.impWorld}:</p>
                           <p className="font-bold text-blue-700">${country.imports_world.toFixed(1)}B</p>
                         </div>
                         <div>
-                          <p className="text-gray-500">Imp. Intra-Afr:</p>
+                          <p className="text-gray-500">{t.impIntraAfr}:</p>
                           <p className="font-bold text-blue-600">${country.imports_intra_african.toFixed(1)}B</p>
                         </div>
                       </div>
@@ -366,8 +366,8 @@ const StatisticsZaubaStyle = ({ language = 'fr' }) => {
       {statistics.sector_performance && Object.keys(statistics.sector_performance).length > 0 && (
         <Card className="shadow-lg">
           <CardHeader className="bg-gradient-to-r from-indigo-50 to-blue-50">
-            <CardTitle className="text-xl font-bold">🏭 Performance par Secteur</CardTitle>
-            <CardDescription className="text-sm">Distribution des exportations par secteur économique</CardDescription>
+            <CardTitle className="text-xl font-bold">🏭 {t.sectorPerformance}</CardTitle>
+            <CardDescription className="text-sm">{t.sectorDistribution}</CardDescription>
           </CardHeader>
           <CardContent className="pt-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -402,7 +402,7 @@ const StatisticsZaubaStyle = ({ language = 'fr' }) => {
               </div>
 
               <div className="space-y-2">
-                <h4 className="text-sm font-bold mb-3 text-gray-700">Détail des Secteurs</h4>
+                <h4 className="text-sm font-bold mb-3 text-gray-700">{t.sectorDetails}</h4>
                 {Object.entries(statistics.sector_performance).slice(0, 8).map(([key, value], index) => {
                   const shareValue = typeof value === 'object' && value.share ? value.share : 
                                     typeof value === 'object' && value.value_2024 ? value.value_2024 : 
