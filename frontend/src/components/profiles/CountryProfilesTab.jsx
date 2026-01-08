@@ -575,42 +575,42 @@ export default function CountryProfilesTab({ language = 'fr' }) {
                   <CardHeader className="bg-gradient-to-r from-orange-50 to-yellow-50">
                     <CardTitle className="text-xl font-bold text-orange-700 flex items-center gap-2">
                       <span>🏗️</span>
-                      <span>Performance Infrastructure & Logistique</span>
+                      <span>{t.infrastructurePerformance}</span>
                     </CardTitle>
                     <CardDescription className="font-semibold text-gray-700">
-                      Classement continental (AIDI 2025) et mondial (LPI 2023)
+                      {t.continentalRanking}
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="pt-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="bg-purple-50 p-3 rounded-lg text-center">
-                        <p className="text-xs font-semibold text-purple-700 mb-1">📊 Score IPL (LPI)</p>
+                        <p className="text-xs font-semibold text-purple-700 mb-1">📊 {t.lpiScore}</p>
                         <p className="text-2xl font-bold text-purple-600">
                           {countryProfile.infrastructure_ranking.lpi_infrastructure_score}/5
                         </p>
-                        <p className="text-xs text-purple-600 mt-1">Infrastructure</p>
+                        <p className="text-xs text-purple-600 mt-1">{t.infrastructure}</p>
                         <div className="mt-2 text-xs bg-purple-100 rounded px-2 py-1">
-                          Rang Mondial: <strong>#{countryProfile.infrastructure_ranking.lpi_world_rank}</strong>
+                          {t.worldRank}: <strong>#{countryProfile.infrastructure_ranking.lpi_world_rank}</strong>
                         </div>
                       </div>
                       
                       <div className="bg-orange-50 p-3 rounded-lg text-center">
-                        <p className="text-xs font-semibold text-orange-700 mb-1">🏗️ Score AIDI 2025</p>
+                        <p className="text-xs font-semibold text-orange-700 mb-1">🏗️ {t.aidiScore}</p>
                         <p className="text-2xl font-bold text-orange-600">
                           {countryProfile.infrastructure_ranking.aidi_transport_score}/100
                         </p>
-                        <p className="text-xs text-orange-600 mt-1">Indice Global</p>
+                        <p className="text-xs text-orange-600 mt-1">{t.globalIndex}</p>
                         <div className="mt-2 text-xs bg-orange-100 rounded px-2 py-1">
-                          Rang Afrique: <strong>#{countryProfile.infrastructure_ranking.africa_rank}</strong>
+                          {t.africaRank}: <strong>#{countryProfile.infrastructure_ranking.africa_rank}</strong>
                         </div>
                       </div>
                     </div>
                     
                     <div className="mt-4 bg-gray-50 p-3 rounded-lg">
                       <p className="text-xs text-gray-700">
-                        <strong>IPL (Indice de Performance Logistique)</strong> : Évalue la qualité des infrastructures liées au commerce et au transport (Banque Mondiale).
+                        <strong>IPL ({language === 'fr' ? 'Indice de Performance Logistique' : 'Logistics Performance Index'})</strong> : {t.lpiDescription}
                         <br />
-                        <strong>AIDI (Africa Infrastructure Development Index)</strong> : Mesure composite du développement des infrastructures (Transport, Électricité, TIC, Eau) par la BAD.
+                        <strong>AIDI (Africa Infrastructure Development Index)</strong> : {t.aidiDescription}
                       </p>
                     </div>
                   </CardContent>
