@@ -83,16 +83,16 @@ function TradeProductsTable({ language = 'fr' }) {
 
   useEffect(() => {
     fetchAllData();
-  }, []);
+  }, [language]);
 
   const fetchAllData = async () => {
     setLoading(true);
     try {
       const [importsRes, exportsRes, intraImpRes, intraExpRes, summaryRes] = await Promise.all([
-        axios.get(`${API}/statistics/trade-products/imports-world`),
-        axios.get(`${API}/statistics/trade-products/exports-world`),
-        axios.get(`${API}/statistics/trade-products/intra-imports`),
-        axios.get(`${API}/statistics/trade-products/intra-exports`),
+        axios.get(`${API}/statistics/trade-products/imports-world?lang=${language}`),
+        axios.get(`${API}/statistics/trade-products/exports-world?lang=${language}`),
+        axios.get(`${API}/statistics/trade-products/intra-imports?lang=${language}`),
+        axios.get(`${API}/statistics/trade-products/intra-exports?lang=${language}`),
         axios.get(`${API}/statistics/trade-products/summary`)
       ]);
       
