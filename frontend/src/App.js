@@ -36,7 +36,9 @@ function App() {
       rulesTab: "Règles d'Origine",
       profilesTab: "Profils Pays",
       toolsTab: "Outils",
-      logisticsTab: "Logistique"
+      logisticsTab: "Logistique",
+      memberCountries: "54 Pays Membres",
+      population: "1.3B+ Population"
     },
     en: {
       title: "AfCFTA Agreement",
@@ -47,7 +49,9 @@ function App() {
       rulesTab: "Rules of Origin", 
       profilesTab: "Country Profiles",
       toolsTab: "Tools",
-      logisticsTab: "Logistics"
+      logisticsTab: "Logistics",
+      memberCountries: "54 Member Countries",
+      population: "1.3B+ Population"
     }
   };
 
