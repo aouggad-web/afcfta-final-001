@@ -1935,6 +1935,49 @@ async def get_all_trade_products():
     return get_all_trade_products_data()
 
 
+# =============================================================================
+# UNCTAD DATA ENDPOINTS
+# =============================================================================
+
+from etl.unctad_data import (
+    get_unctad_port_statistics,
+    get_unctad_trade_flows,
+    get_unctad_lsci,
+    get_all_unctad_data
+)
+
+@api_router.get("/statistics/unctad/ports")
+async def get_unctad_ports():
+    """
+    Get UNCTAD port statistics for African ports
+    Source: UNCTAD Review of Maritime Transport 2023
+    """
+    return get_unctad_port_statistics()
+
+@api_router.get("/statistics/unctad/trade-flows")
+async def get_unctad_flows():
+    """
+    Get UNCTAD trade flow statistics
+    Source: UNCTAD COMTRADE 2023
+    """
+    return get_unctad_trade_flows()
+
+@api_router.get("/statistics/unctad/lsci")
+async def get_unctad_liner_connectivity():
+    """
+    Get UNCTAD Liner Shipping Connectivity Index for Africa
+    Source: UNCTAD 2023
+    """
+    return get_unctad_lsci()
+
+@api_router.get("/statistics/unctad")
+async def get_all_unctad():
+    """
+    Get all UNCTAD data (ports, trade flows, LSCI)
+    """
+    return get_all_unctad_data()
+
+
 # Include the router in the main app
 app.include_router(api_router)
 
