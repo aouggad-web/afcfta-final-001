@@ -47,6 +47,7 @@ Application web d'analyse des statistiques commerciales et économiques africain
 - Tous les composants traduisibles ✅
 - Données API traduites selon la langue ✅
 - **Indicateurs de source** en petit caractère ✅
+- **Ports et Aéroports** détails traduits ✅
 
 ## Corrections et Améliorations (31/12/2024 - 08/01/2025)
 
