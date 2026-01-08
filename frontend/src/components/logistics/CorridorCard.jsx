@@ -30,7 +30,38 @@ const getStatusColor = (status) => {
   return 'bg-gray-100 text-gray-800';
 };
 
-export default function CorridorCard({ corridor, onOpenDetails }) {
+export default function CorridorCard({ corridor, onOpenDetails, language = 'fr' }) {
+  const texts = {
+    fr: {
+      length: "Longueur",
+      status: "Statut",
+      annualFreight: "Fret Annuel",
+      transitTime: "Temps Transit",
+      nodes: "Nœuds",
+      operators: "Opérateurs",
+      infrastructure: "Infrastructure",
+      viewDetails: "Voir les détails complets",
+      priority: "Prioritaire",
+      tonsYear: "tonnes/an",
+      hours: "heures"
+    },
+    en: {
+      length: "Length",
+      status: "Status",
+      annualFreight: "Annual Freight",
+      transitTime: "Transit Time",
+      nodes: "Nodes",
+      operators: "Operators",
+      infrastructure: "Infrastructure",
+      viewDetails: "View full details",
+      priority: "Priority",
+      tonsYear: "tons/year",
+      hours: "hours"
+    }
+  };
+
+  const t = texts[language];
+
   const stats = corridor?.stats || {};
   const nodes = corridor?.nodes || [];
   const operators = corridor?.operators || [];
@@ -54,7 +85,7 @@ export default function CorridorCard({ corridor, onOpenDetails }) {
               {corridor.corridor_type}
             </Badge>
             {corridor.importance === 'high' && (
-              <Badge className="bg-amber-100 text-amber-800">⭐ Prioritaire</Badge>
+              <Badge className="bg-amber-100 text-amber-800">⭐ {t.priority}</Badge>
             )}
           </div>
         </div>
@@ -64,11 +95,11 @@ export default function CorridorCard({ corridor, onOpenDetails }) {
         {/* Status and Length */}
         <div className="grid grid-cols-2 gap-3 mb-4">
           <div className="bg-gray-50 p-2 rounded">
-            <p className="text-xs font-semibold text-gray-700">📏 Longueur</p>
+            <p className="text-xs font-semibold text-gray-700">📏 {t.length}</p>
             <p className="text-lg font-bold text-gray-900">{formatNumber(corridor.length_km)} km</p>
           </div>
           <div className="bg-gray-50 p-2 rounded">
-            <p className="text-xs font-semibold text-gray-700">🚦 Statut</p>
+            <p className="text-xs font-semibold text-gray-700">🚦 {t.status}</p>
             <Badge className={getStatusColor(corridor.status)} variant="outline">
               {corridor.status}
             </Badge>
@@ -79,18 +110,18 @@ export default function CorridorCard({ corridor, onOpenDetails }) {
         {stats.freight_throughput_tons && (
           <div className="grid grid-cols-2 gap-3 mb-4">
             <div className="bg-blue-50 p-2 rounded border-l-4 border-blue-500">
-              <p className="text-xs font-semibold text-blue-700">📦 Fret Annuel</p>
+              <p className="text-xs font-semibold text-blue-700">📦 {t.annualFreight}</p>
               <p className="text-base font-bold text-blue-900">
                 {formatNumber(stats.freight_throughput_tons)}
               </p>
-              <p className="text-xs text-gray-600">tonnes/an</p>
+              <p className="text-xs text-gray-600">{t.tonsYear}</p>
             </div>
             <div className="bg-green-50 p-2 rounded border-l-4 border-green-500">
-              <p className="text-xs font-semibold text-green-700">⏱️ Temps Transit</p>
+              <p className="text-xs font-semibold text-green-700">⏱️ {t.transitTime}</p>
               <p className="text-base font-bold text-green-900">
                 {stats.avg_transit_time_hours || 'N/A'}
               </p>
-              <p className="text-xs text-gray-600">heures</p>
+              <p className="text-xs text-gray-600">{t.hours}</p>
             </div>
           </div>
         )}
@@ -98,7 +129,7 @@ export default function CorridorCard({ corridor, onOpenDetails }) {
         {/* Nodes and Operators */}
         <div className="grid grid-cols-3 gap-2 mb-4">
           <div className="bg-gray-50 p-2 rounded text-center">
-            <p className="text-xs font-semibold text-gray-700">🚧 Nœuds</p>
+            <p className="text-xs font-semibold text-gray-700">🚧 {t.nodes}</p>
             <p className="text-lg font-bold text-gray-900">{nodes.length}</p>
           </div>
           <div className="bg-green-50 p-2 rounded text-center">
@@ -106,7 +137,7 @@ export default function CorridorCard({ corridor, onOpenDetails }) {
             <p className="text-lg font-bold text-green-900">{osbpCount}</p>
           </div>
           <div className="bg-orange-50 p-2 rounded text-center">
-            <p className="text-xs font-semibold text-orange-700">🚛 Opérateurs</p>
+            <p className="text-xs font-semibold text-orange-700">🚛 {t.operators}</p>
             <p className="text-lg font-bold text-orange-900">{operators.length}</p>
           </div>
         </div>
@@ -115,7 +146,7 @@ export default function CorridorCard({ corridor, onOpenDetails }) {
         {corridor.infra_details && (
           <div className="bg-slate-50 p-2 rounded mb-4">
             <p className="text-xs text-gray-700">
-              <span className="font-semibold">🔧 Infrastructure: </span>
+              <span className="font-semibold">🔧 {t.infrastructure}: </span>
               {corridor.infra_details.substring(0, 80)}{corridor.infra_details.length > 80 ? '...' : ''}
             </p>
           </div>
@@ -125,7 +156,7 @@ export default function CorridorCard({ corridor, onOpenDetails }) {
           onClick={() => onOpenDetails(corridor)} 
           className="w-full bg-slate-700 hover:bg-slate-800 text-white"
         >
-          🔍 Voir les détails complets
+          🔍 {t.viewDetails}
         </Button>
       </CardContent>
     </Card>
