@@ -371,7 +371,7 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                         <div className="bg-blue-50 p-4 rounded-lg text-center">
                           <p className="text-xs font-semibold text-blue-600">Rotation Navire</p>
                           <p className="text-2xl font-bold text-blue-800">{trs.vessel_turnaround_hours}</p>
-                          <p className="text-xs text-blue-500">heures</p>
+                          <p className="text-xs text-blue-500">{t.hours}</p>
                         </div>
                       )}
                       {trs.cppi_rank && trs.cppi_rank !== "NA" && (
@@ -526,7 +526,7 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                     <div>
                       <div className="flex justify-between mb-2">
                         <span className="text-sm font-medium text-gray-700">Attente au mouillage</span>
-                        <span className="text-sm font-bold text-yellow-700">{metrics.avg_waiting_time_hours || 0} heures</span>
+                        <span className="text-sm font-bold text-yellow-700">{metrics.avg_waiting_time_hours || 0} {t.hours}</span>
                       </div>
                       <Progress value={Math.min((metrics.avg_waiting_time_hours / 48) * 100, 100)} className="h-3 bg-gray-100" indicatorClassName="bg-yellow-500" />
                       <p className="text-xs text-gray-500 mt-1">Indicateur de congestion nautique</p>
@@ -562,7 +562,7 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                   
                   <div className="bg-blue-50 p-4 rounded-lg flex items-center justify-between border border-blue-100">
                     <div>
-                      <p className="text-sm text-blue-800 font-semibold">Connectivité LSCI</p>
+                      <p className="text-sm text-blue-800 font-semibold">{t.lsciConnectivity}</p>
                       <p className="text-3xl font-bold text-blue-900">
                         {port.lsci?.value || (port.port_type === 'Hub Transhipment' ? 'High' : 'Medium')}
                       </p>
