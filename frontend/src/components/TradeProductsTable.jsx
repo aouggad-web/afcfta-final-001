@@ -213,7 +213,7 @@ function TradeProductsTable({ language = 'fr' }) {
         <CardContent className="flex items-center justify-center h-64">
           <div className="text-center">
             <Loader2 className="w-12 h-12 animate-spin text-blue-600 mx-auto" />
-            <p className="mt-4 text-gray-600">Chargement des données commerciales...</p>
+            <p className="mt-4 text-gray-600">{t.loading}</p>
           </div>
         </CardContent>
       </Card>
@@ -227,29 +227,29 @@ function TradeProductsTable({ language = 'fr' }) {
         <CardHeader>
           <CardTitle className="text-2xl font-bold flex items-center gap-3">
             <Package className="w-8 h-8" />
-            Top 20 Produits Commerciaux Africains
+            {t.title}
           </CardTitle>
           <CardDescription className="text-indigo-100 text-base">
-            Analyse détaillée des principaux produits échangés (Import/Export Monde & Intra-Africain)
+            {t.subtitle}
           </CardDescription>
         </CardHeader>
         {summary && (
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-white/10 backdrop-blur rounded-xl p-4">
-                <p className="text-indigo-200 text-xs uppercase">Import du Monde (Top 20)</p>
+                <p className="text-indigo-200 text-xs uppercase">{t.importWorld}</p>
                 <p className="text-2xl font-bold">{formatValue(summary.top_20_imports_world_total_mln_usd)}</p>
               </div>
               <div className="bg-white/10 backdrop-blur rounded-xl p-4">
-                <p className="text-indigo-200 text-xs uppercase">Export vers le Monde (Top 20)</p>
+                <p className="text-indigo-200 text-xs uppercase">{t.exportWorld}</p>
                 <p className="text-2xl font-bold">{formatValue(summary.top_20_exports_world_total_mln_usd)}</p>
               </div>
               <div className="bg-white/10 backdrop-blur rounded-xl p-4">
-                <p className="text-indigo-200 text-xs uppercase">Import Intra-Africain (Top 20)</p>
+                <p className="text-indigo-200 text-xs uppercase">{t.importIntra}</p>
                 <p className="text-2xl font-bold">{formatValue(summary.top_20_intra_imports_total_mln_usd)}</p>
               </div>
               <div className="bg-white/10 backdrop-blur rounded-xl p-4">
-                <p className="text-indigo-200 text-xs uppercase">Export Intra-Africain (Top 20)</p>
+                <p className="text-indigo-200 text-xs uppercase">{t.exportIntra}</p>
                 <p className="text-2xl font-bold">{formatValue(summary.top_20_intra_exports_total_mln_usd)}</p>
               </div>
             </div>
@@ -265,28 +265,28 @@ function TradeProductsTable({ language = 'fr' }) {
             className="data-[state=active]:bg-blue-600 data-[state=active]:text-white py-3 flex items-center gap-2"
           >
             <ArrowDownToLine className="w-4 h-4" />
-            <span className="hidden sm:inline">Import</span> Monde
+            {t.tabImportWorld}
           </TabsTrigger>
           <TabsTrigger 
             value="exports-world" 
             className="data-[state=active]:bg-green-600 data-[state=active]:text-white py-3 flex items-center gap-2"
           >
             <ArrowUpFromLine className="w-4 h-4" />
-            <span className="hidden sm:inline">Export</span> Monde
+            {t.tabExportWorld}
           </TabsTrigger>
           <TabsTrigger 
             value="intra-imports" 
             className="data-[state=active]:bg-purple-600 data-[state=active]:text-white py-3 flex items-center gap-2"
           >
             <Handshake className="w-4 h-4" />
-            <span className="hidden sm:inline">Import</span> Intra-AF
+            {t.tabImportIntra}
           </TabsTrigger>
           <TabsTrigger 
             value="intra-exports" 
             className="data-[state=active]:bg-pink-600 data-[state=active]:text-white py-3 flex items-center gap-2"
           >
             <Globe className="w-4 h-4" />
-            <span className="hidden sm:inline">Export</span> Intra-AF
+            {t.tabExportIntra}
           </TabsTrigger>
         </TabsList>
 
