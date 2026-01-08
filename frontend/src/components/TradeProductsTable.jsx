@@ -146,12 +146,12 @@ function TradeProductsTable({ language = 'fr' }) {
           <thead>
             <tr className={`${isIntra ? 'bg-purple-50' : isExport ? 'bg-green-50' : 'bg-blue-50'}`}>
               <th className="px-3 py-3 text-left font-bold text-gray-700 w-12">#</th>
-              <th className="px-3 py-3 text-left font-bold text-gray-700">Produit</th>
-              <th className="px-3 py-3 text-left font-bold text-gray-700 w-20">Code HS</th>
-              <th className="px-3 py-3 text-right font-bold text-gray-700 w-28">Valeur</th>
-              <th className="px-3 py-3 text-right font-bold text-gray-700 w-20">Part</th>
-              <th className="px-3 py-3 text-center font-bold text-gray-700 w-28">Croissance</th>
-              <th className="px-3 py-3 text-left font-bold text-gray-700">{isExport ? 'Top Exportateurs' : 'Top Importateurs'}</th>
+              <th className="px-3 py-3 text-left font-bold text-gray-700">{t.product}</th>
+              <th className="px-3 py-3 text-left font-bold text-gray-700 w-20">{t.hsCode}</th>
+              <th className="px-3 py-3 text-right font-bold text-gray-700 w-28">{t.value}</th>
+              <th className="px-3 py-3 text-right font-bold text-gray-700 w-20">{t.share}</th>
+              <th className="px-3 py-3 text-center font-bold text-gray-700 w-28">{t.growth}</th>
+              <th className="px-3 py-3 text-left font-bold text-gray-700">{isExport ? t.topExporters : t.topImporters}</th>
             </tr>
           </thead>
           <tbody>
