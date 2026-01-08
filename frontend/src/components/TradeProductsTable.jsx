@@ -11,7 +11,7 @@ import {
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-function TradeProductsTable() {
+function TradeProductsTable({ language = 'fr' }) {
   const [importsWorld, setImportsWorld] = useState(null);
   const [exportsWorld, setExportsWorld] = useState(null);
   const [intraImports, setIntraImports] = useState(null);
@@ -19,6 +19,67 @@ function TradeProductsTable() {
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('imports-world');
+
+  const texts = {
+    fr: {
+      title: "Top 20 Produits Commerciaux Africains",
+      subtitle: "Analyse détaillée des principaux produits échangés (Import/Export Monde & Intra-Africain)",
+      importWorld: "Import du Monde (Top 20)",
+      exportWorld: "Export vers le Monde (Top 20)",
+      importIntra: "Import Intra-Africain (Top 20)",
+      exportIntra: "Export Intra-Africain (Top 20)",
+      tabImportWorld: "Import Monde",
+      tabExportWorld: "Export Monde",
+      tabImportIntra: "Import Intra-AF",
+      tabExportIntra: "Export Intra-AF",
+      loading: "Chargement des données commerciales...",
+      product: "Produit",
+      hsCode: "Code HS",
+      value: "Valeur",
+      share: "Part",
+      growth: "Croissance",
+      topExporters: "Top Exportateurs",
+      topImporters: "Top Importateurs",
+      source: "Source",
+      year: "Année",
+      footerSources: "Sources: UNCTAD COMTRADE, ITC Trade Map, African Development Bank, AfCFTA Secretariat",
+      footerNote: "Les données représentent les 20 principaux produits par valeur commerciale. Classification selon le Système Harmonisé (HS). Données 2023.",
+      titleImportWorld: "Top 20 Produits Importés par l'Afrique du Monde",
+      titleExportWorld: "Top 20 Produits Exportés par l'Afrique vers le Monde",
+      titleImportIntra: "Top 20 Produits Importés en Commerce Intra-Africain",
+      titleExportIntra: "Top 20 Produits Exportés en Commerce Intra-Africain"
+    },
+    en: {
+      title: "Top 20 African Trade Products",
+      subtitle: "Detailed analysis of major traded products (World & Intra-African Import/Export)",
+      importWorld: "World Imports (Top 20)",
+      exportWorld: "World Exports (Top 20)",
+      importIntra: "Intra-African Imports (Top 20)",
+      exportIntra: "Intra-African Exports (Top 20)",
+      tabImportWorld: "World Import",
+      tabExportWorld: "World Export",
+      tabImportIntra: "Intra-AF Import",
+      tabExportIntra: "Intra-AF Export",
+      loading: "Loading trade data...",
+      product: "Product",
+      hsCode: "HS Code",
+      value: "Value",
+      share: "Share",
+      growth: "Growth",
+      topExporters: "Top Exporters",
+      topImporters: "Top Importers",
+      source: "Source",
+      year: "Year",
+      footerSources: "Sources: UNCTAD COMTRADE, ITC Trade Map, African Development Bank, AfCFTA Secretariat",
+      footerNote: "Data represents the top 20 products by trade value. Classification according to the Harmonized System (HS). 2023 data.",
+      titleImportWorld: "Top 20 Products Imported by Africa from the World",
+      titleExportWorld: "Top 20 Products Exported by Africa to the World",
+      titleImportIntra: "Top 20 Products Imported in Intra-African Trade",
+      titleExportIntra: "Top 20 Products Exported in Intra-African Trade"
+    }
+  };
+
+  const t = texts[language];
 
   useEffect(() => {
     fetchAllData();
