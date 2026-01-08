@@ -68,9 +68,9 @@ export default function StatisticsTab({ language = 'fr' }) {
             <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-100">
               <CardTitle className="text-2xl font-bold text-green-700 flex items-center gap-2">
                 <span>📤</span>
-                <span>Top 10 Pays Exportateurs (2023-2024)</span>
+                <span>{t.topExporters}</span>
               </CardTitle>
-              <CardDescription className="font-semibold">Évolution des exportations en milliards USD</CardDescription>
+              <CardDescription className="font-semibold">{t.exportsEvolution}</CardDescription>
             </CardHeader>
             <CardContent className="pt-6">
               <div style={{ minHeight: '420px' }}>
@@ -87,7 +87,7 @@ export default function StatisticsTab({ language = 'fr' }) {
                       contentStyle={{ backgroundColor: '#fff', borderRadius: '8px' }}
                     />
                     <Legend />
-                    <Bar dataKey="exports" name="Exportations (USD)" fill="#10b981" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="exports" name={t.exports} fill="#10b981" radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -98,9 +98,9 @@ export default function StatisticsTab({ language = 'fr' }) {
             <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-100">
               <CardTitle className="text-2xl font-bold text-blue-700 flex items-center gap-2">
                 <span>📥</span>
-                <span>Top 10 Pays Importateurs (2023-2024)</span>
+                <span>{t.topImporters}</span>
               </CardTitle>
-              <CardDescription className="font-semibold">Volume des importations en milliards USD</CardDescription>
+              <CardDescription className="font-semibold">{t.importsVolume}</CardDescription>
             </CardHeader>
             <CardContent className="pt-6">
               <div style={{ minHeight: '420px' }}>
@@ -117,7 +117,7 @@ export default function StatisticsTab({ language = 'fr' }) {
                       contentStyle={{ backgroundColor: '#fff', borderRadius: '8px' }}
                     />
                     <Legend />
-                    <Bar dataKey="imports" name="Importations (USD)" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="imports" name={t.imports} fill="#3b82f6" radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
