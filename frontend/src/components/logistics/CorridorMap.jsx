@@ -19,10 +19,45 @@ function MapController({ center, zoom }) {
   return null;
 }
 
-export default function CorridorMap({ onCorridorClick, selectedType, selectedImportance }) {
+export default function CorridorMap({ onCorridorClick, selectedType, selectedImportance, language = 'fr' }) {
   const [corridors, setCorridors] = useState([]);
   const [mapCenter, setMapCenter] = useState([0, 20]);
   const [mapZoom, setMapZoom] = useState(3);
+
+  const texts = {
+    fr: {
+      legend: "Légende",
+      road: "Route",
+      rail: "Rail",
+      multimodal: "Multimodal",
+      highImportance: "Importance Haute",
+      osbp: "OSBP",
+      border: "Frontière",
+      type: "Type",
+      length: "Longueur",
+      status: "Statut",
+      freight: "Fret",
+      tons: "tonnes",
+      viewDetails: "Voir détails complets"
+    },
+    en: {
+      legend: "Legend",
+      road: "Road",
+      rail: "Rail",
+      multimodal: "Multimodal",
+      highImportance: "High Importance",
+      osbp: "OSBP",
+      border: "Border",
+      type: "Type",
+      length: "Length",
+      status: "Status",
+      freight: "Freight",
+      tons: "tons",
+      viewDetails: "View full details"
+    }
+  };
+
+  const t = texts[language];
 
   useEffect(() => {
     fetchCorridors();
@@ -59,38 +94,40 @@ export default function CorridorMap({ onCorridorClick, selectedType, selectedImp
 
   const formatNumber = (num) => {
     if (num === null || num === undefined) return 'N/A';
-    return new Intl.NumberFormat('fr-FR').format(num);
+    return language === 'en'
+      ? new Intl.NumberFormat('en-US').format(num)
+      : new Intl.NumberFormat('fr-FR').format(num);
   };
 
   return (
     <div className="relative">
       {/* Map Legend */}
       <div className="absolute top-4 right-4 z-[1000] bg-white p-4 rounded-lg shadow-lg">
-        <h4 className="font-bold text-sm mb-2">Légende</h4>
+        <h4 className="font-bold text-sm mb-2">{t.legend}</h4>
         <div className="space-y-1 text-xs">
           <div className="flex items-center gap-2">
             <div className="w-8 h-1 bg-[#3b82f6]"></div>
-            <span>Route</span>
+            <span>{t.road}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-8 h-1 bg-[#ef4444]"></div>
-            <span>Rail</span>
+            <span>{t.rail}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-8 h-1 bg-[#8b5cf6]"></div>
-            <span>Multimodal</span>
+            <span>{t.multimodal}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-8 h-1 bg-gray-900" style={{height: '3px'}}></div>
-            <span>Importance Haute</span>
+            <span>{t.highImportance}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-green-600"></div>
-            <span>OSBP</span>
+            <span>{t.osbp}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-orange-600"></div>
-            <span>Frontière</span>
+            <span>{t.border}</span>
           </div>
         </div>
       </div>
@@ -133,21 +170,21 @@ export default function CorridorMap({ onCorridorClick, selectedType, selectedImp
                   
                   <div className="space-y-1 text-xs">
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Type:</span>
+                      <span className="text-gray-600">{t.type}:</span>
                       <span className="font-semibold capitalize">{corridor.corridor_type}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Longueur:</span>
+                      <span className="text-gray-600">{t.length}:</span>
                       <span className="font-semibold">{formatNumber(corridor.length_km)} km</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Statut:</span>
+                      <span className="text-gray-600">{t.status}:</span>
                       <span className="font-semibold">{corridor.status}</span>
                     </div>
                     {corridor.stats?.freight_throughput_tons && (
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Fret:</span>
-                        <span className="font-semibold">{formatNumber(corridor.stats.freight_throughput_tons)} tonnes</span>
+                        <span className="text-gray-600">{t.freight}:</span>
+                        <span className="font-semibold">{formatNumber(corridor.stats.freight_throughput_tons)} {t.tons}</span>
                       </div>
                     )}
                   </div>
@@ -156,7 +193,7 @@ export default function CorridorMap({ onCorridorClick, selectedType, selectedImp
                     onClick={() => onCorridorClick(corridor)}
                     className="mt-3 w-full bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700 text-xs font-semibold"
                   >
-                    Voir détails complets
+                    {t.viewDetails}
                   </button>
                 </div>
               </Popup>
