@@ -296,11 +296,11 @@ function TradeProductsTable({ language = 'fr' }) {
             <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50">
               <CardTitle className="text-xl text-blue-700 flex items-center gap-2">
                 <ArrowDownToLine className="w-6 h-6" />
-                {importsWorld?.title}
+                {language === 'en' ? t.titleImportWorld : importsWorld?.title}
               </CardTitle>
               <CardDescription className="flex items-center gap-2">
                 <Info className="w-4 h-4" />
-                Source: {importsWorld?.source} | Année: {importsWorld?.year}
+                {t.source}: {importsWorld?.source} | {t.year}: {importsWorld?.year}
               </CardDescription>
             </CardHeader>
             <CardContent className="p-0">
@@ -315,11 +315,11 @@ function TradeProductsTable({ language = 'fr' }) {
             <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-50">
               <CardTitle className="text-xl text-green-700 flex items-center gap-2">
                 <ArrowUpFromLine className="w-6 h-6" />
-                {exportsWorld?.title}
+                {language === 'en' ? t.titleExportWorld : exportsWorld?.title}
               </CardTitle>
               <CardDescription className="flex items-center gap-2">
                 <Info className="w-4 h-4" />
-                Source: {exportsWorld?.source} | Année: {exportsWorld?.year}
+                {t.source}: {exportsWorld?.source} | {t.year}: {exportsWorld?.year}
               </CardDescription>
             </CardHeader>
             <CardContent className="p-0">
@@ -334,11 +334,11 @@ function TradeProductsTable({ language = 'fr' }) {
             <CardHeader className="bg-gradient-to-r from-purple-50 to-violet-50">
               <CardTitle className="text-xl text-purple-700 flex items-center gap-2">
                 <Handshake className="w-6 h-6" />
-                {intraImports?.title}
+                {language === 'en' ? t.titleImportIntra : intraImports?.title}
               </CardTitle>
               <CardDescription className="flex items-center gap-2">
                 <Info className="w-4 h-4" />
-                Source: {intraImports?.source} | Année: {intraImports?.year}
+                {t.source}: {intraImports?.source} | {t.year}: {intraImports?.year}
               </CardDescription>
             </CardHeader>
             <CardContent className="p-0">
@@ -353,11 +353,11 @@ function TradeProductsTable({ language = 'fr' }) {
             <CardHeader className="bg-gradient-to-r from-pink-50 to-rose-50">
               <CardTitle className="text-xl text-pink-700 flex items-center gap-2">
                 <Globe className="w-6 h-6" />
-                {intraExports?.title}
+                {language === 'en' ? t.titleExportIntra : intraExports?.title}
               </CardTitle>
               <CardDescription className="flex items-center gap-2">
                 <Info className="w-4 h-4" />
-                Source: {intraExports?.source} | Année: {intraExports?.year}
+                {t.source}: {intraExports?.source} | {t.year}: {intraExports?.year}
               </CardDescription>
             </CardHeader>
             <CardContent className="p-0">
@@ -373,11 +373,8 @@ function TradeProductsTable({ language = 'fr' }) {
           <div className="flex items-start gap-3">
             <Info className="w-5 h-5 text-gray-400 mt-0.5" />
             <div className="text-sm text-gray-600">
-              <p><strong>Sources:</strong> UNCTAD COMTRADE, ITC Trade Map, African Development Bank, AfCFTA Secretariat</p>
-              <p className="mt-1">
-                Les données représentent les 20 principaux produits par valeur commerciale. 
-                Classification selon le Système Harmonisé (HS). Données 2023.
-              </p>
+              <p><strong>{language === 'en' ? 'Sources' : 'Sources'}:</strong> {t.footerSources}</p>
+              <p className="mt-1">{t.footerNote}</p>
             </div>
           </div>
         </CardContent>
