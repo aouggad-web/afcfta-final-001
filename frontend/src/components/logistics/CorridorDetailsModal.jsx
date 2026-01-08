@@ -24,7 +24,62 @@ const getNodeTypeIcon = (type) => {
   return '📍';
 };
 
-export default function CorridorDetailsModal({ corridor, open, onClose }) {
+export default function CorridorDetailsModal({ corridor, open, onClose, language = 'fr' }) {
+  const texts = {
+    fr: {
+      pidaPriority: "Prioritaire PIDA",
+      description: "Description",
+      annualFreight: "Fret Annuel",
+      tons: "tonnes",
+      transitTime: "Temps Transit",
+      hours: "heures",
+      borderTime: "Temps Frontière",
+      dailyTraffic: "Trafic Quotidien",
+      trucksDay: "camions/jour",
+      infrastructureRoute: "Infrastructure & Tracé",
+      countriesCrossed: "Pays traversés",
+      startEndPoints: "Points de départ/arrivée",
+      technicalDetails: "Détails techniques",
+      source: "Source",
+      logisticsNodes: "Nœuds Logistiques",
+      transportOperators: "Opérateurs",
+      logisticsNodesBorder: "Nœuds Logistiques & Postes-Frontières",
+      osbpOperational: "OSBP (One-Stop Border Post) opérationnel(s)",
+      noNodes: "Aucun nœud enregistré",
+      transportOperatorsTitle: "Opérateurs de Transport",
+      noOperators: "Aucun opérateur enregistré",
+      locomotives: "locomotives",
+      trucks: "camions"
+    },
+    en: {
+      pidaPriority: "PIDA Priority",
+      description: "Description",
+      annualFreight: "Annual Freight",
+      tons: "tons",
+      transitTime: "Transit Time",
+      hours: "hours",
+      borderTime: "Border Time",
+      dailyTraffic: "Daily Traffic",
+      trucksDay: "trucks/day",
+      infrastructureRoute: "Infrastructure & Route",
+      countriesCrossed: "Countries crossed",
+      startEndPoints: "Start/End points",
+      technicalDetails: "Technical details",
+      source: "Source",
+      logisticsNodes: "Logistics Nodes",
+      transportOperators: "Operators",
+      logisticsNodesBorder: "Logistics Nodes & Border Posts",
+      osbpOperational: "OSBP (One-Stop Border Post) operational",
+      noNodes: "No nodes registered",
+      transportOperatorsTitle: "Transport Operators",
+      noOperators: "No operators registered",
+      locomotives: "locomotives",
+      trucks: "trucks"
+    }
+  };
+
+  const t = texts[language];
+
   if (!corridor) return null;
 
   const stats = corridor.stats || {};
@@ -43,7 +98,7 @@ export default function CorridorDetailsModal({ corridor, open, onClose }) {
           <DialogDescription className="flex gap-2 mt-2 flex-wrap">
             <Badge className="bg-slate-700">{corridor.corridor_type}</Badge>
             <Badge variant="outline">{corridor.status}</Badge>
-            {corridor.importance === 'high' && <Badge className="bg-amber-500">⭐ Prioritaire PIDA</Badge>}
+            {corridor.importance === 'high' && <Badge className="bg-amber-500">⭐ {t.pidaPriority}</Badge>}
             <Badge variant="outline">{corridor.length_km} km</Badge>
           </DialogDescription>
         </DialogHeader>
@@ -52,7 +107,7 @@ export default function CorridorDetailsModal({ corridor, open, onClose }) {
         {corridor.description && (
           <div className="bg-blue-50 p-4 rounded-lg border border-blue-200 mb-4">
             <p className="text-sm text-gray-800">
-              <span className="font-semibold">📋 Description: </span>
+              <span className="font-semibold">📋 {t.description}: </span>
               {corridor.description}
             </p>
           </div>
@@ -63,18 +118,18 @@ export default function CorridorDetailsModal({ corridor, open, onClose }) {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-4">
             <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200">
               <CardContent className="pt-4">
-                <p className="text-xs font-semibold text-blue-700 mb-1">📦 Fret Annuel</p>
+                <p className="text-xs font-semibold text-blue-700 mb-1">📦 {t.annualFreight}</p>
                 <p className="text-2xl font-bold text-blue-900">{formatNumber(stats.freight_throughput_tons)}</p>
-                <p className="text-xs text-gray-600">tonnes ({stats.year || 2024})</p>
+                <p className="text-xs text-gray-600">{t.tons} ({stats.year || 2024})</p>
               </CardContent>
             </Card>
 
             {stats.avg_transit_time_hours && (
               <Card className="bg-gradient-to-br from-green-50 to-green-100 border-green-200">
                 <CardContent className="pt-4">
-                  <p className="text-xs font-semibold text-green-700 mb-1">⏱️ Temps Transit</p>
+                  <p className="text-xs font-semibold text-green-700 mb-1">⏱️ {t.transitTime}</p>
                   <p className="text-2xl font-bold text-green-900">{stats.avg_transit_time_hours}</p>
-                  <p className="text-xs text-gray-600">heures</p>
+                  <p className="text-xs text-gray-600">{t.hours}</p>
                 </CardContent>
               </Card>
             )}
@@ -82,9 +137,9 @@ export default function CorridorDetailsModal({ corridor, open, onClose }) {
             {stats.avg_border_crossing_time_hours && (
               <Card className="bg-gradient-to-br from-orange-50 to-orange-100 border-orange-200">
                 <CardContent className="pt-4">
-                  <p className="text-xs font-semibold text-orange-700 mb-1">🚧 Temps Frontière</p>
+                  <p className="text-xs font-semibold text-orange-700 mb-1">🚧 {t.borderTime}</p>
                   <p className="text-2xl font-bold text-orange-900">{stats.avg_border_crossing_time_hours}</p>
-                  <p className="text-xs text-gray-600">heures</p>
+                  <p className="text-xs text-gray-600">{t.hours}</p>
                 </CardContent>
               </Card>
             )}
@@ -92,9 +147,9 @@ export default function CorridorDetailsModal({ corridor, open, onClose }) {
             {stats.truck_volumes_daily && (
               <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200">
                 <CardContent className="pt-4">
-                  <p className="text-xs font-semibold text-purple-700 mb-1">🚛 Trafic Quotidien</p>
+                  <p className="text-xs font-semibold text-purple-700 mb-1">🚛 {t.dailyTraffic}</p>
                   <p className="text-2xl font-bold text-purple-900">{formatNumber(stats.truck_volumes_daily)}</p>
-                  <p className="text-xs text-gray-600">camions/jour</p>
+                  <p className="text-xs text-gray-600">{t.trucksDay}</p>
                 </CardContent>
               </Card>
             )}
@@ -106,26 +161,26 @@ export default function CorridorDetailsModal({ corridor, open, onClose }) {
           <CardHeader className="bg-gray-50">
             <CardTitle className="text-lg flex items-center gap-2">
               <span>🔧</span>
-              Infrastructure & Tracé
+              {t.infrastructureRoute}
             </CardTitle>
           </CardHeader>
           <CardContent className="pt-4">
             <div className="space-y-3">
               <div>
-                <p className="text-sm font-semibold text-gray-700">Pays traversés:</p>
+                <p className="text-sm font-semibold text-gray-700">{t.countriesCrossed}:</p>
                 <p className="text-base">{corridor.countries_spanned?.join(' → ')}</p>
               </div>
               <div>
-                <p className="text-sm font-semibold text-gray-700">Points de départ/arrivée:</p>
+                <p className="text-sm font-semibold text-gray-700">{t.startEndPoints}:</p>
                 <p className="text-base">{corridor.start_node} → {corridor.end_node}</p>
               </div>
               <div className="bg-slate-50 p-3 rounded">
-                <p className="text-sm font-semibold text-gray-700 mb-1">Détails techniques:</p>
+                <p className="text-sm font-semibold text-gray-700 mb-1">{t.technicalDetails}:</p>
                 <p className="text-sm text-gray-800">{corridor.infra_details}</p>
               </div>
               {stats.source_org && (
                 <div className="text-xs text-gray-600">
-                  <span className="font-semibold">Source: </span>
+                  <span className="font-semibold">{t.source}: </span>
                   {stats.source_org}
                 </div>
               )}
@@ -136,17 +191,17 @@ export default function CorridorDetailsModal({ corridor, open, onClose }) {
         {/* Tabs for Nodes, Operators */}
         <Tabs defaultValue="nodes" className="w-full">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="nodes">🚧 Nœuds Logistiques ({nodes.length})</TabsTrigger>
-            <TabsTrigger value="operators">🚛 Opérateurs ({operators.length})</TabsTrigger>
+            <TabsTrigger value="nodes">🚧 {t.logisticsNodes} ({nodes.length})</TabsTrigger>
+            <TabsTrigger value="operators">🚛 {t.transportOperators} ({operators.length})</TabsTrigger>
           </TabsList>
 
           {/* Nodes Tab */}
           <TabsContent value="nodes" className="mt-4">
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Nœuds Logistiques & Postes-Frontières</CardTitle>
+                <CardTitle className="text-lg">{t.logisticsNodesBorder}</CardTitle>
                 {osbpNodes.length > 0 && (
-                  <p className="text-sm text-green-600 font-semibold">✓ {osbpNodes.length} OSBP (One-Stop Border Post) opérationnel(s)</p>
+                  <p className="text-sm text-green-600 font-semibold">✓ {osbpNodes.length} {t.osbpOperational}</p>
                 )}
               </CardHeader>
               <CardContent>
@@ -183,7 +238,7 @@ export default function CorridorDetailsModal({ corridor, open, onClose }) {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-gray-500 text-center py-8">Aucun nœud enregistré</p>
+                  <p className="text-gray-500 text-center py-8">{t.noNodes}</p>
                 )}
               </CardContent>
             </Card>
@@ -193,7 +248,7 @@ export default function CorridorDetailsModal({ corridor, open, onClose }) {
           <TabsContent value="operators" className="mt-4">
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Opérateurs de Transport</CardTitle>
+                <CardTitle className="text-lg">{t.transportOperatorsTitle}</CardTitle>
               </CardHeader>
               <CardContent>
                 {operators.length > 0 ? (
@@ -219,7 +274,7 @@ export default function CorridorDetailsModal({ corridor, open, onClose }) {
                             <div className="text-right">
                               <p className="text-2xl font-bold text-gray-900">{operator.fleet_size}</p>
                               <p className="text-xs text-gray-600">
-                                {operator.operator_type === 'rail_operator' ? 'locomotives' : 'camions'}
+                                {operator.operator_type === 'rail_operator' ? t.locomotives : t.trucks}
                               </p>
                             </div>
                           )}
@@ -228,7 +283,7 @@ export default function CorridorDetailsModal({ corridor, open, onClose }) {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-gray-500 text-center py-8">Aucun opérateur enregistré</p>
+                  <p className="text-gray-500 text-center py-8">{t.noOperators}</p>
                 )}
               </CardContent>
             </Card>
@@ -237,7 +292,7 @@ export default function CorridorDetailsModal({ corridor, open, onClose }) {
 
         {/* Source information */}
         <div className="mt-4 text-xs text-gray-600 bg-gray-50 p-3 rounded">
-          <span className="font-semibold">Source: </span>
+          <span className="font-semibold">{t.source}: </span>
           {corridor.source_org}
         </div>
       </DialogContent>
