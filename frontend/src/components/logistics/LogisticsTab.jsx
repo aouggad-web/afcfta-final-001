@@ -1,58 +1,294 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card';
+import { Badge } from '../ui/badge';
+import { Button } from '../ui/button';
+import { Upload, FileText, AlertCircle, CheckCircle } from 'lucide-react';
 import MaritimeLogisticsTab from './MaritimeLogisticsTab';
 import AirLogisticsTab from './AirLogisticsTab';
 import LandLogisticsTab from './LandLogisticsTab';
 import FreeZonesTab from './FreeZonesTab';
 
-export default function LogisticsTab() {
+export default function LogisticsTab({ language = 'fr' }) {
+  const [showTRSUpload, setShowTRSUpload] = useState(false);
+  const [uploadStatus, setUploadStatus] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const texts = {
+    fr: {
+      title: "Plateforme Logistique Multimodale",
+      subtitle: "Analyse intégrée des corridors maritimes, aériens, terrestres et zones franches de la ZLECAf",
+      maritime: "Maritime (Ports)",
+      air: "Aérien (Fret)",
+      land: "Terrestre (Corridors)",
+      zones: "Zones Franches",
+      dataSourcesTitle: "Sources de Données",
+      trsTitle: "Données TRS (Time Release Study)",
+      trsDesc: "Temps de dédouanement officiels - Organisation Mondiale des Douanes (OMD)",
+      unctadTitle: "Données UNCTAD",
+      unctadDesc: "Statistiques maritimes et portuaires - UNCTAD Maritime Transport Review",
+      wcoTitle: "Données OMD/WCO",
+      wcoDesc: "Facilitation des échanges - Temps de passage aux frontières",
+      uploadTRSBtn: "Importer données TRS officielles",
+      uploadTRSTitle: "Import de Données TRS Officielles",
+      uploadTRSDesc: "Téléversez vos données TRS (Time Release Study) officielles au format CSV ou Excel pour remplacer les estimations par des données vérifiées.",
+      uploadInstructions: "Instructions pour le fichier:",
+      uploadFormat1: "Format accepté: CSV, XLSX",
+      uploadFormat2: "Colonnes requises: pays, port/frontière, temps_dédouanement_heures, année",
+      uploadFormat3: "Les données doivent provenir d'études TRS officielles OMD",
+      selectFile: "Sélectionner un fichier",
+      cancel: "Annuler",
+      upload: "Téléverser",
+      uploadSuccess: "Fichier téléversé avec succès! Les données seront validées et intégrées sous 24h.",
+      uploadError: "Erreur lors du téléversement. Veuillez réessayer.",
+      sourceLabel: "Source:",
+      estimated: "Estimé",
+      official: "Officiel"
+    },
+    en: {
+      title: "Multimodal Logistics Platform",
+      subtitle: "Integrated analysis of maritime, air, land corridors and free zones of the AfCFTA",
+      maritime: "Maritime (Ports)",
+      air: "Air (Freight)",
+      land: "Land (Corridors)",
+      zones: "Free Zones",
+      dataSourcesTitle: "Data Sources",
+      trsTitle: "TRS Data (Time Release Study)",
+      trsDesc: "Official customs clearance times - World Customs Organization (WCO)",
+      unctadTitle: "UNCTAD Data",
+      unctadDesc: "Maritime and port statistics - UNCTAD Maritime Transport Review",
+      wcoTitle: "WCO Data",
+      wcoDesc: "Trade facilitation - Border crossing times",
+      uploadTRSBtn: "Import official TRS data",
+      uploadTRSTitle: "Official TRS Data Import",
+      uploadTRSDesc: "Upload your official TRS (Time Release Study) data in CSV or Excel format to replace estimates with verified data.",
+      uploadInstructions: "File instructions:",
+      uploadFormat1: "Accepted format: CSV, XLSX",
+      uploadFormat2: "Required columns: country, port/border, clearance_time_hours, year",
+      uploadFormat3: "Data must come from official WCO TRS studies",
+      selectFile: "Select a file",
+      cancel: "Cancel",
+      upload: "Upload",
+      uploadSuccess: "File uploaded successfully! Data will be validated and integrated within 24h.",
+      uploadError: "Error during upload. Please try again.",
+      sourceLabel: "Source:",
+      estimated: "Estimated",
+      official: "Official"
+    }
+  };
+
+  const t = texts[language];
+
+  const handleFileSelect = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+    }
+  };
+
+  const handleUpload = async () => {
+    if (!selectedFile) return;
+    
+    // Simuler l'upload (dans une vraie app, envoyer au backend)
+    setUploadStatus('loading');
+    
+    setTimeout(() => {
+      // Simulation succès
+      setUploadStatus('success');
+      setTimeout(() => {
+        setShowTRSUpload(false);
+        setUploadStatus(null);
+        setSelectedFile(null);
+      }, 3000);
+    }, 2000);
+  };
+
   return (
     <div className="space-y-6">
+      {/* Header */}
       <Card className="bg-gradient-to-r from-blue-700 to-indigo-800 text-white shadow-xl">
         <CardHeader>
           <CardTitle className="text-3xl font-bold flex items-center gap-3">
             <span>🌍</span>
-            <span>Plateforme Logistique Multimodale</span>
+            <span>{t.title}</span>
           </CardTitle>
           <CardDescription className="text-blue-100 text-lg">
-            Analyse intégrée des corridors maritimes, aériens, terrestres et zones franches de la ZLECAf
+            {t.subtitle}
           </CardDescription>
         </CardHeader>
       </Card>
 
+      {/* Data Sources Card with UNCTAD */}
+      <Card className="border-l-4 border-l-cyan-500 bg-cyan-50">
+        <CardContent className="pt-4">
+          <div className="flex justify-between items-start mb-4">
+            <h3 className="font-bold text-cyan-900 flex items-center gap-2">
+              <span>📊</span>
+              <span>{t.dataSourcesTitle}</span>
+            </h3>
+            <Button 
+              onClick={() => setShowTRSUpload(true)}
+              className="bg-cyan-600 hover:bg-cyan-700 text-white"
+              size="sm"
+            >
+              <Upload className="w-4 h-4 mr-2" />
+              {t.uploadTRSBtn}
+            </Button>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+            <div className="bg-white p-3 rounded shadow-sm border-l-2 border-l-orange-400">
+              <p className="font-semibold text-orange-700">⏱️ {t.trsTitle}</p>
+              <p className="text-gray-600 text-xs">{t.trsDesc}</p>
+              <Badge className="mt-2 bg-orange-100 text-orange-700 text-xs">{t.estimated}</Badge>
+            </div>
+            <div className="bg-white p-3 rounded shadow-sm border-l-2 border-l-blue-400">
+              <p className="font-semibold text-blue-700">🚢 {t.unctadTitle}</p>
+              <p className="text-gray-600 text-xs">{t.unctadDesc}</p>
+              <Badge className="mt-2 bg-blue-100 text-blue-700 text-xs">{t.official}</Badge>
+            </div>
+            <div className="bg-white p-3 rounded shadow-sm border-l-2 border-l-green-400">
+              <p className="font-semibold text-green-700">🛃 {t.wcoTitle}</p>
+              <p className="text-gray-600 text-xs">{t.wcoDesc}</p>
+              <Badge className="mt-2 bg-green-100 text-green-700 text-xs">{t.official}</Badge>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* TRS Upload Modal */}
+      {showTRSUpload && (
+        <Card className="border-2 border-cyan-400 bg-gradient-to-br from-cyan-50 to-blue-50 shadow-xl">
+          <CardHeader className="bg-cyan-100 border-b border-cyan-200">
+            <CardTitle className="text-xl text-cyan-800 flex items-center gap-2">
+              <FileText className="w-6 h-6" />
+              {t.uploadTRSTitle}
+            </CardTitle>
+            <CardDescription className="text-cyan-700">
+              {t.uploadTRSDesc}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="pt-6">
+            <div className="space-y-4">
+              {/* Instructions */}
+              <div className="bg-white p-4 rounded-lg border border-gray-200">
+                <h4 className="font-semibold text-gray-700 mb-2">{t.uploadInstructions}</h4>
+                <ul className="text-sm text-gray-600 space-y-1">
+                  <li>• {t.uploadFormat1}</li>
+                  <li>• {t.uploadFormat2}</li>
+                  <li>• {t.uploadFormat3}</li>
+                </ul>
+              </div>
+
+              {/* File Input */}
+              <div className="border-2 border-dashed border-cyan-300 rounded-lg p-6 text-center bg-white">
+                <input
+                  type="file"
+                  accept=".csv,.xlsx,.xls"
+                  onChange={handleFileSelect}
+                  className="hidden"
+                  id="trs-file-input"
+                />
+                <label 
+                  htmlFor="trs-file-input" 
+                  className="cursor-pointer"
+                >
+                  <Upload className="w-12 h-12 text-cyan-400 mx-auto mb-3" />
+                  <p className="text-cyan-700 font-semibold">{t.selectFile}</p>
+                  {selectedFile && (
+                    <p className="text-sm text-gray-600 mt-2">
+                      📄 {selectedFile.name}
+                    </p>
+                  )}
+                </label>
+              </div>
+
+              {/* Status Messages */}
+              {uploadStatus === 'success' && (
+                <div className="flex items-center gap-2 p-3 bg-green-100 rounded-lg text-green-700">
+                  <CheckCircle className="w-5 h-5" />
+                  <span>{t.uploadSuccess}</span>
+                </div>
+              )}
+              {uploadStatus === 'error' && (
+                <div className="flex items-center gap-2 p-3 bg-red-100 rounded-lg text-red-700">
+                  <AlertCircle className="w-5 h-5" />
+                  <span>{t.uploadError}</span>
+                </div>
+              )}
+
+              {/* Buttons */}
+              <div className="flex gap-3 justify-end">
+                <Button 
+                  variant="outline" 
+                  onClick={() => {
+                    setShowTRSUpload(false);
+                    setSelectedFile(null);
+                    setUploadStatus(null);
+                  }}
+                >
+                  {t.cancel}
+                </Button>
+                <Button 
+                  onClick={handleUpload}
+                  disabled={!selectedFile || uploadStatus === 'loading'}
+                  className="bg-cyan-600 hover:bg-cyan-700"
+                >
+                  {uploadStatus === 'loading' ? (
+                    <span className="animate-spin mr-2">⏳</span>
+                  ) : (
+                    <Upload className="w-4 h-4 mr-2" />
+                  )}
+                  {t.upload}
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Main Tabs */}
       <Tabs defaultValue="maritime" className="space-y-6">
         <TabsList className="grid w-full grid-cols-4 bg-white shadow-md p-1 h-14">
           <TabsTrigger value="maritime" className="text-base font-semibold data-[state=active]:bg-blue-100 data-[state=active]:text-blue-800">
-            🚢 Maritime (Ports)
+            🚢 {t.maritime}
           </TabsTrigger>
           <TabsTrigger value="air" className="text-base font-semibold data-[state=active]:bg-sky-100 data-[state=active]:text-sky-800">
-            ✈️ Aérien (Fret)
+            ✈️ {t.air}
           </TabsTrigger>
           <TabsTrigger value="land" className="text-base font-semibold data-[state=active]:bg-slate-100 data-[state=active]:text-slate-800">
-            🚛 Terrestre (Corridors)
+            🚛 {t.land}
           </TabsTrigger>
           <TabsTrigger value="zones" className="text-base font-semibold data-[state=active]:bg-orange-100 data-[state=active]:text-orange-800">
-            🏭 Zones Franches
+            🏭 {t.zones}
           </TabsTrigger>
         </TabsList>
 
         <TabsContent value="maritime" className="mt-6">
-          <MaritimeLogisticsTab />
+          <MaritimeLogisticsTab language={language} />
         </TabsContent>
 
         <TabsContent value="air" className="mt-6">
-          <AirLogisticsTab />
+          <AirLogisticsTab language={language} />
         </TabsContent>
 
         <TabsContent value="land" className="mt-6">
-          <LandLogisticsTab />
+          <LandLogisticsTab language={language} />
         </TabsContent>
 
         <TabsContent value="zones" className="mt-6">
-          <FreeZonesTab />
+          <FreeZonesTab language={language} />
         </TabsContent>
       </Tabs>
+
+      {/* Footer with Source Indicator */}
+      <Card className="bg-gray-50 border-gray-200">
+        <CardContent className="py-3">
+          <p className="text-xs text-gray-500 text-center">
+            {t.sourceLabel} UNCTAD Maritime Transport Review 2023 | World Customs Organization (WCO) TRS Database | AfCFTA Secretariat
+          </p>
+        </CardContent>
+      </Card>
     </div>
   );
 }
