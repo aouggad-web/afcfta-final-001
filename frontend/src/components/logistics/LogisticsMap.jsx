@@ -62,10 +62,41 @@ function MapController({ countryIso }) {
   return null;
 }
 
-export default function LogisticsMap({ onPortClick, selectedCountry = 'ALL' }) {
+export default function LogisticsMap({ onPortClick, selectedCountry = 'ALL', language = 'fr' }) {
   const [ports, setPorts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const texts = {
+    fr: {
+      loading: "Chargement de la carte...",
+      loadError: "Impossible de charger les données des ports",
+      portsDisplayed: "Ports Affichés",
+      hubTransshipment: "Hub Transbordement",
+      hubRegional: "Hub Régional",
+      commercial: "Commercial",
+      sizeTraffic: "Taille = Trafic TEU",
+      teuYear: "TEU/an",
+      tonsYear: "Tonnes/an",
+      portTime: "Temps Port",
+      hours: "h"
+    },
+    en: {
+      loading: "Loading map...",
+      loadError: "Unable to load port data",
+      portsDisplayed: "Ports Displayed",
+      hubTransshipment: "Transshipment Hub",
+      hubRegional: "Regional Hub",
+      commercial: "Commercial",
+      sizeTraffic: "Size = TEU Traffic",
+      teuYear: "TEU/year",
+      tonsYear: "Tons/year",
+      portTime: "Port Time",
+      hours: "h"
+    }
+  };
+
+  const t = texts[language];
 
   useEffect(() => {
     const fetchPorts = async () => {
@@ -96,7 +127,7 @@ export default function LogisticsMap({ onPortClick, selectedCountry = 'ALL' }) {
       <div className="flex items-center justify-center h-96 bg-gray-100 rounded-lg">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Chargement de la carte...</p>
+          <p className="mt-4 text-gray-600">{t.loading}</p>
         </div>
       </div>
     );
@@ -106,7 +137,7 @@ export default function LogisticsMap({ onPortClick, selectedCountry = 'ALL' }) {
     return (
       <div className="flex items-center justify-center h-96 bg-red-50 rounded-lg">
         <div className="text-center text-red-600">
-          <p className="font-bold">❌ {error}</p>
+          <p className="font-bold">❌ {t.loadError}</p>
         </div>
       </div>
     );
