@@ -23,7 +23,7 @@ PRODUCT_TRANSLATIONS = {
     "Articles d'habillement": "Clothing articles",
     "Équipements électriques": "Electrical equipment",
     "Meubles et mobilier": "Furniture",
-    "Huiles de soja": "Soybean oils",
+    "Huile de soja": "Soybean oil",
     "Produits laitiers": "Dairy products",
     "Huiles brutes de pétrole": "Crude petroleum oils",
     "Gaz naturel GNL": "Natural gas LNG",
@@ -53,7 +53,34 @@ PRODUCT_TRANSLATIONS = {
     "Textiles et tissus": "Textiles and fabrics",
     "Chaussures": "Footwear",
     "Machines et équipements mécaniques": "Machinery and mechanical equipment",
-    "Appareils électroniques": "Electronic devices"
+    "Appareils électroniques": "Electronic devices",
+    "Produits semi-finis en fer ou acier": "Semi-finished iron or steel products",
+    "Turbines à gaz": "Gas turbines",
+    "Engrais azotés": "Nitrogen fertilizers",
+    "Maïs": "Corn/Maize",
+    "Bulldozers, niveleuses, pelles mécaniques": "Bulldozers, graders, excavators",
+    "Fils et câbles électriques": "Electrical wires and cables",
+    "Lait et crème concentrés": "Concentrated milk and cream",
+    "Houilles et combustibles solides": "Coal and solid fuels",
+    "Groupes électrogènes": "Generator sets",
+    "Platine et métaux précieux": "Platinum and precious metals",
+    "Minerais de manganèse": "Manganese ores",
+    "Fruits à coque": "Nuts",
+    "Agrumes": "Citrus fruits",
+    "Vins": "Wines",
+    "Métaux précieux": "Precious metals",
+    "Cobalt et minerais": "Cobalt and ores",
+    "Chrome et minerais": "Chromium and ores",
+    "Uranium": "Uranium",
+    "Titane et minerais": "Titanium and ores",
+    "Caoutchouc naturel": "Natural rubber",
+    "Thé": "Tea",
+    "Fleurs coupées": "Cut flowers",
+    "Huiles essentielles": "Essential oils",
+    "Sucre": "Sugar",
+    "Produits alimentaires transformés": "Processed food products",
+    "Boissons": "Beverages",
+    "Céréales": "Cereals"
 }
 
 COUNTRY_TRANSLATIONS = {
@@ -111,7 +138,22 @@ COUNTRY_TRANSLATIONS = {
     "Ukraine": "Ukraine",
     "Canada": "Canada",
     "Thaïlande": "Thailand",
-    "Pakistan": "Pakistan"
+    "Pakistan": "Pakistan",
+    "Argentine": "Argentina",
+    "Brésil": "Brazil",
+    "Turquie": "Turkey",
+    "Indonésie": "Indonesia",
+    "Malaisie": "Malaysia",
+    "Colombie": "Colombia",
+    "Royaume-Uni": "United Kingdom",
+    "Qatar": "Qatar",
+    "Italie": "Italy",
+    "Nouvelle-Zélande": "New Zealand",
+    "Irlande": "Ireland",
+    "Australie": "Australia",
+    "Paraguay": "Paraguay",
+    "Guatemala": "Guatemala",
+    "Émirats arabes unis": "United Arab Emirates"
 }
 
 def translate_product(product_name: str, language: str = 'fr') -> str:
