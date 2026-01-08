@@ -235,8 +235,8 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                       >
                         <span className="text-xl">📍</span>
                         <div>
-                          <p className="text-xs text-gray-500 font-medium">Localisation</p>
-                          <p className="text-sm text-purple-700 font-semibold">Voir sur Google Maps</p>
+                          <p className="text-xs text-gray-500 font-medium">{language === 'en' ? 'Location' : 'Localisation'}</p>
+                          <p className="text-sm text-purple-700 font-semibold">{language === 'en' ? 'View on Google Maps' : 'Voir sur Google Maps'}</p>
                         </div>
                       </a>
                     )}
@@ -249,7 +249,7 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <Card className="bg-blue-50 border-blue-200">
                 <CardContent className="pt-6 text-center">
-                  <p className="text-sm font-semibold text-blue-600 mb-1">Trafic Annuel (TEU)</p>
+                  <p className="text-sm font-semibold text-blue-600 mb-1">{t.annualTraffic}</p>
                   <p className="text-3xl font-bold text-blue-800">
                     {(port.latest_stats?.container_throughput_teu || 0).toLocaleString()}
                   </p>
@@ -258,20 +258,20 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
               </Card>
               <Card className="bg-indigo-50 border-indigo-200">
                 <CardContent className="pt-6 text-center">
-                  <p className="text-sm font-semibold text-indigo-600 mb-1">Tonnage Global</p>
+                  <p className="text-sm font-semibold text-indigo-600 mb-1">{t.globalTonnage}</p>
                   <p className="text-3xl font-bold text-indigo-800">
                     {(port.latest_stats?.cargo_throughput_tons || 0).toLocaleString()}
                   </p>
-                  <p className="text-xs text-indigo-500 mt-1">tonnes</p>
+                  <p className="text-xs text-indigo-500 mt-1">{t.tons}</p>
                 </CardContent>
               </Card>
               <Card className="bg-teal-50 border-teal-200">
                 <CardContent className="pt-6 text-center">
-                  <p className="text-sm font-semibold text-teal-600 mb-1">Escales Navires</p>
+                  <p className="text-sm font-semibold text-teal-600 mb-1">{t.vesselCalls}</p>
                   <p className="text-3xl font-bold text-teal-800">
                     {(port.latest_stats?.vessel_calls || 0).toLocaleString()}
                   </p>
-                  <p className="text-xs text-teal-500 mt-1">navires</p>
+                  <p className="text-xs text-teal-500 mt-1">{t.ships}</p>
                 </CardContent>
               </Card>
             </div>
@@ -280,7 +280,7 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg text-gray-700 flex items-center gap-2">
-                  📉 Évolution du Trafic (2020-2024)
+                  📉 {t.trafficEvolution} (2020-2024)
                 </CardTitle>
               </CardHeader>
               <CardContent className="h-[300px]">
