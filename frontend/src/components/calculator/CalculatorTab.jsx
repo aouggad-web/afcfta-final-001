@@ -283,7 +283,7 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
             disabled={loading}
             className="w-full bg-gradient-to-r from-red-600 via-yellow-500 to-green-600 text-white font-bold text-lg py-6 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all"
           >
-            {loading ? '⏳ Calcul en cours...' : `🧮 ${t.calculateBtn}`}
+            {loading ? `⏳ ${t.calculating}` : `🧮 ${t.calculateBtn}`}
           </Button>
         </CardContent>
       </Card>
@@ -295,7 +295,7 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
             <CardHeader className="bg-gradient-to-r from-green-600 to-yellow-500 text-white rounded-t-lg">
               <CardTitle className="flex items-center space-x-2 text-2xl">
                 <span>💰</span>
-                <span>Résultats Détaillés</span>
+                <span>{t.detailedResults}</span>
               </CardTitle>
               <CardDescription className="text-yellow-100 font-semibold">
                 {countryFlags[result.origin_country]} {getCountryName(result.origin_country)} → {countryFlags[result.destination_country]} {getCountryName(result.destination_country)}
@@ -304,22 +304,22 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
             <CardContent className="space-y-6 pt-6">
               {/* Graphique comparaison complète avec TOUTES les taxes */}
               <div className="bg-white p-4 rounded-lg shadow-md" style={{ minHeight: '320px' }}>
-                <h4 className="font-bold text-lg mb-4 text-gray-800">📊 Comparaison Complète: Valeur + DD + TVA + Autres Taxes</h4>
+                <h4 className="font-bold text-lg mb-4 text-gray-800">📊 {t.completeComparison}</h4>
                 <ResponsiveContainer width="100%" height={280} debounce={300}>
                   <BarChart data={[
                     { 
-                      name: 'Tarif NPF', 
-                      'Valeur marchandise': result.value,
-                      'Droits douane': result.normal_tariff_amount,
-                      'TVA': result.normal_vat_amount,
-                      'Autres taxes': result.normal_other_taxes_total
+                      name: t.nfpTariff, 
+                      [t.merchandiseValue]: result.value,
+                      [t.customsDuties]: result.normal_tariff_amount,
+                      [t.vat]: result.normal_vat_amount,
+                      [t.otherTaxes]: result.normal_other_taxes_total
                     },
                     { 
-                      name: 'Tarif ZLECAf', 
-                      'Valeur marchandise': result.value,
-                      'Droits douane': result.zlecaf_tariff_amount,
-                      'TVA': result.zlecaf_vat_amount,
-                      'Autres taxes': result.zlecaf_other_taxes_total
+                      name: t.zlecafTariff, 
+                      [t.merchandiseValue]: result.value,
+                      [t.customsDuties]: result.zlecaf_tariff_amount,
+                      [t.vat]: result.zlecaf_vat_amount,
+                      [t.otherTaxes]: result.zlecaf_other_taxes_total
                     }
                   ]}>
                     <CartesianGrid strokeDasharray="3 3" />
@@ -327,26 +327,26 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
                     <YAxis />
                     <Tooltip formatter={(value) => formatCurrency(value)} />
                     <Legend />
-                    <Bar dataKey="Valeur marchandise" stackId="a" fill="#60a5fa" />
-                    <Bar dataKey="Droits douane" stackId="a" fill="#ef4444" />
-                    <Bar dataKey="TVA" stackId="a" fill="#f59e0b" />
-                    <Bar dataKey="Autres taxes" stackId="a" fill="#8b5cf6" />
+                    <Bar dataKey={t.merchandiseValue} stackId="a" fill="#60a5fa" />
+                    <Bar dataKey={t.customsDuties} stackId="a" fill="#ef4444" />
+                    <Bar dataKey={t.vat} stackId="a" fill="#f59e0b" />
+                    <Bar dataKey={t.otherTaxes} stackId="a" fill="#8b5cf6" />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
 
               {/* Économies TOTALES */}
               <div className="text-center bg-gradient-to-r from-yellow-100 via-orange-100 to-red-100 p-8 rounded-2xl shadow-lg border-4 border-yellow-400">
-                <p className="text-lg font-bold text-gray-700 mb-2">💰 ÉCONOMIE TOTALE (avec toutes les taxes)</p>
+                <p className="text-lg font-bold text-gray-700 mb-2">💰 {t.totalSavings}</p>
                 <p className="text-5xl font-extrabold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-3">
                   {formatCurrency(result.total_savings_with_taxes)}
                 </p>
                 <Badge className="text-xl px-6 py-2 bg-gradient-to-r from-green-600 to-blue-600 text-white shadow-lg">
-                  🎉 {result.total_savings_percentage.toFixed(1)}% d'économie totale
+                  🎉 {result.total_savings_percentage.toFixed(1)}% {t.totalSavingsPercent}
                 </Badge>
                 <Progress value={result.total_savings_percentage} className="w-full mt-4 h-3" />
                 <p className="text-sm text-gray-600 mt-3">
-                  Sur un coût total de {formatCurrency(result.normal_total_cost)} (NPF) vs {formatCurrency(result.zlecaf_total_cost)} (ZLECAf)
+                  {t.totalCostComparison} {formatCurrency(result.normal_total_cost)} (NPF) {t.vs} {formatCurrency(result.zlecaf_total_cost)} (ZLECAf)
                 </p>
               </div>
 
@@ -356,7 +356,7 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
                   <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50">
                     <CardTitle className="text-xl font-bold text-purple-700 flex items-center gap-2">
                       <span>📋</span>
-                      <span>Journal de Calcul Détaillé (Ordre Officiel)</span>
+                      <span>{t.calculationJournal}</span>
                     </CardTitle>
                     <CardDescription className="font-semibold">
                       {result.computation_order_ref}
@@ -367,13 +367,13 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
                       <Table>
                         <TableHeader>
                           <TableRow>
-                            <TableHead>Étape</TableHead>
-                            <TableHead>Composant</TableHead>
-                            <TableHead>Base</TableHead>
-                            <TableHead>Taux</TableHead>
-                            <TableHead>Montant</TableHead>
-                            <TableHead>Cumulatif</TableHead>
-                            <TableHead>Référence Légale</TableHead>
+                            <TableHead>{t.step}</TableHead>
+                            <TableHead>{t.component}</TableHead>
+                            <TableHead>{t.base}</TableHead>
+                            <TableHead>{t.rate}</TableHead>
+                            <TableHead>{t.amount}</TableHead>
+                            <TableHead>{t.cumulative}</TableHead>
+                            <TableHead>{t.legalRef}</TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -410,10 +410,10 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
                 </h4>
                 <div className="bg-white p-4 rounded-lg space-y-2">
                   <p className="text-sm text-amber-800 font-semibold">
-                    <strong className="text-orange-600">Type:</strong> {result.rules_of_origin.rule}
+                    <strong className="text-orange-600">{t.ruleType}:</strong> {result.rules_of_origin.rule}
                   </p>
                   <p className="text-sm text-amber-800 font-semibold">
-                    <strong className="text-orange-600">Exigence:</strong> {result.rules_of_origin.requirement}
+                    <strong className="text-orange-600">{t.requirement}:</strong> {result.rules_of_origin.requirement}
                   </p>
                   <div className="mt-3">
                     <Progress 
@@ -421,7 +421,7 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
                       className="w-full h-3"
                     />
                     <p className="text-sm text-amber-700 mt-2 font-bold text-center">
-                      🌍 Contenu régional minimum: {result.rules_of_origin.regional_content}% africain
+                      🌍 {t.minRegionalContent}: {result.rules_of_origin.regional_content}% {t.african}
                     </p>
                   </div>
                 </div>
