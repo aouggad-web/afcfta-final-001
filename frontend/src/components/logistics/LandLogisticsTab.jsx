@@ -186,6 +186,7 @@ export default function LandLogisticsTab({ language = 'fr' }) {
           onCorridorClick={handleCorridorClick}
           selectedType={selectedType === 'ALL' ? null : selectedType}
           selectedImportance={selectedImportance === 'ALL' ? null : selectedImportance}
+          language={language}
         />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
