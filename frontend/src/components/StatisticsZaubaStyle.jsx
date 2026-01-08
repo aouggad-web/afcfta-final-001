@@ -427,6 +427,18 @@ const StatisticsZaubaStyle = ({ language = 'fr' }) => {
           </CardContent>
         </Card>
       )}
+
+      {/* Source Indicator Footer */}
+      <Card className="bg-gray-50 border-gray-200">
+        <CardContent className="py-3">
+          <p className="text-xs text-gray-500 text-center">
+            {language === 'en' 
+              ? 'Sources: IMF World Economic Outlook 2024 | World Bank WDI | UNCTAD COMTRADE | AfCFTA Secretariat | African Development Bank'
+              : 'Sources: FMI World Economic Outlook 2024 | Banque Mondiale WDI | UNCTAD COMTRADE | Secrétariat ZLECAf | Banque Africaine de Développement'
+            }
+          </p>
+        </CardContent>
+      </Card>
     </div>
   );
 };
