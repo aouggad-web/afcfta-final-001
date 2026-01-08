@@ -156,27 +156,27 @@ function App() {
           </TabsContent>
 
           <TabsContent value="statistics">
-            <StatisticsTab />
+            <StatisticsTab language={language} />
           </TabsContent>
 
           <TabsContent value="production">
-            <ProductionTab />
+            <ProductionTab language={language} />
           </TabsContent>
 
           <TabsContent value="logistics">
-            <LogisticsTab />
+            <LogisticsTab language={language} />
           </TabsContent>
 
           <TabsContent value="tools">
-            <ToolsTab />
+            <ToolsTab language={language} />
           </TabsContent>
 
           <TabsContent value="rules">
-            <RulesTab />
+            <RulesTab language={language} />
           </TabsContent>
 
           <TabsContent value="profiles">
-            <CountryProfilesTab />
+            <CountryProfilesTab language={language} />
           </TabsContent>
         </Tabs>
       </div>
