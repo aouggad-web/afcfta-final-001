@@ -64,23 +64,13 @@ export default function LogisticsTab({ language = 'fr' }) {
         </CardHeader>
       </Card>
 
-      {/* Data Sources Card with UNCTAD */}
+      {/* Data Sources Card */}
       <Card className="border-l-4 border-l-cyan-500 bg-cyan-50">
         <CardContent className="pt-4">
-          <div className="flex justify-between items-start mb-4">
-            <h3 className="font-bold text-cyan-900 flex items-center gap-2">
-              <span>📊</span>
-              <span>{t.dataSourcesTitle}</span>
-            </h3>
-            <Button 
-              onClick={() => setShowTRSUpload(true)}
-              className="bg-cyan-600 hover:bg-cyan-700 text-white"
-              size="sm"
-            >
-              <Upload className="w-4 h-4 mr-2" />
-              {t.uploadTRSBtn}
-            </Button>
-          </div>
+          <h3 className="font-bold text-cyan-900 flex items-center gap-2 mb-4">
+            <span>📊</span>
+            <span>{t.dataSourcesTitle}</span>
+          </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div className="bg-white p-3 rounded shadow-sm border-l-2 border-l-orange-400">
