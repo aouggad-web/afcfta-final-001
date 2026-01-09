@@ -67,16 +67,16 @@ function ProductionMacro({ language = 'fr' }) {
       {/* Country Selector */}
       <Card>
         <CardContent className="pt-6">
-          <CountrySelector
+          <EnhancedCountrySelector
             value={selectedCountry}
             onChange={setSelectedCountry}
-            label="Pays"
-            showStats={false}
+            label={language === 'en' ? "Country" : "Pays"}
+            language={language}
           />
           {macroData && (
             <div className="mt-3">
               <Badge variant="outline" className="text-sm">
-                {macroData.total_records} enregistrements • {Object.keys(macroData.data_by_sector).length} secteurs
+                {macroData.total_records} {language === 'en' ? 'records' : 'enregistrements'} • {Object.keys(macroData.data_by_sector).length} {language === 'en' ? 'sectors' : 'secteurs'}
               </Badge>
             </div>
           )}
