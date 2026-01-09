@@ -1000,6 +1000,17 @@ async def get_comprehensive_statistics():
         })
     
     
+    # Calculer totaux pour trade_evolution
+    trade_evolution_data = enhanced_stats.get('trade_evolution', {})
+    trade_evolution_data.update({
+        "total_exports_2024": round(total_exports, 1),
+        "total_imports_2024": round(total_imports, 1),
+        "intra_african_trade_2023": trade_evolution_data.get("intra_african_trade_2023", 192.4),
+        "intra_african_trade_2024": trade_evolution_data.get("intra_african_trade_2024", 218.7),
+        "projected_intra_trade_2030": trade_evolution_data.get("projected_intra_trade_2030", 385.0),
+        "growth_rate_2023_2024": trade_evolution_data.get("growth_rate_2023_2024", 13.7)
+    })
+    
     return {
         "overview": {
             "total_calculations": overview_enhanced.get('total_calculations', total_calculations),
@@ -1009,15 +1020,7 @@ async def get_comprehensive_statistics():
             "estimated_combined_gdp": overview_enhanced.get('estimated_combined_gdp', 2706000000000),
             "zlecaf_implementation_status": overview_enhanced.get('zlecaf_implementation_status', '')
         },
-        "trade_evolution": enhanced_stats.get('trade_evolution', {
-            "intra_african_trade_2023": 192.4,
-            "intra_african_trade_2024": 218.7,
-            "total_exports_2024": round(total_exports, 1),
-            "total_imports_2024": round(total_imports, 1),
-            "projected_intra_trade_2030": 385.0,
-            "growth_rate_2023_2024": 13.7,
-            "trend": "Croissance soutenue malgré les défis globaux"
-        }),
+        "trade_evolution": trade_evolution_data,
         "top_exporters_2024": top_exporters_formatted,
         "top_importers_2024": top_importers_formatted,
         "top_5_gdp_trade_comparison": top_5_gdp_formatted,
