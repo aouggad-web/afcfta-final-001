@@ -71,6 +71,17 @@ function ProductionTab({ language = 'fr' }) {
 
   return (
     <div className="space-y-6">
+      {/* Export Button */}
+      <div className="flex justify-end">
+        <PDFExportButton
+          targetRef={contentRef}
+          filename="production"
+          title={t.title}
+          language={language}
+        />
+      </div>
+
+      <div ref={contentRef}>
       {/* Main Header */}
       <Card className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white shadow-2xl">
         <CardHeader>
