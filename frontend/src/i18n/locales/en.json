@@ -6,6 +6,7 @@
     "population": "1.3B+ Population"
   },
   "tabs": {
+    "dashboard": "Dashboard",
     "calculator": "Calculator",
     "statistics": "Statistics",
     "production": "Production",
@@ -13,6 +14,23 @@
     "tools": "Tools",
     "rules": "Rules of Origin",
     "profiles": "Country Profiles"
+  },
+  "dashboard": {
+    "title": "Custom Dashboard",
+    "subtitle": "Drag and drop to reorganize your widgets",
+    "customize": "Customize",
+    "availableWidgets": "Available Widgets",
+    "noWidgets": "All widgets are displayed",
+    "reset": "Reset",
+    "dragHint": "Hold and drag the icon to reorganize",
+    "widgets": {
+      "tradeStats": "Trade Statistics",
+      "portTraffic": "Port Traffic",
+      "production": "Production",
+      "countryFocus": "Country Focus",
+      "calculator": "Quick Calculator",
+      "rules": "Rules of Origin"
+    }
   },
   "common": {
     "loading": "Loading...",
@@ -149,11 +167,6 @@
       "rank": "Rank",
       "africa": "Africa",
       "global": "Global"
-    },
-    "trs": {
-      "title": "TRS Data (Time Release Study)",
-      "uploadTitle": "Official TRS Data Import",
-      "uploadDesc": "Upload your official TRS data to replace estimates"
     }
   },
   "pdf": {
