@@ -31,6 +31,7 @@ function App() {
     fr: {
       title: "Accord de la ZLECAf",
       subtitle: "Levier de développement de l'AFRIQUE",
+      dashboardTab: "Dashboard",
       calculatorTab: "Calculateur",
       statisticsTab: "Statistiques", 
       productionTab: "Production",
@@ -44,6 +45,7 @@ function App() {
     en: {
       title: "AfCFTA Agreement",
       subtitle: "AFRICA's Development Lever",
+      dashboardTab: "Dashboard",
       calculatorTab: "Calculator",
       statisticsTab: "Statistics",
       productionTab: "Production",
