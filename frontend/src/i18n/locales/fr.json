@@ -16,19 +16,30 @@
     "profiles": "Profils Pays"
   },
   "dashboard": {
-    "title": "Tableau de Bord Personnalisé",
-    "subtitle": "Glissez-déposez pour réorganiser vos widgets",
+    "title": "Tableau de Bord Dynamique",
+    "subtitle": "Données en temps réel - Glissez-déposez pour personnaliser",
     "customize": "Personnaliser",
     "availableWidgets": "Widgets Disponibles",
     "noWidgets": "Tous les widgets sont affichés",
     "reset": "Réinitialiser",
     "dragHint": "Maintenez et glissez l'icône pour réorganiser",
+    "dataSource": "Source des données",
+    "lastUpdate": "Dernière mise à jour",
+    "refreshing": "Actualisation...",
     "widgets": {
+      "liveTradeStats": "Commerce en Direct",
+      "livePorts": "Ports en Direct",
+      "lsciChart": "Indice LSCI",
+      "countryProfile": "Profil Pays",
+      "afcftaProgress": "Progression ZLECAf",
+      "tradeBalance": "Balance Commerciale",
+      "regionalTrade": "Commerce Régional",
+      "alerts": "Alertes & Actualités",
+      "calculator": "Calculateur Rapide",
       "tradeStats": "Statistiques Commerciales",
       "portTraffic": "Trafic Portuaire",
       "production": "Production",
       "countryFocus": "Pays Focus",
-      "calculator": "Calculateur Rapide",
       "rules": "Règles d'Origine"
     }
   },
@@ -63,7 +74,9 @@
     "estimated": "Estimé",
     "official": "Officiel",
     "data": "Données",
-    "noData": "Aucune donnée disponible"
+    "noData": "Aucune donnée disponible",
+    "realTime": "Temps réel",
+    "verified": "Vérifié"
   },
   "countries": {
     "DZA": "Algérie",
