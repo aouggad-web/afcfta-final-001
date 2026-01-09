@@ -6,6 +6,7 @@
     "population": "1.3B+ Population"
   },
   "tabs": {
+    "dashboard": "Dashboard",
     "calculator": "Calculateur",
     "statistics": "Statistiques",
     "production": "Production",
@@ -13,6 +14,23 @@
     "tools": "Outils",
     "rules": "Règles d'Origine",
     "profiles": "Profils Pays"
+  },
+  "dashboard": {
+    "title": "Tableau de Bord Personnalisé",
+    "subtitle": "Glissez-déposez pour réorganiser vos widgets",
+    "customize": "Personnaliser",
+    "availableWidgets": "Widgets Disponibles",
+    "noWidgets": "Tous les widgets sont affichés",
+    "reset": "Réinitialiser",
+    "dragHint": "Maintenez et glissez l'icône pour réorganiser",
+    "widgets": {
+      "tradeStats": "Statistiques Commerciales",
+      "portTraffic": "Trafic Portuaire",
+      "production": "Production",
+      "countryFocus": "Pays Focus",
+      "calculator": "Calculateur Rapide",
+      "rules": "Règles d'Origine"
+    }
   },
   "common": {
     "loading": "Chargement...",
@@ -149,11 +167,6 @@
       "rank": "Rang",
       "africa": "Afrique",
       "global": "Mondial"
-    },
-    "trs": {
-      "title": "Données TRS (Time Release Study)",
-      "uploadTitle": "Import de Données TRS Officielles",
-      "uploadDesc": "Téléversez vos données TRS officielles pour remplacer les estimations"
     }
   },
   "pdf": {
