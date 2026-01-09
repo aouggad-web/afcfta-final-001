@@ -1012,6 +1012,9 @@ async def get_comprehensive_statistics():
         "trade_evolution": enhanced_stats.get('trade_evolution', {
             "intra_african_trade_2023": 192.4,
             "intra_african_trade_2024": 218.7,
+            "total_exports_2024": round(total_exports, 1),
+            "total_imports_2024": round(total_imports, 1),
+            "projected_intra_trade_2030": 385.0,
             "growth_rate_2023_2024": 13.7,
             "trend": "Croissance soutenue malgré les défis globaux"
         }),
