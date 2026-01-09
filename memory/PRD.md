@@ -75,18 +75,23 @@ Mise à jour selon FMI World Economic Outlook (Oct 2024):
 ### Nouvelles Fonctionnalités (09/01/2025)
 - **Panneau UNCTAD** : Intégration des données UNCTAD dans l'onglet Logistics/Maritime
   - Statistiques portuaires africaines (trafic total, croissance, part mondiale)
-  - Top 8 ports africains avec graphique et tableau détaillé
+  - Top ports africains avec graphique et tableau détaillé
   - Indice de Connectivité Maritime (LSCI) par pays
+  - **Ports algériens ajoutés** : Alger, Oran, Béjaïa, Skikda, Annaba, Mostaganem, Djen Djen
+  - Algérie ajoutée au classement LSCI (4ème en Afrique)
   - Fichier: `/app/frontend/src/components/logistics/UNCTADDataPanel.jsx`
-- **TRS Upload Backend** : Endpoint pour téléverser les données TRS officielles
-  - Route: `POST /api/logistics/trs/upload`
-  - Formats acceptés: Excel (.xlsx, .xls), CSV
+- **TRS Upload - SÉCURISÉ** : Fonctionnalité retirée pour les visiteurs (réservée admin)
+  - Endpoint backend conservé mais non exposé aux utilisateurs
 - **Système i18n centralisé** : Infrastructure react-i18next mise en place
   - Fichiers de traductions: `/app/frontend/src/i18n/locales/fr.json`, `en.json`
   - Configuration: `/app/frontend/src/i18n/index.js`
-- **Export PDF** : Utilitaire pour exporter les rapports en PDF
-  - Fichier: `/app/frontend/src/utils/pdfExport.js`
-  - Packages: jspdf, html2canvas, react-to-print
+- **Export PDF** : Boutons d'export ajoutés dans les onglets principaux
+  - Fichier utilitaire: `/app/frontend/src/utils/pdfExport.js`
+  - Composants: `/app/frontend/src/components/common/ExportTools.jsx`
+  - Onglets avec export: Statistics, Production, Logistics
+- **Graphiques améliorés** : Composant ZoomableChart avec zoom et export image
+  - Zoom in/out avec contrôles visuels
+  - Export des graphiques en PNG
 
 ### Données UNCTAD (08/01/2025)
 - Nouveau fichier : `/app/backend/etl/unctad_data.py`
