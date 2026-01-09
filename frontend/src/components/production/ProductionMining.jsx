@@ -73,16 +73,16 @@ function ProductionMining({ language = 'fr' }) {
       {/* Country Selector */}
       <Card>
         <CardContent className="pt-6">
-          <CountrySelector
+          <EnhancedCountrySelector
             value={selectedCountry}
             onChange={setSelectedCountry}
-            label="Pays"
-            showStats={false}
+            label={language === 'en' ? "Country" : "Pays"}
+            language={language}
           />
           {miningData && (
             <div className="mt-3">
               <Badge variant="outline" className="text-sm">
-                {miningData.total_records} enregistrements • {Object.keys(miningData.data_by_commodity).length} minerais
+                {miningData.total_records} {language === 'en' ? 'records' : 'enregistrements'} • {Object.keys(miningData.data_by_commodity).length} {language === 'en' ? 'minerals' : 'minerais'}
               </Badge>
             </div>
           )}
