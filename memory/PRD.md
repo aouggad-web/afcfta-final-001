@@ -136,20 +136,23 @@ Mise à jour selon FMI World Economic Outlook (Oct 2024):
 - Indicateurs de source
 - **Bug fix i18n Production tab** (09/01/2025) - Toutes les traductions fonctionnent correctement
 - **Panneau UNCTAD** (09/01/2025) - Données portuaires et LSCI affichées
-- **TRS Upload endpoint** (09/01/2025) - Backend prêt
+- **TRS Upload - SÉCURISÉ** (09/01/2025) - Retiré pour visiteurs
 - **Infrastructure i18n** (09/01/2025) - react-i18next configuré
 - **Utilitaire PDF** (09/01/2025) - Export PDF prêt
+- **Ports algériens UNCTAD** (09/01/2025) - 7 ports ajoutés + LSCI
+- **Modale ports corrigée** (09/01/2025) - Dimensions ajustées (95vw, sticky header)
+- **Dashboard personnalisable** (09/01/2025) - Widgets configurables avec sauvegarde localStorage
+- **Export PDF dans onglets** (09/01/2025) - Statistics, Production, Logistics
 
 ### P1 - Prochaines Tâches
-- Connecter le formulaire TRS upload au nouveau endpoint backend
-- Migrer les composants existants vers react-i18next (refactoring progressif)
-- Intégrer les boutons d'export PDF dans chaque onglet
-- Améliorer les graphiques avec zoom/export d'images
+- Migration progressive des composants vers react-i18next centralisé
+- Ajouter authentification admin pour TRS upload
+- Ajouter drag & drop réel pour widgets Dashboard
 
-### P2 - Dashboard Personnalisable
-- Widgets déplaçables (drag & drop)
-- Choix des graphiques à afficher
-- Filtres par pays/région sauvegardés
+### P2 - Améliorations Futures
+- Graphiques avec zoom intégré dans tous les composants
+- Thèmes visuels personnalisables
+- Export des données en CSV/Excel
 
 ### P2 - Futur
 - Export PDF des rapports
