@@ -13,6 +13,37 @@ function ProductionMacro({ language = 'fr' }) {
   const [macroData, setMacroData] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // Translations
+  const texts = {
+    fr: {
+      title: "Valeur Ajoutée Macro (World Bank / IMF)",
+      subtitle: "Structure sectorielle du PIB des économies africaines (2021-2024)",
+      records: "enregistrements",
+      sectors: "secteurs",
+      loading: "Chargement des données macro...",
+      noData: "Aucune donnée disponible pour ce pays.",
+      evolutionTitle: "Évolution de la Valeur Ajoutée par Secteur (% du PIB)",
+      comparisonTitle: "Comparaison Sectorielle par Année",
+      detailsTitle: "Données Détaillées",
+      gdpPercent: "% du PIB",
+      year: "Année"
+    },
+    en: {
+      title: "Macro Value Added (World Bank / IMF)",
+      subtitle: "Sectoral structure of GDP for African economies (2021-2024)",
+      records: "records",
+      sectors: "sectors",
+      loading: "Loading macro data...",
+      noData: "No data available for this country.",
+      evolutionTitle: "Value Added Evolution by Sector (% of GDP)",
+      comparisonTitle: "Sectoral Comparison by Year",
+      detailsTitle: "Detailed Data",
+      gdpPercent: "% of GDP",
+      year: "Year"
+    }
+  };
+  const t = texts[language] || texts.fr;
+
   useEffect(() => {
     if (selectedCountry) {
       fetchMacroData(selectedCountry);
@@ -56,10 +87,10 @@ function ProductionMacro({ language = 'fr' }) {
         <CardHeader>
           <CardTitle className="text-3xl font-bold flex items-center gap-3">
             <span>📊</span>
-            <span>Valeur Ajoutée Macro (World Bank / IMF)</span>
+            <span>{t.title}</span>
           </CardTitle>
           <CardDescription className="text-purple-100 text-lg">
-            Structure sectorielle du PIB des économies africaines (2021-2024)
+            {t.subtitle}
           </CardDescription>
         </CardHeader>
       </Card>
@@ -76,7 +107,7 @@ function ProductionMacro({ language = 'fr' }) {
           {macroData && (
             <div className="mt-3">
               <Badge variant="outline" className="text-sm">
-                {macroData.total_records} {language === 'en' ? 'records' : 'enregistrements'} • {Object.keys(macroData.data_by_sector).length} {language === 'en' ? 'sectors' : 'secteurs'}
+                {macroData.total_records} {t.records} • {Object.keys(macroData.data_by_sector).length} {t.sectors}
               </Badge>
             </div>
           )}
@@ -89,7 +120,7 @@ function ProductionMacro({ language = 'fr' }) {
           <CardContent className="flex items-center justify-center h-96">
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
-              <p className="mt-4 text-gray-600">Chargement des données macro...</p>
+              <p className="mt-4 text-gray-600">{t.loading}</p>
             </div>
           </CardContent>
         </Card>
@@ -99,7 +130,7 @@ function ProductionMacro({ language = 'fr' }) {
           <Card className="shadow-lg">
             <CardHeader className="bg-gradient-to-r from-purple-50 to-indigo-50">
               <CardTitle className="text-xl text-purple-700">
-                📈 Évolution de la Valeur Ajoutée par Secteur (% du PIB)
+                📈 {t.evolutionTitle}
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-6">
@@ -107,7 +138,7 @@ function ProductionMacro({ language = 'fr' }) {
                 <LineChart data={prepareChartData()}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="year" />
-                  <YAxis label={{ value: '% du PIB', angle: -90, position: 'insideLeft' }} />
+                  <YAxis label={{ value: t.gdpPercent, angle: -90, position: 'insideLeft' }} />
                   <Tooltip />
                   <Legend />
                   {Object.keys(macroData.data_by_sector).map((sector, index) => (
@@ -129,7 +160,7 @@ function ProductionMacro({ language = 'fr' }) {
           <Card className="shadow-lg">
             <CardHeader className="bg-gradient-to-r from-indigo-50 to-blue-50">
               <CardTitle className="text-xl text-indigo-700">
-                📊 Comparaison Sectorielle par Année
+                📊 {t.comparisonTitle}
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-6">
@@ -137,7 +168,7 @@ function ProductionMacro({ language = 'fr' }) {
                 <BarChart data={prepareChartData()}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="year" />
-                  <YAxis label={{ value: '% du PIB', angle: -90, position: 'insideLeft' }} />
+                  <YAxis label={{ value: t.gdpPercent, angle: -90, position: 'insideLeft' }} />
                   <Tooltip />
                   <Legend />
                   {Object.keys(macroData.data_by_sector).map((sector, index) => (
@@ -156,7 +187,7 @@ function ProductionMacro({ language = 'fr' }) {
           <Card className="shadow-lg">
             <CardHeader className="bg-gradient-to-r from-gray-50 to-slate-50">
               <CardTitle className="text-xl text-gray-700">
-                📋 Données Détaillées
+                📋 {t.detailsTitle}
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-6">
@@ -167,7 +198,7 @@ function ProductionMacro({ language = 'fr' }) {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                       {records.map(record => (
                         <div key={record.year} className="bg-white p-2 rounded shadow-sm">
-                          <p className="text-xs text-gray-600">Année {record.year}</p>
+                          <p className="text-xs text-gray-600">{t.year} {record.year}</p>
                           <p className="text-lg font-bold text-purple-600">{record.value}%</p>
                           <Badge variant="outline" className="text-xs mt-1">
                             {record.indicator_label.split(',')[0]}
@@ -184,7 +215,7 @@ function ProductionMacro({ language = 'fr' }) {
       ) : (
         <Card>
           <CardContent className="text-center py-12 text-gray-500">
-            Aucune donnée disponible pour ce pays.
+            {t.noData}
           </CardContent>
         </Card>
       )}

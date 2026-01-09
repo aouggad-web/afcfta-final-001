@@ -13,6 +13,37 @@ function ProductionMining({ language = 'fr' }) {
   const [miningData, setMiningData] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // Translations
+  const texts = {
+    fr: {
+      title: "Production Minière (USGS)",
+      subtitle: "Production de minerais et métaux par pays africain (2021-2024)",
+      records: "enregistrements",
+      minerals: "minerais",
+      loading: "Chargement des données minières...",
+      noData: "Aucune donnée minière disponible pour ce pays.",
+      evolutionTitle: "Évolution de la Production Minière",
+      comparisonTitle: "Production par Minerai et Année",
+      detailsTitle: "Données Détaillées par Minerai",
+      production: "Production",
+      year: "Année"
+    },
+    en: {
+      title: "Mining Production (USGS)",
+      subtitle: "Mineral and metal production by African country (2021-2024)",
+      records: "records",
+      minerals: "minerals",
+      loading: "Loading mining data...",
+      noData: "No mining data available for this country.",
+      evolutionTitle: "Mining Production Evolution",
+      comparisonTitle: "Production by Mineral and Year",
+      detailsTitle: "Detailed Data by Mineral",
+      production: "Production",
+      year: "Year"
+    }
+  };
+  const t = texts[language] || texts.fr;
+
   useEffect(() => {
     if (selectedCountry) {
       fetchMiningData(selectedCountry);
@@ -62,10 +93,10 @@ function ProductionMining({ language = 'fr' }) {
         <CardHeader>
           <CardTitle className="text-3xl font-bold flex items-center gap-3">
             <span>⛏️</span>
-            <span>Production Minière (USGS)</span>
+            <span>{t.title}</span>
           </CardTitle>
           <CardDescription className="text-amber-100 text-lg">
-            Production de minerais et métaux par pays africain (2021-2024)
+            {t.subtitle}
           </CardDescription>
         </CardHeader>
       </Card>
@@ -82,7 +113,7 @@ function ProductionMining({ language = 'fr' }) {
           {miningData && (
             <div className="mt-3">
               <Badge variant="outline" className="text-sm">
-                {miningData.total_records} {language === 'en' ? 'records' : 'enregistrements'} • {Object.keys(miningData.data_by_commodity).length} {language === 'en' ? 'minerals' : 'minerais'}
+                {miningData.total_records} {t.records} • {Object.keys(miningData.data_by_commodity).length} {t.minerals}
               </Badge>
             </div>
           )}
@@ -95,7 +126,7 @@ function ProductionMining({ language = 'fr' }) {
           <CardContent className="flex items-center justify-center h-96">
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-amber-600 mx-auto"></div>
-              <p className="mt-4 text-gray-600">Chargement des données minières...</p>
+              <p className="mt-4 text-gray-600">{t.loading}</p>
             </div>
           </CardContent>
         </Card>
@@ -105,7 +136,7 @@ function ProductionMining({ language = 'fr' }) {
           <Card className="shadow-lg">
             <CardHeader className="bg-gradient-to-r from-amber-50 to-orange-50">
               <CardTitle className="text-xl text-amber-700">
-                📈 Évolution de la Production Minière
+                📈 {t.evolutionTitle}
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-6">
@@ -114,7 +145,7 @@ function ProductionMining({ language = 'fr' }) {
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="year" />
                   <YAxis 
-                    label={{ value: 'Production', angle: -90, position: 'insideLeft' }}
+                    label={{ value: t.production, angle: -90, position: 'insideLeft' }}
                     tickFormatter={formatNumber}
                   />
                   <Tooltip 
@@ -143,7 +174,7 @@ function ProductionMining({ language = 'fr' }) {
           <Card className="shadow-lg">
             <CardHeader className="bg-gradient-to-r from-orange-50 to-red-50">
               <CardTitle className="text-xl text-orange-700">
-                📊 Production par Minerai et Année
+                📊 {t.comparisonTitle}
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-6">
@@ -152,7 +183,7 @@ function ProductionMining({ language = 'fr' }) {
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="year" />
                   <YAxis 
-                    label={{ value: 'Production', angle: -90, position: 'insideLeft' }}
+                    label={{ value: t.production, angle: -90, position: 'insideLeft' }}
                     tickFormatter={formatNumber}
                   />
                   <Tooltip 
@@ -178,7 +209,7 @@ function ProductionMining({ language = 'fr' }) {
           <Card className="shadow-lg">
             <CardHeader className="bg-gradient-to-r from-gray-50 to-slate-50">
               <CardTitle className="text-xl text-gray-700">
-                ⛏️ Données Détaillées par Minerai
+                ⛏️ {t.detailsTitle}
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-6">
@@ -192,7 +223,7 @@ function ProductionMining({ language = 'fr' }) {
                       {records.map(record => (
                         <div key={record.year} className="bg-white p-3 rounded shadow-sm flex justify-between items-center">
                           <div>
-                            <p className="text-sm text-gray-600">Année {record.year}</p>
+                            <p className="text-sm text-gray-600">{t.year} {record.year}</p>
                             <p className="text-xs text-gray-500">
                               {record.commodity_code} - {record.usgs_table_name}
                             </p>
@@ -218,7 +249,7 @@ function ProductionMining({ language = 'fr' }) {
       ) : (
         <Card>
           <CardContent className="text-center py-12 text-gray-500">
-            Aucune donnée minière disponible pour ce pays.
+            {t.noData}
           </CardContent>
         </Card>
       )}
