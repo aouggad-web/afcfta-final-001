@@ -155,8 +155,8 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader className="bg-gradient-to-r from-blue-700 to-indigo-800 text-white p-6 rounded-t-lg -mx-6 -mt-6 shadow-lg">
+      <DialogContent className="max-w-6xl w-[95vw] max-h-[90vh] overflow-y-auto p-0">
+        <DialogHeader className="bg-gradient-to-r from-blue-700 to-indigo-800 text-white p-6 rounded-t-lg shadow-lg sticky top-0 z-10">
           <div className="flex flex-col md:flex-row justify-between items-start gap-4">
             <div>
               <div className="flex items-center gap-3">
@@ -185,7 +185,8 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
           </div>
         </DialogHeader>
 
-        <Tabs defaultValue="overview" className="mt-6">
+        <div className="p-6">
+        <Tabs defaultValue="overview" className="mt-2">
           <TabsList className="grid w-full grid-cols-3 bg-blue-50/50 p-1 rounded-lg">
             <TabsTrigger value="overview" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">{t.overview}</TabsTrigger>
             <TabsTrigger value="performance" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">{t.performance}</TabsTrigger>
