@@ -952,26 +952,30 @@ async def get_comprehensive_statistics():
     
     # Top 10 exportateurs (triés par exports décroissants)
     top_10_exporters = sorted(trade_data_all, key=lambda x: x['exports_2024'], reverse=True)[:10]
+    total_exports = sum([c['exports_2024'] for c in trade_data_all])
     top_exporters_formatted = [
         {
+            "rank": idx + 1,
             "country": country['code'],
             "name": country['country'],
-            "exports": country['exports_2024'],
-            "share": round((country['exports_2024'] / sum([c['exports_2024'] for c in trade_data_all])) * 100, 1)
+            "exports_2024": country['exports_2024'] * 1e9,  # Convert to USD
+            "share_pct": round((country['exports_2024'] / total_exports) * 100, 1) if total_exports > 0 else 0
         }
-        for country in top_10_exporters
+        for idx, country in enumerate(top_10_exporters)
     ]
     
     # Top 10 importateurs (triés par imports décroissants)
     top_10_importers = sorted(trade_data_all, key=lambda x: x['imports_2024'], reverse=True)[:10]
+    total_imports = sum([c['imports_2024'] for c in trade_data_all])
     top_importers_formatted = [
         {
+            "rank": idx + 1,
             "country": country['code'],
             "name": country['country'],
-            "imports": country['imports_2024'],
-            "share": round((country['imports_2024'] / sum([c['imports_2024'] for c in trade_data_all])) * 100, 1)
+            "imports_2024": country['imports_2024'] * 1e9,  # Convert to USD
+            "share_pct": round((country['imports_2024'] / total_imports) * 100, 1) if total_imports > 0 else 0
         }
-        for country in top_10_importers
+        for idx, country in enumerate(top_10_importers)
     ]
     
     # Top 5 PIB avec comparaison échanges intra-africains vs monde
