@@ -66,18 +66,108 @@ UNCTAD_PORT_STATISTICS = {
             "rank_global": 92
         },
         {
+            "port": "Alger",
+            "country": "Algeria",
+            "country_fr": "Algérie",
+            "throughput_teu": 1380000,
+            "growth_rate": 5.8,
+            "rank_africa": 6,
+            "rank_global": 95
+        },
+        {
             "port": "Djibouti",
             "country": "Djibouti",
             "country_fr": "Djibouti",
             "throughput_teu": 1120000,
             "growth_rate": 12.5,
-            "rank_africa": 6,
+            "rank_africa": 7,
             "rank_global": 105
+        },
+        {
+            "port": "Tema",
+            "country": "Ghana",
+            "country_fr": "Ghana",
+            "throughput_teu": 1050000,
+            "growth_rate": 9.8,
+            "rank_africa": 8,
+            "rank_global": 108
         },
         {
             "port": "Abidjan",
             "country": "Côte d'Ivoire",
             "country_fr": "Côte d'Ivoire",
+            "throughput_teu": 980000,
+            "growth_rate": 7.2,
+            "rank_africa": 9,
+            "rank_global": 112
+        },
+        {
+            "port": "Oran",
+            "country": "Algeria",
+            "country_fr": "Algérie",
+            "throughput_teu": 620000,
+            "growth_rate": 6.2,
+            "rank_africa": 10,
+            "rank_global": 135
+        },
+        {
+            "port": "Béjaïa",
+            "country": "Algeria",
+            "country_fr": "Algérie",
+            "throughput_teu": 380000,
+            "growth_rate": 4.5,
+            "rank_africa": 14,
+            "rank_global": 165
+        },
+        {
+            "port": "Skikda",
+            "country": "Algeria",
+            "country_fr": "Algérie",
+            "throughput_teu": 290000,
+            "growth_rate": 3.8,
+            "rank_africa": 18,
+            "rank_global": 185
+        },
+        {
+            "port": "Annaba",
+            "country": "Algeria",
+            "country_fr": "Algérie",
+            "throughput_teu": 245000,
+            "growth_rate": 4.1,
+            "rank_africa": 21,
+            "rank_global": 198
+        },
+        {
+            "port": "Mostaganem",
+            "country": "Algeria",
+            "country_fr": "Algérie",
+            "throughput_teu": 185000,
+            "growth_rate": 7.5,
+            "rank_africa": 25,
+            "rank_global": 215
+        },
+        {
+            "port": "Djen Djen",
+            "country": "Algeria",
+            "country_fr": "Algérie",
+            "throughput_teu": 520000,
+            "growth_rate": 15.2,
+            "rank_africa": 12,
+            "rank_global": 148
+        }
+    ],
+    "algeria_ports_summary": {
+        "total_throughput_teu": 3620000,
+        "share_african_trade": 12.7,
+        "growth_rate_2023": 6.8,
+        "main_exports": ["Hydrocarbures", "Phosphates", "Produits chimiques", "Dattes"],
+        "main_imports": ["Équipements industriels", "Céréales", "Véhicules", "Produits manufacturés"],
+        "strategic_position": "Gateway to Maghreb and Sahel markets",
+        "port_count": 11,
+        "container_terminals": 6,
+        "investment_2023_mln_usd": 850
+    }
+}
             "throughput_teu": 980000,
             "growth_rate": 7.2,
             "rank_africa": 7,
