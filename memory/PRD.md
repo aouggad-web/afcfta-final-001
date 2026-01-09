@@ -113,6 +113,11 @@ Mise à jour selon FMI World Economic Outlook (Oct 2024):
 - Données UNCTAD
 - Interface upload TRS
 - Indicateurs de source
+- **Bug fix i18n Production tab** (09/01/2025) - Toutes les traductions fonctionnent correctement
+
+### P1 - Prochaines Tâches
+- Intégrer données UNCTAD sur le frontend (API backend prêtes)
+- Implémenter fonctionnalité upload données TRS
 
 ### P2 - Futur
 - Export PDF des rapports
