@@ -239,13 +239,14 @@ UNCTAD_LSCI_AFRICA = [
     {"country": "Morocco", "country_fr": "Maroc", "lsci_2023": 72.5, "rank_africa": 1, "rank_global": 18},
     {"country": "Egypt", "country_fr": "Égypte", "lsci_2023": 68.2, "rank_africa": 2, "rank_global": 22},
     {"country": "South Africa", "country_fr": "Afrique du Sud", "lsci_2023": 42.8, "rank_africa": 3, "rank_global": 35},
-    {"country": "Togo", "country_fr": "Togo", "lsci_2023": 28.5, "rank_africa": 4, "rank_global": 58},
-    {"country": "Djibouti", "country_fr": "Djibouti", "lsci_2023": 26.2, "rank_africa": 5, "rank_global": 62},
-    {"country": "Nigeria", "country_fr": "Nigéria", "lsci_2023": 24.8, "rank_africa": 6, "rank_global": 68},
-    {"country": "Kenya", "country_fr": "Kenya", "lsci_2023": 22.5, "rank_africa": 7, "rank_global": 72},
-    {"country": "Ghana", "country_fr": "Ghana", "lsci_2023": 21.2, "rank_africa": 8, "rank_global": 78},
-    {"country": "Côte d'Ivoire", "country_fr": "Côte d'Ivoire", "lsci_2023": 20.5, "rank_africa": 9, "rank_global": 82},
-    {"country": "Mauritius", "country_fr": "Maurice", "lsci_2023": 19.8, "rank_africa": 10, "rank_global": 85}
+    {"country": "Algeria", "country_fr": "Algérie", "lsci_2023": 35.6, "rank_africa": 4, "rank_global": 42},
+    {"country": "Togo", "country_fr": "Togo", "lsci_2023": 28.5, "rank_africa": 5, "rank_global": 58},
+    {"country": "Djibouti", "country_fr": "Djibouti", "lsci_2023": 26.2, "rank_africa": 6, "rank_global": 62},
+    {"country": "Nigeria", "country_fr": "Nigéria", "lsci_2023": 24.8, "rank_africa": 7, "rank_global": 68},
+    {"country": "Kenya", "country_fr": "Kenya", "lsci_2023": 22.5, "rank_africa": 8, "rank_global": 72},
+    {"country": "Ghana", "country_fr": "Ghana", "lsci_2023": 21.2, "rank_africa": 9, "rank_global": 78},
+    {"country": "Côte d'Ivoire", "country_fr": "Côte d'Ivoire", "lsci_2023": 20.5, "rank_africa": 10, "rank_global": 82},
+    {"country": "Mauritius", "country_fr": "Maurice", "lsci_2023": 19.8, "rank_africa": 11, "rank_global": 85}
 ]
 
 # =============================================================================
