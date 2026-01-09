@@ -12,7 +12,7 @@ const API = `${BACKEND_URL}/api`;
 
 const CHART_COLORS = ['#10b981', '#059669', '#047857', '#065f46', '#064e3b', '#22c55e', '#16a34a', '#15803d'];
 
-function ProductionAgriculture() {
+function ProductionAgriculture({ language = 'fr' }) {
   const [selectedCountry, setSelectedCountry] = useState('CIV');
   const [faostatData, setFaostatData] = useState(null);
   const [faostatStats, setFaostatStats] = useState(null);
