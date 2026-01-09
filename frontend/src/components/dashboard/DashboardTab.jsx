@@ -146,7 +146,7 @@ function SortableWidget({ widget, isEditing, onRemove, language }) {
     <div
       ref={setNodeRef}
       style={style}
-      className={`${widget.id === 'trade_stats' ? 'col-span-2' : ''}`}
+      className={`${widget.id === 'live_trade' ? 'col-span-2' : ''}`}
     >
       <Card 
         className={`h-full overflow-hidden transition-all duration-200 ${
