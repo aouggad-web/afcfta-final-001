@@ -3,12 +3,12 @@ import axios from 'axios';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import CountrySelector from './CountrySelector';
+import EnhancedCountrySelector from './EnhancedCountrySelector';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-function ProductionMining() {
+function ProductionMining({ language = 'fr' }) {
   const [selectedCountry, setSelectedCountry] = useState('ZAF');
   const [miningData, setMiningData] = useState(null);
   const [loading, setLoading] = useState(false);
