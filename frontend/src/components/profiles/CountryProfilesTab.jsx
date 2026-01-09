@@ -163,11 +163,11 @@ export default function CountryProfilesTab({ language = 'fr' }) {
 
   useEffect(() => {
     fetchCountries();
-  }, []);
+  }, [language]);
 
   const fetchCountries = async () => {
     try {
-      const response = await axios.get(`${API}/countries`);
+      const response = await axios.get(`${API}/countries?lang=${language}`);
       setCountries(response.data);
     } catch (error) {
       console.error('Error loading countries:', error);
@@ -181,10 +181,10 @@ export default function CountryProfilesTab({ language = 'fr' }) {
 
   const fetchCountryProfile = async (countryCode) => {
     try {
-      const response = await axios.get(`${API}/country-profile/${countryCode}`);
+      const response = await axios.get(`${API}/country-profile/${countryCode}?lang=${language}`);
       setCountryProfile(response.data);
     } catch (error) {
-      console.error('Erreur lors du chargement du profil pays:', error);
+      console.error('Error loading country profile:', error);
     }
   };
 
