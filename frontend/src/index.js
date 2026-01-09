@@ -4,6 +4,9 @@ import "./index.css";
 import App from "./App";
 import 'leaflet/dist/leaflet.css';
 
+// Import i18n configuration
+import './i18n';
+
 // Fix complet pour ResizeObserver errors
 // Supprime complètement les erreurs ResizeObserver
 window.addEventListener('error', e => {
