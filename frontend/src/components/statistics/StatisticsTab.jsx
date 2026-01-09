@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card';
 import { ResponsiveContainer, BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import StatisticsZaubaStyle from '../StatisticsZaubaStyle';
 import TradeComparison from '../TradeComparison';
 import TradeProductsTable from '../TradeProductsTable';
+import { PDFExportButton } from '../common/ExportTools';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 export default function StatisticsTab({ language = 'fr' }) {
   const [statistics, setStatistics] = useState(null);
+  const contentRef = useRef(null);
 
   const texts = {
     fr: {
@@ -19,7 +21,8 @@ export default function StatisticsTab({ language = 'fr' }) {
       exportsEvolution: "Évolution des exportations en milliards USD",
       importsVolume: "Volume des importations en milliards USD",
       exports: "Exportations (USD)",
-      imports: "Importations (USD)"
+      imports: "Importations (USD)",
+      exportPDF: "Exporter en PDF"
     },
     en: {
       topExporters: "Top 10 Exporting Countries (2023-2024)",
@@ -27,7 +30,8 @@ export default function StatisticsTab({ language = 'fr' }) {
       exportsEvolution: "Export evolution in billion USD",
       importsVolume: "Import volume in billion USD",
       exports: "Exports (USD)",
-      imports: "Imports (USD)"
+      imports: "Imports (USD)",
+      exportPDF: "Export to PDF"
     }
   };
 
@@ -48,15 +52,26 @@ export default function StatisticsTab({ language = 'fr' }) {
 
   return (
     <div className="space-y-6">
-      {/* Nouveau composant Style Zauba */}
-      <StatisticsZaubaStyle language={language} />
-      
-      <div className="my-8"></div>
-      
-      {/* Top 20 Trade Products Tables */}
-      <TradeProductsTable language={language} />
-      
-      <div className="my-8"></div>
+      {/* Export Button */}
+      <div className="flex justify-end">
+        <PDFExportButton
+          targetRef={contentRef}
+          filename="statistics"
+          title={language === 'fr' ? 'Statistiques Commerciales ZLECAf' : 'AfCFTA Trade Statistics'}
+          language={language}
+        />
+      </div>
+
+      <div ref={contentRef}>
+        {/* Nouveau composant Style Zauba */}
+        <StatisticsZaubaStyle language={language} />
+        
+        <div className="my-8"></div>
+        
+        {/* Top 20 Trade Products Tables */}
+        <TradeProductsTable language={language} />
+        
+        <div className="my-8"></div>
       
       {/* Intégration du composant Comparaisons dans Statistiques */}
       <TradeComparison language={language} />
