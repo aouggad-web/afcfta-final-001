@@ -533,7 +533,7 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                   <p className="text-xs text-gray-400 italic leading-relaxed">
                     📊 <strong>Note sur la couverture TRS:</strong> La couverture des données TRS officielles pour les ports africains est limitée (~15-20% des ports majeurs). 
                     Cela reflète la réalité: peu d'études TRS WCO ont été conduites pour l'Afrique, et les autorités portuaires ne publient pas systématiquement leurs données de performance.
-                    Sources: Études TRS WCO officielles, TRS nationales (ex: Egypt Customs), Autorités portuaires (KPA, Transnet, PAA), World Bank CPPI.
+                    {t.sourcesFooter}
                   </p>
                 </div>
               </CardContent>
