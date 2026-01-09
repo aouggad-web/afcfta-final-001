@@ -200,6 +200,7 @@ function ProductionTab({ language = 'fr' }) {
           </p>
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 }
