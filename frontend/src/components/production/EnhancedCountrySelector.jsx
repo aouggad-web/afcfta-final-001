@@ -136,7 +136,7 @@ function EnhancedCountrySelector({ value, onChange, label, variant = "default", 
       {/* Label */}
       <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
         <Globe className="w-4 h-4" />
-        {label}
+        {displayLabel}
       </label>
       
       {/* Main selector button */}
