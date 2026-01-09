@@ -23,8 +23,20 @@ import { Badge } from '../ui/badge';
 import { 
   LayoutDashboard, Settings, GripVertical, X, Plus, 
   TrendingUp, Ship, Factory, MapPin, Calculator, FileText,
-  Save, RotateCcw
+  Save, RotateCcw, BarChart3, PieChart, Bell, Globe, Target
 } from 'lucide-react';
+
+// Import Dynamic Widgets
+import {
+  LiveTradeWidget,
+  LivePortsWidget,
+  LSCIChartWidget,
+  CountryProfileWidget,
+  TradeBalanceWidget,
+  AfCFTAProgressWidget,
+  RegionalTradeWidget,
+  AlertsWidget
+} from './DynamicWidgets';
 
 // Widget definitions
 const WIDGET_TYPES = {
