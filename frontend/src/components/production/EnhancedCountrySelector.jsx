@@ -215,7 +215,7 @@ function EnhancedCountrySelector({ value, onChange, label, variant = "default", 
                 <input
                   ref={inputRef}
                   type="text"
-                  placeholder="Tapez le nom ou code du pays..."
+                  placeholder={t.searchPlaceholder}
                   value={searchTerm}
                   onChange={handleSearchChange}
                   onClick={handleSearchClick}
@@ -224,8 +224,8 @@ function EnhancedCountrySelector({ value, onChange, label, variant = "default", 
               </div>
               <p className="text-xs text-gray-500 mt-2 flex items-center gap-1">
                 <Globe className="w-3 h-3" />
-                {allCountries.length} pays africains disponibles
-                {searchTerm && ` • ${Object.values(filteredRegions).flat().length} résultats`}
+                {allCountries.length} {language === 'en' ? 'African countries available' : 'pays africains disponibles'}
+                {searchTerm && ` • ${Object.values(filteredRegions).flat().length} ${language === 'en' ? 'results' : 'résultats'}`}
               </p>
             </div>
 
