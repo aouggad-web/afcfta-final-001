@@ -415,129 +415,33 @@ export default function DashboardTab({ language = 'fr' }) {
   );
 }
 
-// Widget Content Components
+// Widget Content Components - Using DYNAMIC widgets with real-time API data
 function WidgetContent({ widgetId, language, t }) {
   switch (widgetId) {
-    case 'trade_stats':
-      return <TradeStatsWidget language={language} t={t} />;
-    case 'port_traffic':
-      return <PortTrafficWidget language={language} t={t} />;
-    case 'production':
-      return <ProductionWidget language={language} t={t} />;
-    case 'country_focus':
-      return <CountryFocusWidget language={language} t={t} />;
+    case 'live_trade':
+      return <LiveTradeWidget language={language} />;
+    case 'live_ports':
+      return <LivePortsWidget language={language} />;
+    case 'lsci_chart':
+      return <LSCIChartWidget language={language} />;
+    case 'country_profile':
+      return <CountryProfileWidget language={language} countryCode="DZ" />;
+    case 'afcfta_progress':
+      return <AfCFTAProgressWidget language={language} />;
+    case 'trade_balance':
+      return <TradeBalanceWidget language={language} />;
+    case 'regional_trade':
+      return <RegionalTradeWidget language={language} />;
+    case 'alerts':
+      return <AlertsWidget language={language} />;
     case 'calculator_quick':
       return <CalculatorQuickWidget language={language} t={t} />;
-    case 'recent_rules':
-      return <RecentRulesWidget language={language} t={t} />;
     default:
-      return <div className="text-gray-500">Widget unavailable</div>;
+      return <div className="text-gray-500">{language === 'fr' ? 'Widget non disponible' : 'Widget unavailable'}</div>;
   }
 }
 
-function TradeStatsWidget({ language, t }) {
-  return (
-    <div className="space-y-3">
-      <div className="grid grid-cols-2 gap-3">
-        <div className="bg-green-50 p-3 rounded-lg">
-          <p className="text-xs text-green-600 font-medium">
-            {language === 'en' ? 'Intra-African Trade' : 'Commerce Intra-Africain'}
-          </p>
-          <p className="text-2xl font-bold text-green-700">$218.7B</p>
-          <Badge className="mt-1 bg-green-100 text-green-700 text-xs">+13.7% YoY</Badge>
-        </div>
-        <div className="bg-blue-50 p-3 rounded-lg">
-          <p className="text-xs text-blue-600 font-medium">
-            {language === 'en' ? 'Total Exports' : 'Exports Totaux'}
-          </p>
-          <p className="text-2xl font-bold text-blue-700">$553.7B</p>
-          <Badge className="mt-1 bg-blue-100 text-blue-700 text-xs">2024</Badge>
-        </div>
-      </div>
-      <div className="bg-amber-50 p-3 rounded-lg">
-        <p className="text-xs text-amber-600 font-medium">
-          {language === 'en' ? 'AfCFTA Target 2030' : 'Objectif ZLECAf 2030'}
-        </p>
-        <p className="text-xl font-bold text-amber-700">$385B</p>
-        <div className="w-full bg-amber-200 rounded-full h-2 mt-2">
-          <div className="bg-amber-600 h-2 rounded-full transition-all" style={{ width: '57%' }}></div>
-        </div>
-        <p className="text-xs text-amber-600 mt-1">57% {language === 'en' ? 'achieved' : 'atteint'}</p>
-      </div>
-    </div>
-  );
-}
-
-function PortTrafficWidget({ language }) {
-  const ports = [
-    { port: 'Tanger Med', teu: '7.8M', pct: 100 },
-    { port: 'Port Said', teu: '4.2M', pct: 54 },
-    { port: 'Durban', teu: '2.9M', pct: 37 },
-    { port: 'Alger', teu: '1.4M', pct: 18 }
-  ];
-
-  return (
-    <div className="space-y-3">
-      <div className="flex justify-between items-center">
-        <span className="text-sm text-gray-600">
-          {language === 'en' ? 'African Throughput' : 'Trafic Africain'}
-        </span>
-        <span className="font-bold text-blue-700">28.5M TEU</span>
-      </div>
-      <div className="space-y-2">
-        {ports.map(p => (
-          <div key={p.port}>
-            <div className="flex justify-between text-xs">
-              <span>{p.port}</span>
-              <span className="font-medium">{p.teu}</span>
-            </div>
-            <div className="w-full bg-blue-100 rounded-full h-1.5">
-              <div 
-                className="bg-blue-500 h-1.5 rounded-full transition-all" 
-                style={{ width: `${p.pct}%` }}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function ProductionWidget({ language }) {
-  const sectors = [
-    { key: 'agri', label: language === 'en' ? 'Agriculture' : 'Agriculture', value: '23%', color: 'purple' },
-    { key: 'ind', label: language === 'en' ? 'Industry' : 'Industrie', value: '28%', color: 'indigo' },
-    { key: 'serv', label: language === 'en' ? 'Services' : 'Services', value: '49%', color: 'violet' },
-    { key: 'min', label: language === 'en' ? 'Mining' : 'Mines', value: '12%', color: 'fuchsia' }
-  ];
-
-  return (
-    <div className="grid grid-cols-2 gap-2 text-center">
-      {sectors.map(s => (
-        <div key={s.key} className={`bg-${s.color}-50 p-2 rounded`}>
-          <p className={`text-xs text-${s.color}-600`}>{s.label}</p>
-          <p className={`font-bold text-${s.color}-700`}>{s.value}</p>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function CountryFocusWidget({ language }) {
-  return (
-    <div className="text-center space-y-2">
-      <div className="text-4xl">🇩🇿</div>
-      <p className="font-bold">{language === 'en' ? 'Algeria' : 'Algérie'}</p>
-      <div className="text-xs text-gray-500 space-y-1">
-        <p>PIB: $266.5B</p>
-        <p>Pop: 47M</p>
-        <p>LSCI: 35.6 (#4 {language === 'en' ? 'Africa' : 'Afrique'})</p>
-      </div>
-    </div>
-  );
-}
-
+// Calculator Quick Widget (static, no API needed)
 function CalculatorQuickWidget({ language }) {
   return (
     <div className="space-y-2">
@@ -549,31 +453,13 @@ function CalculatorQuickWidget({ language }) {
           type="text" 
           placeholder="HS Code" 
           className="flex-1 text-xs px-2 py-1.5 border rounded focus:ring-2 focus:ring-amber-400 outline-none"
+          data-testid="hs-code-input"
         />
-        <Button size="sm" className="text-xs px-3 bg-amber-500 hover:bg-amber-600">
+        <Button size="sm" className="text-xs px-3 bg-amber-500 hover:bg-amber-600" data-testid="calculator-go-btn">
           {language === 'en' ? 'Go' : 'OK'}
         </Button>
       </div>
       <p className="text-xs text-gray-400">Ex: 0901 ({language === 'en' ? 'Coffee' : 'Café'})</p>
-    </div>
-  );
-}
-
-function RecentRulesWidget({ language }) {
-  const rules = [
-    { code: '0901', name: language === 'en' ? 'Coffee' : 'Café', rule: '40%' },
-    { code: '8703', name: language === 'en' ? 'Vehicles' : 'Véhicules', rule: '45%' },
-    { code: '6204', name: language === 'en' ? 'Clothing' : 'Vêtements', rule: '35%' }
-  ];
-
-  return (
-    <div className="space-y-2 text-xs">
-      {rules.map(r => (
-        <div key={r.code} className="flex justify-between items-center p-2 bg-gray-50 rounded hover:bg-gray-100 transition-colors">
-          <span>{r.code} - {r.name}</span>
-          <Badge variant="outline" className="text-xs">{r.rule}</Badge>
-        </div>
-      ))}
     </div>
   );
 }
