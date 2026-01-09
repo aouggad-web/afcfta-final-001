@@ -168,22 +168,6 @@ UNCTAD_PORT_STATISTICS = {
         "investment_2023_mln_usd": 850
     }
 }
-            "throughput_teu": 980000,
-            "growth_rate": 7.2,
-            "rank_africa": 7,
-            "rank_global": 112
-        },
-        {
-            "port": "Tema",
-            "country": "Ghana",
-            "country_fr": "Ghana",
-            "throughput_teu": 1050000,
-            "growth_rate": 9.8,
-            "rank_africa": 8,
-            "rank_global": 108
-        }
-    ]
-}
 
 # =============================================================================
 # UNCTAD TRADE FLOW STATISTICS
