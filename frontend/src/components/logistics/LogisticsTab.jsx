@@ -148,6 +148,7 @@ export default function LogisticsTab({ language = 'fr' }) {
           </p>
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 }
