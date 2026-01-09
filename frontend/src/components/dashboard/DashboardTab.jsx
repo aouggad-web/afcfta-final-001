@@ -38,53 +38,84 @@ import {
   AlertsWidget
 } from './DynamicWidgets';
 
-// Widget definitions
+// Widget definitions - Now using DYNAMIC widgets with real-time API data
 const WIDGET_TYPES = {
-  trade_stats: {
-    id: 'trade_stats',
-    titleKey: 'dashboard.widgets.tradeStats',
+  live_trade: {
+    id: 'live_trade',
+    titleKey: 'dashboard.widgets.liveTradeStats',
     icon: TrendingUp,
     color: 'from-green-500 to-emerald-600',
-    defaultSize: { w: 2, h: 1 }
+    defaultSize: { w: 2, h: 1 },
+    isDynamic: true
   },
-  port_traffic: {
-    id: 'port_traffic',
-    titleKey: 'dashboard.widgets.portTraffic',
+  live_ports: {
+    id: 'live_ports',
+    titleKey: 'dashboard.widgets.livePorts',
     icon: Ship,
     color: 'from-blue-500 to-cyan-600',
-    defaultSize: { w: 1, h: 1 }
+    defaultSize: { w: 1, h: 1 },
+    isDynamic: true
   },
-  production: {
-    id: 'production',
-    titleKey: 'dashboard.widgets.production',
-    icon: Factory,
-    color: 'from-purple-500 to-violet-600',
-    defaultSize: { w: 1, h: 1 }
+  lsci_chart: {
+    id: 'lsci_chart',
+    titleKey: 'dashboard.widgets.lsciChart',
+    icon: BarChart3,
+    color: 'from-indigo-500 to-purple-600',
+    defaultSize: { w: 1, h: 1 },
+    isDynamic: true
   },
-  country_focus: {
-    id: 'country_focus',
-    titleKey: 'dashboard.widgets.countryFocus',
+  country_profile: {
+    id: 'country_profile',
+    titleKey: 'dashboard.widgets.countryProfile',
     icon: MapPin,
     color: 'from-orange-500 to-red-600',
-    defaultSize: { w: 1, h: 1 }
+    defaultSize: { w: 1, h: 1 },
+    isDynamic: true
+  },
+  afcfta_progress: {
+    id: 'afcfta_progress',
+    titleKey: 'dashboard.widgets.afcftaProgress',
+    icon: Target,
+    color: 'from-emerald-500 to-teal-600',
+    defaultSize: { w: 1, h: 1 },
+    isDynamic: true
+  },
+  trade_balance: {
+    id: 'trade_balance',
+    titleKey: 'dashboard.widgets.tradeBalance',
+    icon: BarChart3,
+    color: 'from-cyan-500 to-blue-600',
+    defaultSize: { w: 1, h: 1 },
+    isDynamic: true
+  },
+  regional_trade: {
+    id: 'regional_trade',
+    titleKey: 'dashboard.widgets.regionalTrade',
+    icon: PieChart,
+    color: 'from-violet-500 to-purple-600',
+    defaultSize: { w: 1, h: 1 },
+    isDynamic: true
+  },
+  alerts: {
+    id: 'alerts',
+    titleKey: 'dashboard.widgets.alerts',
+    icon: Bell,
+    color: 'from-amber-500 to-orange-600',
+    defaultSize: { w: 1, h: 1 },
+    isDynamic: true
   },
   calculator_quick: {
     id: 'calculator_quick',
     titleKey: 'dashboard.widgets.calculator',
     icon: Calculator,
     color: 'from-amber-500 to-yellow-600',
-    defaultSize: { w: 1, h: 1 }
-  },
-  recent_rules: {
-    id: 'recent_rules',
-    titleKey: 'dashboard.widgets.rules',
-    icon: FileText,
-    color: 'from-slate-500 to-gray-600',
-    defaultSize: { w: 1, h: 1 }
+    defaultSize: { w: 1, h: 1 },
+    isDynamic: false
   }
 };
 
-const DEFAULT_WIDGETS = ['trade_stats', 'port_traffic', 'production', 'country_focus', 'calculator_quick'];
+// Default widgets now use DYNAMIC real-time data
+const DEFAULT_WIDGETS = ['live_trade', 'live_ports', 'afcfta_progress', 'country_profile', 'lsci_chart'];
 
 // Sortable Widget Component
 function SortableWidget({ widget, isEditing, onRemove, language }) {
