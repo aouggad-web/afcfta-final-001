@@ -1,59 +1,59 @@
 <analysis>**original_problem_statement:**
-The user initially requested the integration of FAOSTAT agricultural data and UNIDO industrial statistics into the Productions tab and an improved UI for country selection. After this was implemented, the user reported several issues and requested new features iteratively:
-1.  A bug in the new search bar's functionality.
-2.  A new feature to add four tables in the Statistiques tab displaying the top 20 traded products.
-3.  A data bug where Algeria's GDP ranking was displayed incorrectly as 4th instead of 3rd.
-4.  A request to ensure the entire application is fully functional in English, as many parts remained in French.
-5.  A request to translate the remaining tabs: Production, Logistique, and Outils.
-6.  A request to add a data source indicator, an interface to upload official TRS data, and integrate new UNCTAD data.
-7.  A bug report that the ports and airports detail pages within the Logistique tab were not translated.
-8.  A final request to systematically verify all application components to ensure complete translation.
+The user's primary goal is to achieve full internationalization (i18n) of the application, ensuring every piece of text and data can be switched between French and English. This involves a systematic audit and correction of all components, fixing issues where translations are incomplete or not being displayed correctly, and ensuring that data fetched from the backend (like country names and regulatory rules) is also translated. The user has repeatedly emphasized the need for a complete verification to finalize this task before moving on to new features.
 
 **User's preferred language**: French. The next agent MUST respond in French.
 
 **what currently exists?**
-The application has undergone significant development. The Production tab is complete with FAOSTAT and UNIDO data and a functional search bar. The Statistiques tab now includes four fully functional and bilingual tables for the Top 20 Trade Products. The GDP data for Algeria has been corrected.
+The application has a comprehensive i18n system where a  prop is passed through React components. Most major tabs and components have been translated. The backend has been enhanced to serve translated data for country names and rules of origin via a  query parameter.
 
-A comprehensive internationalization (i18n) system has been implemented. The main tabs (, , , ) and key sub-components (, , and their detail modals) have been refactored to support both French and English. The backend APIs for trade data have also been internationalized.
+During this session, numerous components were translated, including those for the calculator, rules of origin, country profiles, and several logistics sub-tabs (, , maps, cards, and modals). A critical bug was fixed where an incorrect, untranslated  file was being used; this file has now been fully translated.
 
-New features have been partially implemented: a data source indicator is now visible on the statistics page, a UI button for uploading TRS data has been added to the , and backend endpoints and data files for new UNCTAD statistics have been created.
+Most recently, the Production tab, which used hardcoded French country names, was refactored to fetch translated names from a new central utility at . However, this refactoring introduced a new bug.
 
 **Last working item**:
--   **Last item agent was working**: The agent was about to begin a systematic audit of all frontend components to identify and translate any remaining hardcoded French text, following the user's request to verify all components of the app. The agent had just listed all component files to begin the review.
+-   **Last item agent was working**: The agent was debugging a new bug where the application's language resets to French after navigating to the Agriculture sub-tab within the Production section. The agent confirmed the bug's existence via a screenshot and was about to investigate the root cause, which is likely related to state management during tab switching.
 -   **Status**: IN PROGRESS
--   **Agent Testing Done**: N
--   **Which testing method agent to use?**: frontend testing agent. Given the task is to verify UI text across the entire application, the frontend testing agent is the most efficient method to systematically check all components for translation completeness without requiring dozens of individual screenshots.
--   **User Testing Done**: N
+-   **Agent Testing Done**: Y (via screenshot, which confirmed the bug)
+-   **Which testing method agent to use?**: frontend testing agent. A full end-to-end test is required to validate that language state persists correctly across all user navigation paths, especially within nested tabs.
+-   **User Testing Done**: Y (The user discovered and reported the initial language issues).
 
 **All Pending/In progress Issue list**:
--   None. All previously reported bugs have been resolved.
+-   **Issue 1: Language state resets on Production tab navigation (P0)**
+    -   **Description**: When the user is in English mode and clicks on the Agriculture sub-tab within the Production tab, the UI partially or fully reverts to French.
+    -   **Status**: IN PROGRESS
+    -   **Is recurring issue?**: N (This is a new regression introduced by the last refactoring).
+    -   **Should Test frontend/backend/both after fix?**: Frontend.
+    -   **Attempted fixes**: The agent refactored the entire  tab to use a centralized translation utility. While this fixed the hardcoded text, it created a state persistence issue.
+    -   **Next debug checklist**:
+        1.  Examine . Investigate the  handlers for the sub-tabs and how they interact with the component's state and props.
+        2.  Trace the  prop from its origin in  down to  and its children (, etc.) to see where the state is being lost or reset.
+        3.  Check if changing the  state in  is causing an unintended re-render that defaults the language state somewhere up the component tree.
+    -   **Why fix this issue and what will be achieved with the fix?**: This is the final known blocker to completing the user's primary request for full internationalization. Fixing it will ensure a consistent user experience and allow development to proceed to other features.
 
 **In progress Task List**:
--   **Task 1: Complete Full Application Internationalization (P0)**
-    -   **Where to resume**: The agent has listed all component files. The next step is to systematically review the remaining components that were not explicitly translated in the last session (e.g., , , and potentially other sub-components in  and ). For each component with hardcoded French text, implement the established i18n pattern by accepting the  prop and using a translation dictionary.
-    -   **What will be achieved with this?**: The entire application will be fully and consistently bilingual (French/English), fulfilling the user's primary request.
+-   **Task 1: Finalize Full Application Internationalization (P0)**
+    -   **Where to resume**: Fix the language state reset bug described in Issue 1. After the fix, perform a comprehensive test of all application views and interactive elements (modals, dropdowns) in both French and English to ensure no untranslated text remains.
+    -   **What will be achieved with this?**: The entire application will be fully and consistently bilingual, fulfilling the user's main objective for this and previous sessions.
     -   **Status**: IN PROGRESS
     -   **Should Test frontend/backend/both after fix?**: Frontend.
-    -   **Blocked on something**: No.
+    -   **Blocked on something**: Blocked by Issue 1.
 
 **Upcoming and Future Tasks**
 -   **Upcoming Tasks**:
-    -   **Integrate UNCTAD data on the frontend (P1)**: The backend API endpoints (, ) are ready. This data needs to be fetched and visualized in a new or existing frontend component, likely within the .
-    -   **Implement TRS data upload functionality (P1)**: The Import official TRS data button in  is currently a placeholder. This requires creating a backend endpoint to handle file uploads and implementing the frontend logic to manage the file selection and upload process.
+    -   **Integrate UNCTAD data on the frontend (P1)**: The backend API endpoints (, ) are ready. This data needs to be fetched and visualized in the .
+    -   **Implement TRS data upload functionality (P1)**: The Import official TRS data button in  is a placeholder. This requires creating a backend endpoint for file uploads and implementing the frontend logic.
 -   **Future Tasks**:
-    -   **Integrate other official data sources (P2)**: Expand the ETL pipeline to incorporate more data from sources like UNCTAD or the World Trade Organization (WTO) to further enrich the application.
-    -   **Translate remaining Logistics sub-components (P2)**: The agent noted that while the main logistics tabs are done, the  and  sub-tabs may still contain untranslated text. These should be verified and translated as part of the final i18n sweep.
+    -   **Integrate other official data sources (P2)**: Expand the ETL pipeline to incorporate more data from other sources.
+    -   **Refactor i18n implementation (P2)**: Consider migrating from component-local translation dictionaries to a more robust, centralized i18n library or a single context provider to improve maintainability.
 
 **Completed work in this session**
--   **Top 20 Trade Products Feature (DONE)**: Implemented backend data, internationalized API endpoints, and created the  frontend component. Verified functionality and translation for all four tables.
--   **Algeria GDP Ranking Bug Fix (DONE)**: Corrected the data in  to reflect Algeria's correct GDP ranking, and verified the fix in the UI.
--   **Application Internationalization (Majority DONE)**: Implemented a language switcher and refactored , , , , , , and their detail modals to be fully bilingual. The backend trade data API was also internationalized.
--   **Data Source Indicator (DONE)**: Added a footer to the statistics page listing the data sources (IMF, World Bank, UNCTAD, etc.).
--   **TRS Upload UI Stub (DONE)**: Added the Import official TRS data button to the  component.
--   **UNCTAD Data Backend (DONE)**: Created the data file  and added corresponding API endpoints in .
+-   **Full i18n of Core Components (DONE)**: Translated , , , , , , and their associated sub-components.
+-   ** Bug Fix (DONE)**: Identified that an untranslated  file was being used instead of the translated  file. The correct  file has now been fully translated, fixing untranslated text in the port detail view.
+-   **Backend Internationalization (DONE)**: Enhanced  to serve translated country names and rules of origin by adding a  parameter to the  and  endpoints.
+-   ** Tab Refactor (DONE)**: Removed hardcoded French country names from all  sub-components and refactored them to use a new centralized translation utility at .
 
 **Earlier issues found/mentioned but not fixed**
--   The agent noted during the translation process that some nested sub-components within the  tab (e.g., for land corridors and free zones) might still contain hardcoded French text. This is covered by the in-progress task to complete the full application internationalization.
+-   None. All identified issues were addressed, though the last fix introduced a new regression which is now the top priority.
 
 **Known issue recurrence from previous fork**
 -   None.
@@ -62,72 +62,57 @@ New features have been partially implemented: a data source indicator is now vis
 
 
 **Key Technical Concepts**
--   **Frontend Internationalization (i18n)**: A robust translation system was implemented by passing a  prop down from the root  component. UI text is stored in local dictionary objects within each component and rendered conditionally based on the  prop's value ( or ).
--   **Backend Internationalization**: The backend API was enhanced to accept a language query parameter (e.g., ) to return translated data for dynamic content like product and country names, effectively separating data from presentation logic.
--   **Data-Driven UI**: The application's UI, including charts, lists, and tables, is dynamically rendered from data fetched from the backend API.
--   **Static Data Correction**: A data integrity issue was resolved by directly editing a static  file in the repository after verifying the correct data from official external sources.
+-   **Backend-driven i18n**: The backend now serves translated data based on a  query parameter, separating translation concerns from the frontend for dynamic data.
+-   **Centralized Frontend Translation Utility**: A new file, , was created to manage shared translated data (like country names), improving on the previous pattern of component-local dictionaries.
+-   **React State Management**: The current bug highlights a challenge in maintaining state () consistently across complex component trees and navigation events.
+
+**key DB schema**
+-   No changes made to the database schema.
 
 **All files of reference**
--   **/app/frontend/src/App.js**: Core of the i18n implementation.
--   **/app/frontend/src/components/**: Most components within this directory have been modified for i18n, particularly within , , , and . Key files include:
-    -   
-    -   
-    -   
-    -   
-    -   
-    -   , , , 
--   **/app/backend/server.py**: Contains i18n logic for API endpoints and new UNCTAD endpoints.
--   **/app/backend/etl/translations.py**: New file for storing backend data translations.
--   **/app/backend/data/ZLECAf_ENRICHI_2024_COMMERCE.csv**: The CSV file where the GDP data was corrected.
--   **/app/memory/PRD.md**: Project requirements document, created and updated throughout the session.
-
-**Areas that need refactoring**:
--   None identified. The agent followed a consistent pattern for internationalization which is scalable.
+-   **/app/frontend/src/components/production/ProductionTab.jsx**: The likely source of the current language-reset bug.
+-   **/app/frontend/src/App.js**: Manages the top-level language state.
+-   **/app/backend/server.py**: Contains the new backend logic for serving translated data.
+-   **/app/frontend/src/utils/translations.js**: The new centralized translation utility.
+-   **/app/frontend/src/components/logistics/PortDetailsModal.js**: The large modal file that was fully translated to fix a major UI bug.
 
 **key api endpoints**
--   
--   
--   
--   
--   
--    (New, not yet used in frontend)
--    (New, not yet used in frontend)
+-    (Modified)
+-    (Modified)
 
 **Critical Info for New Agent**
--   The primary remaining task is to complete the full internationalization of the application. The established pattern is to pass the  prop from parent to child components and use a  dictionary for translations.
--   The user is highly engaged and provides iterative feedback. Expect to receive further requests or bug reports after completing the current task.
--   Backend work for UNCTAD data and a UI stub for TRS uploads are complete, but the frontend implementation and backend file handling logic are still pending. These are the next logical features to tackle after the i18n work is finished.
+-   The user is highly focused on completing the internationalization and has expressed a desire to finish with this language problem to move on to major modifications. Resolving the current bug swiftly is paramount.
+-   The bug is a language state reset when clicking a sub-tab in the Production section. The investigation should start in .
+-   After fixing the bug, you MUST perform a full, systematic verification of the entire app in both languages. The user has repeatedly asked for this, and previous fixes have revealed deeper issues. Click on every button, open every modal, and check every dropdown.
+-   The pattern of finding untranslated text deep within components has been common. Do not assume a component is fully translated just because its main view looks correct.
 
 **documents and test reports created in this job**
 -   
--   
--   
 
 **Last 10 User Messages and any pending HUMAN messages**
-10. **User**: apres (approving the agent's initial plan)
-9.  **User**: Asks to verify that the English version of the app is fully functional, including titles and data.
-8.  **User**: ok continue (giving the agent the go-ahead while it was in the middle of a large refactoring task for translations).
-7.  **User**: Requests checking other tabs (Production, Logistics, Tools) for missing translations, adding UNCTAD data, adding a TRS upload interface, and displaying a data source indicator. (IN PROGRESS)
-6.  **User**: Points out that the ports and airports details are not translated. (COMPLETED/FIXED)
-5.  **User**: Asks the agent to verify all the components of the app. (IN PROGRESS - THIS IS THE CURRENT TASK)
-The user is actively testing the application and providing specific, actionable feedback to guide development. The main pending action is the final verification of all components for translation completeness.
+-   The last few messages show a clear pattern: the user tests the app, finds a remaining translation issue, and reports it.
+    -   details for port/freight/corridors are not translated -> (FIXED)
+    -   rules of origin still in english... and country names... in french -> (FIXED)
+    -   production tab... and country profiles... still show country names in french -> (FIXED, but introduced a new bug)
+    -   **we must finish with this language problem to move on to major modifications** -> This is the user's current sentiment and top priority.
+    - The agent is currently working on the bug that arose from fixing the last user request.
 
 **Project Health Check:**
--   **Working**: The application is stable. All major features are functional in both French and English.
--   **Broken**: None.
--   **Mocked/Estimated**: Yes, some data in the  is marked as Estimated by design, pending the implementation of the official TRS data upload feature.
+-   **Working**: Most of the application is functional and translated.
+-   **Broken**: The language selection feature is currently broken when navigating within the Production tab, which is a critical regression impacting the primary goal.
+-   **Mocked/Estimated**: Yes, some logistics data is still marked as Estimated.
 
 **3rd Party Integrations**
--   None. All data is currently sourced from static data files within the project repository.
+-   None.
 
 **Testing status**
--   **Testing agent used after significant changes**: NO, the agent primarily used iterative screenshots to verify changes. A full test run is recommended after the final i18n sweep.
+-   **Testing agent used after significant changes**: No, the agent used screenshots. A full run by the frontend testing agent is highly recommended after the current bug is fixed to satisfy the user's request for a complete verification.
 -   **Troubleshoot agent used after agent stuck in loop**: NO.
--   **Test files created**: None in this session.
--   **Known regressions**: None.
+-   **Test files created**: None.
+-   **Known regressions**: Yes, the language state resets on the Production tab.
 
 **Credentials to test flow:**
 -   N/A
 
 **What agent forgot to execute**
--   The agent correctly identified but has not yet translated the remaining sub-components in the Logistics tab (Land Corridors, Free Zones). This is part of the current task to verify all components.</analysis>
+-   The agent did not fully test the side effects of refactoring the  tab. While the components were correctly modified in isolation, the interaction with the tab-switching state mechanism was overlooked, leading to the current regression.</analysis>
