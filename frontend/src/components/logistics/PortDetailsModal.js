@@ -722,6 +722,7 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
             </div>
           </TabsContent>
         </Tabs>
+        </div>
       </DialogContent>
     </Dialog>
   );
