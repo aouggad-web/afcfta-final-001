@@ -55,7 +55,7 @@ export default function RulesTab({ language = 'fr' }) {
 
   const fetchRulesOfOrigin = async (code) => {
     try {
-      const response = await axios.get(`${API}/rules-of-origin/${code}`);
+      const response = await axios.get(`${API}/rules-of-origin/${code}?lang=${language}`);
       setRulesOfOrigin(response.data);
     } catch (error) {
       console.error(t.errorLoading, error);
