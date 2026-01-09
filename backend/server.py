@@ -735,33 +735,56 @@ async def get_country_profile(country_code: str) -> CountryEconomicProfile:
     return profile
 
 @api_router.get("/rules-of-origin/{hs_code}")
-async def get_rules_of_origin(hs_code: str):
+async def get_rules_of_origin(hs_code: str, lang: str = "fr"):
     """Récupérer les règles d'origine ZLECAf pour un code SH"""
     
     # Obtenir le code à 2 chiffres pour les règles générales
     sector_code = hs_code[:2]
     
     if sector_code not in ZLECAF_RULES_OF_ORIGIN:
-        raise HTTPException(status_code=404, detail="Règles d'origine non trouvées pour ce code SH")
+        error_msg = "Rules of origin not found for this HS code" if lang == "en" else "Règles d'origine non trouvées pour ce code SH"
+        raise HTTPException(status_code=404, detail=error_msg)
     
     rules = ZLECAF_RULES_OF_ORIGIN[sector_code]
+    
+    # Translate rules
+    translated_rules = {
+        "rule": translate_rule(rules["rule"], lang),
+        "requirement": translate_rule(rules["requirement"], lang),
+        "regional_content": rules["regional_content"]
+    }
+    
+    # Documentation labels
+    if lang == "en":
+        docs = [
+            "AfCFTA Certificate of Origin",
+            "Commercial Invoice",
+            "Packing List",
+            "Supplier Declaration"
+        ]
+        validity = "12 months"
+        authority = "Competent authority of exporting country"
+    else:
+        docs = [
+            "Certificat d'origine ZLECAf",
+            "Facture commerciale",
+            "Liste de colisage",
+            "Déclaration du fournisseur"
+        ]
+        validity = "12 mois"
+        authority = "Autorité compétente du pays exportateur"
     
     return {
         "hs_code": hs_code,
         "sector_code": sector_code,
-        "rules": rules,
+        "rules": translated_rules,
         "explanation": {
-            "rule_type": rules["rule"],
-            "requirement": rules["requirement"],
+            "rule_type": translated_rules["rule"],
+            "requirement": translated_rules["requirement"],
             "regional_content_minimum": f"{rules['regional_content']}%",
-            "documentation_required": [
-                "Certificat d'origine ZLECAf",
-                "Facture commerciale",
-                "Liste de colisage",
-                "Déclaration du fournisseur"
-            ],
-            "validity_period": "12 mois",
-            "issuing_authority": "Autorité compétente du pays exportateur"
+            "documentation_required": docs,
+            "validity_period": validity,
+            "issuing_authority": authority
         }
     }
 
