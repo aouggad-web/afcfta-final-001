@@ -62,7 +62,7 @@ function EnhancedCountrySelector({ value, onChange, label, variant = "default", 
       countries.push(...region);
     });
     return countries;
-  }, []);
+  }, [AFRICAN_COUNTRIES_BY_REGION]);
 
   // Trouver le pays sélectionné
   const selectedCountry = useMemo(() => {
