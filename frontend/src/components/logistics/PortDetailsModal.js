@@ -623,14 +623,14 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                           <>
                             <div className="flex justify-between items-start mb-2">
                               <span className="font-bold text-blue-800">{service.service_name || service.carrier}</span>
-                              <Badge variant="secondary" className="text-xs">{service.frequency || 'Régulier'}</Badge>
+                              <Badge variant="secondary" className="text-xs">{service.frequency || (language === 'en' ? 'Regular' : 'Régulier')}</Badge>
                             </div>
                             <div className="text-sm text-gray-600 mb-1">
-                              <span className="font-semibold">Armateur:</span> {service.carrier}
+                              <span className="font-semibold">{language === 'en' ? 'Carrier:' : 'Armateur:'}</span> {service.carrier}
                             </div>
                             {service.rotation && (
                               <div className="text-xs bg-gray-50 p-2 rounded mt-2 border-l-2 border-blue-400">
-                                <span className="font-semibold text-gray-700 block mb-1">Rotation:</span>
+                                <span className="font-semibold text-gray-700 block mb-1">{language === 'en' ? 'Rotation:' : 'Rotation:'}</span>
                                 <span className="text-gray-600 leading-relaxed">{service.rotation}</span>
                               </div>
                             )}
@@ -644,7 +644,7 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                       </li>
                     ))}
                     {(!port.services && !port.connectivity?.liner_services) && (
-                      <p className="text-gray-500 italic text-center py-4">Aucune donnée de ligne régulière disponible.</p>
+                      <p className="text-gray-500 italic text-center py-4">{language === 'en' ? 'No regular shipping line data available.' : 'Aucune donnée de ligne régulière disponible.'}</p>
                     )}
                   </ul>
                 </CardContent>
@@ -654,10 +654,10 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
               <Card className="shadow-md h-full">
                 <CardHeader className="bg-gray-50 border-b">
                   <CardTitle className="text-lg flex items-center gap-2">
-                    🏢 Agents Maritimes
+                    🏢 {language === 'en' ? 'Maritime Agents' : 'Agents Maritimes'}
                   </CardTitle>
                   <CardDescription>
-                    Représentants et contacts locaux
+                    {language === 'en' ? 'Local representatives and contacts' : 'Représentants et contacts locaux'}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="pt-4 max-h-[500px] overflow-y-auto">
@@ -676,7 +676,7 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                                 <span>📍</span>
                                 <span>{agent.address}</span>
                               </div>
-                            )}
+                            )}}
                             
                             <div className="flex flex-wrap gap-3 mt-3">
                               {agent.website && agent.website !== 'Non disponible' && agent.website !== 'N/A' && (
