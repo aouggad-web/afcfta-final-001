@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card';
 import { Badge } from '../ui/badge';
@@ -6,8 +6,11 @@ import MaritimeLogisticsTab from './MaritimeLogisticsTab';
 import AirLogisticsTab from './AirLogisticsTab';
 import LandLogisticsTab from './LandLogisticsTab';
 import FreeZonesTab from './FreeZonesTab';
+import { PDFExportButton } from '../common/ExportTools';
 
 export default function LogisticsTab({ language = 'fr' }) {
+  const contentRef = useRef(null);
+  
   const texts = {
     fr: {
       title: "Plateforme Logistique Multimodale",
