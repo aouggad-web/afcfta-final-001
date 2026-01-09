@@ -18,6 +18,77 @@ function ProductionManufacturing({ language = 'fr' }) {
   const [mvaRanking, setMvaRanking] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  // Translations
+  const texts = {
+    fr: {
+      title: "Production Industrielle UNIDO",
+      subtitle: "Données UNIDO INDSTAT4 - Valeur Ajoutée Manufacturière (2023)",
+      totalMva: "MVA Total",
+      countries: "pays",
+      loading: "Chargement des données UNIDO...",
+      noData: "Données non disponibles",
+      noDataDesc: "Aucune donnée UNIDO disponible pour ce pays.",
+      mvaLabel: "Valeur Ajoutée Manuf.",
+      inAfrica: "en Afrique",
+      mvaGdp: "MVA / PIB",
+      industrialShare: "Part industrielle du PIB",
+      mvaPerCapita: "MVA par habitant",
+      industrialization: "Industrialisation per capita",
+      growth2023: "Croissance 2023",
+      annualGrowth: "Taux de croissance annuel",
+      data: "Données",
+      industrialZones: "zones industrielles",
+      industrialJobs: "Emplois industriels",
+      manufExports: "Export. manufacturées",
+      keySectors: "Secteurs clés",
+      specialZones: "Zones éco. spéciales",
+      sectorDistribution: "Répartition Sectorielle (% MVA)",
+      sectorValue: "Valeur par Secteur (Millions USD)",
+      mainIndustrialSectors: "Principaux Secteurs Industriels",
+      keyProducts: "Produits Manufacturés Clés",
+      top10Africa: "Top 10 Africain - Valeur Ajoutée Manufacturière",
+      otherCountries: "Autres pays",
+      selectedCountry: "Pays sélectionné",
+      source: "Source:",
+      sourceNote: "Les données proviennent de la base UNIDO INDSTAT4 (Organisation des Nations Unies pour le Développement Industriel). La classification sectorielle suit la nomenclature ISIC Rev.4.",
+      value: "Valeur"
+    },
+    en: {
+      title: "UNIDO Industrial Production",
+      subtitle: "UNIDO INDSTAT4 Data - Manufacturing Value Added (2023)",
+      totalMva: "Total MVA",
+      countries: "countries",
+      loading: "Loading UNIDO data...",
+      noData: "Data not available",
+      noDataDesc: "No UNIDO data available for this country.",
+      mvaLabel: "Manufacturing Value Added",
+      inAfrica: "in Africa",
+      mvaGdp: "MVA / GDP",
+      industrialShare: "Industrial share of GDP",
+      mvaPerCapita: "MVA per capita",
+      industrialization: "Per capita industrialization",
+      growth2023: "2023 Growth",
+      annualGrowth: "Annual growth rate",
+      data: "Data",
+      industrialZones: "industrial zones",
+      industrialJobs: "Industrial jobs",
+      manufExports: "Manuf. exports",
+      keySectors: "Key sectors",
+      specialZones: "Special eco. zones",
+      sectorDistribution: "Sectoral Distribution (% MVA)",
+      sectorValue: "Value by Sector (Millions USD)",
+      mainIndustrialSectors: "Main Industrial Sectors",
+      keyProducts: "Key Manufactured Products",
+      top10Africa: "African Top 10 - Manufacturing Value Added",
+      otherCountries: "Other countries",
+      selectedCountry: "Selected country",
+      source: "Source:",
+      sourceNote: "Data comes from the UNIDO INDSTAT4 database (United Nations Industrial Development Organization). Sectoral classification follows the ISIC Rev.4 nomenclature.",
+      value: "Value"
+    }
+  };
+  const t = texts[language] || texts.fr;
+
   useEffect(() => {
     fetchUnidoStats();
     fetchMvaRanking();
@@ -111,18 +182,18 @@ function ProductionManufacturing({ language = 'fr' }) {
             <div>
               <CardTitle className="text-3xl font-bold flex items-center gap-3">
                 <Factory className="w-8 h-8" />
-                Production Industrielle UNIDO
+                {t.title}
               </CardTitle>
               <CardDescription className="text-blue-100 text-lg mt-2">
-                Données UNIDO INDSTAT4 - Valeur Ajoutée Manufacturière (2023)
+                {t.subtitle}
               </CardDescription>
             </div>
             {unidoStats && (
               <div className="text-right">
                 <Badge className="bg-white/20 text-white hover:bg-white/30">
-                  ${unidoStats.total_mva_bln_usd}B MVA Total
+                  ${unidoStats.total_mva_bln_usd}B {t.totalMva}
                 </Badge>
-                <p className="text-xs text-blue-200 mt-1">{unidoStats.total_countries} pays</p>
+                <p className="text-xs text-blue-200 mt-1">{unidoStats.total_countries} {t.countries}</p>
               </div>
             )}
           </div>
@@ -150,7 +221,7 @@ function ProductionManufacturing({ language = 'fr' }) {
           <CardContent className="flex items-center justify-center h-48">
             <div className="text-center">
               <Loader2 className="w-12 h-12 animate-spin text-blue-600 mx-auto" />
-              <p className="mt-4 text-gray-600">Chargement des données UNIDO...</p>
+              <p className="mt-4 text-gray-600">{t.loading}</p>
             </div>
           </CardContent>
         </Card>
@@ -162,8 +233,8 @@ function ProductionManufacturing({ language = 'fr' }) {
           <CardContent className="flex items-center gap-4 py-8">
             <AlertTriangle className="w-12 h-12 text-amber-500" />
             <div>
-              <h3 className="font-bold text-lg text-gray-800">Données non disponibles</h3>
-              <p className="text-gray-600">Aucune donnée UNIDO disponible pour ce pays.</p>
+              <h3 className="font-bold text-lg text-gray-800">{t.noData}</h3>
+              <p className="text-gray-600">{t.noDataDesc}</p>
             </div>
           </CardContent>
         </Card>
@@ -178,14 +249,14 @@ function ProductionManufacturing({ language = 'fr' }) {
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-blue-100 text-sm">Valeur Ajoutée Manuf.</p>
+                    <p className="text-blue-100 text-sm">{t.mvaLabel}</p>
                     <p className="text-3xl font-bold">${formatNumber(unidoData.mva_2023_mln_usd * 1000000)}</p>
                   </div>
                   <DollarSign className="w-10 h-10 text-blue-200" />
                 </div>
                 {getCountryRank() && (
                   <Badge className="mt-3 bg-white/20 text-white">
-                    #{getCountryRank()} en Afrique
+                    #{getCountryRank()} {t.inAfrica}
                   </Badge>
                 )}
               </CardContent>
@@ -195,12 +266,12 @@ function ProductionManufacturing({ language = 'fr' }) {
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-emerald-100 text-sm">MVA / PIB</p>
+                    <p className="text-emerald-100 text-sm">{t.mvaGdp}</p>
                     <p className="text-3xl font-bold">{unidoData.mva_gdp_percent}%</p>
                   </div>
                   <TrendingUp className="w-10 h-10 text-emerald-200" />
                 </div>
-                <p className="text-sm text-emerald-100 mt-2">Part industrielle du PIB</p>
+                <p className="text-sm text-emerald-100 mt-2">{t.industrialShare}</p>
               </CardContent>
             </Card>
 
@@ -208,12 +279,12 @@ function ProductionManufacturing({ language = 'fr' }) {
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-purple-100 text-sm">MVA par habitant</p>
+                    <p className="text-purple-100 text-sm">{t.mvaPerCapita}</p>
                     <p className="text-3xl font-bold">${unidoData.mva_per_capita_usd}</p>
                   </div>
                   <Users className="w-10 h-10 text-purple-200" />
                 </div>
-                <p className="text-sm text-purple-100 mt-2">Industrialisation per capita</p>
+                <p className="text-sm text-purple-100 mt-2">{t.industrialization}</p>
               </CardContent>
             </Card>
 
@@ -221,14 +292,14 @@ function ProductionManufacturing({ language = 'fr' }) {
               <CardContent className="pt-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-amber-100 text-sm">Croissance 2023</p>
+                    <p className="text-amber-100 text-sm">{t.growth2023}</p>
                     <p className="text-3xl font-bold">
                       {unidoData.growth_rate_2023 > 0 ? '+' : ''}{unidoData.growth_rate_2023}%
                     </p>
                   </div>
                   <TrendingUp className="w-10 h-10 text-amber-200" />
                 </div>
-                <p className="text-sm text-amber-100 mt-2">Taux de croissance annuel</p>
+                <p className="text-sm text-amber-100 mt-2">{t.annualGrowth}</p>
               </CardContent>
             </Card>
           </div>
@@ -242,10 +313,10 @@ function ProductionManufacturing({ language = 'fr' }) {
               </CardTitle>
               <CardDescription className="text-blue-700 flex items-center gap-2 flex-wrap">
                 <Badge variant="outline" className="border-blue-500 text-blue-700">{unidoData.region}</Badge>
-                <Badge variant="outline" className="border-blue-500 text-blue-700">Données {unidoData.data_year}</Badge>
+                <Badge variant="outline" className="border-blue-500 text-blue-700">{t.data} {unidoData.data_year}</Badge>
                 {unidoData.industrial_zones && (
                   <Badge variant="outline" className="border-blue-500 text-blue-700">
-                    <Building2 className="w-3 h-3 mr-1" /> {unidoData.industrial_zones} zones industrielles
+                    <Building2 className="w-3 h-3 mr-1" /> {unidoData.industrial_zones} {t.industrialZones}
                   </Badge>
                 )}
               </CardDescription>
@@ -255,25 +326,25 @@ function ProductionManufacturing({ language = 'fr' }) {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
                 {unidoData.industry_employment && (
                   <div className="bg-white p-4 rounded-xl shadow-sm border border-blue-100">
-                    <p className="text-xs text-gray-500 uppercase tracking-wide">Emplois industriels</p>
+                    <p className="text-xs text-gray-500 uppercase tracking-wide">{t.industrialJobs}</p>
                     <p className="text-2xl font-bold text-blue-700">{formatNumber(unidoData.industry_employment)}</p>
                   </div>
                 )}
                 {unidoData.exports_manuf_mln_usd && (
                   <div className="bg-white p-4 rounded-xl shadow-sm border border-blue-100">
-                    <p className="text-xs text-gray-500 uppercase tracking-wide">Export. manufacturées</p>
+                    <p className="text-xs text-gray-500 uppercase tracking-wide">{t.manufExports}</p>
                     <p className="text-2xl font-bold text-green-700">${formatNumber(unidoData.exports_manuf_mln_usd * 1000000)}</p>
                   </div>
                 )}
                 {unidoData.top_sectors && (
                   <div className="bg-white p-4 rounded-xl shadow-sm border border-blue-100">
-                    <p className="text-xs text-gray-500 uppercase tracking-wide">Secteurs clés</p>
+                    <p className="text-xs text-gray-500 uppercase tracking-wide">{t.keySectors}</p>
                     <p className="text-2xl font-bold text-blue-700">{unidoData.top_sectors.length}</p>
                   </div>
                 )}
                 {unidoData.special_economic_zones && (
                   <div className="bg-white p-4 rounded-xl shadow-sm border border-blue-100">
-                    <p className="text-xs text-gray-500 uppercase tracking-wide">Zones éco. spéciales</p>
+                    <p className="text-xs text-gray-500 uppercase tracking-wide">{t.specialZones}</p>
                     <p className="text-2xl font-bold text-purple-700">{unidoData.special_economic_zones}</p>
                   </div>
                 )}
@@ -288,7 +359,7 @@ function ProductionManufacturing({ language = 'fr' }) {
               <Card className="shadow-lg">
                 <CardHeader>
                   <CardTitle className="text-lg text-gray-700 flex items-center gap-2">
-                    <Package className="w-5 h-5" /> Répartition Sectorielle (% MVA)
+                    <Package className="w-5 h-5" /> {t.sectorDistribution}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -308,7 +379,7 @@ function ProductionManufacturing({ language = 'fr' }) {
                           <Cell key={`cell-${index}`} fill={entry.fill} />
                         ))}
                       </Pie>
-                      <Tooltip formatter={(value) => value + '% de la MVA'} />
+                      <Tooltip formatter={(value) => value + '% ' + (language === 'en' ? 'of MVA' : 'de la MVA')} />
                     </PieChart>
                   </ResponsiveContainer>
                 </CardContent>
@@ -318,7 +389,7 @@ function ProductionManufacturing({ language = 'fr' }) {
               <Card className="shadow-lg">
                 <CardHeader>
                   <CardTitle className="text-lg text-gray-700 flex items-center gap-2">
-                    <Factory className="w-5 h-5" /> Valeur par Secteur (Millions USD)
+                    <Factory className="w-5 h-5" /> {t.sectorValue}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -328,7 +399,7 @@ function ProductionManufacturing({ language = 'fr' }) {
                       <XAxis type="number" tickFormatter={(v) => `$${formatNumber(v * 1000000)}`} />
                       <YAxis type="category" dataKey="name" width={120} tick={{ fontSize: 11 }} />
                       <Tooltip 
-                        formatter={(value) => [`$${formatNumber(value * 1000000)}`, 'Valeur']}
+                        formatter={(value) => [`$${formatNumber(value * 1000000)}`, t.value]}
                         labelFormatter={(label) => prepareSectorBarData().find(d => d.name === label)?.fullName || label}
                       />
                       <Bar dataKey="value" fill="#3b82f6" radius={[0, 4, 4, 0]} />
@@ -344,7 +415,7 @@ function ProductionManufacturing({ language = 'fr' }) {
             <Card className="shadow-lg">
               <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50">
                 <CardTitle className="text-xl text-blue-700 flex items-center gap-2">
-                  <Award className="w-5 h-5" /> Principaux Secteurs Industriels
+                  <Award className="w-5 h-5" /> {t.mainIndustrialSectors}
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-6">
@@ -383,7 +454,7 @@ function ProductionManufacturing({ language = 'fr' }) {
             <Card className="shadow-lg">
               <CardHeader>
                 <CardTitle className="text-xl text-gray-700 flex items-center gap-2">
-                  <Package className="w-5 h-5" /> Produits Manufacturés Clés
+                  <Package className="w-5 h-5" /> {t.keyProducts}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -407,7 +478,7 @@ function ProductionManufacturing({ language = 'fr' }) {
             <Card className="shadow-lg">
               <CardHeader className="bg-gradient-to-r from-amber-50 to-orange-50">
                 <CardTitle className="text-xl text-amber-700 flex items-center gap-2">
-                  <Award className="w-5 h-5" /> Top 10 Africain - Valeur Ajoutée Manufacturière
+                  <Award className="w-5 h-5" /> {t.top10Africa}
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-6">
@@ -436,11 +507,11 @@ function ProductionManufacturing({ language = 'fr' }) {
                 <div className="flex justify-center gap-4 mt-4">
                   <div className="flex items-center gap-2">
                     <div className="w-4 h-4 rounded bg-blue-500" />
-                    <span className="text-sm text-gray-600">Autres pays</span>
+                    <span className="text-sm text-gray-600">{t.otherCountries}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-4 h-4 rounded bg-amber-500" />
-                    <span className="text-sm text-gray-600">Pays sélectionné</span>
+                    <span className="text-sm text-gray-600">{t.selectedCountry}</span>
                   </div>
                 </div>
               </CardContent>
@@ -453,10 +524,9 @@ function ProductionManufacturing({ language = 'fr' }) {
               <div className="flex items-start gap-3">
                 <Info className="w-5 h-5 text-gray-400 mt-0.5" />
                 <div className="text-sm text-gray-600">
-                  <p><strong>Source:</strong> {unidoData.source}</p>
+                  <p><strong>{t.source}</strong> {unidoData.source}</p>
                   <p className="mt-1">
-                    Les données proviennent de la base UNIDO INDSTAT4 (Organisation des Nations Unies pour le Développement Industriel). 
-                    La classification sectorielle suit la nomenclature ISIC Rev.4.
+                    {t.sourceNote}
                   </p>
                 </div>
               </div>
