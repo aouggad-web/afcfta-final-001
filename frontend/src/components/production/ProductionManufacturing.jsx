@@ -136,8 +136,9 @@ function ProductionManufacturing({ language = 'fr' }) {
             <EnhancedCountrySelector
               value={selectedCountry}
               onChange={setSelectedCountry}
-              label="Sélectionner un pays africain"
+              label={language === 'en' ? "Select an African country" : "Sélectionner un pays africain"}
               variant="prominent"
+              language={language}
             />
           </CardContent>
         </Card>
