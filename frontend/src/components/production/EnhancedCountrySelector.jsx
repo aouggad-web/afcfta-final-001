@@ -236,7 +236,7 @@ function EnhancedCountrySelector({ value, onChange, label, variant = "default", 
               <div className="p-2">
                 <div className="flex items-center gap-2 px-3 py-2 text-xs font-bold text-amber-700 bg-amber-50 rounded-lg mb-2">
                   <Star className="w-4 h-4" />
-                  Grandes Économies Africaines
+                  {t.majorEconomies}
                 </div>
                 <div className="grid grid-cols-2 gap-1">
                   {majorEconomiesFiltered.map(country => (
