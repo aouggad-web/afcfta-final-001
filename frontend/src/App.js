@@ -58,15 +58,15 @@ function App() {
   const t = texts[language];
 
   useEffect(() => {
-    fetchCountries();
-  }, []);
+    fetchCountries(language);
+  }, [language]);
 
-  const fetchCountries = async () => {
+  const fetchCountries = async (lang) => {
     try {
-      const response = await axios.get(`${API}/countries`);
+      const response = await axios.get(`${API}/countries?lang=${lang}`);
       setCountries(response.data);
     } catch (error) {
-      console.error('Erreur lors du chargement des pays:', error);
+      console.error('Error loading countries:', error);
       toast({
         title: "Erreur",
         description: "Impossible de charger la liste des pays",
