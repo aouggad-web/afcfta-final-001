@@ -9,6 +9,7 @@ import { toast } from '../../hooks/use-toast';
 import LogisticsMap from './LogisticsMap';
 import PortCard from './PortCard';
 import PortDetailsModal from './PortDetailsModal';
+import UNCTADDataPanel from './UNCTADDataPanel';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -225,6 +226,9 @@ export default function MaritimeLogisticsTab({ language = 'fr' }) {
         port={selectedPort}
         language={language}
       />
+
+      {/* UNCTAD Data Panel */}
+      <UNCTADDataPanel language={language} />
     </div>
   );
 }
