@@ -54,6 +54,17 @@ export default function LogisticsTab({ language = 'fr' }) {
 
   return (
     <div className="space-y-6">
+      {/* Export Button */}
+      <div className="flex justify-end">
+        <PDFExportButton
+          targetRef={contentRef}
+          filename="logistics"
+          title={t.title}
+          language={language}
+        />
+      </div>
+
+      <div ref={contentRef}>
       {/* Header */}
       <Card className="bg-gradient-to-r from-blue-700 to-indigo-800 text-white shadow-xl">
         <CardHeader>
