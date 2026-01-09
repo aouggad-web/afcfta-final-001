@@ -348,24 +348,24 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                 <div className="flex justify-between items-start">
                   <div>
                     <CardTitle className="text-xl text-purple-900 flex items-center gap-2">
-                      ⏱️ Temps de Séjour Conteneur (Dwell Time)
+                      ⏱️ {language === 'en' ? 'Container Dwell Time' : 'Temps de Séjour Conteneur (Dwell Time)'}
                     </CardTitle>
                     <CardDescription>
                       {trs?.source_reliability_label ? (
                         <span className="flex items-center gap-2">
-                          Source: <Badge variant="outline" className={
+                          {t.source}: <Badge variant="outline" className={
                             trs.source_reliability_level === 1 ? "bg-green-100 text-green-800" :
                             trs.source_reliability_level === 2 ? "bg-blue-100 text-blue-800" :
                             trs.source_reliability_level === 3 ? "bg-yellow-100 text-yellow-800" :
                             "bg-gray-100 text-gray-600"
                           }>{trs.source_reliability_label}</Badge>
                         </span>
-                      ) : "Données TRS (Time Release Study)"}
+                      ) : (language === 'en' ? "TRS Data (Time Release Study)" : "Données TRS (Time Release Study)")}
                     </CardDescription>
                   </div>
                   {trs?.container_dwell_time_days && trs.container_dwell_time_days !== "NA" ? (
                     <Badge className="bg-purple-600 text-white text-lg px-4 py-2">
-                      {typeof trs.container_dwell_time_days === 'number' ? `${trs.container_dwell_time_days} Jours` : trs.container_dwell_time_days}
+                      {typeof trs.container_dwell_time_days === 'number' ? `${trs.container_dwell_time_days} ${language === 'en' ? 'Days' : 'Jours'}` : trs.container_dwell_time_days}
                     </Badge>
                   ) : (
                     <Badge className="bg-gray-400 text-white text-lg px-4 py-2">
