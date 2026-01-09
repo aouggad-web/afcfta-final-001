@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi import FastAPI, APIRouter, HTTPException, UploadFile, File, Form
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -2164,3 +2164,40 @@ async def health_check():
 @app.on_event("shutdown")
 async def shutdown_db_client():
     client.close()
+
+# TRS Upload endpoint
+@router.post("/logistics/trs/upload")
+async def upload_trs_data(
+    file: UploadFile = File(...),
+    country_code: str = Form(...),
+    data_year: str = Form(...)
+):
+    """Upload official TRS (Time Release Study) data"""
+    try:
+        if not file.filename.endswith(('.xlsx', '.xls', '.csv')):
+            raise HTTPException(status_code=400, detail="Invalid file format. Use Excel or CSV.")
+        
+        content = await file.read()
+        
+        # Store in MongoDB
+        trs_doc = {
+            "country_code": country_code,
+            "data_year": data_year,
+            "filename": file.filename,
+            "uploaded_at": datetime.now().isoformat(),
+            "file_size": len(content),
+            "status": "uploaded"
+        }
+        
+        result = await db.trs_uploads.insert_one(trs_doc)
+        
+        return {
+            "success": True,
+            "message": f"TRS data for {country_code} ({data_year}) uploaded successfully",
+            "upload_id": str(result.inserted_id),
+            "filename": file.filename
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
