@@ -2166,7 +2166,7 @@ async def shutdown_db_client():
     client.close()
 
 # TRS Upload endpoint
-@router.post("/logistics/trs/upload")
+@api_router.post("/logistics/trs/upload")
 async def upload_trs_data(
     file: UploadFile = File(...),
     country_code: str = Form(...),
