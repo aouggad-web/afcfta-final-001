@@ -140,6 +140,7 @@ export default function StatisticsTab({ language = 'fr' }) {
           </Card>
         </div>
       )}
+      </div>
     </div>
   );
 }
