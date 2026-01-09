@@ -56,7 +56,20 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
       noShippingLines: "Aucune ligne maritime référencée",
       source: "Source données",
       sourceText: "UNCTAD Maritime Review 2024, WCO TRS Database, World Bank LPI",
-      grade: "Grade"
+      grade: "Grade",
+      location: "Localisation",
+      viewOnMaps: "Voir sur Google Maps",
+      dataYear: "Année Données",
+      methodology: "Méthodologie",
+      viewEstimationMethod: "Voir la méthodologie d'estimation",
+      whyNoOfficialData: "Pourquoi pas de données officielles",
+      factualDataUsed: "Données factuelles utilisées",
+      viewSourceReport: "Voir le rapport source",
+      viewWcoReport: "Voir le rapport TRS officiel WCO",
+      trsNotAvailable: "Données TRS Non Disponibles",
+      trsNotAvailableDesc: "Aucune étude TRS (Time Release Study) n'a été publiée pour ce port.",
+      sourcesFooter: "Sources: Études TRS WCO officielles, TRS nationales (ex: Egypt Customs), Autorités portuaires (KPA, Transnet, PAA), World Bank CPPI.",
+      directConnections: "Connexions directes et rotations"
     },
     en: {
       overview: "Overview",
@@ -102,7 +115,20 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
       noShippingLines: "No shipping lines referenced",
       source: "Data source",
       sourceText: "UNCTAD Maritime Review 2024, WCO TRS Database, World Bank LPI",
-      grade: "Grade"
+      grade: "Grade",
+      location: "Location",
+      viewOnMaps: "View on Google Maps",
+      dataYear: "Data Year",
+      methodology: "Methodology",
+      viewEstimationMethod: "View estimation methodology",
+      whyNoOfficialData: "Why no official data",
+      factualDataUsed: "Factual data used",
+      viewSourceReport: "View source report",
+      viewWcoReport: "View official WCO TRS report",
+      trsNotAvailable: "TRS Data Not Available",
+      trsNotAvailableDesc: "No TRS (Time Release Study) study has been published for this port.",
+      sourcesFooter: "Sources: Official WCO TRS studies, National TRS (e.g. Egypt Customs), Port Authorities (KPA, Transnet, PAA), World Bank CPPI.",
+      directConnections: "Direct connections and rotations"
     }
   };
 
