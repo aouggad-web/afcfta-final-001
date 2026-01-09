@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { Badge } from '../ui/badge';
@@ -6,9 +6,11 @@ import ProductionMacro from './ProductionMacro';
 import ProductionAgriculture from './ProductionAgriculture';
 import ProductionManufacturing from './ProductionManufacturing';
 import ProductionMining from './ProductionMining';
+import { PDFExportButton } from '../common/ExportTools';
 
 function ProductionTab({ language = 'fr' }) {
   const [activeSubTab, setActiveSubTab] = useState('macro');
+  const contentRef = useRef(null);
 
   const texts = {
     fr: {
