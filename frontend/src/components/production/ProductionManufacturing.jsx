@@ -11,7 +11,7 @@ const API = `${BACKEND_URL}/api`;
 
 const CHART_COLORS = ['#3b82f6', '#2563eb', '#1d4ed8', '#1e40af', '#1e3a8a', '#60a5fa', '#93c5fd', '#bfdbfe'];
 
-function ProductionManufacturing() {
+function ProductionManufacturing({ language = 'fr' }) {
   const [selectedCountry, setSelectedCountry] = useState('MAR');
   const [unidoData, setUnidoData] = useState(null);
   const [unidoStats, setUnidoStats] = useState(null);
