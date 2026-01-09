@@ -578,7 +578,7 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                 <CardContent className="space-y-4">
                   <div className="bg-green-50 p-4 rounded-lg flex items-center justify-between border border-green-100">
                     <div>
-                      <p className="text-sm text-green-800 font-semibold">Mouvements / Heure</p>
+                      <p className="text-sm text-green-800 font-semibold">{language === 'en' ? 'Moves/Hour' : 'Mouvements / Heure'}</p>
                       <p className="text-3xl font-bold text-green-900">
                         {port.latest_stats?.berth_productivity_moves_per_hour || (port.port_type === 'Hub Transhipment' ? '45+' : '25-30')}
                       </p>
@@ -592,7 +592,7 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                       <p className="text-3xl font-bold text-blue-900">
                         {port.lsci?.value || (port.port_type === 'Hub Transhipment' ? 'High' : 'Medium')}
                       </p>
-                      {port.lsci?.world_rank && <p className="text-xs text-blue-600">Rang mondial: #{port.lsci.world_rank}</p>}
+                      {port.lsci?.world_rank && <p className="text-xs text-blue-600">{t.worldRank}: #{port.lsci.world_rank}</p>}
                     </div>
                     <div className="text-3xl">🌍</div>
                   </div>
@@ -609,10 +609,10 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
               <Card className="shadow-md h-full">
                 <CardHeader className="bg-gray-50 border-b">
                   <CardTitle className="text-lg flex items-center gap-2">
-                    🚢 Lignes Régulières & Itinéraires
+                    🚢 {t.shippingLines}
                   </CardTitle>
                   <CardDescription>
-                    Connexions directes et rotations
+                    {t.directConnections}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="pt-4 max-h-[500px] overflow-y-auto">
