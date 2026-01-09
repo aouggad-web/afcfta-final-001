@@ -72,6 +72,22 @@ Mise à jour selon FMI World Economic Outlook (Oct 2024):
   - `EnhancedCountrySelector.jsx` - Correction dépendance useMemo pour allCountries
 - **Résultat**: 100% des tests i18n passent (vérifié par testing agent)
 
+### Nouvelles Fonctionnalités (09/01/2025)
+- **Panneau UNCTAD** : Intégration des données UNCTAD dans l'onglet Logistics/Maritime
+  - Statistiques portuaires africaines (trafic total, croissance, part mondiale)
+  - Top 8 ports africains avec graphique et tableau détaillé
+  - Indice de Connectivité Maritime (LSCI) par pays
+  - Fichier: `/app/frontend/src/components/logistics/UNCTADDataPanel.jsx`
+- **TRS Upload Backend** : Endpoint pour téléverser les données TRS officielles
+  - Route: `POST /api/logistics/trs/upload`
+  - Formats acceptés: Excel (.xlsx, .xls), CSV
+- **Système i18n centralisé** : Infrastructure react-i18next mise en place
+  - Fichiers de traductions: `/app/frontend/src/i18n/locales/fr.json`, `en.json`
+  - Configuration: `/app/frontend/src/i18n/index.js`
+- **Export PDF** : Utilitaire pour exporter les rapports en PDF
+  - Fichier: `/app/frontend/src/utils/pdfExport.js`
+  - Packages: jspdf, html2canvas, react-to-print
+
 ### Données UNCTAD (08/01/2025)
 - Nouveau fichier : `/app/backend/etl/unctad_data.py`
 - APIs UNCTAD : `/api/statistics/unctad/ports`, `/api/statistics/unctad/trade-flows`, `/api/statistics/unctad/lsci`
@@ -110,14 +126,25 @@ Mise à jour selon FMI World Economic Outlook (Oct 2024):
 
 ### Complété ✅
 - Traductions tous les onglets
-- Données UNCTAD
+- Données UNCTAD (backend + frontend)
 - Interface upload TRS
 - Indicateurs de source
 - **Bug fix i18n Production tab** (09/01/2025) - Toutes les traductions fonctionnent correctement
+- **Panneau UNCTAD** (09/01/2025) - Données portuaires et LSCI affichées
+- **TRS Upload endpoint** (09/01/2025) - Backend prêt
+- **Infrastructure i18n** (09/01/2025) - react-i18next configuré
+- **Utilitaire PDF** (09/01/2025) - Export PDF prêt
 
 ### P1 - Prochaines Tâches
-- Intégrer données UNCTAD sur le frontend (API backend prêtes)
-- Implémenter fonctionnalité upload données TRS
+- Connecter le formulaire TRS upload au nouveau endpoint backend
+- Migrer les composants existants vers react-i18next (refactoring progressif)
+- Intégrer les boutons d'export PDF dans chaque onglet
+- Améliorer les graphiques avec zoom/export d'images
+
+### P2 - Dashboard Personnalisable
+- Widgets déplaçables (drag & drop)
+- Choix des graphiques à afficher
+- Filtres par pays/région sauvegardés
 
 ### P2 - Futur
 - Export PDF des rapports
