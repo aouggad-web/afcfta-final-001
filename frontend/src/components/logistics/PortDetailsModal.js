@@ -408,7 +408,7 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                         </div>
                       )}
                       <div className="bg-orange-50 p-4 rounded-lg text-center">
-                        <p className="text-xs font-semibold text-orange-600">Année Données</p>
+                        <p className="text-xs font-semibold text-orange-600">{t.dataYear}</p>
                         <p className="text-2xl font-bold text-orange-800">{trs.data_year}</p>
                         <p className="text-xs text-orange-500">{trs.source_reliability_label || ''}</p>
                       </div>
@@ -418,11 +418,11 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                     <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                         <div>
-                          <p className="font-semibold text-gray-700">📊 Source:</p>
+                          <p className="font-semibold text-gray-700">📊 {t.source}:</p>
                           <p className="text-gray-600">{trs.source}</p>
                         </div>
                         <div>
-                          <p className="font-semibold text-gray-700">📋 Méthodologie:</p>
+                          <p className="font-semibold text-gray-700">📋 {t.methodology}:</p>
                           <p className="text-gray-600">{trs.methodology}</p>
                         </div>
                       </div>
@@ -436,7 +436,7 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                       {trs.estimation_methodology && (
                         <details className="mt-4">
                           <summary className="cursor-pointer text-sm font-semibold text-amber-700 hover:text-amber-800">
-                            📐 Voir la méthodologie d'estimation
+                            📐 {t.viewEstimationMethod}
                           </summary>
                           <div className="mt-2 p-3 bg-amber-50 rounded-lg border border-amber-200 text-xs text-amber-800 whitespace-pre-line font-mono">
                             {trs.estimation_methodology}
@@ -447,14 +447,14 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                       {/* Raison de l'absence de données officielles */}
                       {trs.no_official_data_reason && (
                         <div className="mt-3 p-2 bg-gray-100 rounded text-xs text-gray-600 italic">
-                          ℹ️ Pourquoi pas de données officielles: {trs.no_official_data_reason}
+                          ℹ️ {t.whyNoOfficialData}: {trs.no_official_data_reason}
                         </div>
                       )}
                       
                       {/* Données factuelles utilisées */}
                       {trs.factual_data_points && trs.factual_data_points.length > 0 && (
                         <div className="mt-3 p-2 bg-blue-50 rounded text-xs">
-                          <p className="font-semibold text-blue-700 mb-1">📊 Données factuelles utilisées:</p>
+                          <p className="font-semibold text-blue-700 mb-1">📊 {t.factualDataUsed}:</p>
                           <ul className="list-disc list-inside text-blue-600">
                             {trs.factual_data_points.map((point, idx) => (
                               <li key={idx}>{point}</li>
@@ -470,7 +470,7 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                           rel="noopener noreferrer"
                           className="mt-3 inline-flex items-center gap-2 text-sm text-purple-600 hover:text-purple-800"
                         >
-                          📄 Voir le rapport source
+                          📄 {t.viewSourceReport}
                         </a>
                       )}
                       {trs.wco_report_url && (
@@ -480,7 +480,7 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                           rel="noopener noreferrer"
                           className="mt-3 inline-flex items-center gap-2 text-sm text-purple-600 hover:text-purple-800"
                         >
-                          📄 Voir le rapport TRS officiel WCO
+                          📄 {t.viewWcoReport}
                         </a>
                       )}
                     </div>
@@ -488,9 +488,9 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                 ) : (
                   <div className="text-center py-8">
                     <div className="text-6xl mb-4">📊</div>
-                    <h3 className="text-lg font-semibold text-gray-700 mb-2">Données TRS Non Disponibles</h3>
+                    <h3 className="text-lg font-semibold text-gray-700 mb-2">{t.trsNotAvailable}</h3>
                     <p className="text-sm text-gray-500 max-w-md mx-auto mb-4">
-                      Aucune étude TRS (Time Release Study) n'a été publiée pour ce port.
+                      {t.trsNotAvailableDesc}
                     </p>
                     {trs?.no_official_data_reason && (
                       <p className="text-xs text-gray-400 mb-4 italic">
