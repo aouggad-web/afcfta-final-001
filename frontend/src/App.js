@@ -134,7 +134,10 @@ function App() {
 
       <div className="container mx-auto px-4 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-7 bg-gradient-to-r from-red-100 via-yellow-100 to-green-100 p-2 shadow-lg">
+          <TabsList className="grid w-full grid-cols-8 bg-gradient-to-r from-red-100 via-yellow-100 to-green-100 p-2 shadow-lg">
+            <TabsTrigger value="dashboard" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-slate-700 data-[state=active]:to-slate-900 data-[state=active]:text-white font-bold">
+              📊 {t.dashboardTab}
+            </TabsTrigger>
             <TabsTrigger value="calculator" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-600 data-[state=active]:to-blue-600 data-[state=active]:text-white font-bold">
               🧮 {t.calculatorTab}
             </TabsTrigger>
@@ -142,10 +145,10 @@ function App() {
               📈 {t.statisticsTab}
             </TabsTrigger>
             <TabsTrigger value="production" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-600 data-[state=active]:to-purple-600 data-[state=active]:text-white font-bold">
-              📊 {t.productionTab}
+              🏭 {t.productionTab}
             </TabsTrigger>
             <TabsTrigger value="logistics" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-teal-600 data-[state=active]:text-white font-bold">
-              🚢✈️ {t.logisticsTab}
+              🚢 {t.logisticsTab}
             </TabsTrigger>
             <TabsTrigger value="tools" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-600 data-[state=active]:to-purple-600 data-[state=active]:text-white font-bold">
               🛠️ {t.toolsTab}
@@ -157,6 +160,10 @@ function App() {
               🌍 {t.profilesTab}
             </TabsTrigger>
           </TabsList>
+
+          <TabsContent value="dashboard">
+            <DashboardTab language={language} />
+          </TabsContent>
 
           <TabsContent value="calculator">
             <CalculatorTab countries={countries} language={language} />
