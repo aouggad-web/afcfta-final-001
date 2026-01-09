@@ -20,6 +20,77 @@ function ProductionAgriculture({ language = 'fr' }) {
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('crops');
 
+  // Translations
+  const texts = {
+    fr: {
+      title: "Production Agricole FAOSTAT",
+      subtitle: "Données officielles FAO - Production agricole, élevage et pêche (2020-2023)",
+      countries: "pays",
+      products: "produits",
+      loading: "Chargement des données FAOSTAT...",
+      noData: "Données non disponibles",
+      noDataDesc: "Aucune donnée FAOSTAT disponible pour ce pays.",
+      data: "Données",
+      agriGdp: "Agriculture / PIB",
+      agriEmployment: "Emploi agricole",
+      arableLand: "Terres arables",
+      foodImports: "Import. alimentaires",
+      cropsTab: "Productions Végétales",
+      livestockTab: "Élevage",
+      fisheriesTab: "Pêche",
+      mainCrops: "Principales Cultures",
+      productionDist: "Répartition de la Production 2023",
+      productionDetails: "Détails de Production 2023",
+      tonnes: "tonnes",
+      africa: "Afrique",
+      evolution: "Évolution de la Production (2020-2023)",
+      rankings: "Classements Africains",
+      livestock2023: "Cheptel 2023",
+      noLivestockData: "Données d'élevage non disponibles pour ce pays",
+      fisheries2023: "Pêche et Aquaculture 2023",
+      capture: "Pêche de capture",
+      inAfrica: "en Afrique",
+      aquaculture: "Aquaculture",
+      noFisheriesData: "Données de pêche non disponibles pour ce pays",
+      source: "Source:",
+      sourceNote: "Les données sont issues de FAOSTAT (FAO) et des instituts statistiques nationaux. Les chiffres 2024 sont des estimations préliminaires."
+    },
+    en: {
+      title: "FAOSTAT Agricultural Production",
+      subtitle: "Official FAO data - Agricultural production, livestock and fisheries (2020-2023)",
+      countries: "countries",
+      products: "products",
+      loading: "Loading FAOSTAT data...",
+      noData: "Data not available",
+      noDataDesc: "No FAOSTAT data available for this country.",
+      data: "Data",
+      agriGdp: "Agriculture / GDP",
+      agriEmployment: "Agricultural employment",
+      arableLand: "Arable land",
+      foodImports: "Food imports",
+      cropsTab: "Crop Production",
+      livestockTab: "Livestock",
+      fisheriesTab: "Fisheries",
+      mainCrops: "Main Crops",
+      productionDist: "Production Distribution 2023",
+      productionDetails: "Production Details 2023",
+      tonnes: "tonnes",
+      africa: "Africa",
+      evolution: "Production Evolution (2020-2023)",
+      rankings: "African Rankings",
+      livestock2023: "Livestock 2023",
+      noLivestockData: "Livestock data not available for this country",
+      fisheries2023: "Fisheries and Aquaculture 2023",
+      capture: "Capture fisheries",
+      inAfrica: "in Africa",
+      aquaculture: "Aquaculture",
+      noFisheriesData: "Fisheries data not available for this country",
+      source: "Source:",
+      sourceNote: "Data is from FAOSTAT (FAO) and national statistical institutes. 2024 figures are preliminary estimates."
+    }
+  };
+  const t = texts[language] || texts.fr;
+
   useEffect(() => {
     fetchFaostatStats();
   }, []);
@@ -122,18 +193,18 @@ function ProductionAgriculture({ language = 'fr' }) {
             <div>
               <CardTitle className="text-3xl font-bold flex items-center gap-3">
                 <Wheat className="w-8 h-8" />
-                Production Agricole FAOSTAT
+                {t.title}
               </CardTitle>
               <CardDescription className="text-green-100 text-lg mt-2">
-                Données officielles FAO - Production agricole, élevage et pêche (2020-2023)
+                {t.subtitle}
               </CardDescription>
             </div>
             {faostatStats && (
               <div className="text-right">
                 <Badge className="bg-white/20 text-white hover:bg-white/30">
-                  {faostatStats.total_countries} pays
+                  {faostatStats.total_countries} {t.countries}
                 </Badge>
-                <p className="text-xs text-green-200 mt-1">{faostatStats.total_commodities} produits</p>
+                <p className="text-xs text-green-200 mt-1">{faostatStats.total_commodities} {t.products}</p>
               </div>
             )}
           </div>
@@ -161,7 +232,7 @@ function ProductionAgriculture({ language = 'fr' }) {
           <CardContent className="flex items-center justify-center h-48">
             <div className="text-center">
               <Loader2 className="w-12 h-12 animate-spin text-green-600 mx-auto" />
-              <p className="mt-4 text-gray-600">Chargement des données FAOSTAT...</p>
+              <p className="mt-4 text-gray-600">{t.loading}</p>
             </div>
           </CardContent>
         </Card>
@@ -173,8 +244,8 @@ function ProductionAgriculture({ language = 'fr' }) {
           <CardContent className="flex items-center gap-4 py-8">
             <AlertTriangle className="w-12 h-12 text-amber-500" />
             <div>
-              <h3 className="font-bold text-lg text-gray-800">Données non disponibles</h3>
-              <p className="text-gray-600">Aucune donnée FAOSTAT disponible pour ce pays.</p>
+              <h3 className="font-bold text-lg text-gray-800">{t.noData}</h3>
+              <p className="text-gray-600">{t.noDataDesc}</p>
             </div>
           </CardContent>
         </Card>
@@ -192,7 +263,7 @@ function ProductionAgriculture({ language = 'fr' }) {
               </CardTitle>
               <CardDescription className="text-green-700 flex items-center gap-2">
                 <Badge variant="outline" className="border-green-500 text-green-700">{faostatData.region}</Badge>
-                <Badge variant="outline" className="border-green-500 text-green-700">Données {faostatData.data_year}</Badge>
+                <Badge variant="outline" className="border-green-500 text-green-700">{t.data} {faostatData.data_year}</Badge>
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -201,25 +272,25 @@ function ProductionAgriculture({ language = 'fr' }) {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
                   {faostatData.key_indicators.agri_gdp_percent && (
                     <div className="bg-white p-4 rounded-xl shadow-sm border border-green-100">
-                      <p className="text-xs text-gray-500 uppercase tracking-wide">Agriculture / PIB</p>
+                      <p className="text-xs text-gray-500 uppercase tracking-wide">{t.agriGdp}</p>
                       <p className="text-2xl font-bold text-green-700">{faostatData.key_indicators.agri_gdp_percent}%</p>
                     </div>
                   )}
                   {faostatData.key_indicators.agri_employment_percent && (
                     <div className="bg-white p-4 rounded-xl shadow-sm border border-green-100">
-                      <p className="text-xs text-gray-500 uppercase tracking-wide">Emploi agricole</p>
+                      <p className="text-xs text-gray-500 uppercase tracking-wide">{t.agriEmployment}</p>
                       <p className="text-2xl font-bold text-green-700">{faostatData.key_indicators.agri_employment_percent}%</p>
                     </div>
                   )}
                   {faostatData.key_indicators.arable_land_ha && (
                     <div className="bg-white p-4 rounded-xl shadow-sm border border-green-100">
-                      <p className="text-xs text-gray-500 uppercase tracking-wide">Terres arables</p>
+                      <p className="text-xs text-gray-500 uppercase tracking-wide">{t.arableLand}</p>
                       <p className="text-2xl font-bold text-green-700">{formatNumber(faostatData.key_indicators.arable_land_ha)} ha</p>
                     </div>
                   )}
                   {faostatData.key_indicators.food_import_value_mln_usd && (
                     <div className="bg-white p-4 rounded-xl shadow-sm border border-green-100">
-                      <p className="text-xs text-gray-500 uppercase tracking-wide">Import. alimentaires</p>
+                      <p className="text-xs text-gray-500 uppercase tracking-wide">{t.foodImports}</p>
                       <p className="text-2xl font-bold text-amber-600">${formatNumber(faostatData.key_indicators.food_import_value_mln_usd * 1000000)}</p>
                     </div>
                   )}
@@ -232,13 +303,13 @@ function ProductionAgriculture({ language = 'fr' }) {
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList className="grid w-full grid-cols-3 bg-green-100 p-1 h-auto">
               <TabsTrigger value="crops" className="data-[state=active]:bg-green-600 data-[state=active]:text-white py-3">
-                <Wheat className="w-4 h-4 mr-2" /> Productions Végétales
+                <Wheat className="w-4 h-4 mr-2" /> {t.cropsTab}
               </TabsTrigger>
               <TabsTrigger value="livestock" className="data-[state=active]:bg-green-600 data-[state=active]:text-white py-3">
-                <Beef className="w-4 h-4 mr-2" /> Élevage
+                <Beef className="w-4 h-4 mr-2" /> {t.livestockTab}
               </TabsTrigger>
               <TabsTrigger value="fisheries" className="data-[state=active]:bg-green-600 data-[state=active]:text-white py-3">
-                <Fish className="w-4 h-4 mr-2" /> Pêche
+                <Fish className="w-4 h-4 mr-2" /> {t.fisheriesTab}
               </TabsTrigger>
             </TabsList>
 
@@ -249,7 +320,7 @@ function ProductionAgriculture({ language = 'fr' }) {
                 <Card>
                   <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-50">
                     <CardTitle className="text-xl text-green-700 flex items-center gap-2">
-                      <Wheat className="w-5 h-5" /> Principales Cultures
+                      <Wheat className="w-5 h-5" /> {t.mainCrops}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-4">
@@ -274,7 +345,7 @@ function ProductionAgriculture({ language = 'fr' }) {
                   {/* Pie Chart */}
                   <Card className="shadow-lg">
                     <CardHeader>
-                      <CardTitle className="text-lg text-gray-700">Répartition de la Production 2023</CardTitle>
+                      <CardTitle className="text-lg text-gray-700">{t.productionDist}</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <ResponsiveContainer width="100%" height={300}>
@@ -293,7 +364,7 @@ function ProductionAgriculture({ language = 'fr' }) {
                               <Cell key={`cell-${index}`} fill={entry.fill} />
                             ))}
                           </Pie>
-                          <Tooltip formatter={(value) => formatNumber(value) + ' tonnes'} />
+                          <Tooltip formatter={(value) => formatNumber(value) + ' ' + t.tonnes} />
                         </PieChart>
                       </ResponsiveContainer>
                     </CardContent>
@@ -302,7 +373,7 @@ function ProductionAgriculture({ language = 'fr' }) {
                   {/* Production Table */}
                   <Card className="shadow-lg">
                     <CardHeader>
-                      <CardTitle className="text-lg text-gray-700">Détails de Production 2023</CardTitle>
+                      <CardTitle className="text-lg text-gray-700">{t.productionDetails}</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-3 max-h-80 overflow-y-auto">
@@ -322,7 +393,7 @@ function ProductionAgriculture({ language = 'fr' }) {
                               <p className="font-bold text-green-700">{formatNumber(data.value)} t</p>
                               {data.rank_africa && (
                                 <Badge variant="outline" className="text-xs">
-                                  <Award className="w-3 h-3 mr-1" /> #{data.rank_africa} Afrique
+                                  <Award className="w-3 h-3 mr-1" /> #{data.rank_africa} {t.africa}
                                 </Badge>
                               )}
                             </div>
@@ -339,7 +410,7 @@ function ProductionAgriculture({ language = 'fr' }) {
                 <Card className="shadow-lg">
                   <CardHeader className="bg-gradient-to-r from-green-50 to-teal-50">
                     <CardTitle className="text-xl text-green-700 flex items-center gap-2">
-                      <TrendingUp className="w-5 h-5" /> Évolution de la Production (2020-2023)
+                      <TrendingUp className="w-5 h-5" /> {t.evolution}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-6">
@@ -348,7 +419,7 @@ function ProductionAgriculture({ language = 'fr' }) {
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="year" />
                         <YAxis tickFormatter={formatNumber} />
-                        <Tooltip formatter={(value) => formatNumber(value) + ' tonnes'} />
+                        <Tooltip formatter={(value) => formatNumber(value) + ' ' + t.tonnes} />
                         <Legend />
                         {Object.keys(faostatData.evolution).map((crop, index) => (
                           <Line 
@@ -372,7 +443,7 @@ function ProductionAgriculture({ language = 'fr' }) {
                 <Card className="shadow-lg">
                   <CardHeader>
                     <CardTitle className="text-xl text-gray-700 flex items-center gap-2">
-                      <Award className="w-5 h-5 text-amber-500" /> Classements Africains
+                      <Award className="w-5 h-5 text-amber-500" /> {t.rankings}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -410,7 +481,7 @@ function ProductionAgriculture({ language = 'fr' }) {
                 <Card className="shadow-lg">
                   <CardHeader className="bg-gradient-to-r from-amber-50 to-orange-50">
                     <CardTitle className="text-xl text-amber-700 flex items-center gap-2">
-                      <Beef className="w-5 h-5" /> Cheptel 2023
+                      <Beef className="w-5 h-5" /> {t.livestock2023}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-6">
@@ -421,7 +492,7 @@ function ProductionAgriculture({ language = 'fr' }) {
                             <h4 className="font-bold text-amber-800">{animal}</h4>
                             {data.rank_africa && (
                               <Badge className="bg-amber-500 text-white">
-                                #{data.rank_africa} Afrique
+                                #{data.rank_africa} {t.africa}
                               </Badge>
                             )}
                           </div>
@@ -449,7 +520,7 @@ function ProductionAgriculture({ language = 'fr' }) {
                 <Card className="border-l-4 border-l-gray-300">
                   <CardContent className="py-8 text-center text-gray-500">
                     <Beef className="w-12 h-12 mx-auto mb-4 opacity-30" />
-                    Données d'élevage non disponibles pour ce pays
+                    {t.noLivestockData}
                   </CardContent>
                 </Card>
               )}
@@ -461,7 +532,7 @@ function ProductionAgriculture({ language = 'fr' }) {
                 <Card className="shadow-lg">
                   <CardHeader className="bg-gradient-to-r from-blue-50 to-cyan-50">
                     <CardTitle className="text-xl text-blue-700 flex items-center gap-2">
-                      <Fish className="w-5 h-5" /> Pêche et Aquaculture 2023
+                      <Fish className="w-5 h-5" /> {t.fisheries2023}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-6">
@@ -473,10 +544,10 @@ function ProductionAgriculture({ language = 'fr' }) {
                               <Fish className="w-6 h-6 text-white" />
                             </div>
                             <div>
-                              <h4 className="font-bold text-blue-800">Pêche de capture</h4>
+                              <h4 className="font-bold text-blue-800">{t.capture}</h4>
                               {faostatData.fisheries_2023.capture.rank_africa && (
                                 <Badge className="bg-blue-500 text-white text-xs">
-                                  #{faostatData.fisheries_2023.capture.rank_africa} en Afrique
+                                  #{faostatData.fisheries_2023.capture.rank_africa} {t.inAfrica}
                                 </Badge>
                               )}
                             </div>
@@ -495,10 +566,10 @@ function ProductionAgriculture({ language = 'fr' }) {
                               <Fish className="w-6 h-6 text-white" />
                             </div>
                             <div>
-                              <h4 className="font-bold text-teal-800">Aquaculture</h4>
+                              <h4 className="font-bold text-teal-800">{t.aquaculture}</h4>
                               {faostatData.fisheries_2023.aquaculture.rank_africa && (
                                 <Badge className="bg-teal-500 text-white text-xs">
-                                  #{faostatData.fisheries_2023.aquaculture.rank_africa} en Afrique
+                                  #{faostatData.fisheries_2023.aquaculture.rank_africa} {t.inAfrica}
                                 </Badge>
                               )}
                             </div>
@@ -516,7 +587,7 @@ function ProductionAgriculture({ language = 'fr' }) {
                 <Card className="border-l-4 border-l-gray-300">
                   <CardContent className="py-8 text-center text-gray-500">
                     <Fish className="w-12 h-12 mx-auto mb-4 opacity-30" />
-                    Données de pêche non disponibles pour ce pays
+                    {t.noFisheriesData}
                   </CardContent>
                 </Card>
               )}
@@ -529,8 +600,8 @@ function ProductionAgriculture({ language = 'fr' }) {
               <div className="flex items-start gap-3">
                 <Info className="w-5 h-5 text-gray-400 mt-0.5" />
                 <div className="text-sm text-gray-600">
-                  <p><strong>Source:</strong> {faostatData.source}</p>
-                  <p className="mt-1">Les données sont issues de FAOSTAT (FAO) et des instituts statistiques nationaux. Les chiffres 2024 sont des estimations préliminaires.</p>
+                  <p><strong>{t.source}</strong> {faostatData.source}</p>
+                  <p className="mt-1">{t.sourceNote}</p>
                 </div>
               </div>
             </CardContent>
