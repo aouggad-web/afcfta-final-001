@@ -2,18 +2,12 @@ import React, { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card';
 import { Badge } from '../ui/badge';
-import { Button } from '../ui/button';
-import { Upload, FileText, AlertCircle, CheckCircle } from 'lucide-react';
 import MaritimeLogisticsTab from './MaritimeLogisticsTab';
 import AirLogisticsTab from './AirLogisticsTab';
 import LandLogisticsTab from './LandLogisticsTab';
 import FreeZonesTab from './FreeZonesTab';
 
 export default function LogisticsTab({ language = 'fr' }) {
-  const [showTRSUpload, setShowTRSUpload] = useState(false);
-  const [uploadStatus, setUploadStatus] = useState(null);
-  const [selectedFile, setSelectedFile] = useState(null);
-
   const texts = {
     fr: {
       title: "Plateforme Logistique Multimodale",
@@ -29,18 +23,6 @@ export default function LogisticsTab({ language = 'fr' }) {
       unctadDesc: "Statistiques maritimes et portuaires - UNCTAD Maritime Transport Review",
       wcoTitle: "Données OMD/WCO",
       wcoDesc: "Facilitation des échanges - Temps de passage aux frontières",
-      uploadTRSBtn: "Importer données TRS officielles",
-      uploadTRSTitle: "Import de Données TRS Officielles",
-      uploadTRSDesc: "Téléversez vos données TRS (Time Release Study) officielles au format CSV ou Excel pour remplacer les estimations par des données vérifiées.",
-      uploadInstructions: "Instructions pour le fichier:",
-      uploadFormat1: "Format accepté: CSV, XLSX",
-      uploadFormat2: "Colonnes requises: pays, port/frontière, temps_dédouanement_heures, année",
-      uploadFormat3: "Les données doivent provenir d'études TRS officielles OMD",
-      selectFile: "Sélectionner un fichier",
-      cancel: "Annuler",
-      upload: "Téléverser",
-      uploadSuccess: "Fichier téléversé avec succès! Les données seront validées et intégrées sous 24h.",
-      uploadError: "Erreur lors du téléversement. Veuillez réessayer.",
       sourceLabel: "Source:",
       estimated: "Estimé",
       official: "Officiel"
@@ -59,18 +41,6 @@ export default function LogisticsTab({ language = 'fr' }) {
       unctadDesc: "Maritime and port statistics - UNCTAD Maritime Transport Review",
       wcoTitle: "WCO Data",
       wcoDesc: "Trade facilitation - Border crossing times",
-      uploadTRSBtn: "Import official TRS data",
-      uploadTRSTitle: "Official TRS Data Import",
-      uploadTRSDesc: "Upload your official TRS (Time Release Study) data in CSV or Excel format to replace estimates with verified data.",
-      uploadInstructions: "File instructions:",
-      uploadFormat1: "Accepted format: CSV, XLSX",
-      uploadFormat2: "Required columns: country, port/border, clearance_time_hours, year",
-      uploadFormat3: "Data must come from official WCO TRS studies",
-      selectFile: "Select a file",
-      cancel: "Cancel",
-      upload: "Upload",
-      uploadSuccess: "File uploaded successfully! Data will be validated and integrated within 24h.",
-      uploadError: "Error during upload. Please try again.",
       sourceLabel: "Source:",
       estimated: "Estimated",
       official: "Official"
@@ -78,30 +48,6 @@ export default function LogisticsTab({ language = 'fr' }) {
   };
 
   const t = texts[language];
-
-  const handleFileSelect = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedFile(file);
-    }
-  };
-
-  const handleUpload = async () => {
-    if (!selectedFile) return;
-    
-    // Simuler l'upload (dans une vraie app, envoyer au backend)
-    setUploadStatus('loading');
-    
-    setTimeout(() => {
-      // Simulation succès
-      setUploadStatus('success');
-      setTimeout(() => {
-        setShowTRSUpload(false);
-        setUploadStatus(null);
-        setSelectedFile(null);
-      }, 3000);
-    }, 2000);
-  };
 
   return (
     <div className="space-y-6">
