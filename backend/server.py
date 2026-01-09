@@ -556,10 +556,18 @@ async def detailed_health_status():
     
     return health_status
 
-@api_router.get("/countries", response_model=List[CountryInfo])
-async def get_countries():
-    """Récupérer la liste des pays membres de la ZLECAf"""
-    return [CountryInfo(**country) for country in AFRICAN_COUNTRIES]
+@api_router.get("/countries")
+async def get_countries(lang: str = "fr"):
+    """Récupérer la liste des pays membres de la ZLECAf avec traduction"""
+    countries = []
+    for country in AFRICAN_COUNTRIES:
+        translated_country = {
+            **country,
+            "name": translate_country_name(country["code"], lang),
+            "region": translate_region(country["region"], lang)
+        }
+        countries.append(CountryInfo(**translated_country))
+    return countries
 
 @api_router.get("/country-profile/{country_code}")
 async def get_country_profile(country_code: str) -> CountryEconomicProfile:
