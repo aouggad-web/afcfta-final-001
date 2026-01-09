@@ -62,6 +62,16 @@ Mise à jour selon FMI World Economic Outlook (Oct 2024):
 - APIs avec paramètre `?lang=en`
 - Interface upload TRS dans Logistics
 
+### Bug Fix Production Tab i18n (09/01/2025)
+- **Problème résolu**: Les sous-onglets Production (Macro, Agriculture, Manufacturing, Mining) affichaient du texte français même lorsque l'anglais était sélectionné
+- **Fichiers modifiés**:
+  - `ProductionAgriculture.jsx` - Ajout dictionnaire de traductions (texts object fr/en)
+  - `ProductionMacro.jsx` - Ajout dictionnaire de traductions
+  - `ProductionManufacturing.jsx` - Ajout dictionnaire de traductions
+  - `ProductionMining.jsx` - Ajout dictionnaire de traductions
+  - `EnhancedCountrySelector.jsx` - Correction dépendance useMemo pour allCountries
+- **Résultat**: 100% des tests i18n passent (vérifié par testing agent)
+
 ### Données UNCTAD (08/01/2025)
 - Nouveau fichier : `/app/backend/etl/unctad_data.py`
 - APIs UNCTAD : `/api/statistics/unctad/ports`, `/api/statistics/unctad/trade-flows`, `/api/statistics/unctad/lsci`
