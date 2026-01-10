@@ -208,14 +208,17 @@ function EnhancedCountrySelector({ value, onChange, label, variant = "default", 
         </div>
       </button>
 
-      {/* Dropdown - Rendered as overlay */}
-      {isOpen && (
+      {/* Dropdown - Rendered as portal to body */}
+      {isOpen && createPortal(
         <div 
-          className="absolute left-0 right-0 mt-2 bg-white rounded-xl shadow-2xl border border-gray-200"
+          ref={dropdownRef}
+          className="bg-white rounded-xl shadow-2xl border border-gray-200"
           style={{ 
-            zIndex: 99999,
             position: 'absolute',
-            top: '100%'
+            top: dropdownPosition.top,
+            left: dropdownPosition.left,
+            width: dropdownPosition.width,
+            zIndex: 99999
           }}
         >
           {/* Search input */}
@@ -240,7 +243,7 @@ function EnhancedCountrySelector({ value, onChange, label, variant = "default", 
           </div>
 
           {/* Scrollable list */}
-          <div className="max-h-64 overflow-y-auto bg-white" style={{ overflowY: 'auto' }}>
+          <div className="max-h-64 overflow-y-auto bg-white rounded-b-xl">
             {/* Major economies section - only show when no search */}
             {!searchTerm && majorEconomiesFiltered.length > 0 && (
               <div className="p-2">
@@ -320,7 +323,8 @@ function EnhancedCountrySelector({ value, onChange, label, variant = "default", 
               </div>
             )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
