@@ -86,7 +86,7 @@ function EnhancedCountrySelector({ value, onChange, label, variant = "default", 
       }
     });
     return filtered;
-  }, [searchTerm]);
+  }, [searchTerm, AFRICAN_COUNTRIES_BY_REGION]);
 
   // Grandes économies filtrées
   const majorEconomiesFiltered = useMemo(() => {
