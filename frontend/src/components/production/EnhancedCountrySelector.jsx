@@ -148,7 +148,7 @@ function EnhancedCountrySelector({ value, onChange, label, variant = "default", 
   const isProminent = variant === "prominent";
 
   return (
-    <div className="relative w-full" ref={dropdownRef} style={{ zIndex: isOpen ? 9999 : 1 }}>
+    <div className="relative w-full">
       {/* Label */}
       <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
         <Globe className="w-4 h-4" />
@@ -157,6 +157,7 @@ function EnhancedCountrySelector({ value, onChange, label, variant = "default", 
       
       {/* Main selector button */}
       <button
+        ref={buttonRef}
         type="button"
         onClick={handleToggle}
         className={`
