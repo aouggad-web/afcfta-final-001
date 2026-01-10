@@ -58,7 +58,13 @@ Application web d'analyse des statistiques commerciales et économiques africain
 - Système centralisé react-i18next
 - Tous les composants traduisibles
 
-## Corrections et Améliorations Récentes
+### Corrections et Améliorations Récentes
+
+### Bug Fix - Recherche par pays Production/Macro (09/01/2025)
+- **Problème** : Le dropdown de sélection de pays était masqué par les éléments parents (overflow caché)
+- **Solution** : Utilisation de `createPortal` React pour rendre le dropdown directement dans `document.body`
+- **Fichier modifié** : `/app/frontend/src/components/production/EnhancedCountrySelector.jsx`
+- **Test réussi** : Sélection "Algérie" → Données chargées (12 enregistrements, 3 secteurs)
 
 ### Widgets Dynamiques Dashboard (09/01/2025)
 - **Implémentation complète** des widgets dynamiques avec données temps réel
