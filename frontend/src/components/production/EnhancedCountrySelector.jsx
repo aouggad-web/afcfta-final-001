@@ -11,7 +11,9 @@ const MAJOR_ECONOMIES = ['ZAF', 'NGA', 'EGY', 'KEN', 'GHA', 'ETH', 'MAR', 'DZA',
 function EnhancedCountrySelector({ value, onChange, label, variant = "default", language = 'fr' }) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0, width: 0 });
   const dropdownRef = useRef(null);
+  const buttonRef = useRef(null);
   const inputRef = useRef(null);
 
   // Get translated countries based on language
