@@ -193,44 +193,37 @@ function EnhancedCountrySelector({ value, onChange, label, variant = "default", 
 
       {/* Dropdown - Rendered as overlay */}
       {isOpen && (
-        <>
-          {/* Backdrop to capture clicks */}
-          <div 
-            className="fixed inset-0" 
-            style={{ zIndex: 99998 }}
-            onClick={() => setIsOpen(false)}
-          />
-          <div 
-            className="absolute left-0 right-0 mt-2 bg-white rounded-xl shadow-2xl border border-gray-200"
-            style={{ 
-              zIndex: 99999,
-              position: 'absolute',
-              top: '100%'
-            }}
-          >
-            {/* Search input */}
-            <div className="p-3 border-b border-gray-100 bg-gray-50" onClick={handleSearchClick}>
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-                <input
-                  ref={inputRef}
-                  type="text"
-                  placeholder={t.searchPlaceholder}
-                  value={searchTerm}
-                  onChange={handleSearchChange}
-                  onClick={handleSearchClick}
-                  className="w-full pl-10 pr-4 py-2 border border-green-200 rounded-lg focus:border-green-500 focus:ring-2 focus:ring-green-200 focus:outline-none text-sm"
-                />
-              </div>
-              <p className="text-xs text-gray-500 mt-2 flex items-center gap-1">
-                <Globe className="w-3 h-3" />
-                {allCountries.length} {language === 'en' ? 'African countries available' : 'pays africains disponibles'}
-                {searchTerm && ` • ${Object.values(filteredRegions).flat().length} ${language === 'en' ? 'results' : 'résultats'}`}
-              </p>
+        <div 
+          className="absolute left-0 right-0 mt-2 bg-white rounded-xl shadow-2xl border border-gray-200"
+          style={{ 
+            zIndex: 99999,
+            position: 'absolute',
+            top: '100%'
+          }}
+        >
+          {/* Search input */}
+          <div className="p-3 border-b border-gray-100 bg-gray-50" onClick={handleSearchClick}>
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+              <input
+                ref={inputRef}
+                type="text"
+                placeholder={t.searchPlaceholder}
+                value={searchTerm}
+                onChange={handleSearchChange}
+                onClick={handleSearchClick}
+                className="w-full pl-10 pr-4 py-2 border border-green-200 rounded-lg focus:border-green-500 focus:ring-2 focus:ring-green-200 focus:outline-none text-sm"
+              />
             </div>
+            <p className="text-xs text-gray-500 mt-2 flex items-center gap-1">
+              <Globe className="w-3 h-3" />
+              {allCountries.length} {language === 'en' ? 'African countries available' : 'pays africains disponibles'}
+              {searchTerm && ` • ${Object.values(filteredRegions).flat().length} ${language === 'en' ? 'results' : 'résultats'}`}
+            </p>
+          </div>
 
-            {/* Scrollable list */}
-            <div className="max-h-64 overflow-y-auto bg-white" style={{ overflowY: 'auto' }}>
+          {/* Scrollable list */}
+          <div className="max-h-64 overflow-y-auto bg-white" style={{ overflowY: 'auto' }}>
             {/* Major economies section - only show when no search */}
             {!searchTerm && majorEconomiesFiltered.length > 0 && (
               <div className="p-2">
@@ -243,9 +236,13 @@ function EnhancedCountrySelector({ value, onChange, label, variant = "default", 
                     <button
                       key={country.code}
                       type="button"
-                      onClick={() => handleSelect(country)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleSelect(country);
+                      }}
                       className={`
-                        flex items-center gap-2 px-3 py-2 rounded-lg text-left transition-colors
+                        flex items-center gap-2 px-3 py-2 rounded-lg text-left transition-colors cursor-pointer
                         ${value === country.code 
                           ? 'bg-green-100 text-green-800' 
                           : 'hover:bg-gray-50'
@@ -274,9 +271,13 @@ function EnhancedCountrySelector({ value, onChange, label, variant = "default", 
                     <button
                       key={country.code}
                       type="button"
-                      onClick={() => handleSelect(country)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleSelect(country);
+                      }}
                       className={`
-                        w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-colors
+                        w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-colors cursor-pointer
                         ${value === country.code 
                           ? 'bg-green-100 text-green-800 font-medium' 
                           : 'hover:bg-gray-50'
@@ -303,7 +304,6 @@ function EnhancedCountrySelector({ value, onChange, label, variant = "default", 
             )}
           </div>
         </div>
-        </>
       )}
     </div>
   );
