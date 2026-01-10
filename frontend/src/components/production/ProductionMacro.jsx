@@ -96,8 +96,8 @@ function ProductionMacro({ language = 'fr' }) {
       </Card>
 
       {/* Country Selector */}
-      <Card>
-        <CardContent className="pt-6">
+      <Card className="overflow-visible">
+        <CardContent className="pt-6 overflow-visible">
           <EnhancedCountrySelector
             value={selectedCountry}
             onChange={setSelectedCountry}
