@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { Input } from '../ui/input';
 import { Badge } from '../ui/badge';
 import { Search, ChevronDown, X, Globe, Star } from 'lucide-react';
