@@ -24,7 +24,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 function App() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const [countries, setCountries] = useState([]);
   const [activeTab, setActiveTab] = useState('calculator');
   const [language, setLanguage] = useState(i18n.language || 'fr');
