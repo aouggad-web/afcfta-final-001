@@ -4436,9 +4436,9 @@
     "port_authority": {
       "name": "Porto do Lobito",
       "address": "Avenida 4 de Fevereiro, Lobito, Angola",
-      "website": "https://www.portolobito.co.ao",
+      "website": "https://portodolobito.co.ao",
       "contact_phone": "+244 272 222 800",
-      "contact_email": "info@portolobito.co.ao"
+      "contact_email": "info@portodolobito.co.ao"
     },
     "trs_analysis": {
       "container_dwell_time_days": "NA",
