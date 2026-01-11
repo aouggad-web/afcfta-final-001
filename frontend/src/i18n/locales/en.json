@@ -188,6 +188,12 @@
     "air": "Air (Freight)",
     "land": "Land (Corridors)",
     "freeZones": "Free Zones",
+    "dataSourcesTitle": "Data Sources",
+    "trsTitle": "TRS Data (Time Release Study)",
+    "trsDesc": "Official customs clearance times - World Customs Organization (WCO)",
+    "wcoTitle": "WCO Data",
+    "wcoDesc": "Trade facilitation - Border crossing times",
+    "sourceLabel": "Source:",
     "unctad": {
       "title": "UNCTAD Data",
       "portStats": "Port Statistics",
@@ -199,7 +205,8 @@
       "teu": "TEU",
       "rank": "Rank",
       "africa": "Africa",
-      "global": "Global"
+      "global": "Global",
+      "desc": "Maritime and port statistics - UNCTAD Maritime Transport Review"
     }
   },
   "pdf": {
