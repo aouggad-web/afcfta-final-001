@@ -188,6 +188,12 @@
     "air": "Aérien (Fret)",
     "land": "Terrestre (Corridors)",
     "freeZones": "Zones Franches",
+    "dataSourcesTitle": "Sources de Données",
+    "trsTitle": "Données TRS (Time Release Study)",
+    "trsDesc": "Temps de dédouanement officiels - Organisation Mondiale des Douanes (OMD)",
+    "wcoTitle": "Données OMD/WCO",
+    "wcoDesc": "Facilitation des échanges - Temps de passage aux frontières",
+    "sourceLabel": "Source:",
     "unctad": {
       "title": "Données UNCTAD",
       "portStats": "Statistiques Portuaires",
@@ -199,7 +205,8 @@
       "teu": "TEU",
       "rank": "Rang",
       "africa": "Afrique",
-      "global": "Mondial"
+      "global": "Mondial",
+      "desc": "Statistiques maritimes et portuaires - UNCTAD Maritime Transport Review"
     }
   },
   "pdf": {
