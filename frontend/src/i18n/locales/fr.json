@@ -161,6 +161,26 @@
       "subtitle": "Production de minerais et métaux par pays africain"
     }
   },
+  "statistics": {
+    "title": "Statistiques Commerciales ZLECAf",
+    "topExporters": "Top 10 Pays Exportateurs (2023-2024)",
+    "topImporters": "Top 10 Pays Importateurs (2023-2024)",
+    "exportsEvolution": "Évolution des exportations en milliards USD",
+    "importsVolume": "Volume des importations en milliards USD",
+    "exports": "Exportations (USD)",
+    "imports": "Importations (USD)",
+    "overview": "Vue d'ensemble du commerce africain",
+    "intraAfricanTrade": "Commerce Intra-Africain",
+    "totalExports": "Exports Totaux",
+    "totalImports": "Imports Totaux",
+    "tradeBalance": "Balance Commerciale",
+    "growth": "Croissance",
+    "target2030": "Objectif ZLECAf 2030",
+    "achieved": "atteint",
+    "tradeEvolution": "Évolution du Commerce Intra-Africain 2023-2030",
+    "topProducts": "Top 20 Produits Commerciaux",
+    "tradeComparison": "Comparaison Commerciale"
+  },
   "logistics": {
     "title": "Plateforme Logistique Multimodale",
     "subtitle": "Analyse intégrée des corridors maritimes, aériens, terrestres et zones franches",
