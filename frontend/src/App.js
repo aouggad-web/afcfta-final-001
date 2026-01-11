@@ -123,7 +123,8 @@ function App() {
                 variant={language === 'fr' ? 'default' : 'outline'}
                 size="lg"
                 className={language === 'fr' ? 'bg-white text-green-700 hover:bg-yellow-100 font-bold shadow-lg' : 'bg-white/20 text-white border-white hover:bg-white/30'}
-                onClick={() => setLanguage('fr')}
+                onClick={() => handleLanguageChange('fr')}
+                data-testid="lang-fr-btn"
               >
                 🇫🇷 Français
               </Button>
@@ -131,7 +132,8 @@ function App() {
                 variant={language === 'en' ? 'default' : 'outline'}
                 size="lg"
                 className={language === 'en' ? 'bg-white text-green-700 hover:bg-yellow-100 font-bold shadow-lg' : 'bg-white/20 text-white border-white hover:bg-white/30'}
-                onClick={() => setLanguage('en')}
+                onClick={() => handleLanguageChange('en')}
+                data-testid="lang-en-btn"
               >
                 🇬🇧 English
               </Button>
