@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card';
 import { ResponsiveContainer, BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import StatisticsZaubaStyle from '../StatisticsZaubaStyle';
@@ -11,31 +12,9 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 export default function StatisticsTab({ language = 'fr' }) {
+  const { t } = useTranslation();
   const [statistics, setStatistics] = useState(null);
   const contentRef = useRef(null);
-
-  const texts = {
-    fr: {
-      topExporters: "Top 10 Pays Exportateurs (2023-2024)",
-      topImporters: "Top 10 Pays Importateurs (2023-2024)",
-      exportsEvolution: "Évolution des exportations en milliards USD",
-      importsVolume: "Volume des importations en milliards USD",
-      exports: "Exportations (USD)",
-      imports: "Importations (USD)",
-      exportPDF: "Exporter en PDF"
-    },
-    en: {
-      topExporters: "Top 10 Exporting Countries (2023-2024)",
-      topImporters: "Top 10 Importing Countries (2023-2024)",
-      exportsEvolution: "Export evolution in billion USD",
-      importsVolume: "Import volume in billion USD",
-      exports: "Exports (USD)",
-      imports: "Imports (USD)",
-      exportPDF: "Export to PDF"
-    }
-  };
-
-  const t = texts[language];
 
   useEffect(() => {
     fetchStatistics();
@@ -51,13 +30,13 @@ export default function StatisticsTab({ language = 'fr' }) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" data-testid="statistics-tab">
       {/* Export Button */}
       <div className="flex justify-end">
         <PDFExportButton
           targetRef={contentRef}
           filename="statistics"
-          title={language === 'fr' ? 'Statistiques Commerciales ZLECAf' : 'AfCFTA Trade Statistics'}
+          title={t('statistics.title')}
           language={language}
         />
       </div>
@@ -79,13 +58,13 @@ export default function StatisticsTab({ language = 'fr' }) {
       {/* Top 10 Exporters and Importers Charts */}
       {statistics && statistics.top_exporters_2024 && statistics.top_importers_2024 && (
         <div className="mt-8 space-y-6">
-          <Card className="shadow-2xl">
+          <Card className="shadow-2xl" data-testid="top-exporters-chart">
             <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-100">
               <CardTitle className="text-2xl font-bold text-green-700 flex items-center gap-2">
                 <span>📤</span>
-                <span>{t.topExporters}</span>
+                <span>{t('statistics.topExporters')}</span>
               </CardTitle>
-              <CardDescription className="font-semibold">{t.exportsEvolution}</CardDescription>
+              <CardDescription className="font-semibold">{t('statistics.exportsEvolution')}</CardDescription>
             </CardHeader>
             <CardContent className="pt-6">
               <div style={{ minHeight: '420px' }}>
@@ -102,20 +81,20 @@ export default function StatisticsTab({ language = 'fr' }) {
                       contentStyle={{ backgroundColor: '#fff', borderRadius: '8px' }}
                     />
                     <Legend />
-                    <Bar dataKey="exports" name={t.exports} fill="#10b981" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="exports" name={t('statistics.exports')} fill="#10b981" radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="shadow-2xl">
+          <Card className="shadow-2xl" data-testid="top-importers-chart">
             <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-100">
               <CardTitle className="text-2xl font-bold text-blue-700 flex items-center gap-2">
                 <span>📥</span>
-                <span>{t.topImporters}</span>
+                <span>{t('statistics.topImporters')}</span>
               </CardTitle>
-              <CardDescription className="font-semibold">{t.importsVolume}</CardDescription>
+              <CardDescription className="font-semibold">{t('statistics.importsVolume')}</CardDescription>
             </CardHeader>
             <CardContent className="pt-6">
               <div style={{ minHeight: '420px' }}>
@@ -132,7 +111,7 @@ export default function StatisticsTab({ language = 'fr' }) {
                       contentStyle={{ backgroundColor: '#fff', borderRadius: '8px' }}
                     />
                     <Legend />
-                    <Bar dataKey="imports" name={t.imports} fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="imports" name={t('statistics.imports')} fill="#3b82f6" radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
