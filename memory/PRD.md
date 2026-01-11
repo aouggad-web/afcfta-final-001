@@ -66,6 +66,22 @@ Application web d'analyse des statistiques commerciales et économiques africain
 - **Fichier modifié** : `/app/frontend/src/components/production/EnhancedCountrySelector.jsx`
 - **Test réussi** : Sélection "Algérie" → Données chargées (12 enregistrements, 3 secteurs)
 
+### Bug Fix - Lien Port de Lobito (09/01/2025)
+- **Problème** : Le lien du site web du port de Lobito (Angola) ne fonctionnait pas
+- **Solution** : Correction de `www.portolobito.co.ao` vers `https://portodolobito.co.ao`
+- **Fichier modifié** : `/app/ports_africains.json`
+
+### Migration i18n - StatisticsTab & LogisticsTab (09/01/2025)
+- **Migration** : Composants `StatisticsTab.jsx` et `LogisticsTab.jsx` vers `useTranslation()` de react-i18next
+- **Synchronisation** : `App.js` maintenant synchronise le changement de langue avec `i18n.changeLanguage()`
+- **Traductions ajoutées** : Sections `statistics` et `logistics` complètes en français et anglais
+- **Fichiers modifiés** :
+  - `/app/frontend/src/App.js`
+  - `/app/frontend/src/components/statistics/StatisticsTab.jsx`
+  - `/app/frontend/src/components/logistics/LogisticsTab.jsx`
+  - `/app/frontend/src/i18n/locales/fr.json`
+  - `/app/frontend/src/i18n/locales/en.json`
+
 ### Widgets Dynamiques Dashboard (09/01/2025)
 - **Implémentation complète** des widgets dynamiques avec données temps réel
 - **Fichiers créés/modifiés** :
