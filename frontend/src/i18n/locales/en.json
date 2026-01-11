@@ -161,6 +161,26 @@
       "subtitle": "Mineral and metal production by African country"
     }
   },
+  "statistics": {
+    "title": "AfCFTA Trade Statistics",
+    "topExporters": "Top 10 Exporting Countries (2023-2024)",
+    "topImporters": "Top 10 Importing Countries (2023-2024)",
+    "exportsEvolution": "Export evolution in billion USD",
+    "importsVolume": "Import volume in billion USD",
+    "exports": "Exports (USD)",
+    "imports": "Imports (USD)",
+    "overview": "African Trade Overview",
+    "intraAfricanTrade": "Intra-African Trade",
+    "totalExports": "Total Exports",
+    "totalImports": "Total Imports",
+    "tradeBalance": "Trade Balance",
+    "growth": "Growth",
+    "target2030": "AfCFTA Target 2030",
+    "achieved": "achieved",
+    "tradeEvolution": "Intra-African Trade Evolution 2023-2030",
+    "topProducts": "Top 20 Trade Products",
+    "tradeComparison": "Trade Comparison"
+  },
   "logistics": {
     "title": "Multimodal Logistics Platform",
     "subtitle": "Integrated analysis of maritime, air, land corridors and free zones",
