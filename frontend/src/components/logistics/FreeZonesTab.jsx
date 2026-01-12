@@ -220,9 +220,10 @@ export default function FreeZonesTab({ language = 'fr' }) {
           </MapContainer>
         </Card>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {zones.map((zone) => (
-            <Card key={zone.id} className="hover:shadow-lg transition-shadow border-t-4 border-t-orange-500">
+        <div className="max-h-[550px] overflow-y-auto rounded-lg border border-gray-200 p-4 bg-gray-50">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {zones.map((zone) => (
+              <Card key={zone.id} className="hover:shadow-lg transition-shadow border-t-4 border-t-orange-500">
               <CardHeader className="pb-3">
                 <div className="flex justify-between items-start">
                   <Badge variant="outline" className="text-xs">{zone.country}</Badge>
