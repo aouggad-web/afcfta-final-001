@@ -280,6 +280,7 @@ export default function FreeZonesTab({ language = 'fr' }) {
               </CardContent>
             </Card>
           ))}
+          </div>
         </div>
       )}
     </div>
