@@ -207,15 +207,17 @@ export default function MaritimeLogisticsTab({ language = 'fr' }) {
           language={language}
         />
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {ports.map((port) => (
-            <PortCard
-              key={port.port_id}
-              port={port}
-              onOpenDetails={handlePortClick}
-              language={language}
-            />
-          ))}
+        <div className="max-h-[550px] overflow-y-auto rounded-lg border border-gray-200 p-4 bg-gray-50">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {ports.map((port) => (
+              <PortCard
+                key={port.port_id}
+                port={port}
+                onOpenDetails={handlePortClick}
+                language={language}
+              />
+            ))}
+          </div>
         </div>
       )}
 
