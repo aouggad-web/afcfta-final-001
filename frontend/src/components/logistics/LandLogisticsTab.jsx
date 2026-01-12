@@ -198,7 +198,8 @@ export default function LandLogisticsTab({ language = 'fr' }) {
                 onOpenDetails={handleCorridorClick}
                 language={language}
               />
-            ))}}
+            ))}
+          </div>
         </div>
       )}
 
