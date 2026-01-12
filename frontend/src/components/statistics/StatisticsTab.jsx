@@ -104,14 +104,14 @@ export default function StatisticsTab({ language = 'fr' }) {
                     margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
                   >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="country" />
-                    <YAxis />
+                    <XAxis dataKey="name" />
+                    <YAxis tickFormatter={(value) => `$${(value / 1000000000).toFixed(0)}B`} />
                     <Tooltip 
                       formatter={(value) => `$${(value / 1000000000).toFixed(1)}B`}
                       contentStyle={{ backgroundColor: '#fff', borderRadius: '8px' }}
                     />
                     <Legend />
-                    <Bar dataKey="imports" name={t('statistics.imports')} fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="imports_2024" name={t('statistics.imports')} fill="#3b82f6" radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
