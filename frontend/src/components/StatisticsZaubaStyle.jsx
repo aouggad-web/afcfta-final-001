@@ -211,8 +211,8 @@ const StatisticsZaubaStyle = ({ language = 'fr' }) => {
                     <span className="text-sm font-semibold text-gray-800">{translateCountry(exporter.name)}</span>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-bold text-green-700">${exporter.exports}B</p>
-                    <p className="text-xs text-gray-500">{exporter.share}% {t.ofTotal}</p>
+                    <p className="text-sm font-bold text-green-700">${(exporter.exports_2024 / 1000000000).toFixed(1)}B</p>
+                    <p className="text-xs text-gray-500">{exporter.share_pct}% {t.ofTotal}</p>
                   </div>
                 </div>
               ))}
@@ -233,8 +233,8 @@ const StatisticsZaubaStyle = ({ language = 'fr' }) => {
                     <span className="text-sm font-semibold text-gray-800">{translateCountry(importer.name)}</span>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-bold text-blue-700">${importer.imports}B</p>
-                    <p className="text-xs text-gray-500">{importer.share}% {t.ofTotal}</p>
+                    <p className="text-sm font-bold text-blue-700">${(importer.imports_2024 / 1000000000).toFixed(1)}B</p>
+                    <p className="text-xs text-gray-500">{importer.share_pct}% {t.ofTotal}</p>
                   </div>
                 </div>
               ))}
