@@ -10,9 +10,11 @@
     "port_type": "Maritime Commercial",
     "latest_stats": {
       "year": 2024,
-      "container_throughput_teu": 950000,
+      "container_throughput_teu": 280000,
       "cargo_throughput_tons": 18500000,
-      "vessel_calls": 2800
+      "vessel_calls": 2800,
+      "source": "EPAL - Entreprise Portuaire d'Alger",
+      "note": "H1 2024: ~130,000 TEU, projection annuelle ~260-280K TEU"
     },
     "agents": [
       {
