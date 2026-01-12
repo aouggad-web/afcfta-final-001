@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException, UploadFile, File, Form
+from fastapi import FastAPI, APIRouter, HTTPException, UploadFile, File, Form, Query
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -40,6 +40,14 @@ from logistics_air_data import (
 )
 from projects_data import get_country_ongoing_projects
 from free_zones_data import load_free_zones, get_free_zones_by_country
+from etl.hs_codes_data import (
+    get_hs_chapters,
+    get_hs6_codes,
+    get_hs6_code,
+    search_hs_codes,
+    get_codes_by_chapter,
+    get_all_hs_data
+)
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
