@@ -180,7 +180,7 @@ export default function FreeZonesTab({ language = 'fr' }) {
       </Card>
 
       {viewMode === 'map' ? (
-        <Card className="h-[600px] overflow-hidden border-2 border-orange-100">
+        <Card className="h-[550px] overflow-hidden border-2 border-orange-100">
           <MapContainer center={[5.0, 20.0]} zoom={3} style={{ height: '100%', width: '100%' }}>
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
