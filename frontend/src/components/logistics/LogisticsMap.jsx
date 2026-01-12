@@ -148,7 +148,7 @@ export default function LogisticsMap({ onPortClick, selectedCountry = 'ALL', lan
       <MapContainer
         center={[5, 20]}
         zoom={4}
-        style={{ height: '600px', width: '100%' }}
+        style={{ height: '550px', width: '100%' }}
         className="z-0"
       >
         <TileLayer
