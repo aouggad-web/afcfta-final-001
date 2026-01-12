@@ -339,15 +339,17 @@ export default function AirLogisticsTab({ language = 'fr' }) {
           language={language}
         />
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {airports.map((airport) => (
-            <AirportCard
-              key={airport.airport_id}
-              airport={airport}
-              onOpenDetails={handleAirportClick}
-              language={language}
-            />
-          ))}
+        <div className="max-h-[550px] overflow-y-auto rounded-lg border border-gray-200 p-4 bg-gray-50">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {airports.map((airport) => (
+              <AirportCard
+                key={airport.airport_id}
+                airport={airport}
+                onOpenDetails={handleAirportClick}
+                language={language}
+              />
+            ))}
+          </div>
         </div>
       )}
 
