@@ -141,7 +141,7 @@ export default function AirLogisticsMap({ onAirportClick, selectedCountry, langu
       <MapContainer 
         center={mapCenter} 
         zoom={mapZoom} 
-        style={{ height: '600px', width: '100%' }}
+        style={{ height: '550px', width: '100%' }}
         className="rounded-lg shadow-lg"
       >
         <MapController center={mapCenter} zoom={mapZoom} />
