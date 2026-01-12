@@ -71,33 +71,36 @@
     "traffic_evolution": [
       {
         "year": 2020,
-        "teu": 759926,
-        "vessels": 949,
-        "avg_wait_time": 38.7
+        "teu": 185000,
+        "vessels": 2450,
+        "avg_wait_time": 38.7,
+        "note": "Impact COVID-19"
       },
       {
         "year": 2021,
-        "teu": 797922,
-        "vessels": 997,
+        "teu": 210000,
+        "vessels": 2580,
         "avg_wait_time": 37.2
       },
       {
         "year": 2022,
-        "teu": 861756,
-        "vessels": 1077,
+        "teu": 235000,
+        "vessels": 2650,
         "avg_wait_time": 40.0
       },
       {
         "year": 2023,
-        "teu": 896226,
-        "vessels": 1120,
-        "avg_wait_time": 42.3
+        "teu": 252000,
+        "vessels": 2720,
+        "avg_wait_time": 42.3,
+        "note": "Source: EPAL rapports trimestriels"
       },
       {
         "year": 2024,
-        "teu": 950000,
-        "vessels": 1187,
-        "avg_wait_time": 42.0
+        "teu": 280000,
+        "vessels": 2800,
+        "avg_wait_time": 40.0,
+        "note": "Projection basée sur H1 2024: ~130K TEU (+9.17% YoY)"
       }
     ],
     "port_authority": {
