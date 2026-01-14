@@ -34,7 +34,11 @@ export default function RulesTab({ language = 'fr' }) {
       adminInfo: "Informations Administratives",
       validityPeriod: "Période de validité",
       issuingAuthority: "Autorité émettrice",
-      errorLoading: "Erreur lors du chargement des règles d'origine"
+      errorLoading: "Erreur lors du chargement des règles d'origine",
+      browseHS: "Parcourir les codes HS",
+      hideHSBrowser: "Masquer le navigateur",
+      searchOrBrowse: "Recherchez ou parcourez les codes SH6 pour voir les règles d'origine applicables",
+      loadingRules: "Chargement des règles..."
     },
     en: {
       title: "AfCFTA Rules of Origin",
