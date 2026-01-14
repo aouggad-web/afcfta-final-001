@@ -78,7 +78,11 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
       requirement: "Exigence",
       minRegionalContent: "Contenu régional minimum",
       african: "africain",
-      sectorPrefix: "Secteur"
+      sectorPrefix: "Secteur",
+      hsCodeSelectorTitle: "Sélecteur de Code SH6",
+      hsCodeSelectorDesc: "Recherchez ou parcourez les codes du Système Harmonisé",
+      browseHS: "Parcourir les codes HS",
+      hideHSBrowser: "Masquer le navigateur"
     },
     en: {
       originCountry: "Origin Country",
