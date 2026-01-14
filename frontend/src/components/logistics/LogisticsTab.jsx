@@ -26,32 +26,32 @@ export default function LogisticsTab({ language = 'fr' }) {
       </div>
 
       <div ref={contentRef}>
-      {/* Header */}
+      {/* Header - Compact */}
       <Card className="bg-gradient-to-r from-blue-700 to-indigo-800 text-white shadow-xl">
-        <CardHeader>
-          <CardTitle className="text-3xl font-bold flex items-center gap-3">
+        <CardHeader className="py-3">
+          <CardTitle className="text-xl font-bold flex items-center gap-2">
             <span>🌍</span>
             <span>{t('logistics.title')}</span>
           </CardTitle>
-          <CardDescription className="text-blue-100 text-lg">
+          <CardDescription className="text-blue-100 text-sm">
             {t('logistics.subtitle')}
           </CardDescription>
         </CardHeader>
       </Card>
 
-      {/* Main Tabs */}
-      <Tabs defaultValue="maritime" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4 bg-white shadow-md p-1 h-14">
-          <TabsTrigger value="maritime" className="text-base font-semibold data-[state=active]:bg-blue-100 data-[state=active]:text-blue-800" data-testid="maritime-tab-trigger">
+      {/* Main Tabs - Compact */}
+      <Tabs defaultValue="maritime" className="space-y-4">
+        <TabsList className="grid w-full grid-cols-4 bg-white shadow-md p-1 h-10">
+          <TabsTrigger value="maritime" className="text-sm font-semibold data-[state=active]:bg-blue-100 data-[state=active]:text-blue-800" data-testid="maritime-tab-trigger">
             🚢 {t('logistics.maritime')}
           </TabsTrigger>
-          <TabsTrigger value="air" className="text-base font-semibold data-[state=active]:bg-sky-100 data-[state=active]:text-sky-800" data-testid="air-tab-trigger">
+          <TabsTrigger value="air" className="text-sm font-semibold data-[state=active]:bg-sky-100 data-[state=active]:text-sky-800" data-testid="air-tab-trigger">
             ✈️ {t('logistics.air')}
           </TabsTrigger>
-          <TabsTrigger value="land" className="text-base font-semibold data-[state=active]:bg-slate-100 data-[state=active]:text-slate-800" data-testid="land-tab-trigger">
+          <TabsTrigger value="land" className="text-sm font-semibold data-[state=active]:bg-slate-100 data-[state=active]:text-slate-800" data-testid="land-tab-trigger">
             🚛 {t('logistics.land')}
           </TabsTrigger>
-          <TabsTrigger value="zones" className="text-base font-semibold data-[state=active]:bg-orange-100 data-[state=active]:text-orange-800" data-testid="zones-tab-trigger">
+          <TabsTrigger value="zones" className="text-sm font-semibold data-[state=active]:bg-orange-100 data-[state=active]:text-orange-800" data-testid="zones-tab-trigger">
             🏭 {t('logistics.freeZones')}
           </TabsTrigger>
         </TabsList>
