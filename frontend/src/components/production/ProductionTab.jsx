@@ -106,38 +106,6 @@ function ProductionTab({ language = 'fr' }) {
         </CardHeader>
       </Card>
 
-      {/* Data Sources Info */}
-      <Card className="border-l-4 border-l-blue-500 bg-blue-50">
-        <CardContent className="pt-4">
-          <h3 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
-            <span>ℹ️</span>
-            <span>{t.sourcesTitle}</span>
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
-            <div className="bg-white p-3 rounded shadow-sm">
-              <p className="font-semibold text-purple-700">📊 {t.macroTitle}</p>
-              <p className="text-gray-600">{t.macroSource1}</p>
-              <p className="text-gray-600">{t.macroSource2}</p>
-            </div>
-            <div className="bg-white p-3 rounded shadow-sm">
-              <p className="font-semibold text-green-700">🌾 {t.agricultureTitle}</p>
-              <p className="text-gray-600">{t.agricultureSource1}</p>
-              <p className="text-gray-600">{t.agricultureSource2}</p>
-            </div>
-            <div className="bg-white p-3 rounded shadow-sm">
-              <p className="font-semibold text-blue-700">🏭 {t.manufacturingTitle}</p>
-              <p className="text-gray-600">{t.manufacturingSource1}</p>
-              <p className="text-gray-600">{t.manufacturingSource2}</p>
-            </div>
-            <div className="bg-white p-3 rounded shadow-sm">
-              <p className="font-semibold text-amber-700">⛏️ {t.miningTitle}</p>
-              <p className="text-gray-600">{t.miningSource1}</p>
-              <p className="text-gray-600">{t.miningSource2}</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
       {/* Sub-tabs Navigation */}
       <Tabs value={activeSubTab} onValueChange={setActiveSubTab} className="space-y-6">
         <TabsList className="grid w-full grid-cols-4 bg-gradient-to-r from-purple-100 via-indigo-100 to-blue-100 p-2 shadow-lg h-auto">
@@ -191,6 +159,38 @@ function ProductionTab({ language = 'fr' }) {
           <ProductionMining language={language} />
         </TabsContent>
       </Tabs>
+
+      {/* Data Sources Info - Moved to bottom */}
+      <Card className="border-l-4 border-l-blue-500 bg-blue-50">
+        <CardContent className="pt-4">
+          <h3 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
+            <span>ℹ️</span>
+            <span>{t.sourcesTitle}</span>
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+            <div className="bg-white p-3 rounded shadow-sm">
+              <p className="font-semibold text-purple-700">📊 {t.macroTitle}</p>
+              <p className="text-gray-600">{t.macroSource1}</p>
+              <p className="text-gray-600">{t.macroSource2}</p>
+            </div>
+            <div className="bg-white p-3 rounded shadow-sm">
+              <p className="font-semibold text-green-700">🌾 {t.agricultureTitle}</p>
+              <p className="text-gray-600">{t.agricultureSource1}</p>
+              <p className="text-gray-600">{t.agricultureSource2}</p>
+            </div>
+            <div className="bg-white p-3 rounded shadow-sm">
+              <p className="font-semibold text-blue-700">🏭 {t.manufacturingTitle}</p>
+              <p className="text-gray-600">{t.manufacturingSource1}</p>
+              <p className="text-gray-600">{t.manufacturingSource2}</p>
+            </div>
+            <div className="bg-white p-3 rounded shadow-sm">
+              <p className="font-semibold text-amber-700">⛏️ {t.miningTitle}</p>
+              <p className="text-gray-600">{t.miningSource1}</p>
+              <p className="text-gray-600">{t.miningSource2}</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Footer Note */}
       <Card className="bg-gradient-to-r from-gray-50 to-slate-50 border-t-4 border-t-purple-500">
