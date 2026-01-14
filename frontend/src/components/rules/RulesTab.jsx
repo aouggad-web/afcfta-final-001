@@ -15,6 +15,8 @@ const API = `${BACKEND_URL}/api`;
 export default function RulesTab({ language = 'fr' }) {
   const [hsCode, setHsCode] = useState('');
   const [rulesOfOrigin, setRulesOfOrigin] = useState(null);
+  const [showBrowser, setShowBrowser] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const texts = {
     fr: {
