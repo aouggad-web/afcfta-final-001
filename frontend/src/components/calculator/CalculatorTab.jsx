@@ -262,20 +262,51 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="hs-code">{t.hsCodeLabel}</Label>
-            <Input
-              id="hs-code"
+            <Label htmlFor="hs-code" className="flex items-center gap-2">
+              <Package className="w-4 h-4" />
+              {t.hsCodeLabel}
+            </Label>
+            <HSCodeSearch
               value={hsCode}
-              onChange={(e) => setHsCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-              placeholder="Ex : 010121, 180100..."
-              maxLength={6}
+              onChange={setHsCode}
+              language={language}
+              data-testid="hs-code-selector"
             />
-            {hsCode.length >= 2 && (
-              <p className="text-sm text-blue-600">
-                {getSectorName(hsCode)}
-              </p>
-            )}
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => setShowHSBrowser(!showHSBrowser)}
+              className="w-full mt-2 text-blue-600 border-blue-300 hover:bg-blue-50"
+              data-testid="toggle-hs-browser"
+            >
+              {showHSBrowser ? (
+                <>
+                  <ChevronUp className="w-4 h-4 mr-2" />
+                  {t.hideHSBrowser}
+                </>
+              ) : (
+                <>
+                  <ChevronDown className="w-4 h-4 mr-2" />
+                  {t.browseHS}
+                </>
+              )}
+            </Button>
           </div>
+
+          {/* HS Code Browser Panel */}
+          {showHSBrowser && (
+            <div className="border-2 border-blue-200 rounded-lg overflow-hidden">
+              <HSCodeBrowser
+                onSelect={(code) => {
+                  setHsCode(code.code);
+                  setShowHSBrowser(false);
+                }}
+                language={language}
+                showRulesOfOrigin={true}
+              />
+            </div>
+          )}
 
           <div className="space-y-2">
             <Label htmlFor="value">{t.valueLabel}</Label>
