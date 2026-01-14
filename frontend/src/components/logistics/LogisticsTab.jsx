@@ -39,34 +39,6 @@ export default function LogisticsTab({ language = 'fr' }) {
         </CardHeader>
       </Card>
 
-      {/* Data Sources Card */}
-      <Card className="border-l-4 border-l-cyan-500 bg-cyan-50">
-        <CardContent className="pt-4">
-          <h3 className="font-bold text-cyan-900 flex items-center gap-2 mb-4">
-            <span>📊</span>
-            <span>{t('logistics.dataSourcesTitle')}</span>
-          </h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-            <div className="bg-white p-3 rounded shadow-sm border-l-2 border-l-orange-400">
-              <p className="font-semibold text-orange-700">⏱️ {t('logistics.trsTitle')}</p>
-              <p className="text-gray-600 text-xs">{t('logistics.trsDesc')}</p>
-              <Badge className="mt-2 bg-orange-100 text-orange-700 text-xs">{t('common.estimated')}</Badge>
-            </div>
-            <div className="bg-white p-3 rounded shadow-sm border-l-2 border-l-blue-400">
-              <p className="font-semibold text-blue-700">🚢 {t('logistics.unctad.title')}</p>
-              <p className="text-gray-600 text-xs">{t('logistics.unctad.desc')}</p>
-              <Badge className="mt-2 bg-blue-100 text-blue-700 text-xs">{t('common.official')}</Badge>
-            </div>
-            <div className="bg-white p-3 rounded shadow-sm border-l-2 border-l-green-400">
-              <p className="font-semibold text-green-700">🛃 {t('logistics.wcoTitle')}</p>
-              <p className="text-gray-600 text-xs">{t('logistics.wcoDesc')}</p>
-              <Badge className="mt-2 bg-green-100 text-green-700 text-xs">{t('common.official')}</Badge>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
       {/* Main Tabs */}
       <Tabs defaultValue="maritime" className="space-y-6">
         <TabsList className="grid w-full grid-cols-4 bg-white shadow-md p-1 h-14">
@@ -100,6 +72,34 @@ export default function LogisticsTab({ language = 'fr' }) {
           <FreeZonesTab language={language} />
         </TabsContent>
       </Tabs>
+
+      {/* Data Sources Card - Moved to bottom */}
+      <Card className="border-l-4 border-l-cyan-500 bg-cyan-50">
+        <CardContent className="pt-4">
+          <h3 className="font-bold text-cyan-900 flex items-center gap-2 mb-4">
+            <span>📊</span>
+            <span>{t('logistics.dataSourcesTitle')}</span>
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+            <div className="bg-white p-3 rounded shadow-sm border-l-2 border-l-orange-400">
+              <p className="font-semibold text-orange-700">⏱️ {t('logistics.trsTitle')}</p>
+              <p className="text-gray-600 text-xs">{t('logistics.trsDesc')}</p>
+              <Badge className="mt-2 bg-orange-100 text-orange-700 text-xs">{t('common.estimated')}</Badge>
+            </div>
+            <div className="bg-white p-3 rounded shadow-sm border-l-2 border-l-blue-400">
+              <p className="font-semibold text-blue-700">🚢 {t('logistics.unctad.title')}</p>
+              <p className="text-gray-600 text-xs">{t('logistics.unctad.desc')}</p>
+              <Badge className="mt-2 bg-blue-100 text-blue-700 text-xs">{t('common.official')}</Badge>
+            </div>
+            <div className="bg-white p-3 rounded shadow-sm border-l-2 border-l-green-400">
+              <p className="font-semibold text-green-700">🛃 {t('logistics.wcoTitle')}</p>
+              <p className="text-gray-600 text-xs">{t('logistics.wcoDesc')}</p>
+              <Badge className="mt-2 bg-green-100 text-green-700 text-xs">{t('common.official')}</Badge>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Footer with Source Indicator */}
       <Card className="bg-gray-50 border-gray-200">
