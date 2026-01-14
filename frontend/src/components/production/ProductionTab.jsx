@@ -106,40 +106,36 @@ function ProductionTab({ language = 'fr' }) {
         </CardHeader>
       </Card>
 
-      {/* Sub-tabs Navigation */}
-      <Tabs value={activeSubTab} onValueChange={setActiveSubTab} className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4 bg-gradient-to-r from-purple-100 via-indigo-100 to-blue-100 p-2 shadow-lg h-auto">
+      {/* Sub-tabs Navigation - Compact */}
+      <Tabs value={activeSubTab} onValueChange={setActiveSubTab} className="space-y-4">
+        <TabsList className="grid w-full grid-cols-4 bg-gradient-to-r from-purple-100 via-indigo-100 to-blue-100 p-1 shadow-md h-auto">
           <TabsTrigger 
             value="macro" 
-            className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white font-bold py-3 flex flex-col items-center gap-1"
+            className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white font-semibold py-2 flex flex-col items-center gap-0.5 text-sm"
           >
-            <span className="text-2xl">📊</span>
+            <span className="text-lg">📊</span>
             <span>{t.macroTitle}</span>
-            <span className="text-xs opacity-80">{t.macroSubtitle}</span>
           </TabsTrigger>
           <TabsTrigger 
             value="agriculture" 
-            className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-600 data-[state=active]:to-emerald-600 data-[state=active]:text-white font-bold py-3 flex flex-col items-center gap-1"
+            className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-600 data-[state=active]:to-emerald-600 data-[state=active]:text-white font-semibold py-2 flex flex-col items-center gap-0.5 text-sm"
           >
-            <span className="text-2xl">🌾</span>
+            <span className="text-lg">🌾</span>
             <span>{t.agricultureTitle}</span>
-            <span className="text-xs opacity-80">{t.agricultureSubtitle}</span>
           </TabsTrigger>
           <TabsTrigger 
             value="manufacturing" 
-            className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-cyan-600 data-[state=active]:text-white font-bold py-3 flex flex-col items-center gap-1"
+            className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-cyan-600 data-[state=active]:text-white font-semibold py-2 flex flex-col items-center gap-0.5 text-sm"
           >
-            <span className="text-2xl">🏭</span>
+            <span className="text-lg">🏭</span>
             <span>{t.manufacturingTitle}</span>
-            <span className="text-xs opacity-80">{t.manufacturingSubtitle}</span>
           </TabsTrigger>
           <TabsTrigger 
             value="mining" 
-            className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-600 data-[state=active]:to-orange-600 data-[state=active]:text-white font-bold py-3 flex flex-col items-center gap-1"
+            className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-600 data-[state=active]:to-orange-600 data-[state=active]:text-white font-semibold py-2 flex flex-col items-center gap-0.5 text-sm"
           >
-            <span className="text-2xl">⛏️</span>
+            <span className="text-lg">⛏️</span>
             <span>{t.miningTitle}</span>
-            <span className="text-xs opacity-80">{t.miningSubtitle}</span>
           </TabsTrigger>
         </TabsList>
 
