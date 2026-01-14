@@ -345,7 +345,7 @@ export function HSCodeBrowser({ onSelect, language = 'fr', showRulesOfOrigin = t
   useEffect(() => {
     fetchChapters();
     fetchStats();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchChapters = async () => {
