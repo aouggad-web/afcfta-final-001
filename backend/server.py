@@ -1843,6 +1843,126 @@ async def get_country_production_full_overview(country_iso3: str):
 
 
 # ==========================================
+
+# ==========================================
+# HS CODES (HARMONIZED SYSTEM) ENDPOINTS
+# ==========================================
+
+@api_router.get("/hs-codes/chapters")
+async def get_all_hs_chapters():
+    """
+    Get all HS chapters (2-digit codes) with labels in FR and EN
+    """
+    return {
+        "chapters": get_hs_chapters(),
+        "total": len(get_hs_chapters()),
+        "source": "World Customs Organization (WCO) HS 2022"
+    }
+
+@api_router.get("/hs-codes/all")
+async def get_all_hs6_codes_endpoint(language: str = Query("fr", description="Language: fr or en")):
+    """
+    Get all HS6 codes with their labels
+    """
+    codes = get_hs6_codes()
+    result = []
+    for code, labels in codes.items():
+        result.append({
+            "code": code,
+            "label": labels.get(language, labels.get('fr', '')),
+            "chapter": code[:2],
+            "chapter_name": get_hs_chapters().get(code[:2], {}).get(language, '')
+        })
+    
+    return {
+        "codes": result,
+        "total": len(result),
+        "language": language,
+        "source": "World Customs Organization (WCO) HS 2022"
+    }
+
+@api_router.get("/hs-codes/code/{hs_code}")
+async def get_single_hs_code(hs_code: str, language: str = Query("fr", description="Language: fr or en")):
+    """
+    Get a specific HS6 code with its label
+    """
+    result = get_hs6_code(hs_code, language)
+    if not result:
+        raise HTTPException(status_code=404, detail=f"HS code {hs_code} not found")
+    return result
+
+@api_router.get("/hs-codes/search")
+async def search_hs_codes_endpoint(
+    q: str = Query(..., min_length=2, description="Search query (code or label)"),
+    language: str = Query("fr", description="Language: fr or en"),
+    limit: int = Query(20, ge=1, le=100, description="Maximum results")
+):
+    """
+    Search HS codes by code or label keyword
+    """
+    results = search_hs_codes(q, language, limit)
+    return {
+        "query": q,
+        "results": results,
+        "count": len(results),
+        "language": language
+    }
+
+@api_router.get("/hs-codes/chapter/{chapter}")
+async def get_hs_codes_by_chapter(
+    chapter: str = Query(..., min_length=2, max_length=2, description="2-digit chapter code"),
+    language: str = Query("fr", description="Language: fr or en")
+):
+    """
+    Get all HS6 codes for a specific chapter
+    """
+    if chapter not in get_hs_chapters():
+        raise HTTPException(status_code=404, detail=f"Chapter {chapter} not found")
+    
+    codes = get_codes_by_chapter(chapter, language)
+    chapter_info = get_hs_chapters().get(chapter, {})
+    
+    return {
+        "chapter": chapter,
+        "chapter_name_fr": chapter_info.get('fr', ''),
+        "chapter_name_en": chapter_info.get('en', ''),
+        "codes": codes,
+        "count": len(codes)
+    }
+
+@api_router.get("/hs-codes/statistics")
+async def get_hs_codes_statistics():
+    """
+    Get HS codes database statistics
+    """
+    data = get_all_hs_data()
+    chapters = get_hs_chapters()
+    codes = get_hs6_codes()
+    
+    # Count codes per chapter
+    codes_per_chapter = {}
+    for code in codes.keys():
+        ch = code[:2]
+        codes_per_chapter[ch] = codes_per_chapter.get(ch, 0) + 1
+    
+    top_chapters = sorted(codes_per_chapter.items(), key=lambda x: x[1], reverse=True)[:10]
+    
+    return {
+        "total_chapters": len(chapters),
+        "total_codes": len(codes),
+        "top_chapters": [
+            {
+                "chapter": ch,
+                "chapter_name_fr": chapters.get(ch, {}).get('fr', ''),
+                "code_count": count
+            }
+            for ch, count in top_chapters
+        ],
+        "source": data.get("source"),
+        "last_updated": data.get("last_updated")
+    }
+
+
 # FAOSTAT ENRICHED DATA ENDPOINTS
 # ==========================================
 
