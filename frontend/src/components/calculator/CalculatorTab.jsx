@@ -34,6 +34,7 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
   const [value, setValue] = useState('');
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showHSBrowser, setShowHSBrowser] = useState(false);
 
   const texts = {
     fr: {
