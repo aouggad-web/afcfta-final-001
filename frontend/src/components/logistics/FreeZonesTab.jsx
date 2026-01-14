@@ -103,14 +103,14 @@ export default function FreeZonesTab({ language = 'fr' }) {
   };
 
   return (
-    <div className="space-y-6">
-      <Card className="bg-gradient-to-r from-orange-600 to-red-600 text-white shadow-xl">
-        <CardHeader>
-          <CardTitle className="text-3xl font-bold flex items-center gap-3">
+    <div className="space-y-4">
+      <Card className="bg-gradient-to-r from-orange-600 to-red-600 text-white shadow-lg">
+        <CardHeader className="py-3">
+          <CardTitle className="text-lg font-bold flex items-center gap-2">
             <span>🏭</span>
             <span>{t.title}</span>
           </CardTitle>
-          <CardDescription className="text-orange-100 text-lg">
+          <CardDescription className="text-orange-100 text-sm">
             {t.description}
           </CardDescription>
         </CardHeader>
