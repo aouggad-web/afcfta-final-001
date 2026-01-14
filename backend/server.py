@@ -1910,13 +1910,13 @@ async def search_hs_codes_endpoint(
 
 @api_router.get("/hs-codes/chapter/{chapter}")
 async def get_hs_codes_by_chapter(
-    chapter: str = Query(..., min_length=2, max_length=2, description="2-digit chapter code"),
+    chapter: str,
     language: str = Query("fr", description="Language: fr or en")
 ):
     """
-    Get all HS6 codes for a specific chapter
+    Get all HS6 codes for a specific chapter (2-digit code)
     """
-    if chapter not in get_hs_chapters():
+    if len(chapter) != 2 or chapter not in get_hs_chapters():
         raise HTTPException(status_code=404, detail=f"Chapter {chapter} not found")
     
     codes = get_codes_by_chapter(chapter, language)
