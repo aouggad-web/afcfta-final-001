@@ -342,13 +342,7 @@ export function HSCodeBrowser({ onSelect, language = 'fr', showRulesOfOrigin = t
   const t = texts[language] || texts.fr;
   const sections = HS_SECTIONS[language] || HS_SECTIONS.fr;
 
-  useEffect(() => {
-    fetchChapters();
-    fetchStats();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const fetchChapters = async () => {
+  const fetchChapters = useCallback(async () => {
     try {
       const response = await axios.get(`${API}/hs-codes/chapters`);
       const chaptersData = response.data.chapters || {};
@@ -361,16 +355,21 @@ export function HSCodeBrowser({ onSelect, language = 'fr', showRulesOfOrigin = t
     } catch (error) {
       console.error('Error fetching chapters:', error);
     }
-  };
+  }, [language]);
 
-  const fetchStats = async () => {
+  const fetchStats = useCallback(async () => {
     try {
       const response = await axios.get(`${API}/hs-codes/statistics`);
       setStats(response.data);
     } catch (error) {
       console.error('Error fetching stats:', error);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchChapters();
+    fetchStats();
+  }, [fetchChapters, fetchStats]);
 
   const fetchChapterCodes = async (chapter) => {
     setLoading(true);
