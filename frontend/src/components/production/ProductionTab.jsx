@@ -82,24 +82,24 @@ function ProductionTab({ language = 'fr' }) {
       </div>
 
       <div ref={contentRef}>
-      {/* Main Header */}
-      <Card className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white shadow-2xl">
-        <CardHeader>
-          <CardTitle className="text-4xl font-bold flex items-center gap-3">
+      {/* Main Header - Compact */}
+      <Card className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white shadow-xl">
+        <CardHeader className="py-3">
+          <CardTitle className="text-xl font-bold flex items-center gap-2">
             <span>📈</span>
             <span>{t.title}</span>
           </CardTitle>
-          <CardDescription className="text-purple-100 text-lg font-semibold">
+          <CardDescription className="text-purple-100 text-sm">
             {t.subtitle}
           </CardDescription>
-          <div className="flex gap-2 mt-3">
-            <Badge className="bg-white text-purple-700 hover:bg-purple-50 text-sm px-3 py-1">
+          <div className="flex gap-2 mt-2">
+            <Badge className="bg-white text-purple-700 hover:bg-purple-50 text-xs px-2 py-0.5">
               🌍 {t.badge1}
             </Badge>
-            <Badge className="bg-white text-purple-700 hover:bg-purple-50 text-sm px-3 py-1">
+            <Badge className="bg-white text-purple-700 hover:bg-purple-50 text-xs px-2 py-0.5">
               📊 {t.badge2}
             </Badge>
-            <Badge className="bg-white text-purple-700 hover:bg-purple-50 text-sm px-3 py-1">
+            <Badge className="bg-white text-purple-700 hover:bg-purple-50 text-xs px-2 py-0.5">
               📅 {t.badge3}
             </Badge>
           </div>
