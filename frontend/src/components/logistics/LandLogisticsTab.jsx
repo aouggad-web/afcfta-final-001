@@ -98,15 +98,15 @@ export default function LandLogisticsTab({ language = 'fr' }) {
   };
 
   return (
-    <div className="space-y-6">
-      {/* Header Section */}
-      <Card className="bg-gradient-to-r from-slate-700 to-gray-800 text-white shadow-xl">
-        <CardHeader>
-          <CardTitle className="text-3xl font-bold flex items-center gap-3">
+    <div className="space-y-4">
+      {/* Header Section - Compact */}
+      <Card className="bg-gradient-to-r from-slate-700 to-gray-800 text-white shadow-lg">
+        <CardHeader className="py-3">
+          <CardTitle className="text-lg font-bold flex items-center gap-2">
             <span>🚛🚂</span>
             <span>{t.title}</span>
           </CardTitle>
-          <CardDescription className="text-gray-200 text-lg">
+          <CardDescription className="text-gray-200 text-sm">
             {t.description}
           </CardDescription>
         </CardHeader>
