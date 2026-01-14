@@ -953,14 +953,23 @@ def get_hs6_code(code: str, language: str = 'fr') -> Optional[Dict]:
         }
     return None
 
+def normalize_accent(text: str) -> str:
+    """Remove accents from text for search matching"""
+    import unicodedata
+    return ''.join(
+        c for c in unicodedata.normalize('NFD', text)
+        if unicodedata.category(c) != 'Mn'
+    )
+
 def search_hs_codes(query: str, language: str = 'fr', limit: int = 20) -> List[Dict]:
-    """Search HS codes by keyword"""
-    query = query.lower()
+    """Search HS codes by keyword (accent-insensitive)"""
+    query_normalized = normalize_accent(query.lower())
     results = []
     
     for code, labels in HS6_CODES.items():
         label = labels.get(language, labels.get('fr', ''))
-        if query in label.lower() or query in code:
+        label_normalized = normalize_accent(label.lower())
+        if query_normalized in label_normalized or query_normalized in code:
             results.append({
                 "code": code,
                 "label": label,
