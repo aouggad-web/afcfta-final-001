@@ -425,7 +425,7 @@ export function HSCodeBrowser({ onSelect, language = 'fr', showRulesOfOrigin = t
     );
   };
 
-  const searchCodes = async (query) => {
+  const searchCodes = useCallback(async (query) => {
     if (query.length < 2) {
       setSearchResults([]);
       return;
