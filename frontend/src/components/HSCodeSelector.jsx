@@ -314,7 +314,7 @@ export function HSCodeSearch({ value, onChange, language = 'fr', placeholder, sh
           ) : searchTerm.length >= 2 ? (
             <div className="p-4 text-center text-gray-500">
               <Package className="w-8 h-8 mx-auto mb-2 opacity-50" />
-              <p className="text-sm">{t.noResults} "{searchTerm}"</p>
+              <p className="text-sm">{t.noResults} &quot;{searchTerm}&quot;</p>
             </div>
           ) : null}
         </div>,
