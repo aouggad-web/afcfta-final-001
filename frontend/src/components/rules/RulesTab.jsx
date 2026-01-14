@@ -105,32 +105,66 @@ export default function RulesTab({ language = 'fr' }) {
       <Card className="shadow-xl border-t-4 border-t-orange-500">
         <CardHeader className="bg-gradient-to-r from-orange-50 to-red-50">
           <CardTitle className="text-2xl font-bold text-orange-700 flex items-center gap-2">
-            <span>📜</span>
+            <FileText className="w-6 h-6" />
             <span>{t.title}</span>
           </CardTitle>
           <CardDescription className="font-semibold text-gray-700">
-            {t.description}
+            {t.searchOrBrowse}
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <div className="flex space-x-2">
-            <Input
-              placeholder={t.placeholder}
+        <CardContent className="space-y-4 pt-6">
+          {/* HS Code Search */}
+          <div className="space-y-3">
+            <HSCodeSearch
               value={hsCode}
-              onChange={(e) => setHsCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-              maxLength={6}
-              className="text-lg font-semibold border-2 border-orange-300 focus:border-orange-500"
+              onChange={handleCodeChange}
+              language={language}
+              placeholder={t.placeholder}
             />
-            <Button 
-              onClick={() => fetchRulesOfOrigin(hsCode)} 
-              disabled={hsCode.length !== 6}
-              className="bg-gradient-to-r from-orange-600 to-red-600 text-white font-bold px-6"
+            
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => setShowBrowser(!showBrowser)}
+              className="w-full text-orange-600 border-orange-300 hover:bg-orange-50"
+              data-testid="toggle-rules-hs-browser"
             >
-              🔍 {t.consult}
+              {showBrowser ? (
+                <>
+                  <ChevronUp className="w-4 h-4 mr-2" />
+                  {t.hideHSBrowser}
+                </>
+              ) : (
+                <>
+                  <ChevronDown className="w-4 h-4 mr-2" />
+                  {t.browseHS}
+                </>
+              )}
             </Button>
           </div>
+
+          {/* HS Browser Panel */}
+          {showBrowser && (
+            <div className="border-2 border-orange-200 rounded-lg overflow-hidden">
+              <HSCodeBrowser
+                onSelect={handleBrowserSelect}
+                language={language}
+                showRulesOfOrigin={false}
+              />
+            </div>
+          )}
         </CardContent>
       </Card>
+
+      {/* Loading State */}
+      {loading && (
+        <Card className="shadow-lg border-l-4 border-l-blue-500">
+          <CardContent className="py-8 text-center">
+            <div className="animate-spin w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"></div>
+            <p className="text-gray-600">{t.loadingRules}</p>
+          </CardContent>
+        </Card>
+      )}
 
       {rulesOfOrigin && (
         <Card className="shadow-2xl border-l-4 border-l-amber-500">
