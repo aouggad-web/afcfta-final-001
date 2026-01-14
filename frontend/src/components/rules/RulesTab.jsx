@@ -55,7 +55,11 @@ export default function RulesTab({ language = 'fr' }) {
       adminInfo: "Administrative Information",
       validityPeriod: "Validity period",
       issuingAuthority: "Issuing authority",
-      errorLoading: "Error loading rules of origin"
+      errorLoading: "Error loading rules of origin",
+      browseHS: "Browse HS codes",
+      hideHSBrowser: "Hide browser",
+      searchOrBrowse: "Search or browse HS6 codes to view applicable rules of origin",
+      loadingRules: "Loading rules..."
     }
   };
 
