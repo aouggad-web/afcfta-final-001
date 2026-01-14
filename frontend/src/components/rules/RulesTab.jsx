@@ -166,33 +166,45 @@ export default function RulesTab({ language = 'fr' }) {
         </Card>
       )}
 
-      {rulesOfOrigin && (
+      {/* Rules of Origin Results */}
+      {!loading && rulesOfOrigin && (
         <Card className="shadow-2xl border-l-4 border-l-amber-500">
           <CardHeader className="bg-gradient-to-r from-amber-100 to-yellow-100">
-            <CardTitle className="text-xl font-bold text-amber-800">{t.rulesForCode} {rulesOfOrigin.hs_code}</CardTitle>
-            <CardDescription className="font-semibold text-amber-700">
+            <CardTitle className="text-xl font-bold text-amber-800 flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-green-600" />
+              {t.rulesForCode} {rulesOfOrigin.hs_code}
+            </CardTitle>
+            <CardDescription className="font-semibold text-amber-700 flex items-center gap-2">
+              <Globe className="w-4 h-4" />
               {t.sector}: {getSectorName(rulesOfOrigin.hs_code)}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4 pt-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <h4 className="font-semibold mb-2">{t.ruleType}</h4>
-                <Badge variant="secondary" className="text-lg px-3 py-1">
+              <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                <h4 className="font-semibold mb-2 text-gray-700">{t.ruleType}</h4>
+                <Badge variant="secondary" className="text-base px-4 py-2 bg-orange-100 text-orange-800">
                   {rulesOfOrigin.rules.rule}
                 </Badge>
               </div>
               
-              <div>
-                <h4 className="font-semibold mb-2">{t.requirement}</h4>
-                <p className="text-sm">{rulesOfOrigin.rules.requirement}</p>
+              <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                <h4 className="font-semibold mb-2 text-gray-700">{t.requirement}</h4>
+                <p className="text-sm font-medium text-gray-800">{rulesOfOrigin.rules.requirement}</p>
               </div>
             </div>
 
-            <div>
-              <h4 className="font-semibold mb-2">{t.minRegionalContent}</h4>
-              <Progress value={rulesOfOrigin.rules.regional_content} className="w-full" />
-              <p className="text-sm text-gray-600 mt-1">
+            <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg border border-green-200">
+              <h4 className="font-semibold mb-3 text-green-800">{t.minRegionalContent}</h4>
+              <div className="flex items-center gap-4">
+                <div className="flex-1">
+                  <Progress value={rulesOfOrigin.rules.regional_content} className="w-full h-4" />
+                </div>
+                <span className="text-2xl font-bold text-green-700">
+                  {rulesOfOrigin.rules.regional_content}%
+                </span>
+              </div>
+              <p className="text-sm text-green-700 mt-2">
                 {rulesOfOrigin.rules.regional_content}% {t.regionalContentRequired}
               </p>
             </div>
@@ -200,21 +212,28 @@ export default function RulesTab({ language = 'fr' }) {
             <Separator />
 
             <div>
-              <h4 className="font-semibold mb-3">{t.requiredDocumentation}</h4>
+              <h4 className="font-semibold mb-3 text-gray-700">{t.requiredDocumentation}</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {rulesOfOrigin.explanation.documentation_required.map((doc, index) => (
-                  <Badge key={index} variant="outline">
+                  <Badge key={index} variant="outline" className="justify-start py-2 px-3">
+                    <CheckCircle className="w-4 h-4 mr-2 text-green-600" />
                     {doc}
                   </Badge>
                 ))}
               </div>
             </div>
 
-            <div className="bg-blue-50 p-4 rounded-lg">
+            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
               <h4 className="font-semibold text-blue-800 mb-2">{t.adminInfo}</h4>
-              <div className="space-y-1 text-sm text-blue-700">
-                <p><strong>{t.validityPeriod}:</strong> {rulesOfOrigin.explanation.validity_period}</p>
-                <p><strong>{t.issuingAuthority}:</strong> {rulesOfOrigin.explanation.issuing_authority}</p>
+              <div className="space-y-2 text-sm text-blue-700">
+                <p className="flex items-center gap-2">
+                  <span className="font-semibold">{t.validityPeriod}:</span> 
+                  {rulesOfOrigin.explanation.validity_period}
+                </p>
+                <p className="flex items-center gap-2">
+                  <span className="font-semibold">{t.issuingAuthority}:</span> 
+                  {rulesOfOrigin.explanation.issuing_authority}
+                </p>
               </div>
             </div>
           </CardContent>
