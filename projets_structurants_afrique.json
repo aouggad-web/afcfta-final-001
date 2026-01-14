@@ -60,17 +60,6 @@
   ],
   "MAR": [
     {
-      "titre": "Port Dakhla Atlantique",
-      "secteur": "Logistique Maritime",
-      "statut": "En construction",
-      "budget": "1.2 Milliards USD",
-      "echeance": "2028",
-      "description": "Nouveau port en eau profonde sur la façade atlantique sud, incluant zones industrielles et logistiques.",
-      "impact": "Hub maritime vers l'Afrique de l'Ouest. Support aux secteurs pêche et énergies renouvelables.",
-      "partenaires": "SGTM, Somagec",
-      "source": "Ministère de l'Équipement"
-    },
-    {
       "titre": "Extension LGV (Kénitra-Marrakech)",
       "secteur": "Transport",
       "statut": "Lancement travaux",
