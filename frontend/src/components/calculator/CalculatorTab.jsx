@@ -125,7 +125,11 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
       requirement: "Requirement",
       minRegionalContent: "Minimum regional content",
       african: "African",
-      sectorPrefix: "Sector"
+      sectorPrefix: "Sector",
+      hsCodeSelectorTitle: "HS6 Code Selector",
+      hsCodeSelectorDesc: "Search or browse Harmonized System codes",
+      browseHS: "Browse HS codes",
+      hideHSBrowser: "Hide browser"
     }
   };
 
