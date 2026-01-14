@@ -58,6 +58,28 @@ Application web d'analyse des statistiques commerciales et économiques africain
 - Système centralisé react-i18next
 - Tous les composants traduisibles
 
+### 8. Sélecteur de Codes HS6 (NEW - 14/01/2025)
+- **Composant HSCodeSearch** : Recherche inline de codes HS6
+- **Composant HSCodeBrowser** : Navigateur complet avec 3 onglets
+  - **Recherche** : Recherche par mot-clé (insensible aux accents)
+  - **Navigation** : Liste des 97 chapitres avec codes
+  - **Hiérarchie** : Vue par sections HS (21 sections, I-XXI)
+- **Base de données** : 731 codes HS6 couvrant 97 chapitres
+- **Intégration** :
+  - Onglet Calculateur de Tarifs
+  - Onglet Règles d'Origine ZLECAf
+- **API Endpoints** :
+  - `GET /api/hs-codes/statistics` - Statistiques (chapitres, codes)
+  - `GET /api/hs-codes/search?q={query}` - Recherche par mot-clé
+  - `GET /api/hs-codes/chapters` - Liste des chapitres
+  - `GET /api/hs-codes/chapter/{chapter}` - Codes d'un chapitre
+  - `GET /api/hs-codes/code/{code}` - Détails d'un code
+- **Règles d'origine** : Affichage automatique du contenu régional requis par produit
+- **Fichiers** :
+  - `/app/frontend/src/components/HSCodeSelector.jsx`
+  - `/app/backend/etl/hs_codes_data.py`
+  - `/app/backend/server.py` (endpoints lignes 1851-1970)
+
 ### Corrections et Améliorations Récentes
 
 ### Bug Fix - Recherche par pays Production/Macro (09/01/2025)
