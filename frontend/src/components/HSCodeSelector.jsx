@@ -438,7 +438,7 @@ export function HSCodeBrowser({ onSelect, language = 'fr', showRulesOfOrigin = t
     } catch (error) {
       console.error('Error searching:', error);
     }
-  };
+  }, [language]);
 
   useEffect(() => {
     const debounce = setTimeout(() => {
@@ -449,8 +449,7 @@ export function HSCodeBrowser({ onSelect, language = 'fr', showRulesOfOrigin = t
       }
     }, 300);
     return () => clearTimeout(debounce);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchTerm, language]);
+  }, [searchTerm, searchCodes]);
 
   const getChapterInfo = (chapterCode) => {
     return chapters.find(c => c.code === chapterCode);
