@@ -66,12 +66,33 @@ export default function RulesTab({ language = 'fr' }) {
   const t = texts[language];
 
   const fetchRulesOfOrigin = async (code) => {
+    if (!code || code.length < 2) return;
+    
+    setLoading(true);
     try {
       const response = await axios.get(`${API}/rules-of-origin/${code}?lang=${language}`);
       setRulesOfOrigin(response.data);
     } catch (error) {
       console.error(t.errorLoading, error);
+      setRulesOfOrigin(null);
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const handleCodeChange = (code) => {
+    setHsCode(code);
+    if (code && code.length >= 2) {
+      fetchRulesOfOrigin(code);
+    } else {
+      setRulesOfOrigin(null);
+    }
+  };
+
+  const handleBrowserSelect = (codeObj) => {
+    setHsCode(codeObj.code);
+    fetchRulesOfOrigin(codeObj.code);
+    setShowBrowser(false);
   };
 
   const getSectorName = (code) => {
