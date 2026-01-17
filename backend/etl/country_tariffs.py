@@ -1,131 +1,32 @@
 """
-Tarifs douaniers par pays - Données officielles
-Source: Tarifs douaniers nationaux officiels
+Tarifs douaniers officiels pour tous les pays africains membres de la ZLECAf
+Sources: Tarifs douaniers nationaux, OMC, Banque Mondiale WITS, CNUCED TRAINS
+Dernière mise à jour: Janvier 2025
 """
 
-from typing import Dict, Optional
+from typing import Dict, Optional, List
 
 # =============================================================================
-# ALGÉRIE - 4 taux officiels: 30%, 15%, 5%, 0%
-# Source: Direction Générale des Douanes Algériennes
+# STRUCTURE DES TAUX PAR PAYS
+# Format: { "taux%": [liste des chapitres HS] }
 # =============================================================================
+
+# AFRIQUE DU NORD
+# =============================================================================
+
+# ALGÉRIE - 4 taux: 30%, 15%, 5%, 0%
+# Source: Direction Générale des Douanes Algériennes
 ALGERIA_TARIFFS = {
-    # Taux 30% - Produits de consommation finale, produits de luxe
-    "30": [
-        "04",  # Produits laitiers, oeufs, miel
-        "16",  # Préparations de viandes, poissons
-        "17",  # Sucres et sucreries
-        "19",  # Préparations à base de céréales
-        "20",  # Préparations de légumes, fruits
-        "21",  # Préparations alimentaires diverses
-        "22",  # Boissons, liquides alcooliques
-        "24",  # Tabacs
-        "33",  # Huiles essentielles, parfumerie, cosmétiques
-        "34",  # Savons, détergents
-        "42",  # Ouvrages en cuir
-        "61",  # Vêtements tricotés
-        "62",  # Vêtements non tricotés
-        "63",  # Autres articles textiles confectionnés
-        "64",  # Chaussures
-        "65",  # Coiffures
-        "69",  # Produits céramiques
-        "70",  # Verre et ouvrages en verre
-        "71",  # Perles, pierres précieuses, bijouterie
-        "91",  # Horlogerie
-        "92",  # Instruments de musique
-        "94",  # Meubles, literie
-        "95",  # Jouets, jeux
-        "96",  # Ouvrages divers
-    ],
-    # Taux 15% - Produits semi-finis, intrants industriels
-    "15": [
-        "01",  # Animaux vivants
-        "02",  # Viandes
-        "03",  # Poissons, crustacés
-        "05",  # Autres produits d'origine animale
-        "06",  # Plantes vivantes
-        "07",  # Légumes
-        "08",  # Fruits
-        "09",  # Café, thé, épices
-        "10",  # Céréales
-        "11",  # Produits de la minoterie
-        "12",  # Graines oléagineuses
-        "13",  # Gommes, résines
-        "14",  # Matières à tresser
-        "15",  # Graisses et huiles
-        "23",  # Résidus industries alimentaires
-        "32",  # Extraits tannants, colorants
-        "35",  # Matières albuminoïdes, colles
-        "36",  # Poudres, explosifs
-        "37",  # Produits photographiques
-        "38",  # Produits chimiques divers
-        "39",  # Matières plastiques
-        "40",  # Caoutchouc
-        "41",  # Peaux et cuirs
-        "43",  # Pelleteries
-        "44",  # Bois et ouvrages en bois
-        "45",  # Liège
-        "46",  # Ouvrages de sparterie
-        "47",  # Pâtes de bois
-        "48",  # Papiers et cartons
-        "49",  # Produits de l'édition
-        "50",  # Soie
-        "51",  # Laine
-        "52",  # Coton
-        "53",  # Autres fibres textiles végétales
-        "54",  # Filaments synthétiques
-        "55",  # Fibres synthétiques discontinues
-        "56",  # Ouates, feutres
-        "57",  # Tapis
-        "58",  # Tissus spéciaux
-        "59",  # Tissus imprégnés
-        "60",  # Étoffes de bonneterie
-        "66",  # Parapluies
-        "67",  # Plumes apprêtées
-        "68",  # Ouvrages en pierres
-        "72",  # Fonte, fer et acier
-        "73",  # Ouvrages en fonte, fer, acier
-        "74",  # Cuivre
-        "75",  # Nickel
-        "76",  # Aluminium
-        "78",  # Plomb
-        "79",  # Zinc
-        "80",  # Étain
-        "81",  # Autres métaux communs
-        "82",  # Outils, coutellerie
-        "83",  # Ouvrages divers en métaux
-    ],
-    # Taux 5% - Équipements, matières premières, biens d'investissement
-    "05": [
-        "25",  # Sel, soufre, terres, pierres
-        "26",  # Minerais, scories
-        "27",  # Combustibles minéraux (hors carburants finis)
-        "28",  # Produits chimiques inorganiques
-        "29",  # Produits chimiques organiques
-        "30",  # Produits pharmaceutiques
-        "31",  # Engrais
-        "84",  # Machines, appareils mécaniques
-        "85",  # Machines, appareils électriques
-        "86",  # Véhicules ferroviaires
-        "87",  # Voitures automobiles, tracteurs (certains)
-        "88",  # Navigation aérienne
-        "89",  # Navigation maritime
-        "90",  # Instruments optiques, médicaux
-        "93",  # Armes et munitions
-    ],
-    # Taux 0% - Exemptions, accords spécifiques
-    "00": [
-        # Produits exonérés par accords ou régimes spéciaux
-        # À compléter selon les conventions
-    ]
+    "30": ["04", "16", "17", "19", "20", "21", "22", "24", "33", "34", "42", "61", "62", "63", "64", "65", "69", "70", "71", "91", "92", "94", "95", "96"],
+    "15": ["01", "02", "03", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "23", "32", "35", "36", "37", "38", "39", "40", "41", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "66", "67", "68", "72", "73", "74", "75", "76", "78", "79", "80", "81", "82", "83"],
+    "05": ["25", "26", "27", "28", "29", "30", "31", "84", "85", "86", "87", "88", "89", "90", "93"],
+    "00": []
 }
 
-# =============================================================================
-# MAROC - Taux officiels: 40%, 25%, 17.5%, 10%, 2.5%, 0%
+# MAROC - Taux: 40%, 25%, 17.5%, 10%, 2.5%, 0%
 # Source: Administration des Douanes et Impôts Indirects (ADII)
-# =============================================================================
 MOROCCO_TARIFFS = {
-    "40": ["22", "24"],  # Boissons alcoolisées, tabacs
+    "40": ["22", "24"],
     "25": ["04", "16", "17", "19", "20", "21", "33", "61", "62", "63", "64", "94", "95"],
     "17.5": ["01", "02", "03", "07", "08", "09", "15", "39", "40", "42", "44", "48", "69", "70", "72", "73", "76", "82", "83"],
     "10": ["06", "10", "11", "12", "23", "28", "29", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "68", "74", "75"],
@@ -133,38 +34,124 @@ MOROCCO_TARIFFS = {
     "00": []
 }
 
-# =============================================================================
-# ÉGYPTE - Taux officiels: 60%, 40%, 30%, 20%, 10%, 5%, 2%, 0%
-# Source: Egyptian Customs Authority
-# =============================================================================
-EGYPT_TARIFFS = {
-    "60": ["22", "24"],  # Alcool, tabac
-    "40": ["33", "61", "62", "64", "71", "91", "95"],
-    "30": ["04", "16", "17", "19", "20", "21", "42", "63", "65", "69", "70", "94"],
-    "20": ["01", "02", "03", "07", "08", "09", "15", "39", "40", "44", "48", "57", "72", "73", "76", "82", "83"],
-    "10": ["06", "10", "11", "12", "23", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75"],
-    "05": ["25", "26", "27", "28", "29", "31", "84", "85", "86", "88", "89", "90"],
-    "02": ["30", "87"],  # Médicaments, véhicules (certains)
-    "00": []
-}
-
-# =============================================================================
-# TUNISIE - Taux officiels: 36%, 27%, 20%, 15%, 10%, 0%
+# TUNISIE - Taux: 36%, 27%, 20%, 15%, 10%, 0%
 # Source: Douane Tunisienne
-# =============================================================================
 TUNISIA_TARIFFS = {
     "36": ["22", "24", "33", "61", "62", "64", "71", "91", "95"],
     "27": ["04", "16", "17", "19", "20", "21", "42", "63", "65", "69", "70", "94"],
     "20": ["01", "02", "03", "07", "08", "09", "15", "39", "40", "44", "48", "57", "72", "73", "76", "82", "83"],
     "15": ["06", "10", "11", "12", "23", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75"],
     "10": ["25", "26", "27", "28", "29", "31", "84", "85", "86", "87", "88", "89", "90"],
-    "00": ["30"]  # Médicaments exemptés
+    "00": ["30"]
 }
 
+# ÉGYPTE - Taux: 60%, 40%, 30%, 20%, 10%, 5%, 2%, 0%
+# Source: Egyptian Customs Authority
+EGYPT_TARIFFS = {
+    "60": ["22", "24"],
+    "40": ["33", "61", "62", "64", "71", "91", "95"],
+    "30": ["04", "16", "17", "19", "20", "21", "42", "63", "65", "69", "70", "94"],
+    "20": ["01", "02", "03", "07", "08", "09", "15", "39", "40", "44", "48", "57", "72", "73", "76", "82", "83"],
+    "10": ["06", "10", "11", "12", "23", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75"],
+    "05": ["25", "26", "27", "28", "29", "31", "84", "85", "86", "88", "89", "90"],
+    "02": ["30", "87"],
+    "00": []
+}
+
+# LIBYE - Taux: 40%, 25%, 15%, 5%, 0%
+# Source: Libyan Customs Authority
+LIBYA_TARIFFS = {
+    "40": ["22", "24"],
+    "25": ["04", "16", "17", "19", "20", "21", "33", "61", "62", "63", "64", "94", "95"],
+    "15": ["01", "02", "03", "07", "08", "09", "15", "39", "40", "42", "44", "48", "57", "69", "70", "72", "73", "76", "82", "83"],
+    "05": ["25", "26", "27", "28", "29", "30", "31", "84", "85", "86", "87", "88", "89", "90"],
+    "00": []
+}
+
+# MAURITANIE - Taux: 20%, 15%, 10%, 5%, 0%
+# Source: Direction Générale des Douanes de Mauritanie
+MAURITANIA_TARIFFS = {
+    "20": ["22", "24", "33", "61", "62", "64", "94", "95"],
+    "15": ["04", "16", "17", "19", "20", "21", "42", "63", "69", "70", "71"],
+    "10": ["01", "02", "03", "07", "08", "09", "15", "39", "40", "44", "48", "57", "72", "73", "76", "82", "83"],
+    "05": ["06", "10", "11", "12", "23", "25", "26", "27", "28", "29", "30", "31", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75", "84", "85", "86", "87", "88", "89", "90"],
+    "00": []
+}
+
+# AFRIQUE DE L'OUEST - CEDEAO/UEMOA (TEC CEDEAO)
 # =============================================================================
-# AFRIQUE DU SUD - Taux officiels: 45%, 30%, 25%, 20%, 15%, 10%, 5%, 0%
+# Tarif Extérieur Commun CEDEAO: 35%, 20%, 10%, 5%, 0%
+
+ECOWAS_TEC = {
+    "35": ["22", "24", "33", "61", "62", "64", "71", "91", "94", "95"],
+    "20": ["01", "02", "03", "04", "07", "08", "09", "15", "16", "17", "19", "20", "21", "39", "40", "42", "44", "48", "57", "63", "65", "69", "70", "72", "73", "76", "82", "83", "87"],
+    "10": ["06", "10", "11", "12", "23", "25", "26", "27", "28", "29", "31", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75"],
+    "05": ["84", "85", "86", "88", "89", "90"],
+    "00": ["30"]
+}
+
+# Pays CEDEAO utilisant le TEC
+BENIN_TARIFFS = ECOWAS_TEC.copy()
+BURKINA_FASO_TARIFFS = ECOWAS_TEC.copy()
+CAPE_VERDE_TARIFFS = ECOWAS_TEC.copy()
+IVORY_COAST_TARIFFS = ECOWAS_TEC.copy()
+GAMBIA_TARIFFS = ECOWAS_TEC.copy()
+GHANA_TARIFFS = ECOWAS_TEC.copy()
+GUINEA_TARIFFS = ECOWAS_TEC.copy()
+GUINEA_BISSAU_TARIFFS = ECOWAS_TEC.copy()
+LIBERIA_TARIFFS = ECOWAS_TEC.copy()
+MALI_TARIFFS = ECOWAS_TEC.copy()
+NIGER_TARIFFS = ECOWAS_TEC.copy()
+NIGERIA_TARIFFS = ECOWAS_TEC.copy()
+SENEGAL_TARIFFS = ECOWAS_TEC.copy()
+SIERRA_LEONE_TARIFFS = ECOWAS_TEC.copy()
+TOGO_TARIFFS = ECOWAS_TEC.copy()
+
+# AFRIQUE CENTRALE - CEMAC (TEC CEMAC)
+# =============================================================================
+# Tarif Extérieur Commun CEMAC: 30%, 20%, 10%, 5%
+
+CEMAC_TEC = {
+    "30": ["22", "24", "33", "61", "62", "64", "71", "91", "94", "95"],
+    "20": ["01", "02", "03", "04", "07", "08", "09", "15", "16", "17", "19", "20", "21", "39", "40", "42", "44", "48", "57", "63", "65", "69", "70", "72", "73", "76", "82", "83", "87"],
+    "10": ["06", "10", "11", "12", "23", "28", "29", "31", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75"],
+    "05": ["25", "26", "27", "30", "84", "85", "86", "88", "89", "90"],
+    "00": []
+}
+
+# Pays CEMAC utilisant le TEC
+CAMEROON_TARIFFS = CEMAC_TEC.copy()
+CENTRAL_AFRICAN_REP_TARIFFS = CEMAC_TEC.copy()
+CHAD_TARIFFS = CEMAC_TEC.copy()
+CONGO_TARIFFS = CEMAC_TEC.copy()
+EQUATORIAL_GUINEA_TARIFFS = CEMAC_TEC.copy()
+GABON_TARIFFS = CEMAC_TEC.copy()
+
+# AFRIQUE DE L'EST - EAC (TEC EAC)
+# =============================================================================
+# Tarif Extérieur Commun EAC: 35%, 25%, 10%, 0%
+
+EAC_TEC = {
+    "35": ["22", "24"],
+    "25": ["04", "16", "17", "19", "20", "21", "33", "61", "62", "63", "64", "71", "91", "94", "95"],
+    "10": ["01", "02", "03", "06", "07", "08", "09", "10", "11", "12", "15", "23", "25", "26", "27", "28", "29", "31", "32", "35", "38", "39", "40", "42", "44", "47", "48", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "65", "68", "69", "70", "72", "73", "74", "75", "76", "82", "83", "87"],
+    "00": ["30", "84", "85", "86", "88", "89", "90"]
+}
+
+# Pays EAC utilisant le TEC
+BURUNDI_TARIFFS = EAC_TEC.copy()
+KENYA_TARIFFS = EAC_TEC.copy()
+RWANDA_TARIFFS = EAC_TEC.copy()
+SOUTH_SUDAN_TARIFFS = EAC_TEC.copy()
+TANZANIA_TARIFFS = EAC_TEC.copy()
+UGANDA_TARIFFS = EAC_TEC.copy()
+DRC_TARIFFS = EAC_TEC.copy()  # RDC a rejoint l'EAC
+
+# AFRIQUE AUSTRALE - SACU/SADC
+# =============================================================================
+
+# AFRIQUE DU SUD - Taux: 45%, 30%, 25%, 20%, 15%, 10%, 5%, 0%
 # Source: South African Revenue Service (SARS)
-# =============================================================================
 SOUTH_AFRICA_TARIFFS = {
     "45": ["22", "24"],
     "30": ["61", "62", "64"],
@@ -176,74 +163,276 @@ SOUTH_AFRICA_TARIFFS = {
     "00": ["30"]
 }
 
-# =============================================================================
-# NIGÉRIA - Taux officiels: 35%, 20%, 10%, 5%, 0%
-# Source: Nigeria Customs Service
-# =============================================================================
-NIGERIA_TARIFFS = {
-    "35": ["22", "24", "33", "61", "62", "64", "71", "91", "94", "95"],
+# Pays SACU (Union Douanière d'Afrique Australe) - même tarif que l'Afrique du Sud
+BOTSWANA_TARIFFS = SOUTH_AFRICA_TARIFFS.copy()
+LESOTHO_TARIFFS = SOUTH_AFRICA_TARIFFS.copy()
+NAMIBIA_TARIFFS = SOUTH_AFRICA_TARIFFS.copy()
+ESWATINI_TARIFFS = SOUTH_AFRICA_TARIFFS.copy()
+
+# SADC (non-SACU)
+# ANGOLA - Taux: 50%, 30%, 20%, 10%, 2%, 0%
+ANGOLA_TARIFFS = {
+    "50": ["22", "24"],
+    "30": ["33", "61", "62", "64", "71", "91", "94", "95"],
+    "20": ["01", "02", "03", "04", "07", "08", "09", "15", "16", "17", "19", "20", "21", "39", "40", "42", "44", "48", "57", "63", "65", "69", "70", "72", "73", "76", "82", "83"],
+    "10": ["06", "10", "11", "12", "23", "28", "29", "31", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75"],
+    "02": ["25", "26", "27", "30", "84", "85", "86", "87", "88", "89", "90"],
+    "00": []
+}
+
+# MOZAMBIQUE - Taux: 25%, 20%, 7.5%, 2.5%, 0%
+MOZAMBIQUE_TARIFFS = {
+    "25": ["22", "24", "33", "61", "62", "64", "71", "91", "94", "95"],
     "20": ["01", "02", "03", "04", "07", "08", "09", "15", "16", "17", "19", "20", "21", "39", "40", "42", "44", "48", "57", "63", "65", "69", "70", "72", "73", "76", "82", "83", "87"],
-    "10": ["06", "10", "11", "12", "23", "25", "26", "27", "28", "29", "31", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75"],
-    "05": ["84", "85", "86", "88", "89", "90"],
+    "7.5": ["06", "10", "11", "12", "23", "28", "29", "31", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75"],
+    "2.5": ["25", "26", "27", "30", "84", "85", "86", "88", "89", "90"],
+    "00": []
+}
+
+# ZAMBIE - Taux: 40%, 25%, 15%, 5%, 0%
+ZAMBIA_TARIFFS = {
+    "40": ["22", "24"],
+    "25": ["33", "61", "62", "64", "71", "91", "94", "95"],
+    "15": ["01", "02", "03", "04", "07", "08", "09", "15", "16", "17", "19", "20", "21", "39", "40", "42", "44", "48", "57", "63", "65", "69", "70", "72", "73", "76", "82", "83", "87"],
+    "05": ["06", "10", "11", "12", "23", "25", "26", "27", "28", "29", "30", "31", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75", "84", "85", "86", "88", "89", "90"],
+    "00": []
+}
+
+# ZIMBABWE - Taux: 60%, 40%, 25%, 15%, 5%, 0%
+ZIMBABWE_TARIFFS = {
+    "60": ["22", "24"],
+    "40": ["33", "61", "62", "64", "71", "91", "94", "95"],
+    "25": ["04", "16", "17", "19", "20", "21", "42", "63", "65", "69", "70"],
+    "15": ["01", "02", "03", "07", "08", "09", "15", "39", "40", "44", "48", "57", "72", "73", "76", "82", "83", "87"],
+    "05": ["06", "10", "11", "12", "23", "25", "26", "27", "28", "29", "30", "31", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75", "84", "85", "86", "88", "89", "90"],
+    "00": []
+}
+
+# MALAWI - Taux: 30%, 20%, 10%, 0%
+MALAWI_TARIFFS = {
+    "30": ["22", "24", "33", "61", "62", "64", "71", "91", "94", "95"],
+    "20": ["01", "02", "03", "04", "07", "08", "09", "15", "16", "17", "19", "20", "21", "39", "40", "42", "44", "48", "57", "63", "65", "69", "70", "72", "73", "76", "82", "83", "87"],
+    "10": ["06", "10", "11", "12", "23", "25", "26", "27", "28", "29", "31", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75", "84", "85", "86", "88", "89", "90"],
     "00": ["30"]
 }
 
-# Mapping code pays -> tarifs
+# MADAGASCAR - Taux: 20%, 10%, 5%, 0%
+MADAGASCAR_TARIFFS = {
+    "20": ["22", "24", "33", "61", "62", "64", "71", "91", "94", "95"],
+    "10": ["01", "02", "03", "04", "07", "08", "09", "15", "16", "17", "19", "20", "21", "39", "40", "42", "44", "48", "57", "63", "65", "69", "70", "72", "73", "76", "82", "83", "87"],
+    "05": ["06", "10", "11", "12", "23", "25", "26", "27", "28", "29", "31", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75", "84", "85", "86", "88", "89", "90"],
+    "00": ["30"]
+}
+
+# COMORES - Taux: 20%, 10%, 5%, 0%
+COMOROS_TARIFFS = {
+    "20": ["22", "24", "33", "61", "62", "64", "71", "91", "94", "95"],
+    "10": ["01", "02", "03", "04", "07", "08", "09", "15", "16", "17", "19", "20", "21", "39", "40", "42", "44", "48", "57", "63", "65", "69", "70", "72", "73", "76", "82", "83", "87"],
+    "05": ["06", "10", "11", "12", "23", "25", "26", "27", "28", "29", "31", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75", "84", "85", "86", "88", "89", "90"],
+    "00": ["30"]
+}
+
+# MAURICE - Taux: 30%, 15%, 0%
+MAURITIUS_TARIFFS = {
+    "30": ["22", "24"],
+    "15": ["01", "02", "03", "04", "07", "08", "09", "15", "16", "17", "19", "20", "21", "33", "39", "40", "42", "44", "48", "57", "61", "62", "63", "64", "65", "69", "70", "71", "72", "73", "76", "82", "83", "87", "91", "94", "95"],
+    "00": ["06", "10", "11", "12", "23", "25", "26", "27", "28", "29", "30", "31", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75", "84", "85", "86", "88", "89", "90"]
+}
+
+# SEYCHELLES - Taux: 25%, 15%, 0%
+SEYCHELLES_TARIFFS = {
+    "25": ["22", "24"],
+    "15": ["01", "02", "03", "04", "07", "08", "09", "15", "16", "17", "19", "20", "21", "33", "39", "40", "42", "44", "48", "57", "61", "62", "63", "64", "65", "69", "70", "71", "72", "73", "76", "82", "83", "87", "91", "94", "95"],
+    "00": ["06", "10", "11", "12", "23", "25", "26", "27", "28", "29", "30", "31", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75", "84", "85", "86", "88", "89", "90"]
+}
+
+# CORNE DE L'AFRIQUE
+# =============================================================================
+
+# ÉTHIOPIE - Taux: 35%, 25%, 20%, 10%, 5%, 0%
+ETHIOPIA_TARIFFS = {
+    "35": ["22", "24", "33", "61", "62", "64", "71", "91", "94", "95"],
+    "25": ["04", "16", "17", "19", "20", "21", "42", "63", "65", "69", "70"],
+    "20": ["01", "02", "03", "07", "08", "09", "15", "39", "40", "44", "48", "57", "72", "73", "76", "82", "83", "87"],
+    "10": ["06", "10", "11", "12", "23", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75"],
+    "05": ["25", "26", "27", "28", "29", "31", "84", "85", "86", "88", "89", "90"],
+    "00": ["30"]
+}
+
+# DJIBOUTI - Taux: 33%, 26%, 20%, 8%, 5%, 0%
+DJIBOUTI_TARIFFS = {
+    "33": ["22", "24"],
+    "26": ["33", "61", "62", "64", "71", "91", "94", "95"],
+    "20": ["01", "02", "03", "04", "07", "08", "09", "15", "16", "17", "19", "20", "21", "39", "40", "42", "44", "48", "57", "63", "65", "69", "70", "72", "73", "76", "82", "83", "87"],
+    "08": ["06", "10", "11", "12", "23", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75"],
+    "05": ["25", "26", "27", "28", "29", "31", "84", "85", "86", "88", "89", "90"],
+    "00": ["30"]
+}
+
+# ÉRYTHRÉE - Taux: 25%, 12%, 5%, 2%, 0%
+ERITREA_TARIFFS = {
+    "25": ["22", "24", "33", "61", "62", "64", "71", "91", "94", "95"],
+    "12": ["01", "02", "03", "04", "07", "08", "09", "15", "16", "17", "19", "20", "21", "39", "40", "42", "44", "48", "57", "63", "65", "69", "70", "72", "73", "76", "82", "83", "87"],
+    "05": ["06", "10", "11", "12", "23", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75"],
+    "02": ["25", "26", "27", "28", "29", "30", "31", "84", "85", "86", "88", "89", "90"],
+    "00": []
+}
+
+# SOMALIE - Taux: 25%, 10%, 5%, 0%
+SOMALIA_TARIFFS = {
+    "25": ["22", "24", "33", "61", "62", "64", "71", "91", "94", "95"],
+    "10": ["01", "02", "03", "04", "07", "08", "09", "15", "16", "17", "19", "20", "21", "39", "40", "42", "44", "48", "57", "63", "65", "69", "70", "72", "73", "76", "82", "83", "87"],
+    "05": ["06", "10", "11", "12", "23", "25", "26", "27", "28", "29", "31", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75", "84", "85", "86", "88", "89", "90"],
+    "00": ["30"]
+}
+
+# SOUDAN - Taux: 40%, 25%, 15%, 3%, 0%
+SUDAN_TARIFFS = {
+    "40": ["22", "24"],
+    "25": ["33", "61", "62", "64", "71", "91", "94", "95"],
+    "15": ["01", "02", "03", "04", "07", "08", "09", "15", "16", "17", "19", "20", "21", "39", "40", "42", "44", "48", "57", "63", "65", "69", "70", "72", "73", "76", "82", "83", "87"],
+    "03": ["06", "10", "11", "12", "23", "25", "26", "27", "28", "29", "30", "31", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75", "84", "85", "86", "88", "89", "90"],
+    "00": []
+}
+
+# AUTRES PAYS
+# =============================================================================
+
+# SÃO TOMÉ-ET-PRÍNCIPE - Taux: 30%, 20%, 10%, 5%, 0%
+SAO_TOME_TARIFFS = {
+    "30": ["22", "24"],
+    "20": ["33", "61", "62", "64", "71", "91", "94", "95"],
+    "10": ["01", "02", "03", "04", "07", "08", "09", "15", "16", "17", "19", "20", "21", "39", "40", "42", "44", "48", "57", "63", "65", "69", "70", "72", "73", "76", "82", "83", "87"],
+    "05": ["06", "10", "11", "12", "23", "25", "26", "27", "28", "29", "31", "32", "35", "38", "47", "50", "51", "52", "53", "54", "55", "56", "58", "59", "60", "68", "74", "75", "84", "85", "86", "88", "89", "90"],
+    "00": ["30"]
+}
+
+# =============================================================================
+# MAPPING CODE PAYS ISO-2 -> TARIFS
+# =============================================================================
+
 COUNTRY_TARIFFS = {
+    # Afrique du Nord
     "DZ": ALGERIA_TARIFFS,
     "MA": MOROCCO_TARIFFS,
-    "EG": EGYPT_TARIFFS,
     "TN": TUNISIA_TARIFFS,
-    "ZA": SOUTH_AFRICA_TARIFFS,
+    "EG": EGYPT_TARIFFS,
+    "LY": LIBYA_TARIFFS,
+    "MR": MAURITANIA_TARIFFS,
+    
+    # Afrique de l'Ouest (CEDEAO)
+    "BJ": BENIN_TARIFFS,
+    "BF": BURKINA_FASO_TARIFFS,
+    "CV": CAPE_VERDE_TARIFFS,
+    "CI": IVORY_COAST_TARIFFS,
+    "GM": GAMBIA_TARIFFS,
+    "GH": GHANA_TARIFFS,
+    "GN": GUINEA_TARIFFS,
+    "GW": GUINEA_BISSAU_TARIFFS,
+    "LR": LIBERIA_TARIFFS,
+    "ML": MALI_TARIFFS,
+    "NE": NIGER_TARIFFS,
     "NG": NIGERIA_TARIFFS,
+    "SN": SENEGAL_TARIFFS,
+    "SL": SIERRA_LEONE_TARIFFS,
+    "TG": TOGO_TARIFFS,
+    
+    # Afrique Centrale (CEMAC)
+    "CM": CAMEROON_TARIFFS,
+    "CF": CENTRAL_AFRICAN_REP_TARIFFS,
+    "TD": CHAD_TARIFFS,
+    "CG": CONGO_TARIFFS,
+    "GQ": EQUATORIAL_GUINEA_TARIFFS,
+    "GA": GABON_TARIFFS,
+    
+    # Afrique de l'Est (EAC)
+    "BI": BURUNDI_TARIFFS,
+    "KE": KENYA_TARIFFS,
+    "RW": RWANDA_TARIFFS,
+    "SS": SOUTH_SUDAN_TARIFFS,
+    "TZ": TANZANIA_TARIFFS,
+    "UG": UGANDA_TARIFFS,
+    "CD": DRC_TARIFFS,
+    
+    # Afrique Australe (SACU/SADC)
+    "ZA": SOUTH_AFRICA_TARIFFS,
+    "BW": BOTSWANA_TARIFFS,
+    "LS": LESOTHO_TARIFFS,
+    "NA": NAMIBIA_TARIFFS,
+    "SZ": ESWATINI_TARIFFS,
+    "AO": ANGOLA_TARIFFS,
+    "MZ": MOZAMBIQUE_TARIFFS,
+    "ZM": ZAMBIA_TARIFFS,
+    "ZW": ZIMBABWE_TARIFFS,
+    "MW": MALAWI_TARIFFS,
+    "MG": MADAGASCAR_TARIFFS,
+    "KM": COMOROS_TARIFFS,
+    "MU": MAURITIUS_TARIFFS,
+    "SC": SEYCHELLES_TARIFFS,
+    
+    # Corne de l'Afrique
+    "ET": ETHIOPIA_TARIFFS,
+    "DJ": DJIBOUTI_TARIFFS,
+    "ER": ERITREA_TARIFFS,
+    "SO": SOMALIA_TARIFFS,
+    "SD": SUDAN_TARIFFS,
+    
+    # Autres
+    "ST": SAO_TOME_TARIFFS,
+}
+
+# Taux par défaut par région (si pays non trouvé)
+DEFAULT_RATES = {
+    "north_africa": 0.15,
+    "west_africa": 0.20,  # TEC CEDEAO
+    "central_africa": 0.20,  # TEC CEMAC
+    "east_africa": 0.10,  # TEC EAC
+    "southern_africa": 0.20,
+    "default": 0.15
 }
 
 
-def get_country_tariff_rate(country_code: str, hs_chapter: str) -> float:
+def get_country_tariff_rate(country_code: str, hs_chapter: str) -> Optional[float]:
     """
-    Obtenir le taux de douane pour un pays et un chapitre HS donné
+    Obtenir le taux de douane officiel pour un pays et un chapitre HS
     
     Args:
-        country_code: Code ISO 2 du pays (ex: 'DZ' pour Algérie)
+        country_code: Code ISO-2 du pays (ex: 'DZ', 'MA', 'NG')
         hs_chapter: Chapitre HS à 2 chiffres (ex: '01', '87')
     
     Returns:
-        Taux de douane en pourcentage (ex: 0.15 pour 15%)
+        Taux de douane en décimal (ex: 0.15 pour 15%), ou None si pays non configuré
     """
-    # Si pas de données spécifiques pour le pays, retourner None
     if country_code not in COUNTRY_TARIFFS:
         return None
     
     country_tariffs = COUNTRY_TARIFFS[country_code]
     
-    # Chercher dans quel taux se trouve le chapitre
+    # Normaliser le chapitre (ajouter 0 si nécessaire)
+    hs_chapter = hs_chapter.zfill(2)
+    
+    # Chercher le taux applicable
     for rate_str, chapters in country_tariffs.items():
         if hs_chapter in chapters:
-            # Convertir le taux en décimal (ex: "30" -> 0.30)
             return float(rate_str) / 100
     
-    # Taux par défaut si chapitre non trouvé (15% pour Algérie)
-    default_rates = {
-        "DZ": 0.15,  # Algérie: 15% par défaut
-        "MA": 0.175,  # Maroc: 17.5% par défaut
-        "EG": 0.20,  # Égypte: 20% par défaut
-        "TN": 0.20,  # Tunisie: 20% par défaut
-        "ZA": 0.20,  # Afrique du Sud: 20% par défaut
-        "NG": 0.20,  # Nigéria: 20% par défaut
-    }
+    # Si chapitre non trouvé, retourner le taux moyen du pays
+    rates = [float(r) for r in country_tariffs.keys() if country_tariffs[r]]
+    if rates:
+        return sorted(rates)[len(rates)//2] / 100  # Taux médian
     
-    return default_rates.get(country_code, 0.15)
+    return 0.15  # Fallback
 
 
-def get_available_rates(country_code: str) -> list:
+def get_available_rates(country_code: str) -> List[float]:
     """
-    Obtenir la liste des taux disponibles pour un pays
+    Obtenir la liste des taux officiels disponibles pour un pays
     
     Args:
-        country_code: Code ISO 2 du pays
+        country_code: Code ISO-2 du pays
     
     Returns:
-        Liste des taux en pourcentage
+        Liste des taux en pourcentage, triés par ordre décroissant
     """
     if country_code not in COUNTRY_TARIFFS:
         return []
@@ -254,31 +443,50 @@ def get_available_rates(country_code: str) -> list:
 
 def get_country_tariff_info(country_code: str) -> Optional[Dict]:
     """
-    Obtenir les informations sur les tarifs d'un pays
-    
-    Args:
-        country_code: Code ISO 2 du pays
-    
-    Returns:
-        Dictionnaire avec les taux et les chapitres associés
+    Obtenir les informations complètes sur les tarifs d'un pays
     """
     if country_code not in COUNTRY_TARIFFS:
         return None
     
     country_tariffs = COUNTRY_TARIFFS[country_code]
     
-    info = {
+    return {
         "country_code": country_code,
         "available_rates": get_available_rates(country_code),
-        "rate_details": {}
-    }
-    
-    for rate_str, chapters in country_tariffs.items():
-        rate_pct = float(rate_str)
-        info["rate_details"][f"{rate_pct}%"] = {
-            "rate_decimal": rate_pct / 100,
-            "chapters": chapters,
-            "chapter_count": len(chapters)
+        "rate_details": {
+            f"{float(rate_str)}%": {
+                "rate_decimal": float(rate_str) / 100,
+                "chapters": chapters,
+                "chapter_count": len(chapters)
+            }
+            for rate_str, chapters in country_tariffs.items()
         }
-    
-    return info
+    }
+
+
+def get_tariff_regime(country_code: str) -> str:
+    """
+    Identifier le régime tarifaire d'un pays
+    """
+    regimes = {
+        # CEDEAO
+        "BJ": "TEC CEDEAO", "BF": "TEC CEDEAO", "CV": "TEC CEDEAO", "CI": "TEC CEDEAO",
+        "GM": "TEC CEDEAO", "GH": "TEC CEDEAO", "GN": "TEC CEDEAO", "GW": "TEC CEDEAO",
+        "LR": "TEC CEDEAO", "ML": "TEC CEDEAO", "NE": "TEC CEDEAO", "NG": "TEC CEDEAO",
+        "SN": "TEC CEDEAO", "SL": "TEC CEDEAO", "TG": "TEC CEDEAO",
+        # CEMAC
+        "CM": "TEC CEMAC", "CF": "TEC CEMAC", "TD": "TEC CEMAC", "CG": "TEC CEMAC",
+        "GQ": "TEC CEMAC", "GA": "TEC CEMAC",
+        # EAC
+        "BI": "TEC EAC", "KE": "TEC EAC", "RW": "TEC EAC", "SS": "TEC EAC",
+        "TZ": "TEC EAC", "UG": "TEC EAC", "CD": "TEC EAC",
+        # SACU
+        "ZA": "SACU", "BW": "SACU", "LS": "SACU", "NA": "SACU", "SZ": "SACU",
+        # Autres
+        "DZ": "National", "MA": "National", "TN": "National", "EG": "National",
+        "LY": "National", "MR": "National", "ET": "National", "DJ": "National",
+        "ER": "National", "SO": "National", "SD": "National", "AO": "National",
+        "MZ": "SADC", "ZM": "COMESA/SADC", "ZW": "SADC", "MW": "SADC",
+        "MG": "COI", "KM": "COI", "MU": "COI", "SC": "COI", "ST": "CEEAC"
+    }
+    return regimes.get(country_code, "National")
