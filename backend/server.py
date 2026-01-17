@@ -811,13 +811,21 @@ async def calculate_comprehensive_tariff(request: TariffCalculationRequest):
     # Calcul des tarifs selon le code SH6
     sector_code = request.hs_code[:2]
     
-    # Charger les taux corrigés depuis le fichier JSON 2024
+    # NOUVEAU: Utiliser les taux officiels par pays si disponibles
+    country_specific_rate = get_country_tariff_rate(request.destination_country, sector_code)
+    
+    # Charger les taux corrigés depuis le fichier JSON 2024 (fallback)
     tariff_corrections = get_tariff_corrections()
-    normal_rates = tariff_corrections.get('normal_rates', {})
+    generic_rates = tariff_corrections.get('normal_rates', {})
     zlecaf_rates = tariff_corrections.get('zlecaf_rates', {})
     transition_periods = tariff_corrections.get('transition_periods', {})
     
-    normal_rate = normal_rates.get(sector_code, 0.15)
+    # Utiliser le taux spécifique au pays si disponible, sinon le taux générique
+    if country_specific_rate is not None:
+        normal_rate = country_specific_rate
+    else:
+        normal_rate = generic_rates.get(sector_code, 0.15)
+    
     zlecaf_rate = zlecaf_rates.get(sector_code, 0.03)
     transition_period = transition_periods.get(sector_code, 'immediate')
     
