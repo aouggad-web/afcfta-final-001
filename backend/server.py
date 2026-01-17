@@ -39,6 +39,7 @@ from logistics_air_data import (
     search_airports
 )
 from projects_data import get_country_ongoing_projects
+from etl.country_tariffs import get_country_tariff_rate, get_available_rates
 from free_zones_data import load_free_zones, get_free_zones_by_country
 from etl.hs_codes_data import (
     get_hs_chapters,
