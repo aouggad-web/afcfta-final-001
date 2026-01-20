@@ -16,7 +16,7 @@ BASE_URL = os.environ.get('REACT_APP_BACKEND_URL', '').rstrip('/')
 # 10 Major African Economies with expected 2024 data
 # ISO2 codes for API calls
 MAJOR_ECONOMIES = {
-    'NG': {'name': 'Nigeria', 'iso3': 'NGA', 'expected_rank': 1, 'min_gdp_2024': 300},  # ~334B USD
+    'NG': {'name': 'Nigeria', 'iso3': 'NGA', 'expected_rank': 1, 'min_gdp_2024': 250},  # CSV has 253B, country_data.py has 334B - DATA DISCREPANCY
     'ZA': {'name': 'South Africa', 'iso3': 'ZAF', 'expected_rank': 2, 'min_gdp_2024': 350},  # ~373B USD
     'EG': {'name': 'Egypt', 'iso3': 'EGY', 'expected_rank': 3, 'min_gdp_2024': 300},  # ~349B USD
     'DZ': {'name': 'Algeria', 'iso3': 'DZA', 'expected_rank': 4, 'min_gdp_2024': 200},  # ~264B USD
