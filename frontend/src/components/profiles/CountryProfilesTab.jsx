@@ -236,7 +236,7 @@ export default function CountryProfilesTab({ language = 'fr' }) {
             <SelectContent>
               {countries.map((country) => (
                 <SelectItem key={country.code} value={country.code}>
-                  {countryFlags[country.code]} {country.name} - {country.region}
+                  {getFlag(country.iso2 || country.code)} {country.name} - {country.region}
                 </SelectItem>
               ))}
             </SelectContent>
