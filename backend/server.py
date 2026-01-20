@@ -25,6 +25,7 @@ from data_loader import (
     get_country_customs_info,
     get_country_infrastructure_ranking
 )
+from etl.news_aggregator import get_news, get_news_by_region, get_news_by_category
 from logistics_data import (
     get_all_ports,
     get_port_by_id,
