@@ -257,7 +257,7 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
                 <SelectContent>
                   {countries.map((country) => (
                     <SelectItem key={country.code} value={country.code}>
-                      {countryFlags[country.code]} {country.name}
+                      {getFlag(country.iso2 || country.code)} {country.name}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -273,7 +273,7 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
                 <SelectContent>
                   {countries.map((country) => (
                     <SelectItem key={country.code} value={country.code}>
-                      {countryFlags[country.code]} {country.name}
+                      {getFlag(country.iso2 || country.code)} {country.name}
                     </SelectItem>
                   ))}
                 </SelectContent>
