@@ -606,7 +606,7 @@ async def get_country_profile(country_code: str) -> CountryEconomicProfile:
     # Construire le profil avec données commerce 2024 en priorité
     if commerce_data:
         profile = CountryEconomicProfile(
-            country_code=country['code'],
+            country_code=iso3_code,  # Retourner ISO3
             country_name=commerce_data['country'],
             population=int(commerce_data['population_2024_million'] * 1000000) if commerce_data['population_2024_million'] else country['population'],
             region=country['region']
