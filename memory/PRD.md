@@ -209,4 +209,5 @@ Application web d'analyse des statistiques commerciales et économiques africain
 
 ## Tests
 - `/app/tests/test_dashboard_apis.py` - Tests API dashboard
-- `/app/test_reports/iteration_2.json` - Rapport de test
+- `/app/tests/test_2024_data_update.py` - Tests mise à jour données 2024-2025
+- `/app/test_reports/iteration_4.json` - Rapport de test (36/36 tests passés)
