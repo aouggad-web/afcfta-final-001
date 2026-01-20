@@ -183,45 +183,45 @@ UNCTAD_PORT_STATISTICS = {
 
 # =============================================================================
 # UNCTAD TRADE FLOW STATISTICS
-# Source: UNCTAD COMTRADE 2024
+# Source: UNCTAD COMTRADE 2024/2025
 # =============================================================================
 
 UNCTAD_TRADE_FLOWS = {
     "intra_african_trade_2024": {
-        "value_billion_usd": 218.7,
-        "share_total_african_trade": 16.2,
-        "growth_rate_2023_2024": 13.7,
-        "projected_2030": 385.0,
-        "projected_growth_with_afcfta": 52.3
+        "value_billion_usd": 235.5,
+        "share_total_african_trade": 17.5,
+        "growth_rate_2023_2024": 7.7,
+        "projected_2030": 420.0,
+        "projected_growth_with_afcfta": 55.0
     },
     "africa_world_trade_2024": {
-        "total_exports_billion_usd": 553.7,
-        "total_imports_billion_usd": 582.4,
-        "trade_balance_billion_usd": -28.7,
+        "total_exports_billion_usd": 580.2,
+        "total_imports_billion_usd": 612.8,
+        "trade_balance_billion_usd": -32.6,
         "top_export_partners": [
-            {"partner": "China", "share": 16.8},
-            {"partner": "EU", "share": 26.5},
-            {"partner": "USA", "share": 7.8},
-            {"partner": "India", "share": 10.2},
-            {"partner": "UAE", "share": 4.8}
+            {"partner": "China", "share": 17.5},
+            {"partner": "EU", "share": 25.8},
+            {"partner": "USA", "share": 7.5},
+            {"partner": "India", "share": 11.2},
+            {"partner": "UAE", "share": 5.2}
         ],
         "top_import_partners": [
-            {"partner": "China", "share": 19.5},
-            {"partner": "EU", "share": 23.8},
-            {"partner": "USA", "share": 6.2},
-            {"partner": "India", "share": 9.5},
-            {"partner": "UAE", "share": 5.8}
+            {"partner": "China", "share": 20.5},
+            {"partner": "EU", "share": 22.5},
+            {"partner": "USA", "share": 5.8},
+            {"partner": "India", "share": 10.2},
+            {"partner": "UAE", "share": 6.5}
         ]
     },
     "services_trade_2024": {
-        "exports_billion_usd": 95.2,
-        "imports_billion_usd": 148.5,
+        "exports_billion_usd": 102.5,
+        "imports_billion_usd": 158.2,
         "top_sectors": [
-            {"sector": "Transport", "sector_fr": "Transport", "share": 28.5},
-            {"sector": "Travel/Tourism", "sector_fr": "Voyage/Tourisme", "share": 35.2},
-            {"sector": "ICT Services", "sector_fr": "Services TIC", "share": 12.8},
-            {"sector": "Financial Services", "sector_fr": "Services financiers", "share": 8.5},
-            {"sector": "Business Services", "sector_fr": "Services aux entreprises", "share": 15.0}
+            {"sector": "Transport", "sector_fr": "Transport", "share": 29.5},
+            {"sector": "Travel/Tourism", "sector_fr": "Voyage/Tourisme", "share": 34.2},
+            {"sector": "ICT Services", "sector_fr": "Services TIC", "share": 14.5},
+            {"sector": "Financial Services", "sector_fr": "Services financiers", "share": 9.2},
+            {"sector": "Business Services", "sector_fr": "Services aux entreprises", "share": 12.6}
         ]
     }
 }
