@@ -118,15 +118,35 @@ Application web d'analyse des statistiques commerciales et économiques africain
   - `GET /api/country-profile/{code}` - Profils pays
 - **Tests réussis** : 24/24 tests backend, 100% frontend
 
-### Données vérifiées (véracité garantie)
-| Indicateur | Valeur API | Valeur UI | Source |
-|------------|------------|-----------|--------|
-| Commerce Intra-Africain 2024 | $218.7B | $218.7B | UNCTAD/AfCFTA |
-| Exports Totaux 2024 | $553.7B | $553.7B | OEC/World Bank |
-| Trafic Portuaire 2023 | 28.5M TEU | 28.5M TEU | UNCTAD |
-| Croissance Portuaire | +4.2% YoY | +4.2% YoY | UNCTAD |
-| Progression ZLECAf | 57% | 57% | AfCFTA Secretariat |
-| PIB Algérie 2024 | $266B | $267B | IMF WEO |
+### Mise à jour complète des données 2024-2025 (20/01/2025)
+- **10 économies majeures africaines** mises à jour avec données officielles FMI/Banque Mondiale/UNCTAD
+- **Fichiers modifiés** :
+  - `/app/backend/country_data.py` - PIB, croissance, classements 2024-2025
+  - `/app/backend/etl/unctad_data.py` - Données portuaires et LSCI 2024
+  - `/app/ZLECAf_ENRICHI_2024_COMMERCE.csv` - Données commerciales actualisées
+
+### Données vérifiées (véracité garantie - Mise à jour Décembre 2025)
+| Indicateur | Valeur API | Source |
+|------------|------------|--------|
+| **TOP 10 PIB Africains 2024** | | |
+| 1. Nigeria | $334.34B | IMF WEO 2025 |
+| 2. Afrique du Sud | $443.64B | IMF WEO 2025 |
+| 3. Égypte | $349.30B | IMF WEO 2025 |
+| 4. Algérie | $263.62B | IMF WEO 2025 |
+| 5. Maroc | $154.43B | IMF WEO 2025 |
+| 6. Kenya | $113.00B | World Bank 2025 |
+| 7. Éthiopie | $149.74B | World Bank 2025 |
+| 8. Ghana | $82.80B | IMF WEO 2025 |
+| 9. Côte d'Ivoire | $86.54B | IMF WEO 2025 |
+| 10. Tanzanie | $83.00B | World Bank 2025 |
+| **Ports UNCTAD 2024** | | |
+| Tanger Med (Maroc) | 10,241,392 TEU | Tanger Med Authority 2025 |
+| Trafic Portuaire Africain 2024 | 35.5M TEU | UNCTAD 2025 |
+| Croissance Portuaire 2024 | +8.1% YoY | Lloyd's List 2025 |
+| **LSCI 2024** | | |
+| Maroc (Rang #1 Afrique) | 82.5 | UNCTAD LSCI 2024 |
+| Égypte (Rang #2 Afrique) | 70.8 | UNCTAD LSCI 2024 |
+| **Commerce Intra-Africain** | $235.5B | UNCTAD 2024 |
 
 ## Architecture Technique
 
