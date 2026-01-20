@@ -267,8 +267,8 @@ def get_all_unctad_data() -> Dict:
         "port_statistics": UNCTAD_PORT_STATISTICS,
         "trade_flows": UNCTAD_TRADE_FLOWS,
         "liner_connectivity_index": UNCTAD_LSCI_AFRICA,
-        "source": "UNCTAD Maritime Transport Review 2024, Lloyd's List 2024/2025",
+        "source": "UNCTAD Maritime Transport Review 2024/2025, Lloyd's List 2025",
         "year": 2024,
-        "last_updated": "2025-01-12",
+        "last_updated": "2025-12-15",
         "verification_note": "Data verified against official port authority reports"
     }
