@@ -169,7 +169,13 @@ Application web d'analyse des statistiques commerciales et économiques africain
 ## Backlog
 
 ### Complété ✅
+- Mise à jour complète données 2024-2025 (20/01/2025)
+  - 10 économies majeures: PIB, croissance, projections 2025
+  - Données portuaires UNCTAD (Tanger Med: 10.24M TEU)
+  - Indice LSCI 2024 actualisé
 - Dashboard avec widgets dynamiques temps réel (09/01/2025)
+- Sélecteur codes HS6 intégré (14/01/2025)
+- Refonte tarifs/TVA pour 54 pays africains
 - Traductions tous les onglets
 - Données UNCTAD (backend + frontend)
 - Système i18n centralisé react-i18next
@@ -179,7 +185,7 @@ Application web d'analyse des statistiques commerciales et économiques africain
 - Bug fix i18n Production tab
 
 ### P1 - Prochaines Tâches
-- Migration progressive des autres composants vers react-i18next centralisé
+- Migration progressive des autres composants vers react-i18next centralisé (ProductionTab)
 - Ajouter plus de widgets interactifs (graphiques personnalisables)
 - Ajouter authentification admin pour TRS upload
 
@@ -187,6 +193,8 @@ Application web d'analyse des statistiques commerciales et économiques africain
 - Thèmes visuels personnalisables
 - Export des données en CSV/Excel
 - Dashboard avec alertes personnalisées
+- Vérification automatique des liens externes
+- Indicateur de fraîcheur des données
 
 ## Sources de Données
 - FMI World Economic Outlook 2024
