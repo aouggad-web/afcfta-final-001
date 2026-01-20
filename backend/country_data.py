@@ -7,13 +7,13 @@
 REAL_COUNTRY_DATA = {
     "DZA": {
         "name": "Algérie",
-        "gdp_usd_2024": 267.0,  # IMF WEO 2024
-        "gdp_per_capita_2024": 5720,
+        "gdp_usd_2024": 263.62,
+        "gdp_per_capita_2024": 4747,
         "population_2024": 46700000,
         "development_index": 0.745,
-        "africa_rank": 3,
-        "growth_forecast_2024": "3.8%",
-        "growth_projection_2025": "3.9%",
+        "africa_rank": 4,
+        "growth_forecast_2024": "4.0%",
+        "growth_projection_2025": "3.8%",
         "risk_ratings": {
             "sp": "B+",
             "moodys": "B2",
@@ -997,12 +997,13 @@ REAL_COUNTRY_DATA = {
     },
     "ETH": {
         "name": "Éthiopie",
-        "gdp_usd_2024": 156.1,
-        "gdp_per_capita_2024": 1234,
+        "gdp_usd_2024": 149.74,
+        "gdp_per_capita_2024": 1185,
         "population_2024": 126500000,
         "development_index": 0.498,
-        "africa_rank": 6,
-        "growth_forecast_2024": "7.2%",
+        "africa_rank": 7,
+        "growth_forecast_2024": "8.1%",
+        "growth_projection_2025": "7.2%",
         "risk_ratings": {
             "sp": "B",
             "moodys": "B2",
@@ -1309,12 +1310,13 @@ REAL_COUNTRY_DATA = {
     },
     "KEN": {
         "name": "Kenya",
-        "gdp_usd_2024": 115.0,
+        "gdp_usd_2024": 113.0,
         "gdp_per_capita_2024": 2087,
         "population_2024": 55100000,
         "development_index": 0.601,
-        "africa_rank": 10,
-        "growth_forecast_2024": "5.2%",
+        "africa_rank": 6,
+        "growth_forecast_2024": "4.7%",
+        "growth_projection_2025": "4.9%",
         "risk_ratings": {
             "sp": "B+",
             "moodys": "B2",
@@ -1777,12 +1779,13 @@ REAL_COUNTRY_DATA = {
     },
     "MAR": {
         "name": "Maroc",
-        "gdp_usd_2024": 142.0,
-        "gdp_per_capita_2024": 3757,
+        "gdp_usd_2024": 154.43,
+        "gdp_per_capita_2024": 4087,
         "population_2024": 37800000,
         "development_index": 0.683,
         "africa_rank": 5,
         "growth_forecast_2024": "3.2%",
+        "growth_projection_2025": "4.4%",
         "risk_ratings": {
             "sp": "BBB-",
             "moodys": "Ba1",
