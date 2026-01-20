@@ -580,18 +580,28 @@ async def get_countries(lang: str = "fr"):
 
 @api_router.get("/country-profile/{country_code}")
 async def get_country_profile(country_code: str) -> CountryEconomicProfile:
-    """Récupérer le profil économique complet d'un pays avec données réelles et commerce 2024"""
+    """Récupérer le profil économique complet d'un pays avec données réelles et commerce 2024
     
-    # Trouver le pays
-    country = next((c for c in AFRICAN_COUNTRIES if c['code'] == country_code.upper()), None)
+    Accepte les codes ISO2 (ex: DZ) ou ISO3 (ex: DZA)
+    """
+    code_upper = country_code.upper()
+    
+    # Chercher par ISO3 d'abord, puis ISO2 (rétrocompatibilité)
+    country = next((c for c in AFRICAN_COUNTRIES if c['iso3'] == code_upper), None)
+    if not country:
+        country = next((c for c in AFRICAN_COUNTRIES if c['code'] == code_upper), None)
+    
     if not country:
         raise HTTPException(status_code=404, detail="Pays non trouvé dans la ZLECAf")
     
+    # Utiliser ISO3 pour toutes les requêtes de données
+    iso3_code = country['iso3']
+    
     # Récupérer les données de commerce enrichies 2024
-    commerce_data = get_country_commerce_profile(country['iso3'])
+    commerce_data = get_country_commerce_profile(iso3_code)
     
     # Récupérer les données réelles du pays (fallback)
-    real_data = get_country_data(country['iso3'])
+    real_data = get_country_data(iso3_code)
     
     # Construire le profil avec données commerce 2024 en priorité
     if commerce_data:
