@@ -172,7 +172,7 @@ function App() {
           </TabsList>
 
           <TabsContent value="dashboard">
-            <DashboardTab language={language} />
+            <DashboardTabNew language={language} />
           </TabsContent>
 
           <TabsContent value="calculator">
