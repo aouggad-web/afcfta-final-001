@@ -692,12 +692,14 @@ REAL_COUNTRY_DATA = {
     "CIV": {
         "name": "Côte d'Ivoire",
         "gdp_usd_2024": 86.54,
-        "gdp_per_capita_2024": 2995,
+        "gdp_usd_2025": 91.99,
+        "gdp_per_capita_2024": 2760,
         "population_2024": 28900000,
         "development_index": 0.55,
         "africa_rank": 9,
         "growth_forecast_2024": "6.0%",
         "growth_projection_2025": "6.3%",
+        "data_source": "FMI WEO Oct 2025, Banque Mondiale",
         "risk_ratings": {
             "sp": "BB-",
             "moodys": "Ba3",
