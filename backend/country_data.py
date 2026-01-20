@@ -2534,13 +2534,15 @@ REAL_COUNTRY_DATA = {
     },
     "TZA": {
         "name": "Tanzanie",
-        "gdp_usd_2024": 83.0,
-        "gdp_per_capita_2024": 1215,
-        "population_2024": 68300000,
+        "gdp_usd_2024": 80.0,
+        "gdp_usd_2025": 85.0,
+        "gdp_per_capita_2024": 1340,
+        "population_2024": 59700000,
         "development_index": 0.549,
         "africa_rank": 10,
         "growth_forecast_2024": "5.5%",
         "growth_projection_2025": "6.0%",
+        "data_source": "FMI WEO Oct 2025 (estimée)",
         "risk_ratings": {
             "sp": "B+",
             "moodys": "B2",
