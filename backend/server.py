@@ -1016,6 +1016,29 @@ async def get_comprehensive_statistics():
             "intra_african_percentage": intra_info.get('intra_african_percentage', 17)
         })
     
+    # Top 10 PIB 2024 avec projections de croissance 2025
+    from country_data import REAL_COUNTRY_DATA
+    top_10_gdp = sorted(trade_data_all, key=lambda x: x['gdp_2024'], reverse=True)[:10]
+    top_10_gdp_formatted = []
+    
+    # Mapping code ISO2 -> ISO3
+    iso2_to_iso3 = {c['code']: c['iso3'] for c in AFRICAN_COUNTRIES}
+    
+    for idx, country in enumerate(top_10_gdp):
+        iso3_code = iso2_to_iso3.get(country['code'], country['code'])
+        country_real_data = REAL_COUNTRY_DATA.get(iso3_code, {})
+        
+        top_10_gdp_formatted.append({
+            "rank": idx + 1,
+            "country": country['country'],
+            "code": country['code'],
+            "gdp_2024_billion": round(country['gdp_2024'], 2),
+            "growth_2024": country.get('growth_rate_2024', country_real_data.get('growth_forecast_2024', 'N/A')),
+            "growth_projection_2025": country_real_data.get('growth_projection_2025', 'N/A'),
+            "population_million": round(country_real_data.get('population_2024', 0) / 1e6, 1) if country_real_data.get('population_2024') else 'N/A',
+            "gdp_per_capita": country_real_data.get('gdp_per_capita_2024', 'N/A')
+        })
+    
     
     # Calculer totaux pour trade_evolution
     trade_evolution_data = enhanced_stats.get('trade_evolution', {})
