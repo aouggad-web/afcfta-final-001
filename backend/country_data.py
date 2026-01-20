@@ -1991,11 +1991,11 @@ REAL_COUNTRY_DATA = {
     },
     "NGA": {
         "name": "Nigéria",
-        "gdp_usd_2024": 334.34,
-        "gdp_per_capita_2024": 1467,
+        "gdp_usd_2024": 252.74,
+        "gdp_per_capita_2024": 1109,
         "population_2024": 227883000,
         "development_index": 0.548,
-        "africa_rank": 1,
+        "africa_rank": 4,
         "growth_forecast_2024": "3.38%",
         "growth_projection_2025": "3.89%",
         "risk_ratings": {
