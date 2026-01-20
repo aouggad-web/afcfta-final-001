@@ -236,7 +236,7 @@ export default function CountryProfilesTab({ language = 'fr' }) {
             </CardHeader>
             <CardContent className="pt-4">
               {/* Indicateurs économiques principaux - COMPACTS */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-4">
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mb-4">
                 {countryProfile.gdp_usd && (
                   <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-3 rounded-lg shadow border border-green-300 text-center">
                     <p className="text-xs font-semibold text-green-700 mb-1">💰 {t.totalGdp}</p>
@@ -257,20 +257,30 @@ export default function CountryProfilesTab({ language = 'fr' }) {
                   </div>
                 )}
                 
+                {/* Croissance 2024 */}
+                <div className="bg-gradient-to-br from-teal-50 to-cyan-100 p-3 rounded-lg shadow border border-teal-300 text-center">
+                  <p className="text-xs font-semibold text-teal-700 mb-1">📈 {language === 'fr' ? 'Croissance 2024' : 'Growth 2024'}</p>
+                  <p className={`text-2xl font-bold ${parseFloat(countryProfile.projections?.gdp_growth_forecast_2024) >= 5 ? 'text-green-600' : parseFloat(countryProfile.projections?.gdp_growth_forecast_2024) >= 3 ? 'text-teal-600' : 'text-orange-600'}`}>
+                    {countryProfile.projections?.gdp_growth_forecast_2024 || 'N/A'}
+                  </p>
+                  <p className="text-xs text-teal-600 mt-1">{language === 'fr' ? 'Réel 2024' : 'Actual 2024'}</p>
+                </div>
+                
+                {/* Projection 2025 - NOUVEAU */}
+                <div className="bg-gradient-to-br from-amber-50 to-yellow-100 p-3 rounded-lg shadow border-2 border-amber-400 text-center">
+                  <p className="text-xs font-semibold text-amber-700 mb-1">🎯 {language === 'fr' ? 'Projection 2025' : 'Projection 2025'}</p>
+                  <p className={`text-2xl font-bold ${countryProfile.projections?.gdp_growth_projection_2025 && countryProfile.projections?.gdp_growth_projection_2025 !== 'N/A' ? 'text-amber-600' : 'text-gray-400'}`}>
+                    {countryProfile.projections?.gdp_growth_projection_2025 || 'N/A'}
+                  </p>
+                  <p className="text-xs text-amber-600 mt-1">FMI/BM</p>
+                </div>
+                
                 <div className="bg-gradient-to-br from-purple-50 to-pink-100 p-3 rounded-lg shadow border border-purple-300 text-center">
                   <p className="text-xs font-semibold text-purple-700 mb-1">📊 {t.hdi2024}</p>
                   <p className="text-2xl font-bold text-purple-600">
                     {countryProfile.projections?.development_index || 'N/A'}
                   </p>
                   <p className="text-xs text-purple-600 mt-1">{t.hdiDesc}</p>
-                </div>
-
-                <div className="bg-gradient-to-br from-orange-50 to-amber-100 p-3 rounded-lg shadow border border-orange-300 text-center">
-                  <p className="text-xs font-semibold text-orange-700 mb-1">👥 {t.population}</p>
-                  <p className="text-2xl font-bold text-orange-600">
-                    {(countryProfile.population / 1000000).toFixed(1)}M
-                  </p>
-                  <p className="text-xs text-orange-600 mt-1">{t.millionsInhabitants}</p>
                 </div>
               </div>
 
