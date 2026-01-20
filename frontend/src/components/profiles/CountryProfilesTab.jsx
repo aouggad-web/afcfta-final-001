@@ -249,7 +249,7 @@ export default function CountryProfilesTab({ language = 'fr' }) {
           <Card className="shadow-2xl border-l-4 border-l-green-600">
             <CardHeader className="bg-gradient-to-r from-green-100 via-yellow-100 to-red-100">
               <CardTitle className="flex items-center space-x-2 text-2xl">
-                <span className="text-4xl">{countryFlags[countryProfile.country_code]}</span>
+                <span className="text-4xl">{getFlag(countryProfile.country_code)}</span>
                 <span className="font-bold text-green-700">{countryProfile.country_name}</span>
               </CardTitle>
               <CardDescription className="text-lg font-semibold text-gray-700">
