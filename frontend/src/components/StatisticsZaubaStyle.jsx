@@ -243,6 +243,61 @@ const StatisticsZaubaStyle = ({ language = 'fr' }) => {
         </div>
       </div>
 
+      {/* Top 10 PIB Africains 2024 avec Projections 2025 */}
+      <Card className="shadow-lg">
+        <CardHeader className="bg-gradient-to-r from-amber-50 to-yellow-50">
+          <CardTitle className="text-xl font-bold flex items-center gap-2">
+            💰 {language === 'fr' ? 'Top 10 PIB Africains 2024' : 'Top 10 African GDP 2024'}
+          </CardTitle>
+          <CardDescription className="text-sm">
+            {language === 'fr' ? 'Avec projections de croissance 2025 (Source: FMI, Banque Mondiale)' : 'With 2025 growth projections (Source: IMF, World Bank)'}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="pt-4">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b-2 border-amber-200 bg-amber-50">
+                  <th className="text-left py-2 px-3 font-bold text-gray-700">#</th>
+                  <th className="text-left py-2 px-3 font-bold text-gray-700">{language === 'fr' ? 'Pays' : 'Country'}</th>
+                  <th className="text-right py-2 px-3 font-bold text-gray-700">{language === 'fr' ? 'PIB 2024' : 'GDP 2024'}</th>
+                  <th className="text-right py-2 px-3 font-bold text-gray-700">{language === 'fr' ? 'Croissance 2024' : 'Growth 2024'}</th>
+                  <th className="text-right py-2 px-3 font-bold text-amber-700">{language === 'fr' ? 'Projection 2025' : 'Projection 2025'}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {statistics.top_10_gdp_2024?.map((country, index) => (
+                  <tr key={index} className={`border-b ${index % 2 === 0 ? 'bg-white' : 'bg-amber-50/30'} hover:bg-amber-100/50 transition-colors`}>
+                    <td className="py-2 px-3">
+                      <Badge className={`text-xs ${index < 3 ? 'bg-amber-500' : 'bg-gray-400'} text-white`}>
+                        {country.rank}
+                      </Badge>
+                    </td>
+                    <td className="py-2 px-3 font-semibold text-gray-800">{translateCountry(country.country)}</td>
+                    <td className="py-2 px-3 text-right font-bold text-amber-700">${country.gdp_2024_billion?.toFixed(1)}B</td>
+                    <td className="py-2 px-3 text-right">
+                      <span className={`font-semibold ${parseFloat(country.growth_2024) >= 5 ? 'text-green-600' : parseFloat(country.growth_2024) >= 3 ? 'text-blue-600' : 'text-orange-600'}`}>
+                        {typeof country.growth_2024 === 'number' ? country.growth_2024.toFixed(1) : country.growth_2024}%
+                      </span>
+                    </td>
+                    <td className="py-2 px-3 text-right">
+                      <span className={`font-bold px-2 py-1 rounded ${country.growth_projection_2025 !== 'N/A' ? 'bg-amber-100 text-amber-800' : 'bg-gray-100 text-gray-500'}`}>
+                        {country.growth_projection_2025 || 'N/A'}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-xs text-gray-500 mt-3 italic">
+            {language === 'fr' 
+              ? '* Données mises à jour Décembre 2025. Sources: FMI WEO, Banque Mondiale, autorités nationales.' 
+              : '* Data updated December 2025. Sources: IMF WEO, World Bank, national authorities.'}
+          </p>
+        </CardContent>
+      </Card>
+
       {/* Graphique Évolution Commerce */}
       <Card className="shadow-lg">
         <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50">
