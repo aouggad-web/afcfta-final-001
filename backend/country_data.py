@@ -1,17 +1,18 @@
 # Données économiques complètes des 54 pays ZLECAf mises à jour
 # Sources: PNUD, Banque Mondiale, FMI, S&P, Moody's, Fitch, Scope
 # Codes ISO3 pour compatibilité API
-# Dernière mise à jour: 2024-09-16
+# Dernière mise à jour: 2025-01 (Données 2024)
 
 REAL_COUNTRY_DATA = {
     "DZA": {
         "name": "Algérie",
-        "gdp_usd_2024": 269.128,
-        "gdp_per_capita_2024": 5763,
+        "gdp_usd_2024": 267.0,  # IMF WEO 2024
+        "gdp_per_capita_2024": 5720,
         "population_2024": 46700000,
         "development_index": 0.745,
         "africa_rank": 3,
-        "growth_forecast_2024": "3.2%",
+        "growth_forecast_2024": "3.8%",
+        "growth_projection_2025": "3.9%",
         "risk_ratings": {
             "sp": "B+",
             "moodys": "B2",
