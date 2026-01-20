@@ -425,10 +425,11 @@ oec_client = OECAPIClient()
 
 # Define Models
 class CountryInfo(BaseModel):
-    code: str
+    code: str  # ISO3 (code principal)
+    iso2: str = ""  # ISO2 (pour les drapeaux)
+    iso3: str  # ISO3 
     name: str
     region: str
-    iso3: str
     wb_code: str
     population: int
 
