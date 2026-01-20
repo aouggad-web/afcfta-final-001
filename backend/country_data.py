@@ -1,7 +1,8 @@
 # Données économiques complètes des 54 pays ZLECAf mises à jour
-# Sources: PNUD, Banque Mondiale, FMI, S&P, Moody's, Fitch, Scope
+# Sources: PNUD, Banque Mondiale, FMI (WEO), S&P, Moody's, Fitch, Scope
 # Codes ISO3 pour compatibilité API
-# Dernière mise à jour: 2025-01 (Données 2024)
+# Dernière mise à jour: 2025-12 (Données 2024-2025)
+# Priorité économies majeures: NGA, ZAF, EGY, DZA, MAR, KEN, ETH, GHA, CIV, TZA
 
 REAL_COUNTRY_DATA = {
     "DZA": {
@@ -787,12 +788,13 @@ REAL_COUNTRY_DATA = {
     },
     "EGY": {
         "name": "Égypte",
-        "gdp_usd_2024": 331.59,
-        "gdp_per_capita_2024": 2895,
+        "gdp_usd_2024": 349.3,
+        "gdp_per_capita_2024": 2922,
         "population_2024": 114536000,
         "development_index": 0.731,
-        "africa_rank": 4,
-        "growth_forecast_2024": "3.8%",
+        "africa_rank": 3,
+        "growth_forecast_2024": "4.4%",
+        "growth_projection_2025": "5.2%",
         "risk_ratings": {
             "sp": "B",
             "moodys": "B2",
@@ -1983,12 +1985,13 @@ REAL_COUNTRY_DATA = {
     },
     "NGA": {
         "name": "Nigéria",
-        "gdp_usd_2024": 374.984,
-        "gdp_per_capita_2024": 1645,
+        "gdp_usd_2024": 334.34,
+        "gdp_per_capita_2024": 1467,
         "population_2024": 227883000,
         "development_index": 0.548,
-        "africa_rank": 2,
-        "growth_forecast_2024": "3.2%",
+        "africa_rank": 1,
+        "growth_forecast_2024": "3.38%",
+        "growth_projection_2025": "3.89%",
         "risk_ratings": {
             "sp": "B-",
             "moodys": "B2",
@@ -2347,12 +2350,13 @@ REAL_COUNTRY_DATA = {
     },
     "ZAF": {
         "name": "Afrique du Sud",
-        "gdp_usd_2024": 377.782,
-        "gdp_per_capita_2024": 5976,
+        "gdp_usd_2024": 443.64,
+        "gdp_per_capita_2024": 6400,
         "population_2024": 63212000,
         "development_index": 0.713,
-        "africa_rank": 1,
-        "growth_forecast_2024": "1.8%",
+        "africa_rank": 2,
+        "growth_forecast_2024": "0.6%",
+        "growth_projection_2025": "1.2%",
         "risk_ratings": {
             "sp": "BB-",
             "moodys": "Ba2",
