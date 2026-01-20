@@ -118,11 +118,16 @@ Application web d'analyse des statistiques commerciales et économiques africain
   - `GET /api/country-profile/{code}` - Profils pays
 - **Tests réussis** : 24/24 tests backend, 100% frontend
 
-### Mise à jour complète des données 2024-2025 (20/01/2025)
+### Mise à jour complète des données 2024-2025 (Décembre 2025)
 - **10 économies majeures africaines** mises à jour avec données officielles FMI/Banque Mondiale/UNCTAD
+- **Affichage dans Statistiques** : Nouveau tableau "Top 10 PIB Africains 2024" avec projections 2025
+- **Affichage dans Profils Pays** : Ajout du bloc "Projection 2025" en jaune/ambré
 - **Fichiers modifiés** :
   - `/app/backend/country_data.py` - PIB, croissance, classements 2024-2025
   - `/app/backend/etl/unctad_data.py` - Données portuaires et LSCI 2024
+  - `/app/backend/server.py` - Nouvel endpoint top_10_gdp_2024
+  - `/app/frontend/src/components/StatisticsZaubaStyle.jsx` - Tableau Top 10 PIB
+  - `/app/frontend/src/components/profiles/CountryProfilesTab.jsx` - Bloc Projection 2025
   - `/app/ZLECAf_ENRICHI_2024_COMMERCE.csv` - Données commerciales actualisées
 
 ### Données vérifiées (véracité garantie - Mise à jour Décembre 2025)
