@@ -567,13 +567,20 @@ async def detailed_health_status():
 
 @api_router.get("/countries")
 async def get_countries(lang: str = "fr"):
-    """Récupérer la liste des pays membres de la ZLECAf avec traduction"""
+    """Récupérer la liste des pays membres de la ZLECAf avec traduction
+    
+    Retourne ISO3 comme code principal, ISO2 conservé pour compatibilité (drapeaux)
+    """
     countries = []
     for country in AFRICAN_COUNTRIES:
         translated_country = {
-            **country,
+            "code": country["iso3"],  # ISO3 comme code principal
+            "iso2": country["code"],  # ISO2 conservé pour les drapeaux
+            "iso3": country["iso3"],
             "name": translate_country_name(country["code"], lang),
-            "region": translate_region(country["region"], lang)
+            "region": translate_region(country["region"], lang),
+            "wb_code": country.get("wb_code", country["iso3"]),
+            "population": country["population"]
         }
         countries.append(CountryInfo(**translated_country))
     return countries
