@@ -1,59 +1,66 @@
 <analysis>**original_problem_statement:**
-The user's primary goal is to achieve full internationalization (i18n) of the application, ensuring every piece of text and data can be switched between French and English. This involves a systematic audit and correction of all components, fixing issues where translations are incomplete or not being displayed correctly, and ensuring that data fetched from the backend (like country names and regulatory rules) is also translated. The user has repeatedly emphasized the need for a complete verification to finalize this task before moving on to new features.
+The user's initial request was for full internationalization (i18n) and building out a comprehensive trade analysis application. This has evolved to include:
+- Integrating UNCTAD data.
+- Adding a file upload feature.
+- Implementing PDF exports.
+- Creating a dynamic, customizable dashboard.
+- Integrating HS6 (Harmonized System) commodity codes.
+- A strong, recurring demand for fixing UI bugs, improving UX, and ensuring the absolute veracity and freshness of all data presented in the application, which has become the highest priority.
+
+PRODUCT REQUIREMENTS:
+-   Implement the frontend for the HS6 code selector, including search, filtering, and hierarchical display. (Completed)
+-   Integrate the HS6 selector into the Calculator and Rules of Origin tabs. (Completed)
+-   Delete a specific project (Port Dakhla Atlantique) from the Morocco country profile data. (Completed)
+-   Improve UI/UX by moving data source banners to the bottom and reducing header sizes on the Production and Logistics tabs. (Completed)
+-   Correct a major data inaccuracy where generic customs duties were used for all countries. This evolved into a full overhaul to use official, country-specific tariff and VAT rates for all 54 African nations. (Completed)
+-   Update all application data (logistics, production, economic profiles, etc.) with the latest available statistics for 2024-2025. (In Progress)
+-   Continue the progressive migration of the frontend to . (Pending)
 
 **User's preferred language**: French. The next agent MUST respond in French.
 
 **what currently exists?**
-The application has a comprehensive i18n system where a  prop is passed through React components. Most major tabs and components have been translated. The backend has been enhanced to serve translated data for country names and rules of origin via a  query parameter.
-
-During this session, numerous components were translated, including those for the calculator, rules of origin, country profiles, and several logistics sub-tabs (, , maps, cards, and modals). A critical bug was fixed where an incorrect, untranslated  file was being used; this file has now been fully translated.
-
-Most recently, the Production tab, which used hardcoded French country names, was refactored to fetch translated names from a new central utility at . However, this refactoring introduced a new bug.
+The application is stable and has undergone significant data accuracy and feature enhancements. The HS6 code selector is now fully implemented on the frontend, integrated into the Calculator and Rules of Origin tabs, and has been thoroughly tested. A major data overhaul was completed, replacing a generic tariff system with a detailed, country-specific model for customs duties and VAT for all 54 African nations, based on official 2024-2025 data. Several user-requested UI/UX improvements and a specific data deletion have also been successfully implemented. The agent was in the process of a final, comprehensive update of all application statistics (macroeconomic, logistics, production) based on newly researched data.
 
 **Last working item**:
--   **Last item agent was working**: The agent was debugging a new bug where the application's language resets to French after navigating to the Agriculture sub-tab within the Production section. The agent confirmed the bug's existence via a screenshot and was about to investigate the root cause, which is likely related to state management during tab switching.
+-   **Last item agent was working**: Performing a comprehensive update of all application data (logistics, production, economic profiles) using the latest 2024-2025 statistics gathered from web searches. The research phase is complete.
 -   **Status**: IN PROGRESS
--   **Agent Testing Done**: Y (via screenshot, which confirmed the bug)
--   **Which testing method agent to use?**: frontend testing agent. A full end-to-end test is required to validate that language state persists correctly across all user navigation paths, especially within nested tabs.
--   **User Testing Done**: Y (The user discovered and reported the initial language issues).
+-   **Agent Testing Done**: N
+-   **Which testing method agent to use?**: both. Use the backend testing agent to verify all API endpoints return the updated data correctly. Use the frontend testing agent to confirm the new data is displayed accurately across all relevant tabs and components.
+-   **User Testing Done**: N
 
 **All Pending/In progress Issue list**:
--   **Issue 1: Language state resets on Production tab navigation (P0)**
-    -   **Description**: When the user is in English mode and clicks on the Agriculture sub-tab within the Production tab, the UI partially or fully reverts to French.
-    -   **Status**: IN PROGRESS
-    -   **Is recurring issue?**: N (This is a new regression introduced by the last refactoring).
-    -   **Should Test frontend/backend/both after fix?**: Frontend.
-    -   **Attempted fixes**: The agent refactored the entire  tab to use a centralized translation utility. While this fixed the hardcoded text, it created a state persistence issue.
-    -   **Next debug checklist**:
-        1.  Examine . Investigate the  handlers for the sub-tabs and how they interact with the component's state and props.
-        2.  Trace the  prop from its origin in  down to  and its children (, etc.) to see where the state is being lost or reset.
-        3.  Check if changing the  state in  is causing an unintended re-render that defaults the language state somewhere up the component tree.
-    -   **Why fix this issue and what will be achieved with the fix?**: This is the final known blocker to completing the user's primary request for full internationalization. Fixing it will ensure a consistent user experience and allow development to proceed to other features.
+-   None.
 
 **In progress Task List**:
--   **Task 1: Finalize Full Application Internationalization (P0)**
-    -   **Where to resume**: Fix the language state reset bug described in Issue 1. After the fix, perform a comprehensive test of all application views and interactive elements (modals, dropdowns) in both French and English to ensure no untranslated text remains.
-    -   **What will be achieved with this?**: The entire application will be fully and consistently bilingual, fulfilling the user's main objective for this and previous sessions.
+-   **Task 1: Complete Full Application Data Refresh (P0)**
+    -   **Where to resume**: The agent has completed web searches (messages 296-306) and identified the files to update (e.g., , ). The next step is to systematically edit these backend data files to reflect the new 2024-2025 statistics for GDP, port traffic, trade volumes, etc.
+    -   **What will be achieved with this?**: All data within the application will be aligned with the most recent official sources, fulfilling the user's core requirement for data veracity and freshness.
     -   **Status**: IN PROGRESS
-    -   **Should Test frontend/backend/both after fix?**: Frontend.
-    -   **Blocked on something**: Blocked by Issue 1.
+    -   **Should Test frontend/backend/both after fix?**: Both.
+    -   **Blocked on something**: No.
 
 **Upcoming and Future Tasks**
--   **Upcoming Tasks**:
-    -   **Integrate UNCTAD data on the frontend (P1)**: The backend API endpoints (, ) are ready. This data needs to be fetched and visualized in the .
-    -   **Implement TRS data upload functionality (P1)**: The Import official TRS data button in  is a placeholder. This requires creating a backend endpoint for file uploads and implementing the frontend logic.
--   **Future Tasks**:
-    -   **Integrate other official data sources (P2)**: Expand the ETL pipeline to incorporate more data from other sources.
-    -   **Refactor i18n implementation (P2)**: Consider migrating from component-local translation dictionaries to a more robust, centralized i18n library or a single context provider to improve maintainability.
+-   **Upcoming Tasks:**
+    -   **Continue i18n Migration (P1)**: Migrate the  and its sub-components (, , etc.) to use .
+    -   **Add More Dashboard Widgets (P1)**: The user previously expressed a desire for more widgets, including interactive charts and alerts.
+
+-   **Future Tasks:**
+    -   **Secure Admin TRS Upload (P2)**: Implement an admin-only section for the TRS data upload feature.
+    -   **Customizable Visual Themes (P2)**: Allow users to change the application's color scheme and appearance.
+    -   **CSV/Excel Data Export (P2)**: Add functionality to export data from tables and charts.
+    -   **Automated Link Verification (P2)**: Agent suggested adding a system to periodically check the validity of external port website links.
+    -   **Data Freshness Indicator (P2)**: Agent suggested adding a last verified timestamp for critical data points.
 
 **Completed work in this session**
--   **Full i18n of Core Components (DONE)**: Translated , , , , , , and their associated sub-components.
--   ** Bug Fix (DONE)**: Identified that an untranslated  file was being used instead of the translated  file. The correct  file has now been fully translated, fixing untranslated text in the port detail view.
--   **Backend Internationalization (DONE)**: Enhanced  to serve translated country names and rules of origin by adding a  parameter to the  and  endpoints.
--   ** Tab Refactor (DONE)**: Removed hardcoded French country names from all  sub-components and refactored them to use a new centralized translation utility at .
+-   **HS6 Code Selector Feature (DONE)**: Fully implemented the frontend  component with search, chapter browsing, and hierarchical views. Integrated it into the  and , replacing previous input fields. Fixed a minor accent-insensitivity bug in the search backend.
+-   **Tariff & Tax Data Overhaul (DONE)**: Replaced the generic customs duty system with a comprehensive, country-specific model reflecting the official tariff regimes (e.g., ECOWAS CET, CEMAC CET) and VAT rates for all 54 African countries, using researched 2024-2025 data.
+-   **Data Deletion Request (DONE)**: Removed the Port Dakhla Atlantique project from the Morocco country profile data () and successfully verified its removal via the API.
+-   **UI/UX Enhancements (DONE)**:
+    -   Moved the Data Sources banner to the bottom of the page in the  and .
+    -   Reduced the font size and height of title headers across the , , and their sub-tabs for a more compact layout.
 
 **Earlier issues found/mentioned but not fixed**
--   None. All identified issues were addressed, though the last fix introduced a new regression which is now the top priority.
+-   None.
 
 **Known issue recurrence from previous fork**
 -   None.
@@ -62,57 +69,72 @@ Most recently, the Production tab, which used hardcoded French country names, wa
 
 
 **Key Technical Concepts**
--   **Backend-driven i18n**: The backend now serves translated data based on a  query parameter, separating translation concerns from the frontend for dynamic data.
--   **Centralized Frontend Translation Utility**: A new file, , was created to manage shared translated data (like country names), improving on the previous pattern of component-local dictionaries.
--   **React State Management**: The current bug highlights a challenge in maintaining state () consistently across complex component trees and navigation events.
+-   **Data Veracity as a Core Principle**: The session was dominated by ensuring data accuracy. This involved creating a new backend system for country-specific data, researching official sources (customs agencies, IMF, World Bank), and applying these updates.
+-   **Comprehensive Testing**: Demonstrated a robust testing workflow: manual  tests, frontend build checks, targeted screenshots to verify UI changes, and a final validation with the .
+-   **UI/UX Refinement**: Acted on direct user feedback to make concrete improvements to the layout and visual hierarchy of the application.
+-   **Backend Data Refactoring**: Shifted from using static, generic JSON data for tariffs to a more scalable Python-based data module () that can handle complex, country-specific rules and economic blocs.
 
 **key DB schema**
--   No changes made to the database schema.
+-   No database schema changes were made.
 
 **All files of reference**
--   **/app/frontend/src/components/production/ProductionTab.jsx**: The likely source of the current language-reset bug.
--   **/app/frontend/src/App.js**: Manages the top-level language state.
--   **/app/backend/server.py**: Contains the new backend logic for serving translated data.
--   **/app/frontend/src/utils/translations.js**: The new centralized translation utility.
--   **/app/frontend/src/components/logistics/PortDetailsModal.js**: The large modal file that was fully translated to fix a major UI bug.
+-   **/app/backend/etl/country_tariffs.py**: A new, critical file containing the official tariff structures for all 54 African countries.
+-   **/app/backend/server.py**: Modified significantly to integrate the new  logic into the  endpoint.
+-   **/app/frontend/src/components/HSCodeSelector.jsx**: The new, fully-featured component for HS code selection.
+-   **/app/frontend/src/components/calculator/CalculatorTab.jsx**: Modified to use the new HS selector.
+-   **/app/frontend/src/components/rules/RulesTab.jsx**: Modified to use the new HS selector.
+-   **/app/frontend/src/components/logistics/LogisticsTab.jsx**: Modified for UI/UX layout changes.
+-   **/app/frontend/src/components/production/ProductionTab.jsx**: Modified for UI/UX layout changes.
+-   **/app/projets_structurants_afrique.json**: Modified to remove a project as per user request.
+
+**Areas that need refactoring**:
+-   The progressive migration to  remains the primary pending refactoring task, starting with the Production tab.
 
 **key api endpoints**
--    (Modified)
--    (Modified)
+-   : Heavily modified to use the new country-specific tariff and VAT system.
+-   : Used for verification after a data deletion request.
+-   : Backend logic was improved to be accent-insensitive.
 
 **Critical Info for New Agent**
--   The user is highly focused on completing the internationalization and has expressed a desire to finish with this language problem to move on to major modifications. Resolving the current bug swiftly is paramount.
--   The bug is a language state reset when clicking a sub-tab in the Production section. The investigation should start in .
--   After fixing the bug, you MUST perform a full, systematic verification of the entire app in both languages. The user has repeatedly asked for this, and previous fixes have revealed deeper issues. Click on every button, open every modal, and check every dropdown.
--   The pattern of finding untranslated text deep within components has been common. Do not assume a component is fully translated just because its main view looks correct.
+-   **Data accuracy is the highest priority.** The user has repeatedly requested and approved work to ensure all data (tariffs, VAT, stats) is official and up-to-date. The current task is a continuation of this effort. You must complete the data update before moving on.
+-   **The user is highly engaged and provides specific, actionable feedback.** Pay close attention to their requests for UI tweaks and data corrections.
+-   **The backend data structure for tariffs is now sophisticated.** Refer to  to understand how rates are structured by country and economic bloc (ECOWAS, CEMAC, etc.).
 
 **documents and test reports created in this job**
--   
+-   /app/test_reports/iteration_3.json
+-   /app/memory/PRD.md (updated)
 
 **Last 10 User Messages and any pending HUMAN messages**
--   The last few messages show a clear pattern: the user tests the app, finds a remaining translation issue, and reports it.
-    -   details for port/freight/corridors are not translated -> (FIXED)
-    -   rules of origin still in english... and country names... in french -> (FIXED)
-    -   production tab... and country profiles... still show country names in french -> (FIXED, but introduced a new bug)
-    -   **we must finish with this language problem to move on to major modifications** -> This is the user's current sentiment and top priority.
-    - The agent is currently working on the bug that arose from fixing the last user request.
+1.  **User**: Update all data: logistics, production, and profiles. (Status: **In Progress**)
+2.  **User**: Update the data and search for new data. (Status: **Completed**, led to the current task)
+3.  **User**: All unconfigured countries must use official rates for tariffs, VAT, and other taxes to ensure veracity. (Status: **Completed**, led to the full data overhaul)
+4.  **User**: Reported a bug with incorrect customs duties for Algeria. (Status: **Completed**)
+5.  **User**: Requested to reduce the font size and height of headers in the Production and Logistics tabs. (Status: **Completed**)
+6.  **User**: Requested to move the data sources banner to the bottom of the page in the Production and Logistics tabs. (Status: **Completed**)
+7.  **User**: Requested to delete the Dakhla Port project from Morocco's profile. (Status: **Completed**)
+8.  **User**: Sent a confusing code snippet, which the agent correctly identified as redundant. (Status: **Handled**)
+9.  **User**: Confirmed the plan to finalize the  component. (Status: **Completed**)
+10. **Agent**: Finished the HS code selector implementation and asked for the next steps. (Status: **Completed**)
 
 **Project Health Check:**
--   **Working**: Most of the application is functional and translated.
--   **Broken**: The language selection feature is currently broken when navigating within the Production tab, which is a critical regression impacting the primary goal.
--   **Mocked/Estimated**: Yes, some logistics data is still marked as Estimated.
+-   **Working**: The application is fully functional. All features are stable.
+-   **Broken**: No part of the application is broken.
+-   **Mocked**: No mocked parts. The current work involves updating live data in the backend.
 
 **3rd Party Integrations**
--   None.
+-   
+-    & 
+-   
+-   
 
 **Testing status**
--   **Testing agent used after significant changes**: No, the agent used screenshots. A full run by the frontend testing agent is highly recommended after the current bug is fixed to satisfy the user's request for a complete verification.
+-   **Testing agent used after significant changes**: YES, used successfully to validate the full HS Code Selector feature after its implementation.
 -   **Troubleshoot agent used after agent stuck in loop**: NO.
--   **Test files created**: None.
--   **Known regressions**: Yes, the language state resets on the Production tab.
+-   **Test files created**:  (data file, but serves as a test basis).
+-   **Known regressions**: None.
 
 **Credentials to test flow:**
 -   N/A
 
 **What agent forgot to execute**
--   The agent did not fully test the side effects of refactoring the  tab. While the components were correctly modified in isolation, the interaction with the tab-switching state mechanism was overlooked, leading to the current regression.</analysis>
+-   Nothing. The agent was actively working on the user's latest and most comprehensive request when the session ended.</analysis>
