@@ -7,13 +7,14 @@
 REAL_COUNTRY_DATA = {
     "DZA": {
         "name": "Algérie",
-        "gdp_usd_2024": 263.62,
-        "gdp_per_capita_2024": 4747,
+        "gdp_usd_2024": 288.0,
+        "gdp_per_capita_2024": 6095,
         "population_2024": 46700000,
         "development_index": 0.745,
-        "africa_rank": 4,
+        "africa_rank": 3,
         "growth_forecast_2024": "4.0%",
         "growth_projection_2025": "3.8%",
+        "growth_projection_2026": "3.5%",
         "risk_ratings": {
             "sp": "B+",
             "moodys": "B2",
