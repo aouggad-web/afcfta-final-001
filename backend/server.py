@@ -809,20 +809,31 @@ async def get_rules_of_origin(hs_code: str, lang: str = "fr"):
 
 @api_router.post("/calculate-tariff", response_model=TariffCalculationResponse)
 async def calculate_comprehensive_tariff(request: TariffCalculationRequest):
-    """Calculer les tarifs complets avec données officielles 2024 et règles d'origine"""
+    """Calculer les tarifs complets avec données officielles 2024 et règles d'origine
     
-    # Vérifier que les pays sont membres de la ZLECAf
-    origin_country = next((c for c in AFRICAN_COUNTRIES if c['code'] == request.origin_country), None)
-    dest_country = next((c for c in AFRICAN_COUNTRIES if c['code'] == request.destination_country), None)
+    Accepte les codes ISO2 (ex: DZ) ou ISO3 (ex: DZA) pour les pays
+    """
+    
+    # Chercher par ISO3 d'abord, puis ISO2 (rétrocompatibilité)
+    origin_country = next((c for c in AFRICAN_COUNTRIES if c['iso3'] == request.origin_country.upper()), None)
+    if not origin_country:
+        origin_country = next((c for c in AFRICAN_COUNTRIES if c['code'] == request.origin_country.upper()), None)
+    
+    dest_country = next((c for c in AFRICAN_COUNTRIES if c['iso3'] == request.destination_country.upper()), None)
+    if not dest_country:
+        dest_country = next((c for c in AFRICAN_COUNTRIES if c['code'] == request.destination_country.upper()), None)
     
     if not origin_country or not dest_country:
         raise HTTPException(status_code=400, detail="L'un des pays sélectionnés n'est pas membre de la ZLECAf")
+    
+    # Utiliser ISO3 pour les calculs
+    dest_iso3 = dest_country['iso3']
     
     # Calcul des tarifs selon le code SH6
     sector_code = request.hs_code[:2]
     
     # NOUVEAU: Utiliser les taux officiels par pays si disponibles
-    country_specific_rate = get_country_tariff_rate(request.destination_country, sector_code)
+    country_specific_rate = get_country_tariff_rate(dest_iso3, sector_code)
     
     # Charger les taux corrigés depuis le fichier JSON 2024 (fallback)
     tariff_corrections = get_tariff_corrections()
