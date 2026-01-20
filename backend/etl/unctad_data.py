@@ -228,21 +228,21 @@ UNCTAD_TRADE_FLOWS = {
 
 # =============================================================================
 # UNCTAD LINER SHIPPING CONNECTIVITY INDEX (LSCI)
-# Source: UNCTAD 2024
+# Source: UNCTAD 2024/2025
 # =============================================================================
 
 UNCTAD_LSCI_AFRICA = [
-    {"country": "Morocco", "country_fr": "Maroc", "lsci_2023": 78.5, "rank_africa": 1, "rank_global": 15},
-    {"country": "Egypt", "country_fr": "Égypte", "lsci_2023": 68.2, "rank_africa": 2, "rank_global": 22},
-    {"country": "South Africa", "country_fr": "Afrique du Sud", "lsci_2023": 42.8, "rank_africa": 3, "rank_global": 35},
-    {"country": "Togo", "country_fr": "Togo", "lsci_2023": 32.5, "rank_africa": 4, "rank_global": 48},
-    {"country": "Algeria", "country_fr": "Algérie", "lsci_2023": 28.6, "rank_africa": 5, "rank_global": 58},
-    {"country": "Djibouti", "country_fr": "Djibouti", "lsci_2023": 26.2, "rank_africa": 6, "rank_global": 62},
-    {"country": "Nigeria", "country_fr": "Nigéria", "lsci_2023": 24.8, "rank_africa": 7, "rank_global": 68},
-    {"country": "Kenya", "country_fr": "Kenya", "lsci_2023": 22.5, "rank_africa": 8, "rank_global": 72},
-    {"country": "Ghana", "country_fr": "Ghana", "lsci_2023": 21.2, "rank_africa": 9, "rank_global": 78},
-    {"country": "Côte d'Ivoire", "country_fr": "Côte d'Ivoire", "lsci_2023": 20.5, "rank_africa": 10, "rank_global": 82},
-    {"country": "Mauritius", "country_fr": "Maurice", "lsci_2023": 19.8, "rank_africa": 11, "rank_global": 85}
+    {"country": "Morocco", "country_fr": "Maroc", "lsci_2024": 82.5, "rank_africa": 1, "rank_global": 14},
+    {"country": "Egypt", "country_fr": "Égypte", "lsci_2024": 70.8, "rank_africa": 2, "rank_global": 20},
+    {"country": "South Africa", "country_fr": "Afrique du Sud", "lsci_2024": 41.5, "rank_africa": 3, "rank_global": 36},
+    {"country": "Togo", "country_fr": "Togo", "lsci_2024": 35.8, "rank_africa": 4, "rank_global": 45},
+    {"country": "Algeria", "country_fr": "Algérie", "lsci_2024": 30.2, "rank_africa": 5, "rank_global": 55},
+    {"country": "Djibouti", "country_fr": "Djibouti", "lsci_2024": 28.5, "rank_africa": 6, "rank_global": 58},
+    {"country": "Nigeria", "country_fr": "Nigéria", "lsci_2024": 26.8, "rank_africa": 7, "rank_global": 64},
+    {"country": "Kenya", "country_fr": "Kenya", "lsci_2024": 24.2, "rank_africa": 8, "rank_global": 70},
+    {"country": "Ghana", "country_fr": "Ghana", "lsci_2024": 23.5, "rank_africa": 9, "rank_global": 75},
+    {"country": "Côte d'Ivoire", "country_fr": "Côte d'Ivoire", "lsci_2024": 22.8, "rank_africa": 10, "rank_global": 78},
+    {"country": "Mauritius", "country_fr": "Maurice", "lsci_2024": 21.5, "rank_africa": 11, "rank_global": 82}
 ]
 
 # =============================================================================
