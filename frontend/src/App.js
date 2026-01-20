@@ -16,7 +16,7 @@ import LogisticsTab from './components/logistics/LogisticsTab';
 import ToolsTab from './components/tools/ToolsTab';
 import RulesTab from './components/rules/RulesTab';
 import CountryProfilesTab from './components/profiles/CountryProfilesTab';
-import DashboardTab from './components/dashboard/DashboardTab';
+import DashboardTabNew from './components/dashboard/DashboardTabNew';
 
 import './App.css';
 
