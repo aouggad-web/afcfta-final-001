@@ -1063,6 +1063,7 @@ async def get_comprehensive_statistics():
         "trade_evolution": trade_evolution_data,
         "top_exporters_2024": top_exporters_formatted,
         "top_importers_2024": top_importers_formatted,
+        "top_10_gdp_2024": top_10_gdp_formatted,
         "top_5_gdp_trade_comparison": top_5_gdp_formatted,
         "product_analysis": enhanced_stats.get('product_analysis', {}),
         "regional_integration": enhanced_stats.get('regional_integration', {}),
