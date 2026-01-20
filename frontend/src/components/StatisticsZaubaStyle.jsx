@@ -292,8 +292,8 @@ const StatisticsZaubaStyle = ({ language = 'fr' }) => {
           </div>
           <p className="text-xs text-gray-500 mt-3 italic">
             {language === 'fr' 
-              ? '* Données mises à jour Décembre 2025. Sources: FMI WEO, Banque Mondiale, autorités nationales.' 
-              : '* Data updated December 2025. Sources: IMF WEO, World Bank, national authorities.'}
+              ? '📊 Données officielles FMI WEO Octobre 2025, Banque Mondiale. Certaines valeurs marquées "estimée" sont des extrapolations officielles.' 
+              : '📊 Official IMF WEO October 2025, World Bank data. Values marked "estimated" are official extrapolations.'}
           </p>
         </CardContent>
       </Card>
