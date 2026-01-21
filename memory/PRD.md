@@ -118,6 +118,16 @@ Application web d'analyse des statistiques commerciales et économiques africain
   - `GET /api/country-profile/{code}` - Profils pays
 - **Tests réussis** : 24/24 tests backend, 100% frontend
 
+### Nouveau Dashboard avec Fil d'Actualités (Décembre 2025)
+- **Remplacement du dashboard statique** par un fil d'actualités économiques africaines dynamique
+- **Sources** : Agence Ecofin, AllAfrica (mise à jour quotidienne)
+- **Organisation** : Par région africaine et par catégorie économique
+- **Widgets statistiques** compacts en en-tête (PIB, Commerce, Ports, ZLECAf)
+- **Fichiers créés** :
+  - `/app/backend/etl/news_aggregator.py` - Agrégateur RSS
+  - `/app/frontend/src/components/dashboard/NewsDashboard.jsx` - Composant actualités
+  - `/app/frontend/src/components/dashboard/DashboardTabNew.jsx` - Nouveau dashboard
+
 ### Mise à jour complète des données 2024-2025 (Décembre 2025)
 - **10 économies majeures africaines** mises à jour avec données officielles FMI/Banque Mondiale/UNCTAD
 - **Affichage dans Statistiques** : Nouveau tableau "Top 10 PIB Africains 2024" avec projections 2025
