@@ -2667,12 +2667,14 @@ REAL_COUNTRY_DATA = {
     },
     "TGO": {
         "name": "Togo",
-        "gdp_usd_2024": 8.3,
-        "gdp_per_capita_2024": 965,
-        "population_2024": 8600000,
+        "gdp_usd_2024": 9.0,
+        "gdp_per_capita_2024": 1040,
+        "population_2024": 8700000,
         "development_index": 0.539,
-        "africa_rank": 28,
+        "africa_rank": 37,
         "growth_forecast_2024": "5.8%",
+        "growth_projection_2025": "6.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B",
             "moodys": "B3",
