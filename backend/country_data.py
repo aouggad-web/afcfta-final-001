@@ -125,6 +125,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.525,
         "africa_rank": 25,
         "growth_forecast_2024": "6.0%",
+        "growth_projection_2025": "6.2%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B+",
             "moodys": "B1",
@@ -177,6 +179,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.693,
         "africa_rank": 23,
         "growth_forecast_2024": "3.5%",
+        "growth_projection_2025": "4.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "A-",
             "moodys": "A2",
@@ -229,6 +233,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.449,
         "africa_rank": 21,
         "growth_forecast_2024": "5.5%",
+        "growth_projection_2025": "5.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B",
             "moodys": "B2",
@@ -281,6 +287,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.426,
         "africa_rank": 46,
         "growth_forecast_2024": "3.5%",
+        "growth_projection_2025": "4.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B-",
             "moodys": "B3",
@@ -333,6 +341,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.563,
         "africa_rank": 15,
         "growth_forecast_2024": "4.0%",
+        "growth_projection_2025": "4.5%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B",
             "moodys": "B2",
@@ -385,6 +395,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.665,
         "africa_rank": 48,
         "growth_forecast_2024": "5.0%",
+        "growth_projection_2025": "5.5%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B+",
             "moodys": "B1",
@@ -437,6 +449,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.387,
         "africa_rank": 45,
         "growth_forecast_2024": "1.5%",
+        "growth_projection_2025": "2.5%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "CCC+",
             "moodys": "Caa2",
@@ -489,6 +503,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.394,
         "africa_rank": 27,
         "growth_forecast_2024": "3.5%",
+        "growth_projection_2025": "4.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "CCC",
             "moodys": "Caa3",
@@ -541,6 +557,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.558,
         "africa_rank": 52,
         "growth_forecast_2024": "3.0%",
+        "growth_projection_2025": "3.5%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "NR",
             "moodys": "NR",
@@ -593,6 +611,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.571,
         "africa_rank": 32,
         "growth_forecast_2024": "3.0%",
+        "growth_projection_2025": "3.5%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B-",
             "moodys": "B3",
@@ -754,6 +774,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.509,
         "africa_rank": 43,
         "growth_forecast_2024": "5.0%",
+        "growth_projection_2025": "5.5%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B+",
             "moodys": "B2",
@@ -861,6 +883,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.596,
         "africa_rank": 37,
         "growth_forecast_2024": "-3.0%",
+        "growth_projection_2025": "2.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "CCC+",
             "moodys": "Caa1",
@@ -913,6 +937,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.459,
         "africa_rank": 44,
         "growth_forecast_2024": "3.0%",
+        "growth_projection_2025": "3.5%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "NR",
             "moodys": "NR",
@@ -965,6 +991,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.611,
         "africa_rank": 41,
         "growth_forecast_2024": "3.0%",
+        "growth_projection_2025": "3.5%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B+",
             "moodys": "B1",
@@ -1073,6 +1101,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.706,
         "africa_rank": 22,
         "growth_forecast_2024": "2.6%",
+        "growth_projection_2025": "3.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B+",
             "moodys": "B1",
@@ -1125,6 +1155,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.5,
         "africa_rank": 49,
         "growth_forecast_2024": "5.5%",
+        "growth_projection_2025": "6.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B",
             "moodys": "B3",
@@ -1232,6 +1264,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.465,
         "africa_rank": 26,
         "growth_forecast_2024": "5.5%",
+        "growth_projection_2025": "6.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B-",
             "moodys": "B3",
@@ -1284,6 +1318,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.483,
         "africa_rank": 50,
         "growth_forecast_2024": "4.5%",
+        "growth_projection_2025": "5.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "NR",
             "moodys": "NR",
@@ -1391,6 +1427,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.514,
         "africa_rank": 47,
         "growth_forecast_2024": "2.0%",
+        "growth_projection_2025": "2.5%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B+",
             "moodys": "B1",
@@ -1443,6 +1481,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.481,
         "africa_rank": 42,
         "growth_forecast_2024": "4.0%",
+        "growth_projection_2025": "5.5%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B-",
             "moodys": "B3",
@@ -1495,6 +1535,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.718,
         "africa_rank": 16,
         "growth_forecast_2024": "-4.6%",
+        "growth_projection_2025": "8.6%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "NR",
             "moodys": "NR",
@@ -1547,6 +1589,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.501,
         "africa_rank": 30,
         "growth_forecast_2024": "4.0%",
+        "growth_projection_2025": "4.5%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B-",
             "moodys": "B3",
@@ -1599,6 +1643,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.512,
         "africa_rank": 34,
         "growth_forecast_2024": "3.5%",
+        "growth_projection_2025": "4.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B-",
             "moodys": "B3",
@@ -1651,6 +1697,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.428,
         "africa_rank": 24,
         "growth_forecast_2024": "4.5%",
+        "growth_projection_2025": "4.8%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "CCC+",
             "moodys": "Caa2",
@@ -1703,6 +1751,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.556,
         "africa_rank": 36,
         "growth_forecast_2024": "4.0%",
+        "growth_projection_2025": "5.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B+",
             "moodys": "B1",
@@ -1755,6 +1805,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.802,
         "africa_rank": 29,
         "growth_forecast_2024": "5.0%",
+        "growth_projection_2025": "4.8%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "BBB+",
             "moodys": "Baa2",
@@ -1862,6 +1914,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.446,
         "africa_rank": 28,
         "growth_forecast_2024": "4.0%",
+        "growth_projection_2025": "4.5%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "CCC+",
             "moodys": "Caa2",
@@ -1914,6 +1968,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.615,
         "africa_rank": 35,
         "growth_forecast_2024": "3.0%",
+        "growth_projection_2025": "3.5%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "BB-",
             "moodys": "Ba3",
@@ -1966,6 +2022,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.4,
         "africa_rank": 31,
         "growth_forecast_2024": "6.0%",
+        "growth_projection_2025": "5.5%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B",
             "moodys": "B3",
@@ -2073,6 +2131,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.534,
         "africa_rank": 33,
         "growth_forecast_2024": "8.0%",
+        "growth_projection_2025": "7.5%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B+",
             "moodys": "B1",
@@ -2125,6 +2185,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.618,
         "africa_rank": 53,
         "growth_forecast_2024": "2.5%",
+        "growth_projection_2025": "3.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B+",
             "moodys": "B2",
@@ -2177,6 +2239,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.511,
         "africa_rank": 18,
         "growth_forecast_2024": "7.1%",
+        "growth_projection_2025": "8.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B+",
             "moodys": "Ba3",
@@ -2229,6 +2293,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.785,
         "africa_rank": 51,
         "growth_forecast_2024": "4.5%",
+        "growth_projection_2025": "4.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B+",
             "moodys": "B1",
@@ -2281,6 +2347,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.477,
         "africa_rank": 40,
         "growth_forecast_2024": "4.5%",
+        "growth_projection_2025": "5.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B-",
             "moodys": "B3",
@@ -2333,6 +2401,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.361,
         "africa_rank": 38,
         "growth_forecast_2024": "3.5%",
+        "growth_projection_2025": "4.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "NR",
             "moodys": "NR",
@@ -2440,6 +2510,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.385,
         "africa_rank": 39,
         "growth_forecast_2024": "-2.0%",
+        "growth_projection_2025": "2.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "NR",
             "moodys": "NR",
@@ -2492,6 +2564,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.508,
         "africa_rank": 17,
         "growth_forecast_2024": "-5.7%",
+        "growth_projection_2025": "1.5%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "CCC-",
             "moodys": "Caa3",
@@ -2651,6 +2725,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.731,
         "africa_rank": 14,
         "growth_forecast_2024": "1.6%",
+        "growth_projection_2025": "2.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B-",
             "moodys": "B3",
@@ -2703,6 +2779,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.544,
         "africa_rank": 13,
         "growth_forecast_2024": "5.3%",
+        "growth_projection_2025": "6.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "B+",
             "moodys": "B2",
@@ -2755,6 +2833,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.565,
         "africa_rank": 20,
         "growth_forecast_2024": "6.2%",
+        "growth_projection_2025": "6.6%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "CCC+",
             "moodys": "Caa2",
@@ -2807,6 +2887,8 @@ REAL_COUNTRY_DATA = {
         "development_index": 0.593,
         "africa_rank": 19,
         "growth_forecast_2024": "6.2%",
+        "growth_projection_2025": "5.0%",
+        "data_source": "FMI WEO Oct 2025",
         "risk_ratings": {
             "sp": "CC",
             "moodys": "C",
