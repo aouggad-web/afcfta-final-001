@@ -170,10 +170,15 @@ async def fetch_feed(session: aiohttp.ClientSession, url: str, source_name: str,
                     link = entry.get('link', '')
                     pub_date = entry.get('published', entry.get('updated', ''))
                     
-                    # Nettoyer le résumé (enlever HTML)
+                    # Nettoyer le résumé (enlever HTML et décoder entités)
                     import re
+                    import html
                     summary = re.sub(r'<[^>]+>', '', summary)
+                    summary = html.unescape(summary)
                     summary = truncate_text(summary, 250)
+                    
+                    # Nettoyer le titre aussi
+                    title = html.unescape(title)
                     
                     # Détecter région et catégorie
                     full_text = f"{title} {summary}"
