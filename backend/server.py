@@ -2306,6 +2306,96 @@ async def get_all_unctad():
     return get_all_unctad_data()
 
 
+# =====================================================
+# ENDPOINTS ACTUALITÉS ÉCONOMIQUES AFRICAINES
+# Sources: Agence Ecofin, AllAfrica
+# =====================================================
+
+@api_router.get("/news")
+async def get_economic_news(
+    force_refresh: bool = Query(False, description="Forcer le rafraîchissement du cache"),
+    region: Optional[str] = Query(None, description="Filtrer par région (ex: Afrique du Nord)"),
+    category: Optional[str] = Query(None, description="Filtrer par catégorie (ex: Finance, Commerce)")
+):
+    """
+    Récupérer les actualités économiques africaines
+    Sources: Agence Ecofin, AllAfrica
+    Mise à jour: Une fois par jour (ou force_refresh=true)
+    """
+    try:
+        news_data = await get_news(force_refresh=force_refresh)
+        articles = news_data.get("articles", [])
+        
+        # Filtrer par région si spécifié
+        if region:
+            articles = [a for a in articles if a.get("region", "").lower() == region.lower()]
+        
+        # Filtrer par catégorie si spécifié
+        if category:
+            articles = [a for a in articles if a.get("category", "").lower() == category.lower()]
+        
+        return {
+            "success": True,
+            "last_update": news_data.get("last_update"),
+            "source": news_data.get("source"),
+            "total_articles": len(articles),
+            "articles": articles,
+            "filters_applied": {
+                "region": region,
+                "category": category
+            }
+        }
+    except Exception as e:
+        logging.error(f"Erreur récupération actualités: {e}")
+        return {
+            "success": False,
+            "error": str(e),
+            "articles": []
+        }
+
+
+@api_router.get("/news/by-region")
+async def get_news_grouped_by_region(force_refresh: bool = Query(False)):
+    """Récupérer les actualités groupées par région africaine"""
+    try:
+        news_data = await get_news(force_refresh=force_refresh)
+        articles = news_data.get("articles", [])
+        by_region = get_news_by_region(articles)
+        region_counts = {region: len(arts) for region, arts in by_region.items()}
+        
+        return {
+            "success": True,
+            "last_update": news_data.get("last_update"),
+            "regions": list(by_region.keys()),
+            "region_counts": region_counts,
+            "articles_by_region": by_region
+        }
+    except Exception as e:
+        logging.error(f"Erreur récupération news par région: {e}")
+        return {"success": False, "error": str(e)}
+
+
+@api_router.get("/news/by-category")
+async def get_news_grouped_by_category(force_refresh: bool = Query(False)):
+    """Récupérer les actualités groupées par catégorie économique"""
+    try:
+        news_data = await get_news(force_refresh=force_refresh)
+        articles = news_data.get("articles", [])
+        by_category = get_news_by_category(articles)
+        category_counts = {cat: len(arts) for cat, arts in by_category.items()}
+        
+        return {
+            "success": True,
+            "last_update": news_data.get("last_update"),
+            "categories": list(by_category.keys()),
+            "category_counts": category_counts,
+            "articles_by_category": by_category
+        }
+    except Exception as e:
+        logging.error(f"Erreur récupération news par catégorie: {e}")
+        return {"success": False, "error": str(e)}
+
+
 # Include the router in the main app
 app.include_router(api_router)
 
