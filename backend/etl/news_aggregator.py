@@ -146,6 +146,9 @@ def truncate_text(text: str, max_length: int = 200) -> str:
     """Tronquer le texte avec ellipsis"""
     if not text:
         return ""
+    # Décoder les entités HTML
+    import html
+    text = html.unescape(text)
     text = text.strip()
     if len(text) <= max_length:
         return text
