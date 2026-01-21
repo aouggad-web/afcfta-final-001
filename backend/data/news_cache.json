@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-01-21T20:57:24.576392",
+  "last_update": "2026-01-21T21:04:21.978702",
   "articles": [
     {
       "id": "054ee7d5b9a9",
@@ -10,7 +10,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T17:41:39",
-      "fetched_at": "2026-01-21T20:57:24.487428"
+      "fetched_at": "2026-01-21T21:04:21.875048"
     },
     {
       "id": "79bc93b35c28",
@@ -21,7 +21,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-21T17:01:27",
-      "fetched_at": "2026-01-21T20:57:24.501695"
+      "fetched_at": "2026-01-21T21:04:21.719141"
     },
     {
       "id": "6cc6b6360afd",
@@ -32,7 +32,7 @@
       "category": "Finance",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-21T16:57:32",
-      "fetched_at": "2026-01-21T20:57:24.494618"
+      "fetched_at": "2026-01-21T21:04:21.711335"
     },
     {
       "id": "8f36a2b7fa25",
@@ -43,7 +43,7 @@
       "category": "Économie",
       "region": "Afrique Centrale",
       "published_at": "2026-01-21T16:01:18",
-      "fetched_at": "2026-01-21T20:57:24.487190"
+      "fetched_at": "2026-01-21T21:04:21.874813"
     },
     {
       "id": "81df69274205",
@@ -54,7 +54,7 @@
       "category": "Économie",
       "region": "Afrique Centrale",
       "published_at": "2026-01-21T16:01:17",
-      "fetched_at": "2026-01-21T20:57:24.487236"
+      "fetched_at": "2026-01-21T21:04:21.874857"
     },
     {
       "id": "ac905b3f7474",
@@ -65,7 +65,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T15:37:08",
-      "fetched_at": "2026-01-21T20:57:24.487267"
+      "fetched_at": "2026-01-21T21:04:21.874887"
     },
     {
       "id": "93ac75382ca7",
@@ -76,7 +76,7 @@
       "category": "Économie",
       "region": "Afrique Centrale",
       "published_at": "2026-01-21T15:37:08",
-      "fetched_at": "2026-01-21T20:57:24.487305"
+      "fetched_at": "2026-01-21T21:04:21.874924"
     },
     {
       "id": "2ceabf153205",
@@ -87,7 +87,7 @@
       "category": "Économie",
       "region": "Afrique",
       "published_at": "2026-01-21T15:29:43",
-      "fetched_at": "2026-01-21T20:57:24.487357"
+      "fetched_at": "2026-01-21T21:04:21.874980"
     },
     {
       "id": "0e4ba3149b68",
@@ -98,7 +98,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T14:56:09",
-      "fetched_at": "2026-01-21T20:57:24.501719"
+      "fetched_at": "2026-01-21T21:04:21.719169"
     },
     {
       "id": "1f922c5f9a2b",
@@ -109,7 +109,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T14:56:04",
-      "fetched_at": "2026-01-21T20:57:24.501656"
+      "fetched_at": "2026-01-21T21:04:21.719040"
     },
     {
       "id": "504016ac3e05",
@@ -120,7 +120,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T14:44:27",
-      "fetched_at": "2026-01-21T20:57:24.508608"
+      "fetched_at": "2026-01-21T21:04:21.748751"
     },
     {
       "id": "cfcf54e1a811",
@@ -131,7 +131,7 @@
       "category": "Économie",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-21T14:40:45",
-      "fetched_at": "2026-01-21T20:57:24.508638"
+      "fetched_at": "2026-01-21T21:04:21.748782"
     },
     {
       "id": "914ced04a644",
@@ -142,7 +142,7 @@
       "category": "Économie",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-21T14:37:32",
-      "fetched_at": "2026-01-21T20:57:24.508668"
+      "fetched_at": "2026-01-21T21:04:21.748816"
     },
     {
       "id": "e7aef82d0e45",
@@ -153,7 +153,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T13:06:29",
-      "fetched_at": "2026-01-21T20:57:24.501748"
+      "fetched_at": "2026-01-21T21:04:21.719198"
     },
     {
       "id": "630f1c346c40",
@@ -164,7 +164,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T13:06:00",
-      "fetched_at": "2026-01-21T20:57:24.501770"
+      "fetched_at": "2026-01-21T21:04:21.719221"
     },
     {
       "id": "d885bd0cb0aa",
@@ -175,7 +175,7 @@
       "category": "Économie",
       "region": "Afrique Centrale",
       "published_at": "2026-01-21T12:10:52",
-      "fetched_at": "2026-01-21T20:57:24.487397"
+      "fetched_at": "2026-01-21T21:04:21.875019"
     },
     {
       "id": "39b5053c1ddf",
@@ -186,7 +186,7 @@
       "category": "Économie",
       "region": "Afrique Centrale",
       "published_at": "2026-01-21T11:32:57",
-      "fetched_at": "2026-01-21T20:57:24.487144"
+      "fetched_at": "2026-01-21T21:04:21.874765"
     },
     {
       "id": "0b0ae69a4efa",
@@ -197,7 +197,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T11:11:15",
-      "fetched_at": "2026-01-21T20:57:24.508688"
+      "fetched_at": "2026-01-21T21:04:21.748838"
     },
     {
       "id": "e54e2416b52b",
@@ -208,7 +208,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T11:04:58",
-      "fetched_at": "2026-01-21T20:57:24.508708"
+      "fetched_at": "2026-01-21T21:04:21.748858"
     },
     {
       "id": "60d0a54cc10e",
@@ -219,7 +219,7 @@
       "category": "Finance",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T11:02:22",
-      "fetched_at": "2026-01-21T20:57:24.494548"
+      "fetched_at": "2026-01-21T21:04:21.711261"
     },
     {
       "id": "a17befefef2c",
@@ -230,7 +230,7 @@
       "category": "Économie",
       "region": "Afrique Centrale",
       "published_at": "2026-01-21T10:57:23",
-      "fetched_at": "2026-01-21T20:57:24.487086"
+      "fetched_at": "2026-01-21T21:04:21.874714"
     },
     {
       "id": "1ded59f790af",
@@ -241,7 +241,7 @@
       "category": "Économie",
       "region": "Afrique Centrale",
       "published_at": "2026-01-21T10:49:25",
-      "fetched_at": "2026-01-21T20:57:24.508734"
+      "fetched_at": "2026-01-21T21:04:21.748887"
     },
     {
       "id": "9ae872aa8dfb",
@@ -252,7 +252,7 @@
       "category": "Économie",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-21T10:49:01",
-      "fetched_at": "2026-01-21T20:57:24.508798"
+      "fetched_at": "2026-01-21T21:04:21.748951"
     },
     {
       "id": "e9242030e3e4",
@@ -263,7 +263,7 @@
       "category": "Finance",
       "region": "Afrique Centrale",
       "published_at": "2026-01-21T10:40:24",
-      "fetched_at": "2026-01-21T20:57:24.494584"
+      "fetched_at": "2026-01-21T21:04:21.711300"
     },
     {
       "id": "c254ccc27a9e",
@@ -274,7 +274,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T09:49:55",
-      "fetched_at": "2026-01-21T20:57:24.508545"
+      "fetched_at": "2026-01-21T21:04:21.748677"
     },
     {
       "id": "575daad19fda",
@@ -285,7 +285,7 @@
       "category": "Économie",
       "region": "Afrique Australe",
       "published_at": "2026-01-21T09:46:40",
-      "fetched_at": "2026-01-21T20:57:24.508584"
+      "fetched_at": "2026-01-21T21:04:21.748717"
     },
     {
       "id": "9cda08ee4d4c",
@@ -296,7 +296,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T09:00:15",
-      "fetched_at": "2026-01-21T20:57:24.487002"
+      "fetched_at": "2026-01-21T21:04:21.874655"
     },
     {
       "id": "033857d9e8de",
@@ -307,7 +307,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-20T23:51:56",
-      "fetched_at": "2026-01-21T20:57:24.501837"
+      "fetched_at": "2026-01-21T21:04:21.719287"
     },
     {
       "id": "a5db114d1dbb",
@@ -318,7 +318,7 @@
       "category": "Finance",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-20T22:18:13",
-      "fetched_at": "2026-01-21T20:57:24.494656"
+      "fetched_at": "2026-01-21T21:04:21.711374"
     },
     {
       "id": "f58701ff4137",
@@ -329,7 +329,7 @@
       "category": "Finance",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-20T18:23:18",
-      "fetched_at": "2026-01-21T20:57:24.494723"
+      "fetched_at": "2026-01-21T21:04:21.711442"
     },
     {
       "id": "62bb1595146a",
@@ -340,7 +340,7 @@
       "category": "Finance",
       "region": "Afrique Australe",
       "published_at": "2026-01-19T23:07:44",
-      "fetched_at": "2026-01-21T20:57:24.494775"
+      "fetched_at": "2026-01-21T21:04:21.711495"
     },
     {
       "id": "29b2551f918e",
@@ -351,7 +351,7 @@
       "category": "Finance",
       "region": "Afrique Australe",
       "published_at": "2026-01-19T23:07:43",
-      "fetched_at": "2026-01-21T20:57:24.494809"
+      "fetched_at": "2026-01-21T21:04:21.711530"
     },
     {
       "id": "f189a78eef6d",
@@ -362,7 +362,7 @@
       "category": "Commerce",
       "region": "Afrique Australe",
       "published_at": "2026-01-19T22:02:30",
-      "fetched_at": "2026-01-21T20:57:24.501807"
+      "fetched_at": "2026-01-21T21:04:21.719258"
     },
     {
       "id": "862aa4ca189c",
@@ -373,7 +373,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-19T16:08:50",
-      "fetched_at": "2026-01-21T20:57:24.501868"
+      "fetched_at": "2026-01-21T21:04:21.719311"
     },
     {
       "id": "bc400cece7a2",
@@ -384,7 +384,7 @@
       "category": "Finance",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-19T15:59:30",
-      "fetched_at": "2026-01-21T20:57:24.494682"
+      "fetched_at": "2026-01-21T21:04:21.711400"
     },
     {
       "id": "0c7ea923b9bf",
@@ -395,7 +395,7 @@
       "category": "Commerce",
       "region": "Afrique Australe",
       "published_at": "2026-01-19T10:51:20",
-      "fetched_at": "2026-01-21T20:57:24.501932"
+      "fetched_at": "2026-01-21T21:04:21.719374"
     },
     {
       "id": "95b7f69c91fd",
@@ -406,7 +406,7 @@
       "category": "Finance",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-19T10:27:52",
-      "fetched_at": "2026-01-21T20:57:24.494702"
+      "fetched_at": "2026-01-21T21:04:21.711421"
     },
     {
       "id": "c604f5796056",
@@ -417,7 +417,7 @@
       "category": "Finance",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-19T08:40:56",
-      "fetched_at": "2026-01-21T20:57:24.494742"
+      "fetched_at": "2026-01-21T21:04:21.711462"
     },
     {
       "id": "39bfb6aa3b54",
@@ -428,7 +428,7 @@
       "category": "Économie",
       "region": "Afrique",
       "published_at": "2026-01-14T17:16:44",
-      "fetched_at": "2026-01-21T20:57:24.508769"
+      "fetched_at": "2026-01-21T21:04:21.748922"
     }
   ]
 }
