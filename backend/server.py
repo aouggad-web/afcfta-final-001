@@ -690,10 +690,36 @@ async def get_country_profile(country_code: str) -> CountryEconomicProfile:
         customs_info = get_country_customs_info(commerce_data['country'])
         profile.customs = customs_info if customs_info else {}
         
-        # Infrastructure ranking
-        infra_ranking = get_country_infrastructure_ranking(commerce_data['country'])
+        # Infrastructure ranking - avec normalisation des noms
+        import unicodedata
+        def normalize_name(s):
+            return unicodedata.normalize('NFD', s.lower()).encode('ascii', 'ignore').decode('ascii')
+        
+        country_search_name = commerce_data['country']
+        infra_ranking = None
+        
+        # Charger directement le fichier JSON
+        try:
+            import json
+            with open('/app/classement_infrastructure_afrique.json', 'r') as f:
+                infra_data = json.load(f)
+            
+            search_name = normalize_name(country_search_name)
+            for entry in infra_data:
+                entry_name = normalize_name(entry['pays'])
+                if entry_name == search_name or search_name in entry_name:
+                    infra_ranking = {
+                        'africa_rank': entry['rang_afrique'],
+                        'lpi_infrastructure_score': entry['score_infrastructure_ipl'],
+                        'lpi_world_rank': entry['rang_mondial_ipl'],
+                        'aidi_transport_score': entry.get('score_aidi_2024', entry.get('score_transport_aidi', 0))
+                    }
+                    break
+        except Exception as e:
+            logging.error(f"Erreur chargement infrastructure: {e}")
+        
         # Projets structurants
-        profile.ongoing_projects = get_country_ongoing_projects(country['iso3'])
+        profile.ongoing_projects = get_country_ongoing_projects(iso3_code)
         profile.infrastructure_ranking = infra_ranking if infra_ranking else {}
     else:
         # Fallback to old data
