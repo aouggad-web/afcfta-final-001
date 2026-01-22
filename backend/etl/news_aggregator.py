@@ -15,28 +15,12 @@ import hashlib
 
 # Configuration des flux RSS
 RSS_FEEDS = {
-    "ecofin": {
-        "name": "Agence Ecofin",
-        "feeds": {
-            "general": "https://www.agenceecofin.com/a-la-une/rss",
-            "finance": "https://www.agenceecofin.com/finance/rss",
-            "gestion_publique": "https://www.agenceecofin.com/gestion-publique/rss",
-            "agriculture": "https://www.agenceecofin.com/agro/rss",
-            "energie": "https://www.agenceecofin.com/electricite/rss",
-            "mines": "https://www.agenceecofin.com/mines/rss",
-            "telecom": "https://www.agenceecofin.com/tic-et-telecom/rss",
-            "hydrocarbures": "https://www.agenceecofin.com/hydrocarbures/rss",
-        },
-        "language": "fr",
-        "logo": "🌍"
-    },
-    "allafrica": {
+    "allafrica_en": {
         "name": "AllAfrica",
         "feeds": {
             "business": "https://allafrica.com/tools/headlines/rdf/business/headlines.rdf",
-            "economy": "https://allafrica.com/tools/headlines/rdf/stock/headlines.rdf",
-            "banking": "https://allafrica.com/tools/headlines/rdf/banking/headlines.rdf",
             "trade": "https://allafrica.com/tools/headlines/rdf/trade/headlines.rdf",
+            "banking": "https://allafrica.com/tools/headlines/rdf/banking/headlines.rdf",
         },
         "language": "en",
         "logo": "📰"
@@ -48,6 +32,15 @@ RSS_FEEDS = {
         },
         "language": "fr",
         "logo": "📰"
+    },
+    "google_news_africa": {
+        "name": "Google News (Reuters, AFP, etc.)",
+        "feeds": {
+            "business_en": "https://news.google.com/rss/search?q=africa+economy+business&hl=en",
+            "economie_fr": "https://news.google.com/rss/search?q=afrique+%C3%A9conomie&hl=fr",
+        },
+        "language": "multi",
+        "logo": "🌐"
     }
 }
 
