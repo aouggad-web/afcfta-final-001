@@ -1,16 +1,38 @@
 {
-  "last_update": "2026-01-21T21:04:21.978702",
+  "last_update": "2026-01-22T00:04:00.376833",
   "articles": [
     {
-      "id": "054ee7d5b9a9",
-      "title": "Togo: Subventions pétrolières - L'État choisit l'équilibre",
-      "summary": "[Togonews] Soucieux de préserver le pouvoir d'achat des Togolais, le gouvernement entend poursuivre en 2026 sa politique de subvention des produits pétroliers.",
-      "link": "https://fr.allafrica.com/stories/202601210563.html",
+      "id": "4a0f4618b7f0",
+      "title": "Afrique de l'Ouest: L'UEMOA s'apprête à lancer une nouvelle plateforme de négociation pour les bons du Trésor et les obligations",
+      "summary": "[Daba Finance] L'UMOA-Titres prévoit de lancer une nouvelle plateforme de cotation et de négociation des bons et obligations du Trésor afin d'approfondir le marché secondaire des titres publics dans l'espace UEMOA le jeudi 22 janvier 2026.",
+      "link": "https://fr.allafrica.com/stories/202601210634.html",
       "source": "AllAfrica (FR)",
       "category": "Économie",
       "region": "Afrique de l'Ouest",
-      "published_at": "2026-01-21T17:41:39",
-      "fetched_at": "2026-01-21T21:04:21.875048"
+      "published_at": "2026-01-21T23:05:20",
+      "fetched_at": "2026-01-22T00:04:00.275204"
+    },
+    {
+      "id": "04c6b722e147",
+      "title": "Liberia: Several Ex-Employees of BSE Indicted for Over U.S.$24k Theft",
+      "summary": "[Liberian Observer] A grand jury at Criminal Court 'A' has indicted several former employees of the Bureau of State Enterprises (BSE),including its former Director-General, Arthur S. Massaquoi, for allegedly stealing US$19,902.11 and LD$942,750...",
+      "link": "https://allafrica.com/stories/202601210631.html",
+      "source": "AllAfrica",
+      "category": "Économie",
+      "region": "Afrique de l'Ouest",
+      "published_at": "2026-01-21T22:56:06",
+      "fetched_at": "2026-01-22T00:04:00.266732"
+    },
+    {
+      "id": "2d9f7e40d5a4",
+      "title": "South Africa: January Pressure Forces a Single Mother to Cut Corn Prices",
+      "summary": "[Scrolla] A single mother selling cobs dropped her price from R15 to R10 after January customers complained they could not afford more.   Transport costs of R64 remain the same, leaving little or no profit while the income still supports three...",
+      "link": "https://allafrica.com/stories/202601210620.html",
+      "source": "AllAfrica",
+      "category": "Commerce",
+      "region": "Afrique Australe",
+      "published_at": "2026-01-21T22:43:57",
+      "fetched_at": "2026-01-22T00:04:00.285628"
     },
     {
       "id": "79bc93b35c28",
@@ -21,7 +43,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-21T17:01:27",
-      "fetched_at": "2026-01-21T21:04:21.719141"
+      "fetched_at": "2026-01-22T00:04:00.285661"
     },
     {
       "id": "6cc6b6360afd",
@@ -32,7 +54,7 @@
       "category": "Finance",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-21T16:57:32",
-      "fetched_at": "2026-01-21T21:04:21.711335"
+      "fetched_at": "2026-01-22T00:04:00.376100"
     },
     {
       "id": "8f36a2b7fa25",
@@ -43,7 +65,7 @@
       "category": "Économie",
       "region": "Afrique Centrale",
       "published_at": "2026-01-21T16:01:18",
-      "fetched_at": "2026-01-21T21:04:21.874813"
+      "fetched_at": "2026-01-22T00:04:00.275294"
     },
     {
       "id": "81df69274205",
@@ -54,7 +76,7 @@
       "category": "Économie",
       "region": "Afrique Centrale",
       "published_at": "2026-01-21T16:01:17",
-      "fetched_at": "2026-01-21T21:04:21.874857"
+      "fetched_at": "2026-01-22T00:04:00.275337"
     },
     {
       "id": "ac905b3f7474",
@@ -65,7 +87,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T15:37:08",
-      "fetched_at": "2026-01-21T21:04:21.874887"
+      "fetched_at": "2026-01-22T00:04:00.275366"
     },
     {
       "id": "93ac75382ca7",
@@ -76,7 +98,7 @@
       "category": "Économie",
       "region": "Afrique Centrale",
       "published_at": "2026-01-21T15:37:08",
-      "fetched_at": "2026-01-21T21:04:21.874924"
+      "fetched_at": "2026-01-22T00:04:00.275402"
     },
     {
       "id": "2ceabf153205",
@@ -87,7 +109,7 @@
       "category": "Économie",
       "region": "Afrique",
       "published_at": "2026-01-21T15:29:43",
-      "fetched_at": "2026-01-21T21:04:21.874980"
+      "fetched_at": "2026-01-22T00:04:00.275450"
     },
     {
       "id": "0e4ba3149b68",
@@ -98,7 +120,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T14:56:09",
-      "fetched_at": "2026-01-21T21:04:21.719169"
+      "fetched_at": "2026-01-22T00:04:00.285684"
     },
     {
       "id": "1f922c5f9a2b",
@@ -109,7 +131,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T14:56:04",
-      "fetched_at": "2026-01-21T21:04:21.719040"
+      "fetched_at": "2026-01-22T00:04:00.285584"
     },
     {
       "id": "504016ac3e05",
@@ -120,7 +142,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T14:44:27",
-      "fetched_at": "2026-01-21T21:04:21.748751"
+      "fetched_at": "2026-01-22T00:04:00.266606"
     },
     {
       "id": "cfcf54e1a811",
@@ -131,7 +153,7 @@
       "category": "Économie",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-21T14:40:45",
-      "fetched_at": "2026-01-21T21:04:21.748782"
+      "fetched_at": "2026-01-22T00:04:00.266637"
     },
     {
       "id": "914ced04a644",
@@ -142,7 +164,7 @@
       "category": "Économie",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-21T14:37:32",
-      "fetched_at": "2026-01-21T21:04:21.748816"
+      "fetched_at": "2026-01-22T00:04:00.266667"
     },
     {
       "id": "e7aef82d0e45",
@@ -153,7 +175,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T13:06:29",
-      "fetched_at": "2026-01-21T21:04:21.719198"
+      "fetched_at": "2026-01-22T00:04:00.285709"
     },
     {
       "id": "630f1c346c40",
@@ -164,7 +186,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T13:06:00",
-      "fetched_at": "2026-01-21T21:04:21.719221"
+      "fetched_at": "2026-01-22T00:04:00.285731"
     },
     {
       "id": "d885bd0cb0aa",
@@ -175,7 +197,7 @@
       "category": "Économie",
       "region": "Afrique Centrale",
       "published_at": "2026-01-21T12:10:52",
-      "fetched_at": "2026-01-21T21:04:21.875019"
+      "fetched_at": "2026-01-22T00:04:00.275489"
     },
     {
       "id": "39b5053c1ddf",
@@ -186,7 +208,7 @@
       "category": "Économie",
       "region": "Afrique Centrale",
       "published_at": "2026-01-21T11:32:57",
-      "fetched_at": "2026-01-21T21:04:21.874765"
+      "fetched_at": "2026-01-22T00:04:00.275252"
     },
     {
       "id": "0b0ae69a4efa",
@@ -197,7 +219,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T11:11:15",
-      "fetched_at": "2026-01-21T21:04:21.748838"
+      "fetched_at": "2026-01-22T00:04:00.266688"
     },
     {
       "id": "e54e2416b52b",
@@ -208,7 +230,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T11:04:58",
-      "fetched_at": "2026-01-21T21:04:21.748858"
+      "fetched_at": "2026-01-22T00:04:00.266708"
     },
     {
       "id": "60d0a54cc10e",
@@ -219,7 +241,7 @@
       "category": "Finance",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T11:02:22",
-      "fetched_at": "2026-01-21T21:04:21.711261"
+      "fetched_at": "2026-01-22T00:04:00.376030"
     },
     {
       "id": "a17befefef2c",
@@ -230,7 +252,7 @@
       "category": "Économie",
       "region": "Afrique Centrale",
       "published_at": "2026-01-21T10:57:23",
-      "fetched_at": "2026-01-21T21:04:21.874714"
+      "fetched_at": "2026-01-22T00:04:00.275164"
     },
     {
       "id": "1ded59f790af",
@@ -241,18 +263,7 @@
       "category": "Économie",
       "region": "Afrique Centrale",
       "published_at": "2026-01-21T10:49:25",
-      "fetched_at": "2026-01-21T21:04:21.748887"
-    },
-    {
-      "id": "9ae872aa8dfb",
-      "title": "Tanzania: Mwinyi Drives Maritime Modernisation, Boosts Economy",
-      "summary": "[Daily News] Zanzibar -- ZANZIBAR President Hussein Mwinyi has emphasised the need to modernise maritime transport to enhance the Isles' economy. Dr Mwinyi said maritime transport remains the backbone of Zanzibar's economy, with more than 90 per...",
-      "link": "https://allafrica.com/stories/202601210184.html",
-      "source": "AllAfrica",
-      "category": "Économie",
-      "region": "Afrique de l'Est",
-      "published_at": "2026-01-21T10:49:01",
-      "fetched_at": "2026-01-21T21:04:21.748951"
+      "fetched_at": "2026-01-22T00:04:00.266793"
     },
     {
       "id": "e9242030e3e4",
@@ -263,7 +274,7 @@
       "category": "Finance",
       "region": "Afrique Centrale",
       "published_at": "2026-01-21T10:40:24",
-      "fetched_at": "2026-01-21T21:04:21.711300"
+      "fetched_at": "2026-01-22T00:04:00.376066"
     },
     {
       "id": "c254ccc27a9e",
@@ -274,7 +285,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T09:49:55",
-      "fetched_at": "2026-01-21T21:04:21.748677"
+      "fetched_at": "2026-01-22T00:04:00.266538"
     },
     {
       "id": "575daad19fda",
@@ -285,7 +296,7 @@
       "category": "Économie",
       "region": "Afrique Australe",
       "published_at": "2026-01-21T09:46:40",
-      "fetched_at": "2026-01-21T21:04:21.748717"
+      "fetched_at": "2026-01-22T00:04:00.266581"
     },
     {
       "id": "9cda08ee4d4c",
@@ -296,7 +307,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T09:00:15",
-      "fetched_at": "2026-01-21T21:04:21.874655"
+      "fetched_at": "2026-01-22T00:04:00.275103"
     },
     {
       "id": "033857d9e8de",
@@ -307,7 +318,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-20T23:51:56",
-      "fetched_at": "2026-01-21T21:04:21.719287"
+      "fetched_at": "2026-01-22T00:04:00.285856"
     },
     {
       "id": "a5db114d1dbb",
@@ -318,7 +329,7 @@
       "category": "Finance",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-20T22:18:13",
-      "fetched_at": "2026-01-21T21:04:21.711374"
+      "fetched_at": "2026-01-22T00:04:00.376162"
     },
     {
       "id": "f58701ff4137",
@@ -329,7 +340,7 @@
       "category": "Finance",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-20T18:23:18",
-      "fetched_at": "2026-01-21T21:04:21.711442"
+      "fetched_at": "2026-01-22T00:04:00.376183"
     },
     {
       "id": "62bb1595146a",
@@ -340,7 +351,7 @@
       "category": "Finance",
       "region": "Afrique Australe",
       "published_at": "2026-01-19T23:07:44",
-      "fetched_at": "2026-01-21T21:04:21.711495"
+      "fetched_at": "2026-01-22T00:04:00.376256"
     },
     {
       "id": "29b2551f918e",
@@ -351,7 +362,7 @@
       "category": "Finance",
       "region": "Afrique Australe",
       "published_at": "2026-01-19T23:07:43",
-      "fetched_at": "2026-01-21T21:04:21.711530"
+      "fetched_at": "2026-01-22T00:04:00.376292"
     },
     {
       "id": "f189a78eef6d",
@@ -362,7 +373,7 @@
       "category": "Commerce",
       "region": "Afrique Australe",
       "published_at": "2026-01-19T22:02:30",
-      "fetched_at": "2026-01-21T21:04:21.719258"
+      "fetched_at": "2026-01-22T00:04:00.285788"
     },
     {
       "id": "862aa4ca189c",
@@ -373,7 +384,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-19T16:08:50",
-      "fetched_at": "2026-01-21T21:04:21.719311"
+      "fetched_at": "2026-01-22T00:04:00.285754"
     },
     {
       "id": "bc400cece7a2",
@@ -384,18 +395,7 @@
       "category": "Finance",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-19T15:59:30",
-      "fetched_at": "2026-01-21T21:04:21.711400"
-    },
-    {
-      "id": "0c7ea923b9bf",
-      "title": "Malawi: Exports in Free Fall - Malawi Squanders Up to 70 Percent of Produce Potential As Trade Deficit Deepens",
-      "summary": "[Nyasa Times] Malawi's agricultural export sector is not just stagnating--it is bleeding.",
-      "link": "https://allafrica.com/stories/202601190134.html",
-      "source": "AllAfrica",
-      "category": "Commerce",
-      "region": "Afrique Australe",
-      "published_at": "2026-01-19T10:51:20",
-      "fetched_at": "2026-01-21T21:04:21.719374"
+      "fetched_at": "2026-01-22T00:04:00.376126"
     },
     {
       "id": "95b7f69c91fd",
@@ -406,7 +406,7 @@
       "category": "Finance",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-19T10:27:52",
-      "fetched_at": "2026-01-21T21:04:21.711421"
+      "fetched_at": "2026-01-22T00:04:00.376203"
     },
     {
       "id": "c604f5796056",
@@ -417,7 +417,7 @@
       "category": "Finance",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-19T08:40:56",
-      "fetched_at": "2026-01-21T21:04:21.711462"
+      "fetched_at": "2026-01-22T00:04:00.376223"
     },
     {
       "id": "39bfb6aa3b54",
@@ -428,7 +428,7 @@
       "category": "Économie",
       "region": "Afrique",
       "published_at": "2026-01-14T17:16:44",
-      "fetched_at": "2026-01-21T21:04:21.748922"
+      "fetched_at": "2026-01-22T00:04:00.266767"
     }
   ]
 }
