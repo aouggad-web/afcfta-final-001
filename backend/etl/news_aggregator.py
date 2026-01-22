@@ -151,8 +151,12 @@ def truncate_text(text: str, max_length: int = 200) -> str:
 async def fetch_feed(session: aiohttp.ClientSession, url: str, source_name: str, category: str) -> List[Dict]:
     """Récupérer et parser un flux RSS"""
     articles = []
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'application/rss+xml, application/xml, text/xml, */*'
+    }
     try:
-        async with session.get(url, timeout=aiohttp.ClientTimeout(total=15)) as response:
+        async with session.get(url, timeout=aiohttp.ClientTimeout(total=15), headers=headers) as response:
             if response.status == 200:
                 content = await response.text()
                 feed = feedparser.parse(content)
