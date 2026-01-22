@@ -34,7 +34,7 @@ const CATEGORY_COLORS = {
 const translations = {
   fr: {
     title: "Fil d'Actualités Économiques Africaines",
-    subtitle: "Sources: Agence Ecofin, AllAfrica",
+    subtitle: "Sources: AllAfrica, Google News (Reuters, AFP)",
     lastUpdate: "Dernière mise à jour",
     refresh: "Actualiser",
     refreshing: "Actualisation...",
@@ -53,7 +53,7 @@ const translations = {
   },
   en: {
     title: "African Economic News Feed",
-    subtitle: "Sources: Agence Ecofin, AllAfrica",
+    subtitle: "Sources: AllAfrica, Google News (Reuters, AFP)",
     lastUpdate: "Last update",
     refresh: "Refresh",
     refreshing: "Refreshing...",
