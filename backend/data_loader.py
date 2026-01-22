@@ -196,9 +196,18 @@ def get_country_infrastructure_ranking(country_name: str) -> Optional[Dict]:
     """Get infrastructure ranking for a specific country"""
     ranking_data = load_infrastructure_ranking()
     
-    # Match by country name (case-insensitive)
+    # Normaliser le nom pour la comparaison
+    import unicodedata
+    def normalize(s):
+        # Enlever les accents et convertir en minuscules
+        return unicodedata.normalize('NFD', s.lower()).encode('ascii', 'ignore').decode('ascii')
+    
+    search_name = normalize(country_name)
+    
+    # Match by country name (case-insensitive, accent-insensitive)
     for entry in ranking_data:
-        if entry['pays'].lower() == country_name.lower():
+        entry_name = normalize(entry['pays'])
+        if entry_name == search_name or search_name in entry_name or entry_name in search_name:
             return {
                 'africa_rank': entry['rang_afrique'],
                 'lpi_infrastructure_score': entry['score_infrastructure_ipl'],
