@@ -1,6 +1,39 @@
 {
-  "last_update": "2026-01-22T21:03:39.951856",
+  "last_update": "2026-01-22T22:10:41.508804",
   "articles": [
+    {
+      "id": "f0a1eadf89ba",
+      "title": "Nigeria: Sunu Group Reaffirms Growth, Recapitalisation Drive",
+      "summary": "[Daily Trust] SUNU Group has reaffirmed its commitment to expansion, financial strength and healthcare leadership across Africa, as the pan-African insurance group marked the third anniversary of the passing of its founder, Mr. Pathé Dione.",
+      "link": "https://allafrica.com/stories/202601220537.html",
+      "source": "AllAfrica",
+      "category": "Finance",
+      "region": "Afrique de l'Ouest",
+      "published_at": "2026-01-22T21:57:58",
+      "fetched_at": "2026-01-22T22:10:41.380097"
+    },
+    {
+      "id": "a00a5965199b",
+      "title": "Nigeria: Road to Bigger Banks - 7 Lenders May Scale Down Licences",
+      "summary": "[Daily Trust] Nigeria's banking sector is entering a decisive phase as the Central Bank of Nigeria (CBN) pushes ahead with its comprehensive recapitalisation programme, a reform designed to produce bigger, stronger and more resilient banks.",
+      "link": "https://allafrica.com/stories/202601220535.html",
+      "source": "AllAfrica",
+      "category": "Finance",
+      "region": "Afrique de l'Ouest",
+      "published_at": "2026-01-22T21:57:57",
+      "fetched_at": "2026-01-22T22:10:41.380121"
+    },
+    {
+      "id": "b00e0d07215e",
+      "title": "Nigeria: NEDC, NALV Train 600 Tsangaya Teachers in N/East",
+      "summary": "[Daily Trust] The Nigeria Arabic Language Village, Ngala (NALV), Borno State, in collaboration with the North East Development Commission (NEDC), has commenced training and empowerment of 600 Tsangaya and Islamiyah teachers across the six states of...",
+      "link": "https://allafrica.com/stories/202601220529.html",
+      "source": "AllAfrica",
+      "category": "Commerce",
+      "region": "Afrique de l'Ouest",
+      "published_at": "2026-01-22T21:57:55",
+      "fetched_at": "2026-01-22T22:10:41.363033"
+    },
     {
       "id": "d29b3823165d",
       "title": "Ghana: Agbogbloshie Traders Ordered to Leave ...Ahead of Decongestion Exercise",
@@ -10,7 +43,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-22T19:34:13",
-      "fetched_at": "2026-01-22T21:03:39.881590"
+      "fetched_at": "2026-01-22T22:10:41.363055"
     },
     {
       "id": "ece6530005b8",
@@ -21,7 +54,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-22T19:34:11",
-      "fetched_at": "2026-01-22T21:03:39.881611"
+      "fetched_at": "2026-01-22T22:10:41.363078"
     },
     {
       "id": "89b6f6c26dda",
@@ -32,7 +65,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-22T19:34:10",
-      "fetched_at": "2026-01-22T21:03:39.881642"
+      "fetched_at": "2026-01-22T22:10:41.363098"
     },
     {
       "id": "72d268bf9e13",
@@ -43,7 +76,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-22T16:43:15",
-      "fetched_at": "2026-01-22T21:03:39.865610"
+      "fetched_at": "2026-01-22T22:10:41.285703"
     },
     {
       "id": "a5159de99a7e",
@@ -54,7 +87,7 @@
       "category": "Économie",
       "region": "Afrique Centrale",
       "published_at": "2026-01-22T16:43:14",
-      "fetched_at": "2026-01-22T21:03:39.865648"
+      "fetched_at": "2026-01-22T22:10:41.285747"
     },
     {
       "id": "479ca609ff7d",
@@ -65,7 +98,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-22T16:31:05",
-      "fetched_at": "2026-01-22T21:03:39.865686"
+      "fetched_at": "2026-01-22T22:10:41.285788"
     },
     {
       "id": "fea7936cb709",
@@ -76,7 +109,7 @@
       "category": "Économie",
       "region": "Afrique Australe",
       "published_at": "2026-01-22T14:55:59",
-      "fetched_at": "2026-01-22T21:03:39.751289"
+      "fetched_at": "2026-01-22T22:10:41.370011"
     },
     {
       "id": "01b63354c8f5",
@@ -87,7 +120,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-22T14:37:12",
-      "fetched_at": "2026-01-22T21:03:39.751314"
+      "fetched_at": "2026-01-22T22:10:41.370035"
     },
     {
       "id": "d3357ef087d3",
@@ -98,7 +131,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-22T14:36:34",
-      "fetched_at": "2026-01-22T21:03:39.751337"
+      "fetched_at": "2026-01-22T22:10:41.370058"
     },
     {
       "id": "a6b1cd1d464c",
@@ -109,7 +142,7 @@
       "category": "Finance",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-22T13:09:52",
-      "fetched_at": "2026-01-22T21:03:39.734815"
+      "fetched_at": "2026-01-22T22:10:41.380149"
     },
     {
       "id": "d488e6eb9445",
@@ -120,7 +153,7 @@
       "category": "Économie",
       "region": "Afrique",
       "published_at": "2026-01-22T12:26:25",
-      "fetched_at": "2026-01-22T21:03:39.865733"
+      "fetched_at": "2026-01-22T22:10:41.285838"
     },
     {
       "id": "782dc11a9ef5",
@@ -131,7 +164,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-22T12:14:18",
-      "fetched_at": "2026-01-22T21:03:39.865523"
+      "fetched_at": "2026-01-22T22:10:41.285574"
     },
     {
       "id": "1b30a7685a2f",
@@ -142,7 +175,7 @@
       "category": "Économie",
       "region": "Afrique Australe",
       "published_at": "2026-01-22T12:11:23",
-      "fetched_at": "2026-01-22T21:03:39.865786"
+      "fetched_at": "2026-01-22T22:10:41.285895"
     },
     {
       "id": "efdf87da8c57",
@@ -153,7 +186,7 @@
       "category": "Économie",
       "region": "Afrique Centrale",
       "published_at": "2026-01-22T12:11:21",
-      "fetched_at": "2026-01-22T21:03:39.865573"
+      "fetched_at": "2026-01-22T22:10:41.285657"
     },
     {
       "id": "3d98ceac16f3",
@@ -164,7 +197,7 @@
       "category": "Économie",
       "region": "Afrique Centrale",
       "published_at": "2026-01-22T12:06:41",
-      "fetched_at": "2026-01-22T21:03:39.865827"
+      "fetched_at": "2026-01-22T22:10:41.285940"
     },
     {
       "id": "7031da3cffc2",
@@ -175,7 +208,7 @@
       "category": "Finance",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-22T11:30:00",
-      "fetched_at": "2026-01-22T21:03:39.734843"
+      "fetched_at": "2026-01-22T22:10:41.380182"
     },
     {
       "id": "4853be3b1231",
@@ -186,7 +219,7 @@
       "category": "Finance",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-22T11:30:00",
-      "fetched_at": "2026-01-22T21:03:39.734865"
+      "fetched_at": "2026-01-22T22:10:41.380205"
     },
     {
       "id": "b63f473d8752",
@@ -197,7 +230,7 @@
       "category": "Finance",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-22T11:29:59",
-      "fetched_at": "2026-01-22T21:03:39.734888"
+      "fetched_at": "2026-01-22T22:10:41.380226"
     },
     {
       "id": "2e54e31b2650",
@@ -208,7 +241,7 @@
       "category": "Finance",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-22T11:29:59",
-      "fetched_at": "2026-01-22T21:03:39.734908"
+      "fetched_at": "2026-01-22T22:10:41.380249"
     },
     {
       "id": "bbbf76500f7b",
@@ -219,7 +252,7 @@
       "category": "Finance",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-22T11:29:58",
-      "fetched_at": "2026-01-22T21:03:39.734930"
+      "fetched_at": "2026-01-22T22:10:41.380269"
     },
     {
       "id": "63dfb083ea71",
@@ -230,7 +263,7 @@
       "category": "Finance",
       "region": "Afrique",
       "published_at": "2026-01-22T11:29:58",
-      "fetched_at": "2026-01-22T21:03:39.734964"
+      "fetched_at": "2026-01-22T22:10:41.380303"
     },
     {
       "id": "5e2588e84d58",
@@ -241,7 +274,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-22T11:23:01",
-      "fetched_at": "2026-01-22T21:03:39.881567"
+      "fetched_at": "2026-01-22T22:10:41.363010"
     },
     {
       "id": "4bcf891854e9",
@@ -252,7 +285,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-22T11:21:50",
-      "fetched_at": "2026-01-22T21:03:39.881500"
+      "fetched_at": "2026-01-22T22:10:41.362939"
     },
     {
       "id": "e3eaddf71e69",
@@ -263,7 +296,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-22T11:13:53",
-      "fetched_at": "2026-01-22T21:03:39.751133"
+      "fetched_at": "2026-01-22T22:10:41.369855"
     },
     {
       "id": "99ac3abf3fc4",
@@ -274,7 +307,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-22T10:56:43",
-      "fetched_at": "2026-01-22T21:03:39.751160"
+      "fetched_at": "2026-01-22T22:10:41.369882"
     },
     {
       "id": "0e202dcee53c",
@@ -285,7 +318,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-22T10:52:06",
-      "fetched_at": "2026-01-22T21:03:39.881531"
+      "fetched_at": "2026-01-22T22:10:41.362972"
     },
     {
       "id": "7a6a9d2b6773",
@@ -296,7 +329,7 @@
       "category": "Économie",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-22T10:40:51",
-      "fetched_at": "2026-01-22T21:03:39.751102"
+      "fetched_at": "2026-01-22T22:10:41.369823"
     },
     {
       "id": "ab5622aa5f07",
@@ -307,7 +340,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-22T10:40:14",
-      "fetched_at": "2026-01-22T21:03:39.751182"
+      "fetched_at": "2026-01-22T22:10:41.369903"
     },
     {
       "id": "dd9be897b7c3",
@@ -318,7 +351,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-22T10:36:22",
-      "fetched_at": "2026-01-22T21:03:39.751206"
+      "fetched_at": "2026-01-22T22:10:41.369927"
     },
     {
       "id": "93029ceb5841",
@@ -329,18 +362,18 @@
       "category": "Économie",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-22T10:34:42",
-      "fetched_at": "2026-01-22T21:03:39.751236"
+      "fetched_at": "2026-01-22T22:10:41.369959"
     },
     {
-      "id": "2b7cc047d231",
-      "title": "Afrique: Cipref - Le Gabon au coeur des réflexions sur l'intelligence artificielle",
-      "summary": "[Le Soleil] La Conférence internationale de la presse francophone (Cipref) a officiellement ouvert ses travaux ce mercredi 20 janvier à Libreville, au Gabon. Organisée par la Section gabonaise de la presse francophone, cette rencontre internationale...",
-      "link": "https://fr.allafrica.com/stories/202601220079.html",
+      "id": "7fbe60a0db9e",
+      "title": "Sénégal: Conseil des ministres du 21 janvier 2026 - Ce qu'il faut retenir",
+      "summary": "[Le Soleil] Le Conseil des ministres s'est tenu le mercredi 21 janvier 2026, sous la présidence de Bassirou Diomaye Diakhar Faye, Président de la République.",
+      "link": "https://fr.allafrica.com/stories/202601220187.html",
       "source": "AllAfrica (FR)",
       "category": "Économie",
-      "region": "Afrique Centrale",
-      "published_at": "2026-01-22T09:08:53",
-      "fetched_at": "2026-01-22T21:03:39.865464"
+      "region": "Afrique de l'Ouest",
+      "published_at": "2026-01-22T10:11:17",
+      "fetched_at": "2026-01-22T22:10:41.286003"
     },
     {
       "id": "ce9b1d40de30",
@@ -351,7 +384,7 @@
       "category": "Économie",
       "region": "Afrique Australe",
       "published_at": "2026-01-22T07:03:45",
-      "fetched_at": "2026-01-22T21:03:39.751262"
+      "fetched_at": "2026-01-22T22:10:41.369984"
     },
     {
       "id": "4a0f4618b7f0",
@@ -362,7 +395,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T23:05:20",
-      "fetched_at": "2026-01-22T21:03:39.865862"
+      "fetched_at": "2026-01-22T22:10:41.285977"
     },
     {
       "id": "2d9f7e40d5a4",
@@ -373,7 +406,7 @@
       "category": "Commerce",
       "region": "Afrique Australe",
       "published_at": "2026-01-21T22:43:57",
-      "fetched_at": "2026-01-22T21:03:39.881696"
+      "fetched_at": "2026-01-22T22:10:41.363151"
     },
     {
       "id": "79bc93b35c28",
@@ -384,7 +417,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-21T17:01:27",
-      "fetched_at": "2026-01-22T21:03:39.881725"
+      "fetched_at": "2026-01-22T22:10:41.363191"
     },
     {
       "id": "6cc6b6360afd",
@@ -395,18 +428,7 @@
       "category": "Finance",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-21T16:57:32",
-      "fetched_at": "2026-01-22T21:03:39.734782"
-    },
-    {
-      "id": "0e4ba3149b68",
-      "title": "Nigeria: Energy, Transportation Costs Weaken Disinflation Trend - Experts",
-      "summary": "[Daily Trust] High cost of energy, transportation and interest rates have been identified as the core driver of inflationary pressures despite the recent decline in the inflation rate.",
-      "link": "https://allafrica.com/stories/202601210444.html",
-      "source": "AllAfrica",
-      "category": "Commerce",
-      "region": "Afrique de l'Ouest",
-      "published_at": "2026-01-21T14:56:09",
-      "fetched_at": "2026-01-22T21:03:39.881746"
+      "fetched_at": "2026-01-22T22:10:41.380057"
     },
     {
       "id": "1f922c5f9a2b",
@@ -417,29 +439,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-21T14:56:04",
-      "fetched_at": "2026-01-22T21:03:39.881664"
-    },
-    {
-      "id": "60d0a54cc10e",
-      "title": "Ghana: BoG Calls for Careful, Contextualised Reporting On Central Bank Activities",
-      "summary": "[Ghanaian Times] The First Deputy Governor of the Bank of Ghana (BoG), Dr Zakari Mumuni, has urged the media to be circumspect in their reportage on the central bank, stressing that confidence in the financial system and the broader economy depends...",
-      "link": "https://allafrica.com/stories/202601210206.html",
-      "source": "AllAfrica",
-      "category": "Finance",
-      "region": "Afrique de l'Ouest",
-      "published_at": "2026-01-21T11:02:22",
-      "fetched_at": "2026-01-22T21:03:39.734986"
-    },
-    {
-      "id": "e9242030e3e4",
-      "title": "Namibia: DBN Cleans House With N$579 Million Loan Write-Off",
-      "summary": "[Namibian] The Development Bank of Namibia (DBN) has carried out a balance sheet clean-up, writing off about N$579 million in non-performing loans during the 2024/25 financial year.",
-      "link": "https://allafrica.com/stories/202601210172.html",
-      "source": "AllAfrica",
-      "category": "Finance",
-      "region": "Afrique Centrale",
-      "published_at": "2026-01-21T10:40:24",
-      "fetched_at": "2026-01-22T21:03:39.735011"
+      "fetched_at": "2026-01-22T22:10:41.363119"
     }
   ]
 }
