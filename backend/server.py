@@ -690,10 +690,14 @@ async def get_country_profile(country_code: str) -> CountryEconomicProfile:
         customs_info = get_country_customs_info(commerce_data['country'])
         profile.customs = customs_info if customs_info else {}
         
-        # Infrastructure ranking - avec normalisation des noms
+        # Infrastructure ranking - avec normalisation robuste des noms
         import unicodedata
         def normalize_name(s):
-            return unicodedata.normalize('NFD', s.lower()).encode('ascii', 'ignore').decode('ascii')
+            # Normaliser les accents et convertir en minuscules
+            normalized = unicodedata.normalize('NFD', s.lower()).encode('ascii', 'ignore').decode('ascii')
+            # Normaliser aussi les différents types d'apostrophes (ASCII ' et typographique ')
+            normalized = normalized.replace('\u2019', "'").replace('\u2018', "'").replace('\u0027', "'")
+            return normalized
         
         country_search_name = commerce_data['country']
         infra_ranking = None
@@ -704,16 +708,20 @@ async def get_country_profile(country_code: str) -> CountryEconomicProfile:
             with open('/app/classement_infrastructure_afrique.json', 'r') as f:
                 infra_data = json.load(f)
             
+            # Normaliser le nom de recherche et gérer les apostrophes
             search_name = normalize_name(country_search_name)
+            
             for entry in infra_data:
                 entry_name = normalize_name(entry['pays'])
-                if entry_name == search_name or search_name in entry_name:
+                # Comparaison stricte et partielle pour plus de robustesse
+                if entry_name == search_name or search_name in entry_name or entry_name in search_name:
                     infra_ranking = {
                         'africa_rank': entry['rang_afrique'],
                         'lpi_infrastructure_score': entry['score_infrastructure_ipl'],
                         'lpi_world_rank': entry['rang_mondial_ipl'],
                         'aidi_transport_score': entry.get('score_aidi_2024', entry.get('score_transport_aidi', 0))
                     }
+                    logging.info(f"✅ Infrastructure trouvée pour {country_search_name}: LPI={infra_ranking['lpi_infrastructure_score']}, AIDI={infra_ranking['aidi_transport_score']}")
                     break
         except Exception as e:
             logging.error(f"Erreur chargement infrastructure: {e}")
