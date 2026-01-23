@@ -693,10 +693,10 @@ async def get_country_profile(country_code: str) -> CountryEconomicProfile:
         # Infrastructure ranking - avec normalisation robuste des noms
         import unicodedata
         def normalize_name(s):
-            # Normaliser les accents et convertir en minuscules
+            # D'ABORD remplacer les apostrophes typographiques par ASCII AVANT l'encodage
+            s = s.replace('\u2019', "'").replace('\u2018', "'")  # ' et ' → '
+            # Puis normaliser les accents et convertir en minuscules
             normalized = unicodedata.normalize('NFD', s.lower()).encode('ascii', 'ignore').decode('ascii')
-            # Normaliser aussi les différents types d'apostrophes (ASCII ' et typographique ')
-            normalized = normalized.replace('\u2019', "'").replace('\u2018', "'").replace('\u0027', "'")
             return normalized
         
         country_search_name = commerce_data['country']
