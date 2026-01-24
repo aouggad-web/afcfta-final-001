@@ -349,17 +349,47 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="hs-code" className="flex items-center gap-2">
-              <Package className="w-4 h-4" />
-              {t.hsCodeLabel}
-            </Label>
-            <HSCodeSearch
-              value={hsCode}
-              onChange={setHsCode}
-              language={language}
-              data-testid="hs-code-selector"
-            />
-            <p className="text-xs text-gray-500 italic">{t.hsCodeHint}</p>
+            <div className="flex items-center justify-between">
+              <Label htmlFor="hs-code" className="flex items-center gap-2">
+                <Package className="w-4 h-4" />
+                {t.hsCodeLabel}
+              </Label>
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                onClick={() => setUseSmartSearch(!useSmartSearch)}
+                className="text-xs text-purple-600 hover:text-purple-700"
+              >
+                <Sparkles className="w-3 h-3 mr-1" />
+                {useSmartSearch ? 'Mode simple' : 'Recherche intelligente'}
+              </Button>
+            </div>
+            
+            {useSmartSearch ? (
+              <SmartHSSearch
+                value={hsCode}
+                onChange={setHsCode}
+                destinationCountry={destinationCountry}
+                language={language}
+                onSubPositionSelect={(code, desc) => {
+                  setHsCode(code);
+                  setSelectedSubPositionDesc(desc);
+                }}
+                onRuleOfOriginLoad={setRuleOfOrigin}
+              />
+            ) : (
+              <>
+                <HSCodeSearch
+                  value={hsCode}
+                  onChange={setHsCode}
+                  language={language}
+                  data-testid="hs-code-selector"
+                />
+                <p className="text-xs text-gray-500 italic">{t.hsCodeHint}</p>
+              </>
+            )}
+            
             <Button
               type="button"
               variant="outline"
