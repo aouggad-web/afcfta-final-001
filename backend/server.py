@@ -2081,6 +2081,134 @@ async def get_hs_codes_statistics():
     }
 
 
+# =============================================================================
+# SH6 TARIFFS ENDPOINTS - Tarifs précis par code SH6
+# =============================================================================
+
+@api_router.get("/hs6-tariffs/search")
+async def search_hs6_tariffs_endpoint(
+    q: str = Query(..., description="Search query"),
+    language: str = Query("fr", description="Language: fr or en"),
+    limit: int = Query(20, ge=1, le=100)
+):
+    """
+    Rechercher des codes SH6 avec leurs tarifs par mot-clé
+    Retourne les taux NPF et ZLECAf avec les économies potentielles
+    """
+    results = search_hs6_tariffs(q, language, limit)
+    return {
+        "query": q,
+        "count": len(results),
+        "results": results
+    }
+
+
+@api_router.get("/hs6-tariffs/code/{hs6_code}")
+async def get_hs6_tariff_endpoint(hs6_code: str, language: str = Query("fr")):
+    """
+    Obtenir les tarifs détaillés pour un code SH6 spécifique
+    Inclut taux NPF, taux ZLECAf, et économies potentielles
+    """
+    tariff = get_hs6_tariff(hs6_code)
+    if not tariff:
+        # Fallback vers les informations du code sans tarif spécifique
+        hs_info = get_hs6_code(hs6_code, language)
+        if hs_info:
+            return {
+                "code": hs6_code,
+                "has_specific_tariff": False,
+                "hs_info": hs_info,
+                "message": "Pas de tarif SH6 spécifique - utiliser le taux par chapitre"
+            }
+        raise HTTPException(status_code=404, detail=f"Code SH6 {hs6_code} non trouvé")
+    
+    desc_key = f"description_{language}"
+    return {
+        "code": hs6_code,
+        "has_specific_tariff": True,
+        "description": tariff.get(desc_key, tariff.get("description_fr")),
+        "normal_rate": tariff["normal"],
+        "normal_rate_pct": f"{tariff['normal'] * 100:.1f}%",
+        "zlecaf_rate": tariff["zlecaf"],
+        "zlecaf_rate_pct": f"{tariff['zlecaf'] * 100:.1f}%",
+        "savings_pct": round((tariff["normal"] - tariff["zlecaf"]) / tariff["normal"] * 100, 1) if tariff["normal"] > 0 else 0,
+        "chapter": hs6_code[:2],
+        "chapter_name": get_hs_chapters().get(hs6_code[:2], {}).get(language, "")
+    }
+
+
+@api_router.get("/hs6-tariffs/chapter/{chapter}")
+async def get_hs6_tariffs_chapter_endpoint(
+    chapter: str,
+    language: str = Query("fr")
+):
+    """
+    Obtenir tous les codes SH6 avec tarifs spécifiques pour un chapitre
+    """
+    results = get_hs6_tariffs_by_chapter(chapter)
+    chapter_info = get_hs_chapters().get(chapter.zfill(2), {})
+    
+    return {
+        "chapter": chapter.zfill(2),
+        "chapter_name": chapter_info.get(language, chapter_info.get("fr", "")),
+        "count": len(results),
+        "codes": results
+    }
+
+
+@api_router.get("/hs6-tariffs/statistics")
+async def get_hs6_tariffs_statistics_endpoint():
+    """
+    Obtenir les statistiques sur les tarifs SH6 disponibles
+    """
+    return get_hs6_statistics()
+
+
+@api_router.get("/hs6-tariffs/products/african-exports")
+async def get_african_export_products(language: str = Query("fr")):
+    """
+    Obtenir la liste des produits africains clés avec leurs tarifs SH6
+    Groupés par catégorie (agriculture, mining, manufactured)
+    """
+    from etl.hs6_tariffs import HS6_TARIFFS_AGRICULTURE, HS6_TARIFFS_MINING, HS6_TARIFFS_MANUFACTURED
+    
+    desc_key = f"description_{language}"
+    
+    def format_products(products_dict, category_name):
+        return [
+            {
+                "code": code,
+                "description": data.get(desc_key, data.get("description_fr")),
+                "normal_rate_pct": f"{data['normal'] * 100:.1f}%",
+                "zlecaf_rate_pct": f"{data['zlecaf'] * 100:.1f}%",
+                "savings_pct": round((data["normal"] - data["zlecaf"]) / data["normal"] * 100, 1) if data["normal"] > 0 else 0
+            }
+            for code, data in sorted(products_dict.items())
+        ]
+    
+    return {
+        "agriculture": {
+            "name_fr": "Produits Agricoles",
+            "name_en": "Agricultural Products",
+            "count": len(HS6_TARIFFS_AGRICULTURE),
+            "products": format_products(HS6_TARIFFS_AGRICULTURE, "agriculture")
+        },
+        "mining": {
+            "name_fr": "Produits Miniers et Énergétiques",
+            "name_en": "Mining and Energy Products",
+            "count": len(HS6_TARIFFS_MINING),
+            "products": format_products(HS6_TARIFFS_MINING, "mining")
+        },
+        "manufactured": {
+            "name_fr": "Produits Manufacturés",
+            "name_en": "Manufactured Products",
+            "count": len(HS6_TARIFFS_MANUFACTURED),
+            "products": format_products(HS6_TARIFFS_MANUFACTURED, "manufactured")
+        },
+        "total_products": len(HS6_TARIFFS_AGRICULTURE) + len(HS6_TARIFFS_MINING) + len(HS6_TARIFFS_MANUFACTURED)
+    }
+
+
 # FAOSTAT ENRICHED DATA ENDPOINTS
 # ==========================================
 
