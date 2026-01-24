@@ -1,6 +1,13 @@
 """
 EXTENSION BASE HS6 - CHAPITRES 07-15
-Légumes, fruits, céréales, graines, huiles
+=====================================
+Légumes, Fruits, Café/Thé/Épices, Céréales, Oléagineux, Gommes, Huiles
+Produits agricoles majeurs du commerce africain
+
+Sources:
+- WCO Harmonized System 2022
+- UNCTAD TRAINS Database
+- African Union AfCFTA Tariff Schedules
 """
 
 HS6_EXTENDED_CH07_15 = {
@@ -12,9 +19,9 @@ HS6_EXTENDED_CH07_15 = {
         "description_fr": "Pommes de terre de semence",
         "description_en": "Seed potatoes",
         "category": "vegetables",
-        "sensitivity": "sensitive",
+        "sensitivity": "normal",
         "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
+        "typical_sub_position_types": ["variety", "certification"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
     "070190": {
@@ -24,7 +31,7 @@ HS6_EXTENDED_CH07_15 = {
         "category": "vegetables",
         "sensitivity": "sensitive",
         "has_sub_positions": True,
-        "typical_sub_position_types": ["variety", "use"],
+        "typical_sub_position_types": ["variety"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
     "070320": {
@@ -40,7 +47,7 @@ HS6_EXTENDED_CH07_15 = {
     "070390": {
         "chapter": "07",
         "description_fr": "Poireaux et autres alliacées",
-        "description_en": "Leeks and other alliaceous",
+        "description_en": "Leeks and other alliaceous vegetables",
         "category": "vegetables",
         "sensitivity": "normal",
         "has_sub_positions": True,
@@ -50,17 +57,7 @@ HS6_EXTENDED_CH07_15 = {
     "070410": {
         "chapter": "07",
         "description_fr": "Choux-fleurs et brocolis",
-        "description_en": "Cauliflower and broccoli",
-        "category": "vegetables",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "070420": {
-        "chapter": "07",
-        "description_fr": "Choux de Bruxelles",
-        "description_en": "Brussels sprouts",
+        "description_en": "Cauliflowers and broccoli",
         "category": "vegetables",
         "sensitivity": "normal",
         "has_sub_positions": False,
@@ -69,48 +66,8 @@ HS6_EXTENDED_CH07_15 = {
     },
     "070490": {
         "chapter": "07",
-        "description_fr": "Choux autres",
+        "description_fr": "Autres choux",
         "description_en": "Other cabbages",
-        "category": "vegetables",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "070511": {
-        "chapter": "07",
-        "description_fr": "Laitues pommées",
-        "description_en": "Cabbage lettuce",
-        "category": "vegetables",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "070519": {
-        "chapter": "07",
-        "description_fr": "Laitues autres",
-        "description_en": "Other lettuce",
-        "category": "vegetables",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "070521": {
-        "chapter": "07",
-        "description_fr": "Chicorées witloof",
-        "description_en": "Witloof chicory",
-        "category": "vegetables",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "070529": {
-        "chapter": "07",
-        "description_fr": "Chicorées autres",
-        "description_en": "Other chicory",
         "category": "vegetables",
         "sensitivity": "normal",
         "has_sub_positions": True,
@@ -127,16 +84,6 @@ HS6_EXTENDED_CH07_15 = {
         "typical_sub_position_types": ["variety"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
-    "070690": {
-        "chapter": "07",
-        "description_fr": "Betteraves, salsifis, radis",
-        "description_en": "Beetroot, salsify, radishes",
-        "category": "vegetables",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["species"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
     "070700": {
         "chapter": "07",
         "description_fr": "Concombres et cornichons",
@@ -144,13 +91,13 @@ HS6_EXTENDED_CH07_15 = {
         "category": "vegetables",
         "sensitivity": "normal",
         "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
+        "typical_sub_position_types": ["type"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
     "070810": {
         "chapter": "07",
-        "description_fr": "Pois frais",
-        "description_en": "Fresh peas",
+        "description_fr": "Pois (frais ou réfrigérés)",
+        "description_en": "Peas (fresh or chilled)",
         "category": "vegetables",
         "sensitivity": "normal",
         "has_sub_positions": True,
@@ -159,52 +106,22 @@ HS6_EXTENDED_CH07_15 = {
     },
     "070820": {
         "chapter": "07",
-        "description_fr": "Haricots frais",
-        "description_en": "Fresh beans",
+        "description_fr": "Haricots (frais ou réfrigérés)",
+        "description_en": "Beans (fresh or chilled)",
         "category": "vegetables",
         "sensitivity": "normal",
         "has_sub_positions": True,
         "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "070890": {
-        "chapter": "07",
-        "description_fr": "Légumineuses fraîches autres",
-        "description_en": "Other fresh legumes",
-        "category": "vegetables",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["species"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "070920": {
-        "chapter": "07",
-        "description_fr": "Asperges fraîches",
-        "description_en": "Fresh asparagus",
-        "category": "vegetables",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["quality_grade"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
     "070930": {
         "chapter": "07",
-        "description_fr": "Aubergines fraîches",
-        "description_en": "Fresh aubergines",
+        "description_fr": "Aubergines",
+        "description_en": "Eggplants (aubergines)",
         "category": "vegetables",
         "sensitivity": "normal",
         "has_sub_positions": True,
         "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "070940": {
-        "chapter": "07",
-        "description_fr": "Céleris frais",
-        "description_en": "Fresh celery",
-        "category": "vegetables",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
     "070951": {
@@ -214,77 +131,27 @@ HS6_EXTENDED_CH07_15 = {
         "category": "vegetables",
         "sensitivity": "normal",
         "has_sub_positions": True,
-        "typical_sub_position_types": ["species"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "070959": {
-        "chapter": "07",
-        "description_fr": "Champignons autres",
-        "description_en": "Other mushrooms",
-        "category": "vegetables",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["species"],
+        "typical_sub_position_types": ["species", "farmed_wild"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
     "070960": {
         "chapter": "07",
-        "description_fr": "Piments et poivrons frais",
-        "description_en": "Fresh peppers",
+        "description_fr": "Piments doux ou poivrons",
+        "description_en": "Sweet peppers",
         "category": "vegetables",
         "sensitivity": "normal",
         "has_sub_positions": True,
         "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "070970": {
-        "chapter": "07",
-        "description_fr": "Épinards frais",
-        "description_en": "Fresh spinach",
-        "category": "vegetables",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "070991": {
-        "chapter": "07",
-        "description_fr": "Artichauts frais",
-        "description_en": "Fresh artichokes",
-        "category": "vegetables",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "070992": {
-        "chapter": "07",
-        "description_fr": "Olives fraîches",
-        "description_en": "Fresh olives",
-        "category": "vegetables",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety", "use"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
     "070993": {
         "chapter": "07",
-        "description_fr": "Courges, citrouilles fraîches",
-        "description_en": "Fresh pumpkins, squash",
+        "description_fr": "Courges, potirons",
+        "description_en": "Pumpkins, squash",
         "category": "vegetables",
         "sensitivity": "normal",
         "has_sub_positions": True,
         "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "070999": {
-        "chapter": "07",
-        "description_fr": "Autres légumes frais",
-        "description_en": "Other fresh vegetables",
-        "category": "vegetables",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["species"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
     "071010": {
@@ -297,66 +164,6 @@ HS6_EXTENDED_CH07_15 = {
         "typical_sub_position_types": ["type"],
         "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique - 40% VA", "requirement_en": "Processed in Africa - 40% VA", "regional_content": 40}
     },
-    "071021": {
-        "chapter": "07",
-        "description_fr": "Petits pois congelés",
-        "description_en": "Frozen peas",
-        "category": "vegetables",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
-        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique - 40% VA", "requirement_en": "Processed in Africa - 40% VA", "regional_content": 40}
-    },
-    "071022": {
-        "chapter": "07",
-        "description_fr": "Haricots congelés",
-        "description_en": "Frozen beans",
-        "category": "vegetables",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique - 40% VA", "requirement_en": "Processed in Africa - 40% VA", "regional_content": 40}
-    },
-    "071040": {
-        "chapter": "07",
-        "description_fr": "Maïs doux congelé",
-        "description_en": "Frozen sweet corn",
-        "category": "vegetables",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
-        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique - 40% VA", "requirement_en": "Processed in Africa - 40% VA", "regional_content": 40}
-    },
-    "071080": {
-        "chapter": "07",
-        "description_fr": "Autres légumes congelés",
-        "description_en": "Other frozen vegetables",
-        "category": "vegetables",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["species"],
-        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique - 40% VA", "requirement_en": "Processed in Africa - 40% VA", "regional_content": 40}
-    },
-    "071090": {
-        "chapter": "07",
-        "description_fr": "Mélanges légumes congelés",
-        "description_en": "Frozen vegetable mixes",
-        "category": "vegetables",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
-        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique - 40% VA", "requirement_en": "Processed in Africa - 40% VA", "regional_content": 40}
-    },
-    "071310": {
-        "chapter": "07",
-        "description_fr": "Pois secs",
-        "description_en": "Dried peas",
-        "category": "legumes",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
     "071320": {
         "chapter": "07",
         "description_fr": "Pois chiches secs",
@@ -365,26 +172,6 @@ HS6_EXTENDED_CH07_15 = {
         "sensitivity": "normal",
         "has_sub_positions": True,
         "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "071331": {
-        "chapter": "07",
-        "description_fr": "Haricots secs Vigna",
-        "description_en": "Dried Vigna beans",
-        "category": "legumes",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "071332": {
-        "chapter": "07",
-        "description_fr": "Petits haricots rouges",
-        "description_en": "Small red beans (Adzuki)",
-        "category": "legumes",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
     "071333": {
@@ -397,61 +184,41 @@ HS6_EXTENDED_CH07_15 = {
         "typical_sub_position_types": ["variety"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
-    "071339": {
+    "071335": {
         "chapter": "07",
-        "description_fr": "Autres haricots secs",
-        "description_en": "Other dried beans",
+        "description_fr": "Niébé (Vigna unguiculata)",
+        "description_en": "Cowpeas (Vigna unguiculata)",
         "category": "legumes",
         "sensitivity": "normal",
         "has_sub_positions": True,
         "typical_sub_position_types": ["variety"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
-    "071350": {
+    "071340": {
         "chapter": "07",
-        "description_fr": "Fèves sèches",
-        "description_en": "Dried broad beans",
+        "description_fr": "Lentilles sèches",
+        "description_en": "Dried lentils",
         "category": "legumes",
         "sensitivity": "normal",
         "has_sub_positions": True,
         "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "071360": {
-        "chapter": "07",
-        "description_fr": "Pois d'Angole (cajanus)",
-        "description_en": "Pigeon peas (Cajanus)",
-        "category": "legumes",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "071390": {
-        "chapter": "07",
-        "description_fr": "Autres légumineuses sèches",
-        "description_en": "Other dried legumes",
-        "category": "legumes",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["species"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
     "071410": {
         "chapter": "07",
-        "description_fr": "Racines de manioc",
-        "description_en": "Cassava roots",
-        "category": "roots",
+        "description_fr": "Manioc (cassava)",
+        "description_en": "Manioc (cassava)",
+        "category": "roots_tubers",
         "sensitivity": "sensitive",
         "has_sub_positions": True,
-        "typical_sub_position_types": ["form"],
+        "typical_sub_position_types": ["type", "use"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
     "071420": {
         "chapter": "07",
         "description_fr": "Patates douces",
         "description_en": "Sweet potatoes",
-        "category": "roots",
+        "category": "roots_tubers",
         "sensitivity": "normal",
         "has_sub_positions": True,
         "typical_sub_position_types": ["variety"],
@@ -459,58 +226,18 @@ HS6_EXTENDED_CH07_15 = {
     },
     "071430": {
         "chapter": "07",
-        "description_fr": "Ignames",
-        "description_en": "Yams",
-        "category": "roots",
-        "sensitivity": "sensitive",
+        "description_fr": "Ignames (Dioscorea spp.)",
+        "description_en": "Yams (Dioscorea spp.)",
+        "category": "roots_tubers",
+        "sensitivity": "normal",
         "has_sub_positions": True,
         "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "071440": {
-        "chapter": "07",
-        "description_fr": "Taros (colocasia)",
-        "description_en": "Taro (Colocasia)",
-        "category": "roots",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "071450": {
-        "chapter": "07",
-        "description_fr": "Yautia (Xanthosoma)",
-        "description_en": "Yautia (Xanthosoma)",
-        "category": "roots",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "071490": {
-        "chapter": "07",
-        "description_fr": "Autres racines et tubercules",
-        "description_en": "Other roots and tubers",
-        "category": "roots",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["species"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
     
     # =========================================================================
     # CHAPITRE 08 - FRUITS (Compléments)
     # =========================================================================
-    "080111": {
-        "chapter": "08",
-        "description_fr": "Noix de coco desséchées",
-        "description_en": "Desiccated coconut",
-        "category": "nuts",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
-        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique", "requirement_en": "Processed in Africa", "regional_content": 40}
-    },
     "080119": {
         "chapter": "08",
         "description_fr": "Noix de coco fraîches",
@@ -518,127 +245,17 @@ HS6_EXTENDED_CH07_15 = {
         "category": "nuts",
         "sensitivity": "normal",
         "has_sub_positions": True,
-        "typical_sub_position_types": ["form"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "080121": {
-        "chapter": "08",
-        "description_fr": "Noix du Brésil en coques",
-        "description_en": "Brazil nuts in shell",
-        "category": "nuts",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "080122": {
-        "chapter": "08",
-        "description_fr": "Noix du Brésil sans coques",
-        "description_en": "Shelled Brazil nuts",
-        "category": "nuts",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
-        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique", "requirement_en": "Processed in Africa", "regional_content": 40}
-    },
-    "080211": {
-        "chapter": "08",
-        "description_fr": "Amandes en coques",
-        "description_en": "Almonds in shell",
-        "category": "nuts",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
+        "typical_sub_position_types": ["type"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
     "080212": {
         "chapter": "08",
-        "description_fr": "Amandes sans coques",
+        "description_fr": "Amandes décortiquées",
         "description_en": "Shelled almonds",
         "category": "nuts",
         "sensitivity": "normal",
         "has_sub_positions": True,
-        "typical_sub_position_types": ["variety", "form"],
-        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique", "requirement_en": "Processed in Africa", "regional_content": 40}
-    },
-    "080221": {
-        "chapter": "08",
-        "description_fr": "Noisettes en coques",
-        "description_en": "Hazelnuts in shell",
-        "category": "nuts",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "080222": {
-        "chapter": "08",
-        "description_fr": "Noisettes sans coques",
-        "description_en": "Shelled hazelnuts",
-        "category": "nuts",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["form"],
-        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique", "requirement_en": "Processed in Africa", "regional_content": 40}
-    },
-    "080231": {
-        "chapter": "08",
-        "description_fr": "Noix communes en coques",
-        "description_en": "Walnuts in shell",
-        "category": "nuts",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "080232": {
-        "chapter": "08",
-        "description_fr": "Noix communes sans coques",
-        "description_en": "Shelled walnuts",
-        "category": "nuts",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety", "form"],
-        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique", "requirement_en": "Processed in Africa", "regional_content": 40}
-    },
-    "080241": {
-        "chapter": "08",
-        "description_fr": "Châtaignes en coques",
-        "description_en": "Chestnuts in shell",
-        "category": "nuts",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "080242": {
-        "chapter": "08",
-        "description_fr": "Châtaignes sans coques",
-        "description_en": "Shelled chestnuts",
-        "category": "nuts",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
-        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique", "requirement_en": "Processed in Africa", "regional_content": 40}
-    },
-    "080251": {
-        "chapter": "08",
-        "description_fr": "Pistaches en coques",
-        "description_en": "Pistachios in shell",
-        "category": "nuts",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "080252": {
-        "chapter": "08",
-        "description_fr": "Pistaches sans coques",
-        "description_en": "Shelled pistachios",
-        "category": "nuts",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
+        "typical_sub_position_types": ["quality_grade"],
         "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique", "requirement_en": "Processed in Africa", "regional_content": 40}
     },
     "080261": {
@@ -653,43 +270,13 @@ HS6_EXTENDED_CH07_15 = {
     },
     "080262": {
         "chapter": "08",
-        "description_fr": "Noix de macadamia sans coques",
+        "description_fr": "Noix de macadamia décortiquées",
         "description_en": "Shelled macadamia nuts",
         "category": "nuts",
         "sensitivity": "normal",
         "has_sub_positions": True,
-        "typical_sub_position_types": ["quality_grade", "form"],
+        "typical_sub_position_types": ["quality_grade"],
         "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique", "requirement_en": "Processed in Africa", "regional_content": 40}
-    },
-    "080270": {
-        "chapter": "08",
-        "description_fr": "Noix de cola",
-        "description_en": "Kola nuts",
-        "category": "nuts",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "080280": {
-        "chapter": "08",
-        "description_fr": "Noix d'arec (bétel)",
-        "description_en": "Areca nuts",
-        "category": "nuts",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "080290": {
-        "chapter": "08",
-        "description_fr": "Autres fruits à coques",
-        "description_en": "Other nuts",
-        "category": "nuts",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["species"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
     "080310": {
         "chapter": "08",
@@ -701,70 +288,40 @@ HS6_EXTENDED_CH07_15 = {
         "typical_sub_position_types": ["variety"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
-    "080420": {
-        "chapter": "08",
-        "description_fr": "Figues fraîches ou sèches",
-        "description_en": "Fresh or dried figs",
-        "category": "fruits",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["form", "variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
     "080430": {
         "chapter": "08",
-        "description_fr": "Ananas frais ou séchés",
+        "description_fr": "Ananas frais ou secs",
         "description_en": "Fresh or dried pineapples",
         "category": "fruits",
         "sensitivity": "normal",
         "has_sub_positions": True,
-        "typical_sub_position_types": ["form", "variety"],
+        "typical_sub_position_types": ["variety", "export_local"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
     "080440": {
         "chapter": "08",
-        "description_fr": "Avocats frais ou séchés",
+        "description_fr": "Avocats frais ou secs",
         "description_en": "Fresh or dried avocados",
         "category": "fruits",
         "sensitivity": "normal",
         "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
+        "typical_sub_position_types": ["variety", "quality_grade"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
     "080450": {
         "chapter": "08",
-        "description_fr": "Goyaves, mangues, mangoustans",
-        "description_en": "Guavas, mangoes, mangosteens",
+        "description_fr": "Goyaves, mangues et mangoustans",
+        "description_en": "Guavas, mangoes and mangosteens",
         "category": "fruits",
         "sensitivity": "normal",
         "has_sub_positions": True,
         "typical_sub_position_types": ["species", "variety"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
-    "080540": {
-        "chapter": "08",
-        "description_fr": "Pamplemousses et pomelos",
-        "description_en": "Grapefruit and pomelos",
-        "category": "fruits",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "080550": {
+    "080530": {
         "chapter": "08",
         "description_fr": "Citrons et limes",
         "description_en": "Lemons and limes",
-        "category": "fruits",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "080590": {
-        "chapter": "08",
-        "description_fr": "Autres agrumes",
-        "description_en": "Other citrus",
         "category": "fruits",
         "sensitivity": "normal",
         "has_sub_positions": True,
@@ -781,16 +338,6 @@ HS6_EXTENDED_CH07_15 = {
         "typical_sub_position_types": ["variety", "use"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
-    "080620": {
-        "chapter": "08",
-        "description_fr": "Raisins secs",
-        "description_en": "Dried grapes",
-        "category": "fruits",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique", "requirement_en": "Processed in Africa", "regional_content": 40}
-    },
     "080711": {
         "chapter": "08",
         "description_fr": "Pastèques",
@@ -801,90 +348,20 @@ HS6_EXTENDED_CH07_15 = {
         "typical_sub_position_types": ["variety"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
-    "080719": {
-        "chapter": "08",
-        "description_fr": "Melons autres",
-        "description_en": "Other melons",
-        "category": "fruits",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
     "080720": {
         "chapter": "08",
-        "description_fr": "Papayes fraîches",
-        "description_en": "Fresh papayas",
+        "description_fr": "Papayes",
+        "description_en": "Papayas",
         "category": "fruits",
         "sensitivity": "normal",
         "has_sub_positions": True,
         "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "080810": {
-        "chapter": "08",
-        "description_fr": "Pommes fraîches",
-        "description_en": "Fresh apples",
-        "category": "fruits",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "080830": {
-        "chapter": "08",
-        "description_fr": "Poires fraîches",
-        "description_en": "Fresh pears",
-        "category": "fruits",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "080910": {
-        "chapter": "08",
-        "description_fr": "Abricots frais",
-        "description_en": "Fresh apricots",
-        "category": "fruits",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "080921": {
-        "chapter": "08",
-        "description_fr": "Cerises fraîches",
-        "description_en": "Fresh cherries",
-        "category": "fruits",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "080929": {
-        "chapter": "08",
-        "description_fr": "Autres cerises",
-        "description_en": "Other cherries",
-        "category": "fruits",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["form"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
     "080930": {
         "chapter": "08",
         "description_fr": "Pêches et nectarines",
         "description_en": "Peaches and nectarines",
-        "category": "fruits",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["variety"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "080940": {
-        "chapter": "08",
-        "description_fr": "Prunes et prunelles",
-        "description_en": "Plums and sloes",
         "category": "fruits",
         "sensitivity": "normal",
         "has_sub_positions": True,
@@ -901,144 +378,512 @@ HS6_EXTENDED_CH07_15 = {
         "typical_sub_position_types": ["variety"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
-    "081020": {
+    "081090": {
         "chapter": "08",
-        "description_fr": "Framboises, mûres",
-        "description_en": "Raspberries, blackberries",
+        "description_fr": "Autres fruits frais (litchis, fruits de la passion)",
+        "description_en": "Other fresh fruits (litchis, passion fruit)",
         "category": "fruits",
         "sensitivity": "normal",
         "has_sub_positions": True,
         "typical_sub_position_types": ["species"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
-    "081040": {
-        "chapter": "08",
-        "description_fr": "Canneberges, myrtilles",
-        "description_en": "Cranberries, blueberries",
-        "category": "fruits",
+    
+    # =========================================================================
+    # CHAPITRE 09 - CAFÉ, THÉ, ÉPICES (Compléments)
+    # =========================================================================
+    "090112": {
+        "chapter": "09",
+        "description_fr": "Café non torréfié décaféiné",
+        "description_en": "Coffee not roasted decaffeinated",
+        "category": "coffee",
         "sensitivity": "normal",
         "has_sub_positions": True,
-        "typical_sub_position_types": ["species"],
+        "typical_sub_position_types": ["variety"],
+        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Décaféination en Afrique", "requirement_en": "Decaffeinated in Africa", "regional_content": 40}
+    },
+    "090210": {
+        "chapter": "09",
+        "description_fr": "Thé vert non fermenté",
+        "description_en": "Green tea (not fermented)",
+        "category": "tea",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["quality_grade"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
-    "081050": {
-        "chapter": "08",
-        "description_fr": "Kiwis",
-        "description_en": "Kiwifruit",
-        "category": "fruits",
+    "090240": {
+        "chapter": "09",
+        "description_fr": "Thé noir en vrac",
+        "description_en": "Black tea in bulk",
+        "category": "tea",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["quality_grade", "origin"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "090411": {
+        "chapter": "09",
+        "description_fr": "Poivre non broyé",
+        "description_en": "Pepper, not crushed",
+        "category": "spices",
         "sensitivity": "normal",
         "has_sub_positions": True,
         "typical_sub_position_types": ["variety"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
-    "081060": {
-        "chapter": "08",
-        "description_fr": "Durians",
-        "description_en": "Durians",
-        "category": "fruits",
+    "090420": {
+        "chapter": "09",
+        "description_fr": "Piments du genre Capsicum séchés",
+        "description_en": "Dried fruits of genus Capsicum",
+        "category": "spices",
         "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["variety"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
-    "081070": {
-        "chapter": "08",
-        "description_fr": "Kakis (plaquemines)",
-        "description_en": "Persimmons",
-        "category": "fruits",
+    "090611": {
+        "chapter": "09",
+        "description_fr": "Cannelle non broyée",
+        "description_en": "Cinnamon, not crushed",
+        "category": "spices",
         "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["variety"],
         "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
-    "081090": {
-        "chapter": "08",
-        "description_fr": "Autres fruits frais",
-        "description_en": "Other fresh fruits",
-        "category": "fruits",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["species"],
-        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
-    },
-    "081190": {
-        "chapter": "08",
-        "description_fr": "Autres fruits congelés",
-        "description_en": "Other frozen fruits",
-        "category": "fruits",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["species"],
-        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique", "requirement_en": "Processed in Africa", "regional_content": 40}
-    },
-    "081210": {
-        "chapter": "08",
-        "description_fr": "Cerises conservées provisoirement",
-        "description_en": "Provisionally preserved cherries",
-        "category": "fruits",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
-        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique", "requirement_en": "Processed in Africa", "regional_content": 40}
-    },
-    "081290": {
-        "chapter": "08",
-        "description_fr": "Autres fruits conservés provisoirement",
-        "description_en": "Other provisionally preserved fruits",
-        "category": "fruits",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["species"],
-        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique", "requirement_en": "Processed in Africa", "regional_content": 40}
-    },
-    "081310": {
-        "chapter": "08",
-        "description_fr": "Abricots séchés",
-        "description_en": "Dried apricots",
-        "category": "fruits",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["quality_grade"],
-        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique", "requirement_en": "Processed in Africa", "regional_content": 40}
-    },
-    "081320": {
-        "chapter": "08",
-        "description_fr": "Pruneaux",
-        "description_en": "Prunes",
-        "category": "fruits",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["quality_grade"],
-        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique", "requirement_en": "Processed in Africa", "regional_content": 40}
-    },
-    "081340": {
-        "chapter": "08",
-        "description_fr": "Autres fruits séchés",
-        "description_en": "Other dried fruits",
-        "category": "fruits",
-        "sensitivity": "normal",
-        "has_sub_positions": True,
-        "typical_sub_position_types": ["species"],
-        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique", "requirement_en": "Processed in Africa", "regional_content": 40}
-    },
-    "081350": {
-        "chapter": "08",
-        "description_fr": "Mélanges de fruits secs",
-        "description_en": "Dried fruit mixes",
-        "category": "fruits",
-        "sensitivity": "normal",
-        "has_sub_positions": False,
-        "typical_sub_position_types": [],
-        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique", "requirement_en": "Processed in Africa", "regional_content": 40}
-    },
-    "081400": {
-        "chapter": "08",
-        "description_fr": "Écorces d'agrumes",
-        "description_en": "Citrus peel",
-        "category": "fruits",
+    "090810": {
+        "chapter": "09",
+        "description_fr": "Noix muscade",
+        "description_en": "Nutmeg",
+        "category": "spices",
         "sensitivity": "normal",
         "has_sub_positions": True,
         "typical_sub_position_types": ["type"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "091010": {
+        "chapter": "09",
+        "description_fr": "Gingembre",
+        "description_en": "Ginger",
+        "category": "spices",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["type"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "091020": {
+        "chapter": "09",
+        "description_fr": "Safran",
+        "description_en": "Saffron",
+        "category": "spices",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["quality_grade", "origin"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "091030": {
+        "chapter": "09",
+        "description_fr": "Curcuma",
+        "description_en": "Turmeric (curcuma)",
+        "category": "spices",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["type"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    
+    # =========================================================================
+    # CHAPITRE 10 - CÉRÉALES (Compléments)
+    # =========================================================================
+    "100110": {
+        "chapter": "10",
+        "description_fr": "Blé dur",
+        "description_en": "Durum wheat",
+        "category": "cereals",
+        "sensitivity": "sensitive",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["use"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "100310": {
+        "chapter": "10",
+        "description_fr": "Orge de semence",
+        "description_en": "Seed barley",
+        "category": "cereals",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["variety"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "100390": {
+        "chapter": "10",
+        "description_fr": "Orge autre",
+        "description_en": "Other barley",
+        "category": "cereals",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["use"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "100510": {
+        "chapter": "10",
+        "description_fr": "Maïs de semence",
+        "description_en": "Seed maize",
+        "category": "cereals",
+        "sensitivity": "sensitive",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["variety", "certification"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "100640": {
+        "chapter": "10",
+        "description_fr": "Riz en brisures",
+        "description_en": "Broken rice",
+        "category": "cereals",
+        "sensitivity": "sensitive",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["use"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "100710": {
+        "chapter": "10",
+        "description_fr": "Sorgho à grains",
+        "description_en": "Grain sorghum",
+        "category": "cereals",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["variety", "use"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "100821": {
+        "chapter": "10",
+        "description_fr": "Millet de semence",
+        "description_en": "Seed millet",
+        "category": "cereals",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["variety"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "100829": {
+        "chapter": "10",
+        "description_fr": "Millet autre",
+        "description_en": "Other millet",
+        "category": "cereals",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["variety"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "100840": {
+        "chapter": "10",
+        "description_fr": "Fonio (Digitaria spp.)",
+        "description_en": "Fonio (Digitaria spp.)",
+        "category": "cereals",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["variety"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "100890": {
+        "chapter": "10",
+        "description_fr": "Autres céréales (teff, éleusine)",
+        "description_en": "Other cereals (teff, eleusine)",
+        "category": "cereals",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["species"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    
+    # =========================================================================
+    # CHAPITRE 11 - PRODUITS DE MINOTERIE
+    # =========================================================================
+    "110100": {
+        "chapter": "11",
+        "description_fr": "Farines de blé ou de méteil",
+        "description_en": "Wheat or meslin flour",
+        "category": "flour",
+        "sensitivity": "sensitive",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["type", "local_imported"],
+        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Mouture en Afrique - 40% VA", "requirement_en": "Milled in Africa - 40% VA", "regional_content": 40}
+    },
+    "110220": {
+        "chapter": "11",
+        "description_fr": "Farine de maïs",
+        "description_en": "Maize flour",
+        "category": "flour",
+        "sensitivity": "sensitive",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["type"],
+        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Mouture en Afrique - 40% VA", "requirement_en": "Milled in Africa - 40% VA", "regional_content": 40}
+    },
+    "110620": {
+        "chapter": "11",
+        "description_fr": "Farine de manioc",
+        "description_en": "Manioc flour",
+        "category": "flour",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["type"],
+        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Mouture en Afrique", "requirement_en": "Milled in Africa", "regional_content": 40}
+    },
+    "110812": {
+        "chapter": "11",
+        "description_fr": "Amidon de maïs",
+        "description_en": "Maize starch",
+        "category": "starch",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["use"],
+        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique - 40% VA", "requirement_en": "Processed in Africa - 40% VA", "regional_content": 40}
+    },
+    "110814": {
+        "chapter": "11",
+        "description_fr": "Fécule de manioc",
+        "description_en": "Manioc starch",
+        "category": "starch",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["use"],
         "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Transformation en Afrique", "requirement_en": "Processed in Africa", "regional_content": 40}
+    },
+    
+    # =========================================================================
+    # CHAPITRE 12 - OLÉAGINEUX (Compléments)
+    # =========================================================================
+    "120190": {
+        "chapter": "12",
+        "description_fr": "Fèves de soja autres",
+        "description_en": "Other soya beans",
+        "category": "oilseeds",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["use"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "120241": {
+        "chapter": "12",
+        "description_fr": "Arachides en coques",
+        "description_en": "Groundnuts in shell",
+        "category": "oilseeds",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["quality_grade"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "120600": {
+        "chapter": "12",
+        "description_fr": "Graines de tournesol",
+        "description_en": "Sunflower seeds",
+        "category": "oilseeds",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["use"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "120710": {
+        "chapter": "12",
+        "description_fr": "Noix et amandes de palmiste",
+        "description_en": "Palm nuts and kernels",
+        "category": "oilseeds",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["use"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "120721": {
+        "chapter": "12",
+        "description_fr": "Graines de coton de semence",
+        "description_en": "Cotton seeds for sowing",
+        "category": "oilseeds",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["variety"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "121190": {
+        "chapter": "12",
+        "description_fr": "Plantes pour parfumerie/pharmacie",
+        "description_en": "Plants for perfumery/pharmacy",
+        "category": "plants",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["species", "use"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "121292": {
+        "chapter": "12",
+        "description_fr": "Canne à sucre fraîche",
+        "description_en": "Fresh sugar cane",
+        "category": "sugar",
+        "sensitivity": "sensitive",
+        "has_sub_positions": False,
+        "typical_sub_position_types": [],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    
+    # =========================================================================
+    # CHAPITRE 13 - GOMMES ET RÉSINES (Compléments)
+    # =========================================================================
+    "130219": {
+        "chapter": "13",
+        "description_fr": "Autres sucs et extraits végétaux",
+        "description_en": "Other vegetable saps and extracts",
+        "category": "gums",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["species", "use"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    
+    # =========================================================================
+    # CHAPITRE 14 - MATIÈRES À TRESSER
+    # =========================================================================
+    "140110": {
+        "chapter": "14",
+        "description_fr": "Bambous",
+        "description_en": "Bamboos",
+        "category": "plants",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["species", "use"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "140120": {
+        "chapter": "14",
+        "description_fr": "Rotins",
+        "description_en": "Rattans",
+        "category": "plants",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["use"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    
+    # =========================================================================
+    # CHAPITRE 15 - GRAISSES ET HUILES (Compléments)
+    # =========================================================================
+    "150710": {
+        "chapter": "15",
+        "description_fr": "Huile de soja brute",
+        "description_en": "Crude soybean oil",
+        "category": "oils",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["use"],
+        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Extraction en Afrique", "requirement_en": "Extracted in Africa", "regional_content": 40}
+    },
+    "150790": {
+        "chapter": "15",
+        "description_fr": "Huile de soja raffinée",
+        "description_en": "Refined soybean oil",
+        "category": "oils",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["local_imported"],
+        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Raffinage en Afrique - 40% VA", "requirement_en": "Refined in Africa - 40% VA", "regional_content": 40}
+    },
+    "150810": {
+        "chapter": "15",
+        "description_fr": "Huile d'arachide brute",
+        "description_en": "Crude groundnut oil",
+        "category": "oils",
+        "sensitivity": "normal",
+        "has_sub_positions": False,
+        "typical_sub_position_types": [],
+        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Extraction en Afrique", "requirement_en": "Extracted in Africa", "regional_content": 40}
+    },
+    "150890": {
+        "chapter": "15",
+        "description_fr": "Huile d'arachide raffinée",
+        "description_en": "Refined groundnut oil",
+        "category": "oils",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["local_imported"],
+        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Raffinage en Afrique - 40% VA", "requirement_en": "Refined in Africa - 40% VA", "regional_content": 40}
+    },
+    "151190": {
+        "chapter": "15",
+        "description_fr": "Huile de palme raffinée",
+        "description_en": "Refined palm oil",
+        "category": "oils",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["use", "local_imported"],
+        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Raffinage en Afrique - 40% VA", "requirement_en": "Refined in Africa - 40% VA", "regional_content": 40}
+    },
+    "151211": {
+        "chapter": "15",
+        "description_fr": "Huile de tournesol brute",
+        "description_en": "Crude sunflower oil",
+        "category": "oils",
+        "sensitivity": "normal",
+        "has_sub_positions": False,
+        "typical_sub_position_types": [],
+        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Extraction en Afrique", "requirement_en": "Extracted in Africa", "regional_content": 40}
+    },
+    "151219": {
+        "chapter": "15",
+        "description_fr": "Huile de tournesol raffinée",
+        "description_en": "Refined sunflower oil",
+        "category": "oils",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["local_imported"],
+        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Raffinage en Afrique - 40% VA", "requirement_en": "Refined in Africa - 40% VA", "regional_content": 40}
+    },
+    "151321": {
+        "chapter": "15",
+        "description_fr": "Huile de palmiste brute",
+        "description_en": "Crude palm kernel oil",
+        "category": "oils",
+        "sensitivity": "normal",
+        "has_sub_positions": False,
+        "typical_sub_position_types": [],
+        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Extraction en Afrique", "requirement_en": "Extracted in Africa", "regional_content": 40}
+    },
+    "151550": {
+        "chapter": "15",
+        "description_fr": "Huile de sésame",
+        "description_en": "Sesame oil",
+        "category": "oils",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["type"],
+        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Extraction en Afrique", "requirement_en": "Extracted in Africa", "regional_content": 40}
+    },
+    "151710": {
+        "chapter": "15",
+        "description_fr": "Margarine",
+        "description_en": "Margarine",
+        "category": "fats",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["type"],
+        "rule_of_origin": {"type": "substantial_transformation", "requirement_fr": "Fabriqué en Afrique - 40% VA", "requirement_en": "Manufactured in Africa - 40% VA", "regional_content": 40}
+    },
+    "152110": {
+        "chapter": "15",
+        "description_fr": "Cires végétales",
+        "description_en": "Vegetable waxes",
+        "category": "waxes",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["type"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
+    },
+    "152190": {
+        "chapter": "15",
+        "description_fr": "Cires d'abeilles et d'autres insectes",
+        "description_en": "Beeswax and other insect waxes",
+        "category": "waxes",
+        "sensitivity": "normal",
+        "has_sub_positions": True,
+        "typical_sub_position_types": ["species"],
+        "rule_of_origin": {"type": "wholly_obtained", "requirement_fr": "Entièrement obtenu", "requirement_en": "Wholly obtained", "regional_content": 100}
     },
 }
