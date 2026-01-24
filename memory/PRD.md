@@ -236,7 +236,8 @@ Application web d'analyse des statistiques commerciales et économiques africain
 - Ajouter authentification admin pour TRS upload
 
 ### P2 - Améliorations Futures
-- **Enrichir sous-positions** : Ajouter plus de codes HS6 pour chaque pays (coverage actuelle ~6 HS6/pays)
+- **Enrichir base HS6** : Ajouter plus de codes HS6 (actuellement 93, potentiel ~5000)
+- **Enrichir sous-positions** : Ajouter plus de codes par pays (actuellement ~14/pays en moyenne)
 - Thèmes visuels personnalisables
 - Export des données en CSV/Excel
 - Dashboard avec alertes personnalisées
