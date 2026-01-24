@@ -428,48 +428,117 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6 pt-6">
+              {/* Information sur la sous-position nationale si utilisée */}
+              {result.tariff_precision === 'sub_position' && (
+                <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg border-2 border-purple-400 shadow-md">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-2xl">🎯</span>
+                    <h4 className="font-bold text-lg text-purple-700">{t.subPositionInfo}</h4>
+                    <Badge className="bg-purple-600 text-white ml-2">{t.subPositionApplied}</Badge>
+                    <Badge className="bg-green-500 text-white ml-1">{t.precisionHigh}</Badge>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm text-gray-600">{t.subPositionCode}</p>
+                      <p className="font-bold text-purple-800 text-xl">{result.sub_position_used}</p>
+                      {result.sub_position_description && (
+                        <p className="font-semibold text-gray-700 mt-1">{result.sub_position_description}</p>
+                      )}
+                      <p className="text-xs text-purple-600 mt-1">HS6: {result.hs6_code}</p>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 text-center">
+                      <div className="bg-red-100 p-3 rounded">
+                        <p className="text-xs text-red-600">{t.normalRate}</p>
+                        <p className="font-bold text-red-700 text-lg">{(result.normal_tariff_rate * 100).toFixed(1)}%</p>
+                      </div>
+                      <div className="bg-green-100 p-3 rounded">
+                        <p className="text-xs text-green-600">{t.zlecafRate}</p>
+                        <p className="font-bold text-green-700 text-lg">{(result.zlecaf_tariff_rate * 100).toFixed(1)}%</p>
+                      </div>
+                    </div>
+                  </div>
+                  {result.has_varying_sub_positions && (
+                    <p className="text-xs text-orange-600 mt-2 font-semibold">
+                      ⚠️ {t.varyingRates} ({result.available_sub_positions_count} {t.subPositionsAvailable})
+                    </p>
+                  )}
+                </div>
+              )}
+
               {/* Information sur le tarif SH6 précis */}
-              {hs6TariffInfo && hs6TariffInfo.has_specific_tariff && (
+              {result.tariff_precision === 'hs6_country' && (
                 <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-4 rounded-lg border-2 border-blue-300 shadow-md">
                   <div className="flex items-center gap-2 mb-3">
                     <span className="text-2xl">🎯</span>
                     <h4 className="font-bold text-lg text-blue-700">{t.hs6TariffInfo}</h4>
                     <Badge className="bg-green-500 text-white ml-2">{t.hs6TariffApplied}</Badge>
+                    <Badge className="bg-blue-500 text-white ml-1">{t.precisionHigh}</Badge>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <p className="text-sm text-gray-600">{t.productDescription}</p>
-                      <p className="font-semibold text-gray-800">{hs6TariffInfo.description}</p>
-                      <p className="text-xs text-blue-600 mt-1">Code: {hs6TariffInfo.code} • {hs6TariffInfo.chapter_name}</p>
+                      <p className="font-semibold text-gray-800">{hs6TariffInfo?.description || `Code ${result.hs6_code}`}</p>
+                      <p className="text-xs text-blue-600 mt-1">Code: {result.hs6_code}</p>
                     </div>
-                    <div className="grid grid-cols-3 gap-2 text-center">
-                      <div className="bg-red-100 p-2 rounded">
+                    <div className="grid grid-cols-2 gap-2 text-center">
+                      <div className="bg-red-100 p-3 rounded">
                         <p className="text-xs text-red-600">{t.normalRate}</p>
-                        <p className="font-bold text-red-700">{hs6TariffInfo.normal_rate_pct}</p>
+                        <p className="font-bold text-red-700 text-lg">{(result.normal_tariff_rate * 100).toFixed(1)}%</p>
                       </div>
-                      <div className="bg-green-100 p-2 rounded">
+                      <div className="bg-green-100 p-3 rounded">
                         <p className="text-xs text-green-600">{t.zlecafRate}</p>
-                        <p className="font-bold text-green-700">{hs6TariffInfo.zlecaf_rate_pct}</p>
-                      </div>
-                      <div className="bg-yellow-100 p-2 rounded">
-                        <p className="text-xs text-yellow-600">{t.savingsRate}</p>
-                        <p className="font-bold text-yellow-700">{hs6TariffInfo.savings_pct}%</p>
+                        <p className="font-bold text-green-700 text-lg">{(result.zlecaf_tariff_rate * 100).toFixed(1)}%</p>
                       </div>
                     </div>
                   </div>
-                  <p className="text-xs text-gray-500 mt-2">{t.hs6DataSource}</p>
+                  {result.available_sub_positions_count > 0 && (
+                    <p className="text-xs text-orange-600 mt-2 font-semibold">
+                      💡 {result.available_sub_positions_count} {t.subPositionsAvailable} - {t.varyingRates}
+                    </p>
+                  )}
                 </div>
               )}
               
               {/* Badge tarif par chapitre si pas de SH6 spécifique */}
-              {(!hs6TariffInfo || !hs6TariffInfo.has_specific_tariff) && (
+              {result.tariff_precision === 'chapter' && (
                 <div className="bg-gray-50 p-3 rounded-lg border border-gray-200">
                   <div className="flex items-center gap-2">
                     <span>📦</span>
                     <span className="text-sm text-gray-600">{t.chapterTariffApplied}</span>
                     <Badge variant="outline" className="text-gray-600">{t.sectorPrefix} {result.hs_code?.substring(0, 2)}</Badge>
+                    <Badge variant="outline" className="text-yellow-600 ml-2">{t.precisionMedium}</Badge>
                   </div>
                 </div>
+              )}
+
+              {/* Liste des sous-positions disponibles */}
+              {subPositions && subPositions.has_sub_positions && subPositions.count > 0 && (
+                <details className="bg-purple-50 p-3 rounded-lg border border-purple-200">
+                  <summary className="cursor-pointer font-semibold text-purple-700 flex items-center gap-2">
+                    <span>📋</span> {t.viewAllSubPositions} ({subPositions.count})
+                    {subPositions.has_varying_rates && (
+                      <Badge className="bg-orange-500 text-white text-xs ml-2">
+                        {subPositions.rate_range?.min_pct} - {subPositions.rate_range?.max_pct}
+                      </Badge>
+                    )}
+                  </summary>
+                  <div className="mt-3 space-y-2">
+                    {subPositions.sub_positions.map((sp, idx) => (
+                      <div key={idx} className={`p-2 rounded text-sm ${
+                        result.sub_position_used === sp.code ? 'bg-purple-200 border-2 border-purple-400' : 'bg-white'
+                      }`}>
+                        <span className="font-mono font-bold text-purple-800">{sp.code}</span>
+                        <span className="mx-2">-</span>
+                        <span className="text-gray-700">{sp.description}</span>
+                        <Badge className={`ml-2 ${
+                          result.sub_position_used === sp.code ? 'bg-purple-600' : 'bg-gray-500'
+                        } text-white text-xs`}>
+                          {sp.dd_rate_pct}
+                        </Badge>
+                      </div>
+                    ))}
+                  </div>
+                </details>
               )}
 
               {/* Graphique comparaison complète avec TOUTES les taxes */}
