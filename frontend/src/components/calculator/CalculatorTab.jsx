@@ -239,10 +239,12 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
       return;
     }
 
-    if (hsCode.length !== 6) {
+    // Validation: code HS entre 6 et 12 chiffres
+    const cleanHsCode = hsCode.replace(/[.\s]/g, '');
+    if (cleanHsCode.length < 6 || cleanHsCode.length > 12) {
       toast({
         title: t.invalidHsCode,
-        description: t.hsCodeMust6,
+        description: t.hsCodeMust6to12,
         variant: "destructive"
       });
       return;
@@ -254,15 +256,24 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
       const response = await axios.post(`${API}/calculate-tariff`, {
         origin_country: originCountry,
         destination_country: destinationCountry,
-        hs_code: hsCode,
+        hs_code: cleanHsCode,
         value: parseFloat(value)
       });
       
       setResult(response.data);
       
+      // Récupérer les sous-positions si disponibles pour le pays de destination
+      const hs6 = cleanHsCode.substring(0, 6);
+      try {
+        const subPosResponse = await axios.get(`${API}/tariffs/sub-positions/${destinationCountry}/${hs6}?language=${language}`);
+        setSubPositions(subPosResponse.data);
+      } catch (subPosError) {
+        setSubPositions(null);
+      }
+      
       // Récupérer les informations SH6 spécifiques si disponibles
       try {
-        const hs6Response = await axios.get(`${API}/hs6-tariffs/code/${hsCode}?language=${language}`);
+        const hs6Response = await axios.get(`${API}/hs6-tariffs/code/${hs6}?language=${language}`);
         setHs6TariffInfo(hs6Response.data);
       } catch (hs6Error) {
         // Pas de tarif SH6 spécifique, ce n'est pas une erreur
