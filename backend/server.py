@@ -947,23 +947,43 @@ async def calculate_comprehensive_tariff(request: TariffCalculationRequest):
     total_savings_with_taxes = normal_total - zlecaf_total
     total_savings_percentage = (total_savings_with_taxes / normal_total) * 100 if normal_total > 0 else 0
     
-    # Calcul des taxes pour le scénario NORMAL (NPF)
-    normal_taxes = calculate_all_taxes(
-        value=request.value,
-        customs_duty=normal_amount,
-        country_code=request.destination_country
-    )
+    # Préparer les détails des taxes pour le journal de calcul
+    # Extraire les composantes des autres taxes
+    rs_rate = other_taxes_detail.get('rs', 0) / 100 if other_taxes_detail.get('rs') else 0
+    pcs_rate = other_taxes_detail.get('pcs', 0) / 100 if other_taxes_detail.get('pcs') else 0
+    cedeao_rate = other_taxes_detail.get('cedeao', 0) / 100 if other_taxes_detail.get('cedeao') else 0
+    tci_rate = other_taxes_detail.get('tci', 0) / 100 if other_taxes_detail.get('tci') else 0
     
-    # Calcul des taxes pour le scénario ZLECAf
-    zlecaf_taxes = calculate_all_taxes(
-        value=request.value,
-        customs_duty=zlecaf_amount,
-        country_code=request.destination_country
-    )
+    # Créer le journal de calcul détaillé pour NPF
+    normal_journal = [
+        {"step": 1, "component": "Valeur CIF", "base": request.value, "rate": "-", "amount": request.value, "cumulative": request.value},
+        {"step": 2, "component": "Droits de douane", "base": request.value, "rate": f"{normal_rate*100:.1f}%", "amount": round(normal_customs, 2), "cumulative": round(request.value + normal_customs, 2)},
+    ]
+    step = 3
+    if rs_rate > 0:
+        normal_journal.append({"step": step, "component": "Redevance statistique", "base": request.value, "rate": f"{rs_rate*100:.1f}%", "amount": round(request.value * rs_rate, 2), "cumulative": round(request.value + normal_customs + request.value * rs_rate, 2)})
+        step += 1
+    if pcs_rate > 0:
+        normal_journal.append({"step": step, "component": "PCS UEMOA", "base": request.value, "rate": f"{pcs_rate*100:.1f}%", "amount": round(request.value * pcs_rate, 2), "cumulative": round(request.value + normal_customs + other_taxes_amount, 2)})
+        step += 1
+    if cedeao_rate > 0:
+        normal_journal.append({"step": step, "component": "Prélèvement CEDEAO", "base": request.value, "rate": f"{cedeao_rate*100:.1f}%", "amount": round(request.value * cedeao_rate, 2), "cumulative": round(request.value + normal_customs + other_taxes_amount, 2)})
+        step += 1
+    if tci_rate > 0:
+        normal_journal.append({"step": step, "component": "TCI CEMAC", "base": request.value, "rate": f"{tci_rate*100:.1f}%", "amount": round(request.value * tci_rate, 2), "cumulative": round(request.value + normal_customs + other_taxes_amount, 2)})
+        step += 1
+    normal_journal.append({"step": step, "component": "TVA", "base": round(normal_vat_base, 2), "rate": f"{vat_rate*100:.1f}%", "amount": round(normal_vat_amount, 2), "cumulative": round(normal_total, 2)})
     
-    # Économies totales (incluant toutes les taxes)
-    total_savings_with_taxes = normal_taxes['total_cost'] - zlecaf_taxes['total_cost']
-    total_savings_percentage = (total_savings_with_taxes / normal_taxes['total_cost']) * 100 if normal_taxes['total_cost'] > 0 else 0
+    # Créer le journal de calcul détaillé pour ZLECAf
+    zlecaf_journal = [
+        {"step": 1, "component": "Valeur CIF", "base": request.value, "rate": "-", "amount": request.value, "cumulative": request.value},
+        {"step": 2, "component": "Droits de douane ZLECAf", "base": request.value, "rate": f"{zlecaf_rate*100:.1f}%", "amount": round(zlecaf_customs, 2), "cumulative": round(request.value + zlecaf_customs, 2)},
+    ]
+    step = 3
+    if other_taxes_rate > 0:
+        zlecaf_journal.append({"step": step, "component": "Autres taxes", "base": request.value, "rate": f"{other_taxes_rate*100:.1f}%", "amount": round(other_taxes_amount, 2), "cumulative": round(request.value + zlecaf_customs + other_taxes_amount, 2)})
+        step += 1
+    zlecaf_journal.append({"step": step, "component": "TVA", "base": round(zlecaf_vat_base, 2), "rate": f"{vat_rate*100:.1f}%", "amount": round(zlecaf_vat_amount, 2), "cumulative": round(zlecaf_total, 2)})
     
     # Règles d'origine
     rules = ZLECAF_RULES_OF_ORIGIN.get(sector_code, {
@@ -986,36 +1006,36 @@ async def calculate_comprehensive_tariff(request: TariffCalculationRequest):
         value=request.value,
         # Tarifs de douane
         normal_tariff_rate=normal_rate,
-        normal_tariff_amount=normal_amount,
+        normal_tariff_amount=round(normal_customs, 2),
         zlecaf_tariff_rate=zlecaf_rate,
-        zlecaf_tariff_amount=zlecaf_amount,
+        zlecaf_tariff_amount=round(zlecaf_customs, 2),
         # Taxes normales (NPF)
-        normal_vat_rate=normal_taxes['vat_rate'],
-        normal_vat_amount=normal_taxes['vat_amount'],
-        normal_statistical_fee=normal_taxes['statistical_fee_amount'],
-        normal_community_levy=normal_taxes['community_levy_amount'],
-        normal_ecowas_levy=normal_taxes['ecowas_levy_amount'],
-        normal_other_taxes_total=normal_taxes['other_taxes_total'],
-        normal_total_cost=normal_taxes['total_cost'],
+        normal_vat_rate=vat_rate,
+        normal_vat_amount=round(normal_vat_amount, 2),
+        normal_statistical_fee=round(request.value * rs_rate, 2),
+        normal_community_levy=round(request.value * pcs_rate, 2),
+        normal_ecowas_levy=round(request.value * cedeao_rate, 2),
+        normal_other_taxes_total=round(other_taxes_amount, 2),
+        normal_total_cost=round(normal_total, 2),
         # Taxes ZLECAf
-        zlecaf_vat_rate=zlecaf_taxes['vat_rate'],
-        zlecaf_vat_amount=zlecaf_taxes['vat_amount'],
-        zlecaf_statistical_fee=zlecaf_taxes['statistical_fee_amount'],
-        zlecaf_community_levy=zlecaf_taxes['community_levy_amount'],
-        zlecaf_ecowas_levy=zlecaf_taxes['ecowas_levy_amount'],
-        zlecaf_other_taxes_total=zlecaf_taxes['other_taxes_total'],
-        zlecaf_total_cost=zlecaf_taxes['total_cost'],
+        zlecaf_vat_rate=vat_rate,
+        zlecaf_vat_amount=round(zlecaf_vat_amount, 2),
+        zlecaf_statistical_fee=round(request.value * rs_rate, 2),
+        zlecaf_community_levy=round(request.value * pcs_rate, 2),
+        zlecaf_ecowas_levy=round(request.value * cedeao_rate, 2),
+        zlecaf_other_taxes_total=round(other_taxes_amount, 2),
+        zlecaf_total_cost=round(zlecaf_total, 2),
         # Économies
-        savings=savings,
-        savings_percentage=savings_percentage,
-        total_savings_with_taxes=total_savings_with_taxes,
-        total_savings_percentage=total_savings_percentage,
+        savings=round(savings, 2),
+        savings_percentage=round(savings_percentage, 1),
+        total_savings_with_taxes=round(total_savings_with_taxes, 2),
+        total_savings_percentage=round(total_savings_percentage, 1),
         # Journal de calcul et traçabilité
-        normal_calculation_journal=normal_taxes['calculation_journal'],
-        zlecaf_calculation_journal=zlecaf_taxes['calculation_journal'],
-        computation_order_ref=normal_taxes['computation_order_ref'],
-        last_verified=normal_taxes['last_verified'],
-        confidence_level=normal_taxes['confidence_level'],
+        normal_calculation_journal=normal_journal,
+        zlecaf_calculation_journal=zlecaf_journal,
+        computation_order_ref="Codes douaniers nationaux + Directives CEDEAO/UEMOA/CEMAC/EAC/SACU",
+        last_verified="2025-01",
+        confidence_level="high",
         # Autres données
         rules_of_origin=rules,
         top_african_producers=top_producers,
