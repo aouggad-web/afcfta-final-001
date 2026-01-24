@@ -199,6 +199,20 @@ Application web d'analyse des statistiques commerciales et économiques africain
 ## Backlog
 
 ### Complété ✅
+- **Extension complète base HS6 (27/01/2025)** - COMPLETE
+  - **825 codes HS6** (de 93 à 825, +732 codes)
+  - **62 catégories** de produits (de 36 à 62)
+  - **747 codes avec sous-positions** détaillées
+  - Chapitres couverts : 01-89 du Système Harmonisé
+  - Fichiers d'extension créés :
+    - `/app/backend/etl/hs6_extended_ch01_06.py` - Animaux, viandes, poissons
+    - `/app/backend/etl/hs6_extended_ch07_15.py` - Fruits, légumes, huiles
+    - `/app/backend/etl/hs6_extended_ch16_24.py` - Préparations alimentaires
+    - `/app/backend/etl/hs6_extended_ch25_40.py` - Minéraux, chimiques, plastiques
+    - `/app/backend/etl/hs6_extended_ch41_63.py` - Cuir, textiles, vêtements
+    - `/app/backend/etl/hs6_extended_ch72_89.py` - Métaux, machines, véhicules, navires
+  - Tests : 40/40 passés (100% backend)
+  - Rapport : `/app/test_reports/iteration_5.json`
 - **Base HS6 enrichie + Recherche intelligente (24/01/2025)** - COMPLETE
   - **93 codes HS6** dans la base principale avec métadonnées complètes
   - **36 catégories** de produits (vehicles, coffee, ores, textiles, etc.)
