@@ -2733,6 +2733,231 @@ async def get_detailed_tariff_countries():
     }
 
 
+# =============================================================================
+# RECHERCHE INTELLIGENTE HS6 + SOUS-POSITIONS
+# =============================================================================
+
+@api_router.get("/hs6/search")
+async def search_hs6(
+    query: str = Query(..., min_length=2, description="Terme de recherche (code ou description)"),
+    language: str = Query("fr"),
+    limit: int = Query(20, le=50)
+):
+    """
+    Recherche intelligente dans la base HS6
+    - Par code (ex: "8703", "870323")
+    - Par mot-clé (ex: "voiture", "café", "riz")
+    - Par catégorie (ex: "vehicles", "coffee")
+    """
+    results = search_hs6_codes(query, language, limit)
+    return {
+        "query": query,
+        "count": len(results),
+        "results": results
+    }
+
+
+@api_router.get("/hs6/info/{hs_code}")
+async def get_hs6_information(
+    hs_code: str,
+    language: str = Query("fr")
+):
+    """
+    Obtenir les informations complètes d'un code HS6:
+    - Description
+    - Catégorie
+    - Sensibilité ZLECAf
+    - Types de sous-positions disponibles
+    - Règle d'origine
+    """
+    info = get_hs6_info(hs_code, language)
+    if not info:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Code HS6 {hs_code[:6]} non trouvé dans la base"
+        )
+    return info
+
+
+@api_router.get("/hs6/suggestions/{hs_code}")
+async def get_hs6_sub_position_suggestions(
+    hs_code: str,
+    country_code: str = Query(None, description="Code ISO3 du pays pour obtenir les sous-positions nationales"),
+    language: str = Query("fr")
+):
+    """
+    Obtenir les suggestions intelligentes de sous-positions pour un code HS6
+    
+    Retourne:
+    - Types de distinctions possibles (neuf/occasion, âge, qualité, etc.)
+    - Options avec suffixes de code
+    - Si country_code fourni: sous-positions nationales réelles du pays
+    """
+    hs6 = hs_code[:6].zfill(6)
+    
+    # Suggestions génériques basées sur la base HS6
+    generic_suggestions = get_sub_position_suggestions(hs6, language)
+    
+    # Si un pays est spécifié, obtenir les sous-positions nationales réelles
+    country_sub_positions = []
+    if country_code:
+        country_sub_positions = get_all_sub_positions(country_code.upper(), hs6)
+    
+    # Info de base sur le HS6
+    hs6_info = get_hs6_info(hs6, language)
+    
+    return {
+        "hs6_code": hs6,
+        "description": hs6_info.get("description") if hs6_info else None,
+        "category": hs6_info.get("category") if hs6_info else None,
+        "generic_suggestions": generic_suggestions,
+        "country_code": country_code.upper() if country_code else None,
+        "country_sub_positions": country_sub_positions,
+        "has_country_specific_rates": len(country_sub_positions) > 0
+    }
+
+
+@api_router.get("/hs6/rule-of-origin/{hs_code}")
+async def get_hs6_rule_of_origin(
+    hs_code: str,
+    language: str = Query("fr")
+):
+    """
+    Obtenir la règle d'origine ZLECAf pour un code HS6
+    """
+    hs6 = hs_code[:6].zfill(6)
+    rule = get_rule_of_origin(hs6, language)
+    
+    if not rule:
+        # Règle par défaut si non trouvée
+        return {
+            "hs6_code": hs6,
+            "type": "substantial_transformation",
+            "requirement": "Transformation substantielle - 40% valeur ajoutée africaine" if language == "fr" else "Substantial transformation - 40% African value added",
+            "regional_content": 40,
+            "note": "Règle par défaut - vérifier auprès des autorités compétentes"
+        }
+    
+    return rule
+
+
+@api_router.get("/hs6/categories")
+async def get_hs6_categories():
+    """
+    Obtenir toutes les catégories de produits disponibles
+    """
+    categories = get_all_categories()
+    return {
+        "count": len(categories),
+        "categories": categories
+    }
+
+
+@api_router.get("/hs6/category/{category}")
+async def get_hs6_by_category(
+    category: str,
+    language: str = Query("fr")
+):
+    """
+    Obtenir tous les codes HS6 d'une catégorie
+    """
+    codes = get_codes_by_category(category, language)
+    if not codes:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Catégorie '{category}' non trouvée"
+        )
+    return {
+        "category": category,
+        "count": len(codes),
+        "codes": codes
+    }
+
+
+@api_router.get("/hs6/statistics")
+async def get_hs6_database_statistics():
+    """
+    Obtenir les statistiques de la base HS6
+    """
+    stats = get_database_stats()
+    
+    # Ajouter les stats des sous-positions nationales
+    country_stats = {}
+    for iso3, tariffs in COUNTRY_HS6_DETAILED.items():
+        total_sub = sum(len(hs6_data.get("sub_positions", {})) for hs6_data in tariffs.values())
+        country_stats[iso3] = {
+            "hs6_codes": len(tariffs),
+            "sub_positions": total_sub
+        }
+    
+    total_country_hs6 = sum(v["hs6_codes"] for v in country_stats.values())
+    total_country_sub = sum(v["sub_positions"] for v in country_stats.values())
+    
+    return {
+        "hs6_base": {
+            "total_codes": stats["total_codes"],
+            "with_sub_positions": stats["with_sub_positions"],
+            "categories": stats["categories"],
+            "sensitivities": stats["sensitivities"]
+        },
+        "national_sub_positions": {
+            "countries_covered": len(country_stats),
+            "total_hs6_with_national_rates": total_country_hs6,
+            "total_sub_positions": total_country_sub,
+            "by_country": country_stats
+        }
+    }
+
+
+@api_router.get("/hs6/smart-search")
+async def smart_search_with_suggestions(
+    query: str = Query(..., min_length=2),
+    country_code: str = Query(None),
+    language: str = Query("fr"),
+    include_sub_positions: bool = Query(True)
+):
+    """
+    Recherche intelligente avec suggestions de sous-positions
+    
+    Combine:
+    - Recherche HS6 par mot-clé
+    - Suggestions de sous-positions
+    - Sous-positions nationales si pays spécifié
+    - Règles d'origine
+    """
+    # Rechercher les codes HS6
+    hs6_results = search_hs6_codes(query, language, limit=10)
+    
+    # Enrichir chaque résultat avec les sous-positions
+    enriched_results = []
+    for result in hs6_results:
+        enriched = result.copy()
+        
+        if include_sub_positions and result["has_sub_positions"]:
+            # Suggestions génériques
+            enriched["sub_position_suggestions"] = get_sub_position_suggestions(result["code"], language)
+            
+            # Sous-positions nationales si pays fourni
+            if country_code:
+                country_subs = get_all_sub_positions(country_code.upper(), result["code"])
+                enriched["country_sub_positions"] = country_subs
+                enriched["has_varying_rates"] = len(country_subs) > 1
+        
+        # Règle d'origine
+        rule = get_rule_of_origin(result["code"], language)
+        if rule:
+            enriched["rule_of_origin"] = rule
+        
+        enriched_results.append(enriched)
+    
+    return {
+        "query": query,
+        "country_code": country_code.upper() if country_code else None,
+        "count": len(enriched_results),
+        "results": enriched_results
+    }
+
+
 # FAOSTAT ENRICHED DATA ENDPOINTS
 # ==========================================
 
