@@ -58,6 +58,9 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
   const [showHSBrowser, setShowHSBrowser] = useState(false);
   const [hs6TariffInfo, setHs6TariffInfo] = useState(null);
   const [subPositions, setSubPositions] = useState(null);
+  const [useSmartSearch, setUseSmartSearch] = useState(true);
+  const [ruleOfOrigin, setRuleOfOrigin] = useState(null);
+  const [selectedSubPositionDesc, setSelectedSubPositionDesc] = useState(null);
 
   const texts = {
     fr: {
