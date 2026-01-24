@@ -395,6 +395,50 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6 pt-6">
+              {/* Information sur le tarif SH6 précis */}
+              {hs6TariffInfo && hs6TariffInfo.has_specific_tariff && (
+                <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-4 rounded-lg border-2 border-blue-300 shadow-md">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-2xl">🎯</span>
+                    <h4 className="font-bold text-lg text-blue-700">{t.hs6TariffInfo}</h4>
+                    <Badge className="bg-green-500 text-white ml-2">{t.hs6TariffApplied}</Badge>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm text-gray-600">{t.productDescription}</p>
+                      <p className="font-semibold text-gray-800">{hs6TariffInfo.description}</p>
+                      <p className="text-xs text-blue-600 mt-1">Code: {hs6TariffInfo.code} • {hs6TariffInfo.chapter_name}</p>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2 text-center">
+                      <div className="bg-red-100 p-2 rounded">
+                        <p className="text-xs text-red-600">{t.normalRate}</p>
+                        <p className="font-bold text-red-700">{hs6TariffInfo.normal_rate_pct}</p>
+                      </div>
+                      <div className="bg-green-100 p-2 rounded">
+                        <p className="text-xs text-green-600">{t.zlecafRate}</p>
+                        <p className="font-bold text-green-700">{hs6TariffInfo.zlecaf_rate_pct}</p>
+                      </div>
+                      <div className="bg-yellow-100 p-2 rounded">
+                        <p className="text-xs text-yellow-600">{t.savingsRate}</p>
+                        <p className="font-bold text-yellow-700">{hs6TariffInfo.savings_pct}%</p>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-2">{t.hs6DataSource}</p>
+                </div>
+              )}
+              
+              {/* Badge tarif par chapitre si pas de SH6 spécifique */}
+              {(!hs6TariffInfo || !hs6TariffInfo.has_specific_tariff) && (
+                <div className="bg-gray-50 p-3 rounded-lg border border-gray-200">
+                  <div className="flex items-center gap-2">
+                    <span>📦</span>
+                    <span className="text-sm text-gray-600">{t.chapterTariffApplied}</span>
+                    <Badge variant="outline" className="text-gray-600">{t.sectorPrefix} {result.hs_code?.substring(0, 2)}</Badge>
+                  </div>
+                </div>
+              )}
+
               {/* Graphique comparaison complète avec TOUTES les taxes */}
               <div className="bg-white p-4 rounded-lg shadow-md" style={{ minHeight: '320px' }}>
                 <h4 className="font-bold text-lg mb-4 text-gray-800">📊 {t.completeComparison}</h4>
