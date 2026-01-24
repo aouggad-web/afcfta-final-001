@@ -198,18 +198,22 @@ Application web d'analyse des statistiques commerciales et économiques africain
 ## Backlog
 
 ### Complété ✅
-- **Sous-positions nationales 54 PAYS (24/01/2025)** - COMPLETE
-  - Support des codes HS 8-12 chiffres pour tarifs précis
-  - **54 pays africains** avec données détaillées
-  - **320 codes HS6** avec **768 sous-positions nationales**
-  - Fichiers créés:
-    - `/app/backend/etl/country_hs6_detailed_cedeao.py` (13 pays)
-    - `/app/backend/etl/country_hs6_detailed_cemac.py` (8 pays)
-    - `/app/backend/etl/country_hs6_detailed_eac_sadc.py` (22 pays)
-    - `/app/backend/etl/country_hs6_detailed_north_africa.py` (7 pays)
-  - API endpoints: `/api/tariffs/detailed/{country}/{hs}`, `/api/tariffs/sub-positions/{country}/{hs6}`
-  - Frontend mis à jour pour saisie codes 6-12 chiffres
-  - Indicateur de précision tarifaire dans les résultats
+- **Base HS6 enrichie + Recherche intelligente (24/01/2025)** - COMPLETE
+  - **93 codes HS6** dans la base principale avec métadonnées complètes
+  - **36 catégories** de produits (vehicles, coffee, ores, textiles, etc.)
+  - **54 pays africains** avec **768 sous-positions nationales**
+  - **Règles d'origine ZLECAf** intégrées par code HS6
+  - **Recherche intelligente** avec suggestions automatiques
+  - Nouveau fichier: `/app/backend/etl/hs6_database.py`
+  - Nouveau composant: `/app/frontend/src/components/SmartHSSearch.jsx`
+  - API endpoints:
+    - `/api/hs6/search` - Recherche par mot-clé
+    - `/api/hs6/info/{code}` - Info complète HS6
+    - `/api/hs6/suggestions/{code}` - Suggestions sous-positions
+    - `/api/hs6/rule-of-origin/{code}` - Règle d'origine
+    - `/api/hs6/smart-search` - Recherche combinée
+    - `/api/hs6/categories` - Liste catégories
+    - `/api/hs6/statistics` - Statistiques base
 - Mise à jour complète données 2024-2025 (20/01/2025)
   - 10 économies majeures: PIB, croissance, projections 2025
   - Données portuaires UNCTAD (Tanger Med: 10.24M TEU)
