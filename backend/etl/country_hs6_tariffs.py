@@ -15,6 +15,30 @@ Pour les codes non listés, le système utilise les taux par chapitre du pays.
 
 from typing import Dict, Optional, Tuple
 
+# Import des tarifs par région
+from etl.country_hs6_tariffs_cedeao_cemac import (
+    SEN_HS6_TARIFFS, MLI_HS6_TARIFFS, BFA_HS6_TARIFFS, BEN_HS6_TARIFFS,
+    TGO_HS6_TARIFFS, NER_HS6_TARIFFS, GIN_HS6_TARIFFS, GNB_HS6_TARIFFS,
+    GMB_HS6_TARIFFS, SLE_HS6_TARIFFS, LBR_HS6_TARIFFS, CPV_HS6_TARIFFS,
+    CMR_HS6_TARIFFS, GAB_HS6_TARIFFS, COG_HS6_TARIFFS, TCD_HS6_TARIFFS,
+    CAF_HS6_TARIFFS, GNQ_HS6_TARIFFS
+)
+
+from etl.country_hs6_tariffs_eac_sadc import (
+    TZA_HS6_TARIFFS, UGA_HS6_TARIFFS, RWA_HS6_TARIFFS, BDI_HS6_TARIFFS,
+    COD_HS6_TARIFFS, SSD_HS6_TARIFFS,
+    AGO_HS6_TARIFFS, MOZ_HS6_TARIFFS, ZMB_HS6_TARIFFS, ZWE_HS6_TARIFFS,
+    MWI_HS6_TARIFFS, MDG_HS6_TARIFFS, MUS_HS6_TARIFFS, SYC_HS6_TARIFFS,
+    COM_HS6_TARIFFS
+)
+
+from etl.country_hs6_tariffs_north_other import (
+    DZA_HS6_TARIFFS, TUN_HS6_TARIFFS, LBY_HS6_TARIFFS, MRT_HS6_TARIFFS,
+    BWA_HS6_TARIFFS, NAM_HS6_TARIFFS, LSO_HS6_TARIFFS, SWZ_HS6_TARIFFS,
+    ETH_HS6_TARIFFS, DJI_HS6_TARIFFS, ERI_HS6_TARIFFS, SDN_HS6_TARIFFS,
+    SOM_HS6_TARIFFS, STP_HS6_TARIFFS
+)
+
 # =============================================================================
 # NIGERIA (NGA) - TAUX SH6 RÉELS
 # Source: Nigeria Customs Service, ECOWAS TEC
