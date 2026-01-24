@@ -2519,6 +2519,171 @@ async def get_all_country_hs6_tariffs(country_code: str, language: str = Query("
     }
 
 
+# =============================================================================
+# SOUS-POSITIONS NATIONALES ENDPOINTS (8-12 chiffres)
+# =============================================================================
+
+@api_router.get("/tariffs/detailed/{country_code}/{hs_code}")
+async def get_detailed_tariff_endpoint(
+    country_code: str, 
+    hs_code: str, 
+    language: str = Query("fr")
+):
+    """
+    Obtenir le tarif détaillé avec toutes les sous-positions pour un pays et code HS
+    
+    Args:
+        country_code: Code ISO3 du pays (ex: NGA, CIV, ZAF)
+        hs_code: Code HS (6-12 chiffres)
+        language: Langue (fr ou en)
+    
+    Returns:
+        Informations détaillées incluant taux par défaut et sous-positions
+    """
+    summary = get_tariff_summary(country_code.upper(), hs_code)
+    
+    if not summary.get("has_detailed_tariffs"):
+        raise HTTPException(
+            status_code=404, 
+            detail=f"Pas de tarifs détaillés pour {country_code.upper()} / {hs_code}. Utiliser l'endpoint /country-hs6-tariffs/{country_code}/{hs_code[:6]}"
+        )
+    
+    # Adapter les descriptions selon la langue
+    desc_key = f"description_{language}"
+    if language == "en":
+        summary["description"] = summary.get("description_en", summary.get("description_fr", ""))
+    else:
+        summary["description"] = summary.get("description_fr", "")
+    
+    # Formater les sous-positions avec la bonne langue
+    for sp in summary.get("sub_positions", []):
+        sp["description"] = sp.get(desc_key, sp.get("description_fr", ""))
+    
+    return summary
+
+
+@api_router.get("/tariffs/sub-position/{country_code}/{full_code}")
+async def get_sub_position_tariff_endpoint(
+    country_code: str, 
+    full_code: str,
+    language: str = Query("fr")
+):
+    """
+    Obtenir le taux de droits de douane pour une sous-position nationale spécifique
+    
+    Args:
+        country_code: Code ISO3 du pays
+        full_code: Code national complet (8-12 chiffres, ex: 8703231000)
+    
+    Returns:
+        Taux DD spécifique à cette sous-position ou taux par défaut
+    """
+    rate, description, source = get_sub_position_rate(country_code.upper(), full_code)
+    
+    hs6 = full_code[:6].zfill(6)
+    detailed = get_detailed_tariff(country_code.upper(), hs6)
+    
+    if rate is None:
+        # Pas de tarif détaillé, fallback vers tarif SH6 standard
+        hs6_tariff = get_country_hs6_tariff(country_code.upper(), hs6)
+        if hs6_tariff:
+            rate = hs6_tariff["dd"]
+            description = hs6_tariff.get(f"description_{language}", hs6_tariff.get("description_fr", ""))
+            source = f"Tarif SH6 standard (pas de sous-position)"
+        else:
+            raise HTTPException(
+                status_code=404,
+                detail=f"Aucun tarif trouvé pour {country_code.upper()} / {full_code}"
+            )
+    
+    return {
+        "country_code": country_code.upper(),
+        "full_code": full_code,
+        "hs6_code": hs6,
+        "dd_rate": rate,
+        "dd_rate_pct": f"{rate * 100:.1f}%",
+        "description": description,
+        "source": source,
+        "has_sub_position_match": source.startswith("Sous-position")
+    }
+
+
+@api_router.get("/tariffs/sub-positions/{country_code}/{hs6_code}")
+async def get_all_sub_positions_endpoint(
+    country_code: str, 
+    hs6_code: str,
+    language: str = Query("fr")
+):
+    """
+    Obtenir toutes les sous-positions nationales pour un code HS6 dans un pays
+    
+    Returns:
+        Liste des sous-positions avec leurs taux respectifs
+    """
+    hs6 = hs6_code[:6].zfill(6)
+    sub_positions = get_all_sub_positions(country_code.upper(), hs6)
+    
+    # Obtenir les infos générales du HS6
+    detailed = get_detailed_tariff(country_code.upper(), hs6)
+    
+    if not sub_positions:
+        return {
+            "country_code": country_code.upper(),
+            "hs6_code": hs6,
+            "has_sub_positions": False,
+            "count": 0,
+            "sub_positions": [],
+            "note": "Pas de sous-positions détaillées pour ce code dans ce pays"
+        }
+    
+    # Adapter les descriptions selon la langue
+    desc_key = f"description_{language}"
+    for sp in sub_positions:
+        sp["description"] = sp.get(desc_key, sp.get("description_fr", ""))
+    
+    has_variations, min_rate, max_rate = has_varying_rates(country_code.upper(), hs6)
+    
+    return {
+        "country_code": country_code.upper(),
+        "hs6_code": hs6,
+        "hs6_description": detailed.get(f"description_{language}", detailed.get("description_fr", "")) if detailed else "",
+        "default_dd_rate": detailed.get("default_dd", 0) if detailed else 0,
+        "default_dd_rate_pct": f"{detailed.get('default_dd', 0) * 100:.1f}%" if detailed else "N/A",
+        "has_sub_positions": True,
+        "has_varying_rates": has_variations,
+        "rate_range": {
+            "min_pct": f"{min_rate * 100:.1f}%",
+            "max_pct": f"{max_rate * 100:.1f}%"
+        } if has_variations else None,
+        "count": len(sub_positions),
+        "sub_positions": sub_positions
+    }
+
+
+@api_router.get("/tariffs/detailed-countries")
+async def get_detailed_tariff_countries():
+    """
+    Obtenir la liste des pays avec tarifs détaillés (sous-positions nationales)
+    """
+    countries_data = {}
+    for iso3, tariffs in COUNTRY_HS6_DETAILED.items():
+        total_sub_positions = sum(
+            len(hs6_data.get("sub_positions", {}))
+            for hs6_data in tariffs.values()
+        )
+        countries_data[iso3] = {
+            "hs6_codes_count": len(tariffs),
+            "sub_positions_count": total_sub_positions,
+            "hs6_codes": list(tariffs.keys())
+        }
+    
+    return {
+        "countries_with_detailed_tariffs": len(countries_data),
+        "countries": countries_data,
+        "note": "Ces pays ont des tarifs avec sous-positions nationales (8-12 chiffres)"
+    }
+
+
 # FAOSTAT ENRICHED DATA ENDPOINTS
 # ==========================================
 
