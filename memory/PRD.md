@@ -22,9 +22,18 @@ Application web d'analyse des statistiques commerciales et économiques africain
 - **Sauvegarde** de la configuration dans localStorage
 - **Actualisation automatique** des données (toutes les 60 secondes)
 
-### 2. Calculateur de Tarifs
+### 2. Calculateur de Tarifs (ENHANCED - 24/01/2025)
 - Calcul des droits de douane avec et sans ZLECAf
 - Comparaison des économies potentielles
+- **NEW: Support des sous-positions nationales (codes 8-12 chiffres)**
+  - 4 pays avec tarifs détaillés : Nigeria, Côte d'Ivoire, Afrique du Sud, Kenya
+  - 60 codes HS6 avec 161 sous-positions nationales
+  - Taux variables selon sous-position (ex: véhicules neufs vs occasion par âge)
+- **Indicateur de précision tarifaire** :
+  - `sub_position` : Sous-position nationale (haute précision)
+  - `hs6_country` : Tarif SH6 spécifique au pays
+  - `chapter` : Tarif par chapitre (précision moyenne)
+- **Affichage des sous-positions disponibles** dans les résultats
 
 ### 3. Statistiques (Onglet)
 - Vue d'ensemble du commerce africain 2024
