@@ -903,14 +903,30 @@ async def calculate_comprehensive_tariff(request: TariffCalculationRequest):
     sector_code = hs6_code[:2]
     
     # ============================================================
-    # NOUVEAU: Utiliser les taux RÉELS par pays de destination
+    # PRIORITÉ 1: Tarifs SH6 RÉELS par pays de destination
+    # PRIORITÉ 2: Tarifs par chapitre du pays
     # ============================================================
     
-    # Obtenir le taux de droit de douane NPF (Nation la Plus Favorisée) du pays
-    normal_rate, npf_source = get_tariff_rate_for_country(dest_iso3, hs6_code)
+    # Essayer d'abord le tarif SH6 spécifique au pays
+    hs6_tariff = get_country_hs6_tariff(dest_iso3, hs6_code)
+    
+    if hs6_tariff:
+        # Tarif SH6 spécifique trouvé pour ce pays
+        normal_rate = hs6_tariff["dd"]
+        npf_source = f"Tarif SH6 {dest_iso3} ({hs6_code})"
+        tariff_precision = "hs6_country"
+    else:
+        # Fallback: taux par chapitre du pays
+        normal_rate, npf_source = get_tariff_rate_for_country(dest_iso3, hs6_code)
+        tariff_precision = "chapter"
     
     # Obtenir le taux ZLECAf calculé selon le calendrier de libéralisation
-    zlecaf_rate, zlecaf_source = get_zlecaf_tariff_rate(dest_iso3, hs6_code)
+    # Le taux ZLECAf est calculé à partir du taux normal avec réduction progressive
+    from etl.country_tariffs_complete import get_product_category, get_zlecaf_reduction_factor
+    product_category = get_product_category(hs6_code)
+    reduction_factor = get_zlecaf_reduction_factor(dest_iso3, product_category)
+    zlecaf_rate = normal_rate * reduction_factor
+    zlecaf_source = f"ZLECAf ({product_category})"
     
     # Obtenir le taux de TVA du pays
     vat_rate, vat_source = get_vat_rate_for_country(dest_iso3)
