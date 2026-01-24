@@ -371,8 +371,8 @@ class TestDataConsistency:
         stats = stats_response.json()
         total_codes = stats["hs6_base"]["total_codes"]
         
-        # Search for all codes (using a very broad search)
-        search_response = requests.get(f"{BASE_URL}/api/hs6/search", params={"query": "0", "limit": 50})
+        # Search for codes (using a valid search term)
+        search_response = requests.get(f"{BASE_URL}/api/hs6/search", params={"query": "00", "limit": 50})
         assert search_response.status_code == 200
         
         print(f"✅ Statistics total: {total_codes}, Search returns results")
