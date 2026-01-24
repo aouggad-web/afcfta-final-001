@@ -435,10 +435,11 @@ GHA_HS6_TARIFFS = {
 }
 
 # =============================================================================
-# CONSOLIDATION DE TOUS LES TARIFS SH6 PAR PAYS
+# CONSOLIDATION DE TOUS LES TARIFS SH6 PAR PAYS - 54 PAYS AFRICAINS
 # =============================================================================
 
 COUNTRY_HS6_TARIFFS = {
+    # Pays avec tarifs détaillés (fichier principal)
     "NGA": NGA_HS6_TARIFFS,
     "CIV": CIV_HS6_TARIFFS,
     "ZAF": ZAF_HS6_TARIFFS,
@@ -446,6 +447,67 @@ COUNTRY_HS6_TARIFFS = {
     "EGY": EGY_HS6_TARIFFS,
     "MAR": MAR_HS6_TARIFFS,
     "GHA": GHA_HS6_TARIFFS,
+    
+    # CEDEAO/UEMOA (importés)
+    "SEN": SEN_HS6_TARIFFS,
+    "MLI": MLI_HS6_TARIFFS,
+    "BFA": BFA_HS6_TARIFFS,
+    "BEN": BEN_HS6_TARIFFS,
+    "TGO": TGO_HS6_TARIFFS,
+    "NER": NER_HS6_TARIFFS,
+    "GIN": GIN_HS6_TARIFFS,
+    "GNB": GNB_HS6_TARIFFS,
+    "GMB": GMB_HS6_TARIFFS,
+    "SLE": SLE_HS6_TARIFFS,
+    "LBR": LBR_HS6_TARIFFS,
+    "CPV": CPV_HS6_TARIFFS,
+    
+    # CEMAC (importés)
+    "CMR": CMR_HS6_TARIFFS,
+    "GAB": GAB_HS6_TARIFFS,
+    "COG": COG_HS6_TARIFFS,
+    "TCD": TCD_HS6_TARIFFS,
+    "CAF": CAF_HS6_TARIFFS,
+    "GNQ": GNQ_HS6_TARIFFS,
+    
+    # EAC (importés)
+    "TZA": TZA_HS6_TARIFFS,
+    "UGA": UGA_HS6_TARIFFS,
+    "RWA": RWA_HS6_TARIFFS,
+    "BDI": BDI_HS6_TARIFFS,
+    "COD": COD_HS6_TARIFFS,
+    "SSD": SSD_HS6_TARIFFS,
+    
+    # SADC hors SACU (importés)
+    "AGO": AGO_HS6_TARIFFS,
+    "MOZ": MOZ_HS6_TARIFFS,
+    "ZMB": ZMB_HS6_TARIFFS,
+    "ZWE": ZWE_HS6_TARIFFS,
+    "MWI": MWI_HS6_TARIFFS,
+    "MDG": MDG_HS6_TARIFFS,
+    "MUS": MUS_HS6_TARIFFS,
+    "SYC": SYC_HS6_TARIFFS,
+    "COM": COM_HS6_TARIFFS,
+    
+    # SACU (importés)
+    "BWA": BWA_HS6_TARIFFS,
+    "NAM": NAM_HS6_TARIFFS,
+    "LSO": LSO_HS6_TARIFFS,
+    "SWZ": SWZ_HS6_TARIFFS,
+    
+    # Afrique du Nord (importés)
+    "DZA": DZA_HS6_TARIFFS,
+    "TUN": TUN_HS6_TARIFFS,
+    "LBY": LBY_HS6_TARIFFS,
+    "MRT": MRT_HS6_TARIFFS,
+    
+    # Autres pays (importés)
+    "ETH": ETH_HS6_TARIFFS,
+    "DJI": DJI_HS6_TARIFFS,
+    "ERI": ERI_HS6_TARIFFS,
+    "SDN": SDN_HS6_TARIFFS,
+    "SOM": SOM_HS6_TARIFFS,
+    "STP": STP_HS6_TARIFFS,
 }
 
 # Mapping ISO2 -> ISO3
