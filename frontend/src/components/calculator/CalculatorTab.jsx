@@ -102,7 +102,17 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
       hsCodeSelectorTitle: "Sélecteur de Code SH6",
       hsCodeSelectorDesc: "Recherchez ou parcourez les codes du Système Harmonisé",
       browseHS: "Parcourir les codes HS",
-      hideHSBrowser: "Masquer le navigateur"
+      hideHSBrowser: "Masquer le navigateur",
+      // Nouvelles traductions SH6
+      hs6TariffInfo: "Tarif SH6 Précis",
+      hs6TariffApplied: "Tarif spécifique SH6 appliqué",
+      chapterTariffApplied: "Tarif par chapitre appliqué",
+      tariffPrecision: "Précision tarifaire",
+      productDescription: "Description produit",
+      normalRate: "Taux NPF",
+      zlecafRate: "Taux ZLECAf",
+      savingsRate: "Économie",
+      hs6DataSource: "Source: OMC ITC, CNUCED TRAINS, WITS"
     },
     en: {
       originCountry: "Origin Country",
@@ -149,7 +159,17 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
       hsCodeSelectorTitle: "HS6 Code Selector",
       hsCodeSelectorDesc: "Search or browse Harmonized System codes",
       browseHS: "Browse HS codes",
-      hideHSBrowser: "Hide browser"
+      hideHSBrowser: "Hide browser",
+      // New SH6 translations
+      hs6TariffInfo: "Precise HS6 Tariff",
+      hs6TariffApplied: "Specific HS6 tariff applied",
+      chapterTariffApplied: "Chapter tariff applied",
+      tariffPrecision: "Tariff precision",
+      productDescription: "Product description",
+      normalRate: "MFN Rate",
+      zlecafRate: "AfCFTA Rate",
+      savingsRate: "Savings",
+      hs6DataSource: "Source: WTO ITC, UNCTAD TRAINS, WITS"
     }
   };
 
