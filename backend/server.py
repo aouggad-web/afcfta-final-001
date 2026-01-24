@@ -50,6 +50,13 @@ from etl.hs_codes_data import (
     get_codes_by_chapter,
     get_all_hs_data
 )
+from etl.hs6_tariffs import (
+    get_hs6_tariff,
+    get_hs6_tariff_rates,
+    search_hs6_tariffs,
+    get_hs6_tariffs_by_chapter,
+    get_hs6_statistics
+)
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
