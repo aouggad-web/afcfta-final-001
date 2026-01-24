@@ -56,12 +56,14 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
   const [loading, setLoading] = useState(false);
   const [showHSBrowser, setShowHSBrowser] = useState(false);
   const [hs6TariffInfo, setHs6TariffInfo] = useState(null);
+  const [subPositions, setSubPositions] = useState(null);
 
   const texts = {
     fr: {
       originCountry: "Pays d'origine",
       partnerCountry: "Pays partenaire",
-      hsCodeLabel: "Code SH6 (6 chiffres)",
+      hsCodeLabel: "Code HS (6-12 chiffres)",
+      hsCodeHint: "6 chiffres = HS international | 8-12 chiffres = sous-position nationale",
       valueLabel: "Valeur de la marchandise (USD)",
       calculateBtn: "Calculer avec Données Officielles",
       calculatorTitle: "Calculateur ZLECAf Complet",
@@ -69,8 +71,8 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
       rulesOrigin: "Règles d'Origine ZLECAf",
       missingFields: "Champs manquants",
       fillAllFields: "Veuillez remplir tous les champs",
-      invalidHsCode: "Code SH6 invalide",
-      hsCodeMust6: "Le code SH6 doit contenir exactement 6 chiffres",
+      invalidHsCode: "Code HS invalide",
+      hsCodeMust6to12: "Le code HS doit contenir entre 6 et 12 chiffres",
       calculationSuccess: "Calcul réussi",
       potentialSavings: "Économie potentielle",
       calculationError: "Erreur de calcul",
