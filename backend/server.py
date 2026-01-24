@@ -862,6 +862,7 @@ async def calculate_comprehensive_tariff(request: TariffCalculationRequest):
     """Calculer les tarifs complets avec données officielles 2024 et règles d'origine
     
     Accepte les codes ISO2 (ex: DZ) ou ISO3 (ex: DZA) pour les pays
+    Utilise les tarifs SH6 précis si disponibles, sinon les taux par chapitre
     """
     
     # Chercher par ISO3 d'abord, puis ISO2 (rétrocompatibilité)
@@ -879,10 +880,16 @@ async def calculate_comprehensive_tariff(request: TariffCalculationRequest):
     # Utiliser ISO3 pour les calculs
     dest_iso3 = dest_country['iso3']
     
-    # Calcul des tarifs selon le code SH6
-    sector_code = request.hs_code[:2]
+    # Code SH6 complet et code chapitre
+    hs6_code = request.hs_code.zfill(6)
+    sector_code = hs6_code[:2]
     
-    # NOUVEAU: Utiliser les taux officiels par pays si disponibles
+    # PRIORITÉ 1: Tarifs SH6 précis si disponibles
+    hs6_normal_rate, hs6_zlecaf_rate = get_hs6_tariff_rates(hs6_code)
+    hs6_tariff_data = get_hs6_tariff(hs6_code)
+    tariff_precision = "hs6" if hs6_tariff_data else "chapter"
+    
+    # PRIORITÉ 2: Taux spécifiques au pays par chapitre
     country_specific_rate = get_country_tariff_rate(dest_iso3, sector_code)
     
     # Charger les taux corrigés depuis le fichier JSON 2024 (fallback)
@@ -891,13 +898,20 @@ async def calculate_comprehensive_tariff(request: TariffCalculationRequest):
     zlecaf_rates = tariff_corrections.get('zlecaf_rates', {})
     transition_periods = tariff_corrections.get('transition_periods', {})
     
-    # Utiliser le taux spécifique au pays si disponible, sinon le taux générique
-    if country_specific_rate is not None:
+    # Déterminer les taux finaux (SH6 précis > Pays > Générique)
+    if hs6_normal_rate is not None:
+        normal_rate = hs6_normal_rate
+        zlecaf_rate = hs6_zlecaf_rate
+        rate_source = f"Tarif SH6 spécifique ({hs6_code})"
+    elif country_specific_rate is not None:
         normal_rate = country_specific_rate
+        zlecaf_rate = zlecaf_rates.get(sector_code, 0.03)
+        rate_source = f"Tarif pays {dest_iso3} (chapitre {sector_code})"
     else:
         normal_rate = generic_rates.get(sector_code, 0.15)
+        zlecaf_rate = zlecaf_rates.get(sector_code, 0.03)
+        rate_source = f"Tarif générique (chapitre {sector_code})"
     
-    zlecaf_rate = zlecaf_rates.get(sector_code, 0.03)
     transition_period = transition_periods.get(sector_code, 'immediate')
     
     # Calculs des droits de douane en USD
