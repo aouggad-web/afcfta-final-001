@@ -194,6 +194,13 @@ Application web d'analyse des statistiques commerciales et économiques africain
 ## Backlog
 
 ### Complété ✅
+- **Sous-positions nationales (24/01/2025)** - NEW
+  - Support des codes HS 8-12 chiffres pour tarifs précis
+  - 4 pays avec données détaillées (NGA, CIV, ZAF, KEN)
+  - 60 codes HS6 avec 161 sous-positions nationales
+  - API endpoints: `/api/tariffs/detailed/{country}/{hs}`, `/api/tariffs/sub-positions/{country}/{hs6}`
+  - Frontend mis à jour pour saisie codes 6-12 chiffres
+  - Indicateur de précision tarifaire dans les résultats
 - Mise à jour complète données 2024-2025 (20/01/2025)
   - 10 économies majeures: PIB, croissance, projections 2025
   - Données portuaires UNCTAD (Tanger Med: 10.24M TEU)
@@ -210,6 +217,8 @@ Application web d'analyse des statistiques commerciales et économiques africain
 - Bug fix i18n Production tab
 
 ### P1 - Prochaines Tâches
+- **Indicateur de fraîcheur des données** : Afficher "Données vérifiées le : Jan 2025" sur les tarifs
+- **Étendre sous-positions** : Ajouter plus de pays avec tarifs détaillés (50 restants)
 - Migration progressive des autres composants vers react-i18next centralisé (ProductionTab)
 - Ajouter plus de widgets interactifs (graphiques personnalisables)
 - Ajouter authentification admin pour TRS upload
@@ -219,7 +228,7 @@ Application web d'analyse des statistiques commerciales et économiques africain
 - Export des données en CSV/Excel
 - Dashboard avec alertes personnalisées
 - Vérification automatique des liens externes
-- Indicateur de fraîcheur des données
+- Comparaison de pays côte à côte
 
 ## Sources de Données
 - FMI World Economic Outlook 2024
