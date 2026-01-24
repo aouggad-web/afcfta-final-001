@@ -229,6 +229,7 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
 
     setLoading(true);
     try {
+      // Calcul des tarifs
       const response = await axios.post(`${API}/calculate-tariff`, {
         origin_country: originCountry,
         destination_country: destinationCountry,
@@ -237,6 +238,15 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
       });
       
       setResult(response.data);
+      
+      // Récupérer les informations SH6 spécifiques si disponibles
+      try {
+        const hs6Response = await axios.get(`${API}/hs6-tariffs/code/${hsCode}?language=${language}`);
+        setHs6TariffInfo(hs6Response.data);
+      } catch (hs6Error) {
+        // Pas de tarif SH6 spécifique, ce n'est pas une erreur
+        setHs6TariffInfo(null);
+      }
       
       toast({
         title: t.calculationSuccess,
