@@ -1056,11 +1056,16 @@ async def calculate_comprehensive_tariff(request: TariffCalculationRequest):
     # Récupérer les données économiques des pays
     wb_data = await wb_client.get_country_data([origin_country['wb_code'], dest_country['wb_code']])
     
+    # Vérifier si des sous-positions alternatives existent pour ce HS6
+    sub_positions_available = get_all_sub_positions(dest_iso3, hs6_code)
+    has_varying, min_rate, max_rate = has_varying_rates(dest_iso3, hs6_code)
+    
     # Création de la réponse complète avec toutes les taxes
     result = TariffCalculationResponse(
         origin_country=request.origin_country,
         destination_country=request.destination_country,
         hs_code=request.hs_code,
+        hs6_code=hs6_code,
         value=request.value,
         # Tarifs de douane
         normal_tariff_rate=normal_rate,
@@ -1093,7 +1098,13 @@ async def calculate_comprehensive_tariff(request: TariffCalculationRequest):
         zlecaf_calculation_journal=zlecaf_journal,
         computation_order_ref="Codes douaniers nationaux + Directives CEDEAO/UEMOA/CEMAC/EAC/SACU",
         last_verified="2025-01",
-        confidence_level="high",
+        confidence_level="high" if tariff_precision in ["sub_position", "hs6_country"] else "medium",
+        # Précision tarifaire et sous-positions
+        tariff_precision=tariff_precision,
+        sub_position_used=sub_position_used,
+        sub_position_description=sub_position_description,
+        has_varying_sub_positions=has_varying,
+        available_sub_positions_count=len(sub_positions_available),
         # Autres données
         rules_of_origin=rules,
         top_african_producers=top_producers,
