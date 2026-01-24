@@ -355,6 +355,7 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
               language={language}
               data-testid="hs-code-selector"
             />
+            <p className="text-xs text-gray-500 italic">{t.hsCodeHint}</p>
             <Button
               type="button"
               variant="outline"
