@@ -1,66 +1,77 @@
 <analysis>**original_problem_statement:**
-The user's initial request was for full internationalization (i18n) and building out a comprehensive trade analysis application. This has evolved to include:
-- Integrating UNCTAD data.
-- Adding a file upload feature.
-- Implementing PDF exports.
-- Creating a dynamic, customizable dashboard.
-- Integrating HS6 (Harmonized System) commodity codes.
-- A strong, recurring demand for fixing UI bugs, improving UX, and ensuring the absolute veracity and freshness of all data presented in the application, which has become the highest priority.
+The user's primary goal is to build a highly accurate trade analysis application for Africa. The focus has evolved from general features to an intense demand for data veracity, particularly concerning customs tariffs.
+
+Recent user requests have driven a deep architectural refactoring of the tariff system:
+- Initially, the user requested an optimization to use HS6 (Harmonized System 6-digit) codes for more precise tariff calculations.
+- This was refined to a demand for country-specific customs duties (DD), VAT, and other taxes for all 54 African nations, as the initial implementation used generic rates.
+- The request was further specified to require tariffs at the HS6 level *per country*, not just by tariff chapter.
+- Finally, the user made a technically astute point that international HS6 codes are subdivided into national positions (8-10 digits) which can have varying rates, and requested the system be updated to handle this level of detail.
 
 PRODUCT REQUIREMENTS:
--   Implement the frontend for the HS6 code selector, including search, filtering, and hierarchical display. (Completed)
--   Integrate the HS6 selector into the Calculator and Rules of Origin tabs. (Completed)
--   Delete a specific project (Port Dakhla Atlantique) from the Morocco country profile data. (Completed)
--   Improve UI/UX by moving data source banners to the bottom and reducing header sizes on the Production and Logistics tabs. (Completed)
--   Correct a major data inaccuracy where generic customs duties were used for all countries. This evolved into a full overhaul to use official, country-specific tariff and VAT rates for all 54 African nations. (Completed)
--   Update all application data (logistics, production, economic profiles, etc.) with the latest available statistics for 2024-2025. (In Progress)
--   Continue the progressive migration of the frontend to . (Pending)
+-   **Data Veracity & Granularity**: All tariff data must reflect the specific rates (DD, TVA, other taxes) for each country at the most granular level possible (national sub-positions of HS6 codes).
+-   **Complete Country Coverage**: The tariff system must be implemented for all 54 African countries. (In Progress)
+-   **Dynamic Dashboard**: The main dashboard should feature a live news feed of African economic news. (Completed)
+-   **Bug Fixes**: All reported data discrepancies and bugs must be resolved. (Completed)
+-   **i18n Migration**: Continue the progressive migration of frontend components to . (Pending)
 
 **User's preferred language**: French. The next agent MUST respond in French.
 
 **what currently exists?**
-The application is stable and has undergone significant data accuracy and feature enhancements. The HS6 code selector is now fully implemented on the frontend, integrated into the Calculator and Rules of Origin tabs, and has been thoroughly tested. A major data overhaul was completed, replacing a generic tariff system with a detailed, country-specific model for customs duties and VAT for all 54 African nations, based on official 2024-2025 data. Several user-requested UI/UX improvements and a specific data deletion have also been successfully implemented. The agent was in the process of a final, comprehensive update of all application statistics (macroeconomic, logistics, production) based on newly researched data.
+The application is a functional trade analysis tool. The previously blocking bug related to missing LPI/AIDI scores for Côte d'Ivoire has been successfully resolved. The core of the recent work has been a massive, iterative refactoring of the backend tariff calculation engine. The system has evolved from using generic chapter-based rates to a sophisticated model that can handle country-specific rates at the HS6 code level for all 54 African nations. The latest user request prompted the start of another refactor to incorporate national tariff sub-positions (8, 10, or 12-digit codes), which is the most accurate but also the most complex data structure. The backend data files for this new structure are being created.
 
 **Last working item**:
--   **Last item agent was working**: Performing a comprehensive update of all application data (logistics, production, economic profiles) using the latest 2024-2025 statistics gathered from web searches. The research phase is complete.
+-   **Last item agent was working**: Implementing the user's chosen Option A to handle national tariff sub-positions. This involves restructuring the tariff database to allow for different duty rates within a single HS6 code, based on more specific 8 or 10-digit national codes (e.g., for new vs. used vehicles). The agent had just created the new data structure file  and was beginning to add the API endpoints needed to access this detailed data.
 -   **Status**: IN PROGRESS
 -   **Agent Testing Done**: N
--   **Which testing method agent to use?**: both. Use the backend testing agent to verify all API endpoints return the updated data correctly. Use the frontend testing agent to confirm the new data is displayed accurately across all relevant tabs and components.
+-   **Which testing method agent to use?**: backend testing agent. After implementing the new data structure and API endpoints, the agent should use  to test the new endpoints for fetching sub-positions. Then, it should run a full calculation test for a product with known national sub-position variations (e.g., vehicles in South Africa) to verify the correct, specific rate is being applied.
 -   **User Testing Done**: N
 
 **All Pending/In progress Issue list**:
 -   None.
 
 **In progress Task List**:
--   **Task 1: Complete Full Application Data Refresh (P0)**
-    -   **Where to resume**: The agent has completed web searches (messages 296-306) and identified the files to update (e.g., , ). The next step is to systematically edit these backend data files to reflect the new 2024-2025 statistics for GDP, port traffic, trade volumes, etc.
-    -   **What will be achieved with this?**: All data within the application will be aligned with the most recent official sources, fulfilling the user's core requirement for data veracity and freshness.
+-   **Task 1: Complete the Refactor for National Tariff Sub-positions (P0)**
+    -   **Where to resume**: The agent needs to continue building out the solution based on the new file .
+        1.  Populate  with sample data for a few key countries and products that have national sub-positions (e.g., vehicles, rice, textiles).
+        2.  Finish creating the new API endpoints to search and retrieve these detailed sub-positions.
+        3.  Completely refactor the  endpoint in  to use this new, final data structure. The logic must now search for a national sub-position match first, before falling back to the 6-digit HS code rate.
+        4.  Update the frontend  to allow users to (optionally) input an 8 or 10-digit code and display the specific sub-position description in the results.
+    -   **What will be achieved with this?**: This will fulfill the user's core requirement for the highest possible tariff accuracy, making the application a professional-grade tool.
     -   **Status**: IN PROGRESS
     -   **Should Test frontend/backend/both after fix?**: Both.
     -   **Blocked on something**: No.
 
 **Upcoming and Future Tasks**
 -   **Upcoming Tasks:**
-    -   **Continue i18n Migration (P1)**: Migrate the  and its sub-components (, , etc.) to use .
-    -   **Add More Dashboard Widgets (P1)**: The user previously expressed a desire for more widgets, including interactive charts and alerts.
+    -   **Data Freshness Indicator (P1)**: Implement a feature to add a last verified timestamp for critical data points like tariffs and economic indicators. This was requested by the user but was deprioritized for the tariff rework.
+    -   **Continue i18n Migration (P1)**: Migrate the  and its sub-components to use .
+    -   **News Feed Search/Filter (P1)**: Add a search bar to the news feed to allow users to filter articles by keywords.
 
 -   **Future Tasks:**
     -   **Secure Admin TRS Upload (P2)**: Implement an admin-only section for the TRS data upload feature.
-    -   **Customizable Visual Themes (P2)**: Allow users to change the application's color scheme and appearance.
     -   **CSV/Excel Data Export (P2)**: Add functionality to export data from tables and charts.
-    -   **Automated Link Verification (P2)**: Agent suggested adding a system to periodically check the validity of external port website links.
-    -   **Data Freshness Indicator (P2)**: Agent suggested adding a last verified timestamp for critical data points.
+    -   **Country Comparison Feature (P2)**: Implement a feature to select 2-3 countries and compare their key economic indicators side-by-side.
 
 **Completed work in this session**
--   **HS6 Code Selector Feature (DONE)**: Fully implemented the frontend  component with search, chapter browsing, and hierarchical views. Integrated it into the  and , replacing previous input fields. Fixed a minor accent-insensitivity bug in the search backend.
--   **Tariff & Tax Data Overhaul (DONE)**: Replaced the generic customs duty system with a comprehensive, country-specific model reflecting the official tariff regimes (e.g., ECOWAS CET, CEMAC CET) and VAT rates for all 54 African countries, using researched 2024-2025 data.
--   **Data Deletion Request (DONE)**: Removed the Port Dakhla Atlantique project from the Morocco country profile data () and successfully verified its removal via the API.
--   **UI/UX Enhancements (DONE)**:
-    -   Moved the Data Sources banner to the bottom of the page in the  and .
-    -   Reduced the font size and height of title headers across the , , and their sub-tabs for a more compact layout.
+-   **Côte d'Ivoire Data Bug (DONE)**: Fixed the bug preventing LPI and AIDI scores from displaying by correcting an apostrophe character normalization issue in .
+-   **HS6 Tariff System Implementation (DONE)**: Built a comprehensive, multi-layered tariff engine from scratch.
+    -   Created a generic HS6 tariff database ().
+    -   Refactored to a country-specific chapter-based system ().
+    -   Refactored again to a country-specific HS6-based system ().
+    -   Scaled the data to cover all 54 African countries.
+-   **New Tariff API Endpoints (DONE)**: Created multiple backend endpoints to search, retrieve, and calculate tariffs using the new data structures.
+-   **Frontend Calculator Enhancement (DONE)**: Updated the  to display an indicator showing whether a specific HS6 tariff was used in a calculation.
 
 **Earlier issues found/mentioned but not fixed**
--   None.
+-   **Issue 1: Data Freshness Indicator**
+    -   The user requested an Indicateur de fraîcheur des données early in the session, but the conversation pivoted to the extensive HS6 tariff work. This feature has not been implemented.
+    -   **Debug checklist**:
+        1.  Add a  field to key data models in the backend (e.g., in , ).
+        2.  Return this timestamp in the relevant API responses.
+        3.  Display the timestamp on the frontend UI next to the relevant data (e.g., Data from: Jan 2025).
+    -   **Why to solve this issue and what will be achieved with this?**: It directly addresses the user's core value of data veracity and transparency.
+    -   **Should Test frontend/backend/both after fix**: Both.
+    -   **Is recurring issue?**: N
 
 **Known issue recurrence from previous fork**
 -   None.
@@ -69,72 +80,73 @@ The application is stable and has undergone significant data accuracy and featur
 
 
 **Key Technical Concepts**
--   **Data Veracity as a Core Principle**: The session was dominated by ensuring data accuracy. This involved creating a new backend system for country-specific data, researching official sources (customs agencies, IMF, World Bank), and applying these updates.
--   **Comprehensive Testing**: Demonstrated a robust testing workflow: manual  tests, frontend build checks, targeted screenshots to verify UI changes, and a final validation with the .
--   **UI/UX Refinement**: Acted on direct user feedback to make concrete improvements to the layout and visual hierarchy of the application.
--   **Backend Data Refactoring**: Shifted from using static, generic JSON data for tariffs to a more scalable Python-based data module () that can handle complex, country-specific rules and economic blocs.
+-   **Iterative Data Modeling**: The session involved multiple, rapid refactoring cycles of the backend data structures for tariffs, driven by increasingly specific user requirements (Chapter -> Generic HS6 -> Country-Chapter -> Country-HS6 -> Country-HS6-Detailed).
+-   **Deep Tariff Logic**: Implementation of complex business rules for international trade, including MFN vs. ZLECAf rates, community levies (ECOWAS), country-specific VAT, and the AfCFTA tariff liberalization schedule (normal vs. sensitive products).
+-   **Character Encoding/Normalization**: The root cause of the Côte d'Ivoire bug was a subtle difference between an ASCII apostrophe () and a Unicode typographic apostrophe (), requiring careful normalization.
 
 **key DB schema**
--   No database schema changes were made.
+-   No database changes. All data is managed through Python dictionaries and CSV files.
 
 **All files of reference**
--   **/app/backend/etl/country_tariffs.py**: A new, critical file containing the official tariff structures for all 54 African countries.
--   **/app/backend/server.py**: Modified significantly to integrate the new  logic into the  endpoint.
--   **/app/frontend/src/components/HSCodeSelector.jsx**: The new, fully-featured component for HS code selection.
--   **/app/frontend/src/components/calculator/CalculatorTab.jsx**: Modified to use the new HS selector.
--   **/app/frontend/src/components/rules/RulesTab.jsx**: Modified to use the new HS selector.
--   **/app/frontend/src/components/logistics/LogisticsTab.jsx**: Modified for UI/UX layout changes.
--   **/app/frontend/src/components/production/ProductionTab.jsx**: Modified for UI/UX layout changes.
--   **/app/projets_structurants_afrique.json**: Modified to remove a project as per user request.
+-   **/app/backend/etl/country_hs6_detailed.py**: **CRITICAL**. The new file for the current refactoring task.
+-   **/app/backend/server.py**: **CRITICAL**. The heart of the application, containing all tariff calculation logic that needs to be updated.
+-   **/app/backend/etl/country_hs6_tariffs.py**: The current working data file that will be superseded by .
+-   **/app/frontend/src/components/calculator/CalculatorTab.jsx**: The frontend component that will need updates to consume and display the new detailed tariff data.
 
 **Areas that need refactoring**:
--   The progressive migration to  remains the primary pending refactoring task, starting with the Production tab.
+-   The  file is now extremely large and complex due to the addition of all tariff logic. It urgently needs to be modularized. The tariff calculation logic should be moved to a dedicated service file in . The tariff API endpoints should be moved to .
+-   The obsolete tariff files (, ) should be deleted once the migration to  is complete and verified.
 
 **key api endpoints**
--   : Heavily modified to use the new country-specific tariff and VAT system.
--   : Used for verification after a data deletion request.
--   : Backend logic was improved to be accent-insensitive.
+-   : **CRITICAL**. The main endpoint for tariff calculation. Heavily modified and needs further refactoring.
+-   : Gets the tariff for a specific country and HS6 code.
+-   : New endpoint to get a summary of all rates for all countries.
+-   The agent was in the process of creating new endpoints for the detailed sub-positions.
 
 **Critical Info for New Agent**
--   **Data accuracy is the highest priority.** The user has repeatedly requested and approved work to ensure all data (tariffs, VAT, stats) is official and up-to-date. The current task is a continuation of this effort. You must complete the data update before moving on.
--   **The user is highly engaged and provides specific, actionable feedback.** Pay close attention to their requests for UI tweaks and data corrections.
--   **The backend data structure for tariffs is now sophisticated.** Refer to  to understand how rates are structured by country and economic bloc (ECOWAS, CEMAC, etc.).
+-   **Priority #1 is completing the tariff system refactor to support national sub-positions (Option A).** The user is highly technical and values accuracy above all else. Do not simplify the solution.
+-   The user has driven the architecture towards extreme data granularity. The next agent must continue this pattern.
+-   After the current refactor is complete, propose the modularization of  as a necessary technical debt cleanup task.
+-   The user's request for a Data Freshness Indicator is still pending and should be addressed after the tariff work is fully completed and verified.
 
 **documents and test reports created in this job**
--   /app/test_reports/iteration_3.json
--   /app/memory/PRD.md (updated)
+-   /app/backend/etl/country_hs6_tariffs_cedeao_cemac.py
+-   /app/backend/etl/country_hs6_tariffs_eac_sadc.py
+-   /app/backend/etl/country_hs6_tariffs_north_other.py
+-   /app/backend/etl/country_hs6_detailed.py
 
 **Last 10 User Messages and any pending HUMAN messages**
-1.  **User**: Update all data: logistics, production, and profiles. (Status: **In Progress**)
-2.  **User**: Update the data and search for new data. (Status: **Completed**, led to the current task)
-3.  **User**: All unconfigured countries must use official rates for tariffs, VAT, and other taxes to ensure veracity. (Status: **Completed**, led to the full data overhaul)
-4.  **User**: Reported a bug with incorrect customs duties for Algeria. (Status: **Completed**)
-5.  **User**: Requested to reduce the font size and height of headers in the Production and Logistics tabs. (Status: **Completed**)
-6.  **User**: Requested to move the data sources banner to the bottom of the page in the Production and Logistics tabs. (Status: **Completed**)
-7.  **User**: Requested to delete the Dakhla Port project from Morocco's profile. (Status: **Completed**)
-8.  **User**: Sent a confusing code snippet, which the agent correctly identified as redundant. (Status: **Handled**)
-9.  **User**: Confirmed the plan to finalize the  component. (Status: **Completed**)
-10. **Agent**: Finished the HS code selector implementation and asked for the next steps. (Status: **Completed**)
+1.  **User**: I want to apply the country-specific HS6 tariff methodology to all African countries. (Status: **Completed**)
+2.  **User**: I have a key point: national tariff positions (8-10 digits) can have different rates than the international HS6 code. You need to handle this. (Status: **In Progress**)
+3.  **User**: I choose Option A for handling sub-positions (detailed data structure). It's the most professional. (Status: **In Progress**)
+4.  **User**: Your SH6 implementation is good, but the 8% duty for all countries is wrong. Update the database with correct duties and VAT for every African country. (Status: **Completed**)
+5.  **User**: The HS6 search works, but the rates are wrong. (Message leading to the per-country refactor) (Status: **Handled**)
+6.  **User**: Use HS6 codes throughout the app for optimization. (Status: **Completed**)
+7.  **User**: The LPI/AIDI bug is fixed, perfect. Now start on the Data Freshness Indicator. (Status: **Superseded**)
+8.  **User**: The preview is not working at all. (Status: **Handled**, was a misdiagnosis of the C.I.V. bug)
+9.  **User**: Fix the previous bug (LPI/AIDI). (Status: **Completed**)
+10. **User**: Start with the Data freshness indicator to avoid mock data. (Status: **Superseded**)
 
 **Project Health Check:**
--   **Working**: The application is fully functional. All features are stable.
--   **Broken**: No part of the application is broken.
--   **Mocked**: No mocked parts. The current work involves updating live data in the backend.
+-   **Working**: The application is stable. The news feed, country profiles, and the tariff calculator are functional, albeit with the tariff engine in a state of transition.
+-   **Broken**: No part of the application is outright broken.
+-   **Mocked**: No mocked data. The current task is to make the existing real data even more granular.
 
 **3rd Party Integrations**
--   
+-   : Used to parse RSS feeds for the news dashboard feature.
+-   : Used in the fix for the Côte d'Ivoire bug.
 -    & 
 -   
 -   
 
 **Testing status**
--   **Testing agent used after significant changes**: YES, used successfully to validate the full HS Code Selector feature after its implementation.
--   **Troubleshoot agent used after agent stuck in loop**: NO.
--   **Test files created**:  (data file, but serves as a test basis).
+-   **Testing agent used after significant changes**: NO. The agent self-tested the numerous backend changes using extensive  commands and screenshot-based tests for the frontend.
+-   **Troubleshoot agent used after agent stuck in loop**: NO
+-   **Test files created**: None.
 -   **Known regressions**: None.
 
 **Credentials to test flow:**
 -   N/A
 
 **What agent forgot to execute**
--   Nothing. The agent was actively working on the user's latest and most comprehensive request when the session ended.</analysis>
+-   The agent did not implement the **Data Freshness Indicator** as requested by the user. The user pivoted the conversation to the HS6 tariff rework, and this task was put on the back burner. It remains a valid, unimplemented user request.</analysis>
