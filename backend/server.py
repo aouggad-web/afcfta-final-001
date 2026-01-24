@@ -869,10 +869,10 @@ async def get_rules_of_origin(hs_code: str, lang: str = "fr"):
 
 @api_router.post("/calculate-tariff", response_model=TariffCalculationResponse)
 async def calculate_comprehensive_tariff(request: TariffCalculationRequest):
-    """Calculer les tarifs complets avec données officielles 2024 et règles d'origine
+    """Calculer les tarifs complets avec données officielles 2025 et règles d'origine
     
     Accepte les codes ISO2 (ex: DZ) ou ISO3 (ex: DZA) pour les pays
-    Utilise les tarifs SH6 précis si disponibles, sinon les taux par chapitre
+    Utilise les tarifs RÉELS par pays de destination
     """
     
     # Chercher par ISO3 d'abord, puis ISO2 (rétrocompatibilité)
@@ -889,46 +889,63 @@ async def calculate_comprehensive_tariff(request: TariffCalculationRequest):
     
     # Utiliser ISO3 pour les calculs
     dest_iso3 = dest_country['iso3']
+    origin_iso3 = origin_country['iso3']
     
     # Code SH6 complet et code chapitre
     hs6_code = request.hs_code.zfill(6)
     sector_code = hs6_code[:2]
     
-    # PRIORITÉ 1: Tarifs SH6 précis si disponibles
-    hs6_normal_rate, hs6_zlecaf_rate = get_hs6_tariff_rates(hs6_code)
-    hs6_tariff_data = get_hs6_tariff(hs6_code)
-    tariff_precision = "hs6" if hs6_tariff_data else "chapter"
+    # ============================================================
+    # NOUVEAU: Utiliser les taux RÉELS par pays de destination
+    # ============================================================
     
-    # PRIORITÉ 2: Taux spécifiques au pays par chapitre
-    country_specific_rate = get_country_tariff_rate(dest_iso3, sector_code)
+    # Obtenir le taux de droit de douane NPF (Nation la Plus Favorisée) du pays
+    normal_rate, npf_source = get_tariff_rate_for_country(dest_iso3, hs6_code)
     
-    # Charger les taux corrigés depuis le fichier JSON 2024 (fallback)
+    # Obtenir le taux ZLECAf calculé selon le calendrier de libéralisation
+    zlecaf_rate, zlecaf_source = get_zlecaf_tariff_rate(dest_iso3, hs6_code)
+    
+    # Obtenir le taux de TVA du pays
+    vat_rate, vat_source = get_vat_rate_for_country(dest_iso3)
+    
+    # Obtenir les autres taxes du pays
+    other_taxes_rate, other_taxes_detail = get_other_taxes_for_country(dest_iso3)
+    
+    # Source de tarif pour affichage
+    rate_source = f"Tarif officiel {dest_iso3} - {npf_source}"
+    
+    # Période de transition selon le secteur
     tariff_corrections = get_tariff_corrections()
-    generic_rates = tariff_corrections.get('normal_rates', {})
-    zlecaf_rates = tariff_corrections.get('zlecaf_rates', {})
     transition_periods = tariff_corrections.get('transition_periods', {})
-    
-    # Déterminer les taux finaux (SH6 précis > Pays > Générique)
-    if hs6_normal_rate is not None:
-        normal_rate = hs6_normal_rate
-        zlecaf_rate = hs6_zlecaf_rate
-        rate_source = f"Tarif SH6 spécifique ({hs6_code})"
-    elif country_specific_rate is not None:
-        normal_rate = country_specific_rate
-        zlecaf_rate = zlecaf_rates.get(sector_code, 0.03)
-        rate_source = f"Tarif pays {dest_iso3} (chapitre {sector_code})"
-    else:
-        normal_rate = generic_rates.get(sector_code, 0.15)
-        zlecaf_rate = zlecaf_rates.get(sector_code, 0.03)
-        rate_source = f"Tarif générique (chapitre {sector_code})"
-    
     transition_period = transition_periods.get(sector_code, 'immediate')
     
-    # Calculs des droits de douane en USD
-    normal_amount = request.value * normal_rate
-    zlecaf_amount = request.value * zlecaf_rate
-    savings = normal_amount - zlecaf_amount
-    savings_percentage = (savings / normal_amount) * 100 if normal_amount > 0 else 0
+    # ============================================================
+    # CALCULS DES MONTANTS
+    # ============================================================
+    
+    # Droits de douane
+    normal_customs = request.value * normal_rate
+    zlecaf_customs = request.value * zlecaf_rate
+    
+    # Autres taxes (sur valeur CIF)
+    other_taxes_amount = request.value * other_taxes_rate
+    
+    # TVA calculée sur (Valeur + DD + Autres taxes)
+    normal_vat_base = request.value + normal_customs + other_taxes_amount
+    zlecaf_vat_base = request.value + zlecaf_customs + other_taxes_amount
+    
+    normal_vat_amount = normal_vat_base * vat_rate
+    zlecaf_vat_amount = zlecaf_vat_base * vat_rate
+    
+    # Totaux
+    normal_total = request.value + normal_customs + other_taxes_amount + normal_vat_amount
+    zlecaf_total = request.value + zlecaf_customs + other_taxes_amount + zlecaf_vat_amount
+    
+    # Économies
+    savings = normal_customs - zlecaf_customs
+    savings_percentage = (savings / normal_customs) * 100 if normal_customs > 0 else 0
+    total_savings_with_taxes = normal_total - zlecaf_total
+    total_savings_percentage = (total_savings_with_taxes / normal_total) * 100 if normal_total > 0 else 0
     
     # Calcul des taxes pour le scénario NORMAL (NPF)
     normal_taxes = calculate_all_taxes(
