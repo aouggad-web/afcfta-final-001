@@ -887,7 +887,12 @@ async def calculate_comprehensive_tariff(request: TariffCalculationRequest):
     """Calculer les tarifs complets avec données officielles 2025 et règles d'origine
     
     Accepte les codes ISO2 (ex: DZ) ou ISO3 (ex: DZA) pour les pays
-    Utilise les tarifs RÉELS par pays de destination
+    Supporte les codes HS de 6 à 12 chiffres pour plus de précision
+    
+    ORDRE DE PRIORITÉ DES TARIFS:
+    1. Sous-position nationale (8-12 chiffres) si fournie
+    2. Tarif SH6 spécifique au pays
+    3. Tarif par chapitre du pays
     """
     
     # Chercher par ISO3 d'abord, puis ISO2 (rétrocompatibilité)
@@ -906,27 +911,42 @@ async def calculate_comprehensive_tariff(request: TariffCalculationRequest):
     dest_iso3 = dest_country['iso3']
     origin_iso3 = origin_country['iso3']
     
-    # Code SH6 complet et code chapitre
-    hs6_code = request.hs_code.zfill(6)
+    # Nettoyer et normaliser le code HS
+    hs_code_clean = request.hs_code.replace(".", "").replace(" ", "")
+    hs6_code = hs_code_clean[:6].zfill(6)
     sector_code = hs6_code[:2]
     
-    # ============================================================
-    # PRIORITÉ 1: Tarifs SH6 RÉELS par pays de destination
-    # PRIORITÉ 2: Tarifs par chapitre du pays
-    # ============================================================
+    # Variables pour traçabilité
+    tariff_precision = "chapter"
+    sub_position_used = None
+    sub_position_description = None
     
-    # Essayer d'abord le tarif SH6 spécifique au pays
-    hs6_tariff = get_country_hs6_tariff(dest_iso3, hs6_code)
+    # ============================================================
+    # PRIORITÉ 1: Sous-position nationale (8-12 chiffres)
+    # ============================================================
+    if len(hs_code_clean) > 6:
+        rate, description, source = get_sub_position_rate(dest_iso3, hs_code_clean)
+        if rate is not None:
+            normal_rate = rate
+            npf_source = f"Sous-position nationale {dest_iso3} ({hs_code_clean})"
+            tariff_precision = "sub_position"
+            sub_position_used = hs_code_clean
+            sub_position_description = description
     
-    if hs6_tariff:
-        # Tarif SH6 spécifique trouvé pour ce pays
-        normal_rate = hs6_tariff["dd"]
-        npf_source = f"Tarif SH6 {dest_iso3} ({hs6_code})"
-        tariff_precision = "hs6_country"
-    else:
-        # Fallback: taux par chapitre du pays
-        normal_rate, npf_source = get_tariff_rate_for_country(dest_iso3, hs6_code)
-        tariff_precision = "chapter"
+    # ============================================================
+    # PRIORITÉ 2: Tarifs SH6 RÉELS par pays de destination
+    # ============================================================
+    if tariff_precision == "chapter":
+        hs6_tariff = get_country_hs6_tariff(dest_iso3, hs6_code)
+        
+        if hs6_tariff:
+            normal_rate = hs6_tariff["dd"]
+            npf_source = f"Tarif SH6 {dest_iso3} ({hs6_code})"
+            tariff_precision = "hs6_country"
+        else:
+            # PRIORITÉ 3: Fallback vers taux par chapitre du pays
+            normal_rate, npf_source = get_tariff_rate_for_country(dest_iso3, hs6_code)
+            tariff_precision = "chapter"
     
     # Obtenir le taux ZLECAf calculé selon le calendrier de libéralisation
     # Le taux ZLECAf est calculé à partir du taux normal avec réduction progressive
