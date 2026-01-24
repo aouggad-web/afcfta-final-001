@@ -273,3 +273,5 @@ Application web d'analyse des statistiques commerciales et économiques africain
 - `/app/tests/test_dashboard_apis.py` - Tests API dashboard
 - `/app/tests/test_2024_data_update.py` - Tests mise à jour données 2024-2025
 - `/app/test_reports/iteration_4.json` - Rapport de test (36/36 tests passés)
+- `/app/test_reports/iteration_5.json` - Tests extension HS6 (40/40 tests passés)
+- `/app/backend/tests/test_hs6_extended_api.py` - Tests API HS6 étendues
