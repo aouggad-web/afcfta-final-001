@@ -477,6 +477,7 @@ class TariffCalculationResponse(BaseModel):
     origin_country: str
     destination_country: str
     hs_code: str
+    hs6_code: Optional[str] = None  # Code SH6 extrait
     value: float
     # Tarifs normaux (hors ZLECAf)
     normal_tariff_rate: float
@@ -511,6 +512,12 @@ class TariffCalculationResponse(BaseModel):
     computation_order_ref: str
     last_verified: str
     confidence_level: str
+    # Précision tarifaire et sous-positions nationales
+    tariff_precision: str = "chapter"  # sub_position, hs6_country, chapter
+    sub_position_used: Optional[str] = None  # Code 8-12 chiffres si utilisé
+    sub_position_description: Optional[str] = None
+    has_varying_sub_positions: bool = False  # Si d'autres taux existent pour ce HS6
+    available_sub_positions_count: int = 0
     # Règles d'origine
     rules_of_origin: Dict[str, Any]
     # Top producteurs africains
