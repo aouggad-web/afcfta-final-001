@@ -82,6 +82,17 @@ from etl.country_hs6_detailed import (
     get_tariff_summary,
     COUNTRY_HS6_DETAILED
 )
+from etl.hs6_database import (
+    HS6_DATABASE,
+    SUB_POSITION_TYPES,
+    get_hs6_info,
+    get_sub_position_suggestions,
+    get_rule_of_origin,
+    search_hs6_codes,
+    get_all_categories,
+    get_codes_by_category,
+    get_database_stats
+)
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
