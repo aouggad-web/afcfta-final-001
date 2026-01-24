@@ -115,12 +115,22 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
       normalRate: "Taux NPF",
       zlecafRate: "Taux ZLECAf",
       savingsRate: "Économie",
-      hs6DataSource: "Source: OMC ITC, CNUCED TRAINS, WITS"
+      hs6DataSource: "Source: OMC ITC, CNUCED TRAINS, WITS",
+      // Sous-positions nationales
+      subPositionApplied: "Sous-position nationale appliquée",
+      subPositionInfo: "Tarif Sous-Position Nationale",
+      subPositionCode: "Code national",
+      subPositionsAvailable: "sous-positions disponibles",
+      varyingRates: "Taux variables selon la sous-position",
+      viewAllSubPositions: "Voir toutes les sous-positions",
+      precisionHigh: "Haute précision",
+      precisionMedium: "Précision moyenne"
     },
     en: {
       originCountry: "Origin Country",
       partnerCountry: "Partner Country",
-      hsCodeLabel: "HS6 Code (6 digits)",
+      hsCodeLabel: "HS Code (6-12 digits)",
+      hsCodeHint: "6 digits = international HS | 8-12 digits = national sub-position",
       valueLabel: "Merchandise Value (USD)",
       calculateBtn: "Calculate with Official Data",
       calculatorTitle: "Complete AfCFTA Calculator",
@@ -128,8 +138,8 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
       rulesOrigin: "AfCFTA Rules of Origin",
       missingFields: "Missing Fields",
       fillAllFields: "Please fill in all fields",
-      invalidHsCode: "Invalid HS6 Code",
-      hsCodeMust6: "HS6 code must contain exactly 6 digits",
+      invalidHsCode: "Invalid HS Code",
+      hsCodeMust6to12: "HS code must contain between 6 and 12 digits",
       calculationSuccess: "Calculation Successful",
       potentialSavings: "Potential Savings",
       calculationError: "Calculation Error",
@@ -163,7 +173,7 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
       hsCodeSelectorDesc: "Search or browse Harmonized System codes",
       browseHS: "Browse HS codes",
       hideHSBrowser: "Hide browser",
-      // New SH6 translations
+      // HS6 translations
       hs6TariffInfo: "Precise HS6 Tariff",
       hs6TariffApplied: "Specific HS6 tariff applied",
       chapterTariffApplied: "Chapter tariff applied",
@@ -172,7 +182,16 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
       normalRate: "MFN Rate",
       zlecafRate: "AfCFTA Rate",
       savingsRate: "Savings",
-      hs6DataSource: "Source: WTO ITC, UNCTAD TRAINS, WITS"
+      hs6DataSource: "Source: WTO ITC, UNCTAD TRAINS, WITS",
+      // National sub-positions
+      subPositionApplied: "National sub-position applied",
+      subPositionInfo: "National Sub-Position Tariff",
+      subPositionCode: "National code",
+      subPositionsAvailable: "sub-positions available",
+      varyingRates: "Rates vary by sub-position",
+      viewAllSubPositions: "View all sub-positions",
+      precisionHigh: "High precision",
+      precisionMedium: "Medium precision"
     }
   };
 
