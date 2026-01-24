@@ -200,10 +200,15 @@ Application web d'analyse des statistiques commerciales et économiques africain
 ## Backlog
 
 ### Complété ✅
-- **Sous-positions nationales (24/01/2025)** - NEW
+- **Sous-positions nationales 54 PAYS (24/01/2025)** - COMPLETE
   - Support des codes HS 8-12 chiffres pour tarifs précis
-  - 4 pays avec données détaillées (NGA, CIV, ZAF, KEN)
-  - 60 codes HS6 avec 161 sous-positions nationales
+  - **54 pays africains** avec données détaillées
+  - **320 codes HS6** avec **768 sous-positions nationales**
+  - Fichiers créés:
+    - `/app/backend/etl/country_hs6_detailed_cedeao.py` (13 pays)
+    - `/app/backend/etl/country_hs6_detailed_cemac.py` (8 pays)
+    - `/app/backend/etl/country_hs6_detailed_eac_sadc.py` (22 pays)
+    - `/app/backend/etl/country_hs6_detailed_north_africa.py` (7 pays)
   - API endpoints: `/api/tariffs/detailed/{country}/{hs}`, `/api/tariffs/sub-positions/{country}/{hs6}`
   - Frontend mis à jour pour saisie codes 6-12 chiffres
   - Indicateur de précision tarifaire dans les résultats
