@@ -2394,6 +2394,123 @@ async def get_all_rates_endpoint():
     return get_all_country_rates()
 
 
+# =============================================================================
+# SH6 TARIFFS BY COUNTRY ENDPOINTS
+# =============================================================================
+
+@api_router.get("/country-hs6-tariffs/{country_code}/search")
+async def search_country_hs6_endpoint(
+    country_code: str,
+    q: str = Query(..., description="Search query"),
+    language: str = Query("fr", description="Language: fr or en"),
+    limit: int = Query(20, ge=1, le=100)
+):
+    """
+    Rechercher des codes SH6 avec tarifs réels dans un pays spécifique
+    """
+    results = search_country_hs6_tariffs(country_code, q, language, limit)
+    
+    return {
+        "country_code": country_code.upper(),
+        "query": q,
+        "count": len(results),
+        "results": results
+    }
+
+
+@api_router.get("/country-hs6-tariffs/{country_code}/{hs6_code}")
+async def get_country_hs6_tariff_endpoint(
+    country_code: str,
+    hs6_code: str,
+    language: str = Query("fr")
+):
+    """
+    Obtenir le tarif SH6 réel pour un pays et un code spécifique
+    """
+    tariff = get_country_hs6_tariff(country_code, hs6_code)
+    
+    if not tariff:
+        # Fallback vers le taux par chapitre
+        from etl.country_tariffs_complete import get_tariff_rate_for_country
+        chapter_rate, source = get_tariff_rate_for_country(country_code, hs6_code)
+        return {
+            "country_code": country_code.upper(),
+            "hs6_code": hs6_code,
+            "has_hs6_specific_rate": False,
+            "dd_rate": chapter_rate,
+            "dd_rate_pct": f"{chapter_rate * 100:.1f}%",
+            "source": source,
+            "note": "Taux par chapitre utilisé (pas de tarif SH6 spécifique disponible)"
+        }
+    
+    desc_key = f"description_{language}"
+    return {
+        "country_code": country_code.upper(),
+        "hs6_code": hs6_code,
+        "has_hs6_specific_rate": True,
+        "dd_rate": tariff["dd"],
+        "dd_rate_pct": f"{tariff['dd'] * 100:.1f}%",
+        "description": tariff.get(desc_key, tariff.get("description_fr", "")),
+        "source": f"Tarif SH6 officiel {country_code.upper()}"
+    }
+
+
+@api_router.get("/country-hs6-tariffs/available")
+async def get_available_hs6_tariffs():
+    """
+    Obtenir la liste des pays avec tarifs SH6 détaillés disponibles
+    """
+    available = get_available_country_tariffs()
+    return {
+        "countries_with_hs6_tariffs": len(available),
+        "countries": available,
+        "note": "Pour les pays non listés, les taux par chapitre sont utilisés"
+    }
+
+
+@api_router.get("/country-hs6-tariffs/{country_code}/all")
+async def get_all_country_hs6_tariffs(country_code: str, language: str = Query("fr")):
+    """
+    Obtenir tous les tarifs SH6 disponibles pour un pays
+    """
+    from etl.country_hs6_tariffs import COUNTRY_HS6_TARIFFS, ISO2_TO_ISO3
+    
+    # Normaliser le code pays
+    if len(country_code) == 2:
+        iso3 = ISO2_TO_ISO3.get(country_code.upper(), country_code.upper())
+    else:
+        iso3 = country_code.upper()
+    
+    tariffs = COUNTRY_HS6_TARIFFS.get(iso3, {})
+    
+    if not tariffs:
+        return {
+            "country_code": iso3,
+            "has_hs6_tariffs": False,
+            "count": 0,
+            "tariffs": [],
+            "note": "Pas de tarifs SH6 spécifiques pour ce pays - utiliser taux par chapitre"
+        }
+    
+    desc_key = f"description_{language}"
+    formatted_tariffs = [
+        {
+            "hs6_code": code,
+            "dd_rate": data["dd"],
+            "dd_rate_pct": f"{data['dd'] * 100:.1f}%",
+            "description": data.get(desc_key, data.get("description_fr", ""))
+        }
+        for code, data in sorted(tariffs.items())
+    ]
+    
+    return {
+        "country_code": iso3,
+        "has_hs6_tariffs": True,
+        "count": len(formatted_tariffs),
+        "tariffs": formatted_tariffs
+    }
+
+
 # FAOSTAT ENRICHED DATA ENDPOINTS
 # ==========================================
 
