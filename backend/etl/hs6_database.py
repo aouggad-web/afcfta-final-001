@@ -1689,6 +1689,19 @@ SUB_POSITION_TYPES = {
 
 
 # =============================================================================
+# FUSION DES DONNÉES D'EXTENSION DANS LA BASE PRINCIPALE
+# =============================================================================
+
+# Fusionner tous les dictionnaires d'extension dans HS6_DATABASE
+HS6_DATABASE.update(HS6_EXTENDED_CH01_06)
+HS6_DATABASE.update(HS6_EXTENDED_CH07_15)
+HS6_DATABASE.update(HS6_EXTENDED_CH16_24)
+HS6_DATABASE.update(HS6_EXTENDED_CH25_40)
+HS6_DATABASE.update(HS6_EXTENDED_CH41_63)
+HS6_DATABASE.update(HS6_EXTENDED_CH72_89)
+
+
+# =============================================================================
 # FONCTIONS D'ACCÈS À LA BASE HS6
 # =============================================================================
 
