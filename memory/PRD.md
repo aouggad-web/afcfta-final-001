@@ -229,12 +229,12 @@ Application web d'analyse des statistiques commerciales et économiques africain
 
 ### P1 - Prochaines Tâches
 - **Indicateur de fraîcheur des données** : Afficher "Données vérifiées le : Jan 2025" sur les tarifs
-- **Étendre sous-positions** : Ajouter plus de pays avec tarifs détaillés (50 restants)
 - Migration progressive des autres composants vers react-i18next centralisé (ProductionTab)
 - Ajouter plus de widgets interactifs (graphiques personnalisables)
 - Ajouter authentification admin pour TRS upload
 
 ### P2 - Améliorations Futures
+- **Enrichir sous-positions** : Ajouter plus de codes HS6 pour chaque pays (coverage actuelle ~6 HS6/pays)
 - Thèmes visuels personnalisables
 - Export des données en CSV/Excel
 - Dashboard avec alertes personnalisées
