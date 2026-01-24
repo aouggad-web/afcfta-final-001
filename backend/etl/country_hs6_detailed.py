@@ -694,15 +694,45 @@ KEN_HS6_DETAILED = {
 }
 
 # =============================================================================
-# CONSOLIDATION DES TARIFS DÉTAILLÉS
+# CONSOLIDATION DES TARIFS DÉTAILLÉS - 54 PAYS AFRICAINS
 # =============================================================================
 
+# Importer les dictionnaires régionaux
+from etl.country_hs6_detailed_cedeao import CEDEAO_HS6_DETAILED
+from etl.country_hs6_detailed_cemac import CEMAC_HS6_DETAILED
+from etl.country_hs6_detailed_eac_sadc import EAC_SADC_HS6_DETAILED
+from etl.country_hs6_detailed_north_africa import NORTH_AFRICA_HS6_DETAILED
+
+# Dictionnaire de base (4 pays déjà définis dans ce fichier)
 COUNTRY_HS6_DETAILED = {
     "NGA": NGA_HS6_DETAILED,
     "CIV": CIV_HS6_DETAILED,
     "ZAF": ZAF_HS6_DETAILED,
     "KEN": KEN_HS6_DETAILED,
 }
+
+# Fusion de tous les dictionnaires régionaux
+COUNTRY_HS6_DETAILED.update(CEDEAO_HS6_DETAILED)       # +13 pays CEDEAO (hors NGA, CIV)
+COUNTRY_HS6_DETAILED.update(CEMAC_HS6_DETAILED)        # +8 pays CEMAC + RDC + STP
+COUNTRY_HS6_DETAILED.update(EAC_SADC_HS6_DETAILED)     # +22 pays EAC/COMESA/SADC (hors KEN, ZAF)
+COUNTRY_HS6_DETAILED.update(NORTH_AFRICA_HS6_DETAILED) # +7 pays Afrique du Nord
+
+# Statistiques des données
+def get_detailed_tariff_stats():
+    """Retourne les statistiques des tarifs détaillés"""
+    total_countries = len(COUNTRY_HS6_DETAILED)
+    total_hs6_codes = sum(len(tariffs) for tariffs in COUNTRY_HS6_DETAILED.values())
+    total_sub_positions = sum(
+        len(hs6_data.get("sub_positions", {}))
+        for tariffs in COUNTRY_HS6_DETAILED.values()
+        for hs6_data in tariffs.values()
+    )
+    return {
+        "total_countries": total_countries,
+        "total_hs6_codes": total_hs6_codes,
+        "total_sub_positions": total_sub_positions,
+        "countries": list(COUNTRY_HS6_DETAILED.keys())
+    }
 
 
 # =============================================================================
