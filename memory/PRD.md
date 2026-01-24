@@ -22,12 +22,13 @@ Application web d'analyse des statistiques commerciales et économiques africain
 - **Sauvegarde** de la configuration dans localStorage
 - **Actualisation automatique** des données (toutes les 60 secondes)
 
-### 2. Calculateur de Tarifs (ENHANCED - 24/01/2025)
+### 2. Calculateur de Tarifs (ENHANCED - 27/01/2025)
 - Calcul des droits de douane avec et sans ZLECAf
 - Comparaison des économies potentielles
 - **COMPLETE: Base HS6 enrichie + Sous-positions nationales**
-  - **93 codes HS6** dans la base principale avec métadonnées complètes
-  - **36 catégories** de produits (vehicles, coffee, ores, textiles, etc.)
+  - **825 codes HS6** dans la base principale avec métadonnées complètes (extension terminée)
+  - **62 catégories** de produits (vehicles, coffee, ores, textiles, leather, steel, ships, etc.)
+  - **747 codes avec sous-positions** détaillées
   - **54 pays africains** avec 768 sous-positions nationales
   - **Règles d'origine ZLECAf** intégrées par code HS6
 - **Recherche intelligente** avec suggestions automatiques:
