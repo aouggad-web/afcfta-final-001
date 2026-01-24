@@ -2256,6 +2256,121 @@ async def get_african_export_products(language: str = Query("fr")):
     }
 
 
+# =============================================================================
+# COUNTRY TARIFFS ENDPOINTS - Taux par pays
+# =============================================================================
+
+@api_router.get("/country-tariffs/{country_code}")
+async def get_country_tariffs_endpoint(
+    country_code: str,
+    hs_code: str = Query("18", description="HS code (2-6 digits)")
+):
+    """
+    Obtenir les tarifs douaniers spécifiques à un pays
+    Retourne les taux NPF, ZLECAf, TVA et autres taxes
+    """
+    # Normaliser le code pays
+    from etl.country_tariffs_complete import ISO2_TO_ISO3
+    if len(country_code) == 2:
+        country_iso3 = ISO2_TO_ISO3.get(country_code.upper(), country_code.upper())
+    else:
+        country_iso3 = country_code.upper()
+    
+    # Obtenir les taux
+    npf_rate, npf_source = get_tariff_rate_for_country(country_iso3, hs_code)
+    zlecaf_rate, zlecaf_source = get_zlecaf_tariff_rate(country_iso3, hs_code)
+    vat_rate, vat_source = get_vat_rate_for_country(country_iso3)
+    other_rate, other_detail = get_other_taxes_for_country(country_iso3)
+    
+    # Trouver le pays
+    country = next((c for c in AFRICAN_COUNTRIES if c['iso3'] == country_iso3), None)
+    country_name = country['name'] if country else country_iso3
+    
+    return {
+        "country_code": country_iso3,
+        "country_name": country_name,
+        "hs_code": hs_code,
+        "chapter": hs_code[:2],
+        "tariffs": {
+            "npf_rate": npf_rate,
+            "npf_rate_pct": f"{npf_rate * 100:.1f}%",
+            "zlecaf_rate": zlecaf_rate,
+            "zlecaf_rate_pct": f"{zlecaf_rate * 100:.1f}%",
+            "potential_savings_pct": round((npf_rate - zlecaf_rate) / npf_rate * 100, 1) if npf_rate > 0 else 0
+        },
+        "taxes": {
+            "vat_rate": vat_rate,
+            "vat_rate_pct": f"{vat_rate * 100:.1f}%",
+            "other_taxes_rate": other_rate,
+            "other_taxes_pct": f"{other_rate * 100:.1f}%",
+            "other_taxes_detail": other_detail
+        },
+        "sources": {
+            "tariff": npf_source,
+            "zlecaf": zlecaf_source,
+            "vat": vat_source
+        },
+        "last_updated": "2025-01"
+    }
+
+
+@api_router.get("/country-tariffs-comparison")
+async def compare_country_tariffs(
+    countries: str = Query("NGA,GHA,KEN,ZAF,EGY", description="Comma-separated country codes"),
+    hs_code: str = Query("18", description="HS code")
+):
+    """
+    Comparer les tarifs entre plusieurs pays africains
+    """
+    country_list = [c.strip().upper() for c in countries.split(",")]
+    
+    results = []
+    for cc in country_list:
+        from etl.country_tariffs_complete import ISO2_TO_ISO3
+        if len(cc) == 2:
+            iso3 = ISO2_TO_ISO3.get(cc, cc)
+        else:
+            iso3 = cc
+        
+        npf_rate, _ = get_tariff_rate_for_country(iso3, hs_code)
+        zlecaf_rate, _ = get_zlecaf_tariff_rate(iso3, hs_code)
+        vat_rate, _ = get_vat_rate_for_country(iso3)
+        other_rate, _ = get_other_taxes_for_country(iso3)
+        
+        country = next((c for c in AFRICAN_COUNTRIES if c['iso3'] == iso3), None)
+        
+        results.append({
+            "country_code": iso3,
+            "country_name": country['name'] if country else iso3,
+            "npf_rate_pct": f"{npf_rate * 100:.1f}%",
+            "zlecaf_rate_pct": f"{zlecaf_rate * 100:.1f}%",
+            "vat_rate_pct": f"{vat_rate * 100:.1f}%",
+            "other_taxes_pct": f"{other_rate * 100:.1f}%",
+            "total_cost_factor_npf": round(1 + npf_rate + vat_rate * (1 + npf_rate) + other_rate, 3),
+            "total_cost_factor_zlecaf": round(1 + zlecaf_rate + vat_rate * (1 + zlecaf_rate) + other_rate, 3)
+        })
+    
+    # Trier par coût total NPF
+    results.sort(key=lambda x: x['total_cost_factor_npf'])
+    
+    return {
+        "hs_code": hs_code,
+        "chapter": hs_code[:2],
+        "countries_compared": len(results),
+        "comparison": results,
+        "note": "total_cost_factor = multiplicateur du coût d'importation (1.0 = pas de taxes)"
+    }
+
+
+@api_router.get("/all-country-rates")
+async def get_all_rates_endpoint():
+    """
+    Obtenir un aperçu de tous les taux par pays africain
+    Pour validation et vérification des données
+    """
+    return get_all_country_rates()
+
+
 # FAOSTAT ENRICHED DATA ENDPOINTS
 # ==========================================
 
