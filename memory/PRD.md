@@ -25,9 +25,15 @@ Application web d'analyse des statistiques commerciales et économiques africain
 ### 2. Calculateur de Tarifs (ENHANCED - 24/01/2025)
 - Calcul des droits de douane avec et sans ZLECAf
 - Comparaison des économies potentielles
-- **NEW: Support des sous-positions nationales (codes 8-12 chiffres)**
-  - 4 pays avec tarifs détaillés : Nigeria, Côte d'Ivoire, Afrique du Sud, Kenya
-  - 60 codes HS6 avec 161 sous-positions nationales
+- **COMPLETE: Support des sous-positions nationales (codes 8-12 chiffres)**
+  - **54 pays africains** avec tarifs détaillés
+  - **320 codes HS6** avec **768 sous-positions nationales**
+  - Couverture par région économique:
+    - CEDEAO: 105 HS6, 252 sous-positions
+    - CEMAC+RDC: 48 HS6, 114 sous-positions
+    - EAC: 35 HS6, 88 sous-positions
+    - SADC: 62 HS6, 140 sous-positions
+    - Afrique du Nord + Corne: 70 HS6, 174 sous-positions
   - Taux variables selon sous-position (ex: véhicules neufs vs occasion par âge)
 - **Indicateur de précision tarifaire** :
   - `sub_position` : Sous-position nationale (haute précision)
