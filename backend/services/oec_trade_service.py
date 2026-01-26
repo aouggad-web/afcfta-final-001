@@ -246,17 +246,43 @@ class OECTradeService:
         result = await self._make_request(params)
         return self._format_product_response(result, "imports", country_info)
     
-    def _format_oec_hs_id(self, hs_code: str) -> str:
+    def _get_hs6_prefix(self, hs_code: str) -> int:
         """
-        Formate un code HS pour l'API OEC.
-        L'OEC utilise un format spécifique: préfixe 2 + code HS pour HS4, préfixe 2 + code pour HS6
-        Ex: HS4 0901 (café) -> 20901
-            HS6 090111 -> 2090111
+        Détermine le préfixe OEC correct basé sur le chapitre HS.
+        L'API OEC utilise des préfixes différents selon la section du Système Harmonisé.
         """
-        # Nettoyer le code
-        clean_code = hs_code.lstrip('0').zfill(len(hs_code))
-        # Ajouter le préfixe 2 pour l'API OEC
-        return f"2{hs_code.zfill(4)}" if len(hs_code) <= 4 else f"2{hs_code}"
+        # Extraire le chapitre (2 premiers chiffres)
+        chapter = int(hs_code[:2])
+        
+        # Trouver le préfixe correspondant
+        for (start, end), prefix in OEC_HS6_PREFIXES.items():
+            if start <= chapter <= end:
+                return prefix
+        
+        # Fallback par défaut
+        return 2
+    
+    def _format_oec_hs6_id(self, hs_code: str) -> str:
+        """
+        Formate un code HS6 pour l'API OEC.
+        
+        L'OEC utilise un format spécifique: {prefix}{6-digit-hs-code}
+        Le préfixe dépend de la section HS du produit.
+        
+        Exemples:
+            - 090111 (café) -> Section II (Ch.06-14) -> préfixe 2 -> 2090111
+            - 180100 (cacao) -> Section IV (Ch.16-24) -> préfixe 4 -> 4180100
+            - 270900 (pétrole) -> Section V (Ch.25-27) -> préfixe 5 -> 5270900
+            - 710812 (or) -> Section XIV (Ch.71) -> préfixe 14 -> 14710812
+            - 520100 (coton) -> Section XI (Ch.50-63) -> préfixe 11 -> 11520100
+        """
+        # Normaliser le code à 6 chiffres
+        hs6 = hs_code.zfill(6)[:6]
+        
+        # Obtenir le préfixe basé sur le chapitre
+        prefix = self._get_hs6_prefix(hs6)
+        
+        return f"{prefix}{hs6}"
     
     async def get_trade_by_hs_code(
         self,
@@ -266,40 +292,44 @@ class OECTradeService:
         limit: int = 50
     ) -> Dict:
         """
-        Récupère les statistiques commerciales pour un code HS spécifique
+        Récupère les statistiques commerciales pour un code HS6 spécifique.
+        
+        Utilise le cube HS Rev. 2017 (compatible SH2022) avec des codes HS6
+        pour assurer la cohérence des données.
         
         Args:
-            hs_code: Code HS (4 ou 6 chiffres)
+            hs_code: Code HS (4 ou 6 chiffres - sera converti en HS6)
             year: Année
             trade_flow: "exports" ou "imports"
             limit: Nombre max de résultats
         """
-        # Déterminer le niveau HS et formater l'ID
-        hs_code_clean = hs_code.zfill(4)
-        hs_level = "HS4" if len(hs_code_clean) <= 4 else "HS6"
-        oec_hs_id = self._format_oec_hs_id(hs_code_clean)
+        # Normaliser le code en HS6 (ajouter des zéros si nécessaire)
+        hs6_code = hs_code.zfill(6)[:6]
+        if len(hs_code) == 4:
+            # Si code HS4 fourni, on ajoute '00' pour avoir le code générique HS6
+            hs6_code = hs_code.zfill(4) + "00"
+        
+        oec_hs_id = self._format_oec_hs6_id(hs6_code)
         
         if trade_flow == "exports":
             drilldowns = ["Year", "Exporter Country"]
-            country_field = "Exporter Country"
         else:
             drilldowns = ["Year", "Importer Country"]
-            country_field = "Importer Country"
         
-        # L'API OEC utilise le nom du niveau directement comme filtre (pas "ID")
+        # Utiliser le cube HS17 (compatible SH2022) avec HS6
         params = self._build_params(
-            cube=OEC_CUBES["hs92"],
+            cube=OEC_CUBES[DEFAULT_CUBE],
             drilldowns=drilldowns,
             measures=["Trade Value"],
             cuts={
                 "Year": str(year),
-                hs_level: oec_hs_id
+                "HS6": oec_hs_id
             },
             limit=limit
         )
         
         result = await self._make_request(params)
-        return self._format_hs_response(result, hs_code, year, trade_flow)
+        return self._format_hs_response(result, hs6_code, year, trade_flow)
     
     async def get_bilateral_trade(
         self,
