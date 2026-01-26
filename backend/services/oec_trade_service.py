@@ -188,16 +188,17 @@ class OECTradeService:
         self,
         country_iso3: str,
         year: int,
-        hs_level: str = "HS4",
+        hs_level: str = "HS6",
         limit: int = 50
     ) -> Dict:
         """
-        Récupère les exportations d'un pays par produit
+        Récupère les exportations d'un pays par produit.
+        Utilise le cube HS17 (compatible SH2022) avec HS6 par défaut.
         
         Args:
             country_iso3: Code ISO3 du pays (ex: "NGA" pour Nigeria)
             year: Année (ex: 2022)
-            hs_level: Niveau HS (HS2, HS4, HS6)
+            hs_level: Niveau HS (HS2, HS4, HS6) - HS6 par défaut pour cohérence SH2022
             limit: Nombre max de résultats
         """
         country_info = AFRICAN_COUNTRIES_OEC.get(country_iso3.upper())
@@ -205,7 +206,7 @@ class OECTradeService:
             return {"error": f"Country {country_iso3} not found", "data": []}
         
         params = self._build_params(
-            cube=OEC_CUBES["hs92"],
+            cube=OEC_CUBES[DEFAULT_CUBE],
             drilldowns=["Year", "Exporter Country", hs_level],
             measures=["Trade Value"],
             cuts={
@@ -222,18 +223,19 @@ class OECTradeService:
         self,
         country_iso3: str,
         year: int,
-        hs_level: str = "HS4",
+        hs_level: str = "HS6",
         limit: int = 50
     ) -> Dict:
         """
-        Récupère les importations d'un pays par produit
+        Récupère les importations d'un pays par produit.
+        Utilise le cube HS17 (compatible SH2022) avec HS6 par défaut.
         """
         country_info = AFRICAN_COUNTRIES_OEC.get(country_iso3.upper())
         if not country_info:
             return {"error": f"Country {country_iso3} not found", "data": []}
         
         params = self._build_params(
-            cube=OEC_CUBES["hs92"],
+            cube=OEC_CUBES[DEFAULT_CUBE],
             drilldowns=["Year", "Importer Country", hs_level],
             measures=["Trade Value"],
             cuts={
