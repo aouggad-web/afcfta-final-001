@@ -126,14 +126,14 @@ export default function OECTradeStats({ language = 'fr' }) {
 
   const t = texts[language];
 
-  // Popular HS codes for quick selection
+  // Popular HS codes for quick selection (HS6 format for SH2022 consistency)
   const popularHSCodes = [
-    { code: '0901', label: t.coffee },
-    { code: '1801', label: t.cocoa },
-    { code: '5201', label: t.cotton },
-    { code: '7108', label: t.gold },
-    { code: '2709', label: t.oil },
-    { code: '7102', label: t.diamonds }
+    { code: '090111', label: t.coffee },    // Café non torréfié
+    { code: '180100', label: t.cocoa },     // Fèves de cacao
+    { code: '520100', label: t.cotton },    // Coton non cardé
+    { code: '710812', label: t.gold },      // Or sous formes brutes
+    { code: '270900', label: t.oil },       // Huiles brutes de pétrole
+    { code: '710231', label: t.diamonds }   // Diamants non montés
   ];
 
   // Charger les pays africains
