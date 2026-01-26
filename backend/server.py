@@ -93,6 +93,11 @@ from etl.hs6_database import (
     get_codes_by_category,
     get_database_stats
 )
+from services.oec_trade_service import (
+    oec_service,
+    get_african_countries_list,
+    AFRICAN_COUNTRIES_OEC
+)
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
