@@ -723,7 +723,7 @@ export default function OECTradeStats({ language = 'fr' }) {
                         {t.bilateralTitle}
                       </CardTitle>
                       <CardDescription>
-                        {bilateralData.exporter?.name_fr} → {bilateralData.importer?.name_fr}
+                        {language === 'fr' ? bilateralData.exporter?.name_fr : bilateralData.exporter?.name_en} → {language === 'fr' ? bilateralData.importer?.name_fr : bilateralData.importer?.name_en}
                       </CardDescription>
                     </div>
                     <Badge variant="outline" className="text-orange-700 border-orange-300">
@@ -736,21 +736,24 @@ export default function OECTradeStats({ language = 'fr' }) {
                     <p className="text-sm text-slate-500 mb-1">{t.totalValue}</p>
                     <p className="text-4xl font-bold text-slate-900">{formatValue(bilateralData.total_value || 0)}</p>
                     <div className="flex items-center justify-center gap-2 mt-3">
-                      <span className="text-lg font-medium">{bilateralData.exporter?.name_fr}</span>
+                      <span className="text-lg font-medium">{language === 'fr' ? bilateralData.exporter?.name_fr : bilateralData.exporter?.name_en}</span>
                       <ArrowUpRight className="w-5 h-5 text-orange-500" />
-                      <span className="text-lg font-medium">{bilateralData.importer?.name_fr}</span>
+                      <span className="text-lg font-medium">{language === 'fr' ? bilateralData.importer?.name_fr : bilateralData.importer?.name_en}</span>
                     </div>
                   </div>
                   
-                  {/* Bar Chart */}
+                  {/* Bar Chart - Produits échangés */}
                   <div className="h-64">
                     <ResponsiveContainer width="100%" height="100%">
-                      <BarChart data={prepareChartData(bilateralData, 8)}>
-                        <XAxis dataKey="name" tick={{ fontSize: 10 }} angle={-45} textAnchor="end" height={60} />
+                      <BarChart data={prepareChartData(bilateralData, 'bilateral', 8)}>
+                        <XAxis dataKey="name" tick={{ fontSize: 9 }} angle={-45} textAnchor="end" height={70} />
                         <YAxis tickFormatter={(v) => formatValue(v)} />
-                        <Tooltip formatter={(v) => formatValue(v)} />
+                        <Tooltip 
+                          formatter={(v) => formatValue(v)}
+                          labelFormatter={(label, payload) => payload?.[0]?.payload?.fullName || label}
+                        />
                         <Bar dataKey="value" radius={[4, 4, 0, 0]}>
-                          {prepareChartData(bilateralData, 8).map((entry, index) => (
+                          {prepareChartData(bilateralData, 'bilateral', 8).map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={entry.fill} />
                           ))}
                         </Bar>
