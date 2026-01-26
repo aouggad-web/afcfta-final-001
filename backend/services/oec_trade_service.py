@@ -195,6 +195,18 @@ class OECTradeService:
         result = await self._make_request(params)
         return self._format_product_response(result, "imports", country_info)
     
+    def _format_oec_hs_id(self, hs_code: str) -> str:
+        """
+        Formate un code HS pour l'API OEC.
+        L'OEC utilise un format spécifique: préfixe 2 + code HS pour HS4, préfixe 2 + code pour HS6
+        Ex: HS4 0901 (café) -> 20901
+            HS6 090111 -> 2090111
+        """
+        # Nettoyer le code
+        clean_code = hs_code.lstrip('0').zfill(len(hs_code))
+        # Ajouter le préfixe 2 pour l'API OEC
+        return f"2{hs_code.zfill(4)}" if len(hs_code) <= 4 else f"2{hs_code}"
+    
     async def get_trade_by_hs_code(
         self,
         hs_code: str,
@@ -211,24 +223,26 @@ class OECTradeService:
             trade_flow: "exports" ou "imports"
             limit: Nombre max de résultats
         """
-        # Déterminer le niveau HS
-        hs_level = f"HS{len(hs_code)}"
-        hs_id = int(hs_code)
+        # Déterminer le niveau HS et formater l'ID
+        hs_code_clean = hs_code.zfill(4)
+        hs_level = "HS4" if len(hs_code_clean) <= 4 else "HS6"
+        oec_hs_id = self._format_oec_hs_id(hs_code_clean)
         
         if trade_flow == "exports":
-            drilldowns = ["Year", "Exporter Country", hs_level]
+            drilldowns = ["Year", "Exporter Country"]
             country_field = "Exporter Country"
         else:
-            drilldowns = ["Year", "Importer Country", hs_level]
+            drilldowns = ["Year", "Importer Country"]
             country_field = "Importer Country"
         
+        # L'API OEC utilise le nom du niveau directement comme filtre (pas "ID")
         params = self._build_params(
             cube=OEC_CUBES["hs92"],
             drilldowns=drilldowns,
             measures=["Trade Value"],
             cuts={
                 "Year": str(year),
-                f"{hs_level} ID": str(hs_id)
+                hs_level: oec_hs_id
             },
             limit=limit
         )
