@@ -568,12 +568,12 @@ export default function OECTradeStats({ language = 'fr' }) {
                     <p className="text-sm text-slate-500 mt-2">{productData.total_countries} {t.country}</p>
                   </div>
                   
-                  {/* Pie Chart */}
+                  {/* Pie Chart - Pays exportateurs/importateurs */}
                   <div className="h-64">
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart>
                         <Pie
-                          data={prepareChartData(productData, 8)}
+                          data={prepareChartData(productData, 'product', 8)}
                           cx="50%"
                           cy="50%"
                           innerRadius={50}
@@ -582,7 +582,7 @@ export default function OECTradeStats({ language = 'fr' }) {
                           dataKey="value"
                           label={({ name }) => name}
                         >
-                          {prepareChartData(productData, 8).map((entry, index) => (
+                          {prepareChartData(productData, 'product', 8).map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={entry.fill} />
                           ))}
                         </Pie>
@@ -593,7 +593,7 @@ export default function OECTradeStats({ language = 'fr' }) {
                 </CardContent>
               </Card>
 
-              {/* Table des pays */}
+              {/* Table des pays partenaires */}
               <Card className="shadow-lg">
                 <CardHeader className="border-b">
                   <CardTitle className="text-lg font-semibold">
