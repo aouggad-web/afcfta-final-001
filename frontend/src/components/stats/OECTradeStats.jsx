@@ -406,12 +406,12 @@ export default function OECTradeStats({ language = 'fr' }) {
           {/* Résultats par pays */}
           {tradeData && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Carte récapitulative */}
+              {/* Carte récapitulative avec graphique des produits */}
               <Card className="shadow-lg">
                 <CardHeader className="bg-gradient-to-r from-emerald-50 to-cyan-50 border-b">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-lg font-semibold text-slate-800">
-                      {selectedFlow === 'exports' ? t.exports : t.imports} - {tradeData.country?.name_fr || selectedCountry}
+                      {selectedFlow === 'exports' ? t.exports : t.imports} - {tradeData.country?.name_fr || tradeData.country?.name_en || selectedCountry}
                     </CardTitle>
                     <Badge variant="outline" className="text-emerald-700 border-emerald-300">
                       {t.dataYear} {selectedYear}
@@ -425,15 +425,18 @@ export default function OECTradeStats({ language = 'fr' }) {
                     <p className="text-sm text-slate-500 mt-2">{tradeData.total_products} {t.topProducts}</p>
                   </div>
                   
-                  {/* Chart */}
+                  {/* Chart - Produits principaux */}
                   <div className="h-64">
                     <ResponsiveContainer width="100%" height="100%">
-                      <BarChart data={prepareChartData(tradeData)} layout="vertical">
+                      <BarChart data={prepareChartData(tradeData, 'country')} layout="vertical">
                         <XAxis type="number" tickFormatter={(v) => formatValue(v)} />
-                        <YAxis type="category" dataKey="name" width={100} tick={{ fontSize: 11 }} />
-                        <Tooltip formatter={(v) => formatValue(v)} />
+                        <YAxis type="category" dataKey="name" width={120} tick={{ fontSize: 10 }} />
+                        <Tooltip 
+                          formatter={(v) => formatValue(v)} 
+                          labelFormatter={(label, payload) => payload?.[0]?.payload?.fullName || label}
+                        />
                         <Bar dataKey="value" radius={[0, 4, 4, 0]}>
-                          {prepareChartData(tradeData).map((entry, index) => (
+                          {prepareChartData(tradeData, 'country').map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={entry.fill} />
                           ))}
                         </Bar>
@@ -443,10 +446,10 @@ export default function OECTradeStats({ language = 'fr' }) {
                 </CardContent>
               </Card>
 
-              {/* Table des données */}
+              {/* Table des produits */}
               <Card className="shadow-lg">
                 <CardHeader className="border-b">
-                  <CardTitle className="text-lg font-semibold">{t.topPartners}</CardTitle>
+                  <CardTitle className="text-lg font-semibold">{t.topProducts}</CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
                   <div className="max-h-96 overflow-auto">
@@ -462,7 +465,7 @@ export default function OECTradeStats({ language = 'fr' }) {
                         {tradeData.data?.slice(0, 15).map((item, idx) => (
                           <TableRow key={idx} className="hover:bg-slate-50">
                             <TableCell className="font-medium text-slate-500">{idx + 1}</TableCell>
-                            <TableCell className="font-medium">{item['HS4'] || item['HS6'] || '-'}</TableCell>
+                            <TableCell className="font-medium text-sm">{item['HS6'] || item['HS4'] || '-'}</TableCell>
                             <TableCell className="text-right font-semibold text-emerald-700">
                               {formatValue(item['Trade Value'] || 0)}
                             </TableCell>
