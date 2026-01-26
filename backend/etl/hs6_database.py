@@ -1697,13 +1697,18 @@ SUB_POSITION_TYPES = {
 # FUSION DES DONNÉES D'EXTENSION DANS LA BASE PRINCIPALE
 # =============================================================================
 
-# Fusionner tous les dictionnaires d'extension dans HS6_DATABASE
+# D'abord, intégrer la base CSV complète (5762 codes SH2022)
+HS6_DATABASE.update(HS6_CSV_DATABASE)
+
+# Ensuite, les extensions manuelles (priorité sur CSV pour les données enrichies)
 HS6_DATABASE.update(HS6_EXTENDED_CH01_06)
 HS6_DATABASE.update(HS6_EXTENDED_CH07_15)
 HS6_DATABASE.update(HS6_EXTENDED_CH16_24)
 HS6_DATABASE.update(HS6_EXTENDED_CH25_40)
 HS6_DATABASE.update(HS6_EXTENDED_CH41_63)
 HS6_DATABASE.update(HS6_EXTENDED_CH72_89)
+HS6_DATABASE.update(HS6_EXTENDED_CH32_38)
+HS6_DATABASE.update(HS6_EXTENDED_CH42_49)
 
 
 # =============================================================================
