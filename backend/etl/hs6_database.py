@@ -24,6 +24,11 @@ from .hs6_extended_ch16_24 import HS6_EXTENDED_CH16_24
 from .hs6_extended_ch25_40 import HS6_EXTENDED_CH25_40
 from .hs6_extended_ch41_63 import HS6_EXTENDED_CH41_63
 from .hs6_extended_ch72_89 import HS6_EXTENDED_CH72_89
+from .hs6_extended_ch32_38 import HS6_EXTENDED_CH32_38
+from .hs6_extended_ch42_49 import HS6_EXTENDED_CH42_49
+
+# Import de la base CSV complète (5762 codes SH2022)
+from .hs6_csv_database import HS6_CSV_DATABASE
 
 # =============================================================================
 # STRUCTURE DE BASE HS6
