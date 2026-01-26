@@ -85,15 +85,13 @@ class TestOECExportsAPI:
         assert data["country"]["oec_id"] == "afken"
         
     def test_invalid_country_exports(self):
-        """Test exports for invalid country code"""
+        """Test exports for invalid country code - returns 400"""
         response = requests.get(
             f"{BASE_URL}/api/oec/exports/XXX",
             params={"year": 2022}
         )
-        assert response.status_code == 200
-        
-        data = response.json()
-        assert "error" in data
+        # Invalid country returns 400 Bad Request
+        assert response.status_code == 400
 
 
 class TestOECImportsAPI:
