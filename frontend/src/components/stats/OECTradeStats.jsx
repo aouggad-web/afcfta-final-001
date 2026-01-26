@@ -157,30 +157,25 @@ export default function OECTradeStats({ language = 'fr' }) {
     const fetchHSCodeName = async () => {
       if (hsCode && hsCode.length >= 4) {
         try {
-          // Chercher dans la base HS6
-          const response = await axios.get(`${API}/hs6/info/${hsCode.padEnd(6, '0')}`);
-          if (response.data && response.data.found) {
-            const name = language === 'fr' ? response.data.name_fr : response.data.name_en;
-            setHsCodeName(name || '');
+          // Chercher avec l'endpoint search qui retourne la description
+          const searchResponse = await axios.get(`${API}/hs6/search`, {
+            params: { query: hsCode, limit: 5 }
+          });
+          
+          if (searchResponse.data && searchResponse.data.results && searchResponse.data.results.length > 0) {
+            // Chercher le code exact ou le plus proche
+            const exactMatch = searchResponse.data.results.find(r => r.code === hsCode.padEnd(6, '0') || r.code.startsWith(hsCode));
+            if (exactMatch) {
+              setHsCodeName(exactMatch.description || '');
+            } else {
+              setHsCodeName(searchResponse.data.results[0].description || '');
+            }
           } else {
             setHsCodeName('');
           }
         } catch (err) {
-          // Essayer avec la recherche si info ne fonctionne pas
-          try {
-            const searchResponse = await axios.get(`${API}/hs6/search`, {
-              params: { query: hsCode, limit: 1 }
-            });
-            if (searchResponse.data && searchResponse.data.results && searchResponse.data.results.length > 0) {
-              const result = searchResponse.data.results[0];
-              const name = language === 'fr' ? result.name_fr : result.name_en;
-              setHsCodeName(name || '');
-            } else {
-              setHsCodeName('');
-            }
-          } catch {
-            setHsCodeName('');
-          }
+          console.error('Error fetching HS code name:', err);
+          setHsCodeName('');
         }
       } else {
         setHsCodeName('');
@@ -189,7 +184,7 @@ export default function OECTradeStats({ language = 'fr' }) {
     
     const debounceTimer = setTimeout(fetchHSCodeName, 300);
     return () => clearTimeout(debounceTimer);
-  }, [hsCode, language]);
+  }, [hsCode]);
 
   // Recherche par pays
   const searchByCountry = useCallback(async () => {
