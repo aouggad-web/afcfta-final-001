@@ -216,14 +216,31 @@ export default function OECTradeStats({ language = 'fr' }) {
     }
   }, [selectedCountry, secondCountry, selectedYear]);
 
-  // Chart data preparation
-  const prepareChartData = (data, limit = 10) => {
+  // Chart data preparation - adapté selon le contexte
+  const prepareChartData = (data, type = 'country', limit = 10) => {
     if (!data || !data.data) return [];
-    return data.data.slice(0, limit).map((item, index) => ({
-      name: item['Exporter Country'] || item['Importer Country'] || `#${index + 1}`,
-      value: item['Trade Value'] || 0,
-      fill: COLORS[index % COLORS.length]
-    }));
+    
+    return data.data.slice(0, limit).map((item, index) => {
+      let name = '';
+      
+      if (type === 'country') {
+        // Pour la vue par pays : afficher les produits (HS6)
+        name = item['HS6'] || item['HS4'] || `Produit #${index + 1}`;
+      } else if (type === 'product') {
+        // Pour la vue par produit : afficher les pays
+        name = item['Exporter Country'] || item['Importer Country'] || `Pays #${index + 1}`;
+      } else if (type === 'bilateral') {
+        // Pour le commerce bilatéral : afficher les produits
+        name = item['HS6'] || item['HS4'] || `Produit #${index + 1}`;
+      }
+      
+      return {
+        name: name.length > 25 ? name.substring(0, 22) + '...' : name,
+        fullName: name,
+        value: item['Trade Value'] || 0,
+        fill: COLORS[index % COLORS.length]
+      };
+    });
   };
 
   return (
