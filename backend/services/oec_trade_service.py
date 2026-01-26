@@ -298,16 +298,17 @@ class OECTradeService:
         """
         Récupère les principaux exportateurs africains pour un produit
         """
-        hs_level = f"HS{len(hs_code)}"
-        hs_id = int(hs_code)
+        hs_code_clean = hs_code.zfill(4)
+        hs_level = "HS4" if len(hs_code_clean) <= 4 else "HS6"
+        oec_hs_id = self._format_oec_hs_id(hs_code_clean)
         
         params = self._build_params(
             cube=OEC_CUBES["hs92"],
-            drilldowns=["Year", "Exporter Country", hs_level],
+            drilldowns=["Year", "Exporter Country"],
             measures=["Trade Value"],
             cuts={
                 "Year": str(year),
-                f"{hs_level} ID": str(hs_id)
+                hs_level: oec_hs_id
             },
             limit=200  # Get more to filter African countries
         )
