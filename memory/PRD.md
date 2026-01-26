@@ -119,6 +119,23 @@ Application web d'analyse des statistiques commerciales et économiques africain
 
 ### Bug Fix - Recherche par pays Production/Macro (09/01/2025)
 - **Problème** : Le dropdown de sélection de pays était masqué par les éléments parents (overflow caché)
+
+### NEW - Intégration OEC Trade Statistics (27/01/2025) ✅
+- **Bug corrigé** : Format d'identifiant HS pour l'API OEC
+  - Implémentation de `_format_oec_hs6_id()` avec mapping des préfixes par section HS
+  - L'API OEC utilise des préfixes 1-21 selon la section du Système Harmonisé
+- **Migration vers SH2022** :
+  - Utilisation du cube `trade_i_baci_a_17` (HS Rev. 2017, compatible SH2022)
+  - Tous les codes en format HS6 exclusivement
+  - Années disponibles : 2018-2023
+- **Composant Frontend** : `OECTradeStats.jsx`
+  - Design moderne avec 3 onglets (Par Pays, Par Produit, Commerce Bilatéral)
+  - Graphiques interactifs (Recharts)
+  - Produits populaires : Café, Cacao, Coton, Or, Pétrole, Diamants
+- **Tests validés** :
+  - Cacao (180100) : $6.16B - Côte d'Ivoire leader
+  - Pétrole (270900) : $179.93B - Angola leader
+  - Tous les produits fonctionnels
 - **Solution** : Utilisation de `createPortal` React pour rendre le dropdown directement dans `document.body`
 - **Fichier modifié** : `/app/frontend/src/components/production/EnhancedCountrySelector.jsx`
 - **Test réussi** : Sélection "Algérie" → Données chargées (12 enregistrements, 3 secteurs)
