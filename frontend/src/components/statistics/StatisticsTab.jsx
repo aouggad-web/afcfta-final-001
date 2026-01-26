@@ -6,6 +6,7 @@ import { ResponsiveContainer, BarChart, Bar, CartesianGrid, XAxis, YAxis, Toolti
 import StatisticsZaubaStyle from '../StatisticsZaubaStyle';
 import TradeComparison from '../TradeComparison';
 import TradeProductsTable from '../TradeProductsTable';
+import OECTradeStats from '../stats/OECTradeStats';
 import { PDFExportButton } from '../common/ExportTools';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
