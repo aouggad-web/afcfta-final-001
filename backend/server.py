@@ -3430,3 +3430,230 @@ async def upload_trs_data(
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# =====================================================
+# ENDPOINTS STATISTIQUES COMMERCIALES OEC
+# Source: Observatory of Economic Complexity (OEC/BACI)
+# =====================================================
+
+@api_router.get("/oec/countries")
+async def get_oec_african_countries(
+    language: str = Query("fr", description="Langue (fr/en)")
+):
+    """
+    Liste des pays africains disponibles pour les statistiques OEC
+    """
+    return {
+        "success": True,
+        "total": len(AFRICAN_COUNTRIES_OEC),
+        "countries": get_african_countries_list(language),
+        "source": "OEC/BACI"
+    }
+
+@api_router.get("/oec/years")
+async def get_oec_available_years():
+    """
+    Années disponibles dans les données OEC
+    """
+    years = await oec_service.get_available_years()
+    return {
+        "success": True,
+        "years": years,
+        "source": "OEC/BACI"
+    }
+
+@api_router.get("/oec/exports/{country_iso3}")
+async def get_oec_country_exports(
+    country_iso3: str,
+    year: int = Query(2022, description="Année (1995-2023)"),
+    hs_level: str = Query("HS4", description="Niveau HS (HS2, HS4, HS6)"),
+    limit: int = Query(50, description="Nombre max de résultats")
+):
+    """
+    Exportations d'un pays africain par produit HS
+    
+    - **country_iso3**: Code ISO3 du pays (ex: NGA, KEN, ZAF)
+    - **year**: Année des données
+    - **hs_level**: Niveau de détail HS (HS2, HS4, HS6)
+    """
+    try:
+        result = await oec_service.get_exports_by_product(
+            country_iso3, year, hs_level, limit
+        )
+        if "error" in result:
+            raise HTTPException(status_code=400, detail=result["error"])
+        return result
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/oec/imports/{country_iso3}")
+async def get_oec_country_imports(
+    country_iso3: str,
+    year: int = Query(2022, description="Année (1995-2023)"),
+    hs_level: str = Query("HS4", description="Niveau HS (HS2, HS4, HS6)"),
+    limit: int = Query(50, description="Nombre max de résultats")
+):
+    """
+    Importations d'un pays africain par produit HS
+    """
+    try:
+        result = await oec_service.get_imports_by_product(
+            country_iso3, year, hs_level, limit
+        )
+        if "error" in result:
+            raise HTTPException(status_code=400, detail=result["error"])
+        return result
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/oec/product/{hs_code}")
+async def get_oec_product_trade(
+    hs_code: str,
+    year: int = Query(2022, description="Année"),
+    trade_flow: str = Query("exports", description="exports ou imports"),
+    limit: int = Query(50, description="Nombre max de résultats")
+):
+    """
+    Statistiques commerciales mondiales pour un code HS spécifique
+    
+    - **hs_code**: Code HS (4 ou 6 chiffres)
+    - **year**: Année des données
+    - **trade_flow**: "exports" ou "imports"
+    """
+    try:
+        result = await oec_service.get_trade_by_hs_code(
+            hs_code, year, trade_flow, limit
+        )
+        if "error" in result:
+            raise HTTPException(status_code=400, detail=result["error"])
+        return result
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/oec/product/{hs_code}/africa")
+async def get_oec_african_exporters(
+    hs_code: str,
+    year: int = Query(2022, description="Année"),
+    limit: int = Query(20, description="Nombre max de pays")
+):
+    """
+    Top exportateurs africains pour un produit HS
+    
+    Identifie les principaux pays africains exportant ce produit,
+    utile pour identifier les opportunités de sourcing intra-africain.
+    """
+    try:
+        result = await oec_service.get_top_african_exporters(hs_code, year, limit)
+        if "error" in result:
+            raise HTTPException(status_code=400, detail=result["error"])
+        return result
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/oec/bilateral/{exporter_iso3}/{importer_iso3}")
+async def get_oec_bilateral_trade(
+    exporter_iso3: str,
+    importer_iso3: str,
+    year: int = Query(2022, description="Année"),
+    hs_level: str = Query("HS4", description="Niveau HS"),
+    limit: int = Query(50, description="Nombre max de produits")
+):
+    """
+    Commerce bilatéral entre deux pays africains
+    
+    - **exporter_iso3**: Pays exportateur (ex: KEN)
+    - **importer_iso3**: Pays importateur (ex: TZA)
+    - **year**: Année des données
+    """
+    try:
+        result = await oec_service.get_bilateral_trade(
+            exporter_iso3, importer_iso3, year, hs_level, limit
+        )
+        if "error" in result:
+            raise HTTPException(status_code=400, detail=result["error"])
+        return result
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/oec/search")
+async def search_oec_trade_data(
+    hs_code: Optional[str] = Query(None, description="Code HS (4-6 chiffres)"),
+    country: Optional[str] = Query(None, description="Code pays ISO3"),
+    year: int = Query(2022, description="Année"),
+    trade_flow: str = Query("exports", description="exports ou imports"),
+    limit: int = Query(50, description="Nombre max de résultats"),
+    language: str = Query("fr", description="Langue")
+):
+    """
+    Recherche de statistiques commerciales OEC
+    
+    Permet de rechercher par produit, pays ou combinaison des deux.
+    """
+    try:
+        results = {}
+        
+        if hs_code and country:
+            # Recherche combinée produit + pays
+            if trade_flow == "exports":
+                results = await oec_service.get_exports_by_product(
+                    country, year, f"HS{len(hs_code)}", limit
+                )
+            else:
+                results = await oec_service.get_imports_by_product(
+                    country, year, f"HS{len(hs_code)}", limit
+                )
+            # Filter by HS code
+            hs_prefix = hs_code[:4] if len(hs_code) >= 4 else hs_code
+            results["data"] = [
+                d for d in results.get("data", [])
+                if str(d.get(f"HS{len(hs_code)} ID", "")).startswith(hs_prefix)
+            ]
+        elif hs_code:
+            # Recherche par produit uniquement
+            results = await oec_service.get_trade_by_hs_code(
+                hs_code, year, trade_flow, limit
+            )
+        elif country:
+            # Recherche par pays uniquement
+            if trade_flow == "exports":
+                results = await oec_service.get_exports_by_product(
+                    country, year, "HS4", limit
+                )
+            else:
+                results = await oec_service.get_imports_by_product(
+                    country, year, "HS4", limit
+                )
+        else:
+            return {
+                "success": False,
+                "error": "Please provide hs_code and/or country parameter"
+            }
+        
+        if "error" in results:
+            raise HTTPException(status_code=400, detail=results["error"])
+        
+        return {
+            "success": True,
+            "query": {
+                "hs_code": hs_code,
+                "country": country,
+                "year": year,
+                "trade_flow": trade_flow
+            },
+            **results
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
