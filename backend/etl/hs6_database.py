@@ -1724,11 +1724,15 @@ HS6_DATABASE.update(HS6_EXTENDED_CH42_49)
 # =============================================================================
 
 def get_hs6_info(hs6_code: str, language: str = "fr") -> Optional[Dict]:
-    """Obtenir les informations complètes d'un code HS6"""
+    """Obtenir les informations complètes d'un code HS6 avec règles d'origine ZLECAf"""
     hs6 = hs6_code[:6].zfill(6)
     info = HS6_DATABASE.get(hs6)
     if info:
         desc_key = f"description_{language}"
+        
+        # Récupérer la règle d'origine ZLECAf officielle
+        afcfta_rule = get_afcfta_rule(hs6, language)
+        
         return {
             "code": hs6,
             "description": info.get(desc_key, info.get("description_fr")),
@@ -1737,7 +1741,7 @@ def get_hs6_info(hs6_code: str, language: str = "fr") -> Optional[Dict]:
             "sensitivity": info["sensitivity"],
             "has_sub_positions": info["has_sub_positions"],
             "sub_position_types": info.get("typical_sub_position_types", []),
-            "rule_of_origin": info.get("rule_of_origin", {})
+            "rule_of_origin": afcfta_rule
         }
     return None
 
