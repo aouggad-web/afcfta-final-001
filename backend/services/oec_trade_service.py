@@ -366,9 +366,9 @@ class OECTradeService:
         return self._format_bilateral_response(result, exporter_info, importer_info, year)
     
     async def get_available_years(self) -> List[int]:
-        """Retourne les années disponibles dans l'API"""
-        # Les données BACI couvrent généralement 1995-2023
-        return list(range(1995, 2024))
+        """Retourne les années disponibles dans l'API pour le cube HS17"""
+        # Le cube HS Rev. 2017 couvre 2018-2023
+        return list(range(2018, 2024))
     
     async def get_top_african_exporters(
         self,
@@ -377,19 +377,23 @@ class OECTradeService:
         limit: int = 20
     ) -> Dict:
         """
-        Récupère les principaux exportateurs africains pour un produit
+        Récupère les principaux exportateurs africains pour un produit.
+        Utilise le cube HS17 avec des codes HS6 pour la cohérence SH2022.
         """
-        hs_code_clean = hs_code.zfill(4)
-        hs_level = "HS4" if len(hs_code_clean) <= 4 else "HS6"
-        oec_hs_id = self._format_oec_hs_id(hs_code_clean)
+        # Normaliser le code en HS6
+        hs6_code = hs_code.zfill(6)[:6]
+        if len(hs_code) == 4:
+            hs6_code = hs_code.zfill(4) + "00"
+        
+        oec_hs_id = self._format_oec_hs6_id(hs6_code)
         
         params = self._build_params(
-            cube=OEC_CUBES["hs92"],
+            cube=OEC_CUBES[DEFAULT_CUBE],
             drilldowns=["Year", "Exporter Country"],
             measures=["Trade Value"],
             cuts={
                 "Year": str(year),
-                hs_level: oec_hs_id
+                "HS6": oec_hs_id
             },
             limit=200  # Get more to filter African countries
         )
