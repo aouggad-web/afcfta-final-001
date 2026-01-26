@@ -21,13 +21,64 @@ logger = logging.getLogger(__name__)
 OEC_BASE_URL = "https://api-v2.oec.world/tesseract/data.jsonrecords"
 
 # Cubes disponibles (datasets)
+# On utilise HS Rev. 2017 car c'est le plus proche de SH2022 et couvre les données récentes
 OEC_CUBES = {
     "hs92": "trade_i_baci_a_92",      # HS Rev. 1992 (1995-2023)
     "hs96": "trade_i_baci_a_96",      # HS Rev. 1996 (1998-2023)
     "hs02": "trade_i_baci_a_02",      # HS Rev. 2002 (2003-2023)
     "hs07": "trade_i_baci_a_07",      # HS Rev. 2007 (2008-2023)
     "hs12": "trade_i_baci_a_12",      # HS Rev. 2012 (2013-2023)
-    "hs17": "trade_i_baci_a_17",      # HS Rev. 2017 (2018-2023)
+    "hs17": "trade_i_baci_a_17",      # HS Rev. 2017 (2018-2023) - UTILISÉ PAR DÉFAUT
+}
+
+# Cube par défaut - HS Rev. 2017 pour cohérence avec SH2022
+DEFAULT_CUBE = "hs17"
+
+# Mapping des préfixes OEC par section HS (pour HS6)
+# L'API OEC utilise un préfixe basé sur la section HS
+OEC_HS6_PREFIXES = {
+    # Section I - Animaux vivants et produits du règne animal (Ch. 01-05)
+    (1, 5): 1,
+    # Section II - Produits du règne végétal (Ch. 06-14)
+    (6, 14): 2,
+    # Section III - Graisses et huiles (Ch. 15)
+    (15, 15): 3,
+    # Section IV - Produits alimentaires, boissons, tabacs (Ch. 16-24)
+    (16, 24): 4,
+    # Section V - Produits minéraux (Ch. 25-27)
+    (25, 27): 5,
+    # Section VI - Produits chimiques (Ch. 28-38)
+    (28, 38): 6,
+    # Section VII - Matières plastiques et caoutchouc (Ch. 39-40)
+    (39, 40): 7,
+    # Section VIII - Peaux, cuirs (Ch. 41-43)
+    (41, 43): 8,
+    # Section IX - Bois (Ch. 44-46)
+    (44, 46): 9,
+    # Section X - Pâtes de bois, papier (Ch. 47-49)
+    (47, 49): 10,
+    # Section XI - Matières textiles (Ch. 50-63)
+    (50, 63): 11,
+    # Section XII - Chaussures, coiffures (Ch. 64-67)
+    (64, 67): 12,
+    # Section XIII - Ouvrages en pierres (Ch. 68-70)
+    (68, 70): 13,
+    # Section XIV - Perles, pierres, métaux précieux (Ch. 71)
+    (71, 71): 14,
+    # Section XV - Métaux communs (Ch. 72-83)
+    (72, 83): 15,
+    # Section XVI - Machines, appareils (Ch. 84-85)
+    (84, 85): 16,
+    # Section XVII - Matériel de transport (Ch. 86-89)
+    (86, 89): 17,
+    # Section XVIII - Instruments optiques (Ch. 90-92)
+    (90, 92): 18,
+    # Section XIX - Armes (Ch. 93)
+    (93, 93): 19,
+    # Section XX - Marchandises diverses (Ch. 94-96)
+    (94, 96): 20,
+    # Section XXI - Objets d'art (Ch. 97)
+    (97, 97): 21,
 }
 
 # Codes ISO des pays africains pour l'OEC
