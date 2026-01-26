@@ -30,6 +30,14 @@ from .hs6_extended_ch42_49 import HS6_EXTENDED_CH42_49
 # Import de la base CSV complète (5762 codes SH2022)
 from .hs6_csv_database import HS6_CSV_DATABASE
 
+# Import des règles d'origine ZLECAf officielles
+from .afcfta_rules_of_origin import (
+    get_rule_of_origin as get_afcfta_rule,
+    get_chapter_status_summary,
+    CHAPTER_RULES,
+    ORIGIN_TYPES
+)
+
 # =============================================================================
 # STRUCTURE DE BASE HS6
 # =============================================================================
