@@ -43,6 +43,11 @@ export default function StatisticsTab({ language = 'fr' }) {
       </div>
 
       <div ref={contentRef}>
+        {/* OEC Trade Statistics - Nouveau composant moderne */}
+        <OECTradeStats language={language} />
+        
+        <div className="my-8"></div>
+        
         {/* Nouveau composant Style Zauba */}
         <StatisticsZaubaStyle language={language} />
         
