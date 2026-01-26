@@ -46,6 +46,27 @@ Application web d'analyse des statistiques commerciales et économiques africain
 - Évolution du commerce intra-africain 2023-2030
 - Top 5 PIB Africains avec comparaison commerce
 - Top 20 Produits Commerciaux
+- **NEW - Statistiques Commerciales OEC (27/01/2025)** ✅
+  - **Intégration API OEC** (Observatory of Economic Complexity)
+  - **3 modes de recherche** :
+    - Par Pays : Exportations/Importations d'un pays africain
+    - Par Produit : Statistiques par code SH6 (Café, Cacao, Pétrole, Or, Coton, Diamants)
+    - Commerce Bilatéral : Flux entre deux pays africains
+  - **Format SH2022** : Utilisation du cube HS Rev. 2017 (compatible SH2022)
+  - **Codes HS6** exclusivement pour cohérence avec la base de données
+  - **Données 2018-2023** disponibles
+  - **Graphiques interactifs** (Pie chart, Bar chart via Recharts)
+  - **Tableau classé** des exportateurs/importateurs
+  - **API Endpoints** :
+    - `GET /api/oec/countries` - Liste 54 pays africains
+    - `GET /api/oec/years` - Années disponibles (2018-2023)
+    - `GET /api/oec/exports/{country_iso3}` - Exportations par pays
+    - `GET /api/oec/imports/{country_iso3}` - Importations par pays
+    - `GET /api/oec/product/{hs_code}` - Statistiques par produit HS6
+    - `GET /api/oec/bilateral/{exporter}/{importer}` - Commerce bilatéral
+  - **Fichiers** :
+    - `/app/backend/services/oec_trade_service.py` - Service OEC
+    - `/app/frontend/src/components/stats/OECTradeStats.jsx` - Composant UI
 
 ### 4. Production (Onglet)
 - **Agriculture (FAOSTAT)**: Données 54 pays (2020-2023)
