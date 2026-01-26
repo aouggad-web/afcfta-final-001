@@ -487,13 +487,23 @@ export default function OECTradeStats({ language = 'fr' }) {
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div className="space-y-2 md:col-span-2">
                   <Label className="text-sm font-medium text-slate-700">{t.hsCodeLabel}</Label>
-                  <Input
-                    value={hsCode}
-                    onChange={(e) => setHsCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                    placeholder={t.hsCodePlaceholder}
-                    className="bg-white"
-                    data-testid="hs-code-input"
-                  />
+                  <div className="relative">
+                    <Input
+                      value={hsCode}
+                      onChange={(e) => setHsCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                      placeholder={t.hsCodePlaceholder}
+                      className="bg-white"
+                      data-testid="hs-code-input"
+                    />
+                    {/* Affichage de la dénomination du code HS */}
+                    {hsCodeName && (
+                      <div className="mt-1 px-2 py-1.5 bg-violet-50 border border-violet-200 rounded-md">
+                        <p className="text-sm text-violet-800 font-medium truncate" title={hsCodeName}>
+                          {hsCodeName}
+                        </p>
+                      </div>
+                    )}
+                  </div>
                   {/* Quick select buttons */}
                   <div className="flex flex-wrap gap-2 mt-2">
                     <span className="text-xs text-slate-500">{t.popularProducts}:</span>
