@@ -27,7 +27,7 @@ const formatValue = (value) => {
 export default function OECTradeStats({ language = 'fr' }) {
   const [activeView, setActiveView] = useState('country');
   const [countries, setCountries] = useState([]);
-  const [years] = useState(Array.from({ length: 29 }, (_, i) => 2023 - i)); // 1995-2023
+  const [years] = useState([2023, 2022, 2021, 2020, 2019, 2018]); // Années disponibles pour HS Rev. 2017
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   
