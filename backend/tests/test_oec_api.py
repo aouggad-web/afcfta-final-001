@@ -210,26 +210,22 @@ class TestOECBilateralAPI:
         assert data["importer"]["oec_id"] == "afzaf"
         
     def test_invalid_exporter(self):
-        """Test bilateral with invalid exporter"""
+        """Test bilateral with invalid exporter - returns 400"""
         response = requests.get(
             f"{BASE_URL}/api/oec/bilateral/XXX/GHA",
             params={"year": 2022}
         )
-        assert response.status_code == 200
-        
-        data = response.json()
-        assert "error" in data
+        # Invalid country returns 400 Bad Request
+        assert response.status_code == 400
         
     def test_invalid_importer(self):
-        """Test bilateral with invalid importer"""
+        """Test bilateral with invalid importer - returns 400"""
         response = requests.get(
             f"{BASE_URL}/api/oec/bilateral/NGA/XXX",
             params={"year": 2022}
         )
-        assert response.status_code == 200
-        
-        data = response.json()
-        assert "error" in data
+        # Invalid country returns 400 Bad Request
+        assert response.status_code == 400
 
 
 class TestOECAfricanExportersAPI:
