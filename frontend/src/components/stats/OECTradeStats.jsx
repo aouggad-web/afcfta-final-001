@@ -36,6 +36,7 @@ export default function OECTradeStats({ language = 'fr' }) {
   const [selectedYear, setSelectedYear] = useState('2022');
   const [selectedFlow, setSelectedFlow] = useState('exports');
   const [hsCode, setHsCode] = useState('');
+  const [hsCodeName, setHsCodeName] = useState(''); // Dénomination du code HS
   const [secondCountry, setSecondCountry] = useState('');
   
   // Résultats
