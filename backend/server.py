@@ -683,12 +683,56 @@ async def calculate_comprehensive_tariff(request: TariffCalculationRequest):
         step += 1
     zlecaf_journal.append({"step": step, "component": "TVA", "base": round(zlecaf_vat_base, 2), "rate": f"{vat_rate*100:.1f}%", "amount": round(zlecaf_vat_amount, 2), "cumulative": round(zlecaf_total, 2), "legal_ref": legal_refs["vat"]["ref"], "legal_ref_url": legal_refs["vat"]["url"]})
     
-    # Règles d'origine
-    rules = ZLECAF_RULES_OF_ORIGIN.get(sector_code, {
-        "rule": "Transformation substantielle",
-        "requirement": "40% valeur ajoutée africaine",
-        "regional_content": 40
-    })
+    # Règles d'origine - Utiliser les règles officielles de l'AfCFTA Annex II
+    from etl.afcfta_rules_of_origin import get_rule_of_origin, ORIGIN_TYPES
+    roo_data = get_rule_of_origin(hs6_code, "fr")
+    
+    # Construire l'objet rules_of_origin pour le calculateur
+    if roo_data.get("status") == "UNKNOWN":
+        rules = {
+            "rule": "Règle non définie",
+            "requirement": "Consulter le Secrétariat ZLECAf",
+            "regional_content": 0,
+            "status": "UNKNOWN",
+            "source": "AfCFTA Annex II - Appendix IV"
+        }
+    else:
+        primary_rule = roo_data.get("primary_rule", {})
+        rule_name = primary_rule.get("name", "")
+        rule_code = primary_rule.get("code", "")
+        regional_content = roo_data.get("regional_content", 40)
+        status = roo_data.get("status", "AGREED")
+        chapter_desc = roo_data.get("chapter_description", "")
+        
+        # Construire le requirement basé sur le type de règle
+        if rule_code == "WO":
+            requirement = "Entièrement obtenu dans la ZLECAf (100%)"
+        elif rule_code in ["CTH", "CTSH"]:
+            requirement = f"Changement de position tarifaire ({rule_code}) avec {regional_content}% minimum de contenu régional"
+        elif rule_code == "VA":
+            requirement = f"{regional_content}% minimum de valeur ajoutée africaine"
+        elif rule_code == "SP":
+            requirement = f"Processus spécifique requis avec {regional_content}% minimum de contenu régional"
+        else:
+            requirement = f"{regional_content}% valeur ajoutée africaine"
+        
+        # Ajouter l'alternative si disponible
+        alt_rule = roo_data.get("alternative_rule", {})
+        if alt_rule:
+            requirement += f" OU {alt_rule.get('name', '')}"
+        
+        rules = {
+            "rule": rule_name,
+            "rule_code": rule_code,
+            "requirement": requirement,
+            "regional_content": regional_content,
+            "status": status,
+            "status_label": "Convenu" if status == "AGREED" else "En négociation",
+            "chapter_description": chapter_desc,
+            "notes": roo_data.get("notes", ""),
+            "source": "AfCFTA Protocol on Trade in Goods - Annex II, Appendix IV",
+            "reference_url": "https://au.int/sites/default/files/treaties/36437-ax-AfCFTA_RULES_OF_ORIGIN_MANUAL.pdf"
+        }
     
     # Récupérer les top producteurs africains
     top_producers = await oec_client.get_top_producers(request.hs_code)
