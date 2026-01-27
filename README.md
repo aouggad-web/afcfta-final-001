@@ -14,6 +14,7 @@ A comprehensive tariff calculator and trade information system for the African C
 - **Country Profiles**: Detailed economic profiles for all member states
 - **Trade Statistics**: Comprehensive trade statistics and projections
 - **Real-time Data**: Integration with World Bank and OEC APIs
+- **Automated Data Updates**: Daily automated updates from World Bank API and other sources
 
 ## 📊 API Endpoints
 
@@ -93,11 +94,13 @@ The health endpoints provide real-time monitoring of:
 
 ## 📦 Data Sources
 
-- World Bank - World Development Indicators
+- World Bank - World Development Indicators (updated daily)
 - UNCTAD - Tariff data
 - OEC - Atlas of Economic Complexity
 - AfDB - African Economic Outlook
 - IMF - Regional Economic Outlook
+
+Data is automatically updated daily at 2:00 AM UTC via GitHub Actions. See [docs/AUTO_UPDATE_DATA.md](docs/AUTO_UPDATE_DATA.md) for details.
 
 ## 🌍 Coverage
 
@@ -146,6 +149,22 @@ curl -X POST https://your-domain.com/api/calculate-tariff \
     "value": 10000
   }'
 ```
+
+## 🔄 Automated Data Updates
+
+The system automatically updates economic data daily from external sources:
+
+- **Schedule**: Daily at 2:00 AM UTC
+- **Sources**: World Bank API, country profiles, trade statistics
+- **Process**: Automated via GitHub Actions
+- **Monitoring**: Update reports available in Actions artifacts
+
+For more information, see [docs/AUTO_UPDATE_DATA.md](docs/AUTO_UPDATE_DATA.md).
+
+To manually trigger an update:
+1. Go to the Actions tab on GitHub
+2. Select "Auto Update Data" workflow
+3. Click "Run workflow"
 
 ## 📝 License
 
