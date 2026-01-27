@@ -5,7 +5,7 @@ Complete tariff data for 54 African countries with ZLECAf rates
 from fastapi import APIRouter, HTTPException, Query
 from typing import Optional
 
-from country_data import AFRICAN_COUNTRIES
+from constants import AFRICAN_COUNTRIES
 from etl.hs_codes_data import get_hs_chapters, get_hs6_code
 from etl.hs6_tariffs import (
     get_hs6_tariff,
