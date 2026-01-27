@@ -25,7 +25,6 @@ from data_loader import (
     get_country_customs_info,
     get_country_infrastructure_ranking
 )
-from etl.news_aggregator import get_news, get_news_by_region, get_news_by_category
 from logistics_data import (
     get_all_ports,
     get_port_by_id,
@@ -93,11 +92,9 @@ from etl.hs6_database import (
     get_codes_by_category,
     get_database_stats
 )
-from services.oec_trade_service import (
-    oec_service,
-    get_african_countries_list,
-    AFRICAN_COUNTRIES_OEC
-)
+
+# Import routes module for modular endpoint registration
+from routes import register_routes
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
