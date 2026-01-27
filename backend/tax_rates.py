@@ -207,3 +207,8 @@ def get_total_import_taxes(country_code: str, cif_value: float, customs_duty: fl
         "total_taxes": total,
         "effective_rate": (total / cif_value * 100) if cif_value > 0 else 0
     }
+
+# Alias pour compatibilité avec l'ancien code
+def calculate_all_taxes(country_code: str, cif_value: float, customs_duty: float) -> dict:
+    """Alias pour get_total_import_taxes - maintenu pour compatibilité"""
+    return get_total_import_taxes(country_code, cif_value, customs_duty)
