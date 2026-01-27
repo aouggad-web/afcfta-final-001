@@ -8,7 +8,8 @@ import logging
 import json
 import unicodedata
 
-from country_data import get_country_data, REAL_COUNTRY_DATA, AFRICAN_COUNTRIES
+from country_data import get_country_data, REAL_COUNTRY_DATA
+from constants import AFRICAN_COUNTRIES
 from data_loader import (
     get_country_commerce_profile,
     get_country_customs_info,
