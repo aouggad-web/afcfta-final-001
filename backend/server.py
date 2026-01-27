@@ -2135,8 +2135,23 @@ async def get_all_hs6_codes_endpoint(language: str = Query("fr", description="La
 @api_router.get("/hs-codes/code/{hs_code}")
 async def get_single_hs_code(hs_code: str, language: str = Query("fr", description="Language: fr or en")):
     """
-    Get a specific HS6 code with its label
+    Get a specific HS6 code with its label from complete database
     """
+    # Try complete database first
+    if hs_code in HS6_DATABASE:
+        data = HS6_DATABASE[hs_code]
+        desc_key = "description_fr" if language == "fr" else "description_en"
+        chapters = get_hs_chapters()
+        return {
+            "code": hs_code,
+            "label": data.get(desc_key, data.get("description_fr", "")),
+            "chapter": hs_code[:2],
+            "chapter_name": chapters.get(hs_code[:2], {}).get(language, ""),
+            "category": data.get("category", ""),
+            "sensitivity": data.get("sensitivity", "normal")
+        }
+    
+    # Fallback to old database for backwards compatibility
     result = get_hs6_code(hs_code, language)
     if not result:
         raise HTTPException(status_code=404, detail=f"HS code {hs_code} not found")
