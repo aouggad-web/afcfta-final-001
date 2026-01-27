@@ -721,33 +721,39 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
               </div>
 
               {/* Économies TOTALES */}
-              <div className="text-center bg-gradient-to-r from-yellow-100 via-orange-100 to-red-100 p-8 rounded-2xl shadow-lg border-4 border-yellow-400">
-                <p className="text-lg font-bold text-gray-700 mb-2">💰 {t.totalSavings}</p>
-                <p className="text-5xl font-extrabold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-3">
+              <div className="savings-section result-section text-center bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 p-6 rounded-xl shadow-lg border border-green-200">
+                <p className="text-base font-semibold text-gray-600 mb-3">{t.totalSavings}</p>
+                <p className="text-4xl md:text-5xl font-extrabold text-green-600 mb-4">
                   {formatCurrency(result.total_savings_with_taxes)}
                 </p>
-                <Badge className="text-xl px-6 py-2 bg-gradient-to-r from-green-600 to-blue-600 text-white shadow-lg">
-                  🎉 {result.total_savings_percentage.toFixed(1)}% {t.totalSavingsPercent}
-                </Badge>
-                <Progress value={result.total_savings_percentage} className="w-full mt-4 h-3" />
-                <p className="text-sm text-gray-600 mt-3">
-                  {t.totalCostComparison} {formatCurrency(result.normal_total_cost)} (NPF) {t.vs} {formatCurrency(result.zlecaf_total_cost)} (ZLECAf)
+                <div className="inline-flex items-center gap-2 bg-green-600 text-white px-5 py-2 rounded-full shadow-md">
+                  <Sparkles className="w-5 h-5" />
+                  <span className="text-xl font-bold">{result.total_savings_percentage.toFixed(1)}%</span>
+                  <span className="text-sm opacity-90">{t.totalSavingsPercent}</span>
+                </div>
+                <Progress value={result.total_savings_percentage} className="w-full mt-5 h-2 bg-green-100" />
+                <p className="text-sm text-gray-500 mt-4">
+                  {t.totalCostComparison} <span className="font-semibold text-red-600">{formatCurrency(result.normal_total_cost)}</span> (NPF) 
+                  {' '}{t.vs}{' '}
+                  <span className="font-semibold text-green-600">{formatCurrency(result.zlecaf_total_cost)}</span> (ZLECAf)
                 </p>
               </div>
 
               {/* Journal de calcul détaillé */}
               {result.normal_calculation_journal && (
-                <Card className="shadow-lg border-t-4 border-t-purple-500">
-                  <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50">
-                    <CardTitle className="text-xl font-bold text-purple-700 flex items-center gap-2">
-                      <span>📋</span>
-                      <span>{t.calculationJournal}</span>
+                <Card className="journal-container result-section shadow-md border-0 overflow-hidden">
+                  <CardHeader className="bg-gradient-to-r from-slate-50 to-gray-50 border-b border-gray-100 py-4">
+                    <CardTitle className="text-lg font-bold text-gray-800 flex items-center gap-3">
+                      <div className="w-9 h-9 bg-purple-100 rounded-lg flex items-center justify-center">
+                        <Package className="w-5 h-5 text-purple-600" />
+                      </div>
+                      {t.calculationJournal}
                     </CardTitle>
-                    <CardDescription className="font-semibold">
+                    <CardDescription className="text-gray-500 text-sm mt-1">
                       {result.computation_order_ref}
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="pt-4">
+                  <CardContent className="p-0">
                     <div className="overflow-x-auto">
                       <Table>
                         <TableHeader>
