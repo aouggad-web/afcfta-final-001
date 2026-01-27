@@ -655,7 +655,7 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
                               <TableCell className="font-bold">{entry.step}</TableCell>
                               <TableCell className="font-semibold">{entry.component}</TableCell>
                               <TableCell>{formatCurrency(entry.base)}</TableCell>
-                              <TableCell>{entry.rate > 0 ? `${entry.rate.toFixed(2)}%` : '-'}</TableCell>
+                              <TableCell className="font-semibold text-red-600">{entry.rate}</TableCell>
                               <TableCell className="font-bold text-blue-600">{formatCurrency(entry.amount)}</TableCell>
                               <TableCell className="font-bold">{formatCurrency(entry.cumulative)}</TableCell>
                               <TableCell className="text-xs">
@@ -664,7 +664,7 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
                                     {entry.legal_ref}
                                   </a>
                                 ) : (
-                                  entry.legal_ref
+                                  entry.legal_ref || '-'
                                 )}
                               </TableCell>
                             </TableRow>
