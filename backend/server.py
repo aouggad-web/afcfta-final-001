@@ -778,6 +778,29 @@ async def calculate_comprehensive_tariff(request: TariffCalculationRequest):
     sub_positions_available = get_all_sub_positions(dest_iso3, hs6_code)
     has_varying, min_rate, max_rate = has_varying_rates(dest_iso3, hs6_code)
     
+    # Construire le warning et les détails si taux variables
+    rate_warning = None
+    sub_positions_details = None
+    
+    if has_varying and len(sub_positions_available) > 0:
+        # Construire le message de warning
+        rate_warning = {
+            "has_variation": True,
+            "message_fr": f"⚠️ Attention: Ce code SH6 ({hs6_code}) a des taux de droits de douane variables selon les sous-positions nationales. Le taux peut varier de {min_rate*100:.1f}% à {max_rate*100:.1f}%.",
+            "message_en": f"⚠️ Warning: This HS6 code ({hs6_code}) has varying duty rates depending on national sub-headings. Rates range from {min_rate*100:.1f}% to {max_rate*100:.1f}%.",
+            "min_rate": min_rate,
+            "max_rate": max_rate,
+            "min_rate_pct": f"{min_rate*100:.1f}%",
+            "max_rate_pct": f"{max_rate*100:.1f}%",
+            "rate_used": normal_rate,
+            "rate_used_pct": f"{normal_rate*100:.1f}%",
+            "recommendation_fr": "Pour un calcul plus précis, veuillez spécifier la sous-position nationale complète (8-12 chiffres).",
+            "recommendation_en": "For a more accurate calculation, please specify the complete national sub-heading (8-12 digits)."
+        }
+        
+        # Détails de chaque sous-position
+        sub_positions_details = sub_positions_available
+    
     # Création de la réponse complète avec toutes les taxes
     result = TariffCalculationResponse(
         origin_country=request.origin_country,
