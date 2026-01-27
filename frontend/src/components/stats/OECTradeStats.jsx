@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell } from 'recharts';
 import { ArrowUpRight, ArrowDownRight, Globe2, TrendingUp, Search, RefreshCw, BarChart3, Filter } from 'lucide-react';
+import { getCountryFlag, getCountryInfo } from '../../utils/countryCodes';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -264,6 +265,33 @@ export default function OECTradeStats({ language = 'fr' }) {
     }
   }, [selectedCountry, secondCountry, selectedYear]);
 
+  // Mapping des noms de pays OEC vers ISO3 pour les drapeaux
+  const getCountryFlagFromName = (countryName) => {
+    if (!countryName) return '🌍';
+    
+    // Mapping des noms OEC vers ISO3
+    const nameToIso3 = {
+      'Algeria': 'DZA', 'Angola': 'AGO', 'Benin': 'BEN', 'Botswana': 'BWA',
+      'Burkina Faso': 'BFA', 'Burundi': 'BDI', 'Cameroon': 'CMR', 'Cape Verde': 'CPV',
+      'Central African Republic': 'CAF', 'Chad': 'TCD', 'Comoros': 'COM',
+      'Republic of the Congo': 'COG', 'Democratic Republic of the Congo': 'COD',
+      "Cote d'Ivoire": 'CIV', 'Ivory Coast': 'CIV', 'Djibouti': 'DJI', 'Egypt': 'EGY',
+      'Equatorial Guinea': 'GNQ', 'Eritrea': 'ERI', 'Eswatini': 'SWZ', 'Ethiopia': 'ETH',
+      'Gabon': 'GAB', 'Gambia': 'GMB', 'Ghana': 'GHA', 'Guinea': 'GIN',
+      'Guinea-Bissau': 'GNB', 'Kenya': 'KEN', 'Lesotho': 'LSO', 'Liberia': 'LBR',
+      'Libya': 'LBY', 'Madagascar': 'MDG', 'Malawi': 'MWI', 'Mali': 'MLI',
+      'Mauritania': 'MRT', 'Mauritius': 'MUS', 'Morocco': 'MAR', 'Mozambique': 'MOZ',
+      'Namibia': 'NAM', 'Niger': 'NER', 'Nigeria': 'NGA', 'Rwanda': 'RWA',
+      'Sao Tome and Principe': 'STP', 'Senegal': 'SEN', 'Seychelles': 'SYC',
+      'Sierra Leone': 'SLE', 'Somalia': 'SOM', 'South Africa': 'ZAF',
+      'South Sudan': 'SSD', 'Sudan': 'SDN', 'Tanzania': 'TZA', 'Togo': 'TGO',
+      'Tunisia': 'TUN', 'Uganda': 'UGA', 'Zambia': 'ZMB', 'Zimbabwe': 'ZWE',
+    };
+    
+    const iso3 = nameToIso3[countryName];
+    return iso3 ? getCountryFlag(iso3) : '🌍';
+  };
+
   // Chart data preparation - adapté selon le contexte
   const prepareChartData = (data, type = 'country', limit = 10) => {
     if (!data || !data.data) return [];
@@ -358,7 +386,10 @@ export default function OECTradeStats({ language = 'fr' }) {
                     <SelectContent>
                       {countries.map((country) => (
                         <SelectItem key={country.iso3} value={country.iso3}>
-                          {country.name}
+                          <span className="flex items-center gap-2">
+                            <span>{getCountryFlag(country.iso3)}</span>
+                            <span>{country.name}</span>
+                          </span>
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -648,20 +679,26 @@ export default function OECTradeStats({ language = 'fr' }) {
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        {productData.data?.slice(0, 20).map((item, idx) => (
-                          <TableRow key={idx} className="hover:bg-slate-50">
-                            <TableCell className="font-medium text-slate-500">{idx + 1}</TableCell>
-                            <TableCell className="font-medium">
-                              {item['Exporter Country'] || item['Importer Country'] || '-'}
-                            </TableCell>
-                            <TableCell className="text-right font-semibold text-violet-700">
-                              {formatValue(item['Trade Value'] || 0)}
-                            </TableCell>
-                            <TableCell className="text-right text-sm text-blue-600">
-                              {formatQuantity(item['Quantity'] || 0)} t
-                            </TableCell>
-                          </TableRow>
-                        ))}
+                        {productData.data?.slice(0, 20).map((item, idx) => {
+                          const countryName = item['Exporter Country'] || item['Importer Country'] || '-';
+                          return (
+                            <TableRow key={idx} className="hover:bg-slate-50">
+                              <TableCell className="font-medium text-slate-500">{idx + 1}</TableCell>
+                              <TableCell className="font-medium">
+                                <span className="flex items-center gap-2">
+                                  <span>{getCountryFlagFromName(countryName)}</span>
+                                  <span>{countryName}</span>
+                                </span>
+                              </TableCell>
+                              <TableCell className="text-right font-semibold text-violet-700">
+                                {formatValue(item['Trade Value'] || 0)}
+                              </TableCell>
+                              <TableCell className="text-right text-sm text-blue-600">
+                                {formatQuantity(item['Quantity'] || 0)} t
+                              </TableCell>
+                            </TableRow>
+                          );
+                        })}
                       </TableBody>
                     </Table>
                   </div>
@@ -685,7 +722,10 @@ export default function OECTradeStats({ language = 'fr' }) {
                     <SelectContent>
                       {countries.map((country) => (
                         <SelectItem key={country.iso3} value={country.iso3}>
-                          {country.name}
+                          <span className="flex items-center gap-2">
+                            <span>{getCountryFlag(country.iso3)}</span>
+                            <span>{country.name}</span>
+                          </span>
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -701,7 +741,10 @@ export default function OECTradeStats({ language = 'fr' }) {
                     <SelectContent>
                       {countries.filter(c => c.iso3 !== selectedCountry).map((country) => (
                         <SelectItem key={country.iso3} value={country.iso3}>
-                          {country.name}
+                          <span className="flex items-center gap-2">
+                            <span>{getCountryFlag(country.iso3)}</span>
+                            <span>{country.name}</span>
+                          </span>
                         </SelectItem>
                       ))}
                     </SelectContent>

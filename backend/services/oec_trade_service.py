@@ -533,7 +533,16 @@ async def get_african_top_exporters(hs_code: str, year: int, limit: int = 10) ->
 
 
 def get_african_countries_list(language: str = "fr") -> List[Dict]:
-    """Retourne la liste des pays africains avec leurs codes"""
+    """Retourne la liste des pays africains avec leurs codes, triés correctement"""
+    import unicodedata
+    
+    def normalize_for_sort(text: str) -> str:
+        """Normalise le texte pour le tri (retire les accents)"""
+        return ''.join(
+            c for c in unicodedata.normalize('NFD', text.lower())
+            if unicodedata.category(c) != 'Mn'
+        )
+    
     name_key = f"name_{language}"
     return [
         {
@@ -541,5 +550,8 @@ def get_african_countries_list(language: str = "fr") -> List[Dict]:
             "oec_id": info["oec_id"],
             "name": info.get(name_key, info["name_en"])
         }
-        for iso3, info in sorted(AFRICAN_COUNTRIES_OEC.items(), key=lambda x: x[1].get(name_key, ""))
+        for iso3, info in sorted(
+            AFRICAN_COUNTRIES_OEC.items(), 
+            key=lambda x: normalize_for_sort(x[1].get(name_key, ""))
+        )
     ]

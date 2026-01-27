@@ -14,6 +14,13 @@ import pandas as pd
 import asyncio
 import json
 from country_data import get_country_data, REAL_COUNTRY_DATA
+from constants import AFRICAN_COUNTRIES, ZLECAF_RULES_OF_ORIGIN
+from models import CountryInfo, TariffCalculationRequest, TariffCalculationResponse, CountryEconomicProfile
+from translations import (
+    COUNTRY_TRANSLATIONS, REGION_TRANSLATIONS, RULES_TRANSLATIONS,
+    translate_country_name, translate_region, translate_rule
+)
+from gold_reserves_data import GOLD_RESERVES_GAI_DATA
 from tax_rates import calculate_all_taxes, get_vat_rate
 from data_loader import (
     load_corrections_data, 
@@ -25,7 +32,6 @@ from data_loader import (
     get_country_customs_info,
     get_country_infrastructure_ranking
 )
-from etl.news_aggregator import get_news, get_news_by_region, get_news_by_category
 from logistics_data import (
     get_all_ports,
     get_port_by_id,
@@ -93,11 +99,9 @@ from etl.hs6_database import (
     get_codes_by_category,
     get_database_stats
 )
-from services.oec_trade_service import (
-    oec_service,
-    get_african_countries_list,
-    AFRICAN_COUNTRIES_OEC
-)
+
+# Import routes module for modular endpoint registration
+from routes import register_routes
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -107,115 +111,8 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-# Translations for country names and regions
-COUNTRY_TRANSLATIONS = {
-    "DZ": {"fr": "Algérie", "en": "Algeria"},
-    "AO": {"fr": "Angola", "en": "Angola"},
-    "BJ": {"fr": "Bénin", "en": "Benin"},
-    "BW": {"fr": "Botswana", "en": "Botswana"},
-    "BF": {"fr": "Burkina Faso", "en": "Burkina Faso"},
-    "BI": {"fr": "Burundi", "en": "Burundi"},
-    "CM": {"fr": "Cameroun", "en": "Cameroon"},
-    "CV": {"fr": "Cap-Vert", "en": "Cape Verde"},
-    "CF": {"fr": "République Centrafricaine", "en": "Central African Republic"},
-    "TD": {"fr": "Tchad", "en": "Chad"},
-    "KM": {"fr": "Comores", "en": "Comoros"},
-    "CG": {"fr": "République du Congo", "en": "Republic of Congo"},
-    "CD": {"fr": "République Démocratique du Congo", "en": "Democratic Republic of Congo"},
-    "CI": {"fr": "Côte d'Ivoire", "en": "Ivory Coast"},
-    "DJ": {"fr": "Djibouti", "en": "Djibouti"},
-    "EG": {"fr": "Égypte", "en": "Egypt"},
-    "GQ": {"fr": "Guinée Équatoriale", "en": "Equatorial Guinea"},
-    "ER": {"fr": "Érythrée", "en": "Eritrea"},
-    "SZ": {"fr": "Eswatini", "en": "Eswatini"},
-    "ET": {"fr": "Éthiopie", "en": "Ethiopia"},
-    "GA": {"fr": "Gabon", "en": "Gabon"},
-    "GM": {"fr": "Gambie", "en": "Gambia"},
-    "GH": {"fr": "Ghana", "en": "Ghana"},
-    "GN": {"fr": "Guinée", "en": "Guinea"},
-    "GW": {"fr": "Guinée-Bissau", "en": "Guinea-Bissau"},
-    "KE": {"fr": "Kenya", "en": "Kenya"},
-    "LS": {"fr": "Lesotho", "en": "Lesotho"},
-    "LR": {"fr": "Libéria", "en": "Liberia"},
-    "LY": {"fr": "Libye", "en": "Libya"},
-    "MG": {"fr": "Madagascar", "en": "Madagascar"},
-    "MW": {"fr": "Malawi", "en": "Malawi"},
-    "ML": {"fr": "Mali", "en": "Mali"},
-    "MR": {"fr": "Mauritanie", "en": "Mauritania"},
-    "MU": {"fr": "Maurice", "en": "Mauritius"},
-    "MA": {"fr": "Maroc", "en": "Morocco"},
-    "MZ": {"fr": "Mozambique", "en": "Mozambique"},
-    "NA": {"fr": "Namibie", "en": "Namibia"},
-    "NE": {"fr": "Niger", "en": "Niger"},
-    "NG": {"fr": "Nigéria", "en": "Nigeria"},
-    "RW": {"fr": "Rwanda", "en": "Rwanda"},
-    "ST": {"fr": "São Tomé-et-Príncipe", "en": "São Tomé and Príncipe"},
-    "SN": {"fr": "Sénégal", "en": "Senegal"},
-    "SC": {"fr": "Seychelles", "en": "Seychelles"},
-    "SL": {"fr": "Sierra Leone", "en": "Sierra Leone"},
-    "SO": {"fr": "Somalie", "en": "Somalia"},
-    "ZA": {"fr": "Afrique du Sud", "en": "South Africa"},
-    "SS": {"fr": "Soudan du Sud", "en": "South Sudan"},
-    "SD": {"fr": "Soudan", "en": "Sudan"},
-    "TZ": {"fr": "Tanzanie", "en": "Tanzania"},
-    "TG": {"fr": "Togo", "en": "Togo"},
-    "TN": {"fr": "Tunisie", "en": "Tunisia"},
-    "UG": {"fr": "Ouganda", "en": "Uganda"},
-    "ZM": {"fr": "Zambie", "en": "Zambia"},
-    "ZW": {"fr": "Zimbabwe", "en": "Zimbabwe"}
-}
-
-REGION_TRANSLATIONS = {
-    "Afrique du Nord": {"fr": "Afrique du Nord", "en": "North Africa"},
-    "Afrique de l'Ouest": {"fr": "Afrique de l'Ouest", "en": "West Africa"},
-    "Afrique de l'Est": {"fr": "Afrique de l'Est", "en": "East Africa"},
-    "Afrique Centrale": {"fr": "Afrique Centrale", "en": "Central Africa"},
-    "Afrique Australe": {"fr": "Afrique Australe", "en": "Southern Africa"}
-}
-
-RULES_TRANSLATIONS = {
-    "Entièrement obtenus": {"fr": "Entièrement obtenus", "en": "Wholly obtained"},
-    "Transformation substantielle": {"fr": "Transformation substantielle", "en": "Substantial transformation"},
-    "Extraction ou transformation substantielle": {"fr": "Extraction ou transformation substantielle", "en": "Extraction or substantial transformation"},
-    "Extraction": {"fr": "Extraction", "en": "Extraction"},
-    "100% africain": {"fr": "100% africain", "en": "100% African"},
-    "40% valeur ajoutée africaine": {"fr": "40% valeur ajoutée africaine", "en": "40% African value added"},
-    "35% valeur ajoutée africaine": {"fr": "35% valeur ajoutée africaine", "en": "35% African value added"},
-    "45% valeur ajoutée africaine": {"fr": "45% valeur ajoutée africaine", "en": "45% African value added"},
-    "Entièrement extraits en Afrique": {"fr": "Entièrement extraits en Afrique", "en": "Wholly extracted in Africa"}
-}
-
-def translate_country_name(code: str, lang: str = "fr") -> str:
-    """Get translated country name"""
-    if code in COUNTRY_TRANSLATIONS:
-        return COUNTRY_TRANSLATIONS[code].get(lang, COUNTRY_TRANSLATIONS[code]["fr"])
-    return code
-
-def translate_region(region: str, lang: str = "fr") -> str:
-    """Get translated region name"""
-    if region in REGION_TRANSLATIONS:
-        return REGION_TRANSLATIONS[region].get(lang, region)
-    return region
-
-def translate_rule(text: str, lang: str = "fr") -> str:
-    """Get translated rule text"""
-    if text in RULES_TRANSLATIONS:
-        return RULES_TRANSLATIONS[text].get(lang, text)
-    return text
-
-# Load gold reserves and GAI data
-def load_gold_reserves_gai():
-    """Load gold reserves and Global Attractiveness Index 2025 data"""
-    try:
-        with open(ROOT_DIR / '../gold_reserves_gai_2025.json', 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except Exception as e:
-        print(f"⚠️  Warning: Could not load gold_reserves_gai_2025.json: {e}")
-        return {"gold_reserves": {}, "global_attractiveness_index_2025": {}}
-
-GOLD_RESERVES_GAI_DATA = load_gold_reserves_gai()
-print(f"✅ Loaded gold reserves for {len(GOLD_RESERVES_GAI_DATA['gold_reserves'])} countries")
-print(f"✅ Loaded GAI 2025 for {len(GOLD_RESERVES_GAI_DATA['global_attractiveness_index_2025'])} countries")
+# Translations moved to translations.py
+# Gold reserves data moved to gold_reserves_data.py
 
 # Create the main app without a prefix
 app = FastAPI(title="Système Commercial ZLECAf - API Complète", version="2.0.0")
@@ -224,162 +121,7 @@ app = FastAPI(title="Système Commercial ZLECAf - API Complète", version="2.0.0
 api_router = APIRouter(prefix="/api")
 
 # Pays membres de la ZLECAf avec données économiques
-AFRICAN_COUNTRIES = [
-    {"code": "DZ", "name": "Algérie", "region": "Afrique du Nord", "iso3": "DZA", "wb_code": "DZA", "population": 44700000},
-    {"code": "AO", "name": "Angola", "region": "Afrique Centrale", "iso3": "AGO", "wb_code": "AGO", "population": 32800000},
-    {"code": "BJ", "name": "Bénin", "region": "Afrique de l'Ouest", "iso3": "BEN", "wb_code": "BEN", "population": 12100000},
-    {"code": "BW", "name": "Botswana", "region": "Afrique Australe", "iso3": "BWA", "wb_code": "BWA", "population": 2400000},
-    {"code": "BF", "name": "Burkina Faso", "region": "Afrique de l'Ouest", "iso3": "BFA", "wb_code": "BFA", "population": 21500000},
-    {"code": "BI", "name": "Burundi", "region": "Afrique de l'Est", "iso3": "BDI", "wb_code": "BDI", "population": 12000000},
-    {"code": "CM", "name": "Cameroun", "region": "Afrique Centrale", "iso3": "CMR", "wb_code": "CMR", "population": 26500000},
-    {"code": "CV", "name": "Cap-Vert", "region": "Afrique de l'Ouest", "iso3": "CPV", "wb_code": "CPV", "population": 560000},
-    {"code": "CF", "name": "République Centrafricaine", "region": "Afrique Centrale", "iso3": "CAF", "wb_code": "CAF", "population": 5400000},
-    {"code": "TD", "name": "Tchad", "region": "Afrique Centrale", "iso3": "TCD", "wb_code": "TCD", "population": 16400000},
-    {"code": "KM", "name": "Comores", "region": "Afrique de l'Est", "iso3": "COM", "wb_code": "COM", "population": 870000},
-    {"code": "CG", "name": "République du Congo", "region": "Afrique Centrale", "iso3": "COG", "wb_code": "COG", "population": 5500000},
-    {"code": "CD", "name": "République Démocratique du Congo", "region": "Afrique Centrale", "iso3": "COD", "wb_code": "COD", "population": 89600000},
-    {"code": "CI", "name": "Côte d'Ivoire", "region": "Afrique de l'Ouest", "iso3": "CIV", "wb_code": "CIV", "population": 26400000},
-    {"code": "DJ", "name": "Djibouti", "region": "Afrique de l'Est", "iso3": "DJI", "wb_code": "DJI", "population": 990000},
-    {"code": "EG", "name": "Égypte", "region": "Afrique du Nord", "iso3": "EGY", "wb_code": "EGY", "population": 102300000},
-    {"code": "GQ", "name": "Guinée Équatoriale", "region": "Afrique Centrale", "iso3": "GNQ", "wb_code": "GNQ", "population": 1400000},
-    {"code": "ER", "name": "Érythrée", "region": "Afrique de l'Est", "iso3": "ERI", "wb_code": "ERI", "population": 3500000},
-    {"code": "SZ", "name": "Eswatini", "region": "Afrique Australe", "iso3": "SWZ", "wb_code": "SWZ", "population": 1160000},
-    {"code": "ET", "name": "Éthiopie", "region": "Afrique de l'Est", "iso3": "ETH", "wb_code": "ETH", "population": 115000000},
-    {"code": "GA", "name": "Gabon", "region": "Afrique Centrale", "iso3": "GAB", "wb_code": "GAB", "population": 2200000},
-    {"code": "GM", "name": "Gambie", "region": "Afrique de l'Ouest", "iso3": "GMB", "wb_code": "GMB", "population": 2400000},
-    {"code": "GH", "name": "Ghana", "region": "Afrique de l'Ouest", "iso3": "GHA", "wb_code": "GHA", "population": 31100000},
-    {"code": "GN", "name": "Guinée", "region": "Afrique de l'Ouest", "iso3": "GIN", "wb_code": "GIN", "population": 13100000},
-    {"code": "GW", "name": "Guinée-Bissau", "region": "Afrique de l'Ouest", "iso3": "GNB", "wb_code": "GNB", "population": 2000000},
-    {"code": "KE", "name": "Kenya", "region": "Afrique de l'Est", "iso3": "KEN", "wb_code": "KEN", "population": 53800000},
-    {"code": "LS", "name": "Lesotho", "region": "Afrique Australe", "iso3": "LSO", "wb_code": "LSO", "population": 2100000},
-    {"code": "LR", "name": "Libéria", "region": "Afrique de l'Ouest", "iso3": "LBR", "wb_code": "LBR", "population": 5100000},
-    {"code": "LY", "name": "Libye", "region": "Afrique du Nord", "iso3": "LBY", "wb_code": "LBY", "population": 6900000},
-    {"code": "MG", "name": "Madagascar", "region": "Afrique de l'Est", "iso3": "MDG", "wb_code": "MDG", "population": 28000000},
-    {"code": "MW", "name": "Malawi", "region": "Afrique de l'Est", "iso3": "MWI", "wb_code": "MWI", "population": 19100000},
-    {"code": "ML", "name": "Mali", "region": "Afrique de l'Ouest", "iso3": "MLI", "wb_code": "MLI", "population": 20300000},
-    {"code": "MR", "name": "Mauritanie", "region": "Afrique de l'Ouest", "iso3": "MRT", "wb_code": "MRT", "population": 4600000},
-    {"code": "MU", "name": "Maurice", "region": "Afrique de l'Est", "iso3": "MUS", "wb_code": "MUS", "population": 1300000},
-    {"code": "MA", "name": "Maroc", "region": "Afrique du Nord", "iso3": "MAR", "wb_code": "MAR", "population": 37000000},
-    {"code": "MZ", "name": "Mozambique", "region": "Afrique de l'Est", "iso3": "MOZ", "wb_code": "MOZ", "population": 31300000},
-    {"code": "NA", "name": "Namibie", "region": "Afrique Australe", "iso3": "NAM", "wb_code": "NAM", "population": 2500000},
-    {"code": "NE", "name": "Niger", "region": "Afrique de l'Ouest", "iso3": "NER", "wb_code": "NER", "population": 24200000},
-    {"code": "NG", "name": "Nigéria", "region": "Afrique de l'Ouest", "iso3": "NGA", "wb_code": "NGA", "population": 218500000},
-    {"code": "RW", "name": "Rwanda", "region": "Afrique de l'Est", "iso3": "RWA", "wb_code": "RWA", "population": 13000000},
-    {"code": "ST", "name": "São Tomé-et-Príncipe", "region": "Afrique Centrale", "iso3": "STP", "wb_code": "STP", "population": 220000},
-    {"code": "SN", "name": "Sénégal", "region": "Afrique de l'Ouest", "iso3": "SEN", "wb_code": "SEN", "population": 17200000},
-    {"code": "SC", "name": "Seychelles", "region": "Afrique de l'Est", "iso3": "SYC", "wb_code": "SYC", "population": 98000},
-    {"code": "SL", "name": "Sierra Leone", "region": "Afrique de l'Ouest", "iso3": "SLE", "wb_code": "SLE", "population": 8000000},
-    {"code": "SO", "name": "Somalie", "region": "Afrique de l'Est", "iso3": "SOM", "wb_code": "SOM", "population": 16000000},
-    {"code": "ZA", "name": "Afrique du Sud", "region": "Afrique Australe", "iso3": "ZAF", "wb_code": "ZAF", "population": 59300000},
-    {"code": "SS", "name": "Soudan du Sud", "region": "Afrique de l'Est", "iso3": "SSD", "wb_code": "SSD", "population": 11200000},
-    {"code": "SD", "name": "Soudan", "region": "Afrique du Nord", "iso3": "SDN", "wb_code": "SDN", "population": 44900000},
-    {"code": "TZ", "name": "Tanzanie", "region": "Afrique de l'Est", "iso3": "TZA", "wb_code": "TZA", "population": 59700000},
-    {"code": "TG", "name": "Togo", "region": "Afrique de l'Ouest", "iso3": "TGO", "wb_code": "TGO", "population": 8300000},
-    {"code": "TN", "name": "Tunisie", "region": "Afrique du Nord", "iso3": "TUN", "wb_code": "TUN", "population": 11800000},
-    {"code": "UG", "name": "Ouganda", "region": "Afrique de l'Est", "iso3": "UGA", "wb_code": "UGA", "population": 45700000},
-    {"code": "ZM", "name": "Zambie", "region": "Afrique de l'Est", "iso3": "ZMB", "wb_code": "ZMB", "population": 18400000},
-    {"code": "ZW", "name": "Zimbabwe", "region": "Afrique de l'Est", "iso3": "ZWE", "wb_code": "ZWE", "population": 15000000}
-]
-
-# Règles d'origine ZLECAf par secteur/code SH
-ZLECAF_RULES_OF_ORIGIN = {
-    "01": {"rule": "Entièrement obtenus", "requirement": "100% africain", "regional_content": 100},
-    "02": {"rule": "Entièrement obtenus", "requirement": "100% africain", "regional_content": 100},
-    "03": {"rule": "Entièrement obtenus", "requirement": "100% africain", "regional_content": 100},
-    "04": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "05": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "06": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "07": {"rule": "Entièrement obtenus", "requirement": "100% africain", "regional_content": 100},
-    "08": {"rule": "Entièrement obtenus", "requirement": "100% africain", "regional_content": 100},
-    "09": {"rule": "Transformation substantielle", "requirement": "35% valeur ajoutée africaine", "regional_content": 35},
-    "10": {"rule": "Transformation substantielle", "requirement": "35% valeur ajoutée africaine", "regional_content": 35},
-    "11": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "12": {"rule": "Transformation substantielle", "requirement": "35% valeur ajoutée africaine", "regional_content": 35},
-    "13": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "14": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "15": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "16": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "17": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "18": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "19": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "20": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "21": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "22": {"rule": "Transformation substantielle", "requirement": "35% valeur ajoutée africaine", "regional_content": 35},
-    "23": {"rule": "Transformation substantielle", "requirement": "35% valeur ajoutée africaine", "regional_content": 35},
-    "24": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "25": {"rule": "Extraction ou transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "26": {"rule": "Extraction", "requirement": "Entièrement extraits en Afrique", "regional_content": 100},
-    "27": {"rule": "Extraction", "requirement": "Entièrement extraits en Afrique", "regional_content": 100},
-    "28": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "29": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "30": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "31": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "32": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "33": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "34": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "35": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "36": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "37": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "38": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "39": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "40": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "41": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "42": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "43": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "44": {"rule": "Transformation substantielle", "requirement": "35% valeur ajoutée africaine", "regional_content": 35},
-    "45": {"rule": "Transformation substantielle", "requirement": "35% valeur ajoutée africaine", "regional_content": 35},
-    "46": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "47": {"rule": "Transformation substantielle", "requirement": "35% valeur ajoutée africaine", "regional_content": 35},
-    "48": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "49": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "50": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "51": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "52": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "53": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "54": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "55": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "56": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "57": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "58": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "59": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "60": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "61": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "62": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "63": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "64": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "65": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "66": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "67": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "68": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "69": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "70": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "71": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "72": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "73": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "74": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "75": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "76": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "78": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "79": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "80": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "81": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "82": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "83": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "84": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "85": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "86": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "87": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "88": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "89": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "90": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "91": {"rule": "Transformation substantielle", "requirement": "45% valeur ajoutée africaine", "regional_content": 45},
-    "92": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "93": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "94": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "95": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "96": {"rule": "Transformation substantielle", "requirement": "40% valeur ajoutée africaine", "regional_content": 40},
-    "97": {"rule": "Œuvres d'art", "requirement": "Création africaine", "regional_content": 100},
-}
+# AFRICAN_COUNTRIES and ZLECAF_RULES_OF_ORIGIN moved to constants.py
 
 # API Clients pour données externes
 class WorldBankAPIClient:
@@ -473,154 +215,14 @@ wb_client = WorldBankAPIClient()
 oec_client = OECAPIClient()
 
 # Define Models
-class CountryInfo(BaseModel):
-    code: str  # ISO3 (code principal)
-    iso2: str = ""  # ISO2 (pour les drapeaux)
-    iso3: str  # ISO3 
-    name: str
-    region: str
-    wb_code: str
-    population: int
-
-class TariffCalculationRequest(BaseModel):
-    origin_country: str
-    destination_country: str
-    hs_code: str
-    value: float
-
-class TariffCalculationResponse(BaseModel):
-    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    origin_country: str
-    destination_country: str
-    hs_code: str
-    hs6_code: Optional[str] = None  # Code SH6 extrait
-    value: float
-    # Tarifs normaux (hors ZLECAf)
-    normal_tariff_rate: float
-    normal_tariff_amount: float
-    # Tarifs ZLECAf
-    zlecaf_tariff_rate: float
-    zlecaf_tariff_amount: float
-    # TVA et autres taxes - Normal
-    normal_vat_rate: float
-    normal_vat_amount: float
-    normal_statistical_fee: float
-    normal_community_levy: float
-    normal_ecowas_levy: float
-    normal_other_taxes_total: float
-    normal_total_cost: float
-    # TVA et autres taxes - ZLECAf
-    zlecaf_vat_rate: float
-    zlecaf_vat_amount: float
-    zlecaf_statistical_fee: float
-    zlecaf_community_levy: float
-    zlecaf_ecowas_levy: float
-    zlecaf_other_taxes_total: float
-    zlecaf_total_cost: float
-    # Économies
-    savings: float
-    savings_percentage: float
-    total_savings_with_taxes: float
-    total_savings_percentage: float
-    # Journal de calcul et traçabilité
-    normal_calculation_journal: List[Dict[str, Any]]
-    zlecaf_calculation_journal: List[Dict[str, Any]]
-    computation_order_ref: str
-    last_verified: str
-    confidence_level: str
-    # Précision tarifaire et sous-positions nationales
-    tariff_precision: str = "chapter"  # sub_position, hs6_country, chapter
-    sub_position_used: Optional[str] = None  # Code 8-12 chiffres si utilisé
-    sub_position_description: Optional[str] = None
-    has_varying_sub_positions: bool = False  # Si d'autres taux existent pour ce HS6
-    available_sub_positions_count: int = 0
-    # Règles d'origine
-    rules_of_origin: Dict[str, Any]
-    # Top producteurs africains
-    top_african_producers: List[Dict[str, Any]]
-    # Données économiques des pays
-    origin_country_data: Dict[str, Any]
-    destination_country_data: Dict[str, Any]
-    timestamp: datetime = Field(default_factory=datetime.utcnow)
-
-class CountryEconomicProfile(BaseModel):
-    country_code: str
-    country_name: str
-    population: Optional[int] = None
-    gdp_usd: Optional[float] = None
-    gdp_per_capita: Optional[float] = None
-    inflation_rate: Optional[float] = None
-    region: str
-    trade_profile: Dict[str, Any] = {}
-    projections: Dict[str, Any] = {}
-    risk_ratings: Dict[str, Any] = {}
-    customs: Dict[str, Any] = {}
-    infrastructure_ranking: Dict[str, Any] = {}
-    ongoing_projects: List[Dict[str, Any]] = []
+# Models moved to models.py
 
 # Routes
 @api_router.get("/")
 async def root():
     return {"message": "Système Commercial ZLECAf API - Version Complète"}
 
-@api_router.get("/health")
-async def health_check():
-    """Simple health check endpoint"""
-    return {
-        "status": "healthy",
-        "service": "ZLECAf API",
-        "version": "2.0.0",
-        "timestamp": datetime.now().isoformat()
-    }
-
-@api_router.get("/health/status")
-async def detailed_health_status():
-    """Detailed health status with system checks"""
-    health_status = {
-        "status": "healthy",
-        "timestamp": datetime.now().isoformat(),
-        "service": "ZLECAf API",
-        "version": "2.0.0",
-        "checks": {}
-    }
-    
-    # Check database connection
-    try:
-        await db.command("ping")
-        health_status["checks"]["database"] = {
-            "status": "healthy",
-            "message": "MongoDB connection active"
-        }
-    except Exception as e:
-        health_status["checks"]["database"] = {
-            "status": "unhealthy",
-            "message": f"Database connection error: {str(e)}"
-        }
-        health_status["status"] = "unhealthy"
-    
-    # Check API endpoints availability
-    health_status["checks"]["api_endpoints"] = {
-        "status": "healthy",
-        "available_endpoints": [
-            "/api/",
-            "/api/health",
-            "/api/health/status",
-            "/api/countries",
-            "/api/country-profile/{country_code}",
-            "/api/calculate-tariff",
-            "/api/rules-of-origin/{hs_code}",
-            "/api/statistics"
-        ]
-    }
-    
-    # Check data availability
-    health_status["checks"]["data"] = {
-        "status": "healthy",
-        "countries_count": len(AFRICAN_COUNTRIES),
-        "rules_of_origin_sectors": len(ZLECAF_RULES_OF_ORIGIN)
-    }
-    
-    return health_status
+# NOTE: /health and /health/status endpoints migrated to /routes/health.py
 
 @api_router.get("/countries")
 async def get_countries(lang: str = "fr"):
@@ -1494,247 +1096,14 @@ async def get_trade_performance_intra_african():
     }
 
 # ==========================================
-# LOGISTICS MARITIME ENDPOINTS
+# LOGISTICS ENDPOINTS - MIGRATED
 # ==========================================
-
-@api_router.get("/logistics/ports")
-async def get_ports(country_iso: Optional[str] = None):
-    """
-    Get all maritime ports or filter by country ISO code
-    Query params:
-    - country_iso: Filter ports by country (e.g., MAR, NGA, ZAF)
-    """
-    try:
-        ports = get_all_ports(country_iso=country_iso)
-        return {
-            "count": len(ports),
-            "ports": ports
-        }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error loading ports data: {str(e)}")
-
-@api_router.get("/logistics/ports/{port_id}")
-async def get_port_details(port_id: str):
-    """
-    Get detailed information for a specific port
-    """
-    port = get_port_by_id(port_id)
-    
-    if not port:
-        raise HTTPException(status_code=404, detail=f"Port {port_id} not found")
-    
-    return port
-
-@api_router.get("/logistics/ports/type/{port_type}")
-async def get_ports_filtered_by_type(port_type: str):
-    """
-    Get ports filtered by type
-    Port types: Hub Transhipment, Hub Regional, Maritime Commercial
-    """
-    valid_types = ["Hub Transhipment", "Hub Regional", "Maritime Commercial"]
-    
-    if port_type not in valid_types:
-        raise HTTPException(
-            status_code=400, 
-            detail=f"Invalid port type. Valid types: {', '.join(valid_types)}"
-        )
-    
-    ports = get_ports_by_type(port_type)
-    return {
-        "port_type": port_type,
-        "count": len(ports),
-        "ports": ports
-    }
-
-@api_router.get("/logistics/ports/top/teu")
-async def get_top_ports_teu(limit: int = 20):
-    """
-    Get top ports by container throughput (TEU)
-    Query params:
-    - limit: Number of ports to return (default: 20, max: 50)
-    """
-    if limit > 50:
-        limit = 50
-    
-    ports = get_top_ports_by_teu(limit=limit)
-    return {
-        "count": len(ports),
-        "ports": ports
-    }
-
-@api_router.get("/logistics/ports/search")
-async def search_ports_endpoint(q: str):
-    """
-    Search ports by name, UN LOCODE, or country name
-    Query params:
-    - q: Search query string
-    """
-    if len(q) < 2:
-        raise HTTPException(status_code=400, detail="Search query must be at least 2 characters")
-    
-    results = search_ports(q)
-    return {
-        "query": q,
-        "count": len(results),
-        "results": results
-    }
-
-@api_router.get("/logistics/statistics")
-async def get_logistics_statistics():
-    """
-    Get global logistics statistics for African ports
-    """
-    all_ports = get_all_ports()
-    
-    total_teu = sum(
-        p.get('latest_stats', {}).get('container_throughput_teu', 0) 
-        for p in all_ports
-    )
-    
-    total_cargo = sum(
-        p.get('latest_stats', {}).get('cargo_throughput_tons', 0) 
-        for p in all_ports
-    )
-    
-    # Count ports by type
-    port_types = {}
-    for port in all_ports:
-        ptype = port.get('port_type', 'Unknown')
-        port_types[ptype] = port_types.get(ptype, 0) + 1
-    
-    # Count ports by country
-    ports_by_country = {}
-    for port in all_ports:
-        country = port.get('country_name', 'Unknown')
-        ports_by_country[country] = ports_by_country.get(country, 0) + 1
-    
-    return {
-        "total_ports": len(all_ports),
-        "total_container_throughput_teu": total_teu,
-        "total_cargo_throughput_tons": total_cargo,
-        "ports_by_type": port_types,
-        "ports_by_country": dict(sorted(ports_by_country.items(), key=lambda x: x[1], reverse=True)),
-        "year": 2024
-    }
-
-
-
-# ==========================================
-# LOGISTICS AIR CARGO ENDPOINTS
-# ==========================================
-
-@api_router.get("/logistics/air/airports")
-async def get_airports(country_iso: Optional[str] = None):
-    """
-    Get all airports or filter by country ISO code
-    Query params:
-    - country_iso: Filter airports by country (e.g., ZAF, ETH, KEN)
-    """
-    try:
-        airports = get_all_airports(country_iso=country_iso)
-        return {
-            "count": len(airports),
-            "airports": airports
-        }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error loading airports data: {str(e)}")
-
-# ==========================================
-# FREE ZONES ENDPOINTS
-# ==========================================
-
-@api_router.get("/logistics/free-zones")
-async def get_free_zones(country_iso: Optional[str] = None):
-    """
-    Get African Free Trade Zones (Zones Franches)
-    Query params:
-    - country_iso: Filter by country (e.g., MAR, DZA, EGY)
-    """
-    try:
-        zones = get_free_zones_by_country(country_iso)
-        return {
-            "count": len(zones),
-            "zones": zones
-        }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error loading free zones data: {str(e)}")
-
-
-@api_router.get("/logistics/air/airports/{airport_id}")
-async def get_airport_details(airport_id: str):
-    """
-    Get detailed information for a specific airport
-    """
-    airport = get_airport_by_id(airport_id)
-    
-    if not airport:
-        raise HTTPException(status_code=404, detail=f"Airport {airport_id} not found")
-    
-    return airport
-
-@api_router.get("/logistics/air/airports/top/cargo")
-async def get_top_airports_cargo(limit: int = 20):
-    """
-    Get top airports by cargo throughput (tons)
-    Query params:
-    - limit: Number of airports to return (default: 20, max: 50)
-    """
-    if limit > 50:
-        limit = 50
-    
-    airports = get_top_airports_by_cargo(limit=limit)
-    return {
-        "count": len(airports),
-        "airports": airports
-    }
-
-@api_router.get("/logistics/air/airports/search")
-async def search_airports_endpoint(q: str):
-    """
-    Search airports by name, IATA code, or country name
-    Query params:
-    - q: Search query string
-    """
-    if len(q) < 2:
-        raise HTTPException(status_code=400, detail="Search query must be at least 2 characters")
-    
-    results = search_airports(q)
-    return {
-        "query": q,
-        "count": len(results),
-        "results": results
-    }
-
-@api_router.get("/logistics/air/statistics")
-async def get_air_logistics_statistics():
-    """
-    Get global air cargo statistics for African airports
-    """
-    all_airports = get_all_airports()
-    
-    total_cargo = sum(
-        a.get('historical_stats', [{}])[0].get('cargo_throughput_tons', 0) if a.get('historical_stats') else 0
-        for a in all_airports
-    )
-    
-    total_mail = sum(
-        a.get('historical_stats', [{}])[0].get('mail_throughput_tons', 0) if a.get('historical_stats') else 0
-        for a in all_airports
-    )
-    
-    # Count airports by country
-    airports_by_country = {}
-    for airport in all_airports:
-        country = airport.get('country_name', 'Unknown')
-        airports_by_country[country] = airports_by_country.get(country, 0) + 1
-    
-    return {
-        "total_airports": len(all_airports),
-        "total_cargo_throughput_tons": total_cargo,
-        "total_mail_throughput_tons": total_mail,
-        "airports_by_country": dict(sorted(airports_by_country.items(), key=lambda x: x[1], reverse=True)),
-        "year": 2024
-    }
+# All logistics endpoints migrated to /routes/logistics.py:
+# - /logistics/ports/* (Maritime ports)
+# - /logistics/air/* (Air cargo airports)
+# - /logistics/free-zones (Free trade zones)
+# - /logistics/land/* (Land corridors)
+# - /logistics/statistics
 
 
 # ==========================================
@@ -1976,120 +1345,15 @@ async def get_land_logistics_statistics():
 
 
 # ==========================================
-# PRODUCTION DATA ENDPOINTS
+# PRODUCTION ENDPOINTS - MIGRATED
 # ==========================================
-
-@api_router.get("/production/statistics")
-async def get_production_stats():
-    """
-    Get global production statistics for all African countries
-    Returns overview of data coverage across 4 dimensions
-    """
-    return get_production_statistics()
-
-@api_router.get("/production/macro")
-async def get_macro_value_added(
-    country_iso3: Optional[str] = None,
-    year: Optional[int] = None,
-    sector: Optional[str] = None
-):
-    """
-    Get macro-level value added data (World Bank/IMF)
-    
-    Query parameters:
-    - country_iso3: ISO3 country code (e.g., 'ZAF')
-    - year: Year (2021-2024)
-    - sector: ISIC section ('A', 'B-F', 'C')
-    """
-    return get_value_added(country_iso3=country_iso3, year=year, sector=sector)
-
-@api_router.get("/production/macro/{country_iso3}")
-async def get_macro_by_country(country_iso3: str):
-    """
-    Get all macro value added series for a specific country
-    Organized by sector with time series
-    """
-    return get_value_added_by_country(country_iso3)
-
-@api_router.get("/production/agriculture")
-async def get_agri_production(
-    country_iso3: Optional[str] = None,
-    year: Optional[int] = None,
-    commodity: Optional[str] = None
-):
-    """
-    Get agricultural production data (FAOSTAT)
-    
-    Query parameters:
-    - country_iso3: ISO3 country code
-    - year: Year (2021-2024)
-    - commodity: Commodity name or code (e.g., 'Maize', '0015')
-    """
-    return get_agriculture_production(country_iso3=country_iso3, year=year, commodity=commodity)
-
-@api_router.get("/production/agriculture/{country_iso3}")
-async def get_agri_by_country(country_iso3: str):
-    """
-    Get all agricultural production for a specific country
-    Organized by commodity with time series
-    """
-    return get_agriculture_by_country(country_iso3)
-
-@api_router.get("/production/manufacturing")
-async def get_manuf_production(
-    country_iso3: Optional[str] = None,
-    year: Optional[int] = None,
-    isic_code: Optional[str] = None
-):
-    """
-    Get manufacturing production data (UNIDO)
-    
-    Query parameters:
-    - country_iso3: ISO3 country code
-    - year: Year (2021-2024)
-    - isic_code: ISIC Rev.4 code (e.g., '10', '11')
-    """
-    return get_manufacturing_production(country_iso3=country_iso3, year=year, isic_code=isic_code)
-
-@api_router.get("/production/manufacturing/{country_iso3}")
-async def get_manuf_by_country(country_iso3: str):
-    """
-    Get all manufacturing production for a specific country
-    Organized by ISIC sector with time series
-    """
-    return get_manufacturing_by_country(country_iso3)
-
-@api_router.get("/production/mining")
-async def get_mining_prod(
-    country_iso3: Optional[str] = None,
-    year: Optional[int] = None,
-    commodity: Optional[str] = None
-):
-    """
-    Get mining production data (USGS)
-    
-    Query parameters:
-    - country_iso3: ISO3 country code
-    - year: Year (2021-2024)
-    - commodity: Mineral name or code (e.g., 'Gold', 'AU')
-    """
-    return get_mining_production(country_iso3=country_iso3, year=year, commodity=commodity)
-
-@api_router.get("/production/mining/{country_iso3}")
-async def get_mining_by_country(country_iso3: str):
-    """
-    Get all mining production for a specific country
-    Organized by commodity with time series
-    """
-    return get_mining_by_country_data(country_iso3)
-
-@api_router.get("/production/overview/{country_iso3}")
-async def get_country_production_full_overview(country_iso3: str):
-    """
-    Get complete production overview for a country
-    Includes all 4 dimensions: macro, agriculture, manufacturing, mining
-    """
-    return get_country_production_overview(country_iso3)
+# All production endpoints migrated to /routes/production.py:
+# - /production/statistics
+# - /production/macro, /production/macro/{country_iso3}
+# - /production/agriculture, /production/agriculture/{country_iso3}
+# - /production/manufacturing, /production/manufacturing/{country_iso3}
+# - /production/mining, /production/mining/{country_iso3}
+# - /production/overview/{country_iso3}
 
 
 # ==========================================
@@ -2097,120 +1361,9 @@ async def get_country_production_full_overview(country_iso3: str):
 # ==========================================
 # HS CODES (HARMONIZED SYSTEM) ENDPOINTS
 # ==========================================
-
-@api_router.get("/hs-codes/chapters")
-async def get_all_hs_chapters():
-    """
-    Get all HS chapters (2-digit codes) with labels in FR and EN
-    """
-    return {
-        "chapters": get_hs_chapters(),
-        "total": len(get_hs_chapters()),
-        "source": "World Customs Organization (WCO) HS 2022"
-    }
-
-@api_router.get("/hs-codes/all")
-async def get_all_hs6_codes_endpoint(language: str = Query("fr", description="Language: fr or en")):
-    """
-    Get all HS6 codes with their labels
-    """
-    codes = get_hs6_codes()
-    result = []
-    for code, labels in codes.items():
-        result.append({
-            "code": code,
-            "label": labels.get(language, labels.get('fr', '')),
-            "chapter": code[:2],
-            "chapter_name": get_hs_chapters().get(code[:2], {}).get(language, '')
-        })
-    
-    return {
-        "codes": result,
-        "total": len(result),
-        "language": language,
-        "source": "World Customs Organization (WCO) HS 2022"
-    }
-
-@api_router.get("/hs-codes/code/{hs_code}")
-async def get_single_hs_code(hs_code: str, language: str = Query("fr", description="Language: fr or en")):
-    """
-    Get a specific HS6 code with its label
-    """
-    result = get_hs6_code(hs_code, language)
-    if not result:
-        raise HTTPException(status_code=404, detail=f"HS code {hs_code} not found")
-    return result
-
-@api_router.get("/hs-codes/search")
-async def search_hs_codes_endpoint(
-    q: str = Query(..., min_length=2, description="Search query (code or label)"),
-    language: str = Query("fr", description="Language: fr or en"),
-    limit: int = Query(20, ge=1, le=100, description="Maximum results")
-):
-    """
-    Search HS codes by code or label keyword
-    """
-    results = search_hs_codes(q, language, limit)
-    return {
-        "query": q,
-        "results": results,
-        "count": len(results),
-        "language": language
-    }
-
-@api_router.get("/hs-codes/chapter/{chapter}")
-async def get_hs_codes_by_chapter(
-    chapter: str,
-    language: str = Query("fr", description="Language: fr or en")
-):
-    """
-    Get all HS6 codes for a specific chapter (2-digit code)
-    """
-    if len(chapter) != 2 or chapter not in get_hs_chapters():
-        raise HTTPException(status_code=404, detail=f"Chapter {chapter} not found")
-    
-    codes = get_codes_by_chapter(chapter, language)
-    chapter_info = get_hs_chapters().get(chapter, {})
-    
-    return {
-        "chapter": chapter,
-        "chapter_name_fr": chapter_info.get('fr', ''),
-        "chapter_name_en": chapter_info.get('en', ''),
-        "codes": codes,
-        "count": len(codes)
-    }
-
-@api_router.get("/hs-codes/statistics")
-async def get_hs_codes_statistics():
-    """
-    Get HS codes database statistics
-    """
-    data = get_all_hs_data()
-    chapters = get_hs_chapters()
-    codes = get_hs6_codes()
-    
-    # Count codes per chapter
-    codes_per_chapter = {}
-    for code in codes.keys():
-        ch = code[:2]
-        codes_per_chapter[ch] = codes_per_chapter.get(ch, 0) + 1
-    
-    top_chapters = sorted(codes_per_chapter.items(), key=lambda x: x[1], reverse=True)[:10]
-    
-    return {
-        "total_chapters": len(chapters),
-        "total_codes": len(codes),
-        "top_chapters": [
-            {
-                "chapter": ch,
-                "chapter_name_fr": chapters.get(ch, {}).get('fr', ''),
-                "code_count": count
-            }
-            for ch, count in top_chapters
-        ],
-        "source": data.get("source"),
-        "last_updated": data.get("last_updated")
-    }
+# MIGRATED TO: /routes/hs_codes.py
+# Routes: /hs-codes/chapters, /hs-codes/all, /hs-codes/code/{hs_code},
+#         /hs-codes/search, /hs-codes/chapter/{chapter}, /hs-codes/statistics
 
 
 # =============================================================================
@@ -3245,182 +2398,39 @@ async def get_all_unctad():
 
 # =====================================================
 # ENDPOINTS ACTUALITÉS ÉCONOMIQUES AFRICAINES
-# Sources: Agence Ecofin, AllAfrica
 # =====================================================
-
-@api_router.get("/news")
-async def get_economic_news(
-    force_refresh: bool = Query(False, description="Forcer le rafraîchissement du cache"),
-    region: Optional[str] = Query(None, description="Filtrer par région (ex: Afrique du Nord)"),
-    category: Optional[str] = Query(None, description="Filtrer par catégorie (ex: Finance, Commerce)")
-):
-    """
-    Récupérer les actualités économiques africaines
-    Sources: Agence Ecofin, AllAfrica
-    Mise à jour: Une fois par jour (ou force_refresh=true)
-    """
-    try:
-        news_data = await get_news(force_refresh=force_refresh)
-        articles = news_data.get("articles", [])
-        
-        # Filtrer par région si spécifié
-        if region:
-            articles = [a for a in articles if a.get("region", "").lower() == region.lower()]
-        
-        # Filtrer par catégorie si spécifié
-        if category:
-            articles = [a for a in articles if a.get("category", "").lower() == category.lower()]
-        
-        return {
-            "success": True,
-            "last_update": news_data.get("last_update"),
-            "source": news_data.get("source"),
-            "total_articles": len(articles),
-            "articles": articles,
-            "filters_applied": {
-                "region": region,
-                "category": category
-            }
-        }
-    except Exception as e:
-        logging.error(f"Erreur récupération actualités: {e}")
-        return {
-            "success": False,
-            "error": str(e),
-            "articles": []
-        }
-
-
-@api_router.get("/news/by-region")
-async def get_news_grouped_by_region(force_refresh: bool = Query(False)):
-    """Récupérer les actualités groupées par région africaine"""
-    try:
-        news_data = await get_news(force_refresh=force_refresh)
-        articles = news_data.get("articles", [])
-        by_region = get_news_by_region(articles)
-        region_counts = {region: len(arts) for region, arts in by_region.items()}
-        
-        return {
-            "success": True,
-            "last_update": news_data.get("last_update"),
-            "regions": list(by_region.keys()),
-            "region_counts": region_counts,
-            "articles_by_region": by_region
-        }
-    except Exception as e:
-        logging.error(f"Erreur récupération news par région: {e}")
-        return {"success": False, "error": str(e)}
-
-
-@api_router.get("/news/by-category")
-async def get_news_grouped_by_category(force_refresh: bool = Query(False)):
-    """Récupérer les actualités groupées par catégorie économique"""
-    try:
-        news_data = await get_news(force_refresh=force_refresh)
-        articles = news_data.get("articles", [])
-        by_category = get_news_by_category(articles)
-        category_counts = {cat: len(arts) for cat, arts in by_category.items()}
-        
-        return {
-            "success": True,
-            "last_update": news_data.get("last_update"),
-            "categories": list(by_category.keys()),
-            "category_counts": category_counts,
-            "articles_by_category": by_category
-        }
-    except Exception as e:
-        logging.error(f"Erreur récupération news par catégorie: {e}")
-        return {"success": False, "error": str(e)}
+# MIGRATED TO: /routes/news.py
+# Routes: /news, /news/by-region, /news/by-category
 
 
 # =====================================================
 # ENDPOINTS STATISTIQUES COMMERCIALES OEC
-# Source: Observatory of Economic Complexity (OEC/BACI)
 # =====================================================
+# MIGRATED TO: /routes/oec.py  
+# Routes: /oec/countries, /oec/years, /oec/exports/{country_iso3},
+#         /oec/imports/{country_iso3}, /oec/product/{hs_code},
+#         /oec/product/{hs_code}/africa, /oec/bilateral/{exporter_iso3}/{importer_iso3}
 
-@api_router.get("/oec/countries")
-async def get_oec_african_countries(
-    language: str = Query("fr", description="Langue (fr/en)")
-):
-    """Liste des pays africains disponibles pour les statistiques OEC"""
-    return {
-        "success": True,
-        "total": len(AFRICAN_COUNTRIES_OEC),
-        "countries": get_african_countries_list(language),
-        "source": "OEC/BACI"
-    }
 
-@api_router.get("/oec/years")
-async def get_oec_available_years():
-    """Années disponibles dans les données OEC"""
-    years = await oec_service.get_available_years()
-    return {"success": True, "years": years, "source": "OEC/BACI"}
+# =============================================================================
+# REGISTER MODULAR ROUTES
+# =============================================================================
+# Routes migrated to /routes/ module:
+# - /health, /health/status (health.py)
+# - /news, /news/by-region, /news/by-category (news.py)
+# - /oec/* (oec.py) - OEC Trade Statistics endpoints
+# - /oec/* (oec.py) - OEC Trade Statistics endpoints
+# - /hs-codes/* (hs_codes.py) - HS Code browser and search
+# 
+# Note: Legacy routes in this file will be migrated progressively
+# =============================================================================
+# - /oec/* (oec.py)
+# - /hs-codes/* (hs_codes.py)
+# 
+# Note: Legacy routes in this file will be migrated progressively
+# =============================================================================
 
-@api_router.get("/oec/exports/{country_iso3}")
-async def get_oec_country_exports(
-    country_iso3: str,
-    year: int = Query(2022),
-    hs_level: str = Query("HS4"),
-    limit: int = Query(50)
-):
-    """Exportations d'un pays africain par produit HS"""
-    result = await oec_service.get_exports_by_product(country_iso3, year, hs_level, limit)
-    if "error" in result:
-        raise HTTPException(status_code=400, detail=result["error"])
-    return result
-
-@api_router.get("/oec/imports/{country_iso3}")
-async def get_oec_country_imports(
-    country_iso3: str,
-    year: int = Query(2022),
-    hs_level: str = Query("HS4"),
-    limit: int = Query(50)
-):
-    """Importations d'un pays africain par produit HS"""
-    result = await oec_service.get_imports_by_product(country_iso3, year, hs_level, limit)
-    if "error" in result:
-        raise HTTPException(status_code=400, detail=result["error"])
-    return result
-
-@api_router.get("/oec/product/{hs_code}")
-async def get_oec_product_trade(
-    hs_code: str,
-    year: int = Query(2022),
-    trade_flow: str = Query("exports"),
-    limit: int = Query(50)
-):
-    """Statistiques commerciales mondiales pour un code HS"""
-    result = await oec_service.get_trade_by_hs_code(hs_code, year, trade_flow, limit)
-    if "error" in result:
-        raise HTTPException(status_code=400, detail=result["error"])
-    return result
-
-@api_router.get("/oec/product/{hs_code}/africa")
-async def get_oec_african_exporters(
-    hs_code: str,
-    year: int = Query(2022),
-    limit: int = Query(20)
-):
-    """Top exportateurs africains pour un produit HS"""
-    result = await oec_service.get_top_african_exporters(hs_code, year, limit)
-    if "error" in result:
-        raise HTTPException(status_code=400, detail=result["error"])
-    return result
-
-@api_router.get("/oec/bilateral/{exporter_iso3}/{importer_iso3}")
-async def get_oec_bilateral_trade(
-    exporter_iso3: str,
-    importer_iso3: str,
-    year: int = Query(2022),
-    hs_level: str = Query("HS4"),
-    limit: int = Query(50)
-):
-    """Commerce bilatéral entre deux pays africains"""
-    result = await oec_service.get_bilateral_trade(exporter_iso3, importer_iso3, year, hs_level, limit)
-    if "error" in result:
-        raise HTTPException(status_code=400, detail=result["error"])
-    return result
-
+register_routes(api_router)
 
 # Include the router in the main app
 app.include_router(api_router)

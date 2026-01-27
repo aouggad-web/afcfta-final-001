@@ -26,11 +26,43 @@ Application web d'analyse des statistiques commerciales et économiques africain
 - Calcul des droits de douane avec et sans ZLECAf
 - Comparaison des économies potentielles
 - **COMPLETE: Base HS6 enrichie + Sous-positions nationales**
-  - **825 codes HS6** dans la base principale avec métadonnées complètes (extension terminée)
+  - **5831 codes HS6** dans la base complète (hs6_database.py) avec métadonnées complètes
   - **62 catégories** de produits (vehicles, coffee, ores, textiles, leather, steel, ships, etc.)
-  - **747 codes avec sous-positions** détaillées
-  - **54 pays africains** avec 768 sous-positions nationales
+  - **5429 codes avec sous-positions** détaillées
+  - **54 pays africains** avec sous-positions nationales
   - **Règles d'origine ZLECAf** intégrées par code HS6
+- **BUG FIX (27/01/2025)** : Navigateur HS affiche maintenant 5831 codes (corrigé depuis 731)
+
+### Code Architecture - REFACTORING COMPLET (27/01/2025)
+**Backend refactorisé** - server.py réduit de 3473 à 2435 lignes (**-30%**)
+
+Structure modulaire créée dans `/app/backend/routes/` (1718 lignes totales):
+| Module | Description | Lignes |
+|--------|-------------|--------|
+| `health.py` | Health check endpoints | 46 |
+| `news.py` | African economic news | 94 |
+| `oec.py` | OEC Trade Statistics | 96 |
+| `hs_codes.py` | HS Code browser - 5831 codes | 184 |
+| `production.py` | FAOSTAT, UNIDO, USGS, World Bank | 133 |
+| `logistics.py` | Ports, airports, land corridors | 347 |
+| `countries.py` | **NEW** Country profiles (54 pays) | 204 |
+| `tariffs.py` | **NEW** Tariff calculations, RoO | 431 |
+| `statistics.py` | **NEW** Trade statistics, UNCTAD | 143 |
+
+Modules partagés créés (378 lignes):
+- `constants.py` - AFRICAN_COUNTRIES, ZLECAF_RULES_OF_ORIGIN
+- `models.py` - Pydantic models (CountryInfo, TariffCalculationResponse, etc.)
+- `translations.py` - Country/region/rules translations FR/EN
+- `gold_reserves_data.py` - Gold reserves and GAI 2025 data
+
+**Frontend i18n migration (27/01/2025)**:
+- `ProductionTab.jsx` migré vers `react-i18next`
+- Traductions enrichies dans `/app/frontend/src/i18n/locales/fr.json` et `en.json`
+
+**Frontend sous-composants** créés dans `/app/frontend/src/components/stats/oec/`:
+- `utils.js` - Constants, formatters, translations
+- `OECResultsDisplay.jsx` - Chart and table display components
+- `index.js` - Module exports
 - **Recherche intelligente** avec suggestions automatiques:
   - `/api/hs6/search` - Recherche par mot-clé
   - `/api/hs6/suggestions/{code}` - Suggestions sous-positions

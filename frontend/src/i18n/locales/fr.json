@@ -143,22 +143,44 @@
   },
   "production": {
     "title": "Capacité de Production Africaine",
-    "subtitle": "Analyse multi-dimensionnelle de la production économique",
+    "subtitle": "Analyse multi-dimensionnelle de la production économique : Macro, Agriculture, Industrie et Mines (2021-2024)",
+    "badge1": "54 pays africains",
+    "badge2": "4 dimensions",
+    "badge3": "2021-2024",
+    "sourcesTitle": "Sources de Données Officielles",
+    "footerText": "Les données de production couvrent maintenant les 54 pays africains membres de la ZLECAf sur les 4 dimensions économiques (Macro, Agriculture, Manufacturing, Mining) pour la période 2021-2024. Données basées sur World Bank, FAO, UNIDO et USGS.",
+    "coverageLabel": "Couverture complète:",
     "macro": {
-      "title": "Valeur Ajoutée Macro (World Bank / IMF)",
-      "subtitle": "Structure sectorielle du PIB des économies africaines"
+      "title": "Macro",
+      "subtitle": "Valeur Ajoutée",
+      "fullTitle": "Valeur Ajoutée Macro (World Bank / IMF)",
+      "fullSubtitle": "Structure sectorielle du PIB des économies africaines",
+      "source1": "World Bank WDI",
+      "source2": "IMF WEO"
     },
     "agriculture": {
-      "title": "Production Agricole FAOSTAT",
-      "subtitle": "Données officielles FAO - Production agricole, élevage et pêche"
+      "title": "Agriculture",
+      "subtitle": "FAOSTAT",
+      "fullTitle": "Production Agricole FAOSTAT",
+      "fullSubtitle": "Données officielles FAO - Production agricole, élevage et pêche",
+      "source1": "FAO FAOSTAT",
+      "source2": "Production Domain"
     },
     "manufacturing": {
-      "title": "Production Industrielle UNIDO",
-      "subtitle": "Données UNIDO INDSTAT4 - Valeur Ajoutée Manufacturière"
+      "title": "Manufacturing",
+      "subtitle": "UNIDO",
+      "fullTitle": "Production Industrielle UNIDO",
+      "fullSubtitle": "Données UNIDO INDSTAT4 - Valeur Ajoutée Manufacturière",
+      "source1": "UNIDO INDSTAT4",
+      "source2": "ISIC Rev.4"
     },
     "mining": {
-      "title": "Production Minière (USGS)",
-      "subtitle": "Production de minerais et métaux par pays africain"
+      "title": "Mining",
+      "subtitle": "USGS",
+      "fullTitle": "Production Minière (USGS)",
+      "fullSubtitle": "Production de minerais et métaux par pays africain",
+      "source1": "USGS MCS",
+      "source2": "Commodity Summaries"
     }
   },
   "statistics": {
