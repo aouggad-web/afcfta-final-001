@@ -5,21 +5,37 @@ Comprehensive statistics for African trade and ZLECAf analysis
 from fastapi import APIRouter, Query
 from typing import Optional
 
-from trade_products_data import (
+from etl.trade_products_data import (
     get_trade_summary,
     get_top_imports_from_world,
     get_top_exports_to_world,
     get_top_intra_african_imports,
     get_top_intra_african_exports,
-    get_all_trade_products_data,
-    translate_products_list
+    get_all_trade_products_data
 )
+from etl.translations import translate_product, translate_country_list
 from etl.unctad_data import (
     get_unctad_port_statistics,
     get_unctad_trade_flows,
     get_unctad_lsci,
     get_all_unctad_data
 )
+
+def translate_products_list(products: list, language: str = 'fr') -> list:
+    """Translate product names and country names in a products list"""
+    if language == 'fr':
+        return products
+    
+    translated = []
+    for product in products:
+        translated_product = product.copy()
+        translated_product['product'] = translate_product(product['product'], language)
+        if 'top_importers' in product:
+            translated_product['top_importers'] = translate_country_list(product['top_importers'], language)
+        if 'top_exporters' in product:
+            translated_product['top_exporters'] = translate_country_list(product['top_exporters'], language)
+        translated.append(translated_product)
+    return translated
 
 router = APIRouter(prefix="/statistics")
 
