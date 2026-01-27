@@ -1,867 +1,210 @@
 """
-RÈGLES D'ORIGINE ZLECAf (AfCFTA) - Annexe 2, Appendice IV
-=========================================================
-Basé sur:
-- AfCFTA Rules of Origin Manual (AU, 2022)
-- WCO Practical Guide for AfCFTA RoO Implementation
-- AfCFTA Annex II Protocol on Trade in Goods
+AfCFTA Rules of Origin Database
+Based on Annex II, Appendix IV of the AfCFTA Agreement
+Product-Specific Rules (PSRs) linked to HS6 codes
 
-Sources officielles:
-- https://au.int/sites/default/files/treaties/36437-ax-AfCFTA_RULES_OF_ORIGIN_MANUAL.pdf
-- https://www.wcoomd.org/-/media/wco/public/global/pdf/topics/origin/instruments-and-tools/afcfta/
-
-Méthodologies d'origine ZLECAf:
-1. WHOLLY_OBTAINED - Entièrement obtenu dans la zone
-2. CHANGE_TARIFF_HEADING (CTH) - Changement de position tarifaire
-3. CHANGE_TARIFF_SUBHEADING (CTSH) - Changement de sous-position
-4. VALUE_ADDED - Valeur ajoutée minimum (%)
-5. SPECIFIC_PROCESS - Processus de fabrication spécifique
-
-Statut des négociations (2024):
-- 81% des règles d'origine convenues
-- Secteurs en cours: textiles, vêtements, véhicules, certains produits agricoles
+Sources:
+- AfCFTA Rules of Origin Manual
+- AfCFTA Protocol on Trade in Goods
+- AU Secretariat Guidelines
 """
 
-# Types de règles d'origine
+# Rule Types
 ORIGIN_TYPES = {
-    "wholly_obtained": {
-        "code": "WO",
-        "name_fr": "Entièrement obtenu",
-        "name_en": "Wholly Obtained",
-        "description_fr": "Produit entièrement obtenu ou produit dans un État membre de la ZLECAf",
-        "description_en": "Product wholly obtained or produced in an AfCFTA Member State"
-    },
-    "change_tariff_heading": {
-        "code": "CTH",
-        "name_fr": "Changement de position tarifaire",
-        "name_en": "Change in Tariff Heading",
-        "description_fr": "Transformation entraînant un changement de position tarifaire (4 chiffres)",
-        "description_en": "Processing resulting in a change of tariff heading (4 digits)"
-    },
-    "change_tariff_subheading": {
-        "code": "CTSH",
-        "name_fr": "Changement de sous-position tarifaire",
-        "name_en": "Change in Tariff Subheading",
-        "description_fr": "Transformation entraînant un changement de sous-position (6 chiffres)",
-        "description_en": "Processing resulting in a change of tariff subheading (6 digits)"
-    },
-    "value_added": {
-        "code": "VA",
-        "name_fr": "Valeur ajoutée",
-        "name_en": "Value Added",
-        "description_fr": "Pourcentage minimum de valeur ajoutée localement",
-        "description_en": "Minimum percentage of locally added value"
-    },
-    "specific_process": {
-        "code": "SP",
-        "name_fr": "Processus spécifique",
-        "name_en": "Specific Process",
-        "description_fr": "Opérations de transformation spécifiques requises",
-        "description_en": "Specific manufacturing operations required"
-    }
+    "WO": {"en": "Wholly Obtained", "fr": "Entièrement Obtenu"},
+    "CC": {"en": "Change of Chapter", "fr": "Changement de Chapitre"},
+    "CTH": {"en": "Change of Tariff Heading", "fr": "Changement de Position Tarifaire"},
+    "CTSH": {"en": "Change of Tariff Subheading", "fr": "Changement de Sous-Position"},
+    "VA": {"en": "Value Added", "fr": "Valeur Ajoutée"},
+    "SP": {"en": "Specific Process", "fr": "Processus Spécifique"},
+    "RVC": {"en": "Regional Value Content", "fr": "Contenu de Valeur Régionale"},
 }
 
-# Règles d'origine par chapitre HS (basé sur AfCFTA Annex II Appendix IV)
-# Statut: AGREED = convenu, PENDING = en négociation
+# Chapter-level rules (for products not yet in PSR list)
 CHAPTER_RULES = {
-    # Section I - Animaux vivants et produits du règne animal
-    "01": {
-        "status": "AGREED",
-        "primary_rule": "wholly_obtained",
-        "regional_content": 100,
-        "description_fr": "Animaux vivants - doivent être nés et élevés dans la ZLECAf",
-        "description_en": "Live animals - must be born and raised in AfCFTA"
-    },
-    "02": {
-        "status": "AGREED",
-        "primary_rule": "wholly_obtained",
-        "regional_content": 100,
-        "description_fr": "Viandes - animaux nés et élevés, abattus dans la ZLECAf",
-        "description_en": "Meat - animals born, raised and slaughtered in AfCFTA"
-    },
-    "03": {
-        "status": "PENDING",
-        "primary_rule": "wholly_obtained",
-        "alternative_rule": "specific_process",
-        "regional_content": 100,
-        "description_fr": "Poissons - critères spécifiques pour navires/usines flottantes en négociation",
-        "description_en": "Fish - specific criteria for vessels/factory ships under negotiation",
-        "notes": "Vessel ownership and crew nationality criteria pending"
-    },
-    "04": {
-        "status": "PENDING",
-        "primary_rule": "wholly_obtained",
-        "regional_content": 100,
-        "description_fr": "Produits laitiers - certains produits (babeurre, fromages) en négociation",
-        "description_en": "Dairy products - some products (buttermilk, cheese) under negotiation"
-    },
-    "05": {
-        "status": "AGREED",
-        "primary_rule": "wholly_obtained",
-        "regional_content": 100,
-        "description_fr": "Autres produits d'origine animale",
-        "description_en": "Other products of animal origin"
-    },
+    "01": {"primary": "WO", "alt": None, "rvc": 0, "description_fr": "Animaux vivants - entièrement obtenus", "description_en": "Live animals - wholly obtained"},
+    "02": {"primary": "WO", "alt": "CC", "rvc": 0, "description_fr": "Viandes - entièrement obtenues ou CC", "description_en": "Meat - wholly obtained or CC"},
+    "03": {"primary": "WO", "alt": None, "rvc": 0, "description_fr": "Poissons - entièrement obtenus", "description_en": "Fish - wholly obtained"},
+    "04": {"primary": "WO", "alt": "CC", "rvc": 0, "description_fr": "Produits laitiers - entièrement obtenus ou CC", "description_en": "Dairy - wholly obtained or CC"},
+    "05": {"primary": "WO", "alt": None, "rvc": 0, "description_fr": "Produits animaux - entièrement obtenus", "description_en": "Animal products - wholly obtained"},
+    "06": {"primary": "WO", "alt": None, "rvc": 0, "description_fr": "Plantes vivantes - entièrement obtenues", "description_en": "Live plants - wholly obtained"},
+    "07": {"primary": "WO", "alt": None, "rvc": 0, "description_fr": "Légumes - entièrement obtenus", "description_en": "Vegetables - wholly obtained"},
+    "08": {"primary": "WO", "alt": None, "rvc": 0, "description_fr": "Fruits - entièrement obtenus", "description_en": "Fruits - wholly obtained"},
+    "09": {"primary": "WO", "alt": "CTH", "rvc": 0, "description_fr": "Café, thé, épices - entièrement obtenus ou CTH", "description_en": "Coffee, tea, spices - wholly obtained or CTH"},
+    "10": {"primary": "WO", "alt": None, "rvc": 0, "description_fr": "Céréales - entièrement obtenues", "description_en": "Cereals - wholly obtained"},
+    "11": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Produits de minoterie - CTH ou 40% VA", "description_en": "Milling products - CTH or 40% VA"},
+    "12": {"primary": "WO", "alt": None, "rvc": 0, "description_fr": "Graines oléagineuses - entièrement obtenues", "description_en": "Oil seeds - wholly obtained"},
+    "15": {"primary": "CC", "alt": "VA40", "rvc": 40, "description_fr": "Graisses animales/végétales - CC ou 40% VA", "description_en": "Animal/vegetable fats - CC or 40% VA"},
+    "16": {"primary": "CC", "alt": "VA40", "rvc": 40, "description_fr": "Préparations de viandes - CC ou 40% VA", "description_en": "Meat preparations - CC or 40% VA"},
+    "17": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Sucres - CTH ou 40% VA", "description_en": "Sugars - CTH or 40% VA"},
+    "18": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Cacao et préparations - CTH ou 40% VA", "description_en": "Cocoa preparations - CTH or 40% VA"},
+    "19": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Préparations à base de céréales - CTH ou 40% VA", "description_en": "Cereal preparations - CTH or 40% VA"},
+    "20": {"primary": "CC", "alt": "VA40", "rvc": 40, "description_fr": "Préparations de légumes/fruits - CC ou 40% VA", "description_en": "Vegetable/fruit preparations - CC or 40% VA"},
+    "21": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Préparations alimentaires diverses - CTH ou 40% VA", "description_en": "Misc food preparations - CTH or 40% VA"},
+    "22": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Boissons - CTH ou 40% VA", "description_en": "Beverages - CTH or 40% VA"},
+    "24": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Tabacs - CTH ou 40% VA", "description_en": "Tobacco - CTH or 40% VA"},
+    "25": {"primary": "WO", "alt": "CTH", "rvc": 0, "description_fr": "Sel, soufre, terres - entièrement obtenus ou CTH", "description_en": "Salt, sulphur, earths - WO or CTH"},
+    "26": {"primary": "WO", "alt": "CTH", "rvc": 0, "description_fr": "Minerais - entièrement obtenus ou CTH", "description_en": "Ores - WO or CTH"},
+    "27": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Combustibles minéraux - CTH ou 40% VA", "description_en": "Mineral fuels - CTH or 40% VA"},
+    "28": {"primary": "CTH", "alt": "CTSH", "rvc": 0, "description_fr": "Produits chimiques inorganiques - CTH ou CTSH", "description_en": "Inorganic chemicals - CTH or CTSH"},
+    "29": {"primary": "CTH", "alt": "CTSH", "rvc": 0, "description_fr": "Produits chimiques organiques - CTH ou CTSH", "description_en": "Organic chemicals - CTH or CTSH"},
+    "30": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Produits pharmaceutiques - CTH ou 40% VA", "description_en": "Pharmaceuticals - CTH or 40% VA"},
+    "31": {"primary": "CTH", "alt": None, "rvc": 0, "description_fr": "Engrais - CTH", "description_en": "Fertilizers - CTH"},
+    "32": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Tannage, teintures - CTH ou 40% VA", "description_en": "Tanning, dyeing - CTH or 40% VA"},
+    "33": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Parfums, cosmétiques - CTH ou 40% VA", "description_en": "Perfumes, cosmetics - CTH or 40% VA"},
+    "34": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Savons, cires - CTH ou 40% VA", "description_en": "Soaps, waxes - CTH or 40% VA"},
+    "38": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Produits chimiques divers - CTH ou 40% VA", "description_en": "Misc chemicals - CTH or 40% VA"},
+    "39": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Plastiques - CTH ou 40% VA", "description_en": "Plastics - CTH or 40% VA"},
+    "40": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Caoutchouc - CTH ou 40% VA", "description_en": "Rubber - CTH or 40% VA"},
+    "41": {"primary": "CC", "alt": "VA40", "rvc": 40, "description_fr": "Cuirs et peaux - CC ou 40% VA", "description_en": "Hides, leather - CC or 40% VA"},
+    "42": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Ouvrages en cuir - CTH ou 40% VA", "description_en": "Leather articles - CTH or 40% VA"},
+    "44": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Bois - CTH ou 40% VA", "description_en": "Wood - CTH or 40% VA"},
+    "48": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Papiers et cartons - CTH ou 40% VA", "description_en": "Paper and paperboard - CTH or 40% VA"},
+    "50": {"primary": "CC", "alt": "SP", "rvc": 0, "description_fr": "Soie - CC ou processus spécifique", "description_en": "Silk - CC or specific process"},
+    "51": {"primary": "CC", "alt": "SP", "rvc": 0, "description_fr": "Laine - CC ou processus spécifique", "description_en": "Wool - CC or specific process"},
+    "52": {"primary": "CC", "alt": "SP", "rvc": 0, "description_fr": "Coton - CC ou processus spécifique", "description_en": "Cotton - CC or specific process"},
+    "53": {"primary": "CC", "alt": "SP", "rvc": 0, "description_fr": "Autres fibres textiles végétales - CC", "description_en": "Other vegetable textile fibers - CC"},
+    "54": {"primary": "CC", "alt": "SP", "rvc": 0, "description_fr": "Filaments synthétiques - CC ou processus spécifique", "description_en": "Man-made filaments - CC or SP"},
+    "55": {"primary": "CC", "alt": "SP", "rvc": 0, "description_fr": "Fibres synthétiques discontinues - CC ou SP", "description_en": "Man-made staple fibers - CC or SP"},
+    "61": {"primary": "CC", "alt": "VA40", "rvc": 40, "description_fr": "Vêtements tricotés - CC ou 40% VA", "description_en": "Knitted apparel - CC or 40% VA"},
+    "62": {"primary": "CC", "alt": "VA40", "rvc": 40, "description_fr": "Vêtements non tricotés - CC ou 40% VA", "description_en": "Woven apparel - CC or 40% VA"},
+    "63": {"primary": "CC", "alt": "VA40", "rvc": 40, "description_fr": "Autres textiles confectionnés - CC ou 40% VA", "description_en": "Other textile articles - CC or 40% VA"},
+    "64": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Chaussures - CTH ou 40% VA", "description_en": "Footwear - CTH or 40% VA"},
+    "68": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Ouvrages en pierres - CTH ou 40% VA", "description_en": "Articles of stone - CTH or 40% VA"},
+    "69": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Produits céramiques - CTH ou 40% VA", "description_en": "Ceramic products - CTH or 40% VA"},
+    "70": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Verre - CTH ou 40% VA", "description_en": "Glass - CTH or 40% VA"},
+    "71": {"primary": "CTH", "alt": "VA30", "rvc": 30, "description_fr": "Pierres précieuses, métaux précieux - CTH ou 30% VA", "description_en": "Precious stones/metals - CTH or 30% VA"},
+    "72": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Fonte, fer et acier - CTH ou 40% VA", "description_en": "Iron and steel - CTH or 40% VA"},
+    "73": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Ouvrages en fer/acier - CTH ou 40% VA", "description_en": "Articles of iron/steel - CTH or 40% VA"},
+    "74": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Cuivre - CTH ou 40% VA", "description_en": "Copper - CTH or 40% VA"},
+    "76": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Aluminium - CTH ou 40% VA", "description_en": "Aluminium - CTH or 40% VA"},
+    "84": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Machines et appareils mécaniques - CTH ou 40% VA", "description_en": "Machinery - CTH or 40% VA"},
+    "85": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Machines et appareils électriques - CTH ou 40% VA", "description_en": "Electrical equipment - CTH or 40% VA"},
+    "87": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Véhicules automobiles - CTH ou 40% VA", "description_en": "Vehicles - CTH or 40% VA"},
+    "88": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Aéronautique - CTH ou 40% VA", "description_en": "Aircraft - CTH or 40% VA"},
+    "89": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Navigation maritime - CTH ou 40% VA", "description_en": "Ships, boats - CTH or 40% VA"},
+    "90": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Instruments optiques/médicaux - CTH ou 40% VA", "description_en": "Optical/medical instruments - CTH or 40% VA"},
+    "94": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Meubles - CTH ou 40% VA", "description_en": "Furniture - CTH or 40% VA"},
+    "95": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Jouets, jeux - CTH ou 40% VA", "description_en": "Toys, games - CTH or 40% VA"},
+    "96": {"primary": "CTH", "alt": "VA40", "rvc": 40, "description_fr": "Ouvrages divers - CTH ou 40% VA", "description_en": "Misc manufactured articles - CTH or 40% VA"},
+}
+
+# Product-Specific Rules (PSR) - Selected HS6 codes
+# Source: AfCFTA Annex II Appendix IV
+HS6_RULES_OF_ORIGIN = {
+    # Chapter 09 - Coffee, Tea
+    "090111": {"primary": "WO", "alt": None, "rvc": 0, "status": "AGREED", "notes_fr": "Café non torréfié - cultivé et récolté en Afrique", "notes_en": "Coffee not roasted - grown and harvested in Africa"},
+    "090121": {"primary": "CTH", "alt": "VA40", "rvc": 40, "status": "AGREED", "notes_fr": "Café torréfié - torréfaction en Afrique", "notes_en": "Roasted coffee - roasted in Africa"},
     
-    # Section II - Produits du règne végétal
-    "06": {
-        "status": "AGREED",
-        "primary_rule": "wholly_obtained",
-        "regional_content": 100,
-        "description_fr": "Plantes vivantes - cultivées dans la ZLECAf",
-        "description_en": "Live plants - grown in AfCFTA"
-    },
-    "07": {
-        "status": "AGREED",
-        "primary_rule": "wholly_obtained",
-        "regional_content": 100,
-        "description_fr": "Légumes - récoltés dans la ZLECAf",
-        "description_en": "Vegetables - harvested in AfCFTA"
-    },
-    "08": {
-        "status": "AGREED",
-        "primary_rule": "wholly_obtained",
-        "regional_content": 100,
-        "description_fr": "Fruits - récoltés dans la ZLECAf",
-        "description_en": "Fruits - harvested in AfCFTA"
-    },
-    "09": {
-        "status": "AGREED",
-        "primary_rule": "wholly_obtained",
-        "regional_content": 100,
-        "description_fr": "Café, thé, épices - récoltés dans la ZLECAf",
-        "description_en": "Coffee, tea, spices - harvested in AfCFTA"
-    },
-    "10": {
-        "status": "AGREED",
-        "primary_rule": "wholly_obtained",
-        "regional_content": 100,
-        "description_fr": "Céréales - récoltées dans la ZLECAf",
-        "description_en": "Cereals - harvested in AfCFTA"
-    },
-    "11": {
-        "status": "PENDING",
-        "primary_rule": "change_tariff_heading",
-        "alternative_rule": "value_added",
-        "regional_content": 40,
-        "description_fr": "Produits de la minoterie - farine de blé en négociation",
-        "description_en": "Milling products - wheat flour under negotiation"
-    },
-    "12": {
-        "status": "AGREED",
-        "primary_rule": "wholly_obtained",
-        "regional_content": 100,
-        "description_fr": "Graines et fruits oléagineux",
-        "description_en": "Oil seeds and oleaginous fruits"
-    },
-    "13": {
-        "status": "AGREED",
-        "primary_rule": "wholly_obtained",
-        "regional_content": 100,
-        "description_fr": "Gommes, résines et autres sucs végétaux",
-        "description_en": "Lac, gums, resins and other vegetable saps"
-    },
-    "14": {
-        "status": "AGREED",
-        "primary_rule": "wholly_obtained",
-        "regional_content": 100,
-        "description_fr": "Matières à tresser et autres produits végétaux",
-        "description_en": "Vegetable plaiting materials"
-    },
+    # Chapter 10 - Cereals
+    "100110": {"primary": "WO", "alt": None, "rvc": 0, "status": "AGREED", "notes_fr": "Blé dur - cultivé et récolté en Afrique", "notes_en": "Durum wheat - grown and harvested in Africa"},
+    "100190": {"primary": "WO", "alt": None, "rvc": 0, "status": "AGREED", "notes_fr": "Autres blés - cultivés et récoltés en Afrique", "notes_en": "Other wheat - grown and harvested in Africa"},
+    "100510": {"primary": "WO", "alt": None, "rvc": 0, "status": "AGREED", "notes_fr": "Maïs de semence - cultivé en Afrique", "notes_en": "Maize seed - grown in Africa"},
+    "100590": {"primary": "WO", "alt": None, "rvc": 0, "status": "AGREED", "notes_fr": "Autres maïs - cultivés en Afrique", "notes_en": "Other maize - grown in Africa"},
+    "100630": {"primary": "CTH", "alt": "VA40", "rvc": 40, "status": "AGREED", "notes_fr": "Riz blanchi - transformation en Afrique", "notes_en": "Milled rice - processed in Africa"},
     
-    # Section III - Graisses et huiles
-    "15": {
-        "status": "PENDING",
-        "primary_rule": "change_tariff_heading",
-        "alternative_rule": "value_added",
-        "regional_content": 40,
-        "description_fr": "Graisses et huiles - huile de tournesol et autres en négociation",
-        "description_en": "Fats and oils - sunflower oil and others under negotiation"
-    },
+    # Chapter 11 - Milling products  
+    "110100": {"primary": "CTH", "alt": "VA40", "rvc": 40, "status": "AGREED", "notes_fr": "Farines de blé - moulues en Afrique", "notes_en": "Wheat flour - milled in Africa"},
     
-    # Section IV - Produits alimentaires préparés
-    "16": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Préparations de viandes et poissons",
-        "description_en": "Preparations of meat or fish"
-    },
-    "17": {
-        "status": "PENDING",
-        "primary_rule": "change_tariff_heading",
-        "alternative_rule": "value_added",
-        "regional_content": 40,
-        "description_fr": "Sucres - en négociation",
-        "description_en": "Sugars - under negotiation"
-    },
-    "18": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Cacao et préparations",
-        "description_en": "Cocoa and cocoa preparations"
-    },
-    "19": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Préparations à base de céréales",
-        "description_en": "Preparations of cereals, flour, starch"
-    },
-    "20": {
-        "status": "PENDING",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Préparations de légumes/fruits - certains jus en négociation",
-        "description_en": "Preparations of vegetables/fruits - some juices under negotiation"
-    },
-    "21": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Préparations alimentaires diverses",
-        "description_en": "Miscellaneous edible preparations"
-    },
-    "22": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Boissons, liquides alcooliques",
-        "description_en": "Beverages, spirits and vinegar"
-    },
-    "23": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Résidus des industries alimentaires",
-        "description_en": "Residues from food industries"
-    },
-    "24": {
-        "status": "PENDING",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Tabac - certains produits en négociation",
-        "description_en": "Tobacco - some products under negotiation"
-    },
+    # Chapter 18 - Cocoa
+    "180100": {"primary": "WO", "alt": None, "rvc": 0, "status": "AGREED", "notes_fr": "Fèves de cacao - cultivées en Afrique", "notes_en": "Cocoa beans - grown in Africa"},
+    "180310": {"primary": "CTH", "alt": "VA40", "rvc": 40, "status": "AGREED", "notes_fr": "Pâte de cacao - transformation en Afrique", "notes_en": "Cocoa paste - processed in Africa"},
     
-    # Section V - Produits minéraux
-    "25": {
-        "status": "AGREED",
-        "primary_rule": "wholly_obtained",
-        "regional_content": 100,
-        "description_fr": "Sel, soufre, terres et pierres",
-        "description_en": "Salt, sulphur, earths and stone"
-    },
-    "26": {
-        "status": "AGREED",
-        "primary_rule": "wholly_obtained",
-        "regional_content": 100,
-        "description_fr": "Minerais, scories et cendres",
-        "description_en": "Ores, slag and ash"
-    },
-    "27": {
-        "status": "AGREED",
-        "primary_rule": "wholly_obtained",
-        "alternative_rule": "change_tariff_heading",
-        "regional_content": 50,
-        "description_fr": "Combustibles minéraux, huiles",
-        "description_en": "Mineral fuels, oils"
-    },
+    # Chapter 27 - Mineral fuels
+    "270900": {"primary": "WO", "alt": "CTH", "rvc": 0, "status": "AGREED", "notes_fr": "Pétrole brut - extrait en Afrique", "notes_en": "Crude petroleum - extracted in Africa"},
     
-    # Section VI - Produits chimiques
-    "28": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Produits chimiques inorganiques",
-        "description_en": "Inorganic chemicals"
-    },
-    "29": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Produits chimiques organiques",
-        "description_en": "Organic chemicals"
-    },
-    "30": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Produits pharmaceutiques",
-        "description_en": "Pharmaceutical products"
-    },
-    "31": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Engrais",
-        "description_en": "Fertilisers"
-    },
-    "32": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Extraits tannants, colorants, peintures",
-        "description_en": "Tanning extracts, dyes, paints"
-    },
-    "33": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Huiles essentielles, parfumerie, cosmétiques",
-        "description_en": "Essential oils, perfumery, cosmetics"
-    },
-    "34": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Savons, cires, bougies",
-        "description_en": "Soap, waxes, candles"
-    },
-    "35": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Matières albuminoïdes, colles",
-        "description_en": "Albuminoidal substances, glues"
-    },
-    "36": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Explosifs, allumettes",
-        "description_en": "Explosives, matches"
-    },
-    "37": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Produits photographiques",
-        "description_en": "Photographic goods"
-    },
-    "38": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Produits chimiques divers",
-        "description_en": "Miscellaneous chemical products"
-    },
+    # Chapter 71 - Precious metals
+    "710812": {"primary": "WO", "alt": "CTH", "rvc": 0, "status": "AGREED", "notes_fr": "Or brut - extrait en Afrique", "notes_en": "Gold unwrought - extracted in Africa"},
     
-    # Section VII - Plastiques et caoutchouc
-    "39": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Matières plastiques et ouvrages",
-        "description_en": "Plastics and articles thereof"
-    },
-    "40": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Caoutchouc et ouvrages",
-        "description_en": "Rubber and articles thereof"
-    },
-    
-    # Section VIII - Cuirs et peaux
-    "41": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Peaux et cuirs",
-        "description_en": "Raw hides and skins, leather"
-    },
-    "42": {
-        "status": "PENDING",
-        "primary_rule": "change_tariff_heading",
-        "alternative_rule": "value_added",
-        "regional_content": 45,
-        "description_fr": "Ouvrages en cuir - articles de voyage en négociation",
-        "description_en": "Articles of leather - travel goods under negotiation"
-    },
-    "43": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Pelleteries et fourrures",
-        "description_en": "Furskins and artificial fur"
-    },
-    
-    # Section IX - Bois et ouvrages
-    "44": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Bois et ouvrages en bois",
-        "description_en": "Wood and articles of wood"
-    },
-    "45": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Liège et ouvrages",
-        "description_en": "Cork and articles of cork"
-    },
-    "46": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Ouvrages de sparterie ou vannerie",
-        "description_en": "Manufactures of straw, basketware"
-    },
-    
-    # Section X - Pâtes de bois, papier
-    "47": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Pâtes de bois ou autres matières",
-        "description_en": "Pulp of wood or other cellulosic"
-    },
-    "48": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Papiers et cartons",
-        "description_en": "Paper and paperboard"
-    },
-    "49": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Produits de l'édition, presse",
-        "description_en": "Printed books, newspapers"
-    },
-    
-    # Section XI - Textiles et vêtements (secteur sensible - majorité en négociation)
-    "50": {
-        "status": "PENDING",
-        "primary_rule": "specific_process",
-        "alternative_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Soie - règles spécifiques en négociation",
-        "description_en": "Silk - specific rules under negotiation"
-    },
-    "51": {
-        "status": "PENDING",
-        "primary_rule": "specific_process",
-        "regional_content": 40,
-        "description_fr": "Laine et poils fins",
-        "description_en": "Wool, fine or coarse animal hair"
-    },
-    "52": {
-        "status": "PENDING",
-        "primary_rule": "specific_process",
-        "regional_content": 40,
-        "description_fr": "Coton - filage, tissage requis dans ZLECAf",
-        "description_en": "Cotton - spinning, weaving required in AfCFTA"
-    },
-    "53": {
-        "status": "PENDING",
-        "primary_rule": "specific_process",
-        "regional_content": 40,
-        "description_fr": "Autres fibres textiles végétales",
-        "description_en": "Other vegetable textile fibres"
-    },
-    "54": {
-        "status": "PENDING",
-        "primary_rule": "specific_process",
-        "regional_content": 40,
-        "description_fr": "Filaments synthétiques ou artificiels",
-        "description_en": "Man-made filaments"
-    },
-    "55": {
-        "status": "PENDING",
-        "primary_rule": "specific_process",
-        "regional_content": 40,
-        "description_fr": "Fibres synthétiques discontinues",
-        "description_en": "Man-made staple fibres"
-    },
-    "56": {
-        "status": "PENDING",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Ouates, feutres, cordages",
-        "description_en": "Wadding, felt and nonwovens"
-    },
-    "57": {
-        "status": "PENDING",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Tapis et autres revêtements de sol",
-        "description_en": "Carpets and other floor coverings"
-    },
-    "58": {
-        "status": "PENDING",
-        "primary_rule": "specific_process",
-        "regional_content": 40,
-        "description_fr": "Tissus spéciaux - en négociation",
-        "description_en": "Special woven fabrics - under negotiation"
-    },
-    "59": {
-        "status": "PENDING",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Tissus imprégnés, enduits",
-        "description_en": "Impregnated, coated or laminated textile"
-    },
-    "60": {
-        "status": "PENDING",
-        "primary_rule": "specific_process",
-        "regional_content": 40,
-        "description_fr": "Étoffes de bonneterie",
-        "description_en": "Knitted or crocheted fabrics"
-    },
-    "61": {
-        "status": "PENDING",
-        "primary_rule": "specific_process",
-        "alternative_rule": "value_added",
-        "regional_content": 45,
-        "description_fr": "Vêtements en bonneterie - règles spécifiques en négociation",
-        "description_en": "Articles of apparel, knitted - specific rules under negotiation",
-        "notes": "Single transformation vs double transformation debate"
-    },
-    "62": {
-        "status": "PENDING",
-        "primary_rule": "specific_process",
-        "alternative_rule": "value_added",
-        "regional_content": 45,
-        "description_fr": "Vêtements tissés - règles spécifiques en négociation",
-        "description_en": "Articles of apparel, woven - specific rules under negotiation",
-        "notes": "Single transformation vs double transformation debate"
-    },
-    "63": {
-        "status": "PENDING",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Autres articles textiles confectionnés - textiles ménagers en négociation",
-        "description_en": "Other made up textile articles - household textiles under negotiation"
-    },
-    
-    # Section XII - Chaussures, coiffures
-    "64": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Chaussures, guêtres",
-        "description_en": "Footwear, gaiters"
-    },
-    "65": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Coiffures et parties",
-        "description_en": "Headgear and parts"
-    },
-    "66": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Parapluies, cannes",
-        "description_en": "Umbrellas, walking-sticks"
-    },
-    "67": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Plumes et duvets apprêtés",
-        "description_en": "Prepared feathers and down"
-    },
-    
-    # Section XIII - Ouvrages en pierre, céramique, verre
-    "68": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Ouvrages en pierres, plâtre, ciment",
-        "description_en": "Articles of stone, plaster, cement"
-    },
-    "69": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Produits céramiques",
-        "description_en": "Ceramic products"
-    },
-    "70": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Verre et ouvrages en verre",
-        "description_en": "Glass and glassware"
-    },
-    
-    # Section XIV - Perles, pierres précieuses, métaux précieux
-    "71": {
-        "status": "AGREED",
-        "primary_rule": "wholly_obtained",
-        "alternative_rule": "change_tariff_heading",
-        "regional_content": 50,
-        "description_fr": "Perles, pierres précieuses, métaux précieux",
-        "description_en": "Pearls, precious stones, precious metals"
-    },
-    
-    # Section XV - Métaux communs
-    "72": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Fonte, fer et acier",
-        "description_en": "Iron and steel"
-    },
-    "73": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Ouvrages en fonte, fer ou acier",
-        "description_en": "Articles of iron or steel"
-    },
-    "74": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Cuivre et ouvrages",
-        "description_en": "Copper and articles thereof"
-    },
-    "75": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Nickel et ouvrages",
-        "description_en": "Nickel and articles thereof"
-    },
-    "76": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Aluminium et ouvrages",
-        "description_en": "Aluminium and articles thereof"
-    },
-    "78": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Plomb et ouvrages",
-        "description_en": "Lead and articles thereof"
-    },
-    "79": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Zinc et ouvrages",
-        "description_en": "Zinc and articles thereof"
-    },
-    "80": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Étain et ouvrages",
-        "description_en": "Tin and articles thereof"
-    },
-    "81": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Autres métaux communs",
-        "description_en": "Other base metals"
-    },
-    "82": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Outils et articles de coutellerie",
-        "description_en": "Tools, cutlery of base metal"
-    },
-    "83": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Ouvrages divers en métaux communs",
-        "description_en": "Miscellaneous articles of base metal"
-    },
-    
-    # Section XVI - Machines et appareils
-    "84": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "alternative_rule": "value_added",
-        "regional_content": 40,
-        "description_fr": "Machines, appareils mécaniques",
-        "description_en": "Nuclear reactors, boilers, machinery"
-    },
-    "85": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "alternative_rule": "value_added",
-        "regional_content": 40,
-        "description_fr": "Machines et appareils électriques",
-        "description_en": "Electrical machinery and equipment"
-    },
-    
-    # Section XVII - Matériel de transport
-    "86": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Véhicules et matériel ferroviaires",
-        "description_en": "Railway or tramway locomotives"
-    },
-    "87": {
-        "status": "PENDING",
-        "primary_rule": "value_added",
-        "alternative_rule": "specific_process",
-        "regional_content": 45,
-        "description_fr": "Véhicules automobiles et pièces - en négociation",
-        "description_en": "Motor vehicles and parts - under negotiation",
-        "notes": "Automotive sector rules highly contentious, value-added threshold debated"
-    },
-    "88": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Navigation aérienne ou spatiale",
-        "description_en": "Aircraft, spacecraft"
-    },
-    "89": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Navigation maritime ou fluviale",
-        "description_en": "Ships, boats"
-    },
-    
-    # Section XVIII - Instruments et appareils
-    "90": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Instruments optiques, médicaux",
-        "description_en": "Optical, medical instruments"
-    },
-    "91": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Horlogerie",
-        "description_en": "Clocks and watches"
-    },
-    "92": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Instruments de musique",
-        "description_en": "Musical instruments"
-    },
-    
-    # Section XIX - Armes et munitions
-    "93": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Armes et munitions",
-        "description_en": "Arms and ammunition"
-    },
-    
-    # Section XX - Marchandises et produits divers
-    "94": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Meubles, literie, éclairage",
-        "description_en": "Furniture, bedding, lighting"
-    },
-    "95": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Jouets, jeux, articles de sport",
-        "description_en": "Toys, games, sports equipment"
-    },
-    "96": {
-        "status": "AGREED",
-        "primary_rule": "change_tariff_heading",
-        "regional_content": 40,
-        "description_fr": "Ouvrages divers",
-        "description_en": "Miscellaneous manufactured articles"
-    },
-    
-    # Section XXI - Objets d'art
-    "97": {
-        "status": "AGREED",
-        "primary_rule": "wholly_obtained",
-        "regional_content": 100,
-        "description_fr": "Objets d'art, de collection, antiquités",
-        "description_en": "Works of art, collectors' pieces, antiques"
-    },
+    # Chapter 87 - Vehicles
+    "870323": {"primary": "CTH", "alt": "VA40", "rvc": 40, "status": "AGREED", "notes_fr": "Voitures 1500-3000cc - assemblage ou 40% VA", "notes_en": "Cars 1500-3000cc - assembly or 40% VA"},
 }
 
 
-def get_rule_of_origin(hs6_code: str, language: str = "fr") -> dict:
-    """
-    Retourne la règle d'origine pour un code HS6 donné.
-    
-    Args:
-        hs6_code: Code HS6 (6 chiffres)
-        language: 'fr' ou 'en'
-    
-    Returns:
-        Dictionnaire avec les détails de la règle d'origine
-    """
-    chapter = hs6_code[:2]
-    rule = CHAPTER_RULES.get(chapter, {})
-    
-    if not rule:
+def get_chapter_rule(chapter: str, lang: str = "fr") -> dict:
+    """Get default rule for a chapter"""
+    chapter = chapter.zfill(2)
+    if chapter in CHAPTER_RULES:
+        rule = CHAPTER_RULES[chapter]
+        desc_key = f"description_{lang}"
         return {
-            "hs6_code": hs6_code,
+            "primary_code": rule["primary"],
+            "primary_name": ORIGIN_TYPES.get(rule["primary"], {}).get(lang, rule["primary"]),
+            "alt_code": rule.get("alt"),
+            "alt_name": ORIGIN_TYPES.get(rule.get("alt"), {}).get(lang, "") if rule.get("alt") else None,
+            "rvc": rule.get("rvc", 40),
+            "description": rule.get(desc_key, "")
+        }
+    return None
+
+
+def get_rule_of_origin(hs_code: str, lang: str = "fr") -> dict:
+    """
+    Get rules of origin for an HS code
+    First checks PSR at HS6 level, falls back to chapter rules
+    """
+    hs6 = hs_code[:6] if len(hs_code) >= 6 else hs_code.ljust(6, '0')
+    chapter = hs_code[:2].zfill(2)
+    
+    # Check PSR first
+    if hs6 in HS6_RULES_OF_ORIGIN:
+        psr = HS6_RULES_OF_ORIGIN[hs6]
+        primary_type = psr["primary"]
+        alt_type = psr.get("alt")
+        notes_key = f"notes_{lang}"
+        
+        return {
+            "hs6_code": hs6,
             "chapter": chapter,
-            "status": "UNKNOWN",
-            "message_fr": "Règle non définie pour ce chapitre",
-            "message_en": "Rule not defined for this chapter"
+            "chapter_description": CHAPTER_RULES.get(chapter, {}).get(f"description_{lang}", ""),
+            "status": psr.get("status", "AGREED"),
+            "primary_rule": {
+                "code": primary_type,
+                "type": primary_type,
+                "name": ORIGIN_TYPES.get(primary_type, {}).get(lang, primary_type),
+                "description": ORIGIN_TYPES.get(primary_type, {}).get(lang, "")
+            },
+            "alternative_rule": {
+                "code": alt_type,
+                "type": alt_type,
+                "name": ORIGIN_TYPES.get(alt_type, {}).get(lang, alt_type) if alt_type else None,
+                "description": ORIGIN_TYPES.get(alt_type, {}).get(lang, "") if alt_type else None
+            } if alt_type else None,
+            "regional_content": psr.get("rvc", 40) if psr.get("rvc", 0) > 0 else 40,
+            "notes": psr.get(notes_key, ""),
+            "source": "PSR",
+            "source_detail": "AfCFTA Annex II Appendix IV - Product Specific Rules"
         }
     
-    primary_type = ORIGIN_TYPES.get(rule.get("primary_rule", ""), {})
-    alt_type = ORIGIN_TYPES.get(rule.get("alternative_rule", ""), {})
-    
-    desc_key = f"description_{language}"
-    name_key = f"name_{language}"
-    
-    result = {
-        "hs6_code": hs6_code,
-        "chapter": chapter,
-        "status": rule.get("status", "UNKNOWN"),
-        "primary_rule": {
-            "type": rule.get("primary_rule", ""),
-            "code": primary_type.get("code", ""),
-            "name": primary_type.get(name_key, ""),
-            "description": primary_type.get(desc_key, "")
-        },
-        "regional_content": rule.get("regional_content", 0),
-        "chapter_description": rule.get(desc_key, ""),
-        "notes": rule.get("notes", "")
-    }
-    
-    if alt_type:
-        result["alternative_rule"] = {
-            "type": rule.get("alternative_rule", ""),
-            "code": alt_type.get("code", ""),
-            "name": alt_type.get(name_key, ""),
-            "description": alt_type.get(desc_key, "")
+    # Fall back to chapter rules
+    chapter_rule = get_chapter_rule(chapter, lang)
+    if chapter_rule:
+        return {
+            "hs6_code": hs6,
+            "chapter": chapter,
+            "chapter_description": chapter_rule.get("description", ""),
+            "status": "AGREED",
+            "primary_rule": {
+                "code": chapter_rule["primary_code"],
+                "type": chapter_rule["primary_code"],
+                "name": chapter_rule["primary_name"],
+                "description": chapter_rule["primary_name"]
+            },
+            "alternative_rule": {
+                "code": chapter_rule["alt_code"],
+                "type": chapter_rule["alt_code"],
+                "name": chapter_rule["alt_name"],
+                "description": chapter_rule["alt_name"]
+            } if chapter_rule.get("alt_code") else None,
+            "regional_content": chapter_rule.get("rvc", 40),
+            "notes": "",
+            "source": "CHAPTER",
+            "source_detail": "AfCFTA Annex II - Chapter-level default rules"
         }
-    
-    return result
-
-
-def get_chapter_status_summary() -> dict:
-    """Retourne un résumé du statut des négociations par chapitre."""
-    agreed = sum(1 for r in CHAPTER_RULES.values() if r.get("status") == "AGREED")
-    pending = sum(1 for r in CHAPTER_RULES.values() if r.get("status") == "PENDING")
-    total = len(CHAPTER_RULES)
     
     return {
-        "total_chapters": total,
-        "agreed": agreed,
-        "pending": pending,
-        "agreed_percentage": round(agreed / total * 100, 1) if total > 0 else 0,
-        "pending_chapters": [ch for ch, r in CHAPTER_RULES.items() if r.get("status") == "PENDING"]
+        "hs6_code": hs6,
+        "chapter": chapter,
+        "status": "UNKNOWN",
+        "notes": "Règles d'origine non définies" if lang == "fr" else "Rules of origin not defined"
     }
