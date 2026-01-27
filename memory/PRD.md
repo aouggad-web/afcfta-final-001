@@ -34,13 +34,19 @@ Application web d'analyse des statistiques commerciales et économiques africain
 - **BUG FIX (27/01/2025)** : Navigateur HS affiche maintenant 5831 codes (corrigé depuis 731)
 
 ### Code Architecture - REFACTORING (27/01/2025)
-**Backend refactorisé** - server.py réduit de 3473 à 3111 lignes (-10%)
+**Backend refactorisé** - server.py réduit de 3473 à 2773 lignes (**-20%**)
 
-Structure modulaire créée dans `/app/backend/routes/`:
-- `health.py` - Health check endpoints
-- `news.py` - African economic news endpoints
-- `oec.py` - OEC Trade Statistics endpoints  
-- `hs_codes.py` - HS Code browser and search (5831 codes)
+Structure modulaire créée dans `/app/backend/routes/` (981 lignes totales):
+- `health.py` - Health check endpoints (46 lignes)
+- `news.py` - African economic news endpoints (94 lignes)
+- `oec.py` - OEC Trade Statistics endpoints (96 lignes)
+- `hs_codes.py` - HS Code browser and search - 5831 codes (184 lignes)
+- `production.py` - **NEW** FAOSTAT, UNIDO, USGS, World Bank data (133 lignes)
+- `logistics.py` - **NEW** Ports, airports, land corridors, free zones (347 lignes)
+
+**Frontend i18n migration (27/01/2025)**:
+- `ProductionTab.jsx` migré vers `react-i18next`
+- Traductions enrichies dans `/app/frontend/src/i18n/locales/fr.json` et `en.json`
 
 **Frontend sous-composants** créés dans `/app/frontend/src/components/stats/oec/`:
 - `utils.js` - Constants, formatters, translations
