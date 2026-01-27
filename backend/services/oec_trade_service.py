@@ -426,16 +426,23 @@ class OECTradeService:
             "source": "OEC/BACI"
         }
     
-    def _format_product_response(self, result: Dict, flow: str, country_info: Dict) -> Dict:
-        """Formate la réponse pour les produits"""
+    def _format_product_response(self, result: Dict, flow: str, country_info: Dict, limit: int = 50) -> Dict:
+        """Formate la réponse pour les produits, triée par valeur décroissante"""
         data = result.get("data", [])
+        
+        # Trier par Trade Value décroissante
+        sorted_data = sorted(data, key=lambda x: x.get("Trade Value", 0), reverse=True)
+        
+        # Limiter au nombre demandé
+        limited_data = sorted_data[:limit]
+        
         return {
             "country": country_info,
             "trade_flow": flow,
-            "total_products": len(data),
-            "total_value": sum(row.get("Trade Value", 0) for row in data),
+            "total_products": len(limited_data),
+            "total_value": sum(row.get("Trade Value", 0) for row in sorted_data),  # Total sur toutes les données
             "currency": "USD",
-            "data": data,
+            "data": limited_data,
             "source": "OEC/BACI",
             "retrieved_at": datetime.utcnow().isoformat()
         }
