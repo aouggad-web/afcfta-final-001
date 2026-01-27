@@ -19,7 +19,7 @@ from logistics_air_data import (
     search_airports
 )
 from free_zones_data import get_free_zones_by_country
-from land_corridors_data import (
+from logistics_land_data import (
     get_all_corridors,
     get_corridors_by_country,
     get_corridor_by_id,
