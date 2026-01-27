@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "source": "World Bank API",
+    "updated_at": "2026-01-27T01:29:54.028300",
+    "indicators": [
+      "GDP",
+      "GDP_per_capita",
+      "Population",
+      "GDP_growth"
+    ]
+  },
+  "data": {}
+}

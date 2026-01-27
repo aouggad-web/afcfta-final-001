@@ -1,0 +1,112 @@
+name: Auto Update Data
+
+on:
+  # Run daily at 2:00 AM UTC
+  schedule:
+    - cron: '0 2 * * *'
+  
+  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      update_type:
+        description: 'Type of update to perform'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - worldbank
+          - production
+          - trade
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests openpyxl pandas
+      
+      - name: Run data update script
+        id: update
+        run: |
+          echo "Starting data update..."
+          python backend/update_data_automated.py
+          echo "update_status=$?" >> $GITHUB_OUTPUT
+        continue-on-error: true
+      
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git diff --quiet || echo "changes=true" >> $GITHUB_OUTPUT
+          git diff --name-only
+      
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.changes == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "afcfta-data-bot"
+          git config user.email "afcfta-data-bot@users.noreply.github.com"
+          
+          # Add all data files
+          git add *.json *.csv *.xlsx 2>/dev/null || true
+          
+          # Check if there are changes to commit
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore(data): automated data update - $(date +'%Y-%m-%d %H:%M UTC')"
+            git push
+            echo "✅ Data updated and pushed successfully"
+          fi
+      
+      - name: Create update summary
+        if: always()
+        run: |
+          echo "## Data Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Date:** $(date +'%Y-%m-%d %H:%M UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f data_update_report.json ]; then
+            echo "### Update Report" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
+            cat data_update_report.json >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ "${{ steps.check_changes.outputs.changes }}" == "true" ]; then
+            echo "✅ Data was updated" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "ℹ️ No data changes" >> $GITHUB_STEP_SUMMARY
+          fi
+      
+      - name: Upload update report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: data-update-report-${{ github.run_number }}
+          path: |
+            data_update_report.json
+            worldbank_data_latest.json
+          retention-days: 30
