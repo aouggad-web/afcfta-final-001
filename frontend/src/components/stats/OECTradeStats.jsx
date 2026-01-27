@@ -24,6 +24,13 @@ const formatValue = (value) => {
   return `$${value.toFixed(0)}`;
 };
 
+const formatQuantity = (quantity) => {
+  if (quantity >= 1e9) return `${(quantity / 1e9).toFixed(2)}B`;
+  if (quantity >= 1e6) return `${(quantity / 1e6).toFixed(1)}M`;
+  if (quantity >= 1e3) return `${(quantity / 1e3).toFixed(0)}K`;
+  return quantity.toFixed(0);
+};
+
 export default function OECTradeStats({ language = 'fr' }) {
   const [activeView, setActiveView] = useState('country');
   const [countries, setCountries] = useState([]);
