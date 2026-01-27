@@ -33,16 +33,27 @@ Application web d'analyse des statistiques commerciales et économiques africain
   - **Règles d'origine ZLECAf** intégrées par code HS6
 - **BUG FIX (27/01/2025)** : Navigateur HS affiche maintenant 5831 codes (corrigé depuis 731)
 
-### Code Architecture - REFACTORING (27/01/2025)
-**Backend refactorisé** - server.py réduit de 3473 à 2773 lignes (**-20%**)
+### Code Architecture - REFACTORING COMPLET (27/01/2025)
+**Backend refactorisé** - server.py réduit de 3473 à 2435 lignes (**-30%**)
 
-Structure modulaire créée dans `/app/backend/routes/` (981 lignes totales):
-- `health.py` - Health check endpoints (46 lignes)
-- `news.py` - African economic news endpoints (94 lignes)
-- `oec.py` - OEC Trade Statistics endpoints (96 lignes)
-- `hs_codes.py` - HS Code browser and search - 5831 codes (184 lignes)
-- `production.py` - **NEW** FAOSTAT, UNIDO, USGS, World Bank data (133 lignes)
-- `logistics.py` - **NEW** Ports, airports, land corridors, free zones (347 lignes)
+Structure modulaire créée dans `/app/backend/routes/` (1718 lignes totales):
+| Module | Description | Lignes |
+|--------|-------------|--------|
+| `health.py` | Health check endpoints | 46 |
+| `news.py` | African economic news | 94 |
+| `oec.py` | OEC Trade Statistics | 96 |
+| `hs_codes.py` | HS Code browser - 5831 codes | 184 |
+| `production.py` | FAOSTAT, UNIDO, USGS, World Bank | 133 |
+| `logistics.py` | Ports, airports, land corridors | 347 |
+| `countries.py` | **NEW** Country profiles (54 pays) | 204 |
+| `tariffs.py` | **NEW** Tariff calculations, RoO | 431 |
+| `statistics.py` | **NEW** Trade statistics, UNCTAD | 143 |
+
+Modules partagés créés (378 lignes):
+- `constants.py` - AFRICAN_COUNTRIES, ZLECAF_RULES_OF_ORIGIN
+- `models.py` - Pydantic models (CountryInfo, TariffCalculationResponse, etc.)
+- `translations.py` - Country/region/rules translations FR/EN
+- `gold_reserves_data.py` - Gold reserves and GAI 2025 data
 
 **Frontend i18n migration (27/01/2025)**:
 - `ProductionTab.jsx` migré vers `react-i18next`
