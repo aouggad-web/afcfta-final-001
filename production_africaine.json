@@ -41534,5 +41534,9 @@
       "commodity_label": "Pumice",
       "usgs_table_name": "Table 1 - Pumice mine production"
     }
-  ]
+  ],
+  "metadata": {
+    "last_updated": "2026-01-27T03:44:23.552159",
+    "update_source": "automated_update"
+  }
 }

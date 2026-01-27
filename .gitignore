@@ -461,15 +461,6 @@ android-sdk/ -e
 # Environment files
 *.env
 *.env.*
--e 
-# Environment files
-*.env
-*.env.*
--e 
-# Environment files
-*.env
-*.env.*
--e 
-# Environment files
-*.env
-*.env.*
+
+# Data update reports
+data_update_report.json
