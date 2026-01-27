@@ -660,7 +660,6 @@ export default function OECTradeStats({ language = 'fr' }) {
                             <TableCell className="text-right text-sm text-blue-600">
                               {formatQuantity(item['Quantity'] || 0)} t
                             </TableCell>
-                            </TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
