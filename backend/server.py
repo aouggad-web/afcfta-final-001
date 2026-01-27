@@ -455,23 +455,24 @@ async def get_country_profile(country_code: str) -> CountryEconomicProfile:
 
 @api_router.get("/rules-of-origin/{hs_code}")
 async def get_rules_of_origin(hs_code: str, lang: str = "fr"):
-    """Récupérer les règles d'origine ZLECAf pour un code SH"""
+    """Récupérer les règles d'origine ZLECAf pour un code SH
     
-    # Obtenir le code à 2 chiffres pour les règles générales
-    sector_code = hs_code[:2]
+    Basé sur l'Annexe II, Appendice IV de l'Accord ZLECAf
+    Source: AfCFTA Protocol on Trade in Goods - Rules of Origin Manual
+    """
+    from etl.afcfta_rules_of_origin import get_rule_of_origin, ORIGIN_TYPES, CHAPTER_RULES
     
-    if sector_code not in ZLECAF_RULES_OF_ORIGIN:
+    # Obtenir les règles d'origine officielles
+    roo_data = get_rule_of_origin(hs_code, lang)
+    
+    if roo_data.get("status") == "UNKNOWN":
         error_msg = "Rules of origin not found for this HS code" if lang == "en" else "Règles d'origine non trouvées pour ce code SH"
         raise HTTPException(status_code=404, detail=error_msg)
     
-    rules = ZLECAF_RULES_OF_ORIGIN[sector_code]
-    
-    # Translate rules
-    translated_rules = {
-        "rule": translate_rule(rules["rule"], lang),
-        "requirement": translate_rule(rules["requirement"], lang),
-        "regional_content": rules["regional_content"]
-    }
+    primary_rule = roo_data.get("primary_rule", {})
+    alt_rule = roo_data.get("alternative_rule", {})
+    regional_content = roo_data.get("regional_content", 40)
+    status = roo_data.get("status", "AGREED")
     
     # Documentation labels
     if lang == "en":
@@ -483,6 +484,7 @@ async def get_rules_of_origin(hs_code: str, lang: str = "fr"):
         ]
         validity = "12 months"
         authority = "Competent authority of exporting country"
+        status_label = "Agreed" if status == "AGREED" else "Under negotiation"
     else:
         docs = [
             "Certificat d'origine ZLECAf",
@@ -492,18 +494,43 @@ async def get_rules_of_origin(hs_code: str, lang: str = "fr"):
         ]
         validity = "12 mois"
         authority = "Autorité compétente du pays exportateur"
+        status_label = "Convenu" if status == "AGREED" else "En négociation"
     
     return {
         "hs_code": hs_code,
-        "sector_code": sector_code,
-        "rules": translated_rules,
+        "hs6_code": hs_code[:6] if len(hs_code) >= 6 else hs_code,
+        "chapter": roo_data.get("chapter", hs_code[:2]),
+        "status": status,
+        "status_label": status_label,
+        "rules": {
+            "primary_rule": {
+                "type": primary_rule.get("type", ""),
+                "code": primary_rule.get("code", ""),
+                "name": primary_rule.get("name", ""),
+                "description": primary_rule.get("description", "")
+            },
+            "alternative_rule": {
+                "type": alt_rule.get("type", ""),
+                "code": alt_rule.get("code", ""),
+                "name": alt_rule.get("name", ""),
+                "description": alt_rule.get("description", "")
+            } if alt_rule else None,
+            "regional_content": regional_content,
+            "regional_content_minimum": f"{regional_content}%"
+        },
+        "chapter_description": roo_data.get("chapter_description", ""),
+        "notes": roo_data.get("notes", ""),
         "explanation": {
-            "rule_type": translated_rules["rule"],
-            "requirement": translated_rules["requirement"],
-            "regional_content_minimum": f"{rules['regional_content']}%",
+            "rule_type": primary_rule.get("name", ""),
+            "rule_code": primary_rule.get("code", ""),
+            "requirement_summary": f"{regional_content}% contenu régional minimum" if lang == "fr" else f"{regional_content}% minimum regional content",
             "documentation_required": docs,
             "validity_period": validity,
             "issuing_authority": authority
+        },
+        "source": {
+            "name": "AfCFTA Protocol on Trade in Goods - Annex II, Appendix IV",
+            "url": "https://au.int/sites/default/files/treaties/36437-ax-AfCFTA_RULES_OF_ORIGIN_MANUAL.pdf"
         }
     }
 
