@@ -236,6 +236,7 @@ class OECTradeService:
         if not country_info:
             return {"error": f"Country {country_iso3} not found", "data": []}
         
+        # Récupérer plus de données pour pouvoir trier et filtrer
         params = self._build_params(
             cube=OEC_CUBES[DEFAULT_CUBE],
             drilldowns=["Year", "Importer Country", hs_level],
@@ -244,11 +245,11 @@ class OECTradeService:
                 "Year": str(year),
                 "Importer Country": country_info["oec_id"]
             },
-            limit=limit
+            limit=500  # Récupérer plus pour avoir tous les produits
         )
         
         result = await self._make_request(params)
-        return self._format_product_response(result, "imports", country_info)
+        return self._format_product_response(result, "imports", country_info, limit)
     
     def _get_hs6_prefix(self, hs_code: str) -> int:
         """
