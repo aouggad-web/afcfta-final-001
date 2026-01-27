@@ -532,6 +532,104 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
                   )}
                 </div>
               )}
+
+              {/* WARNING: Taux variables selon sous-positions nationales */}
+              {result.rate_warning && result.rate_warning.has_variation && (
+                <div className="bg-gradient-to-r from-amber-50 via-orange-50 to-red-50 p-4 rounded-lg border-2 border-amber-400 shadow-lg" data-testid="rate-warning-box">
+                  <div className="flex items-start gap-3">
+                    <span className="text-3xl animate-pulse">⚠️</span>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-lg text-amber-700 mb-2">
+                        {language === 'fr' ? 'Attention: Taux Variables' : 'Warning: Variable Rates'}
+                      </h4>
+                      <p className="text-gray-700 mb-3">
+                        {language === 'fr' 
+                          ? result.rate_warning.message_fr.replace('⚠️ ', '')
+                          : result.rate_warning.message_en.replace('⚠️ ', '')}
+                      </p>
+                      
+                      {/* Visualisation des taux min/max */}
+                      <div className="grid grid-cols-3 gap-3 mb-3">
+                        <div className="bg-green-100 p-3 rounded-lg text-center border border-green-300">
+                          <p className="text-xs text-green-600 font-semibold">{language === 'fr' ? 'Taux Min' : 'Min Rate'}</p>
+                          <p className="text-xl font-bold text-green-700">{result.rate_warning.min_rate_pct}</p>
+                        </div>
+                        <div className="bg-blue-100 p-3 rounded-lg text-center border-2 border-blue-400">
+                          <p className="text-xs text-blue-600 font-semibold">{language === 'fr' ? 'Taux Utilisé' : 'Rate Used'}</p>
+                          <p className="text-xl font-bold text-blue-700">{result.rate_warning.rate_used_pct}</p>
+                        </div>
+                        <div className="bg-red-100 p-3 rounded-lg text-center border border-red-300">
+                          <p className="text-xs text-red-600 font-semibold">{language === 'fr' ? 'Taux Max' : 'Max Rate'}</p>
+                          <p className="text-xl font-bold text-red-700">{result.rate_warning.max_rate_pct}</p>
+                        </div>
+                      </div>
+                      
+                      <p className="text-sm text-amber-700 bg-amber-100 p-2 rounded border border-amber-300">
+                        💡 {language === 'fr' 
+                          ? result.rate_warning.recommendation_fr
+                          : result.rate_warning.recommendation_en}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Sous-positions détaillées si taux variables */}
+              {result.sub_positions_details && result.sub_positions_details.length > 0 && (
+                <details className="bg-gradient-to-r from-purple-50 to-indigo-50 p-4 rounded-lg border-2 border-purple-300 shadow-md" open={result.rate_warning?.has_variation}>
+                  <summary className="cursor-pointer font-bold text-purple-700 flex items-center gap-2 text-lg">
+                    <span>📋</span> 
+                    {language === 'fr' ? 'Détail des sous-positions nationales' : 'National sub-headings detail'}
+                    <Badge className="bg-purple-600 text-white ml-2">{result.sub_positions_details.length}</Badge>
+                    {result.rate_warning?.has_variation && (
+                      <Badge className="bg-orange-500 text-white text-xs ml-2">
+                        {result.rate_warning.min_rate_pct} → {result.rate_warning.max_rate_pct}
+                      </Badge>
+                    )}
+                  </summary>
+                  <div className="mt-4 space-y-2">
+                    <p className="text-sm text-gray-600 mb-3">
+                      {language === 'fr' 
+                        ? 'Cliquez sur une sous-position pour recalculer avec ce taux spécifique:'
+                        : 'Click on a sub-heading to recalculate with this specific rate:'}
+                    </p>
+                    {result.sub_positions_details.map((sp, idx) => (
+                      <div 
+                        key={idx} 
+                        className={`p-3 rounded-lg cursor-pointer transition-all hover:scale-[1.02] ${
+                          sp.dd_rate === result.rate_warning?.rate_used 
+                            ? 'bg-blue-100 border-2 border-blue-400 shadow-md' 
+                            : 'bg-white border border-gray-200 hover:border-purple-400 hover:bg-purple-50'
+                        }`}
+                        onClick={() => {
+                          setHsCode(sp.code);
+                          // Trigger recalculation
+                        }}
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <span className="font-mono font-bold text-purple-800 text-lg">{sp.code}</span>
+                            <span className="text-gray-400">|</span>
+                            <span className="text-gray-700">{language === 'fr' ? sp.description_fr : sp.description_en}</span>
+                          </div>
+                          <Badge className={`${
+                            sp.dd_rate === result.rate_warning?.min_rate ? 'bg-green-500' :
+                            sp.dd_rate === result.rate_warning?.max_rate ? 'bg-red-500' :
+                            sp.dd_rate === result.rate_warning?.rate_used ? 'bg-blue-500' : 'bg-gray-500'
+                          } text-white text-sm font-bold px-3`}>
+                            {sp.dd_rate_pct}
+                          </Badge>
+                        </div>
+                        {sp.dd_rate === result.rate_warning?.rate_used && (
+                          <Badge className="bg-blue-600 text-white text-xs mt-2">
+                            ✓ {language === 'fr' ? 'Taux actuellement utilisé' : 'Currently used rate'}
+                          </Badge>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </details>
+              )}
               
               {/* Badge tarif par chapitre si pas de SH6 spécifique */}
               {result.tariff_precision === 'chapter' && (
