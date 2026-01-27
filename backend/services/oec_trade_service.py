@@ -230,7 +230,7 @@ class OECTradeService:
         limit: int = 50
     ) -> Dict:
         """
-        Récupère les importations d'un pays par produit.
+        Récupère les importations d'un pays par produit avec valeur et volume.
         Utilise le cube HS17 (compatible SH2022) avec HS4 par défaut.
         """
         country_info = AFRICAN_COUNTRIES_OEC.get(country_iso3.upper())
@@ -238,10 +238,11 @@ class OECTradeService:
             return {"error": f"Country {country_iso3} not found", "data": []}
         
         # Récupérer plus de données pour pouvoir trier et filtrer
+        # Inclure Trade Value et Quantity (volume)
         params = self._build_params(
             cube=OEC_CUBES[DEFAULT_CUBE],
             drilldowns=["Year", "Importer Country", hs_level],
-            measures=["Trade Value"],
+            measures=["Trade Value", "Quantity"],
             cuts={
                 "Year": str(year),
                 "Importer Country": country_info["oec_id"]
