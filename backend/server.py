@@ -2216,15 +2216,14 @@ async def get_hs_codes_by_chapter(
 @api_router.get("/hs-codes/statistics")
 async def get_hs_codes_statistics():
     """
-    Get HS codes database statistics
+    Get HS codes database statistics from complete database (5800+ codes)
     """
-    data = get_all_hs_data()
     chapters = get_hs_chapters()
-    codes = get_hs6_codes()
+    db_stats = get_database_stats()
     
-    # Count codes per chapter
+    # Count codes per chapter from complete database
     codes_per_chapter = {}
-    for code in codes.keys():
+    for code in HS6_DATABASE.keys():
         ch = code[:2]
         codes_per_chapter[ch] = codes_per_chapter.get(ch, 0) + 1
     
@@ -2232,7 +2231,7 @@ async def get_hs_codes_statistics():
     
     return {
         "total_chapters": len(chapters),
-        "total_codes": len(codes),
+        "total_codes": db_stats.get("total_codes", len(HS6_DATABASE)),
         "top_chapters": [
             {
                 "chapter": ch,
@@ -2241,8 +2240,8 @@ async def get_hs_codes_statistics():
             }
             for ch, count in top_chapters
         ],
-        "source": data.get("source"),
-        "last_updated": data.get("last_updated")
+        "source": "World Customs Organization (WCO) HS 2022 + AfCFTA Database",
+        "last_updated": "2025-01"
     }
 
 
