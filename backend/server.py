@@ -630,36 +630,58 @@ async def calculate_comprehensive_tariff(request: TariffCalculationRequest):
     cedeao_rate = other_taxes_detail.get('cedeao', 0) / 100 if other_taxes_detail.get('cedeao') else 0
     tci_rate = other_taxes_detail.get('tci', 0) / 100 if other_taxes_detail.get('tci') else 0
     
-    # Créer le journal de calcul détaillé pour NPF
+    # Créer le journal de calcul détaillé pour NPF avec références légales
+    legal_refs = {
+        "cif": {"ref": "Incoterms 2020 - CIF", "url": "https://iccwbo.org/resources-for-business/incoterms-rules/incoterms-2020/"},
+        "dd": {"ref": f"Tarif douanier {dest_iso3}", "url": None},
+        "rs": {"ref": "Règlement UEMOA 02/97/CM", "url": None},
+        "pcs": {"ref": "Règlement UEMOA 01/2019", "url": None},
+        "cedeao": {"ref": "Protocole CEDEAO A/P1/1/03", "url": None},
+        "tci": {"ref": "Règlement CEMAC 02/01", "url": None},
+        "vat": {"ref": f"Code Général des Impôts {dest_iso3}", "url": None},
+        "zlecaf": {"ref": "Accord ZLECAf Art. 8", "url": "https://au.int/en/treaties/agreement-establishing-african-continental-free-trade-area"}
+    }
+    
     normal_journal = [
-        {"step": 1, "component": "Valeur CIF", "base": request.value, "rate": "-", "amount": request.value, "cumulative": request.value},
-        {"step": 2, "component": "Droits de douane", "base": request.value, "rate": f"{normal_rate*100:.1f}%", "amount": round(normal_customs, 2), "cumulative": round(request.value + normal_customs, 2)},
+        {"step": 1, "component": "Valeur CIF", "base": request.value, "rate": "-", "amount": request.value, "cumulative": request.value, "legal_ref": legal_refs["cif"]["ref"], "legal_ref_url": legal_refs["cif"]["url"]},
+        {"step": 2, "component": "Droits de douane (DD)", "base": request.value, "rate": f"{normal_rate*100:.1f}%", "amount": round(normal_customs, 2), "cumulative": round(request.value + normal_customs, 2), "legal_ref": legal_refs["dd"]["ref"], "legal_ref_url": legal_refs["dd"]["url"]},
     ]
     step = 3
+    cumulative = request.value + normal_customs
     if rs_rate > 0:
-        normal_journal.append({"step": step, "component": "Redevance statistique", "base": request.value, "rate": f"{rs_rate*100:.1f}%", "amount": round(request.value * rs_rate, 2), "cumulative": round(request.value + normal_customs + request.value * rs_rate, 2)})
+        rs_amount = round(request.value * rs_rate, 2)
+        cumulative += rs_amount
+        normal_journal.append({"step": step, "component": "Redevance statistique (RS)", "base": request.value, "rate": f"{rs_rate*100:.1f}%", "amount": rs_amount, "cumulative": round(cumulative, 2), "legal_ref": legal_refs["rs"]["ref"], "legal_ref_url": legal_refs["rs"]["url"]})
         step += 1
     if pcs_rate > 0:
-        normal_journal.append({"step": step, "component": "PCS UEMOA", "base": request.value, "rate": f"{pcs_rate*100:.1f}%", "amount": round(request.value * pcs_rate, 2), "cumulative": round(request.value + normal_customs + other_taxes_amount, 2)})
+        pcs_amount = round(request.value * pcs_rate, 2)
+        cumulative += pcs_amount
+        normal_journal.append({"step": step, "component": "PCS UEMOA", "base": request.value, "rate": f"{pcs_rate*100:.1f}%", "amount": pcs_amount, "cumulative": round(cumulative, 2), "legal_ref": legal_refs["pcs"]["ref"], "legal_ref_url": legal_refs["pcs"]["url"]})
         step += 1
     if cedeao_rate > 0:
-        normal_journal.append({"step": step, "component": "Prélèvement CEDEAO", "base": request.value, "rate": f"{cedeao_rate*100:.1f}%", "amount": round(request.value * cedeao_rate, 2), "cumulative": round(request.value + normal_customs + other_taxes_amount, 2)})
+        cedeao_amount = round(request.value * cedeao_rate, 2)
+        cumulative += cedeao_amount
+        normal_journal.append({"step": step, "component": "Prélèvement CEDEAO (PC)", "base": request.value, "rate": f"{cedeao_rate*100:.1f}%", "amount": cedeao_amount, "cumulative": round(cumulative, 2), "legal_ref": legal_refs["cedeao"]["ref"], "legal_ref_url": legal_refs["cedeao"]["url"]})
         step += 1
     if tci_rate > 0:
-        normal_journal.append({"step": step, "component": "TCI CEMAC", "base": request.value, "rate": f"{tci_rate*100:.1f}%", "amount": round(request.value * tci_rate, 2), "cumulative": round(request.value + normal_customs + other_taxes_amount, 2)})
+        tci_amount = round(request.value * tci_rate, 2)
+        cumulative += tci_amount
+        normal_journal.append({"step": step, "component": "TCI CEMAC", "base": request.value, "rate": f"{tci_rate*100:.1f}%", "amount": tci_amount, "cumulative": round(cumulative, 2), "legal_ref": legal_refs["tci"]["ref"], "legal_ref_url": legal_refs["tci"]["url"]})
         step += 1
-    normal_journal.append({"step": step, "component": "TVA", "base": round(normal_vat_base, 2), "rate": f"{vat_rate*100:.1f}%", "amount": round(normal_vat_amount, 2), "cumulative": round(normal_total, 2)})
+    normal_journal.append({"step": step, "component": "TVA", "base": round(normal_vat_base, 2), "rate": f"{vat_rate*100:.1f}%", "amount": round(normal_vat_amount, 2), "cumulative": round(normal_total, 2), "legal_ref": legal_refs["vat"]["ref"], "legal_ref_url": legal_refs["vat"]["url"]})
     
-    # Créer le journal de calcul détaillé pour ZLECAf
+    # Créer le journal de calcul détaillé pour ZLECAf avec références légales
     zlecaf_journal = [
-        {"step": 1, "component": "Valeur CIF", "base": request.value, "rate": "-", "amount": request.value, "cumulative": request.value},
-        {"step": 2, "component": "Droits de douane ZLECAf", "base": request.value, "rate": f"{zlecaf_rate*100:.1f}%", "amount": round(zlecaf_customs, 2), "cumulative": round(request.value + zlecaf_customs, 2)},
+        {"step": 1, "component": "Valeur CIF", "base": request.value, "rate": "-", "amount": request.value, "cumulative": request.value, "legal_ref": legal_refs["cif"]["ref"], "legal_ref_url": legal_refs["cif"]["url"]},
+        {"step": 2, "component": "Droits de douane ZLECAf (DD)", "base": request.value, "rate": f"{zlecaf_rate*100:.1f}%", "amount": round(zlecaf_customs, 2), "cumulative": round(request.value + zlecaf_customs, 2), "legal_ref": legal_refs["zlecaf"]["ref"], "legal_ref_url": legal_refs["zlecaf"]["url"]},
     ]
     step = 3
+    zlecaf_cumulative = request.value + zlecaf_customs
     if other_taxes_rate > 0:
-        zlecaf_journal.append({"step": step, "component": "Autres taxes", "base": request.value, "rate": f"{other_taxes_rate*100:.1f}%", "amount": round(other_taxes_amount, 2), "cumulative": round(request.value + zlecaf_customs + other_taxes_amount, 2)})
+        zlecaf_cumulative += other_taxes_amount
+        zlecaf_journal.append({"step": step, "component": "Autres taxes", "base": request.value, "rate": f"{other_taxes_rate*100:.1f}%", "amount": round(other_taxes_amount, 2), "cumulative": round(zlecaf_cumulative, 2), "legal_ref": "Taxes communautaires", "legal_ref_url": None})
         step += 1
-    zlecaf_journal.append({"step": step, "component": "TVA", "base": round(zlecaf_vat_base, 2), "rate": f"{vat_rate*100:.1f}%", "amount": round(zlecaf_vat_amount, 2), "cumulative": round(zlecaf_total, 2)})
+    zlecaf_journal.append({"step": step, "component": "TVA", "base": round(zlecaf_vat_base, 2), "rate": f"{vat_rate*100:.1f}%", "amount": round(zlecaf_vat_amount, 2), "cumulative": round(zlecaf_total, 2), "legal_ref": legal_refs["vat"]["ref"], "legal_ref_url": legal_refs["vat"]["url"]})
     
     # Règles d'origine
     rules = ZLECAF_RULES_OF_ORIGIN.get(sector_code, {
