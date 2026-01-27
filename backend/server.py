@@ -16,6 +16,11 @@ import json
 from country_data import get_country_data, REAL_COUNTRY_DATA
 from constants import AFRICAN_COUNTRIES, ZLECAF_RULES_OF_ORIGIN
 from models import CountryInfo, TariffCalculationRequest, TariffCalculationResponse, CountryEconomicProfile
+from translations import (
+    COUNTRY_TRANSLATIONS, REGION_TRANSLATIONS, RULES_TRANSLATIONS,
+    translate_country_name, translate_region, translate_rule
+)
+from gold_reserves_data import GOLD_RESERVES_GAI_DATA
 from tax_rates import calculate_all_taxes, get_vat_rate
 from data_loader import (
     load_corrections_data, 
