@@ -679,20 +679,26 @@ export default function OECTradeStats({ language = 'fr' }) {
                         </TableRow>
                       </TableHeader>
                       <TableBody>
-                        {productData.data?.slice(0, 20).map((item, idx) => (
-                          <TableRow key={idx} className="hover:bg-slate-50">
-                            <TableCell className="font-medium text-slate-500">{idx + 1}</TableCell>
-                            <TableCell className="font-medium">
-                              {item['Exporter Country'] || item['Importer Country'] || '-'}
-                            </TableCell>
-                            <TableCell className="text-right font-semibold text-violet-700">
-                              {formatValue(item['Trade Value'] || 0)}
-                            </TableCell>
-                            <TableCell className="text-right text-sm text-blue-600">
-                              {formatQuantity(item['Quantity'] || 0)} t
-                            </TableCell>
-                          </TableRow>
-                        ))}
+                        {productData.data?.slice(0, 20).map((item, idx) => {
+                          const countryName = item['Exporter Country'] || item['Importer Country'] || '-';
+                          return (
+                            <TableRow key={idx} className="hover:bg-slate-50">
+                              <TableCell className="font-medium text-slate-500">{idx + 1}</TableCell>
+                              <TableCell className="font-medium">
+                                <span className="flex items-center gap-2">
+                                  <span>{getCountryFlagFromName(countryName)}</span>
+                                  <span>{countryName}</span>
+                                </span>
+                              </TableCell>
+                              <TableCell className="text-right font-semibold text-violet-700">
+                                {formatValue(item['Trade Value'] || 0)}
+                              </TableCell>
+                              <TableCell className="text-right text-sm text-blue-600">
+                                {formatQuantity(item['Quantity'] || 0)} t
+                              </TableCell>
+                            </TableRow>
+                          );
+                        })}
                       </TableBody>
                     </Table>
                   </div>
