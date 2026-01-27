@@ -453,6 +453,13 @@ async def get_country_profile(country_code: str) -> CountryEconomicProfile:
     
     return profile
 
+@api_router.get("/rules-of-origin/stats")
+async def get_rules_of_origin_statistics():
+    """Obtenir les statistiques de la base de données des règles d'origine ZLECAf"""
+    from etl.afcfta_rules_of_origin import get_rules_statistics
+    return get_rules_statistics()
+
+
 @api_router.get("/rules-of-origin/{hs_code}")
 async def get_rules_of_origin(hs_code: str, lang: str = "fr"):
     """Récupérer les règles d'origine ZLECAf pour un code SH
