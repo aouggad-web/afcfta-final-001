@@ -889,8 +889,8 @@ def get_trade_summary() -> Dict:
     return {
         "top_20_imports_world_total_mln_usd": total_imports_world,
         "top_20_exports_world_total_mln_usd": total_exports_world,
-        "top_20_intra_imports_total_mln_usd": total_intra_imports,
-        "top_20_intra_exports_total_mln_usd": total_intra_exports,
+        "top_20_intra_african_imports_total_mln_usd": total_intra_imports,
+        "top_20_intra_african_exports_total_mln_usd": total_intra_exports,
         "intra_african_trade_share_percent": round((total_intra_imports / total_imports_world) * 100, 1) if total_imports_world > 0 else 0,
         "data_year": 2023
     }
