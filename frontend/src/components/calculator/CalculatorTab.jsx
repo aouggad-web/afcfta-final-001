@@ -536,100 +536,140 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
 
               {/* WARNING: Taux variables selon sous-positions nationales */}
               {result.rate_warning && result.rate_warning.has_variation && (
-                <div className="bg-gradient-to-r from-amber-50 via-orange-50 to-red-50 p-4 rounded-lg border-2 border-amber-400 shadow-lg" data-testid="rate-warning-box">
-                  <div className="flex items-start gap-3">
-                    <span className="text-3xl animate-pulse">⚠️</span>
-                    <div className="flex-1">
-                      <h4 className="font-bold text-lg text-amber-700 mb-2">
-                        {language === 'fr' ? 'Attention: Taux Variables' : 'Warning: Variable Rates'}
+                <div 
+                  className="rate-warning-box bg-gradient-to-r from-amber-50 via-orange-50 to-yellow-50 p-5 rounded-xl border-l-4 border-amber-500 shadow-lg" 
+                  data-testid="rate-warning-box"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
+                      <AlertTriangle className="w-6 h-6 text-amber-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-bold text-lg text-amber-800 mb-2">
+                        {language === 'fr' ? 'Attention: Taux de droits variables' : 'Warning: Variable duty rates'}
                       </h4>
-                      <p className="text-gray-700 mb-3">
+                      <p className="text-gray-700 text-sm leading-relaxed mb-4">
                         {language === 'fr' 
-                          ? result.rate_warning.message_fr.replace('⚠️ ', '')
-                          : result.rate_warning.message_en.replace('⚠️ ', '')}
+                          ? `Ce code SH6 (${result.hs6_code}) comporte plusieurs sous-positions nationales avec des taux différents.`
+                          : `This HS6 code (${result.hs6_code}) has multiple national sub-headings with different rates.`}
                       </p>
                       
-                      {/* Visualisation des taux min/max */}
-                      <div className="grid grid-cols-3 gap-3 mb-3">
-                        <div className="bg-green-100 p-3 rounded-lg text-center border border-green-300">
-                          <p className="text-xs text-green-600 font-semibold">{language === 'fr' ? 'Taux Min' : 'Min Rate'}</p>
-                          <p className="text-xl font-bold text-green-700">{result.rate_warning.min_rate_pct}</p>
+                      {/* Visualisation des taux min/max/utilisé */}
+                      <div className="grid grid-cols-3 gap-3 mb-4">
+                        <div className="rate-card bg-green-50 p-3 rounded-lg text-center border border-green-200 shadow-sm">
+                          <p className="text-xs text-green-600 font-medium uppercase tracking-wide">{language === 'fr' ? 'Minimum' : 'Minimum'}</p>
+                          <p className="text-2xl font-bold text-green-700 mt-1">{result.rate_warning.min_rate_pct}</p>
                         </div>
-                        <div className="bg-blue-100 p-3 rounded-lg text-center border-2 border-blue-400">
-                          <p className="text-xs text-blue-600 font-semibold">{language === 'fr' ? 'Taux Utilisé' : 'Rate Used'}</p>
-                          <p className="text-xl font-bold text-blue-700">{result.rate_warning.rate_used_pct}</p>
+                        <div className="rate-card bg-blue-50 p-3 rounded-lg text-center border-2 border-blue-400 shadow-md relative">
+                          <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
+                            <Badge className="bg-blue-600 text-white text-xs px-2">
+                              {language === 'fr' ? 'Utilisé' : 'Used'}
+                            </Badge>
+                          </div>
+                          <p className="text-xs text-blue-600 font-medium uppercase tracking-wide mt-2">{language === 'fr' ? 'Actuel' : 'Current'}</p>
+                          <p className="text-2xl font-bold text-blue-700 mt-1">{result.rate_warning.rate_used_pct}</p>
                         </div>
-                        <div className="bg-red-100 p-3 rounded-lg text-center border border-red-300">
-                          <p className="text-xs text-red-600 font-semibold">{language === 'fr' ? 'Taux Max' : 'Max Rate'}</p>
-                          <p className="text-xl font-bold text-red-700">{result.rate_warning.max_rate_pct}</p>
+                        <div className="rate-card bg-red-50 p-3 rounded-lg text-center border border-red-200 shadow-sm">
+                          <p className="text-xs text-red-600 font-medium uppercase tracking-wide">{language === 'fr' ? 'Maximum' : 'Maximum'}</p>
+                          <p className="text-2xl font-bold text-red-700 mt-1">{result.rate_warning.max_rate_pct}</p>
                         </div>
                       </div>
                       
-                      <p className="text-sm text-amber-700 bg-amber-100 p-2 rounded border border-amber-300">
-                        💡 {language === 'fr' 
-                          ? result.rate_warning.recommendation_fr
-                          : result.rate_warning.recommendation_en}
-                      </p>
+                      <div className="flex items-start gap-2 bg-amber-100/50 p-3 rounded-lg">
+                        <Info className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+                        <p className="text-sm text-amber-800">
+                          {language === 'fr' 
+                            ? 'Pour un calcul précis, sélectionnez la sous-position correspondant exactement à votre produit ci-dessous.'
+                            : 'For an accurate calculation, select the sub-heading that exactly matches your product below.'}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               )}
 
-              {/* Sous-positions détaillées si taux variables */}
-              {result.sub_positions_details && result.sub_positions_details.length > 0 && (
-                <details className="bg-gradient-to-r from-purple-50 to-indigo-50 p-4 rounded-lg border-2 border-purple-300 shadow-md" open={result.rate_warning?.has_variation}>
-                  <summary className="cursor-pointer font-bold text-purple-700 flex items-center gap-2 text-lg">
-                    <span>📋</span> 
-                    {language === 'fr' ? 'Détail des sous-positions nationales' : 'National sub-headings detail'}
-                    <Badge className="bg-purple-600 text-white ml-2">{result.sub_positions_details.length}</Badge>
-                    {result.rate_warning?.has_variation && (
-                      <Badge className="bg-orange-500 text-white text-xs ml-2">
-                        {result.rate_warning.min_rate_pct} → {result.rate_warning.max_rate_pct}
-                      </Badge>
-                    )}
-                  </summary>
-                  <div className="mt-4 space-y-2">
-                    <p className="text-sm text-gray-600 mb-3">
-                      {language === 'fr' 
-                        ? 'Cliquez sur une sous-position pour recalculer avec ce taux spécifique:'
-                        : 'Click on a sub-heading to recalculate with this specific rate:'}
-                    </p>
-                    {result.sub_positions_details.map((sp, idx) => (
-                      <div 
-                        key={idx} 
-                        className={`p-3 rounded-lg cursor-pointer transition-all hover:scale-[1.02] ${
-                          sp.dd_rate === result.rate_warning?.rate_used 
-                            ? 'bg-blue-100 border-2 border-blue-400 shadow-md' 
-                            : 'bg-white border border-gray-200 hover:border-purple-400 hover:bg-purple-50'
-                        }`}
-                        onClick={() => {
-                          setHsCode(sp.code);
-                          // Trigger recalculation
-                        }}
-                      >
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <span className="font-mono font-bold text-purple-800 text-lg">{sp.code}</span>
-                            <span className="text-gray-400">|</span>
-                            <span className="text-gray-700">{language === 'fr' ? sp.description_fr : sp.description_en}</span>
-                          </div>
-                          <Badge className={`${
-                            sp.dd_rate === result.rate_warning?.min_rate ? 'bg-green-500' :
-                            sp.dd_rate === result.rate_warning?.max_rate ? 'bg-red-500' :
-                            sp.dd_rate === result.rate_warning?.rate_used ? 'bg-blue-500' : 'bg-gray-500'
-                          } text-white text-sm font-bold px-3`}>
-                            {sp.dd_rate_pct}
-                          </Badge>
+              {/* Sous-positions détaillées - Affiché uniquement si taux variables */}
+              {result.sub_positions_details && result.sub_positions_details.length > 0 && result.rate_warning?.has_variation && (
+                <div className="result-section bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                  <div 
+                    className="p-4 bg-gradient-to-r from-purple-50 to-indigo-50 border-b border-purple-100 cursor-pointer"
+                    onClick={() => document.getElementById('sub-positions-details')?.toggleAttribute('open')}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                          <Package className="w-5 h-5 text-purple-600" />
                         </div>
-                        {sp.dd_rate === result.rate_warning?.rate_used && (
-                          <Badge className="bg-blue-600 text-white text-xs mt-2">
-                            ✓ {language === 'fr' ? 'Taux actuellement utilisé' : 'Currently used rate'}
-                          </Badge>
-                        )}
+                        <div>
+                          <h4 className="font-bold text-purple-800">
+                            {language === 'fr' ? 'Sous-positions disponibles' : 'Available sub-headings'}
+                          </h4>
+                          <p className="text-sm text-purple-600">
+                            {language === 'fr' ? 'Cliquez pour sélectionner le taux exact' : 'Click to select exact rate'}
+                          </p>
+                        </div>
                       </div>
-                    ))}
+                      <div className="flex items-center gap-2">
+                        <Badge className="bg-purple-600 text-white">{result.sub_positions_details.length}</Badge>
+                        <Badge className="bg-gradient-to-r from-green-500 to-red-500 text-white text-xs">
+                          {result.rate_warning.min_rate_pct} → {result.rate_warning.max_rate_pct}
+                        </Badge>
+                      </div>
+                    </div>
                   </div>
-                </details>
+                  
+                  <details id="sub-positions-details" className="sub-positions-container" open>
+                    <summary className="sr-only">Toggle sub-positions</summary>
+                    <div className="p-4 space-y-2 max-h-80 overflow-y-auto">
+                      {result.sub_positions_details.map((sp, idx) => {
+                        const isMinRate = sp.dd_rate === result.rate_warning?.min_rate;
+                        const isMaxRate = sp.dd_rate === result.rate_warning?.max_rate;
+                        const isCurrentRate = sp.dd_rate === result.rate_warning?.rate_used;
+                        
+                        return (
+                          <div 
+                            key={idx} 
+                            className={`sub-position-item p-3 rounded-lg cursor-pointer flex items-center justify-between border transition-all ${
+                              isCurrentRate 
+                                ? 'bg-blue-50 border-blue-300 shadow-sm' 
+                                : 'bg-gray-50 border-gray-200 hover:border-purple-300 hover:bg-purple-50'
+                            }`}
+                            onClick={() => {
+                              setHsCode(sp.code);
+                              toast({
+                                title: language === 'fr' ? 'Sous-position sélectionnée' : 'Sub-heading selected',
+                                description: sp.code,
+                              });
+                            }}
+                          >
+                            <div className="flex items-center gap-3 min-w-0 flex-1">
+                              <code className="font-mono font-bold text-purple-800 bg-purple-100 px-2 py-1 rounded text-sm">
+                                {sp.code}
+                              </code>
+                              <span className="text-gray-700 text-sm truncate">
+                                {language === 'fr' ? sp.description_fr : sp.description_en}
+                              </span>
+                            </div>
+                            <div className="flex items-center gap-2 flex-shrink-0 ml-3">
+                              {isCurrentRate && (
+                                <Badge className="bg-blue-100 text-blue-700 text-xs">
+                                  {language === 'fr' ? 'Actuel' : 'Current'}
+                                </Badge>
+                              )}
+                              <Badge className={`text-white font-bold px-3 ${
+                                isMinRate ? 'bg-green-500' :
+                                isMaxRate ? 'bg-red-500' :
+                                isCurrentRate ? 'bg-blue-500' : 'bg-gray-500'
+                              }`}>
+                                {sp.dd_rate_pct}
+                              </Badge>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </details>
+                </div>
               )}
               
               {/* Badge tarif par chapitre si pas de SH6 spécifique */}
