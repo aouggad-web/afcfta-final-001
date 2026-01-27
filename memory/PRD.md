@@ -305,6 +305,21 @@ Modules partagés créés (378 lignes):
 ## Backlog
 
 ### Complété ✅
+- **Bug P0 - Règles d'Origine Spécifiques (27/01/2025)** - COMPLETE ✅
+  - **Problème**: Règle générique "35% valeur ajoutée africaine" affichée pour tous les produits
+  - **Solution**: Implémentation complète des PSR (Product-Specific Rules) de la ZLECAf
+  - **Base de données**: 96 chapitres, 65 règles par position, source Annexe II Appendice IV
+  - **Tests validés** (exemples):
+    - Blé (100110) → WO (Entièrement Obtenu) ✅
+    - Café (090111) → WO (Entièrement Obtenu) ✅
+    - Machines (850440) → CTH/VA60 ✅
+    - Vêtements (620311) → YARN (Fabrication à partir de fils) ✅
+    - Véhicules (870310) → YTB (En cours de négociation) ✅
+  - **Fichiers créés/modifiés**:
+    - `/app/backend/etl/afcfta_rules_of_origin.py` - Base complète des règles
+    - `/app/backend/server.py` - Endpoint /api/rules-of-origin/stats ajouté
+    - `/app/backend/tests/test_rules_of_origin.py` - Tests automatisés
+  - **Rapport de tests**: `/app/test_reports/iteration_7.json`
 - **Extension complète base HS6 (27/01/2025)** - COMPLETE
   - **825 codes HS6** (de 93 à 825, +732 codes)
   - **62 catégories** de produits (de 36 à 62)
