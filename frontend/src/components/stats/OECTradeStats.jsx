@@ -359,7 +359,10 @@ export default function OECTradeStats({ language = 'fr' }) {
                     <SelectContent>
                       {countries.map((country) => (
                         <SelectItem key={country.iso3} value={country.iso3}>
-                          {country.name}
+                          <span className="flex items-center gap-2">
+                            <span>{getCountryFlag(country.iso3)}</span>
+                            <span>{country.name}</span>
+                          </span>
                         </SelectItem>
                       ))}
                     </SelectContent>
