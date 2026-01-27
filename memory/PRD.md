@@ -128,6 +128,23 @@ Application web d'analyse des statistiques commerciales et économiques africain
   - Utilisation du cube `trade_i_baci_a_17` (HS Rev. 2017, compatible SH2022)
   - Tous les codes en format HS6 exclusivement
   - Années disponibles : 2018-2023
+- **Volumes ajoutés** : Affichage valeur + volume (tonnes) pour tous les résultats
+- **Tri par valeur** : Résultats triés par valeur décroissante
+- **Dénomination SH6** : Affichage automatique de la description du code HS
+
+### NEW - Uniformisation Codes ISO3 (27/01/2025) ✅
+- **Standard adopté** : ISO 3166-1 alpha-3 (codes à 3 lettres)
+- **Fichiers centralisés créés** :
+  - `/app/backend/country_codes.py` - Mapping complet 54 pays africains
+  - `/app/frontend/src/utils/countryCodes.js` - Utilitaires frontend
+- **Fonctionnalités** :
+  - Conversion automatique ISO2 ↔ ISO3
+  - Mapping par nom (FR/EN)
+  - Drapeaux emoji par pays
+  - Régions économiques (UEMOA, CEMAC, CEDEAO, EAC, SACU, SADC)
+- **Fichiers mis à jour** :
+  - `tax_rates.py` : Tous les taux en ISO3 (DZA, AGO, BEN...)
+  - Compatibilité ISO2 maintenue via `_normalize_country_code()`
 - **Composant Frontend** : `OECTradeStats.jsx`
   - Design moderne avec 3 onglets (Par Pays, Par Produit, Commerce Bilatéral)
   - Graphiques interactifs (Recharts)
