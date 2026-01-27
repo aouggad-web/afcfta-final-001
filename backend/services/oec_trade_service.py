@@ -440,11 +440,16 @@ class OECTradeService:
         # Limiter au nombre demandé
         limited_data = sorted_data[:limit]
         
+        # Calculer le volume total (en tonnes métriques)
+        total_quantity = sum(row.get("Quantity", 0) for row in sorted_data)
+        
         return {
             "country": country_info,
             "trade_flow": flow,
             "total_products": len(limited_data),
             "total_value": sum(row.get("Trade Value", 0) for row in sorted_data),  # Total sur toutes les données
+            "total_quantity": total_quantity,
+            "quantity_unit": "tonnes",
             "currency": "USD",
             "data": limited_data,
             "source": "OEC/BACI",
@@ -458,12 +463,17 @@ class OECTradeService:
         # Trier par Trade Value décroissante
         sorted_data = sorted(data, key=lambda x: x.get("Trade Value", 0), reverse=True)
         
+        # Calculer le volume total
+        total_quantity = sum(row.get("Quantity", 0) for row in sorted_data)
+        
         return {
             "hs_code": hs_code,
             "year": year,
             "trade_flow": flow,
             "total_countries": len(sorted_data),
             "total_value": sum(row.get("Trade Value", 0) for row in sorted_data),
+            "total_quantity": total_quantity,
+            "quantity_unit": "tonnes",
             "currency": "USD",
             "data": sorted_data,
             "source": "OEC/BACI",
@@ -479,12 +489,17 @@ class OECTradeService:
         # Trier par Trade Value décroissante
         sorted_data = sorted(data, key=lambda x: x.get("Trade Value", 0), reverse=True)
         
+        # Calculer le volume total
+        total_quantity = sum(row.get("Quantity", 0) for row in sorted_data)
+        
         return {
             "exporter": exporter,
             "importer": importer,
             "year": year,
             "total_products": len(sorted_data),
             "total_value": sum(row.get("Trade Value", 0) for row in sorted_data),
+            "total_quantity": total_quantity,
+            "quantity_unit": "tonnes",
             "currency": "USD",
             "data": sorted_data,
             "source": "OEC/BACI",
