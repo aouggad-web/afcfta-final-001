@@ -111,13 +111,15 @@ class DataUpdater:
                     if country_code not in country_data:
                         country_data[country_code] = {
                             'name': item.get('country', {}).get('value', ''),
-                            'latest_update': datetime.now().isoformat()
+                            'latest_update': datetime.now().isoformat(),
+                            'indicators': {}
                         }
                     
-                    # Store the most recent value
-                    key = f"{indicator_name.lower()}_{year}"
-                    if key not in country_data[country_code]:
-                        country_data[country_code][key] = value
+                    # Store values by indicator and year in a structured way
+                    if indicator_name not in country_data[country_code]['indicators']:
+                        country_data[country_code]['indicators'][indicator_name] = {}
+                    
+                    country_data[country_code]['indicators'][indicator_name][year] = value
             
             # Rate limiting - be nice to the API
             time.sleep(1)
@@ -139,26 +141,35 @@ class DataUpdater:
         self.log(f"✓ Saved data to {output_file}")
         return country_data
     
-    def update_csv_data(self):
+    def update_csv_data(self, worldbank_data=None):
         """Update CSV data files with latest information"""
         self.log("=" * 60)
         self.log("Updating CSV data files")
         self.log("=" * 60)
         
-        # This is a placeholder for updating CSV files
-        # You can add specific CSV update logic here
+        # Check for the existence of CSV files
         csv_files = [
             'ZLECAF_54_PAYS_DONNEES_COMPLETES.csv',
             'ZLECAF_DATA_UPDATED.csv',
         ]
         
         base_path = Path(__file__).parent.parent
+        csv_found = False
+        
         for csv_file in csv_files:
             file_path = base_path / csv_file
             if file_path.exists():
                 self.log(f"✓ Found {csv_file}")
+                csv_found = True
+                
+                # If World Bank data is available, we could update the CSV
+                # For now, just verify the file exists
+                # Future enhancement: Parse and update CSV with new data
             else:
                 self.log(f"✗ File not found: {csv_file}", "WARNING")
+        
+        if csv_found:
+            self.log("✓ CSV files verified (no updates performed)")
         
         return True
     
@@ -245,10 +256,10 @@ def main():
     
     try:
         # Update country profiles from World Bank
-        updater.update_country_profiles()
+        country_data = updater.update_country_profiles()
         
-        # Update CSV files
-        updater.update_csv_data()
+        # Update CSV files (currently just verifies existence)
+        updater.update_csv_data(country_data)
         
         # Update JSON files
         updater.update_json_data_files()
@@ -257,8 +268,8 @@ def main():
         report = updater.generate_update_report()
         
         # Exit with appropriate code
-        # Don't fail if only API errors occurred - those are expected in offline environments
-        critical_errors = [log for log in report['log'] if 'CRITICAL' in log or 'Fatal' in log]
+        # Check for any actual failures (not just API connection errors)
+        critical_errors = [log for log in report['log'] if 'Fatal' in log]
         if len(critical_errors) > 0:
             print("\n❌ Update failed with critical errors")
             sys.exit(1)

@@ -69,8 +69,6 @@ jobs:
           
           # Add all data files
           git add *.json *.csv *.xlsx 2>/dev/null || true
-          git add worldbank_data_latest.json 2>/dev/null || true
-          git add data_update_report.json 2>/dev/null || true
           
           # Check if there are changes to commit
           if git diff --cached --quiet; then
