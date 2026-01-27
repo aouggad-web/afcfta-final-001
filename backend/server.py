@@ -846,6 +846,8 @@ async def calculate_comprehensive_tariff(request: TariffCalculationRequest):
         sub_position_description=sub_position_description,
         has_varying_sub_positions=has_varying,
         available_sub_positions_count=len(sub_positions_available),
+        rate_warning=rate_warning,
+        sub_positions_details=sub_positions_details,
         # Autres données
         rules_of_origin=rules,
         top_african_producers=top_producers,
