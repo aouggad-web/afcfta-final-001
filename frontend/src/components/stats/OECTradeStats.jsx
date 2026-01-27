@@ -265,6 +265,33 @@ export default function OECTradeStats({ language = 'fr' }) {
     }
   }, [selectedCountry, secondCountry, selectedYear]);
 
+  // Mapping des noms de pays OEC vers ISO3 pour les drapeaux
+  const getCountryFlagFromName = (countryName) => {
+    if (!countryName) return '🌍';
+    
+    // Mapping des noms OEC vers ISO3
+    const nameToIso3 = {
+      'Algeria': 'DZA', 'Angola': 'AGO', 'Benin': 'BEN', 'Botswana': 'BWA',
+      'Burkina Faso': 'BFA', 'Burundi': 'BDI', 'Cameroon': 'CMR', 'Cape Verde': 'CPV',
+      'Central African Republic': 'CAF', 'Chad': 'TCD', 'Comoros': 'COM',
+      'Republic of the Congo': 'COG', 'Democratic Republic of the Congo': 'COD',
+      "Cote d'Ivoire": 'CIV', 'Ivory Coast': 'CIV', 'Djibouti': 'DJI', 'Egypt': 'EGY',
+      'Equatorial Guinea': 'GNQ', 'Eritrea': 'ERI', 'Eswatini': 'SWZ', 'Ethiopia': 'ETH',
+      'Gabon': 'GAB', 'Gambia': 'GMB', 'Ghana': 'GHA', 'Guinea': 'GIN',
+      'Guinea-Bissau': 'GNB', 'Kenya': 'KEN', 'Lesotho': 'LSO', 'Liberia': 'LBR',
+      'Libya': 'LBY', 'Madagascar': 'MDG', 'Malawi': 'MWI', 'Mali': 'MLI',
+      'Mauritania': 'MRT', 'Mauritius': 'MUS', 'Morocco': 'MAR', 'Mozambique': 'MOZ',
+      'Namibia': 'NAM', 'Niger': 'NER', 'Nigeria': 'NGA', 'Rwanda': 'RWA',
+      'Sao Tome and Principe': 'STP', 'Senegal': 'SEN', 'Seychelles': 'SYC',
+      'Sierra Leone': 'SLE', 'Somalia': 'SOM', 'South Africa': 'ZAF',
+      'South Sudan': 'SSD', 'Sudan': 'SDN', 'Tanzania': 'TZA', 'Togo': 'TGO',
+      'Tunisia': 'TUN', 'Uganda': 'UGA', 'Zambia': 'ZMB', 'Zimbabwe': 'ZWE',
+    };
+    
+    const iso3 = nameToIso3[countryName];
+    return iso3 ? getCountryFlag(iso3) : '🌍';
+  };
+
   // Chart data preparation - adapté selon le contexte
   const prepareChartData = (data, type = 'country', limit = 10) => {
     if (!data || !data.data) return [];
