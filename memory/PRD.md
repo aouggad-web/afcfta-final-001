@@ -351,6 +351,13 @@ Modules partagés créés (378 lignes):
   - **Réponse API enrichie**: `rate_warning`, `sub_positions_details`
   - **Tests passés**: 15/15 (100%)
   - **Rapport de tests**: `/app/test_reports/iteration_8.json`
+  - **UI/UX amélioré (27/01/2025)**:
+    - Nouveau fichier CSS: `/app/frontend/src/components/calculator/calculator.css`
+    - Animations fluides (fade-in, transitions CSS)
+    - Warning box avec design moderne (icône AlertTriangle, cartes min/max/utilisé)
+    - Liste des sous-positions cliquables avec code couleur
+    - Suppression des duplications dans l'affichage
+    - Espacement cohérent pour éviter les superpositions
 
 - **Extension complète base HS6 (27/01/2025)** - COMPLETE
   - **825 codes HS6** (de 93 à 825, +732 codes)
