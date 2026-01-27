@@ -31,7 +31,21 @@ Application web d'analyse des statistiques commerciales et économiques africain
   - **5429 codes avec sous-positions** détaillées
   - **54 pays africains** avec sous-positions nationales
   - **Règles d'origine ZLECAf** intégrées par code HS6
-- **BUG FIX (27/01/2025)** : Le navigateur de codes HS affichait 731 codes au lieu de 5831. Correction des endpoints `/api/hs-codes/*` pour utiliser `HS6_DATABASE` au lieu de l'ancienne base `hs_codes_data.py`
+- **BUG FIX (27/01/2025)** : Navigateur HS affiche maintenant 5831 codes (corrigé depuis 731)
+
+### Code Architecture - REFACTORING (27/01/2025)
+**Backend refactorisé** - server.py réduit de 3473 à 3111 lignes (-10%)
+
+Structure modulaire créée dans `/app/backend/routes/`:
+- `health.py` - Health check endpoints
+- `news.py` - African economic news endpoints
+- `oec.py` - OEC Trade Statistics endpoints  
+- `hs_codes.py` - HS Code browser and search (5831 codes)
+
+**Frontend sous-composants** créés dans `/app/frontend/src/components/stats/oec/`:
+- `utils.js` - Constants, formatters, translations
+- `OECResultsDisplay.jsx` - Chart and table display components
+- `index.js` - Module exports
 - **Recherche intelligente** avec suggestions automatiques:
   - `/api/hs6/search` - Recherche par mot-clé
   - `/api/hs6/suggestions/{code}` - Suggestions sous-positions
