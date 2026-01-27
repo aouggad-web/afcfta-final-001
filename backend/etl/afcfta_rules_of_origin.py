@@ -1479,6 +1479,23 @@ def get_rule_summary(hs_code: str, lang: str = "fr") -> str:
         return summary
 
 
+# Compatibility function for existing imports
+def get_chapter_status_summary(chapter: str, lang: str = "fr") -> str:
+    """Get a summary of the rule status for a chapter"""
+    rule = get_chapter_rule(chapter, lang)
+    if not rule:
+        return "Non défini" if lang == "fr" else "Not defined"
+    
+    status = rule.get("status", "UNKNOWN")
+    if status == "AGREED":
+        return "Convenu" if lang == "fr" else "Agreed"
+    elif status == "PARTIAL":
+        return "Partiellement convenu" if lang == "fr" else "Partially agreed"
+    elif status == "YTB":
+        return "En négociation" if lang == "fr" else "Under negotiation"
+    return status
+
+
 # Statistics
 def get_rules_statistics() -> dict:
     """Get statistics about the rules of origin database"""
