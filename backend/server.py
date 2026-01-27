@@ -2164,9 +2164,10 @@ async def search_hs_codes_endpoint(
     limit: int = Query(20, ge=1, le=100, description="Maximum results")
 ):
     """
-    Search HS codes by code or label keyword
+    Search HS codes by code or label keyword using complete database (5800+ codes)
     """
-    results = search_hs_codes(q, language, limit)
+    # Use search_hs6_codes from hs6_database.py which has accent-insensitive search
+    results = search_hs6_codes(q, language, limit)
     return {
         "query": q,
         "results": results,
