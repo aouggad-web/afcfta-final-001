@@ -14,7 +14,12 @@ Rule Types:
 - VA: Value Added - Percentage of non-originating materials value threshold
 - SP: Specific Process - Specific manufacturing process required
 
-Last Updated: December 2023 (COM-12)
+Data Source Version: December 2023 (COM-12) - Latest available official AfCFTA data
+Implementation Date: January 2026
+
+Note: This implementation uses the December 2023 AfCFTA rules of origin data,
+which is the most recent official data published by the AU Secretariat as of
+the implementation date (January 2026).
 """
 
 # Rule type translations
