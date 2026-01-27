@@ -563,7 +563,8 @@ def get_country_name_to_iso3_mapping() -> Dict[str, str]:
     Utile pour le frontend qui reçoit des noms de pays de l'API OEC
     et doit les convertir en codes ISO3 pour afficher les drapeaux.
     
-    Inclut également des variantes de noms pour une meilleure compatibilité.
+    Inclut également des variantes de noms pour une meilleure compatibilité
+    avec les différentes représentations possibles des noms de pays dans l'API OEC.
     """
     mapping = {}
     
@@ -573,6 +574,7 @@ def get_country_name_to_iso3_mapping() -> Dict[str, str]:
         mapping[name_en] = iso3
         
         # Ajouter des variantes communes pour certains pays
+        # Ces variantes sont nécessaires car l'API OEC peut retourner des noms différents
         if iso3 == "COG":
             # Congo peut être "Congo" ou "Republic of the Congo"
             mapping["Republic of the Congo"] = iso3
@@ -581,7 +583,7 @@ def get_country_name_to_iso3_mapping() -> Dict[str, str]:
             mapping["Democratic Republic of the Congo"] = iso3
             mapping["Congo, Dem. Rep."] = iso3
         elif iso3 == "CIV":
-            # Côte d'Ivoire a plusieurs variantes
+            # Côte d'Ivoire peut apparaître avec ou sans accents (name_en est "Ivory Coast")
             mapping["Cote d'Ivoire"] = iso3
             mapping["Côte d'Ivoire"] = iso3
         elif iso3 == "STP":
