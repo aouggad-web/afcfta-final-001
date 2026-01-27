@@ -237,9 +237,18 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
     if (typeof rate === 'string' && rate.includes('%')) {
       return rate;
     }
-    // If rate is a number, format it as a percentage
+    // If rate is a string without '%', try to parse it as a number
+    if (typeof rate === 'string') {
+      const parsed = parseFloat(rate);
+      if (!isNaN(parsed)) {
+        return `${parsed.toFixed(2)}%`;
+      }
+      // If not parseable, return as-is
+      return rate;
+    }
+    // If rate is a number, format it as a percentage (including 0)
     if (typeof rate === 'number') {
-      return rate > 0 ? `${rate.toFixed(2)}%` : '-';
+      return `${rate.toFixed(2)}%`;
     }
     // Fallback: return the rate as-is
     return rate;
