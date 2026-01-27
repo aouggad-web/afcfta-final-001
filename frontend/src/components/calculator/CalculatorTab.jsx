@@ -668,12 +668,18 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
               
               {/* Badge tarif par chapitre si pas de SH6 spécifique */}
               {result.tariff_precision === 'chapter' && (
-                <div className="bg-gray-50 p-3 rounded-lg border border-gray-200">
-                  <div className="flex items-center gap-2">
-                    <span>📦</span>
-                    <span className="text-sm text-gray-600">{t.chapterTariffApplied}</span>
-                    <Badge variant="outline" className="text-gray-600">{t.sectorPrefix} {result.hs_code?.substring(0, 2)}</Badge>
-                    <Badge variant="outline" className="text-yellow-600 ml-2">{t.precisionMedium}</Badge>
+                <div className="result-section tariff-info-section bg-gray-50 p-4 rounded-xl border border-gray-200 shadow-sm">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                      <Package className="w-5 h-5 text-gray-500" />
+                    </div>
+                    <div className="flex-1">
+                      <span className="text-sm text-gray-600">{t.chapterTariffApplied}</span>
+                    </div>
+                    <div className="flex gap-2">
+                      <Badge variant="outline" className="text-gray-600">{t.sectorPrefix} {result.hs_code?.substring(0, 2)}</Badge>
+                      <Badge variant="outline" className="text-amber-600 border-amber-300">{t.precisionMedium}</Badge>
+                    </div>
                   </div>
                 </div>
               )}
