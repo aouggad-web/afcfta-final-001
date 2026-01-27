@@ -1,7 +1,7 @@
 {
   "metadata": {
     "source": "World Bank API",
-    "updated_at": "2026-01-27T01:35:48.386652",
+    "updated_at": "2026-01-27T03:44:23.523044",
     "indicators": [
       "GDP",
       "GDP_per_capita",
@@ -12,7 +12,7 @@
   "data": {
     "AGO": {
       "name": "Angola",
-      "latest_update": "2026-01-27T01:35:43.324016",
+      "latest_update": "2026-01-27T03:44:19.220289",
       "indicators": {
         "GDP": {
           "2024": 100998916781.079,
@@ -46,7 +46,7 @@
     },
     "BDI": {
       "name": "Burundi",
-      "latest_update": "2026-01-27T01:35:43.324025",
+      "latest_update": "2026-01-27T03:44:19.220297",
       "indicators": {
         "GDP": {
           "2024": 3082433067.32634,
@@ -80,7 +80,7 @@
     },
     "BEN": {
       "name": "Benin",
-      "latest_update": "2026-01-27T01:35:43.324033",
+      "latest_update": "2026-01-27T03:44:19.220305",
       "indicators": {
         "GDP": {
           "2024": 21482643706.4249,
@@ -114,7 +114,7 @@
     },
     "BFA": {
       "name": "Burkina Faso",
-      "latest_update": "2026-01-27T01:35:43.324036",
+      "latest_update": "2026-01-27T03:44:19.220308",
       "indicators": {
         "GDP": {
           "2024": 23124729853.0218,
@@ -148,7 +148,7 @@
     },
     "BWA": {
       "name": "Botswana",
-      "latest_update": "2026-01-27T01:35:43.324039",
+      "latest_update": "2026-01-27T03:44:19.220311",
       "indicators": {
         "GDP": {
           "2024": 19402063512.9066,
@@ -182,7 +182,7 @@
     },
     "CAF": {
       "name": "Central African Republic",
-      "latest_update": "2026-01-27T01:35:43.324042",
+      "latest_update": "2026-01-27T03:44:19.220314",
       "indicators": {
         "GDP": {
           "2024": 2751494281.06887,
@@ -216,7 +216,7 @@
     },
     "CIV": {
       "name": "Cote d'Ivoire",
-      "latest_update": "2026-01-27T01:35:43.324045",
+      "latest_update": "2026-01-27T03:44:19.220317",
       "indicators": {
         "GDP": {
           "2024": 87113179149.284,
@@ -250,7 +250,7 @@
     },
     "CMR": {
       "name": "Cameroon",
-      "latest_update": "2026-01-27T01:35:43.324048",
+      "latest_update": "2026-01-27T03:44:19.220320",
       "indicators": {
         "GDP": {
           "2024": 53296694320.2057,
@@ -284,7 +284,7 @@
     },
     "COD": {
       "name": "Congo, Dem. Rep.",
-      "latest_update": "2026-01-27T01:35:43.324051",
+      "latest_update": "2026-01-27T03:44:19.220323",
       "indicators": {
         "GDP": {
           "2024": 70962185790.7094,
@@ -318,7 +318,7 @@
     },
     "COG": {
       "name": "Congo, Rep.",
-      "latest_update": "2026-01-27T01:35:43.324053",
+      "latest_update": "2026-01-27T03:44:19.220326",
       "indicators": {
         "GDP": {
           "2024": 15719986076.6464,
@@ -352,7 +352,7 @@
     },
     "COM": {
       "name": "Comoros",
-      "latest_update": "2026-01-27T01:35:43.324056",
+      "latest_update": "2026-01-27T03:44:19.220328",
       "indicators": {
         "GDP": {
           "2024": 1440991455.45188,
@@ -386,7 +386,7 @@
     },
     "CPV": {
       "name": "Cabo Verde",
-      "latest_update": "2026-01-27T01:35:43.324059",
+      "latest_update": "2026-01-27T03:44:19.220331",
       "indicators": {
         "GDP": {
           "2024": 2725414150.72735,
@@ -420,7 +420,7 @@
     },
     "DJI": {
       "name": "Djibouti",
-      "latest_update": "2026-01-27T01:35:43.324064",
+      "latest_update": "2026-01-27T03:44:19.220336",
       "indicators": {
         "GDP": {
           "2024": 4152145939.98458,
@@ -454,7 +454,7 @@
     },
     "DZA": {
       "name": "Algeria",
-      "latest_update": "2026-01-27T01:35:43.324067",
+      "latest_update": "2026-01-27T03:44:19.220338",
       "indicators": {
         "GDP": {
           "2024": 269322281664.773,
@@ -488,7 +488,7 @@
     },
     "EGY": {
       "name": "Egypt, Arab Rep.",
-      "latest_update": "2026-01-27T01:35:43.324070",
+      "latest_update": "2026-01-27T03:44:19.220341",
       "indicators": {
         "GDP": {
           "2024": 389059911003.566,
@@ -522,7 +522,7 @@
     },
     "ETH": {
       "name": "Ethiopia",
-      "latest_update": "2026-01-27T01:35:43.324073",
+      "latest_update": "2026-01-27T03:44:19.220344",
       "indicators": {
         "GDP": {
           "2024": 149740297952.986,
@@ -556,7 +556,7 @@
     },
     "GAB": {
       "name": "Gabon",
-      "latest_update": "2026-01-27T01:35:43.324075",
+      "latest_update": "2026-01-27T03:44:19.220346",
       "indicators": {
         "GDP": {
           "2024": 20895684425.6752,
@@ -590,7 +590,7 @@
     },
     "GHA": {
       "name": "Ghana",
-      "latest_update": "2026-01-27T01:35:43.324078",
+      "latest_update": "2026-01-27T03:44:19.220349",
       "indicators": {
         "GDP": {
           "2024": 82308110386.4641,
@@ -624,7 +624,7 @@
     },
     "GIN": {
       "name": "Guinea",
-      "latest_update": "2026-01-27T01:35:43.324080",
+      "latest_update": "2026-01-27T03:44:19.220351",
       "indicators": {
         "GDP": {
           "2024": 25008678293.4084,
@@ -658,7 +658,7 @@
     },
     "GMB": {
       "name": "Gambia, The",
-      "latest_update": "2026-01-27T01:35:43.324083",
+      "latest_update": "2026-01-27T03:44:19.220354",
       "indicators": {
         "GDP": {
           "2024": 2404888749.21907,
@@ -692,7 +692,7 @@
     },
     "GNB": {
       "name": "Guinea-Bissau",
-      "latest_update": "2026-01-27T01:35:43.324086",
+      "latest_update": "2026-01-27T03:44:19.220356",
       "indicators": {
         "GDP": {
           "2024": 2218393804.54798,
@@ -726,7 +726,7 @@
     },
     "GNQ": {
       "name": "Equatorial Guinea",
-      "latest_update": "2026-01-27T01:35:43.324088",
+      "latest_update": "2026-01-27T03:44:19.220359",
       "indicators": {
         "GDP": {
           "2024": 12765777677.0622,
@@ -760,7 +760,7 @@
     },
     "KEN": {
       "name": "Kenya",
-      "latest_update": "2026-01-27T01:35:43.324093",
+      "latest_update": "2026-01-27T03:44:19.220363",
       "indicators": {
         "GDP": {
           "2024": 120339557905.932,
@@ -794,7 +794,7 @@
     },
     "LBR": {
       "name": "Liberia",
-      "latest_update": "2026-01-27T01:35:43.324095",
+      "latest_update": "2026-01-27T03:44:19.220366",
       "indicators": {
         "GDP": {
           "2024": 4779300900,
@@ -828,7 +828,7 @@
     },
     "LBY": {
       "name": "Libya",
-      "latest_update": "2026-01-27T01:35:43.324097",
+      "latest_update": "2026-01-27T03:44:19.220369",
       "indicators": {
         "GDP": {
           "2024": 48487151215.345,
@@ -862,7 +862,7 @@
     },
     "LSO": {
       "name": "Lesotho",
-      "latest_update": "2026-01-27T01:35:43.324100",
+      "latest_update": "2026-01-27T03:44:19.220371",
       "indicators": {
         "GDP": {
           "2024": 2271759454.51107,
@@ -896,7 +896,7 @@
     },
     "MAR": {
       "name": "Morocco",
-      "latest_update": "2026-01-27T01:35:43.324102",
+      "latest_update": "2026-01-27T03:44:19.220374",
       "indicators": {
         "GDP": {
           "2024": 160610994054.734,
@@ -930,7 +930,7 @@
     },
     "MDG": {
       "name": "Madagascar",
-      "latest_update": "2026-01-27T01:35:43.324105",
+      "latest_update": "2026-01-27T03:44:19.220376",
       "indicators": {
         "GDP": {
           "2024": 17420501490.1231,
@@ -964,7 +964,7 @@
     },
     "MLI": {
       "name": "Mali",
-      "latest_update": "2026-01-27T01:35:43.324107",
+      "latest_update": "2026-01-27T03:44:19.220379",
       "indicators": {
         "GDP": {
           "2024": 26794747239.8805,
@@ -998,7 +998,7 @@
     },
     "MOZ": {
       "name": "Mozambique",
-      "latest_update": "2026-01-27T01:35:43.324110",
+      "latest_update": "2026-01-27T03:44:19.220381",
       "indicators": {
         "GDP": {
           "2024": 22745341305.0622,
@@ -1032,7 +1032,7 @@
     },
     "MRT": {
       "name": "Mauritania",
-      "latest_update": "2026-01-27T01:35:43.324112",
+      "latest_update": "2026-01-27T03:44:19.220383",
       "indicators": {
         "GDP": {
           "2024": 10908045686.8808,
@@ -1066,7 +1066,7 @@
     },
     "MUS": {
       "name": "Mauritius",
-      "latest_update": "2026-01-27T01:35:43.324114",
+      "latest_update": "2026-01-27T03:44:19.220385",
       "indicators": {
         "GDP": {
           "2024": 14937861786.17,
@@ -1100,7 +1100,7 @@
     },
     "MWI": {
       "name": "Malawi",
-      "latest_update": "2026-01-27T01:35:43.324117",
+      "latest_update": "2026-01-27T03:44:19.220388",
       "indicators": {
         "GDP": {
           "2024": 11316411329.4619,
@@ -1134,7 +1134,7 @@
     },
     "NAM": {
       "name": "Namibia",
-      "latest_update": "2026-01-27T01:35:43.324121",
+      "latest_update": "2026-01-27T03:44:19.220393",
       "indicators": {
         "GDP": {
           "2024": 13372354511.716,
@@ -1168,7 +1168,7 @@
     },
     "NER": {
       "name": "Niger",
-      "latest_update": "2026-01-27T01:35:43.324124",
+      "latest_update": "2026-01-27T03:44:19.220395",
       "indicators": {
         "GDP": {
           "2024": 19876128485.7857,
@@ -1202,7 +1202,7 @@
     },
     "NGA": {
       "name": "Nigeria",
-      "latest_update": "2026-01-27T01:35:43.324126",
+      "latest_update": "2026-01-27T03:44:19.220398",
       "indicators": {
         "GDP": {
           "2024": 252261880141.151,
@@ -1236,7 +1236,7 @@
     },
     "RWA": {
       "name": "Rwanda",
-      "latest_update": "2026-01-27T01:35:43.324129",
+      "latest_update": "2026-01-27T03:44:19.220401",
       "indicators": {
         "GDP": {
           "2024": 14251642235.0968,
@@ -1270,7 +1270,7 @@
     },
     "SDN": {
       "name": "Sudan",
-      "latest_update": "2026-01-27T01:35:43.324133",
+      "latest_update": "2026-01-27T03:44:19.220403",
       "indicators": {
         "GDP": {
           "2024": 49672435513.1126,
@@ -1304,7 +1304,7 @@
     },
     "SEN": {
       "name": "Senegal",
-      "latest_update": "2026-01-27T01:35:43.324135",
+      "latest_update": "2026-01-27T03:44:19.220406",
       "indicators": {
         "GDP": {
           "2024": 32808056600.9436,
@@ -1338,7 +1338,7 @@
     },
     "SLE": {
       "name": "Sierra Leone",
-      "latest_update": "2026-01-27T01:35:43.324138",
+      "latest_update": "2026-01-27T03:44:19.220408",
       "indicators": {
         "GDP": {
           "2024": 6971127235.3123,
@@ -1372,7 +1372,7 @@
     },
     "SOM": {
       "name": "Somalia, Fed. Rep.",
-      "latest_update": "2026-01-27T01:35:43.324140",
+      "latest_update": "2026-01-27T03:44:19.220411",
       "indicators": {
         "GDP": {
           "2024": 11967000000,
@@ -1406,7 +1406,7 @@
     },
     "STP": {
       "name": "Sao Tome and Principe",
-      "latest_update": "2026-01-27T01:35:43.324143",
+      "latest_update": "2026-01-27T03:44:19.220414",
       "indicators": {
         "GDP": {
           "2024": 822154621.088897,
@@ -1440,7 +1440,7 @@
     },
     "SWZ": {
       "name": "Eswatini",
-      "latest_update": "2026-01-27T01:35:43.324146",
+      "latest_update": "2026-01-27T03:44:19.220417",
       "indicators": {
         "GDP": {
           "2024": 4858885840.77236,
@@ -1474,7 +1474,7 @@
     },
     "SYC": {
       "name": "Seychelles",
-      "latest_update": "2026-01-27T01:35:43.324149",
+      "latest_update": "2026-01-27T03:44:19.220420",
       "indicators": {
         "GDP": {
           "2024": 2167239562.46013,
@@ -1508,7 +1508,7 @@
     },
     "TCD": {
       "name": "Chad",
-      "latest_update": "2026-01-27T01:35:43.324153",
+      "latest_update": "2026-01-27T03:44:19.220424",
       "indicators": {
         "GDP": {
           "2024": 19518819751.283,
@@ -1542,7 +1542,7 @@
     },
     "TGO": {
       "name": "Togo",
-      "latest_update": "2026-01-27T01:35:43.324155",
+      "latest_update": "2026-01-27T03:44:19.220430",
       "indicators": {
         "GDP": {
           "2024": 10651180146.531,
@@ -1576,7 +1576,7 @@
     },
     "TUN": {
       "name": "Tunisia",
-      "latest_update": "2026-01-27T01:35:43.324158",
+      "latest_update": "2026-01-27T03:44:19.220433",
       "indicators": {
         "GDP": {
           "2024": 51332285656.5422,
@@ -1610,7 +1610,7 @@
     },
     "TZA": {
       "name": "Tanzania",
-      "latest_update": "2026-01-27T01:35:43.324160",
+      "latest_update": "2026-01-27T03:44:19.220435",
       "indicators": {
         "GDP": {
           "2024": 78844405385.2195,
@@ -1644,7 +1644,7 @@
     },
     "UGA": {
       "name": "Uganda",
-      "latest_update": "2026-01-27T01:35:43.324163",
+      "latest_update": "2026-01-27T03:44:19.220437",
       "indicators": {
         "GDP": {
           "2024": 53911907086.1525,
@@ -1678,7 +1678,7 @@
     },
     "ZAF": {
       "name": "South Africa",
-      "latest_update": "2026-01-27T01:35:43.324165",
+      "latest_update": "2026-01-27T03:44:19.220440",
       "indicators": {
         "GDP": {
           "2024": 401144998373.585,
@@ -1712,7 +1712,7 @@
     },
     "ZMB": {
       "name": "Zambia",
-      "latest_update": "2026-01-27T01:35:43.324167",
+      "latest_update": "2026-01-27T03:44:19.220442",
       "indicators": {
         "GDP": {
           "2024": 25303185342.2511,
@@ -1746,7 +1746,7 @@
     },
     "ZWE": {
       "name": "Zimbabwe",
-      "latest_update": "2026-01-27T01:35:43.324170",
+      "latest_update": "2026-01-27T03:44:19.220445",
       "indicators": {
         "GDP": {
           "2024": 41539411516.4448,
@@ -1780,7 +1780,7 @@
     },
     "ERI": {
       "name": "Eritrea",
-      "latest_update": "2026-01-27T01:35:46.055276",
+      "latest_update": "2026-01-27T03:44:21.417578",
       "indicators": {
         "Population": {
           "2024": 3535603,
@@ -1793,7 +1793,7 @@
     },
     "SSD": {
       "name": "South Sudan",
-      "latest_update": "2026-01-27T01:35:46.055320",
+      "latest_update": "2026-01-27T03:44:21.417629",
       "indicators": {
         "Population": {
           "2024": 11943408,
