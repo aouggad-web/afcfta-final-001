@@ -2112,23 +2112,24 @@ async def get_all_hs_chapters():
 @api_router.get("/hs-codes/all")
 async def get_all_hs6_codes_endpoint(language: str = Query("fr", description="Language: fr or en")):
     """
-    Get all HS6 codes with their labels
+    Get all HS6 codes with their labels from the complete database (5800+ codes)
     """
-    codes = get_hs6_codes()
     result = []
-    for code, labels in codes.items():
+    chapters = get_hs_chapters()
+    for code, data in HS6_DATABASE.items():
+        desc_key = "description_fr" if language == "fr" else "description_en"
         result.append({
             "code": code,
-            "label": labels.get(language, labels.get('fr', '')),
+            "label": data.get(desc_key, data.get("description_fr", "")),
             "chapter": code[:2],
-            "chapter_name": get_hs_chapters().get(code[:2], {}).get(language, '')
+            "chapter_name": chapters.get(code[:2], {}).get(language, "")
         })
     
     return {
         "codes": result,
         "total": len(result),
         "language": language,
-        "source": "World Customs Organization (WCO) HS 2022"
+        "source": "World Customs Organization (WCO) HS 2022 + AfCFTA Database"
     }
 
 @api_router.get("/hs-codes/code/{hs_code}")
