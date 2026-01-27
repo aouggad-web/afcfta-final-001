@@ -427,14 +427,21 @@ export default function OECTradeStats({ language = 'fr' }) {
                   </div>
                 </CardHeader>
                 <CardContent className="pt-6">
-                  <div className="text-center mb-6">
-                    <p className="text-sm text-slate-500 mb-1">{t.totalValue}</p>
-                    <p className="text-4xl font-bold text-slate-900">{formatValue(tradeData.total_value || 0)}</p>
-                    <p className="text-sm text-slate-500 mt-2">{tradeData.total_products} {t.topProducts}</p>
+                  {/* Stats avec Valeur et Volume */}
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="text-center p-3 bg-emerald-50 rounded-lg">
+                      <p className="text-xs text-emerald-600 mb-1">{t.totalValue}</p>
+                      <p className="text-2xl font-bold text-emerald-800">{formatValue(tradeData.total_value || 0)}</p>
+                    </div>
+                    <div className="text-center p-3 bg-blue-50 rounded-lg">
+                      <p className="text-xs text-blue-600 mb-1">{t.totalVolume}</p>
+                      <p className="text-2xl font-bold text-blue-800">{formatQuantity(tradeData.total_quantity || 0)} <span className="text-sm font-normal">{t.volumeUnit}</span></p>
+                    </div>
                   </div>
+                  <p className="text-sm text-slate-500 text-center mb-4">{tradeData.total_products} {t.topProducts}</p>
                   
                   {/* Chart - Produits principaux */}
-                  <div className="h-64">
+                  <div className="h-56">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={prepareChartData(tradeData, 'country')} layout="vertical">
                         <XAxis type="number" tickFormatter={(v) => formatValue(v)} />
@@ -467,6 +474,7 @@ export default function OECTradeStats({ language = 'fr' }) {
                           <TableHead className="w-12">{t.rank}</TableHead>
                           <TableHead>{t.product}</TableHead>
                           <TableHead className="text-right">{t.value}</TableHead>
+                          <TableHead className="text-right">{t.volume}</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -476,6 +484,9 @@ export default function OECTradeStats({ language = 'fr' }) {
                             <TableCell className="font-medium text-sm">{item['HS6'] || item['HS4'] || '-'}</TableCell>
                             <TableCell className="text-right font-semibold text-emerald-700">
                               {formatValue(item['Trade Value'] || 0)}
+                            </TableCell>
+                            <TableCell className="text-right text-sm text-blue-600">
+                              {formatQuantity(item['Quantity'] || 0)} t
                             </TableCell>
                           </TableRow>
                         ))}
