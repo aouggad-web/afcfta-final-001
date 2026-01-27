@@ -560,64 +560,7 @@ class CountryEconomicProfile(BaseModel):
 async def root():
     return {"message": "Système Commercial ZLECAf API - Version Complète"}
 
-@api_router.get("/health")
-async def health_check():
-    """Simple health check endpoint"""
-    return {
-        "status": "healthy",
-        "service": "ZLECAf API",
-        "version": "2.0.0",
-        "timestamp": datetime.now().isoformat()
-    }
-
-@api_router.get("/health/status")
-async def detailed_health_status():
-    """Detailed health status with system checks"""
-    health_status = {
-        "status": "healthy",
-        "timestamp": datetime.now().isoformat(),
-        "service": "ZLECAf API",
-        "version": "2.0.0",
-        "checks": {}
-    }
-    
-    # Check database connection
-    try:
-        await db.command("ping")
-        health_status["checks"]["database"] = {
-            "status": "healthy",
-            "message": "MongoDB connection active"
-        }
-    except Exception as e:
-        health_status["checks"]["database"] = {
-            "status": "unhealthy",
-            "message": f"Database connection error: {str(e)}"
-        }
-        health_status["status"] = "unhealthy"
-    
-    # Check API endpoints availability
-    health_status["checks"]["api_endpoints"] = {
-        "status": "healthy",
-        "available_endpoints": [
-            "/api/",
-            "/api/health",
-            "/api/health/status",
-            "/api/countries",
-            "/api/country-profile/{country_code}",
-            "/api/calculate-tariff",
-            "/api/rules-of-origin/{hs_code}",
-            "/api/statistics"
-        ]
-    }
-    
-    # Check data availability
-    health_status["checks"]["data"] = {
-        "status": "healthy",
-        "countries_count": len(AFRICAN_COUNTRIES),
-        "rules_of_origin_sectors": len(ZLECAF_RULES_OF_ORIGIN)
-    }
-    
-    return health_status
+# NOTE: /health and /health/status endpoints migrated to /routes/health.py
 
 @api_router.get("/countries")
 async def get_countries(lang: str = "fr"):
