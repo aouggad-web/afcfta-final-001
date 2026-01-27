@@ -344,12 +344,12 @@ class OECTradeService:
         exporter_iso3: str,
         importer_iso3: str,
         year: int,
-        hs_level: str = "HS6",
+        hs_level: str = "HS4",
         limit: int = 50
     ) -> Dict:
         """
-        Récupère le commerce bilatéral entre deux pays.
-        Utilise le cube HS17 (compatible SH2022) avec HS6 par défaut.
+        Récupère le commerce bilatéral entre deux pays avec valeur et volume.
+        Utilise le cube HS17 (compatible SH2022) avec HS4 par défaut.
         """
         exporter_info = AFRICAN_COUNTRIES_OEC.get(exporter_iso3.upper())
         importer_info = AFRICAN_COUNTRIES_OEC.get(importer_iso3.upper())
@@ -359,10 +359,11 @@ class OECTradeService:
         if not importer_info:
             return {"error": f"Importer country {importer_iso3} not found", "data": []}
         
+        # Inclure Trade Value et Quantity (volume)
         params = self._build_params(
             cube=OEC_CUBES[DEFAULT_CUBE],
             drilldowns=["Year", "Exporter Country", "Importer Country", hs_level],
-            measures=["Trade Value"],
+            measures=["Trade Value", "Quantity"],
             cuts={
                 "Year": str(year),
                 "Exporter Country": exporter_info["oec_id"],
