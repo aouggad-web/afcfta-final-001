@@ -684,39 +684,12 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
                 </div>
               )}
 
-              {/* Liste des sous-positions disponibles */}
-              {subPositions && subPositions.has_sub_positions && subPositions.count > 0 && (
-                <details className="bg-purple-50 p-3 rounded-lg border border-purple-200">
-                  <summary className="cursor-pointer font-semibold text-purple-700 flex items-center gap-2">
-                    <span>📋</span> {t.viewAllSubPositions} ({subPositions.count})
-                    {subPositions.has_varying_rates && (
-                      <Badge className="bg-orange-500 text-white text-xs ml-2">
-                        {subPositions.rate_range?.min_pct} - {subPositions.rate_range?.max_pct}
-                      </Badge>
-                    )}
-                  </summary>
-                  <div className="mt-3 space-y-2">
-                    {subPositions.sub_positions.map((sp, idx) => (
-                      <div key={idx} className={`p-2 rounded text-sm ${
-                        result.sub_position_used === sp.code ? 'bg-purple-200 border-2 border-purple-400' : 'bg-white'
-                      }`}>
-                        <span className="font-mono font-bold text-purple-800">{sp.code}</span>
-                        <span className="mx-2">-</span>
-                        <span className="text-gray-700">{sp.description}</span>
-                        <Badge className={`ml-2 ${
-                          result.sub_position_used === sp.code ? 'bg-purple-600' : 'bg-gray-500'
-                        } text-white text-xs`}>
-                          {sp.dd_rate_pct}
-                        </Badge>
-                      </div>
-                    ))}
-                  </div>
-                </details>
-              )}
-
               {/* Graphique comparaison complète avec TOUTES les taxes */}
-              <div className="bg-white p-4 rounded-lg shadow-md" style={{ minHeight: '320px' }}>
-                <h4 className="font-bold text-lg mb-4 text-gray-800">📊 {t.completeComparison}</h4>
+              <div className="chart-container result-section bg-white p-5 rounded-xl shadow-md border border-gray-100">
+                <h4 className="font-bold text-lg mb-4 text-gray-800 flex items-center gap-2">
+                  <span className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">📊</span>
+                  {t.completeComparison}
+                </h4>
                 <ResponsiveContainer width="100%" height={280} debounce={300}>
                   <BarChart data={[
                     { 
