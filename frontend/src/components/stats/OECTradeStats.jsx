@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell } from 'recharts';
 import { ArrowUpRight, ArrowDownRight, Globe2, TrendingUp, Search, RefreshCw, BarChart3, Filter } from 'lucide-react';
-import { getCountryFlag, getCountryInfo } from '../utils/countryCodes';
+import { getCountryFlag, getCountryInfo } from '../../utils/countryCodes';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
