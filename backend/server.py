@@ -3467,5 +3467,19 @@ async def get_oec_bilateral_trade(
     return result
 
 
+# =============================================================================
+# REGISTER MODULAR ROUTES
+# =============================================================================
+# Routes migrated to /routes/ module:
+# - /health, /health/status (health.py)
+# - /news, /news/by-region, /news/by-category (news.py)
+# - /oec/* (oec.py)
+# - /hs-codes/* (hs_codes.py)
+# 
+# Note: Legacy routes in this file will be migrated progressively
+# =============================================================================
+
+register_routes(api_router)
+
 # Include the router in the main app
 app.include_router(api_router)
