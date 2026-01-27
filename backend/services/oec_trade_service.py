@@ -448,16 +448,20 @@ class OECTradeService:
         }
     
     def _format_hs_response(self, result: Dict, hs_code: str, year: int, flow: str) -> Dict:
-        """Formate la réponse pour un code HS"""
+        """Formate la réponse pour un code HS, triée par valeur décroissante"""
         data = result.get("data", [])
+        
+        # Trier par Trade Value décroissante
+        sorted_data = sorted(data, key=lambda x: x.get("Trade Value", 0), reverse=True)
+        
         return {
             "hs_code": hs_code,
             "year": year,
             "trade_flow": flow,
-            "total_countries": len(data),
-            "total_value": sum(row.get("Trade Value", 0) for row in data),
+            "total_countries": len(sorted_data),
+            "total_value": sum(row.get("Trade Value", 0) for row in sorted_data),
             "currency": "USD",
-            "data": data,
+            "data": sorted_data,
             "source": "OEC/BACI",
             "retrieved_at": datetime.utcnow().isoformat()
         }
@@ -465,16 +469,20 @@ class OECTradeService:
     def _format_bilateral_response(
         self, result: Dict, exporter: Dict, importer: Dict, year: int
     ) -> Dict:
-        """Formate la réponse pour le commerce bilatéral"""
+        """Formate la réponse pour le commerce bilatéral, triée par valeur décroissante"""
         data = result.get("data", [])
+        
+        # Trier par Trade Value décroissante
+        sorted_data = sorted(data, key=lambda x: x.get("Trade Value", 0), reverse=True)
+        
         return {
             "exporter": exporter,
             "importer": importer,
             "year": year,
-            "total_products": len(data),
-            "total_value": sum(row.get("Trade Value", 0) for row in data),
+            "total_products": len(sorted_data),
+            "total_value": sum(row.get("Trade Value", 0) for row in sorted_data),
             "currency": "USD",
-            "data": data,
+            "data": sorted_data,
             "source": "OEC/BACI",
             "retrieved_at": datetime.utcnow().isoformat()
         }
