@@ -299,7 +299,7 @@ class OECTradeService:
         limit: int = 50
     ) -> Dict:
         """
-        Récupère les statistiques commerciales pour un code HS6 spécifique.
+        Récupère les statistiques commerciales pour un code HS6 spécifique avec valeur et volume.
         
         Utilise le cube HS Rev. 2017 (compatible SH2022) avec des codes HS6
         pour assurer la cohérence des données.
@@ -324,10 +324,11 @@ class OECTradeService:
             drilldowns = ["Year", "Importer Country"]
         
         # Utiliser le cube HS17 (compatible SH2022) avec HS6
+        # Inclure Trade Value et Quantity (volume)
         params = self._build_params(
             cube=OEC_CUBES[DEFAULT_CUBE],
             drilldowns=drilldowns,
-            measures=["Trade Value"],
+            measures=["Trade Value", "Quantity"],
             cuts={
                 "Year": str(year),
                 "HS6": oec_hs_id
