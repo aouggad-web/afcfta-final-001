@@ -2181,13 +2181,29 @@ async def get_hs_codes_by_chapter(
     language: str = Query("fr", description="Language: fr or en")
 ):
     """
-    Get all HS6 codes for a specific chapter (2-digit code)
+    Get all HS6 codes for a specific chapter (2-digit code) from complete database
     """
-    if len(chapter) != 2 or chapter not in get_hs_chapters():
+    chapters = get_hs_chapters()
+    if len(chapter) != 2 or chapter not in chapters:
         raise HTTPException(status_code=404, detail=f"Chapter {chapter} not found")
     
-    codes = get_codes_by_chapter(chapter, language)
-    chapter_info = get_hs_chapters().get(chapter, {})
+    # Get codes from complete database
+    codes = []
+    desc_key = "description_fr" if language == "fr" else "description_en"
+    for code, data in HS6_DATABASE.items():
+        if code[:2] == chapter:
+            codes.append({
+                "code": code,
+                "label": data.get(desc_key, data.get("description_fr", "")),
+                "chapter": chapter,
+                "category": data.get("category", ""),
+                "sensitivity": data.get("sensitivity", "normal")
+            })
+    
+    # Sort codes
+    codes.sort(key=lambda x: x["code"])
+    
+    chapter_info = chapters.get(chapter, {})
     
     return {
         "chapter": chapter,
