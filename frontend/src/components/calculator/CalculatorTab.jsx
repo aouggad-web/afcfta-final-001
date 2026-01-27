@@ -462,73 +462,67 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
                 {countryFlags[result.origin_country]} {getCountryName(result.origin_country)} → {countryFlags[result.destination_country]} {getCountryName(result.destination_country)}
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6 pt-6">
+            <CardContent className="space-y-5 pt-6 results-container">
               {/* Information sur la sous-position nationale si utilisée */}
               {result.tariff_precision === 'sub_position' && (
-                <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg border-2 border-purple-400 shadow-md">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-2xl">🎯</span>
-                    <h4 className="font-bold text-lg text-purple-700">{t.subPositionInfo}</h4>
-                    <Badge className="bg-purple-600 text-white ml-2">{t.subPositionApplied}</Badge>
-                    <Badge className="bg-green-500 text-white ml-1">{t.precisionHigh}</Badge>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-sm text-gray-600">{t.subPositionCode}</p>
-                      <p className="font-bold text-purple-800 text-xl">{result.sub_position_used}</p>
+                <div className="result-section tariff-info-section bg-gradient-to-r from-purple-50 to-indigo-50 p-5 rounded-xl border border-purple-200 shadow-sm">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Package className="w-6 h-6 text-purple-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-2 flex-wrap">
+                        <h4 className="font-bold text-purple-800">{t.subPositionInfo}</h4>
+                        <Badge className="bg-purple-600 text-white text-xs">{t.precisionHigh}</Badge>
+                      </div>
+                      <p className="font-mono text-lg font-bold text-purple-900 mb-1">{result.sub_position_used}</p>
                       {result.sub_position_description && (
-                        <p className="font-semibold text-gray-700 mt-1">{result.sub_position_description}</p>
+                        <p className="text-gray-600 text-sm">{result.sub_position_description}</p>
                       )}
-                      <p className="text-xs text-purple-600 mt-1">HS6: {result.hs6_code}</p>
                     </div>
-                    <div className="grid grid-cols-2 gap-2 text-center">
-                      <div className="bg-red-100 p-3 rounded">
-                        <p className="text-xs text-red-600">{t.normalRate}</p>
-                        <p className="font-bold text-red-700 text-lg">{(result.normal_tariff_rate * 100).toFixed(1)}%</p>
+                    <div className="grid grid-cols-2 gap-2 flex-shrink-0">
+                      <div className="bg-red-50 p-3 rounded-lg text-center border border-red-100">
+                        <p className="text-xs text-red-500 font-medium">{t.normalRate}</p>
+                        <p className="font-bold text-red-600 text-lg">{(result.normal_tariff_rate * 100).toFixed(1)}%</p>
                       </div>
-                      <div className="bg-green-100 p-3 rounded">
-                        <p className="text-xs text-green-600">{t.zlecafRate}</p>
-                        <p className="font-bold text-green-700 text-lg">{(result.zlecaf_tariff_rate * 100).toFixed(1)}%</p>
+                      <div className="bg-green-50 p-3 rounded-lg text-center border border-green-100">
+                        <p className="text-xs text-green-500 font-medium">{t.zlecafRate}</p>
+                        <p className="font-bold text-green-600 text-lg">{(result.zlecaf_tariff_rate * 100).toFixed(1)}%</p>
                       </div>
                     </div>
                   </div>
-                  {result.has_varying_sub_positions && (
-                    <p className="text-xs text-orange-600 mt-2 font-semibold">
-                      ⚠️ {t.varyingRates} ({result.available_sub_positions_count} {t.subPositionsAvailable})
-                    </p>
-                  )}
                 </div>
               )}
 
               {/* Information sur le tarif SH6 précis */}
               {result.tariff_precision === 'hs6_country' && (
-                <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-4 rounded-lg border-2 border-blue-300 shadow-md">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-2xl">🎯</span>
-                    <h4 className="font-bold text-lg text-blue-700">{t.hs6TariffInfo}</h4>
-                    <Badge className="bg-green-500 text-white ml-2">{t.hs6TariffApplied}</Badge>
-                    <Badge className="bg-blue-500 text-white ml-1">{t.precisionHigh}</Badge>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-sm text-gray-600">{t.productDescription}</p>
+                <div className="result-section tariff-info-section bg-gradient-to-r from-blue-50 to-cyan-50 p-5 rounded-xl border border-blue-200 shadow-sm">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Package className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-2 flex-wrap">
+                        <h4 className="font-bold text-blue-800">{t.hs6TariffInfo}</h4>
+                        <Badge className="bg-blue-600 text-white text-xs">{t.hs6TariffApplied}</Badge>
+                      </div>
                       <p className="font-semibold text-gray-800">{hs6TariffInfo?.description || `Code ${result.hs6_code}`}</p>
-                      <p className="text-xs text-blue-600 mt-1">Code: {result.hs6_code}</p>
+                      <p className="text-blue-600 text-sm font-mono mt-1">Code: {result.hs6_code}</p>
                     </div>
-                    <div className="grid grid-cols-2 gap-2 text-center">
-                      <div className="bg-red-100 p-3 rounded">
-                        <p className="text-xs text-red-600">{t.normalRate}</p>
-                        <p className="font-bold text-red-700 text-lg">{(result.normal_tariff_rate * 100).toFixed(1)}%</p>
+                    <div className="grid grid-cols-2 gap-2 flex-shrink-0">
+                      <div className="bg-red-50 p-3 rounded-lg text-center border border-red-100">
+                        <p className="text-xs text-red-500 font-medium">{t.normalRate}</p>
+                        <p className="font-bold text-red-600 text-lg">{(result.normal_tariff_rate * 100).toFixed(1)}%</p>
                       </div>
-                      <div className="bg-green-100 p-3 rounded">
-                        <p className="text-xs text-green-600">{t.zlecafRate}</p>
-                        <p className="font-bold text-green-700 text-lg">{(result.zlecaf_tariff_rate * 100).toFixed(1)}%</p>
+                      <div className="bg-green-50 p-3 rounded-lg text-center border border-green-100">
+                        <p className="text-xs text-green-500 font-medium">{t.zlecafRate}</p>
+                        <p className="font-bold text-green-600 text-lg">{(result.zlecaf_tariff_rate * 100).toFixed(1)}%</p>
                       </div>
                     </div>
                   </div>
-                  {result.available_sub_positions_count > 0 && (
-                    <p className="text-xs text-orange-600 mt-2 font-semibold">
-                      💡 {result.available_sub_positions_count} {t.subPositionsAvailable} - {t.varyingRates}
+                  {result.available_sub_positions_count > 0 && !result.rate_warning?.has_variation && (
+                    <p className="text-xs text-blue-600 mt-3 pl-16">
+                      {result.available_sub_positions_count} {t.subPositionsAvailable}
                     </p>
                   )}
                 </div>
