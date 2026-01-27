@@ -1795,16 +1795,25 @@ def get_rule_of_origin(hs6_code: str, language: str = "fr") -> Optional[Dict]:
 
 
 def search_hs6_codes(query: str, language: str = "fr", limit: int = 20) -> List[Dict]:
-    """Rechercher des codes HS6 par mot-clé"""
-    query = query.lower()
+    """Rechercher des codes HS6 par mot-clé (avec support des accents)"""
+    import unicodedata
+    
+    def normalize(text: str) -> str:
+        """Normalise le texte en retirant les accents"""
+        return ''.join(
+            c for c in unicodedata.normalize('NFD', text.lower())
+            if unicodedata.category(c) != 'Mn'
+        )
+    
+    query_normalized = normalize(query)
     results = []
     
     for code, info in HS6_DATABASE.items():
-        desc_fr = info.get("description_fr", "").lower()
-        desc_en = info.get("description_en", "").lower()
-        category = info.get("category", "").lower()
+        desc_fr = normalize(info.get("description_fr", ""))
+        desc_en = normalize(info.get("description_en", ""))
+        category = normalize(info.get("category", ""))
         
-        if query in code or query in desc_fr or query in desc_en or query in category:
+        if query_normalized in code or query_normalized in desc_fr or query_normalized in desc_en or query_normalized in category:
             desc_key = f"description_{language}"
             results.append({
                 "code": code,
