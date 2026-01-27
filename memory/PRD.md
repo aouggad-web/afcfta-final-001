@@ -26,11 +26,12 @@ Application web d'analyse des statistiques commerciales et économiques africain
 - Calcul des droits de douane avec et sans ZLECAf
 - Comparaison des économies potentielles
 - **COMPLETE: Base HS6 enrichie + Sous-positions nationales**
-  - **825 codes HS6** dans la base principale avec métadonnées complètes (extension terminée)
+  - **5831 codes HS6** dans la base complète (hs6_database.py) avec métadonnées complètes
   - **62 catégories** de produits (vehicles, coffee, ores, textiles, leather, steel, ships, etc.)
-  - **747 codes avec sous-positions** détaillées
-  - **54 pays africains** avec 768 sous-positions nationales
+  - **5429 codes avec sous-positions** détaillées
+  - **54 pays africains** avec sous-positions nationales
   - **Règles d'origine ZLECAf** intégrées par code HS6
+- **BUG FIX (27/01/2025)** : Le navigateur de codes HS affichait 731 codes au lieu de 5831. Correction des endpoints `/api/hs-codes/*` pour utiliser `HS6_DATABASE` au lieu de l'ancienne base `hs_codes_data.py`
 - **Recherche intelligente** avec suggestions automatiques:
   - `/api/hs6/search` - Recherche par mot-clé
   - `/api/hs6/suggestions/{code}` - Suggestions sous-positions
