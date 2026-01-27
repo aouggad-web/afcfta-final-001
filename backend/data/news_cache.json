@@ -1,27 +1,137 @@
 {
-  "last_update": "2026-01-26T23:10:35.986291",
+  "last_update": "2026-01-27T09:28:25.789870",
   "articles": [
+    {
+      "id": "36ae82c1c810",
+      "title": "Burkina Faso: Un projet de centrale de 200 MW dévoilé pour stabiliser le réseau électrique",
+      "summary": "[RFI] Dans un contexte de développement des investissements des Émirats arabes unis sur le continent africain - 110 milliards de dollars en Afrique entre 2019 et 2023 - l'entreprise émirienne Mark Cables a annoncé ce lundi s'engager dans un gros...",
+      "link": "https://fr.allafrica.com/stories/202601270143.html",
+      "source": "AllAfrica (FR)",
+      "category": "Économie",
+      "region": "Afrique de l'Ouest",
+      "published_at": "2026-01-27T08:57:55",
+      "fetched_at": "2026-01-27T09:28:25.620196"
+    },
+    {
+      "id": "fe9e0b6a1ff6",
+      "title": "Libye: Plusieurs accords signés lors du sommet international de l'énergie à Tripoli",
+      "summary": "[RFI] Clap de fin du Sommet international de l'énergie en Libye. Trois jours de discussions à Tripoli en présence d'officiels et d'investisseurs libyens, mais aussi américains, français, britanniques et italiens. À la clé, plusieurs accords dans le...",
+      "link": "https://fr.allafrica.com/stories/202601270142.html",
+      "source": "AllAfrica (FR)",
+      "category": "Économie",
+      "region": "Afrique du Nord",
+      "published_at": "2026-01-27T08:57:18",
+      "fetched_at": "2026-01-27T09:28:25.620114"
+    },
+    {
+      "id": "65218e381f5a",
+      "title": "Ethiopie: La Banque mondiale confirme son engagement en faveur des réformes et du développement du pays",
+      "summary": "[ENA] Addis-Abeba -- La Banque mondiale a renouvelé son appui au programme de réformes structurelles et aux ambitions de développement de l'Éthiopie, à l'issue d'échanges de haut niveau avec des responsables gouvernementaux éthiopiens, confirmant...",
+      "link": "https://fr.allafrica.com/stories/202601270134.html",
+      "source": "AllAfrica (FR)",
+      "category": "Économie",
+      "region": "Afrique de l'Est",
+      "published_at": "2026-01-27T08:45:14",
+      "fetched_at": "2026-01-27T09:28:25.620240"
+    },
+    {
+      "id": "6baec219117b",
+      "title": "Afrique: Le continent et l'Union européenne - Deux poids lourds mondiaux, des trajectoires opposées",
+      "summary": "[Les DÃ©pÃªches de Brazzaville] L'Afrique et l'Union européenne figurent parmi les grands ensembles structurants du système international.",
+      "link": "https://fr.allafrica.com/stories/202601270131.html",
+      "source": "AllAfrica (FR)",
+      "category": "Économie",
+      "region": "Afrique",
+      "published_at": "2026-01-27T08:39:34",
+      "fetched_at": "2026-01-27T09:28:25.620160"
+    },
+    {
+      "id": "0376a050ce57",
+      "title": "Afrique: Revue de presse de l'Afrique Francophone du 27 janvier 2026",
+      "summary": "[allAfrica] Les lauréats de la 7e édition des Financial Afrik Awards dévoilés à Banjul",
+      "link": "https://fr.allafrica.com/stories/202601270128.html",
+      "source": "AllAfrica (FR)",
+      "category": "Économie",
+      "region": "Afrique",
+      "published_at": "2026-01-27T08:31:21",
+      "fetched_at": "2026-01-27T09:28:25.620072"
+    },
+    {
+      "id": "a7ef3456bddf",
+      "title": "Nigeria: CBN Upgrades Opay, Moniepoint, Palmpay, Others to National Licenses",
+      "summary": "[Vanguard] The Central Bank of Nigeria (CBN) has upgraded the licenses of major FinTech companies and Microfinance Banks, including Opay and Moniepoint, to national status, allowing them to operate across the country following compliance with...",
+      "link": "https://allafrica.com/stories/202601270102.html",
+      "source": "AllAfrica",
+      "category": "Finance",
+      "region": "Afrique de l'Ouest",
+      "published_at": "2026-01-27T06:56:09",
+      "fetched_at": "2026-01-27T09:28:25.635774"
+    },
+    {
+      "id": "ecc752d040f8",
+      "title": "Somalia: Oketch Salah Holds Consultative Meeting With Puntland President On Trade and Regional Cooperation",
+      "summary": "[Capital FM] Nairobi -- Oketch Salah on Monday met with President Said Abdullahi Deni of Puntland, Somalia, in a consultative session focused on strengthening trade ties between the two regions.",
+      "link": "https://allafrica.com/stories/202601270043.html",
+      "source": "AllAfrica",
+      "category": "Commerce",
+      "region": "Afrique de l'Ouest",
+      "published_at": "2026-01-27T05:09:31",
+      "fetched_at": "2026-01-27T09:28:25.611218"
+    },
+    {
+      "id": "8555cf3d8c60",
+      "title": "Kenya: Govt Plans Six Mega Dams, Targets 2 Million Acres in Irrigation Push",
+      "summary": "[Capital FM] Nairobi -- The government has unveiled plans to construct at least six mega dams and expand irrigation to two million acres of farmland as part of a renewed push to strengthen food security, cushion farmers from climate shocks and...",
+      "link": "https://allafrica.com/stories/202601270041.html",
+      "source": "AllAfrica",
+      "category": "Économie",
+      "region": "Afrique de l'Est",
+      "published_at": "2026-01-27T05:09:30",
+      "fetched_at": "2026-01-27T09:28:25.604399"
+    },
+    {
+      "id": "e11d561db20e",
+      "title": "Mozambique: New Country Partnership Framework With World Bank",
+      "summary": "[AIM] Maputo -- The World Bank Board of Executive on Thursday endorsed a new Country Partnership Framework (CPF) fpr the period 2026 to 2031.",
+      "link": "https://allafrica.com/stories/202601270022.html",
+      "source": "AllAfrica",
+      "category": "Finance",
+      "region": "Afrique Australe",
+      "published_at": "2026-01-27T05:05:52",
+      "fetched_at": "2026-01-27T09:28:25.635834"
+    },
+    {
+      "id": "43e9ef565de5",
+      "title": "Nigeria: Weak Data, Poor Pay Stalling $500m World Bank-Funded Metering Scheme",
+      "summary": "[This Day] Poor remuneration for installers and lack of clean data of unmetered customers of Distribution Companies (Discos) is the main cause of the slow pace of deployment of the World Bank-funded smart electricity meters under the Distribution...",
+      "link": "https://allafrica.com/stories/202601270014.html",
+      "source": "AllAfrica",
+      "category": "Finance",
+      "region": "Afrique de l'Ouest",
+      "published_at": "2026-01-27T04:51:45",
+      "fetched_at": "2026-01-27T09:28:25.635803"
+    },
+    {
+      "id": "3699c7126595",
+      "title": "EDWARD KIESWETTER: Illicit trade hollowing out South Africa’s economy and the rule of law - Business Day",
+      "summary": "EDWARD KIESWETTER: Illicit trade hollowing out South Africa’s economy and the rule of law  Business Day",
+      "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQZmdKTGg3bWduNThjT0pzbHluQVJrRVRHZHdRVEN4MlZPNU5sSVM5VklfcUx5VVhzenlZejdKZDJRakpjczZOLWtZdS00UFVUZEtMQUJ6R0ZfRk8tcHJPVUd3aVdDd2RveUNlN25HeFZybWVmcWVoVnBfRkl4eVNOcWtTTGRSdDFvUkZERVllVS0yaTlQNWtnM3NYRnpJWjVaMGZEU0ZIWmNsQ2NoYmo2MDJtV1NudGxzRFJYelB2S2xlaG5VNXg3VTRfOFpydXdYYzc0?oc=5",
+      "source": "Google News (Reuters, AFP, etc.)",
+      "category": "Commerce",
+      "region": "Afrique Australe",
+      "published_at": "2026-01-27T03:00:00",
+      "fetched_at": "2026-01-27T09:28:25.757203"
+    },
     {
       "id": "cadeda457f41",
       "title": "Afrique économie - En Tunisie, les agricultrices à la conquête de la propriété et des marchés - RFI",
       "summary": "Afrique économie - En Tunisie, les agricultrices à la conquête de la propriété et des marchés  RFI",
-      "link": "https://news.google.com/rss/articles/CBMigAJBVV95cUxOeEZFZUZIcWZ5ZUhnWjFuNGhHdWQ0b2RaRjRMczJlSEpiVmpKdW1OOHlvVHdRTGdad3R0OF9WWXVMSWJadDJVZE5XZmRsVklMWWVMQndPYW9TOXRsVVVyMHhYdkR4MFc2YmZ0Yzh4YXNxdnBkdW5Yc0swZzJMYnRoN0VYM3NsZGdSRm04YWlwZ3hNMTNWS2xXemtpb0JEdmhzbUxxTENEYk16WVM1OWdQNnNrN2VZN1pyLXpGc0I0UnJiRVYwTGN5aGM0N0NBUmI0bi1Yc0dCSEo2bFI2ZU0tR042VzJWY2Z3NnJVRUxudU5McmxWTkh4NzMzdjk3VmFi?oc=5",
+      "link": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxQcVU4V1B5c081NlIyMi1PMGtLMU5VV19IYlkzYkNwZkJwTzVGTnRSRTk5OUh1ZFBHdEs0bEpvaXNLdFdkUWIwaHdBamVlMk1wRHlBVTJublZHbXA4M3ZiUERZeVBCNFd1WHNfWGtJY01vamp4a1g5Y0Z6MGk1SE9KcXM4ZklQM2xianp6X1gzLXY4UHNtcW1iSnU5S1FtU0FRdmU1cmNWNmdabmRqbUpCSHRHSjBHVFV3UTM3c3k2aFNJQWtZbjVRV0VqdTV0SlR4dk1LZUtjSVo5b2NlbHJWX1k0eW9JYzdFYjBQZkhqdXBpQQ?oc=5",
       "source": "Google News (Reuters, AFP, etc.)",
       "category": "Économie",
       "region": "Afrique du Nord",
       "published_at": "2026-01-26T23:03:00",
-      "fetched_at": "2026-01-26T23:10:35.979264"
-    },
-    {
-      "id": "ca86c9835e10",
-      "title": "Cote d'Ivoire: 32 nouveaux certifiés formés au capital humain et ingénierie pédagogique célébrés à Abidjan",
-      "summary": "[Fratmat.info] Le Sofitel Abidjan Hôtel Ivoire a servi de cadre à une cérémonie de graduation, le samedi 24 janvier 2026, organisée par Focus Transform Lab (Focus TL), marquant l'aboutissement de plusieurs mois de formation certifiante en ingénierie...",
-      "link": "https://fr.allafrica.com/stories/202601260736.html",
-      "source": "AllAfrica (FR)",
-      "category": "Économie",
-      "region": "Afrique",
-      "published_at": "2026-01-26T22:58:19",
-      "fetched_at": "2026-01-26T23:10:35.452241"
+      "fetched_at": "2026-01-27T09:28:25.782981"
     },
     {
       "id": "4b761220025d",
@@ -32,7 +142,7 @@
       "category": "Commerce",
       "region": "Afrique Australe",
       "published_at": "2026-01-26T21:54:27",
-      "fetched_at": "2026-01-26T23:10:35.394404"
+      "fetched_at": "2026-01-27T09:28:25.611288"
     },
     {
       "id": "390b3a26ba1d",
@@ -43,7 +153,7 @@
       "category": "Finance",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-26T20:20:14",
-      "fetched_at": "2026-01-26T23:10:35.316447"
+      "fetched_at": "2026-01-27T09:28:25.636014"
     },
     {
       "id": "63b3ae7de8d5",
@@ -54,29 +164,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-26T18:01:26",
-      "fetched_at": "2026-01-26T23:10:35.394366"
-    },
-    {
-      "id": "5b84daea305c",
-      "title": "Togo: Maintien des avantages fiscaux pour les véhicules électriques et moins polluants",
-      "summary": "[Togonews] Le gouvernement a décidé, pour une nouvelle année, de reconduire les mesures fiscales incitatives en faveur de l'importation des véhicules électriques, neufs et moins polluants.",
-      "link": "https://fr.allafrica.com/stories/202601260694.html",
-      "source": "AllAfrica (FR)",
-      "category": "Économie",
-      "region": "Afrique de l'Ouest",
-      "published_at": "2026-01-26T17:46:13",
-      "fetched_at": "2026-01-26T23:10:35.452271"
-    },
-    {
-      "id": "a12ee38b976c",
-      "title": "Togo: Un nouveau port sec en projet à Blitta",
-      "summary": "[Togonews] Un nouveau port sec est en projet à Agbandi, dans la région Centrale, précisément dans la préfecture de Blitta, sur un domaine de de 1 416 hectares.",
-      "link": "https://fr.allafrica.com/stories/202601260695.html",
-      "source": "AllAfrica (FR)",
-      "category": "Économie",
-      "region": "Afrique de l'Ouest",
-      "published_at": "2026-01-26T17:46:13",
-      "fetched_at": "2026-01-26T23:10:35.452297"
+      "fetched_at": "2026-01-27T09:28:25.611340"
     },
     {
       "id": "f8a00c2f8c3f",
@@ -87,7 +175,7 @@
       "category": "Commerce",
       "region": "Afrique Centrale",
       "published_at": "2026-01-26T17:39:32",
-      "fetched_at": "2026-01-26T23:10:35.394429"
+      "fetched_at": "2026-01-27T09:28:25.611365"
     },
     {
       "id": "4b2358216ddc",
@@ -98,7 +186,7 @@
       "category": "Commerce",
       "region": "Afrique Australe",
       "published_at": "2026-01-26T17:39:32",
-      "fetched_at": "2026-01-26T23:10:35.394459"
+      "fetched_at": "2026-01-27T09:28:25.611394"
     },
     {
       "id": "dc7349003e0b",
@@ -109,7 +197,7 @@
       "category": "Finance",
       "region": "Afrique Centrale",
       "published_at": "2026-01-26T17:32:00",
-      "fetched_at": "2026-01-26T23:10:35.316331"
+      "fetched_at": "2026-01-27T09:28:25.635966"
     },
     {
       "id": "20462e7dc112",
@@ -120,7 +208,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-26T17:31:59",
-      "fetched_at": "2026-01-26T23:10:35.394489"
+      "fetched_at": "2026-01-27T09:28:25.611425"
     },
     {
       "id": "50964773aa33",
@@ -131,7 +219,7 @@
       "category": "Économie",
       "region": "Afrique",
       "published_at": "2026-01-26T17:16:37",
-      "fetched_at": "2026-01-26T23:10:35.451987"
+      "fetched_at": "2026-01-27T09:28:25.620293"
     },
     {
       "id": "52ee5ab2e356",
@@ -142,7 +230,7 @@
       "category": "Économie",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-26T17:04:52",
-      "fetched_at": "2026-01-26T23:10:35.452120"
+      "fetched_at": "2026-01-27T09:28:25.620338"
     },
     {
       "id": "f895e7d5d32c",
@@ -153,7 +241,7 @@
       "category": "Finance",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-26T15:10:40",
-      "fetched_at": "2026-01-26T23:10:35.316250"
+      "fetched_at": "2026-01-27T09:28:25.635866"
     },
     {
       "id": "5d53b7ab4668",
@@ -164,7 +252,7 @@
       "category": "Économie",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-26T15:08:32",
-      "fetched_at": "2026-01-26T23:10:35.410782"
+      "fetched_at": "2026-01-27T09:28:25.604502"
     },
     {
       "id": "0be76647d3c7",
@@ -175,7 +263,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-26T14:56:33",
-      "fetched_at": "2026-01-26T23:10:35.394303"
+      "fetched_at": "2026-01-27T09:28:25.611248"
     },
     {
       "id": "fb6c45a62a62",
@@ -186,7 +274,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-26T14:29:05",
-      "fetched_at": "2026-01-26T23:10:35.394511"
+      "fetched_at": "2026-01-27T09:28:25.611446"
     },
     {
       "id": "9032fcb7dcf1",
@@ -197,7 +285,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-26T14:29:03",
-      "fetched_at": "2026-01-26T23:10:35.394531"
+      "fetched_at": "2026-01-27T09:28:25.611466"
     },
     {
       "id": "da011246ff12",
@@ -208,7 +296,7 @@
       "category": "Économie",
       "region": "Afrique Australe",
       "published_at": "2026-01-26T14:13:01",
-      "fetched_at": "2026-01-26T23:10:35.410675"
+      "fetched_at": "2026-01-27T09:28:25.604441"
     },
     {
       "id": "7b936f0a1e7c",
@@ -219,7 +307,7 @@
       "category": "Économie",
       "region": "Afrique Australe",
       "published_at": "2026-01-26T14:09:13",
-      "fetched_at": "2026-01-26T23:10:35.410812"
+      "fetched_at": "2026-01-27T09:28:25.604531"
     },
     {
       "id": "0cacce22431e",
@@ -230,7 +318,7 @@
       "category": "Économie",
       "region": "Afrique",
       "published_at": "2026-01-26T12:56:04",
-      "fetched_at": "2026-01-26T23:10:35.452039"
+      "fetched_at": "2026-01-27T09:28:25.620386"
     },
     {
       "id": "8048a4538d59",
@@ -241,7 +329,7 @@
       "category": "Économie",
       "region": "Afrique Australe",
       "published_at": "2026-01-26T12:35:50",
-      "fetched_at": "2026-01-26T23:10:35.410845"
+      "fetched_at": "2026-01-27T09:28:25.604571"
     },
     {
       "id": "96fb24365691",
@@ -252,7 +340,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-26T12:23:23",
-      "fetched_at": "2026-01-26T23:10:35.452153"
+      "fetched_at": "2026-01-27T09:28:25.620418"
     },
     {
       "id": "80227021b76c",
@@ -263,7 +351,7 @@
       "category": "Économie",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-26T12:13:28",
-      "fetched_at": "2026-01-26T23:10:35.410723"
+      "fetched_at": "2026-01-27T09:28:25.604469"
     },
     {
       "id": "a012a6032750",
@@ -274,7 +362,7 @@
       "category": "Économie",
       "region": "Afrique Centrale",
       "published_at": "2026-01-26T12:12:48",
-      "fetched_at": "2026-01-26T23:10:35.410872"
+      "fetched_at": "2026-01-27T09:28:25.604598"
     },
     {
       "id": "a94635037296",
@@ -285,7 +373,7 @@
       "category": "Économie",
       "region": "Afrique du Nord",
       "published_at": "2026-01-26T12:10:48",
-      "fetched_at": "2026-01-26T23:10:35.452183"
+      "fetched_at": "2026-01-27T09:28:25.620448"
     },
     {
       "id": "68d3347e8a8c",
@@ -296,7 +384,7 @@
       "category": "Économie",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-26T10:56:58",
-      "fetched_at": "2026-01-26T23:10:35.410900"
+      "fetched_at": "2026-01-27T09:28:25.604623"
     },
     {
       "id": "c720d2fb04c7",
@@ -307,40 +395,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-26T09:45:21",
-      "fetched_at": "2026-01-26T23:10:35.410944"
-    },
-    {
-      "id": "90468d947808",
-      "title": "Afrique: Revue de presse de l'Afrique francophone du 26 janvier 2026",
-      "summary": "[allAfrica] Retrait temporaire de l'Afrique du Sud du G20 : Pretoria avait-elle le choix?",
-      "link": "https://fr.allafrica.com/stories/202601260149.html",
-      "source": "AllAfrica (FR)",
-      "category": "Économie",
-      "region": "Afrique Australe",
-      "published_at": "2026-01-26T09:40:49",
-      "fetched_at": "2026-01-26T23:10:35.451910"
-    },
-    {
-      "id": "82916319110a",
-      "title": "Burkina Faso: Blanchiment de capitaux... - L'UE retire le pays de la liste des pays à haut risque",
-      "summary": "[Sidwaya] L'Union européenne a annoncé, le retrait du Burkina de la liste des juridictions financières à haut risque en matière de blanchiment de capitaux et de financement du terrorisme, traduisant les avancées majeures du pays dans la lutte contre...",
-      "link": "https://fr.allafrica.com/stories/202601260132.html",
-      "source": "AllAfrica (FR)",
-      "category": "Économie",
-      "region": "Afrique de l'Ouest",
-      "published_at": "2026-01-26T09:20:35",
-      "fetched_at": "2026-01-26T23:10:35.452074"
-    },
-    {
-      "id": "37031bec6467",
-      "title": "Nigeria: OTC Drugs and the Quiet Cruelty of Prices in Nigeria",
-      "summary": "[This Day] What should be a routine trip for basic medicines now tells a deeper story about how Nigeria's economic structure is turning everyday health into a costly gamble, writes Festus Akanbi",
-      "link": "https://allafrica.com/stories/202601260107.html",
-      "source": "AllAfrica",
-      "category": "Commerce",
-      "region": "Afrique de l'Ouest",
-      "published_at": "2026-01-26T08:45:41",
-      "fetched_at": "2026-01-26T23:10:35.394552"
+      "fetched_at": "2026-01-27T09:28:25.604671"
     },
     {
       "id": "368f7c72b207",
@@ -351,7 +406,7 @@
       "category": "Commerce",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-26T08:05:14",
-      "fetched_at": "2026-01-26T23:10:35.394332"
+      "fetched_at": "2026-01-27T09:28:25.611310"
     },
     {
       "id": "2f15d13a95e7",
@@ -362,18 +417,7 @@
       "category": "Télécoms",
       "region": "Afrique Australe",
       "published_at": "2026-01-26T07:50:00",
-      "fetched_at": "2026-01-26T23:10:35.979316"
-    },
-    {
-      "id": "a96f45278886",
-      "title": "Africa: All of Africa Today - January 26, 2025",
-      "summary": "[allAfrica]",
-      "link": "https://allafrica.com/stories/202601260095.html",
-      "source": "AllAfrica",
-      "category": "Économie",
-      "region": "Afrique",
-      "published_at": "2026-01-26T07:29:25",
-      "fetched_at": "2026-01-26T23:10:35.410749"
+      "fetched_at": "2026-01-27T09:28:25.783082"
     },
     {
       "id": "7bb4e00aa68b",
@@ -384,7 +428,7 @@
       "category": "Finance",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-26T05:26:22",
-      "fetched_at": "2026-01-26T23:10:35.316391"
+      "fetched_at": "2026-01-27T09:28:25.635938"
     },
     {
       "id": "d2c1da7ceb1a",
@@ -395,7 +439,7 @@
       "category": "Finance",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-26T04:59:36",
-      "fetched_at": "2026-01-26T23:10:35.316294"
+      "fetched_at": "2026-01-27T09:28:25.635888"
     },
     {
       "id": "f5f8f86f504d",
@@ -406,7 +450,7 @@
       "category": "Finance",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-26T04:50:25",
-      "fetched_at": "2026-01-26T23:10:35.316424"
+      "fetched_at": "2026-01-27T09:28:25.635993"
     },
     {
       "id": "ea9ac83f9b3e",
@@ -417,7 +461,7 @@
       "category": "Mines",
       "region": "Afrique Centrale",
       "published_at": "2026-01-25T23:18:00",
-      "fetched_at": "2026-01-26T23:10:35.979562"
+      "fetched_at": "2026-01-27T09:28:25.783275"
     },
     {
       "id": "290936d74f1b",
@@ -428,7 +472,7 @@
       "category": "Finance",
       "region": "Afrique de l'Est",
       "published_at": "2026-01-25T14:13:55",
-      "fetched_at": "2026-01-26T23:10:35.316360"
+      "fetched_at": "2026-01-27T09:28:25.635910"
     },
     {
       "id": "816e120cb77c",
@@ -439,51 +483,7 @@
       "category": "Agriculture",
       "region": "Afrique",
       "published_at": "2026-01-25T13:26:08",
-      "fetched_at": "2026-01-26T23:10:35.979363"
-    },
-    {
-      "id": "3bf6ac392b18",
-      "title": "«Champions d'Afrique dans la gestion du risque» - Philip Sigwart, PDG de Baobab (microfinance) - RFI",
-      "summary": "«Champions d'Afrique dans la gestion du risque» - Philip Sigwart, PDG de Baobab (microfinance)  RFI",
-      "link": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxOVzdGd2pvMDRGRE1CcHduWWYwYUhpZEk0NDZ1V1VQcnFNOFdObzJoTjJfT1gwMkI2ZkxaTGszNWF2ckhvMVpibGpFcGJ2WnNoeWV3MlR3VmxSTkZvdlNqU09abWRCZkpiTHJxSWlvRTRPZEVFNUd6djZZcFUtV3hwOTVFR2M5c3J1cHhyRlNPQ1pSQ1JvNkd4WmN3eEZyUXJpdXBQNV9KbUdnYjNfVk5kb0tEVHdlRFkzbGU2Q2RSNU52bld0QWF2OFJVcGNFSzQ1TEhhejNGbllzelZxbWxCX1lOVmJGQ3NiMDF2cWF3YVhYRnQ1?oc=5",
-      "source": "Google News (Reuters, AFP, etc.)",
-      "category": "Finance",
-      "region": "Afrique",
-      "published_at": "2026-01-24T06:00:21",
-      "fetched_at": "2026-01-26T23:10:35.979595"
-    },
-    {
-      "id": "bed72ff8af55",
-      "title": "Kenya: Stanchart Md Ngari to Retire After Seven Years",
-      "summary": "[Capital FM] Nairobi -- Standard Chartered Bank Kenya Managing Director and Chief Executive Officer Kariuki Ngari is set to retire after 24 years with the lender.",
-      "link": "https://allafrica.com/stories/202601230629.html",
-      "source": "AllAfrica",
-      "category": "Finance",
-      "region": "Afrique de l'Est",
-      "published_at": "2026-01-23T22:17:28",
-      "fetched_at": "2026-01-26T23:10:35.316506"
-    },
-    {
-      "id": "8140d7e32884",
-      "title": "Nigeria: Fourth Republic and the Birth of Non-Interest Banking",
-      "summary": "[Daily Trust] While modern banking in Nigeria has evolved over the years, the establishment of Islamic banking in Nigeria was not just an expansion of the banking system following Nigeria's return to democracy but a provision of an alternative...",
-      "link": "https://allafrica.com/stories/202601230616.html",
-      "source": "AllAfrica",
-      "category": "Finance",
-      "region": "Afrique de l'Ouest",
-      "published_at": "2026-01-23T19:09:32",
-      "fetched_at": "2026-01-26T23:10:35.316529"
-    },
-    {
-      "id": "5722a92bdd73",
-      "title": "Africa’s Economy at a Crossroads: Markets, Mobility and the Price of Reform - Modern Ghana",
-      "summary": "Africa’s Economy at a Crossroads: Markets, Mobility and the Price of Reform  Modern Ghana",
-      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOckg1UGFXWTMtN0V6b1VOOEo1djFsRGZsLW5jc3FpTktNdkVCTnJ0TmJCQlcyUjVWZkZobkxOOTdTY1VVZER2VEdPTEhhRlh0QnVTcHpHZFBVdkdKZUJqV2E2cHRfRnlLdGMwRkcwZjNDaW54NWNpREdObTVTanQ3emFSUHFPYk9raVhreV9CbUlQY3Y3NmRNR9IBlwFBVV95cUxQRHcwU19wRVRfbTRfY1Bqa3JNYTRLaHpyN1BUMWlzSURwTnVZUklDMmNENktSSlZ1VWFwbXBlTmphbXJhWTQwOUZ6OGRIc3BMQi0wak00N0ZzcmRFajBMbnowdWQxa3UwTVktXzFjRDl3WmNPRnA2RUJuMjdiWUxFYkVKM0xpRnpHV0xmM053ZzNBbVI0WmpV?oc=5",
-      "source": "Google News (Reuters, AFP, etc.)",
-      "category": "Mines",
-      "region": "Afrique de l'Ouest",
-      "published_at": "2026-01-23T16:56:00",
-      "fetched_at": "2026-01-26T23:10:35.899577"
+      "fetched_at": "2026-01-27T09:28:25.783035"
     },
     {
       "id": "139bd16fc0fd",
@@ -494,7 +494,7 @@
       "category": "Économie",
       "region": "Afrique de l'Ouest",
       "published_at": "2026-01-23T14:51:33",
-      "fetched_at": "2026-01-26T23:10:35.410923"
+      "fetched_at": "2026-01-27T09:28:25.604646"
     },
     {
       "id": "1948fa3be09b",
@@ -505,7 +505,7 @@
       "category": "Finance",
       "region": "Afrique du Nord",
       "published_at": "2026-01-22T23:00:00",
-      "fetched_at": "2026-01-26T23:10:35.979389"
+      "fetched_at": "2026-01-27T09:28:25.783108"
     },
     {
       "id": "82b1c62532a7",
@@ -516,18 +516,18 @@
       "category": "Économie",
       "region": "Afrique",
       "published_at": "2026-01-22T12:00:00",
-      "fetched_at": "2026-01-26T23:10:35.979216"
+      "fetched_at": "2026-01-27T09:28:25.782931"
     },
     {
-      "id": "6cc6b6360afd",
-      "title": "Ethiopia: Commercial Bank of Ethiopia Launches CBE Connect Digital Platform",
-      "summary": "[ENA] Addis Ababa -- The Commercial Bank of Ethiopia (CBE) has unveiled today CBE Connect, a digital platform that bundles together over seven financial services, eliminating barriers with direct transfers from global banks to Ethiopian fintech...",
-      "link": "https://allafrica.com/stories/202601210541.html",
-      "source": "AllAfrica",
-      "category": "Finance",
-      "region": "Afrique de l'Est",
-      "published_at": "2026-01-21T16:57:32",
-      "fetched_at": "2026-01-26T23:10:35.316480"
+      "id": "9abf978cbc7e",
+      "title": "Afrique économie - Infrastructures, commerce, emploi: l’Afrique mise sur les corridors intégrés - RFI",
+      "summary": "Afrique économie - Infrastructures, commerce, emploi: l’Afrique mise sur les corridors intégrés  RFI",
+      "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQTG9Mb3RLVTJlcjdpNk85bW9vVFBiUkd0anpsRXFKc2JlNHg2TkpjZm0wQkpIMHZxSTZFejVDU05EMFN0UGtoUmVsTDRDbDJaa3FGRTdUM3JDTUJUcWxJelJ5RUltcWtQNHppMXFPRXVBVE0yNC1pSDBSemsxTjc2U2pzRUhybnhHWlZEVmkwRnMtd1NOaFp0U0J2OGpPd0MtblctS3lyVzFaTk9OLS1DMjV0eVNTUkg3MjhJNDgwVkZMOVZHUENhcUtEbTBpTVB6UnRVdU1ZTFhDMDh6U2c?oc=5",
+      "source": "Google News (Reuters, AFP, etc.)",
+      "category": "Commerce",
+      "region": "Afrique",
+      "published_at": "2026-01-20T23:00:00",
+      "fetched_at": "2026-01-27T09:28:25.783313"
     },
     {
       "id": "b2511c300d77",
@@ -538,7 +538,7 @@
       "category": "Économie",
       "region": "Afrique",
       "published_at": "2026-01-07T08:00:00",
-      "fetched_at": "2026-01-26T23:10:35.899668"
+      "fetched_at": "2026-01-27T09:28:25.757046"
     },
     {
       "id": "8b7debcd3fa4",
@@ -549,7 +549,7 @@
       "category": "Économie",
       "region": "Afrique",
       "published_at": "2026-01-02T08:00:00",
-      "fetched_at": "2026-01-26T23:10:35.899527"
+      "fetched_at": "2026-01-27T09:28:25.756944"
     },
     {
       "id": "00333340ded0",
@@ -560,18 +560,7 @@
       "category": "Économie",
       "region": "Afrique",
       "published_at": "2026-01-02T08:00:00",
-      "fetched_at": "2026-01-26T23:10:35.979478"
-    },
-    {
-      "id": "de8a4a9b271e",
-      "title": "Cheap Solar Is Transforming Lives and Economies Across Africa - The New York Times",
-      "summary": "Cheap Solar Is Transforming Lives and Economies Across Africa  The New York Times",
-      "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTE9lN0NkdXQ3TmRmU2dSZTdsZUpwbGhkMV96RVN6ZU8taDctclV6eGUwMGNxRmRDYjNLYWtpODN3TVJITjNUMHpOVDdKaUlKQ1drLU82ajN5TjExcHdhLUVmOHRGZjlDaUxGYlpmb1kwZVd6UHhtdUYtVENKYWM?oc=5",
-      "source": "Google News (Reuters, AFP, etc.)",
-      "category": "Énergie",
-      "region": "Afrique",
-      "published_at": "2025-12-30T08:00:00",
-      "fetched_at": "2026-01-26T23:10:35.899927"
+      "fetched_at": "2026-01-27T09:28:25.783195"
     },
     {
       "id": "fa0f4ecf2e11",
@@ -582,7 +571,7 @@
       "category": "Économie",
       "region": "Afrique Australe",
       "published_at": "2025-11-25T08:00:00",
-      "fetched_at": "2026-01-26T23:10:35.899767"
+      "fetched_at": "2026-01-27T09:28:25.757166"
     },
     {
       "id": "76ec584e5134",
@@ -593,7 +582,7 @@
       "category": "Économie",
       "region": "Afrique",
       "published_at": "2025-11-05T08:00:00",
-      "fetched_at": "2026-01-26T23:10:35.979429"
+      "fetched_at": "2026-01-27T09:28:25.783149"
     },
     {
       "id": "58674ee5fb52",
@@ -604,7 +593,7 @@
       "category": "Économie",
       "region": "Afrique",
       "published_at": "2025-09-30T07:00:00",
-      "fetched_at": "2026-01-26T23:10:35.899817"
+      "fetched_at": "2026-01-27T09:28:25.757253"
     },
     {
       "id": "514a5a16a5b1",
@@ -615,7 +604,7 @@
       "category": "Commerce",
       "region": "Afrique Australe",
       "published_at": "2025-08-13T07:00:00",
-      "fetched_at": "2026-01-26T23:10:35.899722"
+      "fetched_at": "2026-01-27T09:28:25.757122"
     },
     {
       "id": "da0af33c4a49",
@@ -626,7 +615,7 @@
       "category": "Commerce",
       "region": "Afrique",
       "published_at": "2025-07-23T07:00:00",
-      "fetched_at": "2026-01-26T23:10:35.899618"
+      "fetched_at": "2026-01-27T09:28:25.756992"
     },
     {
       "id": "fa7f00f410c4",
@@ -637,7 +626,7 @@
       "category": "Mines",
       "region": "Afrique",
       "published_at": "2025-06-30T07:00:00",
-      "fetched_at": "2026-01-26T23:10:35.899892"
+      "fetched_at": "2026-01-27T09:28:25.757326"
     },
     {
       "id": "6096f28f4877",
@@ -648,7 +637,7 @@
       "category": "Économie",
       "region": "Afrique Australe",
       "published_at": "2025-06-27T07:00:00",
-      "fetched_at": "2026-01-26T23:10:35.899852"
+      "fetched_at": "2026-01-27T09:28:25.757286"
     },
     {
       "id": "67b97e18f076",
@@ -659,7 +648,7 @@
       "category": "Économie",
       "region": "Afrique",
       "published_at": "2025-06-26T07:00:00",
-      "fetched_at": "2026-01-26T23:10:35.979522"
+      "fetched_at": "2026-01-27T09:28:25.783235"
     }
   ]
 }
