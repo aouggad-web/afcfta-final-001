@@ -337,6 +337,21 @@ Modules partagés créés (378 lignes):
     - `/app/backend/server.py` - Endpoint /api/rules-of-origin/stats ajouté
     - `/app/backend/tests/test_rules_of_origin.py` - Tests automatisés
   - **Rapport de tests**: `/app/test_reports/iteration_7.json`
+
+- **Feature - Warning Taux Variables par Sous-Position (27/01/2025)** - COMPLETE ✅
+  - **Besoin**: Vérifier les taux DD, TVA, taxes réels par pays selon sous-positions nationales
+  - **Méthodologie implémentée**:
+    1. Analyse des sous-positions (8-12 chiffres) de chaque code SH6
+    2. Si taux identiques → utilise le taux commun
+    3. Si taux différents → affiche warning avec min/max et liste des possibilités
+  - **Exemples validés**:
+    - Riz (100630) → Nigeria: Warning ⚠️ 50%-70% (5 sous-positions)
+    - Voitures (870323) → Nigeria: Warning ⚠️ 35%-70% (6 sous-positions: neuf vs occasion)
+    - Médicaments (300490): Pas de warning (0% uniforme)
+  - **Réponse API enrichie**: `rate_warning`, `sub_positions_details`
+  - **Tests passés**: 15/15 (100%)
+  - **Rapport de tests**: `/app/test_reports/iteration_8.json`
+
 - **Extension complète base HS6 (27/01/2025)** - COMPLETE
   - **825 codes HS6** (de 93 à 825, +732 codes)
   - **62 catégories** de produits (de 36 à 62)
