@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { Badge } from '../ui/badge';
@@ -9,65 +10,9 @@ import ProductionMining from './ProductionMining';
 import { PDFExportButton } from '../common/ExportTools';
 
 function ProductionTab({ language = 'fr' }) {
+  const { t } = useTranslation();
   const [activeSubTab, setActiveSubTab] = useState('macro');
   const contentRef = useRef(null);
-
-  const texts = {
-    fr: {
-      title: "Capacité de Production Africaine",
-      subtitle: "Analyse multi-dimensionnelle de la production économique : Macro, Agriculture, Industrie et Mines (2021-2024)",
-      badge1: "54 pays africains",
-      badge2: "4 dimensions",
-      badge3: "2021-2024",
-      sourcesTitle: "Sources de Données Officielles",
-      macroTitle: "Macro",
-      macroSubtitle: "Valeur Ajoutée",
-      macroSource1: "World Bank WDI",
-      macroSource2: "IMF WEO",
-      agricultureTitle: "Agriculture",
-      agricultureSubtitle: "FAOSTAT",
-      agricultureSource1: "FAO FAOSTAT",
-      agricultureSource2: "Production Domain",
-      manufacturingTitle: "Manufacturing",
-      manufacturingSubtitle: "UNIDO",
-      manufacturingSource1: "UNIDO INDSTAT4",
-      manufacturingSource2: "ISIC Rev.4",
-      miningTitle: "Mining",
-      miningSubtitle: "USGS",
-      miningSource1: "USGS MCS",
-      miningSource2: "Commodity Summaries",
-      footerText: "Les données de production couvrent maintenant les 54 pays africains membres de la ZLECAf sur les 4 dimensions économiques (Macro, Agriculture, Manufacturing, Mining) pour la période 2021-2024. Données basées sur World Bank, FAO, UNIDO et USGS.",
-      coverageLabel: "Couverture complète:"
-    },
-    en: {
-      title: "African Production Capacity",
-      subtitle: "Multi-dimensional analysis of economic production: Macro, Agriculture, Industry and Mining (2021-2024)",
-      badge1: "54 African countries",
-      badge2: "4 dimensions",
-      badge3: "2021-2024",
-      sourcesTitle: "Official Data Sources",
-      macroTitle: "Macro",
-      macroSubtitle: "Value Added",
-      macroSource1: "World Bank WDI",
-      macroSource2: "IMF WEO",
-      agricultureTitle: "Agriculture",
-      agricultureSubtitle: "FAOSTAT",
-      agricultureSource1: "FAO FAOSTAT",
-      agricultureSource2: "Production Domain",
-      manufacturingTitle: "Manufacturing",
-      manufacturingSubtitle: "UNIDO",
-      manufacturingSource1: "UNIDO INDSTAT4",
-      manufacturingSource2: "ISIC Rev.4",
-      miningTitle: "Mining",
-      miningSubtitle: "USGS",
-      miningSource1: "USGS MCS",
-      miningSource2: "Commodity Summaries",
-      footerText: "Production data now covers all 54 African countries members of the AfCFTA across 4 economic dimensions (Macro, Agriculture, Manufacturing, Mining) for the period 2021-2024. Data based on World Bank, FAO, UNIDO and USGS.",
-      coverageLabel: "Full coverage:"
-    }
-  };
-
-  const t = texts[language];
 
   return (
     <div className="space-y-6">
@@ -76,7 +21,7 @@ function ProductionTab({ language = 'fr' }) {
         <PDFExportButton
           targetRef={contentRef}
           filename="production"
-          title={t.title}
+          title={t('production.title')}
           language={language}
         />
       </div>
@@ -87,20 +32,20 @@ function ProductionTab({ language = 'fr' }) {
         <CardHeader className="py-3">
           <CardTitle className="text-xl font-bold flex items-center gap-2">
             <span>📈</span>
-            <span>{t.title}</span>
+            <span>{t('production.title')}</span>
           </CardTitle>
           <CardDescription className="text-purple-100 text-sm">
-            {t.subtitle}
+            {t('production.subtitle')}
           </CardDescription>
           <div className="flex gap-2 mt-2">
             <Badge className="bg-white text-purple-700 hover:bg-purple-50 text-xs px-2 py-0.5">
-              🌍 {t.badge1}
+              🌍 {t('production.badge1')}
             </Badge>
             <Badge className="bg-white text-purple-700 hover:bg-purple-50 text-xs px-2 py-0.5">
-              📊 {t.badge2}
+              📊 {t('production.badge2')}
             </Badge>
             <Badge className="bg-white text-purple-700 hover:bg-purple-50 text-xs px-2 py-0.5">
-              📅 {t.badge3}
+              📅 {t('production.badge3')}
             </Badge>
           </div>
         </CardHeader>
@@ -114,28 +59,28 @@ function ProductionTab({ language = 'fr' }) {
             className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white font-semibold py-2 flex flex-col items-center gap-0.5 text-sm"
           >
             <span className="text-lg">📊</span>
-            <span>{t.macroTitle}</span>
+            <span>{t('production.macro.title')}</span>
           </TabsTrigger>
           <TabsTrigger 
             value="agriculture" 
             className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-600 data-[state=active]:to-emerald-600 data-[state=active]:text-white font-semibold py-2 flex flex-col items-center gap-0.5 text-sm"
           >
             <span className="text-lg">🌾</span>
-            <span>{t.agricultureTitle}</span>
+            <span>{t('production.agriculture.title')}</span>
           </TabsTrigger>
           <TabsTrigger 
             value="manufacturing" 
             className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-cyan-600 data-[state=active]:text-white font-semibold py-2 flex flex-col items-center gap-0.5 text-sm"
           >
             <span className="text-lg">🏭</span>
-            <span>{t.manufacturingTitle}</span>
+            <span>{t('production.manufacturing.title')}</span>
           </TabsTrigger>
           <TabsTrigger 
             value="mining" 
             className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-600 data-[state=active]:to-orange-600 data-[state=active]:text-white font-semibold py-2 flex flex-col items-center gap-0.5 text-sm"
           >
             <span className="text-lg">⛏️</span>
-            <span>{t.miningTitle}</span>
+            <span>{t('production.mining.title')}</span>
           </TabsTrigger>
         </TabsList>
 
@@ -161,28 +106,28 @@ function ProductionTab({ language = 'fr' }) {
         <CardContent className="pt-4">
           <h3 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
             <span>ℹ️</span>
-            <span>{t.sourcesTitle}</span>
+            <span>{t('production.sourcesTitle')}</span>
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
             <div className="bg-white p-3 rounded shadow-sm">
-              <p className="font-semibold text-purple-700">📊 {t.macroTitle}</p>
-              <p className="text-gray-600">{t.macroSource1}</p>
-              <p className="text-gray-600">{t.macroSource2}</p>
+              <p className="font-semibold text-purple-700">📊 {t('production.macro.title')}</p>
+              <p className="text-gray-600">{t('production.macro.source1')}</p>
+              <p className="text-gray-600">{t('production.macro.source2')}</p>
             </div>
             <div className="bg-white p-3 rounded shadow-sm">
-              <p className="font-semibold text-green-700">🌾 {t.agricultureTitle}</p>
-              <p className="text-gray-600">{t.agricultureSource1}</p>
-              <p className="text-gray-600">{t.agricultureSource2}</p>
+              <p className="font-semibold text-green-700">🌾 {t('production.agriculture.title')}</p>
+              <p className="text-gray-600">{t('production.agriculture.source1')}</p>
+              <p className="text-gray-600">{t('production.agriculture.source2')}</p>
             </div>
             <div className="bg-white p-3 rounded shadow-sm">
-              <p className="font-semibold text-blue-700">🏭 {t.manufacturingTitle}</p>
-              <p className="text-gray-600">{t.manufacturingSource1}</p>
-              <p className="text-gray-600">{t.manufacturingSource2}</p>
+              <p className="font-semibold text-blue-700">🏭 {t('production.manufacturing.title')}</p>
+              <p className="text-gray-600">{t('production.manufacturing.source1')}</p>
+              <p className="text-gray-600">{t('production.manufacturing.source2')}</p>
             </div>
             <div className="bg-white p-3 rounded shadow-sm">
-              <p className="font-semibold text-amber-700">⛏️ {t.miningTitle}</p>
-              <p className="text-gray-600">{t.miningSource1}</p>
-              <p className="text-gray-600">{t.miningSource2}</p>
+              <p className="font-semibold text-amber-700">⛏️ {t('production.mining.title')}</p>
+              <p className="text-gray-600">{t('production.mining.source1')}</p>
+              <p className="text-gray-600">{t('production.mining.source2')}</p>
             </div>
           </div>
         </CardContent>
@@ -192,7 +137,7 @@ function ProductionTab({ language = 'fr' }) {
       <Card className="bg-gradient-to-r from-gray-50 to-slate-50 border-t-4 border-t-purple-500">
         <CardContent className="pt-4">
           <p className="text-sm text-gray-600 text-center">
-            <strong>📊 {t.coverageLabel}</strong> {t.footerText}
+            <strong>📊 {t('production.coverageLabel')}</strong> {t('production.footerText')}
           </p>
         </CardContent>
       </Card>
