@@ -192,7 +192,7 @@ class OECTradeService:
         limit: int = 50
     ) -> Dict:
         """
-        Récupère les exportations d'un pays par produit.
+        Récupère les exportations d'un pays par produit avec valeur et volume.
         Utilise le cube HS17 (compatible SH2022) avec HS4 par défaut.
         HS4 offre un bon équilibre entre granularité et couverture des données.
         
@@ -207,10 +207,11 @@ class OECTradeService:
             return {"error": f"Country {country_iso3} not found", "data": []}
         
         # Récupérer plus de données pour pouvoir trier et filtrer
+        # Inclure Trade Value et Quantity (volume)
         params = self._build_params(
             cube=OEC_CUBES[DEFAULT_CUBE],
             drilldowns=["Year", "Exporter Country", hs_level],
-            measures=["Trade Value"],
+            measures=["Trade Value", "Quantity"],
             cuts={
                 "Year": str(year),
                 "Exporter Country": country_info["oec_id"]
