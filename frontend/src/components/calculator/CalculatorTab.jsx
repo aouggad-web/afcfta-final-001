@@ -228,6 +228,23 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
     }).format(amount);
   };
 
+  const formatRate = (rate) => {
+    // Handle both numeric and string rate values for robustness
+    if (rate === null || rate === undefined || rate === '' || rate === '-') {
+      return '-';
+    }
+    // If rate is already a string with '%', return as-is
+    if (typeof rate === 'string' && rate.includes('%')) {
+      return rate;
+    }
+    // If rate is a number, format it as a percentage
+    if (typeof rate === 'number') {
+      return rate > 0 ? `${rate.toFixed(2)}%` : '-';
+    }
+    // Fallback: return the rate as-is
+    return rate;
+  };
+
   const getCountryName = (code) => {
     const country = countries.find(c => c.code === code);
     return country ? country.name : code;
@@ -655,7 +672,7 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
                               <TableCell className="font-bold">{entry.step}</TableCell>
                               <TableCell className="font-semibold">{entry.component}</TableCell>
                               <TableCell>{formatCurrency(entry.base)}</TableCell>
-                              <TableCell className="font-semibold text-red-600">{entry.rate}</TableCell>
+                              <TableCell className="font-semibold text-red-600">{formatRate(entry.rate)}</TableCell>
                               <TableCell className="font-bold text-blue-600">{formatCurrency(entry.amount)}</TableCell>
                               <TableCell className="font-bold">{formatCurrency(entry.cumulative)}</TableCell>
                               <TableCell className="text-xs">
