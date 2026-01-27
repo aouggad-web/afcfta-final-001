@@ -2167,7 +2167,23 @@ async def search_hs_codes_endpoint(
     Search HS codes by code or label keyword using complete database (5800+ codes)
     """
     # Use search_hs6_codes from hs6_database.py which has accent-insensitive search
-    results = search_hs6_codes(q, language, limit)
+    raw_results = search_hs6_codes(q, language, limit)
+    chapters = get_hs_chapters()
+    
+    # Transform results to match frontend expected format (label, chapter_name)
+    results = []
+    for r in raw_results:
+        code = r["code"]
+        chapter = code[:2]
+        results.append({
+            "code": code,
+            "label": r.get("description", ""),
+            "chapter": chapter,
+            "chapter_name": chapters.get(chapter, {}).get(language, ""),
+            "category": r.get("category", ""),
+            "sensitivity": r.get("sensitivity", "normal")
+        })
+    
     return {
         "query": q,
         "results": results,
