@@ -96,6 +96,7 @@ from etl.hs6_database import (
 from services.oec_trade_service import (
     oec_service,
     get_african_countries_list,
+    get_country_name_to_iso3_mapping,
     AFRICAN_COUNTRIES_OEC
 )
 
@@ -3347,6 +3348,19 @@ async def get_oec_african_countries(
         "success": True,
         "total": len(AFRICAN_COUNTRIES_OEC),
         "countries": get_african_countries_list(language),
+        "source": "OEC/BACI"
+    }
+
+@api_router.get("/oec/countries/name-to-iso3")
+async def get_oec_country_name_mapping():
+    """
+    Mapping inversé des noms de pays (name_en) vers codes ISO3.
+    Utile pour convertir les noms de pays retournés par l'API OEC en codes ISO3
+    pour afficher les drapeaux dans le frontend.
+    """
+    return {
+        "success": True,
+        "mapping": get_country_name_to_iso3_mapping(),
         "source": "OEC/BACI"
     }
 
