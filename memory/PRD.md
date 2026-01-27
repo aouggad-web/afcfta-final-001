@@ -30,7 +30,26 @@ Application web d'analyse des statistiques commerciales et économiques africain
   - **62 catégories** de produits (vehicles, coffee, ores, textiles, leather, steel, ships, etc.)
   - **5429 codes avec sous-positions** détaillées
   - **54 pays africains** avec sous-positions nationales
-  - **Règles d'origine ZLECAf** intégrées par code HS6
+- **BUG FIX P0 - Règles d'Origine (27/01/2025)** ✅ 
+  - **CORRIGÉ**: Les règles d'origine étaient génériques ("35% valeur ajoutée africaine") pour tous les produits
+  - **SOLUTION**: Base de données complète des Règles d'Origine officielles de la ZLECAf
+    - Source: **AfCFTA Annex II, Appendix IV (COM-12, December 2023)**
+    - **96 chapitres** couverts avec règles spécifiques
+    - **87 chapitres convenus** (AGREED)
+    - **65 règles par position tarifaire** (heading-specific)
+    - **48 positions en négociation** (YTB)
+  - **Types de règles implémentées**:
+    - WO (Wholly Obtained) - Entièrement Obtenu
+    - CTH (Change of Tariff Heading) - Changement de Position Tarifaire
+    - CTSH (Change of Tariff Subheading) - Changement de Sous-Position
+    - VA40/VA50/VA60 (Value Added) - Max X% valeur non-originaire
+    - YARN (Manufacture from yarn) - Fabrication à partir de fils
+    - YTB (Yet to be agreed) - En cours de négociation
+  - **Nouveau fichier**: `/app/backend/etl/afcfta_rules_of_origin.py` (750+ lignes)
+  - **Tests passés**: 34/34 (100% backend)
+  - **API endpoints**:
+    - `GET /api/rules-of-origin/stats` - Statistiques de couverture
+    - `GET /api/rules-of-origin/{hs_code}` - Règle spécifique par produit
 - **BUG FIX (27/01/2025)** : Navigateur HS affiche maintenant 5831 codes (corrigé depuis 731)
 
 ### Code Architecture - REFACTORING COMPLET (27/01/2025)
