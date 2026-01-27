@@ -143,22 +143,44 @@
   },
   "production": {
     "title": "African Production Capacity",
-    "subtitle": "Multi-dimensional analysis of economic production",
+    "subtitle": "Multi-dimensional analysis of economic production: Macro, Agriculture, Industry and Mining (2021-2024)",
+    "badge1": "54 African countries",
+    "badge2": "4 dimensions",
+    "badge3": "2021-2024",
+    "sourcesTitle": "Official Data Sources",
+    "footerText": "Production data now covers all 54 African countries members of the AfCFTA across 4 economic dimensions (Macro, Agriculture, Manufacturing, Mining) for the period 2021-2024. Data based on World Bank, FAO, UNIDO and USGS.",
+    "coverageLabel": "Full coverage:",
     "macro": {
-      "title": "Macro Value Added (World Bank / IMF)",
-      "subtitle": "Sectoral structure of GDP for African economies"
+      "title": "Macro",
+      "subtitle": "Value Added",
+      "fullTitle": "Macro Value Added (World Bank / IMF)",
+      "fullSubtitle": "Sectoral structure of GDP for African economies",
+      "source1": "World Bank WDI",
+      "source2": "IMF WEO"
     },
     "agriculture": {
-      "title": "FAOSTAT Agricultural Production",
-      "subtitle": "Official FAO data - Agricultural production, livestock and fisheries"
+      "title": "Agriculture",
+      "subtitle": "FAOSTAT",
+      "fullTitle": "FAOSTAT Agricultural Production",
+      "fullSubtitle": "Official FAO data - Agricultural production, livestock and fisheries",
+      "source1": "FAO FAOSTAT",
+      "source2": "Production Domain"
     },
     "manufacturing": {
-      "title": "UNIDO Industrial Production",
-      "subtitle": "UNIDO INDSTAT4 Data - Manufacturing Value Added"
+      "title": "Manufacturing",
+      "subtitle": "UNIDO",
+      "fullTitle": "UNIDO Industrial Production",
+      "fullSubtitle": "UNIDO INDSTAT4 Data - Manufacturing Value Added",
+      "source1": "UNIDO INDSTAT4",
+      "source2": "ISIC Rev.4"
     },
     "mining": {
-      "title": "Mining Production (USGS)",
-      "subtitle": "Mineral and metal production by African country"
+      "title": "Mining",
+      "subtitle": "USGS",
+      "fullTitle": "Mining Production (USGS)",
+      "fullSubtitle": "Mineral and metal production by African country",
+      "source1": "USGS MCS",
+      "source2": "Commodity Summaries"
     }
   },
   "statistics": {
