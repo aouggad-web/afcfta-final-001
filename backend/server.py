@@ -3380,99 +3380,17 @@ async def get_news_grouped_by_category(force_refresh: bool = Query(False)):
 
 # =====================================================
 # ENDPOINTS STATISTIQUES COMMERCIALES OEC
-# Source: Observatory of Economic Complexity (OEC/BACI)
-# =====================================================
-
-@api_router.get("/oec/countries")
-async def get_oec_african_countries(
-    language: str = Query("fr", description="Langue (fr/en)")
-):
-    """Liste des pays africains disponibles pour les statistiques OEC"""
-    return {
-        "success": True,
-        "total": len(AFRICAN_COUNTRIES_OEC),
-        "countries": get_african_countries_list(language),
-        "source": "OEC/BACI"
-    }
-
-@api_router.get("/oec/years")
-async def get_oec_available_years():
-    """Années disponibles dans les données OEC"""
-    years = await oec_service.get_available_years()
-    return {"success": True, "years": years, "source": "OEC/BACI"}
-
-@api_router.get("/oec/exports/{country_iso3}")
-async def get_oec_country_exports(
-    country_iso3: str,
-    year: int = Query(2022),
-    hs_level: str = Query("HS4"),
-    limit: int = Query(50)
-):
-    """Exportations d'un pays africain par produit HS"""
-    result = await oec_service.get_exports_by_product(country_iso3, year, hs_level, limit)
-    if "error" in result:
-        raise HTTPException(status_code=400, detail=result["error"])
-    return result
-
-@api_router.get("/oec/imports/{country_iso3}")
-async def get_oec_country_imports(
-    country_iso3: str,
-    year: int = Query(2022),
-    hs_level: str = Query("HS4"),
-    limit: int = Query(50)
-):
-    """Importations d'un pays africain par produit HS"""
-    result = await oec_service.get_imports_by_product(country_iso3, year, hs_level, limit)
-    if "error" in result:
-        raise HTTPException(status_code=400, detail=result["error"])
-    return result
-
-@api_router.get("/oec/product/{hs_code}")
-async def get_oec_product_trade(
-    hs_code: str,
-    year: int = Query(2022),
-    trade_flow: str = Query("exports"),
-    limit: int = Query(50)
-):
-    """Statistiques commerciales mondiales pour un code HS"""
-    result = await oec_service.get_trade_by_hs_code(hs_code, year, trade_flow, limit)
-    if "error" in result:
-        raise HTTPException(status_code=400, detail=result["error"])
-    return result
-
-@api_router.get("/oec/product/{hs_code}/africa")
-async def get_oec_african_exporters(
-    hs_code: str,
-    year: int = Query(2022),
-    limit: int = Query(20)
-):
-    """Top exportateurs africains pour un produit HS"""
-    result = await oec_service.get_top_african_exporters(hs_code, year, limit)
-    if "error" in result:
-        raise HTTPException(status_code=400, detail=result["error"])
-    return result
-
-@api_router.get("/oec/bilateral/{exporter_iso3}/{importer_iso3}")
-async def get_oec_bilateral_trade(
-    exporter_iso3: str,
-    importer_iso3: str,
-    year: int = Query(2022),
-    hs_level: str = Query("HS4"),
-    limit: int = Query(50)
-):
-    """Commerce bilatéral entre deux pays africains"""
-    result = await oec_service.get_bilateral_trade(exporter_iso3, importer_iso3, year, hs_level, limit)
-    if "error" in result:
-        raise HTTPException(status_code=400, detail=result["error"])
-    return result
-
-
 # =============================================================================
 # REGISTER MODULAR ROUTES
 # =============================================================================
 # Routes migrated to /routes/ module:
 # - /health, /health/status (health.py)
 # - /news, /news/by-region, /news/by-category (news.py)
+# - /oec/* (oec.py) - OEC Trade Statistics endpoints
+# - /hs-codes/* (hs_codes.py) - HS Code browser and search
+# 
+# Note: Legacy routes in this file will be migrated progressively
+# =============================================================================
 # - /oec/* (oec.py)
 # - /hs-codes/* (hs_codes.py)
 # 
