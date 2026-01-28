@@ -465,11 +465,11 @@ android-sdk/ -e
 # Data update reports
 data_update_report.json
 
-# Prevent data file conflicts - backup and old versions should not be committed
-*_backup.json
-*_old.json
-*_enriched.json
-*_enriched_pro.json
-*_original.json
-*.backup
-*.csv.backup
+# Prevent data file conflicts - specific backup/intermediate files that should not be committed
+# Root-level data file variations to ignore:
+/ports_africains_backup.json
+/ports_africains_old.json
+/ports_africains_enriched.json
+/ports_africains_enriched_pro.json
+/airports_africains_original.json
+/*.csv.backup
