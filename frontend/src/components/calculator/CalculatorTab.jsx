@@ -13,7 +13,8 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 import { toast } from '../../hooks/use-toast';
 import { HSCodeSearch, HSCodeBrowser } from '../HSCodeSelector';
 import SmartHSSearch from '../SmartHSSearch';
-import { Package, ChevronDown, ChevronUp, Sparkles } from 'lucide-react';
+import { Package, ChevronDown, ChevronUp, Sparkles, AlertTriangle, Info } from 'lucide-react';
+import './calculator.css';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -461,123 +462,234 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
                 {countryFlags[result.origin_country]} {getCountryName(result.origin_country)} → {countryFlags[result.destination_country]} {getCountryName(result.destination_country)}
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6 pt-6">
+            <CardContent className="space-y-5 pt-6 results-container">
               {/* Information sur la sous-position nationale si utilisée */}
               {result.tariff_precision === 'sub_position' && (
-                <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg border-2 border-purple-400 shadow-md">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-2xl">🎯</span>
-                    <h4 className="font-bold text-lg text-purple-700">{t.subPositionInfo}</h4>
-                    <Badge className="bg-purple-600 text-white ml-2">{t.subPositionApplied}</Badge>
-                    <Badge className="bg-green-500 text-white ml-1">{t.precisionHigh}</Badge>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-sm text-gray-600">{t.subPositionCode}</p>
-                      <p className="font-bold text-purple-800 text-xl">{result.sub_position_used}</p>
+                <div className="result-section tariff-info-section bg-gradient-to-r from-purple-50 to-indigo-50 p-5 rounded-xl border border-purple-200 shadow-sm">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Package className="w-6 h-6 text-purple-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-2 flex-wrap">
+                        <h4 className="font-bold text-purple-800">{t.subPositionInfo}</h4>
+                        <Badge className="bg-purple-600 text-white text-xs">{t.precisionHigh}</Badge>
+                      </div>
+                      <p className="font-mono text-lg font-bold text-purple-900 mb-1">{result.sub_position_used}</p>
                       {result.sub_position_description && (
-                        <p className="font-semibold text-gray-700 mt-1">{result.sub_position_description}</p>
+                        <p className="text-gray-600 text-sm">{result.sub_position_description}</p>
                       )}
-                      <p className="text-xs text-purple-600 mt-1">HS6: {result.hs6_code}</p>
                     </div>
-                    <div className="grid grid-cols-2 gap-2 text-center">
-                      <div className="bg-red-100 p-3 rounded">
-                        <p className="text-xs text-red-600">{t.normalRate}</p>
-                        <p className="font-bold text-red-700 text-lg">{(result.normal_tariff_rate * 100).toFixed(1)}%</p>
+                    <div className="grid grid-cols-2 gap-2 flex-shrink-0">
+                      <div className="bg-red-50 p-3 rounded-lg text-center border border-red-100">
+                        <p className="text-xs text-red-500 font-medium">{t.normalRate}</p>
+                        <p className="font-bold text-red-600 text-lg">{(result.normal_tariff_rate * 100).toFixed(1)}%</p>
                       </div>
-                      <div className="bg-green-100 p-3 rounded">
-                        <p className="text-xs text-green-600">{t.zlecafRate}</p>
-                        <p className="font-bold text-green-700 text-lg">{(result.zlecaf_tariff_rate * 100).toFixed(1)}%</p>
+                      <div className="bg-green-50 p-3 rounded-lg text-center border border-green-100">
+                        <p className="text-xs text-green-500 font-medium">{t.zlecafRate}</p>
+                        <p className="font-bold text-green-600 text-lg">{(result.zlecaf_tariff_rate * 100).toFixed(1)}%</p>
                       </div>
                     </div>
                   </div>
-                  {result.has_varying_sub_positions && (
-                    <p className="text-xs text-orange-600 mt-2 font-semibold">
-                      ⚠️ {t.varyingRates} ({result.available_sub_positions_count} {t.subPositionsAvailable})
-                    </p>
-                  )}
                 </div>
               )}
 
               {/* Information sur le tarif SH6 précis */}
               {result.tariff_precision === 'hs6_country' && (
-                <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-4 rounded-lg border-2 border-blue-300 shadow-md">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-2xl">🎯</span>
-                    <h4 className="font-bold text-lg text-blue-700">{t.hs6TariffInfo}</h4>
-                    <Badge className="bg-green-500 text-white ml-2">{t.hs6TariffApplied}</Badge>
-                    <Badge className="bg-blue-500 text-white ml-1">{t.precisionHigh}</Badge>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-sm text-gray-600">{t.productDescription}</p>
+                <div className="result-section tariff-info-section bg-gradient-to-r from-blue-50 to-cyan-50 p-5 rounded-xl border border-blue-200 shadow-sm">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Package className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-2 flex-wrap">
+                        <h4 className="font-bold text-blue-800">{t.hs6TariffInfo}</h4>
+                        <Badge className="bg-blue-600 text-white text-xs">{t.hs6TariffApplied}</Badge>
+                      </div>
                       <p className="font-semibold text-gray-800">{hs6TariffInfo?.description || `Code ${result.hs6_code}`}</p>
-                      <p className="text-xs text-blue-600 mt-1">Code: {result.hs6_code}</p>
+                      <p className="text-blue-600 text-sm font-mono mt-1">Code: {result.hs6_code}</p>
                     </div>
-                    <div className="grid grid-cols-2 gap-2 text-center">
-                      <div className="bg-red-100 p-3 rounded">
-                        <p className="text-xs text-red-600">{t.normalRate}</p>
-                        <p className="font-bold text-red-700 text-lg">{(result.normal_tariff_rate * 100).toFixed(1)}%</p>
+                    <div className="grid grid-cols-2 gap-2 flex-shrink-0">
+                      <div className="bg-red-50 p-3 rounded-lg text-center border border-red-100">
+                        <p className="text-xs text-red-500 font-medium">{t.normalRate}</p>
+                        <p className="font-bold text-red-600 text-lg">{(result.normal_tariff_rate * 100).toFixed(1)}%</p>
                       </div>
-                      <div className="bg-green-100 p-3 rounded">
-                        <p className="text-xs text-green-600">{t.zlecafRate}</p>
-                        <p className="font-bold text-green-700 text-lg">{(result.zlecaf_tariff_rate * 100).toFixed(1)}%</p>
+                      <div className="bg-green-50 p-3 rounded-lg text-center border border-green-100">
+                        <p className="text-xs text-green-500 font-medium">{t.zlecafRate}</p>
+                        <p className="font-bold text-green-600 text-lg">{(result.zlecaf_tariff_rate * 100).toFixed(1)}%</p>
                       </div>
                     </div>
                   </div>
-                  {result.available_sub_positions_count > 0 && (
-                    <p className="text-xs text-orange-600 mt-2 font-semibold">
-                      💡 {result.available_sub_positions_count} {t.subPositionsAvailable} - {t.varyingRates}
+                  {result.available_sub_positions_count > 0 && !result.rate_warning?.has_variation && (
+                    <p className="text-xs text-blue-600 mt-3 pl-16">
+                      {result.available_sub_positions_count} {t.subPositionsAvailable}
                     </p>
                   )}
+                </div>
+              )}
+
+              {/* WARNING: Taux variables selon sous-positions nationales */}
+              {result.rate_warning && result.rate_warning.has_variation && (
+                <div 
+                  className="rate-warning-box bg-gradient-to-r from-amber-50 via-orange-50 to-yellow-50 p-5 rounded-xl border-l-4 border-amber-500 shadow-lg" 
+                  data-testid="rate-warning-box"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
+                      <AlertTriangle className="w-6 h-6 text-amber-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-bold text-lg text-amber-800 mb-2">
+                        {language === 'fr' ? 'Attention: Taux de droits variables' : 'Warning: Variable duty rates'}
+                      </h4>
+                      <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                        {language === 'fr' 
+                          ? `Ce code SH6 (${result.hs6_code}) comporte plusieurs sous-positions nationales avec des taux différents.`
+                          : `This HS6 code (${result.hs6_code}) has multiple national sub-headings with different rates.`}
+                      </p>
+                      
+                      {/* Visualisation des taux min/max/utilisé */}
+                      <div className="grid grid-cols-3 gap-3 mb-4">
+                        <div className="rate-card bg-green-50 p-3 rounded-lg text-center border border-green-200 shadow-sm">
+                          <p className="text-xs text-green-600 font-medium uppercase tracking-wide">{language === 'fr' ? 'Minimum' : 'Minimum'}</p>
+                          <p className="text-2xl font-bold text-green-700 mt-1">{result.rate_warning.min_rate_pct}</p>
+                        </div>
+                        <div className="rate-card bg-blue-50 p-3 rounded-lg text-center border-2 border-blue-400 shadow-md relative">
+                          <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
+                            <Badge className="bg-blue-600 text-white text-xs px-2">
+                              {language === 'fr' ? 'Utilisé' : 'Used'}
+                            </Badge>
+                          </div>
+                          <p className="text-xs text-blue-600 font-medium uppercase tracking-wide mt-2">{language === 'fr' ? 'Actuel' : 'Current'}</p>
+                          <p className="text-2xl font-bold text-blue-700 mt-1">{result.rate_warning.rate_used_pct}</p>
+                        </div>
+                        <div className="rate-card bg-red-50 p-3 rounded-lg text-center border border-red-200 shadow-sm">
+                          <p className="text-xs text-red-600 font-medium uppercase tracking-wide">{language === 'fr' ? 'Maximum' : 'Maximum'}</p>
+                          <p className="text-2xl font-bold text-red-700 mt-1">{result.rate_warning.max_rate_pct}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-2 bg-amber-100/50 p-3 rounded-lg">
+                        <Info className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+                        <p className="text-sm text-amber-800">
+                          {language === 'fr' 
+                            ? 'Pour un calcul précis, sélectionnez la sous-position correspondant exactement à votre produit ci-dessous.'
+                            : 'For an accurate calculation, select the sub-heading that exactly matches your product below.'}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Sous-positions détaillées - Affiché uniquement si taux variables */}
+              {result.sub_positions_details && result.sub_positions_details.length > 0 && result.rate_warning?.has_variation && (
+                <div className="result-section bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                  <div 
+                    className="p-4 bg-gradient-to-r from-purple-50 to-indigo-50 border-b border-purple-100 cursor-pointer"
+                    onClick={() => document.getElementById('sub-positions-details')?.toggleAttribute('open')}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                          <Package className="w-5 h-5 text-purple-600" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-purple-800">
+                            {language === 'fr' ? 'Sous-positions disponibles' : 'Available sub-headings'}
+                          </h4>
+                          <p className="text-sm text-purple-600">
+                            {language === 'fr' ? 'Cliquez pour sélectionner le taux exact' : 'Click to select exact rate'}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Badge className="bg-purple-600 text-white">{result.sub_positions_details.length}</Badge>
+                        <Badge className="bg-gradient-to-r from-green-500 to-red-500 text-white text-xs">
+                          {result.rate_warning.min_rate_pct} → {result.rate_warning.max_rate_pct}
+                        </Badge>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <details id="sub-positions-details" className="sub-positions-container" open>
+                    <summary className="sr-only">Toggle sub-positions</summary>
+                    <div className="p-4 space-y-2 max-h-80 overflow-y-auto">
+                      {result.sub_positions_details.map((sp, idx) => {
+                        const isMinRate = sp.dd_rate === result.rate_warning?.min_rate;
+                        const isMaxRate = sp.dd_rate === result.rate_warning?.max_rate;
+                        const isCurrentRate = sp.dd_rate === result.rate_warning?.rate_used;
+                        
+                        return (
+                          <div 
+                            key={idx} 
+                            className={`sub-position-item p-3 rounded-lg cursor-pointer flex items-center justify-between border transition-all ${
+                              isCurrentRate 
+                                ? 'bg-blue-50 border-blue-300 shadow-sm' 
+                                : 'bg-gray-50 border-gray-200 hover:border-purple-300 hover:bg-purple-50'
+                            }`}
+                            onClick={() => {
+                              setHsCode(sp.code);
+                              toast({
+                                title: language === 'fr' ? 'Sous-position sélectionnée' : 'Sub-heading selected',
+                                description: sp.code,
+                              });
+                            }}
+                          >
+                            <div className="flex items-center gap-3 min-w-0 flex-1">
+                              <code className="font-mono font-bold text-purple-800 bg-purple-100 px-2 py-1 rounded text-sm">
+                                {sp.code}
+                              </code>
+                              <span className="text-gray-700 text-sm truncate">
+                                {language === 'fr' ? sp.description_fr : sp.description_en}
+                              </span>
+                            </div>
+                            <div className="flex items-center gap-2 flex-shrink-0 ml-3">
+                              {isCurrentRate && (
+                                <Badge className="bg-blue-100 text-blue-700 text-xs">
+                                  {language === 'fr' ? 'Actuel' : 'Current'}
+                                </Badge>
+                              )}
+                              <Badge className={`text-white font-bold px-3 ${
+                                isMinRate ? 'bg-green-500' :
+                                isMaxRate ? 'bg-red-500' :
+                                isCurrentRate ? 'bg-blue-500' : 'bg-gray-500'
+                              }`}>
+                                {sp.dd_rate_pct}
+                              </Badge>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </details>
                 </div>
               )}
               
               {/* Badge tarif par chapitre si pas de SH6 spécifique */}
               {result.tariff_precision === 'chapter' && (
-                <div className="bg-gray-50 p-3 rounded-lg border border-gray-200">
-                  <div className="flex items-center gap-2">
-                    <span>📦</span>
-                    <span className="text-sm text-gray-600">{t.chapterTariffApplied}</span>
-                    <Badge variant="outline" className="text-gray-600">{t.sectorPrefix} {result.hs_code?.substring(0, 2)}</Badge>
-                    <Badge variant="outline" className="text-yellow-600 ml-2">{t.precisionMedium}</Badge>
+                <div className="result-section tariff-info-section bg-gray-50 p-4 rounded-xl border border-gray-200 shadow-sm">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                      <Package className="w-5 h-5 text-gray-500" />
+                    </div>
+                    <div className="flex-1">
+                      <span className="text-sm text-gray-600">{t.chapterTariffApplied}</span>
+                    </div>
+                    <div className="flex gap-2">
+                      <Badge variant="outline" className="text-gray-600">{t.sectorPrefix} {result.hs_code?.substring(0, 2)}</Badge>
+                      <Badge variant="outline" className="text-amber-600 border-amber-300">{t.precisionMedium}</Badge>
+                    </div>
                   </div>
                 </div>
               )}
 
-              {/* Liste des sous-positions disponibles */}
-              {subPositions && subPositions.has_sub_positions && subPositions.count > 0 && (
-                <details className="bg-purple-50 p-3 rounded-lg border border-purple-200">
-                  <summary className="cursor-pointer font-semibold text-purple-700 flex items-center gap-2">
-                    <span>📋</span> {t.viewAllSubPositions} ({subPositions.count})
-                    {subPositions.has_varying_rates && (
-                      <Badge className="bg-orange-500 text-white text-xs ml-2">
-                        {subPositions.rate_range?.min_pct} - {subPositions.rate_range?.max_pct}
-                      </Badge>
-                    )}
-                  </summary>
-                  <div className="mt-3 space-y-2">
-                    {subPositions.sub_positions.map((sp, idx) => (
-                      <div key={idx} className={`p-2 rounded text-sm ${
-                        result.sub_position_used === sp.code ? 'bg-purple-200 border-2 border-purple-400' : 'bg-white'
-                      }`}>
-                        <span className="font-mono font-bold text-purple-800">{sp.code}</span>
-                        <span className="mx-2">-</span>
-                        <span className="text-gray-700">{sp.description}</span>
-                        <Badge className={`ml-2 ${
-                          result.sub_position_used === sp.code ? 'bg-purple-600' : 'bg-gray-500'
-                        } text-white text-xs`}>
-                          {sp.dd_rate_pct}
-                        </Badge>
-                      </div>
-                    ))}
-                  </div>
-                </details>
-              )}
-
               {/* Graphique comparaison complète avec TOUTES les taxes */}
-              <div className="bg-white p-4 rounded-lg shadow-md" style={{ minHeight: '320px' }}>
-                <h4 className="font-bold text-lg mb-4 text-gray-800">📊 {t.completeComparison}</h4>
+              <div className="chart-container result-section bg-white p-5 rounded-xl shadow-md border border-gray-100">
+                <h4 className="font-bold text-lg mb-4 text-gray-800 flex items-center gap-2">
+                  <span className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">📊</span>
+                  {t.completeComparison}
+                </h4>
                 <ResponsiveContainer width="100%" height={280} debounce={300}>
                   <BarChart data={[
                     { 
@@ -609,33 +721,39 @@ export default function CalculatorTab({ countries, language = 'fr' }) {
               </div>
 
               {/* Économies TOTALES */}
-              <div className="text-center bg-gradient-to-r from-yellow-100 via-orange-100 to-red-100 p-8 rounded-2xl shadow-lg border-4 border-yellow-400">
-                <p className="text-lg font-bold text-gray-700 mb-2">💰 {t.totalSavings}</p>
-                <p className="text-5xl font-extrabold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-3">
+              <div className="savings-section result-section text-center bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 p-6 rounded-xl shadow-lg border border-green-200">
+                <p className="text-base font-semibold text-gray-600 mb-3">{t.totalSavings}</p>
+                <p className="text-4xl md:text-5xl font-extrabold text-green-600 mb-4">
                   {formatCurrency(result.total_savings_with_taxes)}
                 </p>
-                <Badge className="text-xl px-6 py-2 bg-gradient-to-r from-green-600 to-blue-600 text-white shadow-lg">
-                  🎉 {result.total_savings_percentage.toFixed(1)}% {t.totalSavingsPercent}
-                </Badge>
-                <Progress value={result.total_savings_percentage} className="w-full mt-4 h-3" />
-                <p className="text-sm text-gray-600 mt-3">
-                  {t.totalCostComparison} {formatCurrency(result.normal_total_cost)} (NPF) {t.vs} {formatCurrency(result.zlecaf_total_cost)} (ZLECAf)
+                <div className="inline-flex items-center gap-2 bg-green-600 text-white px-5 py-2 rounded-full shadow-md">
+                  <Sparkles className="w-5 h-5" />
+                  <span className="text-xl font-bold">{result.total_savings_percentage.toFixed(1)}%</span>
+                  <span className="text-sm opacity-90">{t.totalSavingsPercent}</span>
+                </div>
+                <Progress value={result.total_savings_percentage} className="w-full mt-5 h-2 bg-green-100" />
+                <p className="text-sm text-gray-500 mt-4">
+                  {t.totalCostComparison} <span className="font-semibold text-red-600">{formatCurrency(result.normal_total_cost)}</span> (NPF) 
+                  {' '}{t.vs}{' '}
+                  <span className="font-semibold text-green-600">{formatCurrency(result.zlecaf_total_cost)}</span> (ZLECAf)
                 </p>
               </div>
 
               {/* Journal de calcul détaillé */}
               {result.normal_calculation_journal && (
-                <Card className="shadow-lg border-t-4 border-t-purple-500">
-                  <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50">
-                    <CardTitle className="text-xl font-bold text-purple-700 flex items-center gap-2">
-                      <span>📋</span>
-                      <span>{t.calculationJournal}</span>
+                <Card className="journal-container result-section shadow-md border-0 overflow-hidden">
+                  <CardHeader className="bg-gradient-to-r from-slate-50 to-gray-50 border-b border-gray-100 py-4">
+                    <CardTitle className="text-lg font-bold text-gray-800 flex items-center gap-3">
+                      <div className="w-9 h-9 bg-purple-100 rounded-lg flex items-center justify-center">
+                        <Package className="w-5 h-5 text-purple-600" />
+                      </div>
+                      {t.calculationJournal}
                     </CardTitle>
-                    <CardDescription className="font-semibold">
+                    <CardDescription className="text-gray-500 text-sm mt-1">
                       {result.computation_order_ref}
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="pt-4">
+                  <CardContent className="p-0">
                     <div className="overflow-x-auto">
                       <Table>
                         <TableHeader>

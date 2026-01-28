@@ -73,6 +73,9 @@ class TariffCalculationResponse(BaseModel):
     sub_position_description: Optional[str] = None
     has_varying_sub_positions: bool = False  # Si d'autres taux existent pour ce HS6
     available_sub_positions_count: int = 0
+    # WARNING: Taux variables selon sous-positions
+    rate_warning: Optional[Dict[str, Any]] = None  # Warning si taux différents par sous-position
+    sub_positions_details: Optional[List[Dict[str, Any]]] = None  # Liste des sous-positions avec leurs taux
     # Règles d'origine
     rules_of_origin: Dict[str, Any]
     # Top producteurs africains

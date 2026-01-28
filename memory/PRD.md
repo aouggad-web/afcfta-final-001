@@ -50,6 +50,23 @@ Application web d'analyse des statistiques commerciales et économiques africain
   - **API endpoints**:
     - `GET /api/rules-of-origin/stats` - Statistiques de couverture
     - `GET /api/rules-of-origin/{hs_code}` - Règle spécifique par produit
+- **FEATURE: Warning Taux Variables par Sous-Position (27/01/2025)** ✅ 
+  - **IMPLÉMENTÉ**: Détection et affichage des taux de DD variables selon les sous-positions nationales
+  - **Méthodologie**: 
+    - Analyse des sous-positions (8-12 chiffres) pour chaque code SH6
+    - Si toutes les sous-positions ont le même taux → pas de warning
+    - Si des taux différents existent → affichage d'un warning avec min/max
+  - **Exemples testés**:
+    - Riz (100630) vers Nigeria: 50% → 70% (5 sous-positions)
+    - Voitures (870323) vers Nigeria: 35% → 70% (6 sous-positions selon âge)
+    - Médicaments (300490): Pas de warning (0% uniforme)
+  - **Réponse API enrichie**:
+    - `rate_warning`: Message d'avertissement bilingue + taux min/max/utilisé
+    - `sub_positions_details`: Liste complète des sous-positions avec leurs taux
+    - `has_varying_sub_positions`: Booléen indiquant si variation
+  - **Tests passés**: 15/15 (100% backend)
+  - **Fichiers modifiés**: `/app/backend/models.py`, `/app/backend/server.py`
+  - **Frontend**: Nouveau composant de warning avec visualisation min/max/utilisé
 - **BUG FIX (27/01/2025)** : Navigateur HS affiche maintenant 5831 codes (corrigé depuis 731)
 
 ### Code Architecture - REFACTORING COMPLET (27/01/2025)
@@ -320,6 +337,28 @@ Modules partagés créés (378 lignes):
     - `/app/backend/server.py` - Endpoint /api/rules-of-origin/stats ajouté
     - `/app/backend/tests/test_rules_of_origin.py` - Tests automatisés
   - **Rapport de tests**: `/app/test_reports/iteration_7.json`
+
+- **Feature - Warning Taux Variables par Sous-Position (27/01/2025)** - COMPLETE ✅
+  - **Besoin**: Vérifier les taux DD, TVA, taxes réels par pays selon sous-positions nationales
+  - **Méthodologie implémentée**:
+    1. Analyse des sous-positions (8-12 chiffres) de chaque code SH6
+    2. Si taux identiques → utilise le taux commun
+    3. Si taux différents → affiche warning avec min/max et liste des possibilités
+  - **Exemples validés**:
+    - Riz (100630) → Nigeria: Warning ⚠️ 50%-70% (5 sous-positions)
+    - Voitures (870323) → Nigeria: Warning ⚠️ 35%-70% (6 sous-positions: neuf vs occasion)
+    - Médicaments (300490): Pas de warning (0% uniforme)
+  - **Réponse API enrichie**: `rate_warning`, `sub_positions_details`
+  - **Tests passés**: 15/15 (100%)
+  - **Rapport de tests**: `/app/test_reports/iteration_8.json`
+  - **UI/UX amélioré (27/01/2025)**:
+    - Nouveau fichier CSS: `/app/frontend/src/components/calculator/calculator.css`
+    - Animations fluides (fade-in, transitions CSS)
+    - Warning box avec design moderne (icône AlertTriangle, cartes min/max/utilisé)
+    - Liste des sous-positions cliquables avec code couleur
+    - Suppression des duplications dans l'affichage
+    - Espacement cohérent pour éviter les superpositions
+
 - **Extension complète base HS6 (27/01/2025)** - COMPLETE
   - **825 codes HS6** (de 93 à 825, +732 codes)
   - **62 catégories** de produits (de 36 à 62)
