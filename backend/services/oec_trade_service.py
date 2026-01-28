@@ -563,8 +563,13 @@ def get_country_name_to_iso3_mapping() -> Dict[str, str]:
     Utile pour le frontend qui reçoit des noms de pays de l'API OEC
     et doit les convertir en codes ISO3 pour afficher les drapeaux.
     
+    The mapping keys use the "name_en" field from AFRICAN_COUNTRIES_OEC entries.
+    
     Inclut également des variantes de noms pour une meilleure compatibilité
     avec les différentes représentations possibles des noms de pays dans l'API OEC.
+    
+    Returns:
+        Dict[str, str]: Mapping of country names to ISO3 codes
     """
     mapping = {}
     

@@ -161,14 +161,23 @@ export default function OECTradeStats({ language = 'fr' }) {
         if (countriesResponse.data.success) {
           setCountries(countriesResponse.data.countries);
         }
-        
+      } catch (err) {
+        console.error('Error loading countries:', err);
+      }
+      
+      try {
         // Charger le mapping name_en -> ISO3 depuis le backend
         const mappingResponse = await axios.get(`${API}/oec/countries/name-to-iso3`);
         if (mappingResponse.data.success) {
           setCountryNameToIso3(mappingResponse.data.mapping);
+        } else {
+          // Fallback to empty mapping if request fails
+          setCountryNameToIso3({});
         }
       } catch (err) {
-        console.error('Error loading countries:', err);
+        console.error('Error loading country name mapping:', err);
+        // Set empty mapping as fallback - flags will show default 🌍
+        setCountryNameToIso3({});
       }
     };
     fetchCountriesAndMapping();
@@ -274,7 +283,7 @@ export default function OECTradeStats({ language = 'fr' }) {
   }, [selectedCountry, secondCountry, selectedYear]);
 
   // Mapping des noms de pays OEC vers ISO3 pour les drapeaux
-  // Utilise le mapping chargé depuis le backend pour éviter la duplication de données
+  // Uses the mapping dynamically loaded from the backend endpoint to avoid hardcoding country name variations in the frontend
   const getCountryFlagFromName = (countryName) => {
     if (!countryName) return '🌍';
     
