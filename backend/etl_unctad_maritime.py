@@ -223,10 +223,11 @@ def main():
     """Script principal pour enrichir les ports avec UNCTAD"""
     collector = UNCTADMaritimeCollector()
     
-    # Enrichir les ports existants
+    # Enrichir les ports existants - write back to the same file to avoid duplicates
+    ports_file = str(ROOT_DIR / 'ports_africains.json')
     collector.enrich_ports_with_unctad_data(
-        ports_file=str(ROOT_DIR / 'ports_africains.json'),
-        output_file=str(ROOT_DIR / 'ports_africains_enriched.json')
+        ports_file=ports_file,
+        output_file=ports_file  # Write back to source to maintain single source of truth
     )
 
 
