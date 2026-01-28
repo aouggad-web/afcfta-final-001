@@ -32,6 +32,20 @@ const formatQuantity = (quantity) => {
   return quantity.toFixed(0);
 };
 
+/**
+ * Extrait le vrai code HS depuis l'identifiant OEC
+ * L'ID OEC a un préfixe (1-21) suivi du code HS (4 ou 6 chiffres)
+ * Ex: 52711 -> code HS4 = 2711 (Petroleum Gas)
+ * Ex: 178704 -> code HS4 = 8704 (Vehicles)
+ */
+const extractHSCode = (oecId, hsLevel = 'HS4') => {
+  if (!oecId) return '-';
+  const idStr = String(oecId);
+  const digits = hsLevel === 'HS6' ? 6 : 4;
+  // Prendre les N derniers chiffres (4 pour HS4, 6 pour HS6)
+  return idStr.slice(-digits).padStart(digits, '0');
+};
+
 export default function OECTradeStats({ language = 'fr' }) {
   const [activeView, setActiveView] = useState('country');
   const [countries, setCountries] = useState([]);
