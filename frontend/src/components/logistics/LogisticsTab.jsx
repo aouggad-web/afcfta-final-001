@@ -44,7 +44,7 @@ export default function LogisticsTab({ language = 'fr' }) {
       <div ref={contentRef}>
         {/* Main Tabs with enhanced styling */}
         <Tabs defaultValue="maritime" className="space-y-5">
-          <div className="tabs-list-boxed cols-4">
+          <TabsList className="tabs-list-boxed cols-4">
             <TabsTrigger 
               value="maritime" 
               className="tab-trigger-enhanced tab-blue"
@@ -77,7 +77,7 @@ export default function LogisticsTab({ language = 'fr' }) {
               <Building2 className="tab-icon" />
               <span>{t('logistics.freeZones')}</span>
             </TabsTrigger>
-          </div>
+          </TabsList>
 
           <TabsContent value="maritime" className="tab-content-enhanced mt-0">
             <MaritimeLogisticsTab language={language} />

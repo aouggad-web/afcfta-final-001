@@ -51,7 +51,7 @@ function ProductionTab({ language = 'fr' }) {
       <div ref={contentRef}>
         {/* Sub-tabs Navigation - Enhanced boxed style */}
         <Tabs value={activeSubTab} onValueChange={setActiveSubTab} className="space-y-5">
-          <div className="tabs-list-boxed cols-4">
+          <TabsList className="tabs-list-boxed cols-4">
             <TabsTrigger 
               value="macro" 
               className="tab-trigger-enhanced tab-purple"
@@ -80,7 +80,7 @@ function ProductionTab({ language = 'fr' }) {
               <Pickaxe className="tab-icon" />
               <span>{t('production.mining.title')}</span>
             </TabsTrigger>
-          </div>
+          </TabsList>
 
           <TabsContent value="macro" className="tab-content-enhanced mt-0">
             <ProductionMacro language={language} />
