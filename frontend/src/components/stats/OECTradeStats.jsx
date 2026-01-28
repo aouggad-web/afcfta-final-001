@@ -887,7 +887,7 @@ export default function OECTradeStats({ language = 'fr' }) {
                             <TableCell>
                               <div className="flex items-start gap-2">
                                 <Badge variant="secondary" className="bg-orange-100 text-orange-700 font-mono text-xs px-1.5 py-0.5 shrink-0">
-                                  {item['HS6 ID'] || item['HS4 ID'] || '-'}
+                                  {extractHSCode(item['HS6 ID'] || item['HS4 ID'], item['HS6 ID'] ? 'HS6' : 'HS4')}
                                 </Badge>
                                 <span className="font-medium text-sm">{item['HS6'] || item['HS4'] || '-'}</span>
                               </div>
