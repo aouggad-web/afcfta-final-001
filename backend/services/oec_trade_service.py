@@ -350,6 +350,9 @@ class OECTradeService:
         """
         Récupère le commerce bilatéral entre deux pays avec valeur et volume.
         Utilise le cube HS17 (compatible SH2022) avec HS4 par défaut.
+        
+        IMPORTANT: On récupère 500 produits de l'API pour avoir tous les produits
+        y compris les produits énergétiques (pétrole, gaz), puis on trie et limite.
         """
         exporter_info = AFRICAN_COUNTRIES_OEC.get(exporter_iso3.upper())
         importer_info = AFRICAN_COUNTRIES_OEC.get(importer_iso3.upper())
@@ -359,7 +362,8 @@ class OECTradeService:
         if not importer_info:
             return {"error": f"Importer country {importer_iso3} not found", "data": []}
         
-        # Inclure Trade Value et Quantity (volume)
+        # Récupérer TOUS les produits (500) pour avoir une vue complète
+        # incluant les produits énergétiques qui peuvent être loin dans la liste
         params = self._build_params(
             cube=OEC_CUBES[DEFAULT_CUBE],
             drilldowns=["Year", "Exporter Country", "Importer Country", hs_level],
@@ -369,11 +373,11 @@ class OECTradeService:
                 "Exporter Country": exporter_info["oec_id"],
                 "Importer Country": importer_info["oec_id"]
             },
-            limit=limit
+            limit=500  # Récupérer plus de données pour avoir tous les produits importants
         )
         
         result = await self._make_request(params)
-        return self._format_bilateral_response(result, exporter_info, importer_info, year)
+        return self._format_bilateral_response(result, exporter_info, importer_info, year, limit)
     
     async def get_available_years(self) -> List[int]:
         """Retourne les années disponibles dans l'API pour le cube HS17"""
