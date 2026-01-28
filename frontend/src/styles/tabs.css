@@ -89,7 +89,14 @@
 
 /* Variant: Boxed style (for logistics/production) */
 .tabs-list-boxed {
-  @apply grid gap-2 p-2 bg-gradient-to-r from-slate-50 to-gray-50 rounded-xl border border-gray-100;
+  display: grid !important;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: linear-gradient(to right, rgb(248 250 252), rgb(249 250 251));
+  border-radius: 0.75rem;
+  border: 1px solid rgb(243 244 246);
+  height: auto !important;
+  width: 100% !important;
 }
 
 .tabs-list-boxed.cols-2 { @apply grid-cols-2; }
