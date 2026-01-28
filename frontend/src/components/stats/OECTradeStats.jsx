@@ -35,6 +35,7 @@ const formatQuantity = (quantity) => {
 export default function OECTradeStats({ language = 'fr' }) {
   const [activeView, setActiveView] = useState('country');
   const [countries, setCountries] = useState([]);
+  const [countryNameToIso3, setCountryNameToIso3] = useState({}); // Mapping name_en -> ISO3
   const [years] = useState([2023, 2022, 2021, 2020, 2019, 2018]); // Années disponibles pour HS Rev. 2017
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -151,19 +152,26 @@ export default function OECTradeStats({ language = 'fr' }) {
     { code: '710231', label: t.diamonds }   // Diamants non montés
   ];
 
-  // Charger les pays africains
+  // Charger les pays africains et le mapping name_en -> ISO3
   useEffect(() => {
-    const fetchCountries = async () => {
+    const fetchCountriesAndMapping = async () => {
       try {
-        const response = await axios.get(`${API}/oec/countries?lang=${language}`);
-        if (response.data.success) {
-          setCountries(response.data.countries);
+        // Charger la liste des pays
+        const countriesResponse = await axios.get(`${API}/oec/countries?lang=${language}`);
+        if (countriesResponse.data.success) {
+          setCountries(countriesResponse.data.countries);
+        }
+        
+        // Charger le mapping name_en -> ISO3 depuis le backend
+        const mappingResponse = await axios.get(`${API}/oec/countries/name-to-iso3`);
+        if (mappingResponse.data.success) {
+          setCountryNameToIso3(mappingResponse.data.mapping);
         }
       } catch (err) {
         console.error('Error loading countries:', err);
       }
     };
-    fetchCountries();
+    fetchCountriesAndMapping();
   }, [language]);
 
   // Rechercher la dénomination du code HS quand le code change
@@ -266,29 +274,12 @@ export default function OECTradeStats({ language = 'fr' }) {
   }, [selectedCountry, secondCountry, selectedYear]);
 
   // Mapping des noms de pays OEC vers ISO3 pour les drapeaux
+  // Utilise le mapping chargé depuis le backend pour éviter la duplication de données
   const getCountryFlagFromName = (countryName) => {
     if (!countryName) return '🌍';
     
-    // Mapping des noms OEC vers ISO3
-    const nameToIso3 = {
-      'Algeria': 'DZA', 'Angola': 'AGO', 'Benin': 'BEN', 'Botswana': 'BWA',
-      'Burkina Faso': 'BFA', 'Burundi': 'BDI', 'Cameroon': 'CMR', 'Cape Verde': 'CPV',
-      'Central African Republic': 'CAF', 'Chad': 'TCD', 'Comoros': 'COM',
-      'Republic of the Congo': 'COG', 'Democratic Republic of the Congo': 'COD',
-      "Cote d'Ivoire": 'CIV', 'Ivory Coast': 'CIV', 'Djibouti': 'DJI', 'Egypt': 'EGY',
-      'Equatorial Guinea': 'GNQ', 'Eritrea': 'ERI', 'Eswatini': 'SWZ', 'Ethiopia': 'ETH',
-      'Gabon': 'GAB', 'Gambia': 'GMB', 'Ghana': 'GHA', 'Guinea': 'GIN',
-      'Guinea-Bissau': 'GNB', 'Kenya': 'KEN', 'Lesotho': 'LSO', 'Liberia': 'LBR',
-      'Libya': 'LBY', 'Madagascar': 'MDG', 'Malawi': 'MWI', 'Mali': 'MLI',
-      'Mauritania': 'MRT', 'Mauritius': 'MUS', 'Morocco': 'MAR', 'Mozambique': 'MOZ',
-      'Namibia': 'NAM', 'Niger': 'NER', 'Nigeria': 'NGA', 'Rwanda': 'RWA',
-      'Sao Tome and Principe': 'STP', 'Senegal': 'SEN', 'Seychelles': 'SYC',
-      'Sierra Leone': 'SLE', 'Somalia': 'SOM', 'South Africa': 'ZAF',
-      'South Sudan': 'SSD', 'Sudan': 'SDN', 'Tanzania': 'TZA', 'Togo': 'TGO',
-      'Tunisia': 'TUN', 'Uganda': 'UGA', 'Zambia': 'ZMB', 'Zimbabwe': 'ZWE',
-    };
-    
-    const iso3 = nameToIso3[countryName];
+    // Utiliser le mapping chargé depuis le backend
+    const iso3 = countryNameToIso3[countryName];
     return iso3 ? getCountryFlag(iso3) : '🌍';
   };
 
