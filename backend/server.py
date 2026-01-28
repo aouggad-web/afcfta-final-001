@@ -1040,94 +1040,9 @@ from production_data import (
     get_country_production_overview
 )
 
-@api_router.get("/logistics/land/corridors")
-async def get_land_corridors(
-    corridor_type: str = None,
-    importance: str = None,
-    country_iso: str = None
-):
-    """
-    Get all land corridors (road/rail) with optional filters
-    
-    Query parameters:
-    - corridor_type: 'road', 'rail', 'multimodal'
-    - importance: 'high', 'medium'
-    - country_iso: ISO3 country code (e.g., 'CIV')
-    """
-    if country_iso:
-        corridors = get_corridors_by_country(country_iso)
-    else:
-        corridors = get_all_corridors(corridor_type=corridor_type, importance=importance)
-    
-    return {
-        "count": len(corridors),
-        "corridors": corridors
-    }
-
-@api_router.get("/logistics/land/corridors/{corridor_id}")
-async def get_land_corridor_details(corridor_id: str):
-    """Get detailed information for a specific land corridor"""
-    corridor = get_corridor_by_id(corridor_id)
-    if not corridor:
-        raise HTTPException(status_code=404, detail=f"Corridor {corridor_id} not found")
-    return corridor
-
-@api_router.get("/logistics/land/nodes")
-async def get_land_nodes(node_type: str = None, osbp_only: bool = False):
-    """
-    Get all logistical nodes (border crossings, dry ports, terminals)
-    
-    Query parameters:
-    - node_type: 'border_crossing', 'dry_port', 'rail_terminal', 'intermodal_hub'
-    - osbp_only: true to get only One-Stop Border Posts
-    """
-    if osbp_only:
-        nodes = get_osbp_nodes()
-    elif node_type:
-        nodes = get_nodes_by_type(node_type)
-    else:
-        nodes = get_all_nodes()
-    
-    return {
-        "count": len(nodes),
-        "nodes": nodes
-    }
-
-@api_router.get("/logistics/land/operators")
-async def get_land_operators(operator_type: str = None):
-    """
-    Get all land transport operators
-    
-    Query parameters:
-    - operator_type: 'rail_operator', 'trucking_company'
-    """
-    if operator_type:
-        operators = get_operators_by_type(operator_type)
-    else:
-        operators = get_all_operators()
-    
-    return {
-        "count": len(operators),
-        "operators": operators
-    }
-
-@api_router.get("/logistics/land/search")
-async def search_land_corridors(q: str):
-    """Search corridors by name, country, or description"""
-    if not q or len(q) < 2:
-        raise HTTPException(status_code=400, detail="Query must be at least 2 characters")
-    
-    results = search_corridors(q)
-    return {
-        "query": q,
-        "count": len(results),
-        "results": results
-    }
-
-@api_router.get("/logistics/land/statistics")
-async def get_land_logistics_statistics():
-    """Get global statistics about African land corridors"""
-    return get_corridors_statistics()
+# NOTE: /logistics/land/* endpoints MIGRATED to /routes/logistics.py
+# Routes: /land/corridors, /land/corridors/{id}, /land/nodes, 
+#         /land/operators, /land/search, /land/statistics
 
 
 # ==========================================
