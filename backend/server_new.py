@@ -49,6 +49,17 @@ from etl.country_hs6_detailed import (
     has_varying_rates,
     get_best_tariff_match
 )
+from etl.hs6_database import (
+    get_all_categories,
+    get_codes_by_category,
+    get_database_stats
+)
+from etl.afcfta_rules_of_origin import (
+    get_rule_of_origin,
+    get_rules_statistics,
+    ORIGIN_TYPES,
+    CHAPTER_RULES
+)
 
 # Import routes module for modular endpoint registration
 from routes import register_routes
