@@ -39,7 +39,7 @@ from models import TariffCalculationRequest, TariffCalculationResponse
 from constants import AFRICAN_COUNTRIES
 
 # Import data modules
-from country_data import (
+from data_loader import (
     get_all_countries_trade_performance,
     get_enhanced_statistics
 )
