@@ -485,27 +485,32 @@ class OECTradeService:
         }
     
     def _format_bilateral_response(
-        self, result: Dict, exporter: Dict, importer: Dict, year: int
+        self, result: Dict, exporter: Dict, importer: Dict, year: int, limit: int = 50
     ) -> Dict:
         """Formate la réponse pour le commerce bilatéral, triée par valeur décroissante"""
         data = result.get("data", [])
         
-        # Trier par Trade Value décroissante
+        # Trier par Trade Value décroissante pour avoir les produits les plus importants en premier
         sorted_data = sorted(data, key=lambda x: x.get("Trade Value", 0), reverse=True)
         
-        # Calculer le volume total
+        # Calculer les totaux sur TOUTES les données (avant limitation)
+        total_value = sum(row.get("Trade Value", 0) for row in sorted_data)
         total_quantity = sum(row.get("Quantity", 0) for row in sorted_data)
+        
+        # Limiter au nombre demandé APRÈS le tri
+        limited_data = sorted_data[:limit]
         
         return {
             "exporter": exporter,
             "importer": importer,
             "year": year,
-            "total_products": len(sorted_data),
-            "total_value": sum(row.get("Trade Value", 0) for row in sorted_data),
+            "total_products": len(sorted_data),  # Nombre total de produits
+            "displayed_products": len(limited_data),  # Nombre affiché
+            "total_value": total_value,
             "total_quantity": total_quantity,
             "quantity_unit": "tonnes",
             "currency": "USD",
-            "data": sorted_data,
+            "data": limited_data,
             "source": "OEC/BACI",
             "retrieved_at": datetime.utcnow().isoformat()
         }
