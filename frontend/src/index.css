@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import custom layout styles */
+@import './styles/layout.css';
+@import './styles/tabs.css';
+
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",

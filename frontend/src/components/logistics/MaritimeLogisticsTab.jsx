@@ -2,14 +2,21 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card';
 import { Button } from '../ui/button';
-import { Label } from '../ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { Badge } from '../ui/badge';
 import { toast } from '../../hooks/use-toast';
 import LogisticsMap from './LogisticsMap';
 import PortCard from './PortCard';
 import PortDetailsModal from './PortDetailsModal';
 import UNCTADDataPanel from './UNCTADDataPanel';
+import { 
+  FilterBar, 
+  SearchFilter, 
+  SelectFilter, 
+  ViewModeToggle, 
+  ResultsCounter,
+  FilterDivider 
+} from '../common/FilterComponents';
+import { Anchor, Ship, MapPin, BarChart3 } from 'lucide-react';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -20,66 +27,67 @@ export default function MaritimeLogisticsTab({ language = 'fr' }) {
   const [selectedPort, setSelectedPort] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState('ALL');
+  const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState('map');
 
   const texts = {
     fr: {
-      title: "Logistique Maritime Panafricaine",
-      subtitle: "Visualisez les 68 principaux ports d'Afrique avec leurs statistiques de trafic, temps d'attente (TRS) et connectivité",
-      filterByCountry: "Filtrer par pays:",
+      title: "Logistique Maritime",
+      subtitle: "68 ports africains avec statistiques TRS et connectivité",
+      filterByCountry: "Pays",
       allCountries: "Tous les pays",
-      portsDisplayed: "port(s) affiché(s)",
-      map: "Carte",
-      list: "Liste",
-      loading: "Chargement des données portuaires...",
+      search: "Rechercher un port...",
+      portsLabel: "port(s)",
+      loading: "Chargement...",
       errorTitle: "Erreur",
-      errorLoad: "Impossible de charger les données des ports",
-      errorDetails: "Impossible de charger les détails du port",
-      // Country names
-      algeria: "Algérie",
-      morocco: "Maroc",
-      egypt: "Égypte",
-      southAfrica: "Afrique du Sud",
-      nigeria: "Nigéria",
-      kenya: "Kenya",
-      tanzania: "Tanzanie",
-      ivoryCoast: "Côte d'Ivoire",
-      ghana: "Ghana",
-      senegal: "Sénégal",
-      angola: "Angola",
-      cameroon: "Cameroun",
-      djibouti: "Djibouti"
+      errorLoad: "Impossible de charger les données",
+      noResults: "Aucun port trouvé",
+      stats: {
+        totalPorts: "Ports totaux",
+        withTRS: "Avec données TRS",
+        avgDwell: "Temps moyen",
+        topRegion: "Région principale"
+      }
     },
     en: {
-      title: "Pan-African Maritime Logistics",
-      subtitle: "View the 68 main African ports with traffic statistics, waiting times (TRS) and connectivity",
-      filterByCountry: "Filter by country:",
+      title: "Maritime Logistics",
+      subtitle: "68 African ports with TRS statistics and connectivity",
+      filterByCountry: "Country",
       allCountries: "All countries",
-      portsDisplayed: "port(s) displayed",
-      map: "Map",
-      list: "List",
-      loading: "Loading port data...",
+      search: "Search a port...",
+      portsLabel: "port(s)",
+      loading: "Loading...",
       errorTitle: "Error",
-      errorLoad: "Unable to load port data",
-      errorDetails: "Unable to load port details",
-      // Country names
-      algeria: "Algeria",
-      morocco: "Morocco",
-      egypt: "Egypt",
-      southAfrica: "South Africa",
-      nigeria: "Nigeria",
-      kenya: "Kenya",
-      tanzania: "Tanzania",
-      ivoryCoast: "Côte d'Ivoire",
-      ghana: "Ghana",
-      senegal: "Senegal",
-      angola: "Angola",
-      cameroon: "Cameroon",
-      djibouti: "Djibouti"
+      errorLoad: "Unable to load data",
+      noResults: "No ports found",
+      stats: {
+        totalPorts: "Total ports",
+        withTRS: "With TRS data",
+        avgDwell: "Avg. dwell time",
+        topRegion: "Top region"
+      }
     }
   };
 
   const t = texts[language];
+
+  // Country options for filter
+  const countryOptions = [
+    { value: 'ALL', label: t.allCountries, icon: '🌍' },
+    { value: 'DZA', label: language === 'fr' ? 'Algérie' : 'Algeria', icon: '🇩🇿' },
+    { value: 'MAR', label: language === 'fr' ? 'Maroc' : 'Morocco', icon: '🇲🇦' },
+    { value: 'EGY', label: language === 'fr' ? 'Égypte' : 'Egypt', icon: '🇪🇬' },
+    { value: 'ZAF', label: language === 'fr' ? 'Afrique du Sud' : 'South Africa', icon: '🇿🇦' },
+    { value: 'NGA', label: language === 'fr' ? 'Nigéria' : 'Nigeria', icon: '🇳🇬' },
+    { value: 'KEN', label: 'Kenya', icon: '🇰🇪' },
+    { value: 'TZA', label: language === 'fr' ? 'Tanzanie' : 'Tanzania', icon: '🇹🇿' },
+    { value: 'CIV', label: language === 'fr' ? "Côte d'Ivoire" : 'Ivory Coast', icon: '🇨🇮' },
+    { value: 'GHA', label: 'Ghana', icon: '🇬🇭' },
+    { value: 'SEN', label: language === 'fr' ? 'Sénégal' : 'Senegal', icon: '🇸🇳' },
+    { value: 'AGO', label: 'Angola', icon: '🇦🇴' },
+    { value: 'CMR', label: language === 'fr' ? 'Cameroun' : 'Cameroon', icon: '🇨🇲' },
+    { value: 'DJI', label: 'Djibouti', icon: '🇩🇯' }
+  ];
 
   useEffect(() => {
     fetchPorts(selectedCountry);
@@ -115,122 +123,168 @@ export default function MaritimeLogisticsTab({ language = 'fr' }) {
       console.error('Error fetching port details:', error);
       toast({
         title: t.errorTitle,
-        description: t.errorDetails,
+        description: t.errorLoad,
         variant: "destructive",
       });
     }
   };
 
+  // Filter ports by search query
+  const filteredPorts = ports.filter(port => {
+    if (!searchQuery) return true;
+    const query = searchQuery.toLowerCase();
+    return (
+      port.port_name?.toLowerCase().includes(query) ||
+      port.country_name?.toLowerCase().includes(query) ||
+      port.port_id?.toLowerCase().includes(query)
+    );
+  });
+
+  // Calculate stats
+  const portsWithTRS = ports.filter(p => p.trs_analysis?.container_dwell_time_days && p.trs_analysis.container_dwell_time_days !== 'NA').length;
+
   return (
-    <div className="space-y-4">
-      {/* Header Section - Compact */}
-      <Card className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg">
-        <CardHeader className="py-3">
-          <CardTitle className="text-lg font-bold flex items-center gap-2">
-            <span>🚢</span>
-            <span>{t.title}</span>
-          </CardTitle>
-          <CardDescription className="text-blue-100 text-sm">
-            {t.subtitle}
-          </CardDescription>
-        </CardHeader>
-      </Card>
-
-      {/* Controls */}
-      <Card>
-        <CardContent className="pt-6">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            {/* Country Filter */}
-            <div className="flex items-center gap-3">
-              <Label htmlFor="country-filter" className="font-semibold">{t.filterByCountry}</Label>
-              <Select value={selectedCountry} onValueChange={setSelectedCountry}>
-                <SelectTrigger className="w-64">
-                  <SelectValue placeholder={t.allCountries} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="ALL">🌍 {t.allCountries}</SelectItem>
-                  <SelectItem value="DZA">🇩🇿 {t.algeria}</SelectItem>
-                  <SelectItem value="MAR">🇲🇦 {t.morocco}</SelectItem>
-                  <SelectItem value="EGY">🇪🇬 {t.egypt}</SelectItem>
-                  <SelectItem value="ZAF">🇿🇦 {t.southAfrica}</SelectItem>
-                  <SelectItem value="NGA">🇳🇬 {t.nigeria}</SelectItem>
-                  <SelectItem value="KEN">🇰🇪 {t.kenya}</SelectItem>
-                  <SelectItem value="TZA">🇹🇿 {t.tanzania}</SelectItem>
-                  <SelectItem value="CIV">🇨🇮 {t.ivoryCoast}</SelectItem>
-                  <SelectItem value="GHA">🇬🇭 {t.ghana}</SelectItem>
-                  <SelectItem value="SEN">🇸🇳 {t.senegal}</SelectItem>
-                  <SelectItem value="AGO">🇦🇴 {t.angola}</SelectItem>
-                  <SelectItem value="CMR">🇨🇲 {t.cameroon}</SelectItem>
-                  <SelectItem value="DJI">🇩🇯 {t.djibouti}</SelectItem>
-                </SelectContent>
-              </Select>
-              <Badge variant="outline" className="text-sm">
-                {ports.length} {t.portsDisplayed}
-              </Badge>
-            </div>
-
-            {/* View Mode Toggle */}
-            <div className="flex gap-2">
-              <Button
-                variant={viewMode === 'map' ? 'default' : 'outline'}
-                onClick={() => setViewMode('map')}
-                className="flex items-center gap-2"
-              >
-                🗺️ {t.map}
-              </Button>
-              <Button
-                variant={viewMode === 'list' ? 'default' : 'outline'}
-                onClick={() => setViewMode('list')}
-                className="flex items-center gap-2"
-              >
-                📋 {t.list}
-              </Button>
-            </div>
+    <div className="space-y-4 animate-fade-in">
+      {/* Compact Header */}
+      <div className="flex items-center justify-between bg-gradient-to-r from-blue-600 to-cyan-600 text-white p-4 rounded-xl shadow-lg">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
+            <Ship className="w-5 h-5" />
           </div>
-        </CardContent>
-      </Card>
+          <div>
+            <h2 className="text-lg font-bold">{t.title}</h2>
+            <p className="text-blue-100 text-sm">{t.subtitle}</p>
+          </div>
+        </div>
+        
+        {/* Quick Stats */}
+        <div className="hidden md:flex items-center gap-4">
+          <div className="text-center px-4 border-r border-white/20">
+            <p className="text-2xl font-bold">{ports.length}</p>
+            <p className="text-xs text-blue-100">{t.stats.totalPorts}</p>
+          </div>
+          <div className="text-center px-4">
+            <p className="text-2xl font-bold">{portsWithTRS}</p>
+            <p className="text-xs text-blue-100">{t.stats.withTRS}</p>
+          </div>
+        </div>
+      </div>
 
-      {/* Map or List View */}
+      {/* Unified Filter Bar */}
+      <FilterBar>
+        <SearchFilter
+          value={searchQuery}
+          onChange={setSearchQuery}
+          placeholder={t.search}
+          size="default"
+        />
+        
+        <FilterDivider />
+        
+        <SelectFilter
+          label={t.filterByCountry}
+          value={selectedCountry}
+          onChange={setSelectedCountry}
+          options={countryOptions}
+          placeholder={t.allCountries}
+        />
+        
+        <FilterDivider />
+        
+        <ViewModeToggle
+          value={viewMode}
+          onChange={setViewMode}
+          modes={['map', 'grid']}
+        />
+        
+        <div className="flex-1" />
+        
+        <ResultsCounter
+          count={filteredPorts.length}
+          total={ports.length}
+          label={t.portsLabel}
+        />
+      </FilterBar>
+
+      {/* Main Content */}
       {loading ? (
-        <Card>
-          <CardContent className="flex items-center justify-center h-96">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-              <p className="mt-4 text-gray-600">{t.loading}</p>
-            </div>
-          </CardContent>
+        <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          {[1, 2, 3, 4, 5, 6].map(i => (
+            <div key={i} className="skeleton skeleton-card" />
+          ))}
+        </div>
+      ) : filteredPorts.length === 0 ? (
+        <Card className="py-12">
+          <div className="no-results">
+            <Anchor className="no-results-icon" />
+            <p className="text-lg font-medium">{t.noResults}</p>
+          </div>
         </Card>
       ) : viewMode === 'map' ? (
-        <LogisticsMap
-          onPortClick={handlePortClick}
-          selectedCountry={selectedCountry}
-          language={language}
-        />
+        <div className="map-list-layout">
+          <Card className="overflow-hidden" style={{ minHeight: '500px' }}>
+            <LogisticsMap 
+              ports={filteredPorts} 
+              onPortClick={handlePortClick}
+              language={language}
+            />
+          </Card>
+          <Card className="hidden lg:block">
+            <CardHeader className="py-3 border-b">
+              <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                <MapPin className="w-4 h-4" />
+                {language === 'fr' ? 'Liste des ports' : 'Port list'}
+              </CardTitle>
+            </CardHeader>
+            <div className="scroll-container" style={{ maxHeight: '450px' }}>
+              <div className="p-2 space-y-2">
+                {filteredPorts.slice(0, 20).map((port) => (
+                  <div
+                    key={port.port_id}
+                    className="p-3 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50/50 cursor-pointer transition-all"
+                    onClick={() => handlePortClick(port)}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="font-medium text-sm">{port.port_name}</p>
+                        <p className="text-xs text-gray-500">{port.country_name}</p>
+                      </div>
+                      {port.trs_analysis?.container_dwell_time_days && 
+                       port.trs_analysis.container_dwell_time_days !== 'NA' && (
+                        <Badge variant="secondary" className="text-xs">
+                          {port.trs_analysis.container_dwell_time_days}j
+                        </Badge>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Card>
+        </div>
       ) : (
-        <div className="max-h-[550px] overflow-y-auto rounded-lg border border-gray-200 p-4 bg-gray-50">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {ports.map((port) => (
-              <PortCard
-                key={port.port_id}
-                port={port}
-                onOpenDetails={handlePortClick}
-                language={language}
-              />
-            ))}
-          </div>
+        <div className="cards-grid stagger-animation">
+          {filteredPorts.map((port) => (
+            <PortCard
+              key={port.port_id}
+              port={port}
+              onClick={() => handlePortClick(port)}
+              language={language}
+            />
+          ))}
         </div>
       )}
 
-      {/* Port Details Modal */}
-      <PortDetailsModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        port={selectedPort}
-        language={language}
-      />
-
       {/* UNCTAD Data Panel */}
       <UNCTADDataPanel language={language} />
+
+      {/* Port Details Modal */}
+      <PortDetailsModal
+        port={selectedPort}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        language={language}
+      />
     </div>
   );
 }

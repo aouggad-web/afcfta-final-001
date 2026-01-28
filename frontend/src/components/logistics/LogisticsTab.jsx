@@ -8,107 +8,120 @@ import AirLogisticsTab from './AirLogisticsTab';
 import LandLogisticsTab from './LandLogisticsTab';
 import FreeZonesTab from './FreeZonesTab';
 import { PDFExportButton } from '../common/ExportTools';
+import { Ship, Plane, Truck, Building2, Globe, Database } from 'lucide-react';
 
 export default function LogisticsTab({ language = 'fr' }) {
   const { t } = useTranslation();
   const contentRef = useRef(null);
 
   return (
-    <div className="space-y-6" data-testid="logistics-tab">
-      {/* Export Button */}
-      <div className="flex justify-end">
-        <PDFExportButton
-          targetRef={contentRef}
-          filename="logistics"
-          title={t('logistics.title')}
-          language={language}
-        />
+    <div className="space-y-5" data-testid="logistics-tab">
+      {/* Compact Header with Export */}
+      <div className="flex items-center justify-between bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-700 text-white p-4 rounded-xl shadow-lg">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
+            <Globe className="w-5 h-5" />
+          </div>
+          <div>
+            <h1 className="text-lg font-bold">{t('logistics.title')}</h1>
+            <p className="text-blue-100 text-sm">{t('logistics.subtitle')}</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-3">
+          <Badge className="bg-white/20 text-white hidden md:flex">
+            <Database className="w-3 h-3 mr-1" />
+            68 ports • 120+ aéroports • 15 corridors
+          </Badge>
+          <PDFExportButton
+            targetRef={contentRef}
+            filename="logistics"
+            title={t('logistics.title')}
+            language={language}
+          />
+        </div>
       </div>
 
       <div ref={contentRef}>
-      {/* Header - Compact */}
-      <Card className="bg-gradient-to-r from-blue-700 to-indigo-800 text-white shadow-xl">
-        <CardHeader className="py-3">
-          <CardTitle className="text-xl font-bold flex items-center gap-2">
-            <span>🌍</span>
-            <span>{t('logistics.title')}</span>
-          </CardTitle>
-          <CardDescription className="text-blue-100 text-sm">
-            {t('logistics.subtitle')}
-          </CardDescription>
-        </CardHeader>
-      </Card>
+        {/* Main Tabs with enhanced styling */}
+        <Tabs defaultValue="maritime" className="space-y-5">
+          <TabsList className="tabs-list-boxed cols-4">
+            <TabsTrigger 
+              value="maritime" 
+              className="tab-trigger-enhanced tab-blue"
+              data-testid="maritime-tab-trigger"
+            >
+              <Ship className="tab-icon" />
+              <span>{t('logistics.maritime')}</span>
+            </TabsTrigger>
+            <TabsTrigger 
+              value="air" 
+              className="tab-trigger-enhanced tab-cyan"
+              data-testid="air-tab-trigger"
+            >
+              <Plane className="tab-icon" />
+              <span>{t('logistics.air')}</span>
+            </TabsTrigger>
+            <TabsTrigger 
+              value="land" 
+              className="tab-trigger-enhanced tab-orange"
+              data-testid="land-tab-trigger"
+            >
+              <Truck className="tab-icon" />
+              <span>{t('logistics.land')}</span>
+            </TabsTrigger>
+            <TabsTrigger 
+              value="zones" 
+              className="tab-trigger-enhanced tab-purple"
+              data-testid="zones-tab-trigger"
+            >
+              <Building2 className="tab-icon" />
+              <span>{t('logistics.freeZones')}</span>
+            </TabsTrigger>
+          </TabsList>
 
-      {/* Main Tabs - Compact */}
-      <Tabs defaultValue="maritime" className="space-y-4">
-        <TabsList className="grid w-full grid-cols-4 bg-white shadow-md p-1 h-10">
-          <TabsTrigger value="maritime" className="text-sm font-semibold data-[state=active]:bg-blue-100 data-[state=active]:text-blue-800" data-testid="maritime-tab-trigger">
-            🚢 {t('logistics.maritime')}
-          </TabsTrigger>
-          <TabsTrigger value="air" className="text-sm font-semibold data-[state=active]:bg-sky-100 data-[state=active]:text-sky-800" data-testid="air-tab-trigger">
-            ✈️ {t('logistics.air')}
-          </TabsTrigger>
-          <TabsTrigger value="land" className="text-sm font-semibold data-[state=active]:bg-slate-100 data-[state=active]:text-slate-800" data-testid="land-tab-trigger">
-            🚛 {t('logistics.land')}
-          </TabsTrigger>
-          <TabsTrigger value="zones" className="text-sm font-semibold data-[state=active]:bg-orange-100 data-[state=active]:text-orange-800" data-testid="zones-tab-trigger">
-            🏭 {t('logistics.freeZones')}
-          </TabsTrigger>
-        </TabsList>
+          <TabsContent value="maritime" className="tab-content-enhanced mt-0">
+            <MaritimeLogisticsTab language={language} />
+          </TabsContent>
 
-        <TabsContent value="maritime" className="mt-6">
-          <MaritimeLogisticsTab language={language} />
-        </TabsContent>
+          <TabsContent value="air" className="tab-content-enhanced mt-0">
+            <AirLogisticsTab language={language} />
+          </TabsContent>
 
-        <TabsContent value="air" className="mt-6">
-          <AirLogisticsTab language={language} />
-        </TabsContent>
+          <TabsContent value="land" className="tab-content-enhanced mt-0">
+            <LandLogisticsTab language={language} />
+          </TabsContent>
 
-        <TabsContent value="land" className="mt-6">
-          <LandLogisticsTab language={language} />
-        </TabsContent>
+          <TabsContent value="zones" className="tab-content-enhanced mt-0">
+            <FreeZonesTab language={language} />
+          </TabsContent>
+        </Tabs>
 
-        <TabsContent value="zones" className="mt-6">
-          <FreeZonesTab language={language} />
-        </TabsContent>
-      </Tabs>
-
-      {/* Data Sources Card - Moved to bottom */}
-      <Card className="border-l-4 border-l-cyan-500 bg-cyan-50">
-        <CardContent className="pt-4">
-          <h3 className="font-bold text-cyan-900 flex items-center gap-2 mb-4">
-            <span>📊</span>
-            <span>{t('logistics.dataSourcesTitle')}</span>
-          </h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-            <div className="bg-white p-3 rounded shadow-sm border-l-2 border-l-orange-400">
-              <p className="font-semibold text-orange-700">⏱️ {t('logistics.trsTitle')}</p>
-              <p className="text-gray-600 text-xs">{t('logistics.trsDesc')}</p>
-              <Badge className="mt-2 bg-orange-100 text-orange-700 text-xs">{t('common.estimated')}</Badge>
+        {/* Data Sources - Compact footer */}
+        <Card className="bg-gradient-to-r from-slate-50 to-gray-50 border-0 shadow-sm mt-6">
+          <CardContent className="py-4">
+            <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-gray-500">
+              <span className="flex items-center gap-1">
+                <Badge variant="outline" className="h-5 text-[10px]">TRS</Badge>
+                WCO Time Release Studies
+              </span>
+              <span className="text-gray-300">|</span>
+              <span className="flex items-center gap-1">
+                <Badge variant="outline" className="h-5 text-[10px]">UNCTAD</Badge>
+                Maritime Transport Review 2024
+              </span>
+              <span className="text-gray-300">|</span>
+              <span className="flex items-center gap-1">
+                <Badge variant="outline" className="h-5 text-[10px]">LPI</Badge>
+                World Bank 2023
+              </span>
+              <span className="text-gray-300">|</span>
+              <span className="flex items-center gap-1">
+                <Badge variant="outline" className="h-5 text-[10px]">AfCFTA</Badge>
+                Secretariat
+              </span>
             </div>
-            <div className="bg-white p-3 rounded shadow-sm border-l-2 border-l-blue-400">
-              <p className="font-semibold text-blue-700">🚢 {t('logistics.unctad.title')}</p>
-              <p className="text-gray-600 text-xs">{t('logistics.unctad.desc')}</p>
-              <Badge className="mt-2 bg-blue-100 text-blue-700 text-xs">{t('common.official')}</Badge>
-            </div>
-            <div className="bg-white p-3 rounded shadow-sm border-l-2 border-l-green-400">
-              <p className="font-semibold text-green-700">🛃 {t('logistics.wcoTitle')}</p>
-              <p className="text-gray-600 text-xs">{t('logistics.wcoDesc')}</p>
-              <Badge className="mt-2 bg-green-100 text-green-700 text-xs">{t('common.official')}</Badge>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Footer with Source Indicator */}
-      <Card className="bg-gray-50 border-gray-200">
-        <CardContent className="py-3">
-          <p className="text-xs text-gray-500 text-center">
-            {t('logistics.sourceLabel')} UNCTAD Maritime Transport Review 2023 | World Customs Organization (WCO) TRS Database | AfCFTA Secretariat
-          </p>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
