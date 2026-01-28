@@ -282,7 +282,7 @@ export default function OECTradeStats({ language = 'fr' }) {
       'Libya': 'LBY', 'Madagascar': 'MDG', 'Malawi': 'MWI', 'Mali': 'MLI',
       'Mauritania': 'MRT', 'Mauritius': 'MUS', 'Morocco': 'MAR', 'Mozambique': 'MOZ',
       'Namibia': 'NAM', 'Niger': 'NER', 'Nigeria': 'NGA', 'Rwanda': 'RWA',
-      'Sao Tome and Principe': 'STP', 'Senegal': 'SEN', 'Seychelles': 'SYC',
+      'Sao Tome and Principe': 'STP', 'São Tomé and Príncipe': 'STP', 'Senegal': 'SEN', 'Seychelles': 'SYC',
       'Sierra Leone': 'SLE', 'Somalia': 'SOM', 'South Africa': 'ZAF',
       'South Sudan': 'SSD', 'Sudan': 'SDN', 'Tanzania': 'TZA', 'Togo': 'TGO',
       'Tunisia': 'TUN', 'Uganda': 'UGA', 'Zambia': 'ZMB', 'Zimbabwe': 'ZWE',
