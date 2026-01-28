@@ -12,6 +12,7 @@ MIGRATION STATUS:
 - countries.py: COMPLETE
 - tariffs.py: COMPLETE
 - statistics.py: COMPLETE
+- etl.py: COMPLETE
 """
 
 from fastapi import APIRouter
@@ -26,6 +27,7 @@ from .logistics import router as logistics_router
 from .countries import router as countries_router
 from .tariffs import router as tariffs_router
 from .statistics import router as statistics_router
+from .etl import router as etl_router
 
 def register_routes(api_router: APIRouter):
     """Register all route modules to the main API router"""
@@ -38,3 +40,4 @@ def register_routes(api_router: APIRouter):
     api_router.include_router(countries_router, tags=["Countries"])
     api_router.include_router(tariffs_router, tags=["Tariffs"])
     api_router.include_router(statistics_router, tags=["Statistics"])
+    api_router.include_router(etl_router, tags=["ETL Administration"])
