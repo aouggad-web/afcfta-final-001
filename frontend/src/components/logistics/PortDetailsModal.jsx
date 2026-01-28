@@ -677,7 +677,7 @@ function PortDetailsModal({ isOpen, onClose, port, language = 'fr' }) {
                                 <span>📍</span>
                                 <span>{agent.address}</span>
                               </div>
-                            )}}
+                            )}
                             
                             <div className="flex flex-wrap gap-3 mt-3">
                               {agent.website && agent.website !== 'Non disponible' && agent.website !== 'N/A' && (
