@@ -246,11 +246,11 @@ function TradeProductsTable({ language = 'fr' }) {
               </div>
               <div className="bg-white/10 backdrop-blur rounded-xl p-4">
                 <p className="text-indigo-200 text-xs uppercase">{t.importIntra}</p>
-                <p className="text-2xl font-bold">{formatValue(summary.top_20_intra_imports_total_mln_usd)}</p>
+                <p className="text-2xl font-bold">{formatValue(summary.top_20_intra_african_imports_total_mln_usd)}</p>
               </div>
               <div className="bg-white/10 backdrop-blur rounded-xl p-4">
                 <p className="text-indigo-200 text-xs uppercase">{t.exportIntra}</p>
-                <p className="text-2xl font-bold">{formatValue(summary.top_20_intra_exports_total_mln_usd)}</p>
+                <p className="text-2xl font-bold">{formatValue(summary.top_20_intra_african_exports_total_mln_usd)}</p>
               </div>
             </div>
           </CardContent>
