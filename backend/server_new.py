@@ -43,20 +43,8 @@ from data_loader import (
     get_all_countries_trade_performance,
     get_enhanced_statistics
 )
-from etl.country_hs6_detailed import COUNTRY_HS6_DETAILED
-from etl.hs6_database import (
-    get_all_categories,
-    get_codes_by_category,
-    get_database_stats
-)
-from etl.afcfta_rules_of_origin import (
-    get_rule_of_origin,
-    get_rules_statistics,
-    ORIGIN_TYPES,
-    CHAPTER_RULES
-)
-from etl.country_hs6_tariffs import (
-    get_tariff_for_hs6,
+from etl.country_hs6_detailed import (
+    COUNTRY_HS6_DETAILED,
     get_all_sub_positions,
     has_varying_rates,
     get_best_tariff_match
