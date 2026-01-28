@@ -1,79 +1,64 @@
-<analysis>**original_problem_statement:**
-L'utilisateur souhaite créer une application d'analyse commerciale de haute précision pour l'Afrique. La demande initiale, qui concernait l'enrichissement d'une base de données de codes HS6, a évolué vers une refonte complète de la base de données à partir d'un fichier CSV fourni par l'utilisateur. De plus, l'utilisateur a demandé d'intégrer deux nouvelles fonctionnalités majeures :
-1.  Lier chaque code HS aux Règles d'Origine (RoO) spécifiques au produit de la ZLECAf.
-2.  Créer un outil pour rechercher les statistiques de commerce international (import/export par pays, année et produit) en s'intégrant à l'API publique de l'OEC (Observatory of Economic Complexity).
-
-Au cours des sessions, l'utilisateur a ajouté plusieurs exigences :
--   Ajouter les volumes (quantités) aux statistiques commerciales de l'OEC.
--   Uniformiser l'utilisation des codes pays ISO3.
--   Afficher les drapeaux des pays.
--   Corriger de nombreux bugs dans le nouveau composant de statistiques OEC.
--   S'assurer que la base de données complète de plus de 5000 codes SH6 est fonctionnelle.
--   **Dernières requêtes :**
-    -   Corriger l'affichage des taux de taxes et des références légales dans le tableau récapitulatif du calculateur. (Terminé)
-    -   **Corriger une erreur critique dans l'affichage des Règles d'Origine**, qui sont génériques au lieu d'être spécifiques au produit. (En cours)
+<analysis>
+**original_problem_statement:**
+L'utilisateur souhaite créer une application d'analyse commerciale pour l'Afrique. La demande a évolué pour inclure :
+1.  Une base de données complète de codes HS6 (SH2022) bilingues (FR/EN).
+2.  L'intégration des Règles d'Origine (RoO) **spécifiques au produit** de la ZLECAf pour chaque code HS.
+3.  Un outil pour rechercher les statistiques de commerce international via l'API de l'OEC.
+4.  Une fonctionnalité pour gérer les tarifs douaniers nationaux, qui doit détecter et avertir l'utilisateur lorsque les taux de taxes (droits de douane, TVA) varient au sein des sous-positions nationales pour un même code HS6.
 
 **PRODUCT REQUIREMENTS:**
 -   **Base de Données HS Complète**: La base de données doit contenir l'ensemble des codes HS6 (SH2022), bilingues (FR/EN). (Terminé)
--   **Intégration des Règles d'Origine (RoO) Spécifiques**: Les données des codes HS doivent être enrichies avec les RoO **officielles et spécifiques au produit** de la ZLECAf. (En cours de correction)
--   **Intégration des Statistiques Commerciales OEC**: L'application doit fournir des points de terminaison API et une interface utilisateur pour récupérer et visualiser les données commerciales depuis l'API de l'OEC. (Terminé)
+-   **Intégration des Règles d'Origine (RoO) Spécifiques**: Les données des codes HS doivent être enrichies avec les RoO **officielles et spécifiques au produit** de la ZLECAf. (Terminé et Corrigé)
+-   **Gestion des Taux Variables**: Le calculateur doit détecter si un code SH6 a des taux différents au niveau des sous-positions nationales et afficher un avertissement clair à l'utilisateur avec les options possibles. (Terminé)
+-   **Intégration des Statistiques Commerciales OEC**: L'application doit fournir des points de terminaison API et une interface utilisateur pour visualiser les données commerciales de l'OEC. (Terminé)
+-   **Amélioration UI/UX**: L'affichage général de l'application, en particulier les filtres et la disposition des fenêtres, doit être fluide et sans superposition. (Partiellement terminé)
+-   **Refactoring Backend**: Le fichier backend monolithique  doit être décomposé en une architecture de routes modulaires pour améliorer la maintenabilité. (En cours)
 -   **Indicateur de fraîcheur des données**: Afficher quand les données ont été mises à jour pour la dernière fois. (En attente)
--   **Poursuivre la migration i18n**: Continuer la migration des composants frontend vers . (Partiellement terminé)
 
 **User's preferred language**: French. The next agent MUST respond in French.
 
 **what currently exists?**
-L'application dispose d'un backend FastAPI et d'un frontend React. Le backend a été significativement refactorisé : le fichier monolithique  a été décomposé en un répertoire de  modulaires (, , , , , ). La logique partagée (modèles Pydantic, constantes, traductions) a également été extraite dans des modules dédiés. La base de données en mémoire de ~5800 codes SH6 est fonctionnelle. Côté frontend, le composant  a été migré vers  pour l'internationalisation. Le bug d'affichage du nombre de codes dans le calculateur a été résolu, ainsi qu'un bug d'affichage des taux de taxes et des références légales dans les résultats du calculateur.
+L'application est fonctionnelle, avec un backend FastAPI et un frontend React. Le bug critique (P0) concernant les Règles d'Origine (RoO) a été corrigé en intégrant les données officielles de la ZLECAf. Une nouvelle fonctionnalité majeure a été ajoutée : le calculateur détecte désormais les variations de taux dans les sous-positions nationales et affiche un avertissement détaillé à l'utilisateur. L'interface utilisateur du calculateur, ainsi que celle des onglets Production et Logistique, a été améliorée pour une meilleure fluidité et disposition. Le refactoring du backend a bien progressé, avec une réduction d'environ 17% de la taille du fichier  grâce à la migration de plusieurs routes vers des modules dédiés.
 
 **Last working item**:
--   **Last item agent was working**: L'agent travaillait sur la correction d'un bug critique signalé par l'utilisateur : le calculateur affichait une Règle d'Origine (RoO) générique (35% valeur ajoutée africaine) pour tous les produits, au lieu de la règle spécifique au produit issue de l'accord de la ZLECAf. L'utilisateur a explicitement demandé de lier les ~5800 codes SH6 à la base de données officielle du secrétariat de l'UA ZLECAf. L'agent a commencé la correction en créant un nouveau fichier  et en modifiant l'endpoint pour qu'il l'utilise, mais le contenu de ce nouveau fichier n'a pas encore été peuplé avec les règles correctes.
+-   **Last item agent was working**: L'agent a repris le refactoring du backend à la demande de l'utilisateur. Il a analysé le fichier  et a supprimé environ 425 lignes de code correspondant à des routes dupliquées (, , ) qui existaient déjà dans leurs modules respectifs dans le répertoire .
 -   **Status**: IN PROGRESS
--   **Agent Testing Done**: N
--   **Which testing method agent to use?**: Both. Le backend doit être testé via  pour vérifier que l'API  renvoie la règle spécifique au produit. Le frontend doit être testé via l'outil de capture d'écran pour confirmer que le composant  affiche la bonne règle après un calcul.
--   **User Testing Done**: N (L'utilisateur a signalé le bug).
+-   **Agent Testing Done**: Y (L'agent a effectué des tests  après chaque suppression de routes pour s'assurer que les APIs restaient fonctionnelles).
+-   **Which testing method agent to use?**: backend testing agent. Une fois le refactoring terminé, un test de régression complet du backend est nécessaire pour garantir qu'aucune fonctionnalité n'a été cassée.
+-   **User Testing Done**: N
 
 **All Pending/In progress Issue list**:
--   **Issue 1: Les Règles d'Origine dans le calculateur sont incorrectes et génériques (P0)**
-    -   **Attempted fixes**: L'agent a créé un nouveau fichier de données  et a modifié la route  dans  pour qu'elle l'utilise.
-    -   **Next debug checklist**:
-        1.  Rechercher et trouver une source de données fiable pour les Règles d'Origine spécifiques de la ZLECAf (Annexe 2 de l'accord).
-        2.  Peupler le fichier  avec ces données structurées, en associant chaque code HS6 (ou chapitre/position parent) à sa règle spécifique (ex: Changement de position tarifaire, Contenu à valeur régionale de X%, etc.).
-        3.  Implémenter la logique dans la fonction  pour rechercher et renvoyer la règle la plus spécifique disponible pour un code donné.
-        4.  Tester l'endpoint API  pour s'assurer que le journal de calcul contient la règle d'origine correcte.
-        5.  Tester l'interface utilisateur du calculateur pour vérifier l'affichage de la règle correcte.
-    -   **Why fix this issue and what will be achieved with the fix?**: C'est une erreur de données critique qui remet en cause la fiabilité et l'utilité principale de l'application. La corriger est essentiel pour la crédibilité de l'outil.
-    -   **Status**: IN PROGRESS
-    -   **Is recurring issue?**: N
-    -   **Should Test frontend/backend/both after fix?**: Both.
-    -   **Blocked on other issue**: None.
+Aucun bug critique n'est en cours. La seule tâche en cours est le refactoring.
 
 **In progress Task List**:
--   **Task 1: Finaliser le refactoring du backend (P1)**
-    -   **Where to resume**: Les routes pour , , et  ont été créées en tant que fichiers, mais les endpoints correspondants n'ont pas encore été complètement supprimés de . Le refactoring est à mi-chemin.
-    -   **What will be achieved with this?**: Un code backend entièrement modulaire, plus facile à maintenir et à faire évoluer. Le fichier  ne servira plus qu'à la configuration et à l'initialisation de l'application.
+-   **Task 1: Finaliser le refactoring du backend (P0)**
+    -   **Where to resume**: Le fichier  a été réduit de 2561 à 2136 lignes. Il reste environ 53 endpoints à migrer vers leurs modules respectifs (). Les prochains groupes de routes à migrer sont ceux liés à , ,  et .
+    -   **What will be achieved with this?**: Un code backend entièrement modulaire et maintenable. L'objectif est de réduire  à moins de 500 lignes, le cantonnant à la configuration de l'application et à l'enregistrement des routeurs modulaires.
     -   **Status**: IN PROGRESS
-    -   **Should Test frontend/backend/both after fix?**: Backend (test de régression complet des APIs).
-    -   **Blocked on something**: Issue 1 (P0). Doit être repris après la correction du bug critique.
+    -   **Should Test frontend/backend/both after fix?**: Backend
+    -   **Blocked on something**: None
 
 **Upcoming and Future Tasks**
 -   **Upcoming Tasks:**
-    -   **Indicateur de fraîcheur des données (P1)**: Mettre en œuvre une fonctionnalité pour ajouter un horodatage dernière vérification pour les données critiques.
-    -   **Recherche/Filtre pour le fil d'actualités (P1)**: Ajouter une barre de recherche au fil d'actualités.
-    -   **Refactoring Frontend  (P2)**: Décomposer le composant monolithique en sous-composants plus petits et gérables.
+    -   **Indicateur de fraîcheur des données (P1)**: Mettre en œuvre une fonctionnalité pour ajouter un horodatage dernière vérification pour les données critiques (ex: tarifs, RoO).
+    -   **Recherche/Filtre pour le fil d'actualités (P1)**: Ajouter une barre de recherche au fil d'actualités pour filtrer par mots-clés.
+    -   **Amélioration UI/UX (P2)**: Valider avec l'utilisateur si les améliorations d'affichage sur les volets Production et Logistique sont suffisantes, et appliquer des améliorations similaires au reste de l'application si nécessaire.
 -   **Future Tasks:**
+    -   **Refactoring Frontend  (P2)**: Décomposer ce composant monolithique en sous-composants plus petits.
     -   **Sécuriser l'upload TRS pour les administrateurs (P2)**.
     -   **Exportation de données CSV/Excel (P2)**.
     -   **Fonction de comparaison de pays (P2)**.
     -   **Sauvegarder les recherches HS fréquentes (P2)**.
 
 **Completed work in this session**
--   **Refactoring Majeur du Backend (Phase 1)**: Décomposition du fichier  en un répertoire  modulaire. Migration des endpoints , , , ,  et . Création de modules partagés (, , ). La taille de  a été réduite de plus de 1000 lignes.
--   **Bug Fix: Affichage dans le Calculateur**: Correction du tableau récapitulatif pour afficher correctement les taux de taxes (ex: 20.0%) et ajout des références légales dans le journal de calcul détaillé.
--   **Bug Fix: Compteur de Codes HS**: Correction des endpoints du backend pour utiliser la base de données complète, faisant passer le compteur de 731 à 5831 codes SH6 dans le navigateur de codes.
--   **Migration i18n Frontend**: Le composant  a été migré avec succès pour utiliser .
+-   **Correction du Bug Critique des Règles d'Origine (P0)**: L'API renvoie désormais les règles d'origine spécifiques au produit basées sur les données officielles de l'annexe de la ZLECAf. Validé par .
+-   **Implémentation du Warning sur les Taux Variables**: Le calculateur détecte et affiche un avertissement clair lorsque les taux de taxes varient au sein des sous-positions nationales pour un code HS6. L'API renvoie les détails des sous-positions concernées. Validé par .
+-   **Amélioration UI/UX du Calculateur**: L'interface du calculateur a été refactorisée pour une meilleure fluidité, avec des animations CSS et la suppression d'éléments redondants pour éviter la superposition.
+-   **Amélioration UI/UX (Production & Logistique)**: La disposition des filtres et des onglets dans les volets Production et Logistique a été améliorée avec de nouvelles classes CSS pour une meilleure cohérence.
+-   **Progression du Refactoring Backend**: La taille de  a été réduite de 2561 à 2136 lignes (~17%) en migrant les routes dupliquées vers des modules.
 
 **Earlier issues found/mentioned but not fixed**
--   Aucun. Les tâches en attente sont listées dans Upcoming and Future Tasks.
+-   Aucun.
 
 **Known issue recurrence from previous fork**
 -   None.
@@ -83,49 +68,58 @@ L'application dispose d'un backend FastAPI et d'un frontend React. Le backend a 
 
 **Key Technical Concepts**
 -   Backend: FastAPI, Pydantic, MongoDB
--   Frontend: React, Shadcn UI, Recharts, 
--   Data: Dictionnaires Python en mémoire, JSON
--   Architecture: Refactoring vers une architecture de routes modulaires.
+-   Frontend: React, Shadcn UI, Recharts, , Lucide Icons
+-   Architecture: Refactoring incrémental d'une application monolithique vers une architecture de routes modulaires.
 
 **key DB schema**
--   **** (in-memory dict in ): Contient ~5800 codes SH6 bilingues et leurs métadonnées.
--   **** (in-memory dict in ): **À créer/peupler**. Doit contenir les règles d'origine spécifiques par produit.
--   **MongoDB**: Utilisé pour certaines données comme .
+-   **** (in-memory dict in ): ~5800 codes SH6 bilingues.
+-   **** (in-memory dict in ): **Peuplé** avec les règles d'origine spécifiques par produit/chapitre de la ZLECAf.
+-   **** (in-memory dict in ): Contient les tarifs nationaux, y compris les sous-positions à 8/10 chiffres, utilisé pour la fonctionnalité de taux variables.
+-   **MongoDB**: Utilisé pour les statistiques d'usage () et les données de performance commerciale.
 
 **changes in tech stack**
--   Aucune nouvelle dépendance. Le travail s'est concentré sur le refactoring et la correction de bugs.
+-   Aucun.
 
 **All files of reference**
--   **/app/backend/etl/afcfta_rules_of_origin.py**: **CRITIQUE**. Le fichier à peupler pour corriger le bug des Règles d'Origine.
--   **/app/backend/routes/tariffs.py**: Contient l'endpoint  qui dépend de la correction ci-dessus.
--   **/app/frontend/src/components/calculator/CalculatorTab.jsx**: L'interface utilisateur où le bug des Règles d'Origine et le bug d'affichage des taxes ont été signalés.
--   **/app/backend/server.py**: Fichier central en cours de refactoring, contient encore des routes à migrer.
+-   **/app/backend/server.py**: Fichier central en cours de refactoring. Contient encore de nombreuses routes à migrer.
+-   **/app/backend/routes/**: Le répertoire cible pour les routes migrées.
+-   **/app/frontend/src/components/calculator/CalculatorTab.jsx**: Le composant principal du calculateur, qui affiche les résultats, y compris les nouvelles règles d'origine et les avertissements de taux.
+-   **/app/backend/etl/afcfta_rules_of_origin.py**: Fichier de données CRITIQUE contenant les règles d'origine.
+-   **/app/backend/etl/country_hs6_detailed.py**: Fichier de données CRITIQUE pour la fonctionnalité des taux variables.
+-   **/app/backend/models.py**: Contient le modèle Pydantic  qui a été étendu.
 
 **Areas that need refactoring**:
--   **Backend**: Le refactoring des routes depuis  est en cours et doit être terminé pour les modules ,  et .
--   **Frontend**: Le composant  (>800 lignes) est un candidat prioritaire pour être décomposé en sous-composants, bien que la structure de dossiers ait été créée, le travail n'a pas commencé.
+-   **Backend**:  est la priorité absolue. L'objectif est de le réduire à moins de 500 lignes.
+-   **Frontend**:
+    -   Le composant  (>800 lignes) reste un candidat pour être décomposé.
+    -   Vérifier si le nouveau composant  a été utilisé. S'il ne l'a pas été, il faudrait soit l'intégrer, soit le supprimer.
 
 **key api endpoints**
--   : Endpoint principal du calculateur, qui doit inclure la Règle d'Origine spécifique et correcte.
--   : Endpoint qui doit renvoyer la RoO spécifique pour un produit.
--   Tous les autres endpoints sont en cours de migration vers le répertoire .
+-   : Endpoint principal du calculateur. Renvoie maintenant ,  et  en cas de taux variables.
+-   : Endpoint qui renvoie la RoO spécifique et correcte pour un produit.
+-   : Nouvel endpoint qui fournit des statistiques sur la couverture de la base de données des règles d'origine.
 
 **Critical Info for New Agent**
--   La priorité absolue (P0) est la correction du bug des Règles d'Origine. L'utilisateur a identifié cela comme une erreur fondamentale. Il ne suffit pas de changer une chaîne de caractères, il faut implémenter la logique correcte en se basant sur les règles officielles de la ZLECAf, qui varient par produit. Le fichier  a été créé mais est probablement vide ; il doit être rempli avec les données réelles.
--   Après la résolution du bug P0, la tâche suivante devrait être de finaliser le refactoring du backend en migrant les routes restantes (, , ) hors de .
--   L'utilisateur est attentif et fournit des retours techniques précis. Il est crucial de valider chaque correction en profondeur.
+-   La priorité absolue est de **continuer le refactoring du backend** comme demandé par l'utilisateur. Procédez de manière incrémentale : migrez un petit groupe de routes (par ex., toutes les routes ) de  vers le fichier de module approprié (), puis redémarrez et testez les endpoints pour vous assurer que rien n'est cassé avant de continuer.
+-   Les deux principaux problèmes de fond (données RoO incorrectes et gestion des taux variables) ont été résolus et validés par des tests. Le focus est maintenant sur l'amélioration technique et l'ajout de nouvelles fonctionnalités.
 
 **documents and test reports created in this job**
--    (mis à jour)
--   Nouvelle structure de fichiers dans .
--   Nouveaux modules : , , .
+-    (Validation de la correction du bug des Règles d'Origine)
+-    (Validation de la fonctionnalité de warning sur les taux variables)
+-    (mis à jour plusieurs fois)
 
 **Last 10 User Messages and any pending HUMAN messages**
-1.  **User**: Signale que les taux de droits de douane et autres taxes ne sont pas affichés, et que les références légales manquent dans le tableau récapitulatif du calculateur. (Status: **RESOLVED**)
-2.  **User**: Signale une erreur critique : la règle d'origine affichée pour le blé est 35% valeur ajoutée africaine, ce qui est incorrect. Demande de lier les ~5000 codes SH6 à la base de données du secrétariat de l'UA ZLECAf pour afficher les règles spécifiques à chaque produit. (Status: **IN PROGRESS**, c'est le bug P0 actuel)
+1.  **User**: Demande d'implémenter une logique pour gérer les variations de taux au niveau des sous-positions nationales. (Status: **COMPLETED**)
+2.  **User**: Demande d'améliorer l'affichage (fluidité, pas de superposition). (Status: **COMPLETED**)
+3.  **User**: ok - Accuse réception des améliorations UI. (Status: **ACKNOWLEDGED**)
+4.  **User**: Fournit des exemples pour tester la nouvelle fonctionnalité de taux variables. (Status: **ACKNOWLEDGED**)
+5.  **User**: Continuer le refactoring backend - Demande explicite de changer de tâche. (Status: **IN PROGRESS**)
+6.  **User**: Demande d'améliorer l'affichage des filtres et la disposition des fenêtres dans les volets Production et Logistique. (Status: **PARTIALLY COMPLETED**, interrompu par la demande de refactoring)
 
 **Project Health Check:**
--   **Working**: L'application est fonctionnelle, mais le refactoring du backend est inachevé et il existe un bug critique de justesse des données dans une fonctionnalité clé (Règles d'Origine).
+-   **Working**: L'application est stable et les fonctionnalités clés sont robustes et testées.
+-   **Mocked**: Aucune.
+-   **Broken**: Aucune. Le principal point faible est technique (dette de refactoring) plutôt que fonctionnel.
 
 **3rd Party Integrations**
 -   
@@ -136,15 +130,15 @@ L'application dispose d'un backend FastAPI et d'un frontend React. Le backend a 
 -   
 
 **Testing status**
--   **Testing agent used after significant changes**: NO (non requis pour le refactoring et les bugs récents).
+-   **Testing agent used after significant changes**: YES. Utilisé avec succès pour valider la correction du bug P0 et la nouvelle fonctionnalité de taux variables.
 -   **Troubleshoot agent used after agent stuck in loop**: NO.
--   **Test files created**: None.
+-   **Test files created**: , .
 -   **Known regressions**: None.
 
 **Credentials to test flow:**
 -   N/A
 
 **What agent forgot to execute**
--   L'agent a créé le fichier  mais n'a pas implémenté la partie la plus importante : le peuplement de ce fichier avec les données réelles et spécifiques des Règles d'Origine.
--   Le refactoring de  a été bien entamé mais n'est pas terminé.
--   Le refactoring du composant  a été planifié (création de dossiers) mais pas exécuté.</analysis>
+-   L'agent a créé le fichier  mais ne l'a pas intégré dans les composants  ou . Il a modifié ces derniers directement. Le prochain agent devrait évaluer si ce fichier commun doit être utilisé pour dédupliquer le code ou s'il doit être supprimé.
+-   La tâche d'amélioration de l'interface utilisateur pour la Production et la Logistique a été interrompue à mi-chemin. Bien que des améliorations aient été apportées, il se peut qu'elle ne soit pas terminée du point de vue de l'utilisateur.
+</analysis>
