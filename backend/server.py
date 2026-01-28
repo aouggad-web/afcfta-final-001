@@ -453,25 +453,33 @@ async def get_country_profile(country_code: str) -> CountryEconomicProfile:
     
     return profile
 
+@api_router.get("/rules-of-origin/stats")
+async def get_rules_of_origin_statistics():
+    """Obtenir les statistiques de la base de données des règles d'origine ZLECAf"""
+    from etl.afcfta_rules_of_origin import get_rules_statistics
+    return get_rules_statistics()
+
+
 @api_router.get("/rules-of-origin/{hs_code}")
 async def get_rules_of_origin(hs_code: str, lang: str = "fr"):
-    """Récupérer les règles d'origine ZLECAf pour un code SH"""
+    """Récupérer les règles d'origine ZLECAf pour un code SH
     
-    # Obtenir le code à 2 chiffres pour les règles générales
-    sector_code = hs_code[:2]
+    Basé sur l'Annexe II, Appendice IV de l'Accord ZLECAf
+    Source: AfCFTA Protocol on Trade in Goods - Rules of Origin Manual
+    """
+    from etl.afcfta_rules_of_origin import get_rule_of_origin, ORIGIN_TYPES, CHAPTER_RULES
     
-    if sector_code not in ZLECAF_RULES_OF_ORIGIN:
+    # Obtenir les règles d'origine officielles
+    roo_data = get_rule_of_origin(hs_code, lang)
+    
+    if roo_data.get("status") == "UNKNOWN":
         error_msg = "Rules of origin not found for this HS code" if lang == "en" else "Règles d'origine non trouvées pour ce code SH"
         raise HTTPException(status_code=404, detail=error_msg)
     
-    rules = ZLECAF_RULES_OF_ORIGIN[sector_code]
-    
-    # Translate rules
-    translated_rules = {
-        "rule": translate_rule(rules["rule"], lang),
-        "requirement": translate_rule(rules["requirement"], lang),
-        "regional_content": rules["regional_content"]
-    }
+    primary_rule = roo_data.get("primary_rule", {})
+    alt_rule = roo_data.get("alternative_rule", {})
+    regional_content = roo_data.get("regional_content", 40)
+    status = roo_data.get("status", "AGREED")
     
     # Documentation labels
     if lang == "en":
@@ -483,6 +491,7 @@ async def get_rules_of_origin(hs_code: str, lang: str = "fr"):
         ]
         validity = "12 months"
         authority = "Competent authority of exporting country"
+        status_label = "Agreed" if status == "AGREED" else "Under negotiation"
     else:
         docs = [
             "Certificat d'origine ZLECAf",
@@ -492,18 +501,43 @@ async def get_rules_of_origin(hs_code: str, lang: str = "fr"):
         ]
         validity = "12 mois"
         authority = "Autorité compétente du pays exportateur"
+        status_label = "Convenu" if status == "AGREED" else "En négociation"
     
     return {
         "hs_code": hs_code,
-        "sector_code": sector_code,
-        "rules": translated_rules,
+        "hs6_code": hs_code[:6] if len(hs_code) >= 6 else hs_code,
+        "chapter": roo_data.get("chapter", hs_code[:2]),
+        "status": status,
+        "status_label": status_label,
+        "rules": {
+            "primary_rule": {
+                "type": primary_rule.get("type", ""),
+                "code": primary_rule.get("code", ""),
+                "name": primary_rule.get("name", ""),
+                "description": primary_rule.get("description", "")
+            },
+            "alternative_rule": {
+                "type": alt_rule.get("type", ""),
+                "code": alt_rule.get("code", ""),
+                "name": alt_rule.get("name", ""),
+                "description": alt_rule.get("description", "")
+            } if alt_rule else None,
+            "regional_content": regional_content,
+            "regional_content_minimum": f"{regional_content}%"
+        },
+        "chapter_description": roo_data.get("chapter_description", ""),
+        "notes": roo_data.get("notes", ""),
         "explanation": {
-            "rule_type": translated_rules["rule"],
-            "requirement": translated_rules["requirement"],
-            "regional_content_minimum": f"{rules['regional_content']}%",
+            "rule_type": primary_rule.get("name", ""),
+            "rule_code": primary_rule.get("code", ""),
+            "requirement_summary": f"{regional_content}% contenu régional minimum" if lang == "fr" else f"{regional_content}% minimum regional content",
             "documentation_required": docs,
             "validity_period": validity,
             "issuing_authority": authority
+        },
+        "source": {
+            "name": "AfCFTA Protocol on Trade in Goods - Annex II, Appendix IV",
+            "url": "https://au.int/sites/default/files/treaties/36437-ax-AfCFTA_RULES_OF_ORIGIN_MANUAL.pdf"
         }
     }
 
@@ -630,43 +664,109 @@ async def calculate_comprehensive_tariff(request: TariffCalculationRequest):
     cedeao_rate = other_taxes_detail.get('cedeao', 0) / 100 if other_taxes_detail.get('cedeao') else 0
     tci_rate = other_taxes_detail.get('tci', 0) / 100 if other_taxes_detail.get('tci') else 0
     
-    # Créer le journal de calcul détaillé pour NPF
+    # Créer le journal de calcul détaillé pour NPF avec références légales
+    legal_refs = {
+        "cif": {"ref": "Incoterms 2020 - CIF", "url": "https://iccwbo.org/resources-for-business/incoterms-rules/incoterms-2020/"},
+        "dd": {"ref": f"Tarif douanier {dest_iso3}", "url": None},
+        "rs": {"ref": "Règlement UEMOA 02/97/CM", "url": None},
+        "pcs": {"ref": "Règlement UEMOA 01/2019", "url": None},
+        "cedeao": {"ref": "Protocole CEDEAO A/P1/1/03", "url": None},
+        "tci": {"ref": "Règlement CEMAC 02/01", "url": None},
+        "vat": {"ref": f"Code Général des Impôts {dest_iso3}", "url": None},
+        "zlecaf": {"ref": "Accord ZLECAf Art. 8", "url": "https://au.int/en/treaties/agreement-establishing-african-continental-free-trade-area"}
+    }
+    
     normal_journal = [
-        {"step": 1, "component": "Valeur CIF", "base": request.value, "rate": "-", "amount": request.value, "cumulative": request.value},
-        {"step": 2, "component": "Droits de douane", "base": request.value, "rate": f"{normal_rate*100:.1f}%", "amount": round(normal_customs, 2), "cumulative": round(request.value + normal_customs, 2)},
+        {"step": 1, "component": "Valeur CIF", "base": request.value, "rate": "-", "amount": request.value, "cumulative": request.value, "legal_ref": legal_refs["cif"]["ref"], "legal_ref_url": legal_refs["cif"]["url"]},
+        {"step": 2, "component": "Droits de douane (DD)", "base": request.value, "rate": f"{normal_rate*100:.1f}%", "amount": round(normal_customs, 2), "cumulative": round(request.value + normal_customs, 2), "legal_ref": legal_refs["dd"]["ref"], "legal_ref_url": legal_refs["dd"]["url"]},
     ]
     step = 3
+    cumulative = request.value + normal_customs
     if rs_rate > 0:
-        normal_journal.append({"step": step, "component": "Redevance statistique", "base": request.value, "rate": f"{rs_rate*100:.1f}%", "amount": round(request.value * rs_rate, 2), "cumulative": round(request.value + normal_customs + request.value * rs_rate, 2)})
+        rs_amount = round(request.value * rs_rate, 2)
+        cumulative += rs_amount
+        normal_journal.append({"step": step, "component": "Redevance statistique (RS)", "base": request.value, "rate": f"{rs_rate*100:.1f}%", "amount": rs_amount, "cumulative": round(cumulative, 2), "legal_ref": legal_refs["rs"]["ref"], "legal_ref_url": legal_refs["rs"]["url"]})
         step += 1
     if pcs_rate > 0:
-        normal_journal.append({"step": step, "component": "PCS UEMOA", "base": request.value, "rate": f"{pcs_rate*100:.1f}%", "amount": round(request.value * pcs_rate, 2), "cumulative": round(request.value + normal_customs + other_taxes_amount, 2)})
+        pcs_amount = round(request.value * pcs_rate, 2)
+        cumulative += pcs_amount
+        normal_journal.append({"step": step, "component": "PCS UEMOA", "base": request.value, "rate": f"{pcs_rate*100:.1f}%", "amount": pcs_amount, "cumulative": round(cumulative, 2), "legal_ref": legal_refs["pcs"]["ref"], "legal_ref_url": legal_refs["pcs"]["url"]})
         step += 1
     if cedeao_rate > 0:
-        normal_journal.append({"step": step, "component": "Prélèvement CEDEAO", "base": request.value, "rate": f"{cedeao_rate*100:.1f}%", "amount": round(request.value * cedeao_rate, 2), "cumulative": round(request.value + normal_customs + other_taxes_amount, 2)})
+        cedeao_amount = round(request.value * cedeao_rate, 2)
+        cumulative += cedeao_amount
+        normal_journal.append({"step": step, "component": "Prélèvement CEDEAO (PC)", "base": request.value, "rate": f"{cedeao_rate*100:.1f}%", "amount": cedeao_amount, "cumulative": round(cumulative, 2), "legal_ref": legal_refs["cedeao"]["ref"], "legal_ref_url": legal_refs["cedeao"]["url"]})
         step += 1
     if tci_rate > 0:
-        normal_journal.append({"step": step, "component": "TCI CEMAC", "base": request.value, "rate": f"{tci_rate*100:.1f}%", "amount": round(request.value * tci_rate, 2), "cumulative": round(request.value + normal_customs + other_taxes_amount, 2)})
+        tci_amount = round(request.value * tci_rate, 2)
+        cumulative += tci_amount
+        normal_journal.append({"step": step, "component": "TCI CEMAC", "base": request.value, "rate": f"{tci_rate*100:.1f}%", "amount": tci_amount, "cumulative": round(cumulative, 2), "legal_ref": legal_refs["tci"]["ref"], "legal_ref_url": legal_refs["tci"]["url"]})
         step += 1
-    normal_journal.append({"step": step, "component": "TVA", "base": round(normal_vat_base, 2), "rate": f"{vat_rate*100:.1f}%", "amount": round(normal_vat_amount, 2), "cumulative": round(normal_total, 2)})
+    normal_journal.append({"step": step, "component": "TVA", "base": round(normal_vat_base, 2), "rate": f"{vat_rate*100:.1f}%", "amount": round(normal_vat_amount, 2), "cumulative": round(normal_total, 2), "legal_ref": legal_refs["vat"]["ref"], "legal_ref_url": legal_refs["vat"]["url"]})
     
-    # Créer le journal de calcul détaillé pour ZLECAf
+    # Créer le journal de calcul détaillé pour ZLECAf avec références légales
     zlecaf_journal = [
-        {"step": 1, "component": "Valeur CIF", "base": request.value, "rate": "-", "amount": request.value, "cumulative": request.value},
-        {"step": 2, "component": "Droits de douane ZLECAf", "base": request.value, "rate": f"{zlecaf_rate*100:.1f}%", "amount": round(zlecaf_customs, 2), "cumulative": round(request.value + zlecaf_customs, 2)},
+        {"step": 1, "component": "Valeur CIF", "base": request.value, "rate": "-", "amount": request.value, "cumulative": request.value, "legal_ref": legal_refs["cif"]["ref"], "legal_ref_url": legal_refs["cif"]["url"]},
+        {"step": 2, "component": "Droits de douane ZLECAf (DD)", "base": request.value, "rate": f"{zlecaf_rate*100:.1f}%", "amount": round(zlecaf_customs, 2), "cumulative": round(request.value + zlecaf_customs, 2), "legal_ref": legal_refs["zlecaf"]["ref"], "legal_ref_url": legal_refs["zlecaf"]["url"]},
     ]
     step = 3
+    zlecaf_cumulative = request.value + zlecaf_customs
     if other_taxes_rate > 0:
-        zlecaf_journal.append({"step": step, "component": "Autres taxes", "base": request.value, "rate": f"{other_taxes_rate*100:.1f}%", "amount": round(other_taxes_amount, 2), "cumulative": round(request.value + zlecaf_customs + other_taxes_amount, 2)})
+        zlecaf_cumulative += other_taxes_amount
+        zlecaf_journal.append({"step": step, "component": "Autres taxes", "base": request.value, "rate": f"{other_taxes_rate*100:.1f}%", "amount": round(other_taxes_amount, 2), "cumulative": round(zlecaf_cumulative, 2), "legal_ref": "Taxes communautaires", "legal_ref_url": None})
         step += 1
-    zlecaf_journal.append({"step": step, "component": "TVA", "base": round(zlecaf_vat_base, 2), "rate": f"{vat_rate*100:.1f}%", "amount": round(zlecaf_vat_amount, 2), "cumulative": round(zlecaf_total, 2)})
+    zlecaf_journal.append({"step": step, "component": "TVA", "base": round(zlecaf_vat_base, 2), "rate": f"{vat_rate*100:.1f}%", "amount": round(zlecaf_vat_amount, 2), "cumulative": round(zlecaf_total, 2), "legal_ref": legal_refs["vat"]["ref"], "legal_ref_url": legal_refs["vat"]["url"]})
     
-    # Règles d'origine
-    rules = ZLECAF_RULES_OF_ORIGIN.get(sector_code, {
-        "rule": "Transformation substantielle",
-        "requirement": "40% valeur ajoutée africaine",
-        "regional_content": 40
-    })
+    # Règles d'origine - Utiliser les règles officielles de l'AfCFTA Annex II
+    from etl.afcfta_rules_of_origin import get_rule_of_origin, ORIGIN_TYPES
+    roo_data = get_rule_of_origin(hs6_code, "fr")
+    
+    # Construire l'objet rules_of_origin pour le calculateur
+    if roo_data.get("status") == "UNKNOWN":
+        rules = {
+            "rule": "Règle non définie",
+            "requirement": "Consulter le Secrétariat ZLECAf",
+            "regional_content": 0,
+            "status": "UNKNOWN",
+            "source": "AfCFTA Annex II - Appendix IV"
+        }
+    else:
+        primary_rule = roo_data.get("primary_rule", {})
+        rule_name = primary_rule.get("name", "")
+        rule_code = primary_rule.get("code", "")
+        regional_content = roo_data.get("regional_content", 40)
+        status = roo_data.get("status", "AGREED")
+        chapter_desc = roo_data.get("chapter_description", "")
+        
+        # Construire le requirement basé sur le type de règle
+        if rule_code == "WO":
+            requirement = "Entièrement obtenu dans la ZLECAf (100%)"
+        elif rule_code in ["CTH", "CTSH"]:
+            requirement = f"Changement de position tarifaire ({rule_code}) avec {regional_content}% minimum de contenu régional"
+        elif rule_code == "VA":
+            requirement = f"{regional_content}% minimum de valeur ajoutée africaine"
+        elif rule_code == "SP":
+            requirement = f"Processus spécifique requis avec {regional_content}% minimum de contenu régional"
+        else:
+            requirement = f"{regional_content}% valeur ajoutée africaine"
+        
+        # Ajouter l'alternative si disponible
+        alt_rule = roo_data.get("alternative_rule", {})
+        if alt_rule:
+            requirement += f" OU {alt_rule.get('name', '')}"
+        
+        rules = {
+            "rule": rule_name,
+            "rule_code": rule_code,
+            "requirement": requirement,
+            "regional_content": regional_content,
+            "status": status,
+            "status_label": "Convenu" if status == "AGREED" else "En négociation",
+            "chapter_description": chapter_desc,
+            "notes": roo_data.get("notes", ""),
+            "source": "AfCFTA Protocol on Trade in Goods - Annex II, Appendix IV",
+            "reference_url": "https://au.int/sites/default/files/treaties/36437-ax-AfCFTA_RULES_OF_ORIGIN_MANUAL.pdf"
+        }
     
     # Récupérer les top producteurs africains
     top_producers = await oec_client.get_top_producers(request.hs_code)
