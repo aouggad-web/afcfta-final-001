@@ -435,3 +435,33 @@ Modules partagés créés (378 lignes):
 - `/app/test_reports/iteration_4.json` - Rapport de test (36/36 tests passés)
 - `/app/test_reports/iteration_5.json` - Tests extension HS6 (40/40 tests passés)
 - `/app/backend/tests/test_hs6_extended_api.py` - Tests API HS6 étendues
+
+### En Cours 🔄
+- **Refactoring Backend `server.py` (27/01/2025)** - IN PROGRESS (~60%)
+  - **Objectif**: Décomposer le fichier monolithique en modules de routes
+  - **Progrès**:
+    - AVANT: 2561 lignes dans `server.py`
+    - APRÈS: 2136 lignes (-425 lignes, -17%)
+  - **Routes migrées vers `/app/backend/routes/`**:
+    - `health.py` - Health checks ✅
+    - `news.py` - Economic news ✅
+    - `oec.py` - OEC Trade Statistics ✅
+    - `hs_codes.py` - HS Code browser ✅
+    - `production.py` - Production data (FAOSTAT, UNIDO) ✅
+    - `logistics.py` - Logistics (ports, corridors, airports) ✅
+    - `countries.py` - Country profiles ✅
+    - `tariffs.py` - Tariff lookups ✅
+    - `statistics.py` - Basic trade statistics ✅
+    - `etl.py` - ETL administration (NOUVEAU) ✅
+  - **Routes restantes dans `server.py`** (53 endpoints):
+    - `/statistics` (11) - Routes MongoDB complexes
+    - `/calculate-tariff` (1) - Calculateur principal avec DB
+    - `/hs6-tariffs/*` (5) - Tarifs SH6 détaillés
+    - `/hs6/*` (8) - Sous-positions nationales
+    - `/trade-performance/*` (2)
+    - `/country-tariffs/*` (2)
+    - `/production/*` (12) - Certaines routes spécifiques FAOSTAT
+  - **Prochaines étapes**:
+    - Migrer les routes `/production/*` FAOSTAT restantes
+    - Extraire les routes `/statistics` MongoDB dans un module dédié
+    - Objectif final: `server.py` < 500 lignes (config + init seulement)
