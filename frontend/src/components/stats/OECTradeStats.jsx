@@ -503,7 +503,7 @@ export default function OECTradeStats({ language = 'fr' }) {
                       <TableHeader className="sticky top-0 bg-slate-50">
                         <TableRow>
                           <TableHead className="w-12">{t.rank}</TableHead>
-                          <TableHead>{t.product}</TableHead>
+                          <TableHead>{t.product} (Code HS)</TableHead>
                           <TableHead className="text-right">{t.value}</TableHead>
                           <TableHead className="text-right">{t.volume}</TableHead>
                         </TableRow>
@@ -512,7 +512,14 @@ export default function OECTradeStats({ language = 'fr' }) {
                         {tradeData.data?.slice(0, 15).map((item, idx) => (
                           <TableRow key={idx} className="hover:bg-slate-50">
                             <TableCell className="font-medium text-slate-500">{idx + 1}</TableCell>
-                            <TableCell className="font-medium text-sm">{item['HS6'] || item['HS4'] || '-'}</TableCell>
+                            <TableCell>
+                              <div className="flex items-start gap-2">
+                                <Badge variant="secondary" className="bg-emerald-100 text-emerald-700 font-mono text-xs px-1.5 py-0.5 shrink-0">
+                                  {item['HS6 ID'] || item['HS4 ID'] || '-'}
+                                </Badge>
+                                <span className="font-medium text-sm">{item['HS6'] || item['HS4'] || '-'}</span>
+                              </div>
+                            </TableCell>
                             <TableCell className="text-right font-semibold text-emerald-700">
                               {formatValue(item['Trade Value'] || 0)}
                             </TableCell>
