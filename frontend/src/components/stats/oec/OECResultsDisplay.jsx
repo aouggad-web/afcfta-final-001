@@ -130,9 +130,11 @@ export function CountryResultsDisplay({ data, selectedFlow, selectedYear, t }) {
                   <TableRow key={index} className="hover:bg-slate-50">
                     <TableCell className="font-medium text-slate-500">{index + 1}</TableCell>
                     <TableCell>
-                      <div>
-                        <p className="font-medium text-sm">{item.product_name_short || item.product_name || item.hs_code}</p>
-                        <p className="text-xs text-slate-400">HS: {item.hs_code}</p>
+                      <div className="flex items-start gap-2">
+                        <Badge variant="secondary" className="bg-slate-100 text-slate-700 font-mono text-xs px-1.5 py-0.5 shrink-0">
+                          {item.hs_code}
+                        </Badge>
+                        <span className="font-medium text-sm">{item.product_name_short || item.product_name || '-'}</span>
                       </div>
                     </TableCell>
                     <TableCell className="text-right font-semibold text-emerald-700">
@@ -367,9 +369,11 @@ export function BilateralResultsDisplay({ data, selectedYear, t }) {
                   <TableRow key={index} className="hover:bg-slate-50">
                     <TableCell className="font-medium text-slate-500">{index + 1}</TableCell>
                     <TableCell>
-                      <div>
-                        <p className="font-medium text-sm">{item.product_name || item.hs_code}</p>
-                        <p className="text-xs text-slate-400">HS: {item.hs_code}</p>
+                      <div className="flex items-start gap-2">
+                        <Badge variant="secondary" className="bg-amber-100 text-amber-700 font-mono text-xs px-1.5 py-0.5 shrink-0">
+                          {item.hs_code}
+                        </Badge>
+                        <span className="font-medium text-sm">{item.product_name || '-'}</span>
                       </div>
                     </TableCell>
                     <TableCell className="text-right font-semibold text-amber-700">
