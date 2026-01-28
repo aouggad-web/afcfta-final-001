@@ -119,7 +119,7 @@ export function CountryResultsDisplay({ data, selectedFlow, selectedYear, t }) {
               <TableHeader className="sticky top-0 bg-slate-50">
                 <TableRow>
                   <TableHead className="w-10">#</TableHead>
-                  <TableHead>{t.product}</TableHead>
+                  <TableHead>{t.product} (Code HS)</TableHead>
                   <TableHead className="text-right">{t.value}</TableHead>
                   <TableHead className="text-right">{t.volume}</TableHead>
                   <TableHead className="text-right">{t.share}</TableHead>
@@ -359,7 +359,7 @@ export function BilateralResultsDisplay({ data, selectedYear, t }) {
               <TableHeader className="sticky top-0 bg-slate-50">
                 <TableRow>
                   <TableHead className="w-10">#</TableHead>
-                  <TableHead>{t.product}</TableHead>
+                  <TableHead>{t.product} (Code HS)</TableHead>
                   <TableHead className="text-right">{t.value}</TableHead>
                   <TableHead className="text-right">{t.share}</TableHead>
                 </TableRow>
