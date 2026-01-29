@@ -17,6 +17,7 @@ import ToolsTab from './components/tools/ToolsTab';
 import RulesTab from './components/rules/RulesTab';
 import CountryProfilesTab from './components/profiles/CountryProfilesTab';
 import DashboardTabNew from './components/dashboard/DashboardTabNew';
+import OpportunitiesTab from './components/opportunities/OpportunitiesTab';
 
 import './App.css';
 
