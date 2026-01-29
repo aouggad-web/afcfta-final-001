@@ -63,6 +63,7 @@ function App() {
       profilesTab: "Country Profiles",
       toolsTab: "Tools",
       logisticsTab: "Logistics",
+      opportunitiesTab: "Opportunities",
       memberCountries: "54 Member Countries",
       population: "1.3B+ Population"
     }
