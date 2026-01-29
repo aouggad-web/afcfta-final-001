@@ -189,6 +189,10 @@ function App() {
             <StatisticsTab language={language} />
           </TabsContent>
 
+          <TabsContent value="opportunities">
+            <OpportunitiesTab language={language} />
+          </TabsContent>
+
           <TabsContent value="production">
             <ProductionTab language={language} />
           </TabsContent>
