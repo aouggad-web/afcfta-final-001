@@ -24,6 +24,12 @@ import './App.css';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
+// African pattern style - extracted to avoid recreation on every render
+const AFRICAN_PATTERN_STYLE = {
+  backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,.1) 10px, rgba(0,0,0,.1) 20px),
+                   repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(0,0,0,.1) 10px, rgba(0,0,0,.1) 20px)`
+};
+
 function App() {
   const { i18n } = useTranslation();
   const [countries, setCountries] = useState([]);
@@ -95,10 +101,7 @@ function App() {
       {/* Header with African-inspired design */}
       <div className="relative bg-gradient-to-r from-red-600 via-yellow-500 to-green-600 shadow-2xl border-b-4 border-yellow-500 overflow-hidden">
         {/* African pattern overlay */}
-        <div className="absolute inset-0 opacity-10" style={{
-          backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,.1) 10px, rgba(0,0,0,.1) 20px),
-                           repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(0,0,0,.1) 10px, rgba(0,0,0,.1) 20px)`
-        }}></div>
+        <div className="absolute inset-0 opacity-10" style={AFRICAN_PATTERN_STYLE}></div>
         
         <div className="container mx-auto px-4 py-8 relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
