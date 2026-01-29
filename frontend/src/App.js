@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './components/ui/card';
@@ -18,6 +18,7 @@ import RulesTab from './components/rules/RulesTab';
 import CountryProfilesTab from './components/profiles/CountryProfilesTab';
 import DashboardTabNew from './components/dashboard/DashboardTabNew';
 import OpportunitiesTab from './components/opportunities/OpportunitiesTab';
+import { logError } from './utils/logger';
 
 import './App.css';
 
@@ -37,12 +38,13 @@ function App() {
   const [language, setLanguage] = useState(i18n.language || 'fr');
 
   // Synchronise le state language avec i18next
-  const handleLanguageChange = (newLang) => {
+  const handleLanguageChange = useCallback((newLang) => {
     setLanguage(newLang);
     i18n.changeLanguage(newLang);
-  };
+  }, [i18n]);
 
-  const texts = {
+  // Memoize texts object to prevent recreation on every render
+  const texts = useMemo(() => ({
     fr: {
       title: "Accord de la ZLECAf",
       subtitle: "Levier de développement de l'AFRIQUE",
@@ -73,27 +75,27 @@ function App() {
       memberCountries: "54 Member Countries",
       population: "1.3B+ Population"
     }
-  };
+  }), []);
 
   const t = texts[language];
 
-  useEffect(() => {
-    fetchCountries(language);
-  }, [language]);
-
-  const fetchCountries = async (lang) => {
+  const fetchCountries = useCallback(async (lang) => {
     try {
       const response = await axios.get(`${API}/countries?lang=${lang}`);
       setCountries(response.data);
     } catch (error) {
-      console.error('Error loading countries:', error);
+      logError('App.fetchCountries', error, { language: lang });
       toast({
         title: "Erreur",
         description: "Impossible de charger la liste des pays",
         variant: "destructive"
       });
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchCountries(language);
+  }, [language, fetchCountries]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50">
