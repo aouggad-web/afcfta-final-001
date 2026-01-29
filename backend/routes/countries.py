@@ -1,6 +1,6 @@
 """
 Countries routes - Country profiles, lists and economic data
-54 African countries members of the AfCFTA
+Provides access to economic data for all 54 African countries members of the AfCFTA
 """
 from fastapi import APIRouter, HTTPException, Query
 from typing import Optional
@@ -21,11 +21,23 @@ from gold_reserves_data import GOLD_RESERVES_GAI_DATA
 
 router = APIRouter()
 
-@router.get("/countries")
+@router.get("/countries", tags=["Countries"], summary="List all AfCFTA member countries")
 async def get_countries(lang: str = "fr"):
-    """Récupérer la liste des pays membres de la ZLECAf avec traduction
+    """
+    Get the list of all 54 AfCFTA member countries with translations.
     
-    Retourne ISO3 comme code principal, ISO2 conservé pour compatibilité (drapeaux)
+    Returns country information including ISO2, ISO3 codes, names, regions, 
+    and population for all member states.
+    
+    Args:
+        lang (str): Language for translations ('fr' or 'en'). Defaults to 'fr'.
+    
+    Returns:
+        list[CountryInfo]: List of all AfCFTA member countries with translated names
+    
+    Note:
+        - ISO3 is returned as the primary code
+        - ISO2 is maintained for flag emoji compatibility
     """
     countries = []
     for country in AFRICAN_COUNTRIES:
@@ -41,11 +53,29 @@ async def get_countries(lang: str = "fr"):
         countries.append(CountryInfo(**translated_country))
     return countries
 
-@router.get("/country-profile/{country_code}")
+@router.get("/country-profile/{country_code}", tags=["Countries"], summary="Get detailed country profile")
 async def get_country_profile(country_code: str) -> CountryEconomicProfile:
-    """Récupérer le profil économique complet d'un pays avec données réelles et commerce 2024
+    """
+    Get comprehensive economic profile for a specific country.
     
-    Accepte les codes ISO2 (ex: DZ) ou ISO3 (ex: DZA)
+    Retrieves detailed economic data including:
+    - GDP, population, and per capita metrics
+    - Trade data (exports/imports, partners, products)
+    - Infrastructure rankings and projects
+    - Economic forecasts and projections
+    - ZLECAf trade opportunities
+    
+    Args:
+        country_code (str): Country code (ISO2 like 'DZ' or ISO3 like 'DZA')
+    
+    Returns:
+        CountryEconomicProfile: Comprehensive country economic profile
+    
+    Raises:
+        HTTPException: 404 if country not found in AfCFTA members
+    
+    Example:
+        /api/country-profile/DZA or /api/country-profile/DZ
     """
     code_upper = country_code.upper()
     
