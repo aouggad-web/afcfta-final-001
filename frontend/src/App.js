@@ -48,6 +48,7 @@ function App() {
       profilesTab: "Profils Pays",
       toolsTab: "Outils",
       logisticsTab: "Logistique",
+      opportunitiesTab: "Opportunités",
       memberCountries: "54 Pays Membres",
       population: "1.3B+ Population"
     },
