@@ -147,7 +147,7 @@ function App() {
 
       <div className="container mx-auto px-4 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-8 bg-gradient-to-r from-red-100 via-yellow-100 to-green-100 p-2 shadow-lg">
+          <TabsList className="grid w-full grid-cols-9 bg-gradient-to-r from-red-100 via-yellow-100 to-green-100 p-2 shadow-lg">
             <TabsTrigger value="dashboard" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-slate-700 data-[state=active]:to-slate-900 data-[state=active]:text-white font-bold">
               📊 {t.dashboardTab}
             </TabsTrigger>
@@ -156,6 +156,9 @@ function App() {
             </TabsTrigger>
             <TabsTrigger value="statistics" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-600 data-[state=active]:to-pink-600 data-[state=active]:text-white font-bold">
               📈 {t.statisticsTab}
+            </TabsTrigger>
+            <TabsTrigger value="opportunities" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-emerald-600 data-[state=active]:to-teal-600 data-[state=active]:text-white font-bold" data-testid="opportunities-tab">
+              🎯 {t.opportunitiesTab}
             </TabsTrigger>
             <TabsTrigger value="production" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-600 data-[state=active]:to-purple-600 data-[state=active]:text-white font-bold">
               🏭 {t.productionTab}
