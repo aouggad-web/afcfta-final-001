@@ -302,10 +302,18 @@ export default function AIAnalysis({ language = 'fr' }) {
 
     const opps = analysisData.opportunities;
     const totalValue = opps.reduce((sum, opp) => {
-      const val = mode === 'export' 
-        ? opp.potential_value_musd 
-        : opp.substitution_potential_musd || opp.import_value_musd;
-      return sum + (val || 0);
+      let val = 0;
+      if (mode === 'export') {
+        val = opp.potential_value_musd || 0;
+      } else if (mode === 'import') {
+        val = opp.substitution_potential_musd || opp.import_value_musd || 0;
+      } else if (mode === 'industrial') {
+        // Industrial mode: parse estimated_output which may be string like "1800 MUSD"
+        const outputStr = opp.estimated_output || '';
+        const match = outputStr.match(/(\d+)/);
+        val = match ? parseFloat(match[1]) : 0;
+      }
+      return sum + val;
     }, 0);
 
     const hasEstimations = opps.some(opp => opp.is_estimation);
