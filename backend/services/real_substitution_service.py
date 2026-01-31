@@ -98,10 +98,13 @@ class RealSubstitutionService:
                         total_african_capacity * 0.3  # Realistic: capture 30% of African exports
                     )
                     
+                    # Get translated product name
+                    product_name = get_product_name(hs_code, lang, product.get("product_name"))
+                    
                     opportunity = {
                         "imported_product": {
                             "hs_code": hs_code,
-                            "name": product["product_name"] or get_product_name(hs_code, lang),
+                            "name": product_name,
                             "import_value": product["import_value"],
                             "current_source": ", ".join(product.get("source_regions", ["Hors Afrique"])[:2])
                         },
