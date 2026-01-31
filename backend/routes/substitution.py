@@ -126,25 +126,26 @@ async def get_export_opportunities(
 @router.get("/product/{hs_code}")
 async def get_product_substitution_analysis(
     hs_code: str,
+    year: int = Query(default=2022, description="Year for trade data"),
     lang: str = Query(default="fr", description="Language for names (fr/en)")
 ):
     """
     Analyze substitution opportunities for a specific product (HS code)
     
-    This endpoint provides a comprehensive analysis of a specific product including:
-    - African countries that produce this product
-    - African countries that import it from outside Africa
-    - Potential intra-African trade flows
+    Uses REAL data from OEC API.
     
     Args:
         hs_code: HS code (2, 4, or 6 digits)
+        year: Year for trade data
         lang: Language for names
     
     Returns:
-        Product-level substitution analysis
+        Product-level substitution analysis with African exporters
     """
     try:
-        result = substitution_service.get_product_analysis(hs_code, lang)
+        result = await real_substitution_service.get_product_trade_flows(
+            hs_code, year=year, lang=lang
+        )
         return result
     
     except Exception as e:
