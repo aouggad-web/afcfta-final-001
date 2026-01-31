@@ -510,16 +510,34 @@ class RealTradeDataService:
         return []
 
 
-def get_product_name(hs_code: str, lang: str = "fr") -> str:
-    """Get product name for HS code"""
+def get_product_name(hs_code: str, lang: str = "fr", oec_name: str = None) -> str:
+    """Get product name for HS code with fallback to OEC name"""
+    if not hs_code:
+        return oec_name or "Produit inconnu"
+    
+    # Clean HS code (remove any prefixes)
+    clean_code = str(hs_code).strip()
+    if len(clean_code) > 4:
+        clean_code = clean_code[-4:]  # Keep last 4 digits if longer
+    
     # Try exact match first
-    if hs_code in HS_PRODUCT_NAMES:
-        return HS_PRODUCT_NAMES[hs_code].get(lang, HS_PRODUCT_NAMES[hs_code].get("en", hs_code))
+    if clean_code in HS_PRODUCT_NAMES:
+        return HS_PRODUCT_NAMES[clean_code].get(lang, HS_PRODUCT_NAMES[clean_code].get("en", clean_code))
+    
+    # Try HS4 (first 4 digits)
+    if len(clean_code) >= 4:
+        hs4 = clean_code[:4]
+        if hs4 in HS_PRODUCT_NAMES:
+            return HS_PRODUCT_NAMES[hs4].get(lang, HS_PRODUCT_NAMES[hs4].get("en", f"HS {hs4}"))
     
     # Try chapter (first 2 digits)
-    chapter = hs_code[:2]
+    chapter = clean_code[:2]
     if chapter in HS_PRODUCT_NAMES:
         return HS_PRODUCT_NAMES[chapter].get(lang, HS_PRODUCT_NAMES[chapter].get("en", f"HS {hs_code}"))
+    
+    # Return OEC name if available, otherwise generic
+    if oec_name:
+        return oec_name
     
     return f"HS {hs_code}"
 
