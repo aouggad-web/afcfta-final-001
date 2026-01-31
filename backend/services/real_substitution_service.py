@@ -220,9 +220,9 @@ class RealSubstitutionService:
             return cached
         
         try:
-            # Get country's exports
+            # Get country's exports - INCREASED limit
             exports = await real_trade_service.get_oec_exports(
-                exporter, year=year, limit=30
+                exporter, year=year, limit=50
             )
             
             if not exports:
