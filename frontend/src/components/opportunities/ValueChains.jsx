@@ -1,278 +1,269 @@
 /**
  * Value Chains Component
  * Analyzes African value chains and industrial transformation opportunities
- * Key sectors: Agriculture, Mining, Manufacturing, Energy
+ * USING REAL DATA from Gemini AI (Industrial Mode)
  */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { 
-  ResponsiveContainer, Sankey, Tooltip, BarChart, Bar, XAxis, YAxis, 
-  CartesianGrid, PieChart, Pie, Cell, Legend
+  ResponsiveContainer, BarChart, Bar, XAxis, YAxis, 
+  CartesianGrid, Tooltip, Cell
 } from 'recharts';
 import { 
-  Factory, Wheat, Pickaxe, Zap, ArrowRight, Globe, 
-  TrendingUp, Package, Loader2, ChevronRight, Layers
+  Factory, ArrowRight, Globe, TrendingUp, Package, 
+  Loader2, Layers, Sparkles, AlertTriangle, Database
 } from 'lucide-react';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-const COLORS = ['#059669', '#0891b2', '#7c3aed', '#dc2626', '#ea580c', '#ca8a04', '#16a34a', '#2563eb', '#9333ea', '#e11d48'];
+const COLORS = ['#059669', '#0891b2', '#7c3aed', '#dc2626', '#ea580c', '#ca8a04'];
 
-// Value Chain definitions for African context
-const VALUE_CHAINS = {
-  coffee: {
-    id: 'coffee',
-    name: { fr: 'Café', en: 'Coffee' },
-    icon: '☕',
-    hsCode: '0901',
-    color: '#7c3aed',
-    stages: [
-      { name: { fr: 'Production', en: 'Production' }, countries: ['ETH', 'UGA', 'KEN', 'TZA', 'RWA'], value: 2.8 },
-      { name: { fr: 'Transformation', en: 'Processing' }, countries: ['ETH', 'KEN', 'CIV'], value: 1.2 },
-      { name: { fr: 'Torréfaction', en: 'Roasting' }, countries: ['ZAF', 'EGY', 'MAR'], value: 0.8 },
-      { name: { fr: 'Exportation', en: 'Export' }, countries: ['ETH', 'UGA', 'KEN'], value: 3.5 }
-    ],
-    topProducers: [
-      { country: 'Éthiopie', iso3: 'ETH', production: 496000, share: 42 },
-      { country: 'Ouganda', iso3: 'UGA', production: 288000, share: 24 },
-      { country: 'Kenya', iso3: 'KEN', production: 42000, share: 4 },
-      { country: 'Tanzanie', iso3: 'TZA', production: 55000, share: 5 },
-      { country: 'Rwanda', iso3: 'RWA', production: 22000, share: 2 }
-    ],
-    intraAfricanPotential: 450,
-    globalExports: 3200
-  },
-  cocoa: {
-    id: 'cocoa',
-    name: { fr: 'Cacao', en: 'Cocoa' },
-    icon: '🍫',
-    hsCode: '1801',
-    color: '#dc2626',
-    stages: [
-      { name: { fr: 'Production', en: 'Production' }, countries: ['CIV', 'GHA', 'CMR', 'NGA'], value: 5.2 },
-      { name: { fr: 'Fermentation', en: 'Fermentation' }, countries: ['CIV', 'GHA'], value: 4.8 },
-      { name: { fr: 'Transformation', en: 'Processing' }, countries: ['CIV', 'GHA', 'NGA'], value: 2.1 },
-      { name: { fr: 'Exportation', en: 'Export' }, countries: ['CIV', 'GHA', 'CMR'], value: 8.5 }
-    ],
-    topProducers: [
-      { country: 'Côte d\'Ivoire', iso3: 'CIV', production: 2200000, share: 45 },
-      { country: 'Ghana', iso3: 'GHA', production: 800000, share: 16 },
-      { country: 'Cameroun', iso3: 'CMR', production: 290000, share: 6 },
-      { country: 'Nigeria', iso3: 'NGA', production: 280000, share: 6 }
-    ],
-    intraAfricanPotential: 680,
-    globalExports: 12500
-  },
-  cotton: {
-    id: 'cotton',
-    name: { fr: 'Coton & Textile', en: 'Cotton & Textile' },
-    icon: '👕',
-    hsCode: '5201',
-    color: '#0891b2',
-    stages: [
-      { name: { fr: 'Culture', en: 'Cultivation' }, countries: ['MLI', 'BFA', 'BEN', 'TCD'], value: 1.8 },
-      { name: { fr: 'Égrenage', en: 'Ginning' }, countries: ['MLI', 'BFA', 'CIV'], value: 1.5 },
-      { name: { fr: 'Filature', en: 'Spinning' }, countries: ['EGY', 'MAR', 'TUN', 'ETH'], value: 2.2 },
-      { name: { fr: 'Confection', en: 'Manufacturing' }, countries: ['ETH', 'KEN', 'MAR', 'MUS'], value: 3.8 }
-    ],
-    topProducers: [
-      { country: 'Mali', iso3: 'MLI', production: 780000, share: 18 },
-      { country: 'Burkina Faso', iso3: 'BFA', production: 600000, share: 14 },
-      { country: 'Bénin', iso3: 'BEN', production: 550000, share: 13 },
-      { country: 'Côte d\'Ivoire', iso3: 'CIV', production: 450000, share: 11 },
-      { country: 'Égypte', iso3: 'EGY', production: 120000, share: 3 }
-    ],
-    intraAfricanPotential: 890,
-    globalExports: 4200
-  },
-  petroleum: {
-    id: 'petroleum',
-    name: { fr: 'Pétrole & Gaz', en: 'Oil & Gas' },
-    icon: '⛽',
-    hsCode: '2709',
-    color: '#ea580c',
-    stages: [
-      { name: { fr: 'Extraction', en: 'Extraction' }, countries: ['NGA', 'AGO', 'DZA', 'LBY', 'EGY'], value: 85 },
-      { name: { fr: 'Raffinage', en: 'Refining' }, countries: ['NGA', 'ZAF', 'EGY', 'DZA'], value: 32 },
-      { name: { fr: 'Pétrochimie', en: 'Petrochemicals' }, countries: ['ZAF', 'EGY', 'NGA'], value: 12 },
-      { name: { fr: 'Distribution', en: 'Distribution' }, countries: ['ZAF', 'NGA', 'KEN'], value: 45 }
-    ],
-    topProducers: [
-      { country: 'Nigeria', iso3: 'NGA', production: 1800000, share: 28 },
-      { country: 'Angola', iso3: 'AGO', production: 1200000, share: 19 },
-      { country: 'Algérie', iso3: 'DZA', production: 1000000, share: 16 },
-      { country: 'Libye', iso3: 'LBY', production: 900000, share: 14 },
-      { country: 'Égypte', iso3: 'EGY', production: 600000, share: 9 }
-    ],
-    intraAfricanPotential: 15000,
-    globalExports: 95000
-  },
-  minerals: {
-    id: 'minerals',
-    name: { fr: 'Minéraux & Métaux', en: 'Minerals & Metals' },
-    icon: '💎',
-    hsCode: '71',
-    color: '#059669',
-    stages: [
-      { name: { fr: 'Extraction', en: 'Mining' }, countries: ['ZAF', 'COD', 'ZMB', 'GHA', 'BWA'], value: 42 },
-      { name: { fr: 'Concentration', en: 'Concentration' }, countries: ['ZAF', 'ZMB', 'COD'], value: 28 },
-      { name: { fr: 'Raffinage', en: 'Refining' }, countries: ['ZAF', 'ZMB'], value: 18 },
-      { name: { fr: 'Fabrication', en: 'Manufacturing' }, countries: ['ZAF', 'EGY', 'MAR'], value: 15 }
-    ],
-    topProducers: [
-      { country: 'Afrique du Sud', iso3: 'ZAF', production: 25000, share: 35 },
-      { country: 'RD Congo', iso3: 'COD', production: 18000, share: 25 },
-      { country: 'Zambie', iso3: 'ZMB', production: 8000, share: 11 },
-      { country: 'Ghana', iso3: 'GHA', production: 5000, share: 7 },
-      { country: 'Botswana', iso3: 'BWA', production: 4500, share: 6 }
-    ],
-    intraAfricanPotential: 8500,
-    globalExports: 65000
-  },
-  automotive: {
-    id: 'automotive',
-    name: { fr: 'Automobile', en: 'Automotive' },
-    icon: '🚗',
-    hsCode: '87',
-    color: '#16a34a',
-    stages: [
-      { name: { fr: 'Composants', en: 'Components' }, countries: ['ZAF', 'MAR', 'EGY'], value: 8.5 },
-      { name: { fr: 'Assemblage', en: 'Assembly' }, countries: ['ZAF', 'MAR', 'EGY', 'KEN'], value: 12.2 },
-      { name: { fr: 'Distribution', en: 'Distribution' }, countries: ['ZAF', 'NGA', 'KEN', 'EGY'], value: 6.8 },
-      { name: { fr: 'Services', en: 'Services' }, countries: ['ZAF', 'NGA', 'KEN'], value: 3.2 }
-    ],
-    topProducers: [
-      { country: 'Afrique du Sud', iso3: 'ZAF', production: 450000, share: 58 },
-      { country: 'Maroc', iso3: 'MAR', production: 180000, share: 23 },
-      { country: 'Égypte', iso3: 'EGY', production: 85000, share: 11 },
-      { country: 'Kenya', iso3: 'KEN', production: 12000, share: 2 }
-    ],
-    intraAfricanPotential: 4200,
-    globalExports: 18500
-  }
+// Format value
+const formatValue = (value) => {
+  if (value >= 1000) return `$${(value / 1000).toFixed(1)}B`;
+  if (value >= 1) return `$${value.toFixed(0)}M`;
+  return `$${(value * 1000).toFixed(0)}K`;
 };
 
 // Value Chain Card Component
-const ValueChainCard = ({ chain, language, onClick, isSelected }) => {
-  const name = chain.name[language] || chain.name.en;
+const ValueChainCard = ({ opportunity, index, language }) => {
+  const isEstimation = opportunity.is_estimation;
+  
+  const product = opportunity.product || {};
+  const input = opportunity.industrial_input || {};
+  const targets = opportunity.target_markets || [];
   
   return (
-    <Card 
-      className={`cursor-pointer transition-all hover:shadow-lg ${
-        isSelected 
-          ? 'ring-2 ring-emerald-500 shadow-lg' 
-          : 'hover:border-slate-300'
-      }`}
-      onClick={onClick}
-    >
-      <CardContent className="p-4">
-        <div className="flex items-center gap-3">
-          <span className="text-3xl">{chain.icon}</span>
-          <div className="flex-1">
-            <h3 className="font-bold text-slate-900">{name}</h3>
-            <p className="text-xs text-slate-500">HS {chain.hsCode}</p>
+    <Card className={`bg-white border-slate-200 shadow-lg hover:shadow-xl transition-all ${
+      isEstimation ? 'border-l-4 border-l-amber-400' : 'border-l-4 border-l-emerald-500'
+    }`}>
+      <CardContent className="p-5">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-3">
+          <Badge variant="outline" className="font-mono">
+            HS {product.hs_code || '----'}
+          </Badge>
+          {isEstimation && (
+            <Badge className="bg-amber-100 text-amber-700 text-[10px]">
+              <AlertTriangle className="h-3 w-3 mr-1" />
+              ESTIMATION
+            </Badge>
+          )}
+        </div>
+
+        {/* Transformation Flow */}
+        <div className="bg-gradient-to-r from-blue-50 to-emerald-50 rounded-lg p-4 mb-4">
+          <p className="text-xs font-bold text-blue-600 uppercase mb-2">
+            Chaîne de Transformation
+          </p>
+          <div className="flex items-center gap-2 flex-wrap">
+            <div className="flex-1 min-w-[100px]">
+              <p className="text-xs text-slate-500">Intrant importé</p>
+              <p className="font-bold text-slate-800 text-sm">{input.name || 'N/A'}</p>
+              {input.import_volume && (
+                <p className="text-xs text-slate-500 mt-1">{input.import_volume}</p>
+              )}
+            </div>
+            <ArrowRight className="h-6 w-6 text-emerald-500 flex-shrink-0" />
+            <div className="flex-1 min-w-[100px]">
+              <p className="text-xs text-slate-500">Produit fini</p>
+              <p className="font-bold text-emerald-700 text-sm">{product.name || 'N/A'}</p>
+              {opportunity.estimated_production && (
+                <p className="text-xs text-emerald-600 mt-1">{opportunity.estimated_production}</p>
+              )}
+            </div>
           </div>
-          <ChevronRight className={`h-5 w-5 text-slate-400 transition-transform ${isSelected ? 'rotate-90' : ''}`} />
         </div>
-        <div className="mt-3 flex gap-2">
-          <Badge variant="outline" className="text-xs">
-            {chain.topProducers.length} pays producteurs
-          </Badge>
-          <Badge className="text-xs bg-emerald-100 text-emerald-700">
-            ${chain.intraAfricanPotential}M potentiel
-          </Badge>
+
+        {/* Value & Markets */}
+        <div className="grid grid-cols-2 gap-4 mb-4">
+          <div>
+            <p className="text-xs text-slate-500">Potentiel</p>
+            <p className="text-xl font-black text-emerald-600">
+              {formatValue(opportunity.potential_value_musd || 0)}
+            </p>
+          </div>
+          <div>
+            <p className="text-xs text-slate-500">Réduction tarifaire</p>
+            <p className="text-lg font-bold text-blue-600">
+              {opportunity.tariff_reduction ? `-${opportunity.tariff_reduction}%` : 'N/A'}
+            </p>
+          </div>
         </div>
+
+        {/* Target Markets */}
+        {targets.length > 0 && (
+          <div className="border-t border-slate-200 pt-3">
+            <p className="text-xs font-bold text-slate-500 uppercase mb-2 flex items-center gap-1">
+              <Globe className="h-3 w-3" />
+              Marchés cibles
+            </p>
+            <div className="flex flex-wrap gap-1">
+              {targets.slice(0, 4).map((market, idx) => (
+                <Badge key={idx} variant="secondary" className="text-xs">
+                  {market}
+                </Badge>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Transformation Logic */}
+        {opportunity.transformation_logic && (
+          <div className="mt-3 p-3 bg-slate-50 rounded text-xs text-slate-600">
+            <p className="font-bold text-slate-700 mb-1">Logique de transformation:</p>
+            {opportunity.transformation_logic}
+          </div>
+        )}
       </CardContent>
     </Card>
   );
 };
 
-// Stage Flow Component
-const StageFlow = ({ stages, language, color }) => {
-  return (
-    <div className="flex items-center justify-between overflow-x-auto pb-4">
-      {stages.map((stage, index) => (
-        <React.Fragment key={index}>
-          <div className="flex flex-col items-center min-w-[120px]">
-            <div 
-              className="w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg"
-              style={{ backgroundColor: color }}
-            >
-              {index + 1}
-            </div>
-            <p className="mt-2 text-sm font-medium text-slate-700 text-center">
-              {stage.name[language] || stage.name.en}
-            </p>
-            <p className="text-xs text-slate-500">${stage.value}B</p>
-            <div className="flex flex-wrap gap-1 mt-1 justify-center max-w-[100px]">
-              {stage.countries.slice(0, 3).map(iso => (
-                <Badge key={iso} variant="outline" className="text-[10px] px-1">
-                  {iso}
-                </Badge>
-              ))}
-            </div>
-          </div>
-          {index < stages.length - 1 && (
-            <ArrowRight className="h-6 w-6 text-slate-300 flex-shrink-0 mx-2" />
-          )}
-        </React.Fragment>
-      ))}
-    </div>
-  );
-};
-
+// Main Component
 export default function ValueChains({ language = 'fr' }) {
-  const { t } = useTranslation();
-  const [selectedChain, setSelectedChain] = useState('coffee');
+  const { i18n } = useTranslation();
+  const currentLang = i18n.language || language;
+
+  const [countries, setCountries] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [chainData, setChainData] = useState(null);
 
   const texts = {
     fr: {
-      title: "Chaînes de Valeur Africaines",
-      subtitle: "Analyse des opportunités de transformation industrielle et d'intégration régionale",
-      selectChain: "Sélectionnez une chaîne de valeur",
-      stagesTitle: "Étapes de la Chaîne de Valeur",
-      topProducers: "Principaux Producteurs",
-      valueAddedPotential: "Potentiel de Valeur Ajoutée",
-      intraAfricanTrade: "Commerce Intra-Africain",
-      globalExports: "Exportations Mondiales",
-      production: "Production (tonnes)",
-      share: "Part (%)",
-      opportunities: "Opportunités ZLECAf",
-      source: "Sources: FAOSTAT 2023, UNCTAD 2023, ITC Trade Map, Données sectorielles"
+      title: "Chaînes de Valeur Industrielles",
+      subtitle: "Opportunités de transformation: Intrants importés → Produits finis exportables",
+      selectCountry: "Sélectionnez un pays",
+      analyze: "Analyser avec IA",
+      loading: "Analyse des chaînes de valeur...",
+      loadingMessages: [
+        "Analyse des imports d'intrants UNCTAD...",
+        "Cartographie des capacités industrielles...",
+        "Identification des opportunités de transformation...",
+        "Calcul des potentiels d'export..."
+      ],
+      opportunities: "Opportunités identifiées",
+      totalPotential: "Potentiel total",
+      noData: "Sélectionnez un pays pour analyser ses chaînes de valeur industrielles",
+      poweredBy: "Analyse par Gemini AI",
+      realData: "DONNÉES RÉELLES"
     },
     en: {
-      title: "African Value Chains",
-      subtitle: "Analysis of industrial transformation and regional integration opportunities",
-      selectChain: "Select a value chain",
-      stagesTitle: "Value Chain Stages",
-      topProducers: "Top Producers",
-      valueAddedPotential: "Value Added Potential",
-      intraAfricanTrade: "Intra-African Trade",
-      globalExports: "Global Exports",
-      production: "Production (tonnes)",
-      share: "Share (%)",
-      opportunities: "AfCFTA Opportunities",
-      source: "Sources: FAOSTAT 2023, UNCTAD 2023, ITC Trade Map, Sector data"
+      title: "Industrial Value Chains",
+      subtitle: "Transformation opportunities: Imported inputs → Exportable finished products",
+      selectCountry: "Select a country",
+      analyze: "Analyze with AI",
+      loading: "Analyzing value chains...",
+      loadingMessages: [
+        "Analyzing UNCTAD input imports...",
+        "Mapping industrial capacities...",
+        "Identifying transformation opportunities...",
+        "Computing export potentials..."
+      ],
+      opportunities: "Opportunities identified",
+      totalPotential: "Total potential",
+      noData: "Select a country to analyze its industrial value chains",
+      poweredBy: "Analysis by Gemini AI",
+      realData: "REAL DATA"
     }
   };
+  const txt = texts[currentLang] || texts.fr;
 
-  const txt = texts[language] || texts.fr;
-  const chain = VALUE_CHAINS[selectedChain];
+  // Loading message animation
+  const [loadingMessage, setLoadingMessage] = useState(0);
+  useEffect(() => {
+    let interval;
+    if (loading) {
+      interval = setInterval(() => {
+        setLoadingMessage(prev => (prev + 1) % txt.loadingMessages.length);
+      }, 2000);
+    }
+    return () => clearInterval(interval);
+  }, [loading, txt.loadingMessages.length]);
+
+  // Fetch countries
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const res = await axios.get(`${API}/substitution/countries?lang=${currentLang}`);
+        setCountries(res.data.countries || []);
+      } catch (err) {
+        console.error('Error fetching countries:', err);
+      }
+    };
+    fetchCountries();
+  }, [currentLang]);
+
+  // Analyze value chains using Gemini AI (Industrial mode)
+  const analyzeChains = useCallback(async () => {
+    if (!selectedCountry) return;
+
+    setLoading(true);
+    setError(null);
+    setChainData(null);
+
+    const countryObj = countries.find(c => c.iso3 === selectedCountry);
+    const countryName = countryObj?.name || selectedCountry;
+
+    try {
+      const res = await axios.get(
+        `${API}/ai/opportunities/${encodeURIComponent(countryName)}`,
+        { params: { mode: 'industrial', lang: currentLang } }
+      );
+      
+      setChainData({
+        country: countryName,
+        opportunities: res.data.opportunities || [],
+        sources: res.data.sources || [],
+        generatedBy: res.data.generated_by
+      });
+      
+    } catch (err) {
+      console.error('Value chain analysis error:', err);
+      setError(err.response?.data?.detail || 'Erreur lors de l\'analyse');
+    } finally {
+      setLoading(false);
+    }
+  }, [selectedCountry, currentLang, countries]);
+
+  // Calculate summary stats
+  const summaryStats = React.useMemo(() => {
+    if (!chainData?.opportunities) return null;
+
+    const opps = chainData.opportunities;
+    const totalValue = opps.reduce((sum, opp) => sum + (opp.potential_value_musd || 0), 0);
+    const hasEstimations = opps.some(opp => opp.is_estimation);
+
+    return {
+      count: opps.length,
+      totalValue,
+      hasEstimations
+    };
+  }, [chainData]);
+
+  // Chart data
+  const chartData = React.useMemo(() => {
+    if (!chainData?.opportunities) return [];
+    return chainData.opportunities.slice(0, 10).map(opp => ({
+      name: opp.product?.name?.substring(0, 20) || 'N/A',
+      value: opp.potential_value_musd || 0
+    }));
+  }, [chainData]);
 
   return (
-    <div className="space-y-8" data-testid="value-chains">
+    <div className="space-y-6" data-testid="value-chains">
       {/* Header */}
       <div className="text-center">
         <div className="flex items-center justify-center gap-3 mb-2">
-          <Layers className="h-8 w-8 text-emerald-600" />
+          <Factory className="h-8 w-8 text-indigo-600" />
           <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tight">
             {txt.title}
           </h2>
@@ -280,141 +271,195 @@ export default function ValueChains({ language = 'fr' }) {
         <p className="text-slate-500">{txt.subtitle}</p>
       </div>
 
-      {/* Value Chain Selection Grid */}
-      <div>
-        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">
-          {txt.selectChain}
-        </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {Object.values(VALUE_CHAINS).map((vc) => (
-            <ValueChainCard
-              key={vc.id}
-              chain={vc}
-              language={language}
-              isSelected={selectedChain === vc.id}
-              onClick={() => setSelectedChain(vc.id)}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Selected Chain Details */}
-      {chain && (
-        <Card className="shadow-xl border-slate-200 overflow-hidden">
-          <CardHeader 
-            className="text-white"
-            style={{ background: `linear-gradient(135deg, ${chain.color}, ${chain.color}dd)` }}
-          >
-            <div className="flex items-center gap-4">
-              <span className="text-5xl">{chain.icon}</span>
-              <div>
-                <CardTitle className="text-2xl">
-                  {chain.name[language] || chain.name.en}
-                </CardTitle>
-                <CardDescription className="text-white/80">
-                  Code HS: {chain.hsCode} | Potentiel intra-africain: ${chain.intraAfricanPotential}M
-                </CardDescription>
-              </div>
-            </div>
-          </CardHeader>
-          
-          <CardContent className="p-6 space-y-8">
-            {/* Stages Flow */}
-            <div>
-              <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">
-                {txt.stagesTitle}
-              </h3>
-              <StageFlow stages={chain.stages} language={language} color={chain.color} />
-            </div>
-
-            {/* Stats Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Top Producers */}
-              <div>
-                <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">
-                  {txt.topProducers}
-                </h3>
-                <div className="space-y-3">
-                  {chain.topProducers.map((producer, idx) => (
-                    <div key={producer.iso3} className="flex items-center gap-3">
-                      <span className="font-black text-slate-300 w-6">{idx + 1}</span>
-                      <div className="flex-1">
-                        <div className="flex justify-between items-center mb-1">
-                          <span className="font-medium text-slate-700">{producer.country}</span>
-                          <span className="text-sm text-slate-500">{producer.share}%</span>
-                        </div>
-                        <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full rounded-full transition-all"
-                            style={{ 
-                              width: `${producer.share}%`,
-                              backgroundColor: chain.color 
-                            }}
-                          />
-                        </div>
-                      </div>
-                    </div>
+      {/* Controls */}
+      <Card className="shadow-lg">
+        <CardContent className="p-6">
+          <div className="flex flex-col sm:flex-row gap-4 items-end">
+            {/* Country selection */}
+            <div className="flex-1 space-y-2">
+              <label className="text-sm font-medium text-slate-700">{txt.selectCountry}</label>
+              <Select value={selectedCountry} onValueChange={setSelectedCountry}>
+                <SelectTrigger className="w-full" data-testid="valuechains-country-select">
+                  <SelectValue placeholder={txt.selectCountry} />
+                </SelectTrigger>
+                <SelectContent>
+                  {countries.map(country => (
+                    <SelectItem key={country.iso3} value={country.iso3}>
+                      {country.name}
+                    </SelectItem>
                   ))}
-                </div>
-              </div>
-
-              {/* Trade Potential Chart */}
-              <div>
-                <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">
-                  {txt.valueAddedPotential}
-                </h3>
-                <ResponsiveContainer width="100%" height={200}>
-                  <PieChart>
-                    <Pie
-                      data={[
-                        { name: txt.intraAfricanTrade, value: chain.intraAfricanPotential },
-                        { name: txt.globalExports, value: chain.globalExports - chain.intraAfricanPotential }
-                      ]}
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={50}
-                      outerRadius={80}
-                      paddingAngle={2}
-                      dataKey="value"
-                    >
-                      <Cell fill={chain.color} />
-                      <Cell fill="#e2e8f0" />
-                    </Pie>
-                    <Tooltip formatter={(v) => `$${v}M`} />
-                    <Legend />
-                  </PieChart>
-                </ResponsiveContainer>
-                <div className="text-center mt-4">
-                  <Badge className="text-sm" style={{ backgroundColor: chain.color }}>
-                    {((chain.intraAfricanPotential / chain.globalExports) * 100).toFixed(1)}% du marché potentiel
-                  </Badge>
-                </div>
-              </div>
+                </SelectContent>
+              </Select>
             </div>
 
-            {/* AfCFTA Opportunities */}
-            <Card className="bg-emerald-50 border-emerald-200">
-              <CardContent className="p-4">
-                <h4 className="font-bold text-emerald-800 flex items-center gap-2 mb-2">
-                  <TrendingUp className="h-5 w-5" />
-                  {txt.opportunities}
-                </h4>
-                <ul className="text-sm text-emerald-700 space-y-1">
-                  <li>• Réduction des tarifs douaniers jusqu'à 90% d'ici 2034</li>
-                  <li>• Règles d'origine favorisant la transformation locale</li>
-                  <li>• Harmonisation des normes et standards</li>
-                  <li>• Facilitation du commerce et réduction des délais aux frontières</li>
-                </ul>
-              </CardContent>
-            </Card>
+            {/* Analyze button */}
+            <Button
+              onClick={analyzeChains}
+              disabled={!selectedCountry || loading}
+              className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700"
+              data-testid="valuechains-analyze-btn"
+            >
+              {loading ? (
+                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+              ) : (
+                <Sparkles className="h-4 w-4 mr-2" />
+              )}
+              {txt.analyze}
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Loading state */}
+      {loading && (
+        <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 border-indigo-200">
+          <CardContent className="py-16 text-center">
+            <div className="relative w-20 h-20 mx-auto mb-6">
+              <div className="absolute inset-0 border-4 border-indigo-200 rounded-full"></div>
+              <div className="absolute inset-0 border-4 border-t-indigo-500 rounded-full animate-spin"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Factory className="h-8 w-8 text-indigo-500" />
+              </div>
+            </div>
+            <p className="text-xl font-bold text-slate-800 mb-2">{txt.loading}</p>
+            <p className="text-indigo-600 font-medium text-sm animate-pulse">
+              {txt.loadingMessages[loadingMessage]}
+            </p>
           </CardContent>
         </Card>
       )}
 
-      {/* Source Footer */}
-      <div className="text-center">
-        <p className="text-xs text-slate-400 italic">{txt.source}</p>
-      </div>
+      {/* Error state */}
+      {error && (
+        <Card className="bg-red-50 border-red-200">
+          <CardContent className="py-8 text-center">
+            <AlertTriangle className="h-8 w-8 text-red-500 mx-auto mb-2" />
+            <p className="text-red-700">{error}</p>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Results */}
+      {!loading && !error && chainData && (
+        <>
+          {/* Summary Stats */}
+          {summaryStats && (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Card className="bg-white shadow-lg">
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-4">
+                    <div className="h-12 w-12 flex items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
+                      <Layers className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500">{txt.opportunities}</p>
+                      <p className="text-2xl font-bold text-slate-900">{summaryStats.count}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white shadow-lg">
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-4">
+                    <div className="h-12 w-12 flex items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                      <TrendingUp className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500">{txt.totalPotential}</p>
+                      <p className="text-2xl font-bold text-emerald-600">
+                        {formatValue(summaryStats.totalValue)}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white shadow-lg">
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-4">
+                    <div className="h-12 w-12 flex items-center justify-center rounded-full bg-purple-100 text-purple-600">
+                      <Database className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500">Source</p>
+                      <p className="text-lg font-bold text-purple-600">
+                        {chainData.generatedBy || 'Gemini AI'}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {/* Chart */}
+          {chartData.length > 0 && (
+            <Card className="shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-lg font-bold">Potentiel par Produit Fini</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="h-[300px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart
+                      data={chartData}
+                      layout="vertical"
+                      margin={{ top: 5, right: 30, left: 120, bottom: 5 }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis type="number" tickFormatter={(v) => `$${v}M`} />
+                      <YAxis type="category" dataKey="name" width={115} tick={{ fontSize: 10 }} />
+                      <Tooltip formatter={(value) => [`$${value}M`, 'Potentiel']} />
+                      <Bar dataKey="value" radius={[0, 4, 4, 0]}>
+                        {chartData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+                      </Bar>
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Opportunities Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {chainData.opportunities.slice(0, 12).map((opp, idx) => (
+              <ValueChainCard
+                key={idx}
+                opportunity={opp}
+                index={idx}
+                language={currentLang}
+              />
+            ))}
+          </div>
+
+          {/* Sources footer */}
+          {chainData.sources?.length > 0 && (
+            <Card className="bg-slate-50 border-slate-200">
+              <CardContent className="py-4 px-6">
+                <div className="flex items-center gap-2 text-sm text-slate-500">
+                  <Sparkles className="h-4 w-4 text-purple-500" />
+                  <span className="font-medium">{txt.poweredBy}</span>
+                  <span className="text-slate-400">|</span>
+                  <span>Sources: {chainData.sources.join(', ')}</span>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+        </>
+      )}
+
+      {/* Empty state */}
+      {!loading && !error && !chainData && (
+        <Card className="bg-slate-50 border-slate-200">
+          <CardContent className="py-16 text-center">
+            <Factory className="h-16 w-16 text-slate-300 mx-auto mb-4" />
+            <p className="text-slate-500">{txt.noData}</p>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 }
