@@ -68,9 +68,9 @@ class RealSubstitutionService:
             return cached
         
         try:
-            # Step 1: Get imports - reduced limit for speed
+            # Step 1: Get imports - INCREASED limit for more HS codes
             all_imports = await real_trade_service.get_oec_imports(
-                importer, year=year, limit=30
+                importer, year=year, limit=50
             )
             
             if not all_imports:
@@ -85,9 +85,8 @@ class RealSubstitutionService:
                     "opportunities": []
                 }
             
-            # Step 2: Batch query for African exporters of top products
-            # Instead of one API call per product, get ALL African exports at once
-            top_hs_codes = [imp["hs_code"] for imp in all_imports if imp["trade_value"] >= min_value][:15]
+            # Step 2: Batch query for African exporters of top products - INCREASED
+            top_hs_codes = [imp["hs_code"] for imp in all_imports if imp["trade_value"] >= min_value][:25]
             
             # Get African exports for multiple products in parallel
             african_exports_map = await self._batch_get_african_exporters(top_hs_codes, year)
