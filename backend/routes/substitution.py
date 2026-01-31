@@ -43,16 +43,10 @@ async def get_import_substitution_opportunities(
         List of substitution opportunities with potential African suppliers
     """
     try:
-        if use_real_data:
-            # Use real OEC data
-            result = await real_substitution_service.find_import_substitution_opportunities(
-                country_iso3, year=year, min_value=min_value, lang=lang
-            )
-        else:
-            # Fallback to simulated data
-            result = substitution_service.find_substitution_opportunities(
-                country_iso3, min_value, lang
-            )
+        # Use real OEC data only
+        result = await real_substitution_service.find_import_substitution_opportunities(
+            country_iso3, year=year, min_value=min_value, lang=lang
+        )
         
         if "error" in result and not result.get("opportunities"):
             raise HTTPException(status_code=404, detail=result["error"])
