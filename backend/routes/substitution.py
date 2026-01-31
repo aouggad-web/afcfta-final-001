@@ -9,41 +9,61 @@ import logging
 
 # Import real services only (OEC data)
 from services.real_substitution_service import real_substitution_service
-from services.real_trade_data_service import AFRICAN_COUNTRIES
+from services.real_trade_data_service import AFRICAN_COUNTRIES, get_country_name, get_product_name
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/substitution", tags=["Trade Substitution Analysis"])
 
 
+@router.get("/countries")
+async def get_available_countries(
+    lang: str = Query(default="fr", description="Language for country names (fr/en)")
+):
+    """
+    Get list of available African countries for analysis
+    """
+    countries = []
+    for iso3, info in AFRICAN_COUNTRIES.items():
+        countries.append({
+            "iso3": iso3,
+            "name": info.get(f"name_{lang}", info.get("name_en", iso3)),
+            "oec_id": info.get("oec", "")
+        })
+    
+    countries.sort(key=lambda x: x["name"])
+    
+    return {
+        "total": len(countries),
+        "countries": countries
+    }
+
+
 @router.get("/opportunities/import/{country_iso3}")
 async def get_import_substitution_opportunities(
     country_iso3: str,
     year: int = Query(default=2022, description="Year for trade data"),
-    min_value: int = Query(default=5000000, description="Minimum import value to consider (USD)"),
-    lang: str = Query(default="fr", description="Language for names (fr/en)"),
-    use_real_data: bool = Query(default=True, description="Use real OEC data (True) or simulated (False)")
+    min_value: int = Query(default=1000000, description="Minimum import value to consider (USD)"),
+    lang: str = Query(default="fr", description="Language for names (fr/en)")
 ):
     """
     Find import substitution opportunities for a specific African country
     
-    This endpoint identifies products that the country currently imports from outside Africa
-    but could potentially source from other AfCFTA member countries.
+    This endpoint identifies products that the country currently imports 
+    from outside Africa that could be sourced from other AfCFTA countries.
     
     Uses REAL data from OEC (Observatory of Economic Complexity) API.
     
     Args:
-        country_iso3: ISO3 code of the importing country (e.g., NGA, EGY, ZAF)
+        country_iso3: ISO3 code of the importing country
         year: Year for trade data (2018-2022 available)
-        min_value: Minimum import value threshold in USD
+        min_value: Minimum import value in USD to consider
         lang: Language for country/product names
-        use_real_data: Use real OEC API data (default) or fallback to simulated
     
     Returns:
         List of substitution opportunities with potential African suppliers
     """
     try:
-        # Use real OEC data only
         result = await real_substitution_service.find_import_substitution_opportunities(
             country_iso3, year=year, min_value=min_value, lang=lang
         )
@@ -64,9 +84,8 @@ async def get_import_substitution_opportunities(
 async def get_export_opportunities(
     country_iso3: str,
     year: int = Query(default=2022, description="Year for trade data"),
-    min_market_size: int = Query(default=10000000, description="Minimum market size to consider (USD)"),
-    lang: str = Query(default="fr", description="Language for names (fr/en)"),
-    use_real_data: bool = Query(default=True, description="Use real OEC data (True) or simulated (False)")
+    min_market_size: int = Query(default=5000000, description="Minimum market size to consider (USD)"),
+    lang: str = Query(default="fr", description="Language for names (fr/en)")
 ):
     """
     Find export opportunities for a specific African country
@@ -81,13 +100,11 @@ async def get_export_opportunities(
         year: Year for trade data (2018-2022 available)
         min_market_size: Minimum target market size in USD
         lang: Language for country/product names
-        use_real_data: Use real OEC API data (default) or fallback to simulated
     
     Returns:
         List of export opportunities with potential markets
     """
     try:
-        # Use real OEC data only
         result = await real_substitution_service.find_export_opportunities(
             country_iso3, year=year, min_market_size=min_market_size, lang=lang
         )
@@ -101,6 +118,100 @@ async def get_export_opportunities(
         raise
     except Exception as e:
         logger.error(f"Error finding export opportunities: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/summary")
+async def get_opportunities_summary(
+    lang: str = Query(default="fr", description="Language for names (fr/en)")
+):
+    """
+    Get aggregate summary of trade opportunities across Africa
+    
+    Returns overview statistics for the OpportunitySummary component
+    """
+    try:
+        # Get data for a few major economies for summary stats
+        major_economies = ["ZAF", "EGY", "NGA", "MAR", "KEN"]
+        
+        total_import_potential = 0
+        total_export_potential = 0
+        all_import_opps = []
+        all_export_opps = []
+        sectors = {}
+        
+        for iso3 in major_economies:
+            try:
+                # Get import opportunities
+                import_data = await real_substitution_service.find_import_substitution_opportunities(
+                    iso3, year=2022, min_value=1000000, lang=lang
+                )
+                if import_data.get("opportunities"):
+                    total_import_potential += import_data.get("summary", {}).get("total_substitutable_value", 0)
+                    for opp in import_data["opportunities"][:5]:
+                        opp["country"] = get_country_name(iso3, lang)
+                        opp["country_iso3"] = iso3
+                        all_import_opps.append(opp)
+                        
+                        # Track sectors
+                        hs_chapter = opp["imported_product"]["hs_code"][:2]
+                        if hs_chapter not in sectors:
+                            sectors[hs_chapter] = {"value": 0, "count": 0}
+                        sectors[hs_chapter]["value"] += opp["substitution_potential"]
+                        sectors[hs_chapter]["count"] += 1
+                
+                # Get export opportunities
+                export_data = await real_substitution_service.find_export_opportunities(
+                    iso3, year=2022, min_market_size=5000000, lang=lang
+                )
+                if export_data.get("opportunities"):
+                    total_export_potential += export_data.get("summary", {}).get("total_potential_value", 0)
+                    for opp in export_data["opportunities"][:5]:
+                        opp["country"] = get_country_name(iso3, lang)
+                        opp["country_iso3"] = iso3
+                        all_export_opps.append(opp)
+            except Exception as e:
+                logger.warning(f"Error getting data for {iso3}: {e}")
+                continue
+        
+        # Sort and format sectors
+        sector_names = {
+            "01": "Animaux", "02": "Viandes", "03": "Poissons", "04": "Produits laitiers",
+            "07": "Légumes", "08": "Fruits", "09": "Café/Thé", "10": "Céréales",
+            "15": "Huiles", "17": "Sucres", "18": "Cacao", "27": "Combustibles",
+            "31": "Engrais", "39": "Plastiques", "72": "Fer/Acier", "84": "Machines",
+            "85": "Électronique", "87": "Véhicules"
+        }
+        
+        top_sectors = []
+        for hs, data in sorted(sectors.items(), key=lambda x: x[1]["value"], reverse=True)[:8]:
+            top_sectors.append({
+                "hs_chapter": hs,
+                "name": sector_names.get(hs, f"HS {hs}"),
+                "value": data["value"],
+                "count": data["count"]
+            })
+        
+        # Sort opportunities
+        all_import_opps.sort(key=lambda x: x["substitution_potential"], reverse=True)
+        all_export_opps.sort(key=lambda x: x.get("estimated_capture", 0), reverse=True)
+        
+        return {
+            "summary": {
+                "total_import_substitution_potential": total_import_potential,
+                "total_export_potential": total_export_potential,
+                "total_combined": total_import_potential + total_export_potential,
+                "countries_analyzed": len(major_economies),
+                "currency": "USD"
+            },
+            "top_import_opportunities": all_import_opps[:10],
+            "top_export_opportunities": all_export_opps[:10],
+            "top_sectors": top_sectors,
+            "data_source": "OEC (Observatory of Economic Complexity)"
+        }
+    
+    except Exception as e:
+        logger.error(f"Error generating summary: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -121,139 +232,75 @@ async def get_product_substitution_analysis(
         lang: Language for names
     
     Returns:
-        Product-level substitution analysis with African exporters
+        Product-level trade analysis with African exporters and importers
     """
+    from services.real_trade_data_service import real_trade_service
+    
     try:
-        result = await real_substitution_service.get_product_trade_flows(
-            hs_code, year=year, lang=lang
-        )
-        return result
+        # Get African exporters for this product
+        exporters = await real_trade_service.get_african_exporters_for_product(hs_code, year)
+        
+        # Get African importers for this product
+        importers = await real_trade_service.get_african_importers_for_product(hs_code, year)
+        
+        product_name = get_product_name(hs_code, lang)
+        
+        # Calculate totals
+        total_exports = sum(e["export_value"] for e in exporters)
+        total_imports = sum(i["import_value"] for i in importers)
+        
+        # Find substitution opportunities
+        opportunities = []
+        for imp in importers[:10]:
+            for exp in exporters[:5]:
+                if imp["country_iso3"] != exp["country_iso3"]:
+                    potential = min(imp["import_value"] * 0.3, exp["export_value"])
+                    if potential > 100000:
+                        opportunities.append({
+                            "importer": imp["country_name"],
+                            "importer_iso3": imp["country_iso3"],
+                            "exporter": exp["country_name"],
+                            "exporter_iso3": exp["country_iso3"],
+                            "potential_value": potential
+                        })
+        
+        opportunities.sort(key=lambda x: x["potential_value"], reverse=True)
+        
+        return {
+            "product": {
+                "hs_code": hs_code,
+                "name": product_name,
+                "chapter": hs_code[:2]
+            },
+            "african_trade": {
+                "total_exports": total_exports,
+                "total_imports": total_imports,
+                "intra_african_potential": min(total_exports, total_imports) * 0.3
+            },
+            "top_exporters": [
+                {
+                    "country": get_country_name(e["country_iso3"], lang),
+                    "iso3": e["country_iso3"],
+                    "value": e["export_value"]
+                }
+                for e in exporters[:10]
+            ],
+            "top_importers": [
+                {
+                    "country": get_country_name(i["country_iso3"], lang),
+                    "iso3": i["country_iso3"],
+                    "value": i["import_value"]
+                }
+                for i in importers[:10]
+            ],
+            "substitution_opportunities": opportunities[:15],
+            "year": year,
+            "data_source": "OEC"
+        }
     
     except Exception as e:
         logger.error(f"Error analyzing product {hs_code}: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
-
-
-@router.get("/matrix")
-async def get_substitution_matrix(
-    lang: str = Query(default="fr", description="Language for names (fr/en)")
-):
-    """
-    Get the complete substitution opportunity matrix for all AfCFTA countries
-    
-    This endpoint provides:
-    - Overview of substitution potential for each country
-    - Top 20 opportunities across Africa
-    - Sector-level summary
-    
-    Returns:
-        Comprehensive substitution matrix
-    """
-    try:
-        result = substitution_service.get_african_trade_matrix(lang)
-        return result
-    
-    except Exception as e:
-        logger.error(f"Error generating substitution matrix: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-@router.get("/country/{country_iso3}/imports")
-async def get_country_imports_from_outside(
-    country_iso3: str,
-    lang: str = Query(default="fr", description="Language for names")
-):
-    """
-    Get list of products a country imports from outside Africa
-    
-    Args:
-        country_iso3: ISO3 code of the country
-        lang: Language for names
-    
-    Returns:
-        List of imports from outside Africa
-    """
-    imports = get_simulated_imports_from_outside(country_iso3)
-    
-    if not imports:
-        return {
-            "country": country_iso3,
-            "country_name": get_country_name(country_iso3, lang),
-            "message": "No import data available for this country",
-            "imports": []
-        }
-    
-    return {
-        "country": country_iso3,
-        "country_name": get_country_name(country_iso3, lang),
-        "total_value": sum(i["value"] for i in imports),
-        "imports": imports
-    }
-
-
-@router.get("/country/{country_iso3}/production")
-async def get_country_production_capabilities(
-    country_iso3: str,
-    lang: str = Query(default="fr", description="Language for names")
-):
-    """
-    Get production/export capabilities of an African country
-    
-    Args:
-        country_iso3: ISO3 code of the country
-        lang: Language for names
-    
-    Returns:
-        List of production capabilities
-    """
-    production = get_simulated_african_production(country_iso3)
-    
-    if not production:
-        return {
-            "country": country_iso3,
-            "country_name": get_country_name(country_iso3, lang),
-            "message": "No production data available for this country",
-            "production": []
-        }
-    
-    return {
-        "country": country_iso3,
-        "country_name": get_country_name(country_iso3, lang),
-        "total_capacity": sum(p["capacity"] for p in production),
-        "production": production
-    }
-
-
-@router.get("/countries")
-async def get_available_countries(
-    lang: str = Query(default="fr", description="Language for names")
-):
-    """
-    Get list of all AfCFTA countries with data availability
-    
-    Returns:
-        List of countries with import/production data status
-    """
-    countries = []
-    
-    # Use real data structure
-    for iso3, info in AFRICAN_COUNTRIES.items():
-        countries.append({
-            "iso3": iso3,
-            "name": info.get(f"name_{lang}", info.get("name_en", iso3)),
-            "has_import_data": True,  # OEC has data for all countries
-            "has_production_data": True,
-            "oec_id": info.get("oec", "")
-        })
-    
-    # Sort alphabetically
-    countries.sort(key=lambda x: x["name"])
-    
-    return {
-        "total_countries": len(countries),
-        "data_source": "OEC (Observatory of Economic Complexity)",
-        "countries": countries
-    }
 
 
 def register_routes(app_router):
