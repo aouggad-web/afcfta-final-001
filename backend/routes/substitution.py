@@ -255,25 +255,22 @@ async def get_available_countries(
     """
     countries = []
     
-    for iso3 in AFRICAN_COUNTRIES_ISO3:
-        imports = get_simulated_imports_from_outside(iso3)
-        production = get_simulated_african_production(iso3)
-        
+    # Use real data structure
+    for iso3, info in AFRICAN_COUNTRIES.items():
         countries.append({
             "iso3": iso3,
-            "name": get_country_name(iso3, lang),
-            "has_import_data": len(imports) > 0,
-            "has_production_data": len(production) > 0,
-            "import_value": sum(i["value"] for i in imports) if imports else 0,
-            "production_capacity": sum(p["capacity"] for p in production) if production else 0
+            "name": info.get(f"name_{lang}", info.get("name_en", iso3)),
+            "has_import_data": True,  # OEC has data for all countries
+            "has_production_data": True,
+            "oec_id": info.get("oec", "")
         })
     
-    # Sort by data availability and value
-    countries.sort(key=lambda x: (x["has_import_data"], x["import_value"]), reverse=True)
+    # Sort alphabetically
+    countries.sort(key=lambda x: x["name"])
     
     return {
         "total_countries": len(countries),
-        "countries_with_data": sum(1 for c in countries if c["has_import_data"] or c["has_production_data"]),
+        "data_source": "OEC (Observatory of Economic Complexity)",
         "countries": countries
     }
 
