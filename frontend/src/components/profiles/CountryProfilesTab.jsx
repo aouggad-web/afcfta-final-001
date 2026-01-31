@@ -307,6 +307,14 @@ export default function CountryProfilesTab({ language = 'fr' }) {
                 </div>
               </div>
 
+              {/* AI Trade Analysis Section - NEW */}
+              <div className="mb-4">
+                <AITradeSummary 
+                  countryName={countryProfile.country_name}
+                  language={language}
+                />
+              </div>
+
               {/* Gold Reserves & GAI 2025 */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 {/* Gold Reserves */}
