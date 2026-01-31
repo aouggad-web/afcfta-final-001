@@ -160,7 +160,7 @@ class RealSubstitutionService:
                     "total_substitutable_value": total_substitutable,
                     "currency": "USD"
                 },
-                "opportunities": opportunities[:10],  # Top 10
+                "opportunities": opportunities[:20],  # Top 20 (increased)
                 "data_source": "OEC (Observatory of Economic Complexity)"
             }
             
