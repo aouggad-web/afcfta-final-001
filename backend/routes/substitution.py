@@ -87,16 +87,10 @@ async def get_export_opportunities(
         List of export opportunities with potential markets
     """
     try:
-        if use_real_data:
-            # Use real OEC data
-            result = await real_substitution_service.find_export_opportunities(
-                country_iso3, year=year, min_market_size=min_market_size, lang=lang
-            )
-        else:
-            # Fallback to simulated data
-            result = substitution_service.find_export_opportunities(
-                country_iso3, min_market_size, lang
-            )
+        # Use real OEC data only
+        result = await real_substitution_service.find_export_opportunities(
+            country_iso3, year=year, min_market_size=min_market_size, lang=lang
+        )
         
         if "error" in result and not result.get("opportunities"):
             raise HTTPException(status_code=404, detail=result["error"])
