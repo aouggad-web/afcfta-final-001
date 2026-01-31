@@ -1,18 +1,22 @@
 """
 Trade Substitution Analysis Routes
 API endpoints for analyzing intra-African trade substitution opportunities
+Uses REAL data from OEC API
 """
 from fastapi import APIRouter, Query, HTTPException
 from typing import Optional
 import logging
 
+# Import both services - simulated (fallback) and real (OEC)
 from services.substitution_analysis_service import substitution_service
+from services.real_substitution_service import real_substitution_service
 from services.comtrade_service import (
     get_simulated_imports_from_outside,
     get_simulated_african_production,
     get_country_name,
     AFRICAN_COUNTRIES_ISO3
 )
+from services.real_trade_data_service import AFRICAN_COUNTRIES
 
 logger = logging.getLogger(__name__)
 
