@@ -333,51 +333,78 @@ class RealTradeDataService:
     ) -> List[Dict]:
         """
         Find African countries that export a specific product
+        Queries OEC API for all African exporters
         """
-        african_oec_ids = [c["oec"] for c in AFRICAN_COUNTRIES.values()]
-        exporters_list = ",".join(african_oec_ids)
-        
         try:
             # Search for HS4 (first 4 digits)
             hs4 = hs_code[:4] if len(hs_code) >= 4 else hs_code.zfill(4)
             
-            params = {
-                "cube": "trade_i_baci_a_17",
-                "drilldowns": "Year,Exporter Country,HS4",
-                "measures": "Trade Value,Quantity",
-                "Year": str(year),
-                "limit": "200"
-            }
+            # Build list of African OEC IDs
+            african_exporters_found = []
             
-            async with httpx.AsyncClient(timeout=self.timeout) as client:
-                response = await client.get(OEC_BASE_URL, params=params)
+            # Query OEC for each major African exporter
+            major_exporters = ["NGA", "ZAF", "EGY", "DZA", "AGO", "MAR", "KEN", "ETH", 
+                              "GHA", "CIV", "TZA", "TUN", "SEN", "CMR", "COD", "ZMB"]
+            
+            for iso3 in major_exporters:
+                country_info = AFRICAN_COUNTRIES.get(iso3)
+                if not country_info:
+                    continue
                 
-                if response.status_code == 200:
-                    data = response.json()
-                    records = data.get("data", [])
+                oec_id = country_info["oec"]
+                
+                params = {
+                    "cube": "trade_i_baci_a_17",
+                    "drilldowns": "Year,Exporter Country,HS4",
+                    "measures": "Trade Value,Quantity",
+                    "Year": str(year),
+                    "Exporter Country": oec_id,
+                    "limit": "100"
+                }
+                
+                async with httpx.AsyncClient(timeout=self.timeout) as client:
+                    response = await client.get(OEC_BASE_URL, params=params)
                     
-                    # Filter for the specific HS code and African exporters
-                    african_exporters = []
-                    for record in records:
-                        hs4_id = str(record.get("HS4 ID", ""))
-                        record_hs4 = hs4_id[-4:].zfill(4) if hs4_id else ""
+                    if response.status_code == 200:
+                        data = response.json()
+                        records = data.get("data", [])
                         
-                        if record_hs4 == hs4:
-                            exporter_id = record.get("Exporter Country ID", "")
-                            # Check if African
-                            for iso3, info in AFRICAN_COUNTRIES.items():
-                                if info["oec"] in exporter_id.lower():
-                                    african_exporters.append({
+                        for record in records:
+                            hs4_id = str(record.get("HS4 ID", ""))
+                            record_hs4 = hs4_id[-4:].zfill(4) if hs4_id else ""
+                            
+                            # Match HS code (at least first 2 digits)
+                            if record_hs4[:2] == hs4[:2]:
+                                export_value = record.get("Trade Value", 0)
+                                if export_value > 0:
+                                    african_exporters_found.append({
                                         "country_iso3": iso3,
-                                        "country_name": info["name_fr"],
-                                        "export_value": record.get("Trade Value", 0),
+                                        "country_name": country_info["name_fr"],
+                                        "hs_code": record_hs4,
+                                        "product_name": record.get("HS4", ""),
+                                        "export_value": export_value,
                                         "quantity": record.get("Quantity", 0)
                                     })
-                                    break
-                    
-                    # Sort by export value
-                    african_exporters.sort(key=lambda x: x["export_value"], reverse=True)
-                    return african_exporters
+            
+            # Remove duplicates and aggregate by country
+            country_exports = {}
+            for exp in african_exporters_found:
+                iso3 = exp["country_iso3"]
+                if iso3 not in country_exports:
+                    country_exports[iso3] = {
+                        "country_iso3": iso3,
+                        "country_name": exp["country_name"],
+                        "export_value": 0,
+                        "products": []
+                    }
+                country_exports[iso3]["export_value"] += exp["export_value"]
+                country_exports[iso3]["products"].append(exp["product_name"])
+            
+            # Convert to list and sort
+            result = list(country_exports.values())
+            result.sort(key=lambda x: x["export_value"], reverse=True)
+            
+            return result
                     
         except Exception as e:
             logger.error(f"OEC product exporters API error: {str(e)}")
