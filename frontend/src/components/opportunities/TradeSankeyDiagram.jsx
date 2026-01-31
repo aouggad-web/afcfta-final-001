@@ -266,6 +266,17 @@ export default function TradeSankeyDiagram({
         productName = opp.product_name || opp.product?.name || 'Produit';
         targetName = opp.importingCountry || opp.country || 'Destination';
         value = opp.substitution_potential_musd || opp.import_value_musd || opp.importValue || 0;
+      } else if (mode === 'industrial') {
+        // Industrial/Value Chain mode: input -> output transformation
+        sourceName = opp.country || opp.exportingCountry || 'Source';
+        productName = opp.output_product || opp.product_name || 'Produit Fini';
+        // For industrial mode, target markets is an array - use first one
+        const targets = opp.target_markets || [];
+        targetName = Array.isArray(targets) ? targets[0] : (targets || 'Destination');
+        // Parse estimated_output which may be string like "1800 MUSD"
+        const outputStr = opp.estimated_output || '';
+        const match = outputStr.match(/(\d+)/);
+        value = match ? parseFloat(match[1]) : 0;
       } else {
         // Product analysis mode
         sourceName = opp.country || opp.exportingCountry || 'Source';
