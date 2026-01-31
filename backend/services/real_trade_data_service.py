@@ -508,6 +508,88 @@ class RealTradeDataService:
             logger.error(f"OEC product exporters API error: {str(e)}")
         
         return []
+    
+    async def get_african_importers_for_product(
+        self,
+        hs_code: str,
+        year: int = 2022
+    ) -> List[Dict]:
+        """
+        Find African countries that import a specific product
+        Queries OEC API for all African importers
+        """
+        try:
+            hs4 = hs_code[:4] if len(hs_code) >= 4 else hs_code.zfill(4)
+            
+            african_importers_found = []
+            
+            # Sample top importing African countries for efficiency
+            top_importers = ["ZAF", "EGY", "NGA", "MAR", "DZA", "KEN", "TUN", "ETH", "GHA", "TZA"]
+            
+            for iso3 in top_importers:
+                country_info = AFRICAN_COUNTRIES.get(iso3)
+                if not country_info:
+                    continue
+                
+                oec_id = country_info["oec"]
+                
+                params = {
+                    "cube": "trade_i_baci_a_17",
+                    "drilldowns": "Year,Importer Country,HS4",
+                    "measures": "Trade Value",
+                    "Year": str(year),
+                    "Importer Country": oec_id,
+                    "limit": "100"
+                }
+                
+                try:
+                    async with httpx.AsyncClient(timeout=15.0) as client:
+                        response = await client.get(OEC_BASE_URL, params=params)
+                        
+                        if response.status_code == 200:
+                            data = response.json()
+                            records = data.get("data", [])
+                            
+                            for record in records:
+                                hs4_id = str(record.get("HS4 ID", ""))
+                                record_hs4 = hs4_id[-4:].zfill(4) if hs4_id else ""
+                                
+                                # Match HS code (at least first 2 digits)
+                                if record_hs4[:2] == hs4[:2]:
+                                    import_value = record.get("Trade Value", 0)
+                                    if import_value > 0:
+                                        african_importers_found.append({
+                                            "country_iso3": iso3,
+                                            "country_name": country_info["name_fr"],
+                                            "hs_code": record_hs4,
+                                            "product_name": record.get("HS4", ""),
+                                            "import_value": import_value
+                                        })
+                except Exception as e:
+                    logger.warning(f"Error fetching imports for {iso3}: {e}")
+                    continue
+            
+            # Aggregate by country
+            country_imports = {}
+            for imp in african_importers_found:
+                iso3 = imp["country_iso3"]
+                if iso3 not in country_imports:
+                    country_imports[iso3] = {
+                        "country_iso3": iso3,
+                        "country_name": imp["country_name"],
+                        "import_value": 0
+                    }
+                country_imports[iso3]["import_value"] += imp["import_value"]
+            
+            result = list(country_imports.values())
+            result.sort(key=lambda x: x["import_value"], reverse=True)
+            
+            return result
+                    
+        except Exception as e:
+            logger.error(f"OEC product importers API error: {str(e)}")
+        
+        return []
 
 
 def get_product_name(hs_code: str, lang: str = "fr", oec_name: str = None) -> str:
