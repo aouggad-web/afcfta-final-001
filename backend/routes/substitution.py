@@ -76,8 +76,10 @@ async def get_import_substitution_opportunities(
 @router.get("/opportunities/export/{country_iso3}")
 async def get_export_opportunities(
     country_iso3: str,
-    min_market_size: int = Query(default=50000000, description="Minimum market size to consider (USD)"),
-    lang: str = Query(default="fr", description="Language for names (fr/en)")
+    year: int = Query(default=2022, description="Year for trade data"),
+    min_market_size: int = Query(default=10000000, description="Minimum market size to consider (USD)"),
+    lang: str = Query(default="fr", description="Language for names (fr/en)"),
+    use_real_data: bool = Query(default=True, description="Use real OEC data (True) or simulated (False)")
 ):
     """
     Find export opportunities for a specific African country
@@ -85,24 +87,37 @@ async def get_export_opportunities(
     This endpoint identifies products that the country produces and could export
     to other AfCFTA countries that currently import from outside Africa.
     
+    Uses REAL data from OEC (Observatory of Economic Complexity) API.
+    
     Args:
         country_iso3: ISO3 code of the exporting country
+        year: Year for trade data (2018-2022 available)
         min_market_size: Minimum target market size in USD
         lang: Language for country/product names
+        use_real_data: Use real OEC API data (default) or fallback to simulated
     
     Returns:
         List of export opportunities with potential markets
     """
     try:
-        result = substitution_service.find_export_opportunities(
-            country_iso3, min_market_size, lang
-        )
+        if use_real_data:
+            # Use real OEC data
+            result = await real_substitution_service.find_export_opportunities(
+                country_iso3, year=year, min_market_size=min_market_size, lang=lang
+            )
+        else:
+            # Fallback to simulated data
+            result = substitution_service.find_export_opportunities(
+                country_iso3, min_market_size, lang
+            )
         
-        if "error" in result:
+        if "error" in result and not result.get("opportunities"):
             raise HTTPException(status_code=404, detail=result["error"])
         
         return result
     
+    except HTTPException:
+        raise
     except Exception as e:
         logger.error(f"Error finding export opportunities: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
