@@ -4,7 +4,6 @@ API endpoints for analyzing intra-African trade substitution opportunities
 Uses REAL data from OEC API
 """
 from fastapi import APIRouter, Query, HTTPException
-from typing import Optional
 import logging
 
 # Import real services only (OEC data)
