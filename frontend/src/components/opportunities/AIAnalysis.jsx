@@ -497,7 +497,7 @@ export default function AIAnalysis({ language = 'fr' }) {
                       )}
                     </div>
                     <div>
-                      <p className="text-sm text-slate-500">Fiabilité</p>
+                      <p className="text-sm text-slate-500">{txt.reliability}</p>
                       <p className="text-lg font-bold text-slate-900">
                         {summaryStats.hasEstimations ? txt.estimation : txt.verified}
                       </p>
