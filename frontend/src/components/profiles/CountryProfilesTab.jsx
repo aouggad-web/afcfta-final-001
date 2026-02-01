@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Badge } from '../ui/badge';
 import { toast } from '../../hooks/use-toast';
 import { getCountryFlag, COUNTRY_FLAGS_ISO2 } from '../../constants/countryFlags';
+import AITradeSummary from './AITradeSummary';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -277,6 +278,14 @@ export default function CountryProfilesTab({ language = 'fr' }) {
                   </p>
                   <p className="text-xs text-purple-600 mt-1">{t.hdiDesc}</p>
                 </div>
+              </div>
+
+              {/* AI Trade Analysis Section - NEW */}
+              <div className="mb-4">
+                <AITradeSummary 
+                  countryName={countryProfile.country_name}
+                  language={language}
+                />
               </div>
 
               {/* Gold Reserves & GAI 2025 */}

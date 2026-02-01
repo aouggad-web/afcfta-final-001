@@ -13,6 +13,9 @@ MIGRATION STATUS:
 - tariffs.py: COMPLETE
 - statistics.py: COMPLETE
 - etl.py: COMPLETE
+- substitution.py: COMPLETE
+- gemini_analysis.py: COMPLETE
+- trade_data.py: COMPLETE (UN COMTRADE & WTO integration)
 """
 
 from fastapi import APIRouter
@@ -28,6 +31,9 @@ from .countries import router as countries_router
 from .tariffs import router as tariffs_router
 from .statistics import router as statistics_router
 from .etl import router as etl_router
+from .substitution import router as substitution_router
+from .gemini_analysis import router as gemini_router
+from .trade_data import router as trade_data_router
 
 def register_routes(api_router: APIRouter):
     """Register all route modules to the main API router"""
@@ -41,3 +47,6 @@ def register_routes(api_router: APIRouter):
     api_router.include_router(tariffs_router, tags=["Tariffs"])
     api_router.include_router(statistics_router, tags=["Statistics"])
     api_router.include_router(etl_router, tags=["ETL Administration"])
+    api_router.include_router(substitution_router, tags=["Trade Substitution"])
+    api_router.include_router(gemini_router, tags=["AI Analysis"])
+    api_router.include_router(trade_data_router, tags=["Trade Data Sources"])

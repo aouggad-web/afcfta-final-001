@@ -42,6 +42,37 @@ The health endpoints provide real-time monitoring of:
 | `/api/rules-of-origin/{hs_code}` | GET | Get rules of origin for HS code |
 | `/api/statistics` | GET | Get comprehensive ZLECAf statistics |
 
+### Trade Data Endpoints (NEW)
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/trade-data/latest` | GET | Get latest trade data using smart source selection |
+| `/api/trade-data/compare-sources` | GET | Compare all data sources for freshness |
+| `/api/trade-data/comtrade/{reporter}/{partner}` | GET | Get UN COMTRADE bilateral trade data directly |
+| `/api/trade-data/wto/{reporter}/{partner}` | GET | Get WTO tariff and trade data directly |
+
+#### Examples:
+
+**Get Latest Trade Data with Smart Selection:**
+```bash
+GET /api/trade-data/latest?reporter=KEN&partner=GHA&hs_code=080300
+```
+
+**Compare Data Sources:**
+```bash
+GET /api/trade-data/compare-sources?countries=KEN&countries=GHA&countries=TZA
+```
+
+**Direct COMTRADE Access:**
+```bash
+GET /api/trade-data/comtrade/KEN/GHA?period=2025&hs_code=080300
+```
+
+**Direct WTO Access:**
+```bash
+GET /api/trade-data/wto/KEN/GHA?product_code=080300
+```
+
 ## 🏥 Health Monitoring
 
 ### Health Check Response
@@ -90,15 +121,26 @@ The health endpoints provide real-time monitoring of:
 - **Backend**: FastAPI (Python)
 - **Frontend**: React with Shadcn/UI components
 - **Database**: MongoDB
-- **External APIs**: World Bank API, OEC API
+- **External APIs**: World Bank API, OEC API, UN COMTRADE API, WTO API
 
 ## 📦 Data Sources
 
-- World Bank - World Development Indicators (updated daily)
-- UNCTAD - Tariff data
-- OEC - Atlas of Economic Complexity
-- AfDB - African Economic Outlook
-- IMF - Regional Economic Outlook
+- **World Bank** - World Development Indicators (updated daily)
+- **UN COMTRADE** - Most recent bilateral trade data (up to 500 calls/day free tier)
+- **WTO Data Portal** - Tariff and trade policy data (free access)
+- **OEC** - Atlas of Economic Complexity (Observatory of Economic Complexity)
+- **UNCTAD** - Tariff data
+- **AfDB** - African Economic Outlook
+- **IMF** - Regional Economic Outlook
+
+### Smart Data Source Selection
+
+The API automatically selects the best data source based on:
+1. **Data freshness** - Most recent data available
+2. **API availability** - Rate limits and accessibility
+3. **Data coverage** - Specific query requirements
+
+Priority order: **UN COMTRADE** → **OEC** → **World Bank** → **WTO**
 
 Data is automatically updated daily at 2:00 AM UTC via GitHub Actions. See [docs/AUTO_UPDATE_DATA.md](docs/AUTO_UPDATE_DATA.md) for details.
 
