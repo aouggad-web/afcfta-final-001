@@ -33,6 +33,7 @@ def main():
     # MongoDB connection (optional - only if MongoDB is configured)
     mongo_uri = os.getenv("MONGODB_URI")
     db_collection = None
+    client = None
     
     if mongo_uri:
         try:
@@ -42,6 +43,7 @@ def main():
             print("✓ Connected to MongoDB")
         except Exception as e:
             print(f"⚠ MongoDB connection failed (continuing without DB): {str(e)}")
+            client = None
     else:
         print("ℹ No MongoDB URI configured - running without database storage")
     
@@ -113,7 +115,7 @@ def main():
     print(f"Errors: {error_count}")
     print(f"Timestamp: {datetime.utcnow().isoformat()}")
     
-    if mongo_uri:
+    if client is not None:
         client.close()
 
 
