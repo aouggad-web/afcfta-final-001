@@ -41,8 +41,8 @@ class TestDataSourceSelectorInit:
         """Test that all sources start as available"""
         selector = DataSourceSelector()
 
-        assert selector._source_status["UN_COMTRADE"]["available"] == True
-        assert selector._source_status["WTO"]["available"] == True
+        assert selector._source_status["UN_COMTRADE"]["available"] is True
+        assert selector._source_status["WTO"]["available"] is True
         assert selector._source_status["UN_COMTRADE"]["error_count"] == 0
         assert selector._source_status["WTO"]["error_count"] == 0
 
@@ -206,7 +206,7 @@ class TestErrorHandling:
             await selector.get_latest_trade_data("TEST", "TEST")
 
         # Check that COMTRADE is now disabled
-        assert selector._source_status["UN_COMTRADE"]["available"] == False
+        assert selector._source_status["UN_COMTRADE"]["available"] is False
         assert selector._source_status["UN_COMTRADE"]["error_count"] >= 5
 
     @pytest.mark.asyncio
