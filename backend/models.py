@@ -101,3 +101,51 @@ class CountryEconomicProfile(BaseModel):
     customs: Dict[str, Any] = {}
     infrastructure_ranking: Dict[str, Any] = {}
     ongoing_projects: List[Dict[str, Any]] = []
+
+
+class TradeDataSource(BaseModel):
+    """Model for trade data from various sources"""
+    
+    source: str = Field(..., description="Data source name (COMTRADE, WTO, OEC, etc.)")
+    reporter_country: str = Field(..., description="ISO3 reporter country code")
+    partner_country: str = Field(..., description="ISO3 partner country code")
+    hs_code: Optional[str] = Field(None, description="HS product code")
+    period: str = Field(..., description="Data period (YYYY or YYYYMM)")
+    trade_value: Optional[float] = Field(None, description="Trade value in USD")
+    trade_flow: Optional[str] = Field(None, description="Import or Export")
+    data: Dict = Field(..., description="Raw data from source")
+    fetched_at: datetime = Field(default_factory=datetime.utcnow)
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "source": "UN_COMTRADE",
+                "reporter_country": "KEN",
+                "partner_country": "GHA",
+                "hs_code": "080300",
+                "period": "2025",
+                "trade_value": 1500000.50,
+                "trade_flow": "Export",
+                "data": {},
+                "fetched_at": "2026-02-01T10:00:00"
+            }
+        }
+
+
+class DataSourceComparison(BaseModel):
+    """Model for data source comparison results"""
+    
+    timestamp: datetime = Field(default_factory=datetime.utcnow)
+    sources_compared: List[str]
+    recommended_source: str
+    details: Dict
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "timestamp": "2026-02-01T10:00:00",
+                "sources_compared": ["UN_COMTRADE", "WTO", "OEC"],
+                "recommended_source": "UN_COMTRADE",
+                "details": {}
+            }
+        }
