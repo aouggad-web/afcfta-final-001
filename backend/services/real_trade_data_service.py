@@ -10,7 +10,6 @@ Provides real trade data for African countries
 import httpx
 import asyncio
 from typing import Dict, List, Optional, Any
-from datetime import datetime
 import logging
 from collections import defaultdict
 
