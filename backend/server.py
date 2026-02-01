@@ -2120,18 +2120,16 @@ async def get_all_unctad():
 # - /health, /health/status (health.py)
 # - /news, /news/by-region, /news/by-category (news.py)
 # - /oec/* (oec.py) - OEC Trade Statistics endpoints
-# - /oec/* (oec.py) - OEC Trade Statistics endpoints
 # - /hs-codes/* (hs_codes.py) - HS Code browser and search
-# 
-# Note: Legacy routes in this file will be migrated progressively
-# =============================================================================
-# - /oec/* (oec.py)
-# - /hs-codes/* (hs_codes.py)
+# - /substitution/* (substitution.py) - Trade substitution analysis
 # 
 # Note: Legacy routes in this file will be migrated progressively
 # =============================================================================
 
+from routes.substitution import register_routes as register_substitution_routes
+
 register_routes(api_router)
+register_substitution_routes(api_router)
 
 # Include the router in the main app
 app.include_router(api_router)

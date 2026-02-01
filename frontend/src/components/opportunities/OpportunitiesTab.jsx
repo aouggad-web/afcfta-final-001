@@ -1,18 +1,20 @@
 /**
  * Opportunities Tab Component
- * Main tab containing Value Chains, By Product analysis, and Opportunity Summary
+ * Main tab containing AI Analysis, Substitution, Value Chains, and By Product analysis
  */
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { Card, CardContent } from '../ui/card';
 import { 
-  TrendingUp, Layers, Package, BarChart3
+  TrendingUp, Layers, Package, BarChart3, ArrowLeftRight, Sparkles
 } from 'lucide-react';
 
 import OpportunitySummary from './OpportunitySummary';
 import ValueChains from './ValueChains';
 import ProductAnalysisView from './ProductAnalysisView';
+import SubstitutionAnalysis from './SubstitutionAnalysis';
+import AIAnalysis from './AIAnalysis';
 
 export default function OpportunitiesTab({ language = 'fr' }) {
   const { t, i18n } = useTranslation();
@@ -23,6 +25,8 @@ export default function OpportunitiesTab({ language = 'fr' }) {
       title: "Opportunités Commerciales",
       subtitle: "Découvrez les opportunités d'échanges intra-africains sous la ZLECAf",
       tabs: {
+        ai: "Analyse IA",
+        substitution: "Substitution",
         summary: "Vue d'ensemble",
         valueChains: "Chaînes de Valeur",
         byProduct: "Par Produit"
@@ -32,6 +36,8 @@ export default function OpportunitiesTab({ language = 'fr' }) {
       title: "Trade Opportunities",
       subtitle: "Discover intra-African trade opportunities under AfCFTA",
       tabs: {
+        ai: "AI Analysis",
+        substitution: "Substitution",
         summary: "Overview",
         valueChains: "Value Chains",
         byProduct: "By Product"
@@ -53,8 +59,24 @@ export default function OpportunitiesTab({ language = 'fr' }) {
       </div>
 
       {/* Sub-tabs */}
-      <Tabs defaultValue="summary" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-3 max-w-lg mx-auto">
+      <Tabs defaultValue="ai" className="space-y-6">
+        <TabsList className="grid w-full grid-cols-5 max-w-3xl mx-auto">
+          <TabsTrigger 
+            value="ai" 
+            className="flex items-center gap-2"
+            data-testid="opportunities-ai-tab"
+          >
+            <Sparkles className="h-4 w-4" />
+            <span className="hidden sm:inline">{txt.tabs.ai}</span>
+          </TabsTrigger>
+          <TabsTrigger 
+            value="substitution" 
+            className="flex items-center gap-2"
+            data-testid="opportunities-substitution-tab"
+          >
+            <ArrowLeftRight className="h-4 w-4" />
+            <span className="hidden sm:inline">{txt.tabs.substitution}</span>
+          </TabsTrigger>
           <TabsTrigger 
             value="summary" 
             className="flex items-center gap-2"
@@ -80,6 +102,16 @@ export default function OpportunitiesTab({ language = 'fr' }) {
             <span className="hidden sm:inline">{txt.tabs.byProduct}</span>
           </TabsTrigger>
         </TabsList>
+
+        {/* AI Analysis Tab (NEW - Default) */}
+        <TabsContent value="ai" className="mt-6">
+          <AIAnalysis language={currentLang} />
+        </TabsContent>
+
+        {/* Substitution Analysis Tab */}
+        <TabsContent value="substitution" className="mt-6">
+          <SubstitutionAnalysis language={currentLang} />
+        </TabsContent>
 
         {/* Summary Tab */}
         <TabsContent value="summary" className="mt-6">
