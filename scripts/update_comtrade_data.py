@@ -15,7 +15,9 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'backend'))
 from services.comtrade_service import comtrade_service
 from services.data_source_selector import data_source_selector
 
-# African countries ISO3 codes (54 ZLECAf members)
+# African countries ISO3 codes (54 AfCFTA/ZLECAf members)
+# AfCFTA = African Continental Free Trade Area (English)
+# ZLECAf = Zone de Libre-Échange Continentale Africaine (French)
 AFRICAN_COUNTRIES = [
     "DZA", "AGO", "BEN", "BWA", "BFA", "BDI", "CMR", "CPV", "CAF", "TCD",
     "COM", "COG", "COD", "CIV", "DJI", "EGY", "GNQ", "ERI", "ETH", "GAB",

@@ -37,7 +37,9 @@ async def detailed_health():
     # Check COMTRADE API
     try:
         from services.comtrade_service import comtrade_service
-        test_data = comtrade_service.get_bilateral_trade("KEN", "TZA", "2023")
+        # Use previous year to ensure data availability
+        test_year = str(datetime.now().year - 1)
+        test_data = comtrade_service.get_bilateral_trade("KEN", "TZA", test_year)
         checks["comtrade_api"] = {
             "status": "healthy" if test_data else "degraded",
             "message": "COMTRADE API accessible"
