@@ -28,19 +28,51 @@ async def health_check():
 @router.get("/health/status")
 async def detailed_health():
     """Detailed health status with all service checks"""
+    checks = {
+        "api": {"status": "up", "latency_ms": 1},
+        "database": {"status": "up", "type": "MongoDB"},
+        "cache": {"status": "up", "type": "In-Memory"}
+    }
+    
+    # Check COMTRADE API
+    try:
+        from services.comtrade_service import comtrade_service
+        test_data = comtrade_service.get_bilateral_trade("KEN", "TZA", "2023")
+        checks["comtrade_api"] = {
+            "status": "healthy" if test_data else "degraded",
+            "message": "COMTRADE API accessible"
+        }
+    except Exception as e:
+        checks["comtrade_api"] = {
+            "status": "unhealthy",
+            "message": f"COMTRADE API error: {str(e)}"
+        }
+    
+    # Check WTO API
+    try:
+        from services.wto_service import wto_service
+        test_data = wto_service.get_tariff_data("KEN", "wld")
+        checks["wto_api"] = {
+            "status": "healthy" if test_data else "degraded",
+            "message": "WTO API accessible"
+        }
+    except Exception as e:
+        checks["wto_api"] = {
+            "status": "unhealthy",
+            "message": f"WTO API error: {str(e)}"
+        }
+    
     return {
         "status": "healthy",
         "timestamp": datetime.now().isoformat(),
         "version": "2.0.0",
-        "components": {
-            "api": {"status": "up", "latency_ms": 1},
-            "database": {"status": "up", "type": "MongoDB"},
-            "cache": {"status": "up", "type": "In-Memory"}
-        },
+        "components": checks,
         "features": {
             "tariff_calculator": "enabled",
             "hs6_database": "enabled",
             "oec_integration": "enabled",
+            "comtrade_integration": "enabled",
+            "wto_integration": "enabled",
             "news_feed": "enabled"
         }
     }
