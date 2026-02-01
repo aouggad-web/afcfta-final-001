@@ -49,8 +49,8 @@ async def get_bilateral_trade(
         return result
         
     except Exception as e:
-        logger.error(f"COMTRADE bilateral error: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"COMTRADE bilateral error: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail="Failed to retrieve bilateral trade data")
 
 
 @router.get("/summary/{country}")
@@ -80,8 +80,8 @@ async def get_trade_summary(
         return result
         
     except Exception as e:
-        logger.error(f"COMTRADE summary error: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"COMTRADE summary error: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail="Failed to retrieve trade summary")
 
 
 @router.get("/product/{hs_code}")
@@ -114,8 +114,8 @@ async def get_product_trade(
         }
         
     except Exception as e:
-        logger.error(f"COMTRADE product error: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"COMTRADE product error: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail="Failed to retrieve product trade data")
 
 
 @router.get("/latest-period/{country}")
@@ -136,8 +136,8 @@ async def get_latest_period(country: str):
         }
         
     except Exception as e:
-        logger.error(f"COMTRADE latest period error: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"COMTRADE latest period error: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail="Failed to retrieve latest data period")
 
 
 @router.get("/smart/{reporter}")
@@ -166,8 +166,8 @@ async def get_smart_trade_data(
         return result
         
     except Exception as e:
-        logger.error(f"Smart trade data error: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Smart trade data error: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail="Failed to retrieve trade data")
 
 
 @router.get("/sources/compare")
@@ -187,8 +187,8 @@ async def compare_data_sources(
         return comparison
         
     except Exception as e:
-        logger.error(f"Source comparison error: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Source comparison error: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail="Failed to compare data sources")
 
 
 @router.get("/sources/status")
