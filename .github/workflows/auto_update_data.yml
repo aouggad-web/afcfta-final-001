@@ -88,7 +88,7 @@ jobs:
             # Pull and rebase before pushing to handle any remote changes
             echo "Pulling latest changes from remote..."
             git pull --rebase origin main || {
-              echo "⚠️ Rebase failed, attempting to abort and retry with merge strategy..."
+              echo "⚠️ Rebase failed, aborting and falling back to merge strategy..."
               git rebase --abort 2>/dev/null || true
               git pull --no-rebase origin main || {
                 echo "❌ Failed to pull remote changes"
@@ -110,7 +110,7 @@ jobs:
                   sleep 2
                   # Pull again in case of new remote changes
                   git pull --rebase origin main || {
-                    echo "⚠️ Rebase failed on retry, attempting merge strategy..."
+                    echo "⚠️ Rebase failed on retry, aborting and falling back to merge strategy..."
                     git rebase --abort 2>/dev/null || true
                     git pull --no-rebase origin main || {
                       echo "❌ Failed to pull remote changes on retry"
