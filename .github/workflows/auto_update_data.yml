@@ -73,7 +73,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          set -e
+          set -e  # Exit on any error
           git config user.name "afcfta-data-bot"
           git config user.email "afcfta-data-bot@users.noreply.github.com"
           
@@ -92,7 +92,7 @@ jobs:
               echo "✓ Successfully rebased changes"
             else
               echo "⚠️  Rebase failed, attempting regular merge"
-              git pull --no-rebase origin main
+              git pull --no-rebase origin main  # Will exit if merge fails due to set -e
               echo "✓ Successfully merged changes"
             fi
             
