@@ -38,6 +38,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -e
           git config user.name "lyra-plus-bot"
           git config user.email "lyra-plus-bot@users.noreply.github.com"
           git add frontend/public/data || true
@@ -45,10 +46,14 @@ jobs:
             git commit -m "chore(ops): refresh AfCFTA datasets via Lyra+ weekly cron"
             
             # Pull latest changes with rebase to handle concurrent updates
-            git pull --rebase origin main || {
-              echo "⚠️  Failed to rebase, attempting regular merge"
+            echo "Syncing with remote main branch..."
+            if git pull --rebase origin main; then
+              echo "✓ Successfully rebased changes"
+            else
+              echo "⚠️  Rebase failed, attempting regular merge"
               git pull --no-rebase origin main
-            }
+              echo "✓ Successfully merged changes"
+            fi
             
             git push
           else

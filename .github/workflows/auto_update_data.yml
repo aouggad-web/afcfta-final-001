@@ -73,6 +73,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -e
           git config user.name "afcfta-data-bot"
           git config user.email "afcfta-data-bot@users.noreply.github.com"
           
@@ -86,10 +87,14 @@ jobs:
             git commit -m "chore(data): automated data update - $(date +'%Y-%m-%d %H:%M UTC')"
             
             # Pull latest changes with rebase to handle concurrent updates
-            git pull --rebase origin main || {
-              echo "⚠️  Failed to rebase, attempting regular merge"
+            echo "Syncing with remote main branch..."
+            if git pull --rebase origin main; then
+              echo "✓ Successfully rebased changes"
+            else
+              echo "⚠️  Rebase failed, attempting regular merge"
               git pull --no-rebase origin main
-            }
+              echo "✓ Successfully merged changes"
+            fi
             
             git push
             echo "✅ Data updated and pushed successfully"
