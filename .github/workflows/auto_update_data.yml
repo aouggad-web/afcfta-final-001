@@ -84,6 +84,13 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "chore(data): automated data update - $(date +'%Y-%m-%d %H:%M UTC')"
+            
+            # Pull latest changes with rebase to handle concurrent updates
+            git pull --rebase origin main || {
+              echo "⚠️  Failed to rebase, attempting regular merge"
+              git pull --no-rebase origin main
+            }
+            
             git push
             echo "✅ Data updated and pushed successfully"
           fi
