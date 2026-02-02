@@ -73,20 +73,20 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore(data): automated data update - ${{ github.run_number }}"
+          commit-message: "chore(data): automated data update"
           committer: afcfta-data-bot <afcfta-data-bot@users.noreply.github.com>
           author: afcfta-data-bot <afcfta-data-bot@users.noreply.github.com>
           branch: automated-data-update-${{ github.run_number }}
           delete-branch: true
-          title: "chore(data): automated data update - ${{ github.run_number }}"
+          title: "chore(data): automated data update - run ${{ github.run_number }}"
           body: |
             ## Automated Data Update
             
             This PR contains automated data updates from external sources.
             
-            **Date:** ${{ github.event.repository.updated_at }}
             **Run:** #${{ github.run_number }}
             **Workflow:** ${{ github.workflow }}
+            **Triggered:** ${{ github.event_name }}
             
             ### Changes
             - Updated World Bank data
