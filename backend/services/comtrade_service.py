@@ -8,7 +8,7 @@ Subscription required - Learn more at https://uncomtrade.org/docs/subscriptions/
 import requests
 import os
 from typing import Dict, List, Optional
-from datetime import datetime
+from datetime import datetime, timezone
 import time
 import logging
 
@@ -120,7 +120,7 @@ class COMTRADEService:
                 "source": "UN_COMTRADE",
                 "data": data.get("data", []),
                 "metadata": data.get("metadata", {}),
-                "timestamp": datetime.now(datetime.UTC).isoformat() if hasattr(datetime, 'UTC') else datetime.utcnow().isoformat(),
+                "timestamp": datetime.now(timezone.utc).isoformat(),
                 "latest_period": period,
                 "api_key_used": self.current_key
             }
