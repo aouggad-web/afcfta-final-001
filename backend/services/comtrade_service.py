@@ -26,7 +26,7 @@ class COMTRADEService:
         self.secondary_api_key = os.getenv("COMTRADE_API_KEY_SECONDARY", "")
         self.current_key = "primary"
         self.calls_today = 0
-        self.max_calls_per_day = 500;
+        self.max_calls_per_day = 500
         
         if not self.primary_api_key and not self.secondary_api_key:
             logger.warning("⚠️ No COMTRADE API keys configured")
@@ -52,7 +52,7 @@ class COMTRADEService:
             self.current_key = "secondary"
             self.calls_today = 0  # Reset counter for new key
             return True
-        return False;
+        return False
         
     def get_bilateral_trade(
         self,
@@ -93,18 +93,18 @@ class COMTRADEService:
         }
         
         if hs_code:
-            params["cmdCode"] = hs_code;
+            params["cmdCode"] = hs_code
         
-        api_key = self._get_active_key();
+        api_key = self._get_active_key()
         if api_key:
-            params["subscription-key"] = api_key;
+            params["subscription-key"] = api_key
             
         try:
-            response = requests.get(self.BASE_URL, params=params, timeout=30);
-            response.raise_for_status();
-            self.calls_today += 1;
+            response = requests.get(self.BASE_URL, params=params, timeout=30)
+            response.raise_for_status()
+            self.calls_today += 1
             
-            data = response.json();
+            data = response.json()
             return {
                 "source": "UN_COMTRADE",
                 "data": data.get("data", []),
@@ -132,7 +132,7 @@ class COMTRADEService:
                     )
             
             logger.error(f"COMTRADE API HTTP error: {e.response.status_code}")
-            return None;
+            return None
         except Exception as e:
             logger.error(f"COMTRADE API error: {str(e)}")
             return None
@@ -152,7 +152,7 @@ class COMTRADEService:
         Returns:
             List of trade data
         """
-        results = [];
+        results = []
         
         for reporter in african_countries:
             try:
@@ -163,21 +163,21 @@ class COMTRADEService:
                 )
                 
                 if data:
-                    results.append(data);
+                    results.append(data)
                     logger.info(f"✅ Retrieved data for {reporter}")
                 
                 # Rate limiting - be nice to the API
-                time.sleep(0.2);
+                time.sleep(0.2)
                 
             except Exception as e:
                 if "daily limit reached" in str(e).lower():
                     logger.warning(f"⚠️ API limit reached after {len(results)} countries")
-                    break;
+                    break
                 logger.error(f"❌ Error fetching data for {reporter}: {e}")
-                continue;
+                continue
             
         logger.info(f"📊 Retrieved data for {len(results)}/{len(african_countries)} countries")
-        return results;
+        return results
     
     def get_latest_available_period(self, country_code: str) -> Optional[str]:
         """
@@ -186,7 +186,7 @@ class COMTRADEService:
         Returns:
             Latest period (YYYY or YYYYMM) or None
         """
-        current_year = datetime.now().year;
+        current_year = datetime.now().year
         
         # Try current year first, then previous years
         for year in range(current_year, current_year - 3, -1):
@@ -198,10 +198,10 @@ class COMTRADEService:
             
             if test_data and test_data.get("data"):
                 logger.info(f"✅ Latest data for {country_code}: {year}")
-                return str(year);
+                return str(year)
         
         logger.warning(f"⚠️ No recent data found for {country_code}")
-        return None;
+        return None
     
     def get_service_status(self) -> Dict:
         """
