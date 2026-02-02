@@ -68,7 +68,14 @@ jobs:
                   echo "⚠️ Push failed, retrying ($retry_count/$max_retries)..."
                   sleep 2
                   # Pull again in case of new remote changes
-                  git pull --rebase origin main || git pull --no-rebase origin main
+                  git pull --rebase origin main || {
+                    echo "⚠️ Rebase failed on retry, attempting merge strategy..."
+                    git rebase --abort 2>/dev/null || true
+                    git pull --no-rebase origin main || {
+                      echo "❌ Failed to pull remote changes on retry"
+                      exit 1
+                    }
+                  }
                 else
                   echo "❌ Failed to push after $max_retries attempts"
                   exit 1
