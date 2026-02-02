@@ -1,7 +1,8 @@
 """
-UN COMTRADE API Service
-Free tier: 500 calls/day, 100K records per call
-API Documentation: https://comtradeplus.un.org/
+UN COMTRADE API Service (v1 API)
+API Documentation: https://uncomtrade.org/docs/
+OpenAPI Spec: https://comtradeapi.un.org/data/v1/openapi.json
+Subscription required - Learn more at https://uncomtrade.org/docs/subscriptions/
 """
 
 import requests
@@ -15,18 +16,18 @@ logger = logging.getLogger(__name__)
 
 class COMTRADEService:
     """
-    UN COMTRADE API Service with automatic fallback to secondary key
-    Free tier: 500 calls/day, 100K records per call
+    UN COMTRADE v1 API Service with automatic fallback to secondary key
+    Requires subscription - see https://uncomtrade.org/docs/subscriptions/
     """
     
-    BASE_URL = "https://comtradeplus.un.org/api/get"
+    BASE_URL = "https://comtradeapi.un.org/data/v1"
     
     def __init__(self):
         self.primary_api_key = os.getenv("COMTRADE_API_KEY", "")
         self.secondary_api_key = os.getenv("COMTRADE_API_KEY_SECONDARY", "")
         self.current_key = "primary"
         self.calls_today = 0
-        self.max_calls_per_day = 500;
+        self.max_calls_per_day = 500
         
         if not self.primary_api_key and not self.secondary_api_key:
             logger.warning("⚠️ No COMTRADE API keys configured")
@@ -52,7 +53,7 @@ class COMTRADEService:
             self.current_key = "secondary"
             self.calls_today = 0  # Reset counter for new key
             return True
-        return False;
+        return False
         
     def get_bilateral_trade(
         self,
@@ -60,16 +61,22 @@ class COMTRADEService:
         partner_code: str,
         period: str,
         hs_code: Optional[str] = None,
+        type_code: str = "C",
+        freq_code: str = "A",
+        cl_code: str = "HS",
         retry_with_secondary: bool = True
     ) -> Optional[Dict]:
         """
-        Get bilateral trade data between two countries
+        Get bilateral trade data between two countries using v1 API
         
         Args:
-            reporter_code: ISO3 country code (reporter)
-            partner_code: ISO3 country code (partner)
-            period: Year or YYYYMM format
-            hs_code: Optional HS code for specific product
+            reporter_code: M49 country code (reporter)
+            partner_code: M49 country code (partner) or 'all' for all partners
+            period: Year (YYYY) or Month (YYYYMM) format
+            hs_code: Optional HS commodity code
+            type_code: Type of trade - 'C' for commodities, 'S' for services (default: 'C')
+            freq_code: Frequency - 'A' for annual, 'M' for monthly (default: 'A')
+            cl_code: Classification - 'HS', 'SITC', etc. (default: 'HS')
             retry_with_secondary: Whether to retry with secondary key on failure
             
         Returns:
@@ -80,36 +87,40 @@ class COMTRADEService:
                 logger.info("🔄 Retrying with secondary key after reaching daily limit")
                 return self.get_bilateral_trade(
                     reporter_code, partner_code, period, hs_code, 
+                    type_code, freq_code, cl_code,
                     retry_with_secondary=False
                 )
             raise Exception("COMTRADE API daily limit reached on all keys")
-            
+        
+        # Build v1 API URL: /get/{typeCode}/{freqCode}/{clCode}
+        url = f"{self.BASE_URL}/get/{type_code}/{freq_code}/{cl_code}"
+        
         params = {
             "reporterCode": reporter_code,
             "partnerCode": partner_code,
             "period": period,
-            "motCode": "C",  # Mode of transport: All
-            "freqCode": "A",  # Annual
         }
         
         if hs_code:
-            params["cmdCode"] = hs_code;
+            params["cmdCode"] = hs_code
         
-        api_key = self._get_active_key();
+        # Add API key using header (v1 API uses header-based auth)
+        api_key = self._get_active_key()
+        headers = {}
         if api_key:
-            params["subscription-key"] = api_key;
+            headers["Ocp-Apim-Subscription-Key"] = api_key
             
         try:
-            response = requests.get(self.BASE_URL, params=params, timeout=30);
-            response.raise_for_status();
-            self.calls_today += 1;
+            response = requests.get(url, params=params, headers=headers, timeout=30)
+            response.raise_for_status()
+            self.calls_today += 1
             
-            data = response.json();
+            data = response.json()
             return {
                 "source": "UN_COMTRADE",
                 "data": data.get("data", []),
                 "metadata": data.get("metadata", {}),
-                "timestamp": datetime.utcnow().isoformat(),
+                "timestamp": datetime.now(datetime.UTC).isoformat() if hasattr(datetime, 'UTC') else datetime.utcnow().isoformat(),
                 "latest_period": period,
                 "api_key_used": self.current_key
             }
@@ -120,6 +131,7 @@ class COMTRADEService:
                     logger.info("🔄 Retrying with secondary key after rate limit")
                     return self.get_bilateral_trade(
                         reporter_code, partner_code, period, hs_code,
+                        type_code, freq_code, cl_code,
                         retry_with_secondary=False
                     )
             elif e.response.status_code == 401:  # Unauthorized
@@ -128,11 +140,12 @@ class COMTRADEService:
                     logger.info("🔄 Retrying with secondary key after auth failure")
                     return self.get_bilateral_trade(
                         reporter_code, partner_code, period, hs_code,
+                        type_code, freq_code, cl_code,
                         retry_with_secondary=False
                     )
             
             logger.error(f"COMTRADE API HTTP error: {e.response.status_code}")
-            return None;
+            return None
         except Exception as e:
             logger.error(f"COMTRADE API error: {str(e)}")
             return None
@@ -146,13 +159,13 @@ class COMTRADEService:
         Get trade data for all African countries
         
         Args:
-            african_countries: List of ISO3 country codes
-            period: Year or YYYYMM
+            african_countries: List of M49 country codes
+            period: Year (YYYY) or Month (YYYYMM)
             
         Returns:
             List of trade data
         """
-        results = [];
+        results = []
         
         for reporter in african_countries:
             try:
@@ -163,21 +176,21 @@ class COMTRADEService:
                 )
                 
                 if data:
-                    results.append(data);
+                    results.append(data)
                     logger.info(f"✅ Retrieved data for {reporter}")
                 
                 # Rate limiting - be nice to the API
-                time.sleep(0.2);
+                time.sleep(0.2)
                 
             except Exception as e:
                 if "daily limit reached" in str(e).lower():
                     logger.warning(f"⚠️ API limit reached after {len(results)} countries")
-                    break;
+                    break
                 logger.error(f"❌ Error fetching data for {reporter}: {e}")
-                continue;
+                continue
             
         logger.info(f"📊 Retrieved data for {len(results)}/{len(african_countries)} countries")
-        return results;
+        return results
     
     def get_latest_available_period(self, country_code: str) -> Optional[str]:
         """
@@ -186,22 +199,22 @@ class COMTRADEService:
         Returns:
             Latest period (YYYY or YYYYMM) or None
         """
-        current_year = datetime.now().year;
+        current_year = datetime.now().year
         
         # Try current year first, then previous years
         for year in range(current_year, current_year - 3, -1):
             test_data = self.get_bilateral_trade(
                 reporter_code=country_code,
-                partner_code="wld",  # World
+                partner_code="0",  # World (v1 API uses '0' for world)
                 period=str(year)
             )
             
             if test_data and test_data.get("data"):
                 logger.info(f"✅ Latest data for {country_code}: {year}")
-                return str(year);
+                return str(year)
         
         logger.warning(f"⚠️ No recent data found for {country_code}")
-        return None;
+        return None
     
     def get_service_status(self) -> Dict:
         """
@@ -218,6 +231,62 @@ class COMTRADEService:
             "calls_remaining": self.max_calls_per_day - self.calls_today,
             "can_switch_to_secondary": bool(self.secondary_api_key) and self.current_key == "primary"
         }
+    
+    def get_metadata(
+        self,
+        type_code: str = "C",
+        freq_code: str = "A",
+        cl_code: str = "HS"
+    ) -> Optional[Dict]:
+        """
+        Get metadata for specified trade classification
+        
+        Args:
+            type_code: Type of trade - 'C' for commodities, 'S' for services
+            freq_code: Frequency - 'A' for annual, 'M' for monthly
+            cl_code: Classification - 'HS', 'SITC', 'BEC', 'EBOPS'
+            
+        Returns:
+            Metadata dictionary or None if error
+        """
+        url = f"{self.BASE_URL}/getMetadata/{type_code}/{freq_code}/{cl_code}"
+        
+        api_key = self._get_active_key()
+        headers = {}
+        if api_key:
+            headers["Ocp-Apim-Subscription-Key"] = api_key
+        
+        try:
+            response = requests.get(url, headers=headers, timeout=30)
+            response.raise_for_status()
+            self.calls_today += 1
+            return response.json()
+        except Exception as e:
+            logger.error(f"Error fetching metadata: {str(e)}")
+            return None
+    
+    def get_live_update(self) -> Optional[Dict]:
+        """
+        Get live update information from the API
+        
+        Returns:
+            Live update info or None if error
+        """
+        url = f"{self.BASE_URL}/getLiveUpdate"
+        
+        api_key = self._get_active_key()
+        headers = {}
+        if api_key:
+            headers["Ocp-Apim-Subscription-Key"] = api_key
+        
+        try:
+            response = requests.get(url, headers=headers, timeout=30)
+            response.raise_for_status()
+            self.calls_today += 1
+            return response.json()
+        except Exception as e:
+            logger.error(f"Error fetching live update: {str(e)}")
+            return None
 
 
 # Global service instance
