@@ -26,7 +26,8 @@ class COMTRADEService:
         self.secondary_api_key = os.getenv("COMTRADE_API_KEY_SECONDARY", "")
         self.current_key = "primary"
         self.calls_today = 0
-        self.max_calls_per_day = 500;
+        self.max_calls_per_day = 500
+        self.last_error = None
         
         if not self.primary_api_key and not self.secondary_api_key:
             logger.warning("⚠️ No COMTRADE API keys configured")
@@ -103,6 +104,7 @@ class COMTRADEService:
             response = requests.get(self.BASE_URL, params=params, timeout=30);
             response.raise_for_status();
             self.calls_today += 1;
+            self.last_error = None
             
             data = response.json();
             return {
@@ -114,6 +116,7 @@ class COMTRADEService:
                 "api_key_used": self.current_key
             }
         except requests.exceptions.HTTPError as e:
+            self.last_error = f"HTTP {e.response.status_code}: {str(e)}"
             if e.response.status_code == 429:  # Rate limit exceeded
                 logger.warning(f"⚠️ Rate limit hit on {self.current_key} key")
                 if retry_with_secondary and self._switch_to_secondary():
@@ -134,6 +137,7 @@ class COMTRADEService:
             logger.error(f"COMTRADE API HTTP error: {e.response.status_code}")
             return None;
         except Exception as e:
+            self.last_error = str(e)
             logger.error(f"COMTRADE API error: {str(e)}")
             return None
     
@@ -218,6 +222,64 @@ class COMTRADEService:
             "calls_remaining": self.max_calls_per_day - self.calls_today,
             "can_switch_to_secondary": bool(self.secondary_api_key) and self.current_key == "primary"
         }
+    
+    def health_check(self) -> Dict:
+        """
+        Check API connectivity and return status
+        
+        Returns:
+            Dict with health status information
+        """
+        health_status = {
+            "connected": False,
+            "using_secondary": self.current_key == "secondary",
+            "calls_today": self.calls_today,
+            "rate_limit_remaining": self.max_calls_per_day - self.calls_today,
+            "last_error": self.last_error,
+            "primary_key_configured": bool(self.primary_api_key),
+            "secondary_key_configured": bool(self.secondary_api_key),
+            "timestamp": datetime.utcnow().isoformat()
+        }
+        
+        # Try a simple test request to verify connectivity
+        try:
+            # Use a minimal request to World to test API
+            test_params = {
+                "reporterCode": "USA",
+                "partnerCode": "wld",
+                "period": str(datetime.now().year - 1),
+                "freqCode": "A",
+                "motCode": "C"
+            }
+            
+            api_key = self._get_active_key()
+            if api_key:
+                test_params["subscription-key"] = api_key
+            
+            response = requests.get(self.BASE_URL, params=test_params, timeout=10)
+            
+            if response.status_code == 200:
+                health_status["connected"] = True
+                health_status["last_error"] = None
+                logger.info(f"✅ COMTRADE health check passed using {self.current_key} key")
+            elif response.status_code == 401:
+                health_status["last_error"] = "Authentication failed - invalid API key"
+                logger.error(f"❌ COMTRADE health check failed: Invalid {self.current_key} key")
+            elif response.status_code == 429:
+                health_status["last_error"] = "Rate limit exceeded"
+                logger.warning(f"⚠️ COMTRADE health check: Rate limit on {self.current_key} key")
+            else:
+                health_status["last_error"] = f"HTTP {response.status_code}"
+                logger.warning(f"⚠️ COMTRADE health check: HTTP {response.status_code}")
+                
+        except requests.exceptions.Timeout:
+            health_status["last_error"] = "Request timeout"
+            logger.error("❌ COMTRADE health check timeout")
+        except Exception as e:
+            health_status["last_error"] = str(e)
+            logger.error(f"❌ COMTRADE health check error: {str(e)}")
+        
+        return health_status
 
 
 # Global service instance
