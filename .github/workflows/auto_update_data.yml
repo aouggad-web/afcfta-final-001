@@ -90,7 +90,7 @@ jobs:
             git pull --rebase origin ${{ github.ref_name }} || {
               echo "⚠️ Rebase conflict detected, attempting to resolve..."
               # Prefer our changes for data files in case of conflicts
-              git checkout --ours *.json *.csv *.xlsx 2>/dev/null || true
+              git checkout --ours -- *.json *.csv *.xlsx 2>/dev/null || true
               git add *.json *.csv *.xlsx 2>/dev/null || true
               git rebase --continue || {
                 echo "❌ Failed to resolve conflicts automatically"
