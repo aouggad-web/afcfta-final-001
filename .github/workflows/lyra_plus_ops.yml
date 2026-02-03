@@ -44,6 +44,13 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m "chore(ops): refresh AfCFTA datasets via Lyra+ weekly cron"
             
+            # Pull and rebase before pushing to handle any remote changes
+            echo "Pulling latest changes from remote..."
+            git pull --rebase origin main || {
+              echo "⚠️ Rebase failed, aborting and falling back to merge strategy..."
+              git rebase --abort 2>/dev/null || true
+              git pull --no-rebase origin main || {
+                echo "❌ Failed to pull remote changes"
             # Pull latest changes and rebase our commit on top
             echo "Pulling latest changes before push..."
             git pull --rebase origin ${{ github.ref_name }} || {

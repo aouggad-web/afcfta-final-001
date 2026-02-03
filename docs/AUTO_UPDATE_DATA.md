@@ -210,6 +210,40 @@ permissions:
   contents: write
 ```
 
+### Git Push Rejection (Non-Fast-Forward)
+
+**Problem:** The workflow fails with error:
+```
+! [rejected]        main -> main (non-fast-forward)
+error: failed to push some refs
+```
+
+**Cause:** The remote branch has changed since the workflow started (e.g., another workflow or manual push occurred).
+
+**Solution:** The workflow now includes automatic conflict resolution:
+
+1. **Pull and Rebase**: Before pushing, the workflow pulls the latest changes and rebases local commits on top
+2. **Fallback to Merge**: If rebase fails (e.g., conflicts), it falls back to a merge strategy
+3. **Retry Logic**: If push still fails, it retries up to 3 times with a 2-second delay between attempts
+
+This ensures that the automated workflow can handle concurrent changes without manual intervention.
+
+**Implementation details:**
+```bash
+# Pull and rebase before pushing
+git pull --rebase origin main || {
+  # If rebase fails, abort and try merge
+  git rebase --abort 2>/dev/null || true
+  git pull --no-rebase origin main
+}
+
+# Retry push up to 3 times
+# (with pull between retries to handle new remote changes)
+```
+
+This same fix has been applied to both:
+- `.github/workflows/auto_update_data.yml` (daily data updates)
+- `.github/workflows/lyra_plus_ops.yml` (weekly Lyra+ dataset updates)
 ### Push Rejected (Non-Fast-Forward)
 
 If you see errors like "rejected (non-fast-forward)" or "failed to push some refs":
@@ -240,7 +274,7 @@ Potential improvements:
 - [ ] Implement data validation checks
 - [ ] Add Slack/Discord webhook notifications
 - [ ] Create a dashboard for monitoring updates
-- [ ] Add retry logic for failed API calls
+- [x] Add retry logic for failed API calls (✅ Implemented for git push)
 - [ ] Implement incremental updates (only changed data)
 
 ## Related Documentation
