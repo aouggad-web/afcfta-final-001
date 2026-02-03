@@ -100,9 +100,11 @@ You can manually trigger the workflow with different update types:
 3. **Install Dependencies**: Installs required packages (requests, openpyxl, pandas)
 4. **Run Update Script**: Executes the data update script
 5. **Check Changes**: Detects if any data was modified
-6. **Commit & Push**: Commits and pushes changes if any exist
+6. **Commit & Push**: Commits changes, pulls latest remote changes (with rebase), and pushes
 7. **Generate Summary**: Creates a summary in the workflow output
 8. **Upload Report**: Uploads the update report as an artifact (retained for 30 days)
+
+**Note on Step 6**: The workflow uses `git pull --rebase` before pushing to prevent non-fast-forward errors when the remote branch has been updated by another workflow or manual commit. If conflicts occur on data files, the workflow automatically resolves them by preferring the new data (our changes).
 
 ## Error Handling
 
@@ -242,6 +244,17 @@ git pull --rebase origin main || {
 This same fix has been applied to both:
 - `.github/workflows/auto_update_data.yml` (daily data updates)
 - `.github/workflows/lyra_plus_ops.yml` (weekly Lyra+ dataset updates)
+### Push Rejected (Non-Fast-Forward)
+
+If you see errors like "rejected (non-fast-forward)" or "failed to push some refs":
+
+**This has been fixed!** The workflows now automatically:
+1. Pull the latest changes from the remote branch before pushing
+2. Rebase local commits on top of remote changes
+3. Handle merge conflicts automatically for data files
+4. Retry the push after synchronizing
+
+The fix ensures that multiple workflows or manual commits don't cause push failures.
 
 ## Best Practices
 
