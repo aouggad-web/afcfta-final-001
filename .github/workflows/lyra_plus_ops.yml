@@ -43,7 +43,24 @@ jobs:
           git add frontend/public/data || true
           if ! git diff --cached --quiet; then
             git commit -m "chore(ops): refresh AfCFTA datasets via Lyra+ weekly cron"
+            
+            # Pull latest changes and rebase our commit on top
+            echo "Pulling latest changes before push..."
+            git pull --rebase origin ${{ github.ref_name }} || {
+              echo "⚠️ Rebase conflict detected, attempting to resolve..."
+              # Prefer our changes for data files in case of conflicts
+              git checkout --ours -- frontend/public/data 2>/dev/null || true
+              git add frontend/public/data 2>/dev/null || true
+              git rebase --continue || {
+                echo "❌ Failed to resolve conflicts automatically"
+                git rebase --abort
+                exit 1
+              }
+            }
+            
+            # Now push the changes
             git push
+            echo "✅ Data updated and pushed successfully"
           else
             echo "No data changes to commit."
           fi

@@ -24,7 +24,7 @@ class TestCOMTRADEService:
     
     def test_service_initialization(self):
         """Test service initializes correctly"""
-        assert self.service.BASE_URL == "https://comtradeplus.un.org/api/get"
+        assert self.service.BASE_URL == "https://comtradeapi.un.org/data/v1"
         assert self.service.max_calls_per_day == 500
         assert self.service.calls_today == 0
     
