@@ -27,7 +27,11 @@ def make_wto_request_with_retry(url, params=None, max_retries=5):
         Response object or None if all retries failed
     """
     def calculate_backoff(attempt):
-        """Calculate exponential backoff time: 2, 4, 8, 16, 32 seconds for attempts 0-4"""
+        """
+        Calculate exponential backoff wait time.
+        Returns wait times: 2, 4, 8, 16, 32 seconds for attempts 0-4.
+        These are the delays between retries, not including the final failed attempt.
+        """
         return (2 ** attempt) * 2
     
     for attempt in range(max_retries):
@@ -65,7 +69,7 @@ def make_wto_request_with_retry(url, params=None, max_retries=5):
             logger.error(f"❌ Error fetching data: {e}")
             return None
     
-    logger.error(f"❌ Failed after {max_retries} retries")
+    # This line should never be reached as all paths in the loop return
     return None
 
 
