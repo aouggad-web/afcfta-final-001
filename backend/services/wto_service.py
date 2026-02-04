@@ -26,6 +26,10 @@ def make_wto_request_with_retry(url, params=None, max_retries=5):
     Returns:
         Response object or None if all retries failed
     """
+    def calculate_backoff(attempt):
+        """Calculate exponential backoff time: 2, 4, 8, 16, 32 seconds for attempts 0-4"""
+        return (2 ** attempt) * 2
+    
     for attempt in range(max_retries):
         try:
             response = requests.get(url, params=params, timeout=30)
@@ -33,10 +37,13 @@ def make_wto_request_with_retry(url, params=None, max_retries=5):
             return response
         except HTTPError as e:
             if e.response.status_code == 429:  # Rate limit
-                # Exponential backoff with base 2: wait times are 2, 4, 8, 16, 32 seconds (for attempts 0-4)
-                wait_time = (2 ** attempt) * 2
-                logger.warning(f"⚠️ Rate limit hit (429), retrying in {wait_time}s (attempt {attempt + 1}/{max_retries})...")
-                time.sleep(wait_time)
+                if attempt < max_retries - 1:
+                    wait_time = calculate_backoff(attempt)
+                    logger.warning(f"⚠️ Rate limit hit (429), retrying in {wait_time}s (attempt {attempt + 1}/{max_retries})...")
+                    time.sleep(wait_time)
+                else:
+                    logger.error(f"❌ Rate limit exceeded after {max_retries} attempts")
+                    return None
             elif e.response.status_code == 400:
                 logger.warning(f"⚠️ Bad request (400) for URL: {url}. Skipping...")
                 return None
@@ -48,8 +55,7 @@ def make_wto_request_with_retry(url, params=None, max_retries=5):
                 return None
         except requests.exceptions.Timeout:
             if attempt < max_retries - 1:
-                # Exponential backoff with base 2: wait times are 2, 4, 8, 16, 32 seconds (for attempts 0-4)
-                wait_time = (2 ** attempt) * 2
+                wait_time = calculate_backoff(attempt)
                 logger.warning(f"⚠️ Request timeout, retrying in {wait_time}s (attempt {attempt + 1}/{max_retries})...")
                 time.sleep(wait_time)
             else:
