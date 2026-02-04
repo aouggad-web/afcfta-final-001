@@ -28,10 +28,12 @@ def make_wto_request_with_retry(url, params=None, max_retries=5):
     """
     def calculate_backoff(attempt):
         """
-        Calculate exponential backoff wait time.
-        Returns wait times: 2, 4, 8, 16 seconds for attempts 0-3.
-        With max_retries=5, there are 5 attempts (0-4), but only 4 waits between them.
-        The 5th (final) attempt does not wait before returning failure.
+        Calculate exponential backoff wait time formula: (2^attempt) * 2 seconds.
+        
+        Note: This is a pure calculation function. Calling code is responsible for
+        not invoking it on the final failed attempt (when attempt >= max_retries - 1).
+        For max_retries=5, this should only be called for attempts 0-3, yielding
+        wait times of 2, 4, 8, 16 seconds.
         """
         return (2 ** attempt) * 2
     
