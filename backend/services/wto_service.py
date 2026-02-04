@@ -33,7 +33,8 @@ def make_wto_request_with_retry(url, params=None, max_retries=5):
             return response
         except HTTPError as e:
             if e.response.status_code == 429:  # Rate limit
-                wait_time = (2 ** attempt) * 2  # Exponential backoff: 2, 4, 8, 16, 32 seconds
+                # Exponential backoff with base 2: wait times are 2, 4, 8, 16, 32 seconds (for attempts 0-4)
+                wait_time = (2 ** attempt) * 2
                 logger.warning(f"⚠️ Rate limit hit (429), retrying in {wait_time}s (attempt {attempt + 1}/{max_retries})...")
                 time.sleep(wait_time)
             elif e.response.status_code == 400:
@@ -47,7 +48,8 @@ def make_wto_request_with_retry(url, params=None, max_retries=5):
                 return None
         except requests.exceptions.Timeout:
             if attempt < max_retries - 1:
-                wait_time = 2 ** attempt
+                # Exponential backoff with base 2: wait times are 2, 4, 8, 16, 32 seconds (for attempts 0-4)
+                wait_time = (2 ** attempt) * 2
                 logger.warning(f"⚠️ Request timeout, retrying in {wait_time}s (attempt {attempt + 1}/{max_retries})...")
                 time.sleep(wait_time)
             else:
