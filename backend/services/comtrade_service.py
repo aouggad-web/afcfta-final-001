@@ -9,10 +9,65 @@ import requests
 import os
 from typing import Dict, List, Optional
 from datetime import datetime, timezone
+from requests.exceptions import HTTPError
 import time
 import logging
 
 logger = logging.getLogger(__name__)
+
+
+def make_api_request_with_retry(url, headers=None, params=None, max_retries=3, initial_delay=1):
+    """
+    Make API request with exponential backoff for rate limits
+    
+    Args:
+        url: API endpoint URL
+        headers: Optional request headers
+        params: Optional query parameters
+        max_retries: Maximum number of retry attempts (default: 3)
+        initial_delay: Initial delay in seconds before first retry (default: 1)
+    
+    Returns:
+        Response object or None if all retries failed
+    """
+    for attempt in range(max_retries):
+        try:
+            response = requests.get(url, headers=headers, params=params, timeout=30)
+            response.raise_for_status()
+            return response
+        except HTTPError as e:
+            if e.response.status_code == 429:  # Rate limit
+                if attempt < max_retries - 1:
+                    delay = initial_delay * (2 ** attempt)
+                    logger.warning(f"⚠️ Rate limit hit, waiting {delay}s before retry (attempt {attempt + 1}/{max_retries})...")
+                    time.sleep(delay)
+                    continue
+                else:
+                    logger.error(f"❌ Rate limit exceeded after {max_retries} attempts")
+                    return None
+            elif e.response.status_code == 400:
+                logger.error(f"❌ Bad request (400): {url}")
+                return None
+            elif e.response.status_code == 401:
+                logger.error(f"❌ Authentication failed (401): Check API credentials")
+                return None
+            else:
+                logger.error(f"❌ HTTP error {e.response.status_code}: {e}")
+                raise
+        except requests.exceptions.Timeout as e:
+            logger.warning(f"⚠️ Request timeout (attempt {attempt + 1}/{max_retries})")
+            if attempt < max_retries - 1:
+                time.sleep(initial_delay)
+                continue
+            logger.error(f"❌ Request timed out after {max_retries} attempts")
+            return None
+        except Exception as e:
+            logger.error(f"❌ Request failed: {e}")
+            if attempt < max_retries - 1:
+                time.sleep(initial_delay)
+                continue
+            return None
+    return None
 
 class COMTRADEService:
     """
@@ -111,8 +166,20 @@ class COMTRADEService:
             headers["Ocp-Apim-Subscription-Key"] = api_key
             
         try:
-            response = requests.get(url, params=params, headers=headers, timeout=30)
-            response.raise_for_status()
+            # Use retry function with exponential backoff
+            response = make_api_request_with_retry(url, headers=headers, params=params, max_retries=3, initial_delay=1)
+            
+            if response is None:
+                # If retry failed due to rate limit and we have a secondary key, try it
+                if retry_with_secondary and self._switch_to_secondary():
+                    logger.info("🔄 Retrying with secondary key after request failure")
+                    return self.get_bilateral_trade(
+                        reporter_code, partner_code, period, hs_code,
+                        type_code, freq_code, cl_code,
+                        retry_with_secondary=False
+                    )
+                return None
+            
             self.calls_today += 1
             
             data = response.json()
@@ -257,8 +324,12 @@ class COMTRADEService:
             headers["Ocp-Apim-Subscription-Key"] = api_key
         
         try:
-            response = requests.get(url, headers=headers, timeout=30)
-            response.raise_for_status()
+            # Use retry function with exponential backoff
+            response = make_api_request_with_retry(url, headers=headers, max_retries=3, initial_delay=1)
+            
+            if response is None:
+                return None
+            
             self.calls_today += 1
             return response.json()
         except Exception as e:
@@ -280,8 +351,12 @@ class COMTRADEService:
             headers["Ocp-Apim-Subscription-Key"] = api_key
         
         try:
-            response = requests.get(url, headers=headers, timeout=30)
-            response.raise_for_status()
+            # Use retry function with exponential backoff
+            response = make_api_request_with_retry(url, headers=headers, max_retries=3, initial_delay=1)
+            
+            if response is None:
+                return None
+            
             self.calls_today += 1
             return response.json()
         except Exception as e:
