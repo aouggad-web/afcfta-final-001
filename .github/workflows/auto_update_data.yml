@@ -85,11 +85,31 @@ jobs:
           else
             git commit -m "chore(data): automated data update - $(date +'%Y-%m-%d %H:%M UTC')"
             
+            # Try to push with retries, handling conflicts automatically
             # Try to push with retries
             max_retries=3
             retry_count=0
             
             while [ $retry_count -lt $max_retries ]; do
+              echo "Attempt $((retry_count + 1))/$max_retries to push changes..."
+              
+              # Pull and rebase before pushing to handle any remote changes
+              if git pull --rebase origin main; then
+                echo "✓ Successfully rebased on latest changes"
+              else
+                echo "⚠️ Rebase failed, attempting to resolve conflicts..."
+                git rebase --abort 2>/dev/null || true
+                
+                # Fall back to merge strategy
+                if git pull --no-rebase origin main; then
+                  echo "✓ Merged with remote changes"
+                else
+                  echo "❌ Failed to pull remote changes"
+                  exit 1
+                fi
+              fi
+              
+              # Try to push
               # Pull latest changes before push
               echo "Pulling latest changes from remote..."
               git pull --rebase origin main || {
@@ -108,7 +128,7 @@ jobs:
               else
                 retry_count=$((retry_count + 1))
                 if [ $retry_count -lt $max_retries ]; then
-                  echo "⚠️ Push failed, retrying ($retry_count/$max_retries)..."
+                  echo "⚠️ Push failed, retrying in 2 seconds..."
                   sleep 2
                 else
                   echo "❌ Failed to push after $max_retries attempts"
