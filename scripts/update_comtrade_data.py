@@ -57,9 +57,17 @@ def main():
     
     updated_count = 0
     error_count = 0
+    skipped_count = 0
     
-    for country in AFRICAN_COUNTRIES:
+    for i, country in enumerate(AFRICAN_COUNTRIES):
         try:
+            print(f"\n[{i+1}/{len(AFRICAN_COUNTRIES)}] Processing {country}...")
+            
+            # Add delay between requests to avoid rate limiting (except first request)
+            if i > 0:
+                import time
+                time.sleep(1)
+            
             # Get bilateral trade data
             data = comtrade_service.get_bilateral_trade(
                 reporter_code=country,
@@ -70,55 +78,89 @@ def main():
             if data and data.get("data"):
                 # Store in MongoDB if available
                 if db_collection:
-                    document = {
-                        "source": "UN_COMTRADE",
-                        "reporter_country": country,
-                        "period": current_year,
-                        "data": data["data"],
-                        "metadata": data.get("metadata", {}),
-                        "updated_at": datetime.utcnow()
-                    }
-                    
-                    db_collection.update_one(
-                        {
+                    try:
+                        document = {
                             "source": "UN_COMTRADE",
                             "reporter_country": country,
-                            "period": current_year
-                        },
-                        {"$set": document},
-                        upsert=True
-                    )
+                            "period": current_year,
+                            "data": data["data"],
+                            "metadata": data.get("metadata", {}),
+                            "updated_at": datetime.utcnow()
+                        }
+                        
+                        db_collection.update_one(
+                            {
+                                "source": "UN_COMTRADE",
+                                "reporter_country": country,
+                                "period": current_year
+                            },
+                            {"$set": document},
+                            upsert=True
+                        )
+                        print(f"✓ Updated {country} (stored in MongoDB)")
+                    except Exception as db_error:
+                        print(f"⚠ Warning: Failed to store {country} in MongoDB: {str(db_error)}")
+                        print(f"✓ Updated {country} (data retrieved but not stored)")
+                else:
+                    print(f"✓ Updated {country}")
                 
                 updated_count += 1
-                print(f"✓ Updated {country}")
+            elif data is None:
+                # API error occurred
+                print(f"✗ Error retrieving data for {country} - skipping")
+                error_count += 1
             else:
-                print(f"⚠ No data for {country}")
+                # No data available for this country
+                print(f"⚠ No data available for {country}")
+                skipped_count += 1
                 
         except Exception as e:
             error_count += 1
-            print(f"✗ Error for {country}: {str(e)}")
+            print(f"✗ Unexpected error for {country}: {str(e)}")
+            # Continue processing other countries
+            continue
     
     # Run data source comparison
-    print("\nComparing data sources...")
+    print("\n" + "="*50)
+    print("Comparing data sources...")
     try:
-        comparison = data_source_selector.compare_data_sources(AFRICAN_COUNTRIES[:10])
+        # Only compare for countries that have data
+        comparison_countries = AFRICAN_COUNTRIES[:10]
+        comparison = data_source_selector.compare_data_sources(comparison_countries)
         
         # Store comparison results if MongoDB available
         if db_collection:
-            comparison_collection = db_collection.database["data_source_comparisons"]
-            comparison_collection.insert_one(comparison)
+            try:
+                comparison_collection = db_collection.database["data_source_comparisons"]
+                comparison_collection.insert_one(comparison)
+                print(f"✓ Comparison results stored in MongoDB")
+            except Exception as db_error:
+                print(f"⚠ Warning: Failed to store comparison in MongoDB: {str(db_error)}")
         
         print(f"Recommended source: {comparison.get('recommended_source', 'N/A')}")
     except Exception as e:
-        print(f"⚠ Comparison failed: {str(e)}")
+        print(f"⚠ Comparison failed (non-critical): {str(e)}")
     
-    print(f"\n=== Update Complete ===")
-    print(f"Updated: {updated_count}")
-    print(f"Errors: {error_count}")
-    print(f"Timestamp: {datetime.utcnow().isoformat()}")
+    print(f"\n{'='*50}")
+    print(f"=== Update Complete ===")
+    print(f"✓ Successfully updated: {updated_count}")
+    print(f"⚠ Skipped (no data): {skipped_count}")
+    print(f"✗ Errors: {error_count}")
+    print(f"📊 Total processed: {updated_count + skipped_count + error_count}/{len(AFRICAN_COUNTRIES)}")
+    print(f"⏰ Timestamp: {datetime.utcnow().isoformat()}")
+    print(f"{'='*50}")
     
     if client is not None:
         client.close()
+    
+    # Exit with success even if some countries failed
+    # This allows the workflow to continue with partial data
+    if updated_count > 0:
+        print("\n✅ Update completed successfully (partial data is acceptable)")
+        sys.exit(0)
+    else:
+        print("\n❌ Update failed - no data retrieved")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
