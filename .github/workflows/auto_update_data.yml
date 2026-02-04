@@ -92,16 +92,6 @@ jobs:
               git rebase --abort 2>/dev/null || true
               git pull --no-rebase origin main || {
                 echo "❌ Failed to pull remote changes"
-            # Pull latest changes and rebase our commit on top
-            echo "Pulling latest changes before push..."
-            git pull --rebase origin ${{ github.ref_name }} || {
-              echo "⚠️ Rebase conflict detected, attempting to resolve..."
-              # Prefer our changes for data files in case of conflicts
-              git checkout --ours -- *.json *.csv *.xlsx 2>/dev/null || true
-              git add *.json *.csv *.xlsx 2>/dev/null || true
-              git rebase --continue || {
-                echo "❌ Failed to resolve conflicts automatically"
-                git rebase --abort
                 exit 1
               }
             }
@@ -133,9 +123,6 @@ jobs:
                 fi
               fi
             done
-            # Now push the changes
-            git push
-            echo "✅ Data updated and pushed successfully"
           fi
       
       - name: Create update summary
