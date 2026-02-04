@@ -85,31 +85,23 @@ jobs:
           else
             git commit -m "chore(data): automated data update - $(date +'%Y-%m-%d %H:%M UTC')"
             
-            # Pull and rebase before pushing to handle any remote changes
-            echo "Pulling latest changes from remote..."
-            git pull --rebase origin main || {
-              echo "⚠️ Rebase failed, aborting and falling back to merge strategy..."
-              git rebase --abort 2>/dev/null || true
-              git pull --no-rebase origin main || {
-                echo "❌ Failed to pull remote changes"
-            # Pull latest changes and rebase our commit on top
-            echo "Pulling latest changes before push..."
-            git pull --rebase origin ${{ github.ref_name }} || {
-              echo "⚠️ Rebase conflict detected, attempting to resolve..."
-              # Prefer our changes for data files in case of conflicts
-              git checkout --ours -- *.json *.csv *.xlsx 2>/dev/null || true
-              git add *.json *.csv *.xlsx 2>/dev/null || true
-              git rebase --continue || {
-                echo "❌ Failed to resolve conflicts automatically"
-                git rebase --abort
-                exit 1
-              }
-            }
-            
-            # Try to push, retry up to 3 times if it fails
+            # Try to push with retries
             max_retries=3
             retry_count=0
+            
             while [ $retry_count -lt $max_retries ]; do
+              # Pull latest changes before push
+              echo "Pulling latest changes from remote..."
+              git pull --rebase origin main || {
+                echo "⚠️ Rebase failed, aborting and falling back to merge strategy..."
+                git rebase --abort 2>/dev/null || true
+                git pull --no-rebase origin main || {
+                  echo "❌ Failed to pull remote changes"
+                  exit 1
+                }
+              }
+              
+              # Attempt to push
               if git push; then
                 echo "✅ Data updated and pushed successfully"
                 break
@@ -118,24 +110,12 @@ jobs:
                 if [ $retry_count -lt $max_retries ]; then
                   echo "⚠️ Push failed, retrying ($retry_count/$max_retries)..."
                   sleep 2
-                  # Pull again in case of new remote changes
-                  git pull --rebase origin main || {
-                    echo "⚠️ Rebase failed on retry, aborting and falling back to merge strategy..."
-                    git rebase --abort 2>/dev/null || true
-                    git pull --no-rebase origin main || {
-                      echo "❌ Failed to pull remote changes on retry"
-                      exit 1
-                    }
-                  }
                 else
                   echo "❌ Failed to push after $max_retries attempts"
                   exit 1
                 fi
               fi
             done
-            # Now push the changes
-            git push
-            echo "✅ Data updated and pushed successfully"
           fi
       
       - name: Create update summary
