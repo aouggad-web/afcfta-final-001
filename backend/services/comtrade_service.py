@@ -177,7 +177,7 @@ class COMTRADEService:
                     try:
                         error_detail = e.response.json()
                         logger.error(f"   Error details: {error_detail}")
-                    except:
+                    except Exception:
                         logger.error(f"   Response text: {e.response.text[:200]}")
                     return None
                 else:

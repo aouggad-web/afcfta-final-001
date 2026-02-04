@@ -6,6 +6,7 @@ Run daily via GitHub Actions
 
 import os
 import sys
+import time
 from datetime import datetime
 from pymongo import MongoClient
 
@@ -65,7 +66,6 @@ def main():
             
             # Add delay between requests to avoid rate limiting (except first request)
             if i > 0:
-                import time
                 time.sleep(1)
             
             # Get bilateral trade data
@@ -75,7 +75,13 @@ def main():
                 period=current_year
             )
             
-            if data and data.get("data"):
+            # Check for explicit None return (API error) vs empty data
+            if data is None:
+                # API error occurred
+                print(f"✗ Error retrieving data for {country} - skipping")
+                error_count += 1
+            elif data and data.get("data"):
+                # Successfully retrieved data
                 # Store in MongoDB if available
                 if db_collection:
                     try:
@@ -105,10 +111,6 @@ def main():
                     print(f"✓ Updated {country}")
                 
                 updated_count += 1
-            elif data is None:
-                # API error occurred
-                print(f"✗ Error retrieving data for {country} - skipping")
-                error_count += 1
             else:
                 # No data available for this country
                 print(f"⚠ No data available for {country}")
