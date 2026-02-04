@@ -4,7 +4,6 @@ Provides access to UN COMTRADE trade data
 """
 
 from fastapi import APIRouter, HTTPException, Query
-from typing import Optional, List
 import logging
 
 from services.comtrade_service import comtrade_service
