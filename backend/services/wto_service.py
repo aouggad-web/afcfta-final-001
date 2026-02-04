@@ -29,8 +29,9 @@ def make_wto_request_with_retry(url, params=None, max_retries=5):
     def calculate_backoff(attempt):
         """
         Calculate exponential backoff wait time.
-        Returns wait times: 2, 4, 8, 16, 32 seconds for attempts 0-4.
-        These are the delays between retries, not including the final failed attempt.
+        Returns wait times: 2, 4, 8, 16 seconds for attempts 0-3.
+        With max_retries=5, there are 5 attempts (0-4), but only 4 waits between them.
+        The 5th (final) attempt does not wait before returning failure.
         """
         return (2 ** attempt) * 2
     
@@ -69,8 +70,8 @@ def make_wto_request_with_retry(url, params=None, max_retries=5):
             logger.error(f"❌ Error fetching data: {e}")
             return None
     
-    # This line should never be reached as all paths in the loop return
-    return None
+    # All paths in the loop should return, but include this as a safety fallback
+    raise RuntimeError(f"Unexpected: retry loop completed without returning (max_retries={max_retries})")
 
 
 class WTOService:
