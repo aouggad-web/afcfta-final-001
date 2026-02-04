@@ -22,6 +22,11 @@ class COMTRADEService:
     
     BASE_URL = "https://comtradeapi.un.org/data/v1"
     
+    # Retry configuration
+    MAX_RETRIES = 3
+    BASE_DELAY_SECONDS = 2
+    REQUEST_DELAY_SECONDS = 1  # Delay between batch requests
+    
     def __init__(self):
         self.primary_api_key = os.getenv("COMTRADE_API_KEY", "")
         self.secondary_api_key = os.getenv("COMTRADE_API_KEY_SECONDARY", "")
@@ -111,8 +116,8 @@ class COMTRADEService:
             headers["Ocp-Apim-Subscription-Key"] = api_key
         
         # Exponential backoff retry logic for rate limiting
-        max_retries = 3
-        base_delay = 2  # seconds
+        max_retries = self.MAX_RETRIES
+        base_delay = self.BASE_DELAY_SECONDS
         
         for attempt in range(max_retries):
             try:
@@ -222,7 +227,7 @@ class COMTRADEService:
                 # Add delay between requests to avoid rate limiting
                 # First request doesn't need delay
                 if i > 0:
-                    time.sleep(1)  # 1 second delay between requests
+                    time.sleep(self.REQUEST_DELAY_SECONDS)
                 
                 data = self.get_bilateral_trade(
                     reporter_code=reporter,

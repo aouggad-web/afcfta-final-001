@@ -28,6 +28,9 @@ AFRICAN_COUNTRIES = [
     "TUN", "UGA", "ZMB", "ZWE"
 ]
 
+# Configuration
+REQUEST_DELAY_SECONDS = 1  # Delay between API requests to avoid rate limiting
+
 
 def main():
     """Main update function"""
@@ -66,7 +69,7 @@ def main():
             
             # Add delay between requests to avoid rate limiting (except first request)
             if i > 0:
-                time.sleep(1)
+                time.sleep(REQUEST_DELAY_SECONDS)
             
             # Get bilateral trade data
             data = comtrade_service.get_bilateral_trade(
