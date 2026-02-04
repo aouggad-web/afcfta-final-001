@@ -144,7 +144,7 @@ class COMTRADEService:
                     
                     # If no secondary key or already using it, apply exponential backoff
                     if attempt < max_retries - 1:
-                        wait_time = backoff_factor ** attempt
+                        wait_time = backoff_factor ** (attempt + 1)  # 2s, 4s, 8s
                         logger.info(f"⏳ Waiting {wait_time}s before retry {attempt + 1}/{max_retries}")
                         time.sleep(wait_time)
                         continue
@@ -172,8 +172,6 @@ class COMTRADEService:
             except Exception as e:
                 logger.error(f"COMTRADE API error: {str(e)}")
                 return None
-        
-        return None
     
     def get_african_trade_data(
         self,
