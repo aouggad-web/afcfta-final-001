@@ -271,14 +271,21 @@ async def get_rules_of_origin(hs_code: str, lang: str = "fr"):
     # Obtenir les règles d'origine officielles
     roo_data = get_rule_of_origin(hs_code, lang)
     
-    if roo_data.get("status") == "UNKNOWN":
+    # Check status - UNKNOWN means no rules exist (404)
+    # YTB (Yet to be agreed) is intentionally allowed to return 200 with messaging
+    # that negotiations are ongoing, as these headings have complete data structures
+    status = roo_data.get("status", "AGREED")
+    
+    if status == "UNKNOWN":
         error_msg = "Rules of origin not found for this HS code" if lang == "en" else "Règles d'origine non trouvées pour ce code SH"
         raise HTTPException(status_code=404, detail=error_msg)
+    
+    # YTB headings return complete data with appropriate "under negotiation" messaging
+    # This is intentional - users should see that rules exist but are being negotiated
     
     primary_rule = roo_data.get("primary_rule", {})
     alt_rule = roo_data.get("alternative_rule", {})
     regional_content = roo_data.get("regional_content", 40)
-    status = roo_data.get("status", "AGREED")
     
     # Documentation labels
     if lang == "en":
