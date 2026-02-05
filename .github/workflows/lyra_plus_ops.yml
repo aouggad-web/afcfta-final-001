@@ -38,11 +38,23 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -e  # Exit on any error
           git config user.name "lyra-plus-bot"
           git config user.email "lyra-plus-bot@users.noreply.github.com"
           git add frontend/public/data || true
           if ! git diff --cached --quiet; then
             git commit -m "chore(ops): refresh AfCFTA datasets via Lyra+ weekly cron"
+            
+            # Pull latest changes with rebase to handle concurrent updates
+            echo "Syncing with remote main branch..."
+            if git pull --rebase origin main; then
+              echo "✓ Successfully rebased changes"
+            else
+              echo "⚠️  Rebase failed, aborting rebase and attempting regular merge"
+              git rebase --abort
+              git pull --no-rebase origin main  # Will exit if merge fails due to set -e
+              echo "✓ Successfully merged changes"
+            fi
             
             # Pull and rebase before pushing to handle any remote changes
             echo "Pulling latest changes from remote..."
