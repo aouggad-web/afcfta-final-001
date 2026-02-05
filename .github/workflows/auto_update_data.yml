@@ -85,6 +85,18 @@ jobs:
           else
             git commit -m "chore(data): automated data update - $(date +'%Y-%m-%d %H:%M UTC')"
             
+            # Pull and rebase before pushing to handle any remote changes
+            echo "Pulling latest changes from remote..."
+            git pull --rebase origin main || {
+              echo "⚠️ Rebase failed, aborting and falling back to merge strategy..."
+              git rebase --abort 2>/dev/null || true
+              git pull --no-rebase origin main || {
+                echo "❌ Failed to pull remote changes"
+                exit 1
+              }
+            }
+            
+            # Try to push, retry up to 3 times if it fails
             # Try to push with retries, handling conflicts automatically
             # Try to push with retries
             max_retries=3
