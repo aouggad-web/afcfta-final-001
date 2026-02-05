@@ -13,8 +13,8 @@ A comprehensive tariff calculator and trade information system for the African C
 - **Rules of Origin**: Access ZLECAf rules of origin by HS code
 - **Country Profiles**: Detailed economic profiles for all member states
 - **Trade Statistics**: Comprehensive trade statistics and projections
-- **Real-time Data**: Integration with World Bank and OEC APIs
-- **Automated Data Updates**: Daily automated updates from World Bank API and other sources
+- **Real-time Data**: Integration with World Bank, UN COMTRADE v1, and OEC APIs
+- **Automated Data Updates**: Daily automated updates from multiple data sources
 
 ## 📊 API Endpoints
 
@@ -201,7 +201,9 @@ The system automatically updates economic data daily from external sources:
 - **Process**: Automated via GitHub Actions
 - **Monitoring**: Update reports available in Actions artifacts
 
-For more information, see [docs/AUTO_UPDATE_DATA.md](docs/AUTO_UPDATE_DATA.md).
+For more information, see:
+- [docs/AUTO_UPDATE_DATA.md](docs/AUTO_UPDATE_DATA.md) - Automated data update system
+- [docs/COMTRADE_INTEGRATION.md](docs/COMTRADE_INTEGRATION.md) - UN COMTRADE v1 API integration guide
 
 To manually trigger an update:
 1. Go to the Actions tab on GitHub
