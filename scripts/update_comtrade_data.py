@@ -36,6 +36,15 @@ def main():
     """Main update function"""
     print(f"Starting COMTRADE data update: {datetime.utcnow().isoformat()}")
     
+    # Print service status
+    service_status = comtrade_service.get_service_status()
+    print(f"\n=== COMTRADE Service Status ===")
+    print(f"Primary key configured: {service_status['primary_key_configured']}")
+    print(f"Secondary key configured: {service_status['secondary_key_configured']}")
+    print(f"Current active key: {service_status['current_key']}")
+    print(f"Calls remaining today: {service_status['calls_remaining']}/{comtrade_service.max_calls_per_day}")
+    print("=" * 35)
+    
     # MongoDB connection (optional - only if MongoDB is configured)
     mongo_uri = os.getenv("MONGODB_URI")
     db_collection = None
@@ -146,6 +155,18 @@ def main():
     except Exception as e:
         print(f"⚠ Comparison failed (non-critical): {str(e)}")
     
+    print(f"\n=== Update Complete ===")
+    print(f"Updated: {updated_count}")
+    print(f"Errors: {error_count}")
+    
+    # Print final service status
+    final_status = comtrade_service.get_service_status()
+    print(f"\n=== Final COMTRADE Status ===")
+    print(f"Key used: {final_status['current_key']}")
+    print(f"Total calls made: {final_status['calls_today']}")
+    print(f"Calls remaining: {final_status['calls_remaining']}")
+    print(f"Timestamp: {datetime.utcnow().isoformat()}")
+    print("=" * 30)
     print(f"\n{'='*50}")
     print(f"=== Update Complete ===")
     print(f"✓ Successfully updated: {updated_count}")
