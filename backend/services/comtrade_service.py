@@ -164,6 +164,9 @@ class COMTRADEService:
         if hs_code:
             params["cmdCode"] = hs_code
         
+        api_key = self._get_active_key()
+        if api_key:
+            params["subscription-key"] = api_key
         # Add API key using header (v1 API uses header-based auth)
         api_key = self._get_active_key()
         headers = {}
