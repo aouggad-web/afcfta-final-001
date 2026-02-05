@@ -11,6 +11,7 @@ from typing import Dict, List, Optional
 from datetime import datetime
 import time
 import httpx
+import asyncio
 
 logger = logging.getLogger(__name__)
 
@@ -329,7 +330,6 @@ class COMTRADEService:
     
     async def _rate_limit_delay(self):
         """Add delay between requests to respect rate limits"""
-        import asyncio
         await asyncio.sleep(0.2)  # 200ms between requests
 
 
