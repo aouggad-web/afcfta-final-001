@@ -91,7 +91,8 @@ jobs:
             if git pull --rebase origin main; then
               echo "✓ Successfully rebased changes"
             else
-              echo "⚠️  Rebase failed, attempting regular merge"
+              echo "⚠️  Rebase failed, aborting rebase and attempting regular merge"
+              git rebase --abort
               git pull --no-rebase origin main  # Will exit if merge fails due to set -e
               echo "✓ Successfully merged changes"
             fi
