@@ -22,7 +22,7 @@ on:
 permissions:
   contents: write
   actions: read
-  pull-requests: write
+  pull-requests: write  # required for PR creation
 
 jobs:
   update-data:
