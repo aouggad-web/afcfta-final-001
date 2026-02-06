@@ -22,6 +22,7 @@ on:
 permissions:
   contents: write
   actions: read
+  pull-requests: write  # required for PR creation
 
 jobs:
   update-data:
@@ -69,8 +70,39 @@ jobs:
           git diff --quiet || echo "changes=true" >> $GITHUB_OUTPUT
           git diff --name-only
       
-      - name: Commit and push changes
+      - name: Create Pull Request
         if: steps.check_changes.outputs.changes == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(data): automated data update"
+          committer: afcfta-data-bot <afcfta-data-bot@users.noreply.github.com>
+          author: afcfta-data-bot <afcfta-data-bot@users.noreply.github.com>
+          branch: automated-data-update-${{ github.run_number }}
+          delete-branch: true
+          title: "chore(data): automated data update - run ${{ github.run_number }}"
+          body: |
+            ## Automated Data Update
+            
+            This PR contains automated data updates from external sources.
+            
+            **Run:** #${{ github.run_number }}
+            **Workflow:** ${{ github.workflow }}
+            **Triggered:** ${{ github.event_name }}
+            
+            ### Changes
+            - Updated World Bank data
+            - Updated production data
+            - Updated UN COMTRADE data
+            
+            Please review and merge if all checks pass.
+          labels: |
+            automated
+            data-update
+          add-paths: |
+            *.json
+            *.csv
+            *.xlsx
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
