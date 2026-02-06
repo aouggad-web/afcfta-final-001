@@ -2160,6 +2160,13 @@ async def get_all_unctad():
 
 from routes.substitution import register_routes as register_substitution_routes
 
+# Initialize export router with database connection
+try:
+    from backend.routers.export_router import init_db as init_export_db
+    init_export_db(db)
+except ImportError:
+    pass
+
 register_routes(api_router)
 register_substitution_routes(api_router)
 
