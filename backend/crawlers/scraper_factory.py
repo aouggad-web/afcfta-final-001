@@ -20,7 +20,7 @@ Usage:
 """
 
 import logging
-from typing import Dict, Type, Optional, List, Union
+from typing import Dict, Type, Optional, List, Union, Any
 from motor.motor_asyncio import AsyncIOMotorClient
 
 from .base_scraper import BaseScraper, ScraperConfig
@@ -47,7 +47,7 @@ class GenericScraper(BaseScraper):
     custom scraping logic yet. It can be used as a placeholder or starting point.
     """
     
-    async def scrape(self) -> Dict[str, any]:
+    async def scrape(self) -> Dict[str, Any]:
         """
         Generic scrape implementation.
         
@@ -72,7 +72,7 @@ class GenericScraper(BaseScraper):
             }
         }
     
-    async def validate(self, data: Dict[str, any]) -> bool:
+    async def validate(self, data: Dict[str, Any]) -> bool:
         """
         Generic validation implementation.
         
@@ -101,7 +101,7 @@ class GenericScraper(BaseScraper):
         logger.info(f"Generic validation passed for {self.country_code}")
         return True
     
-    async def save_to_db(self, data: Dict[str, any]) -> int:
+    async def save_to_db(self, data: Dict[str, Any]) -> int:
         """
         Generic save implementation.
         
@@ -383,7 +383,7 @@ class ScraperFactory:
         }
     
     @classmethod
-    def get_registry_stats(cls) -> Dict[str, any]:
+    def get_registry_stats(cls) -> Dict[str, Any]:
         """
         Get statistics about the scraper registry.
         
