@@ -809,18 +809,19 @@ def get_country_config(country_code: str) -> Optional[Dict[str, Any]]:
     return AFRICAN_COUNTRIES_REGISTRY.get(country_code.upper())
 
 
-def get_countries_by_region(region: Region) -> List[str]:
+def get_countries_by_region(region: Region) -> List[Dict[str, Any]]:
     """
-    Get all country codes for a specific region.
+    Get all countries for a specific region with full metadata.
     
     Args:
         region: Region enum value
         
     Returns:
-        List of ISO3 country codes
+        List of country dictionaries with metadata
     """
     return [
-        code for code, config in AFRICAN_COUNTRIES_REGISTRY.items()
+        {**config, "iso3": code}
+        for code, config in AFRICAN_COUNTRIES_REGISTRY.items()
         if config["region"] == region
     ]
 
@@ -1016,3 +1017,34 @@ def create_scraper_instance(country_code: str, config: Optional[Dict[str, Any]] 
     merged_config = {**scraper_config, **(config or {})}
     
     return scraper_class(country_code, merged_config)
+
+
+def get_all_countries_list() -> List[Dict[str, Any]]:
+    """
+    Get list of all African countries with their metadata.
+    
+    Returns:
+        List of country dictionaries
+    """
+    return [
+        {**data, "iso3": code}
+        for code, data in AFRICAN_COUNTRIES_REGISTRY.items()
+    ]
+
+
+def get_countries_by_bloc(bloc: RegionalBlock) -> List[Dict[str, Any]]:
+    """
+    Get list of countries belonging to a specific regional economic bloc.
+    Alias for get_countries_by_block for compatibility.
+    
+    Args:
+        bloc: Regional economic bloc enum value
+        
+    Returns:
+        List of country dictionaries
+    """
+    return [
+        {**data, "iso3": code}
+        for code, data in AFRICAN_COUNTRIES_REGISTRY.items()
+        if bloc in data.get("blocks", [])
+    ]

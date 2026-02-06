@@ -101,6 +101,27 @@ class GenericScraper(BaseScraper):
         logger.info(f"Generic validation passed for {self.country_code}")
         return True
     
+    async def scrape_tariffs(self) -> Dict[str, Any]:
+        """
+        Scrape tariff data for the country.
+        
+        This is an alias for the scrape() method to maintain compatibility
+        with the task system that expects scrape_tariffs().
+        
+        Returns:
+            Dictionary containing scraped tariff data
+        """
+        result = await self.scrape()
+        # Restructure to match expected format
+        return {
+            "country_code": result.get("country_code"),
+            "country_name": result.get("country_name"),
+            "source_url": result.get("source_url"),
+            "vat_rate": result.get("vat_rate"),
+            "tariffs": result.get("data", {}).get("tariffs", {}),
+            "scrape_type": result.get("scrape_type", "generic"),
+        }
+    
     async def save_to_db(self, data: Dict[str, Any]) -> int:
         """
         Generic save implementation.

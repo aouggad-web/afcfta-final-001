@@ -243,6 +243,33 @@ class BaseScraper(ABC):
         """
         pass
     
+    async def scrape_tariffs(self) -> Dict[str, Any]:
+        """
+        Scrape tariff data from customs source.
+        
+        This is a convenience method that wraps scrape() and ensures
+        the output format is compatible with the task system.
+        Subclasses can override this for more specific tariff scraping.
+        
+        Returns:
+            Dictionary containing tariff data in standardized format
+        """
+        result = await self.scrape()
+        
+        # If scrape already returns the right format, use it directly
+        if isinstance(result, dict) and ("tariffs" in result or "tariff_lines" in result):
+            return result
+        
+        # Otherwise, wrap it in expected format
+        return {
+            "country_code": self.country_code,
+            "country_name": self.country_name,
+            "source_url": self.source_url,
+            "vat_rate": self.vat_rate,
+            "tariffs": result.get("data", {}) if isinstance(result, dict) else {},
+            "scrape_type": result.get("scrape_type", "generic") if isinstance(result, dict) else "generic",
+        }
+    
     @abstractmethod
     async def validate(self, data: Dict[str, Any]) -> bool:
         """
