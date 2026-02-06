@@ -15,6 +15,10 @@ A comprehensive tariff calculator and trade information system for the African C
 - **Trade Statistics**: Comprehensive trade statistics and projections
 - **Real-time Data**: Integration with World Bank, UN COMTRADE v1, and OEC APIs
 - **Automated Data Updates**: Daily automated updates from multiple data sources
+- **📧 Notification System**: Email and Slack notifications for crawl events
+- **📊 Data Export**: CSV and Excel export capabilities
+- **🐳 Docker Ready**: Complete Docker deployment with docker-compose
+- **🌍 54 Countries Supported**: All African countries with automated scrapers
 
 ## 📊 API Endpoints
 
@@ -50,6 +54,18 @@ The health endpoints provide real-time monitoring of:
 | `/api/trade-data/compare-sources` | GET | Compare all data sources for freshness |
 | `/api/trade-data/comtrade/{reporter}/{partner}` | GET | Get UN COMTRADE bilateral trade data directly |
 | `/api/trade-data/wto/{reporter}/{partner}` | GET | Get WTO tariff and trade data directly |
+
+### Export Endpoints (NEW)
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/export/tariffs/csv` | GET | Export tariffs as CSV for a country |
+| `/api/export/tariffs/excel` | GET | Export tariffs as Excel (multi-sheet for multiple countries) |
+
+**Query Parameters:**
+- `country`: Country code (required for CSV)
+- `countries`: Comma-separated country codes (required for Excel)
+- `latest`: Boolean, get only latest data (default: true)
 
 #### Examples:
 
@@ -122,6 +138,66 @@ GET /api/trade-data/wto/KEN/GHA?product_code=080300
 - **Frontend**: React with Shadcn/UI components
 - **Database**: MongoDB
 - **External APIs**: World Bank API, OEC API, UN COMTRADE API, WTO API
+- **Notifications**: Email (SMTP) and Slack webhooks
+- **Task Management**: APScheduler for background jobs
+- **Containerization**: Docker and Docker Compose
+
+## 🐳 Docker Deployment
+
+This application is fully containerized and ready for deployment:
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/aouggad-web/afcfta-final-001.git
+cd afcfta-final-001
+
+# 2. Configure environment variables
+cp .env.example .env
+# Edit .env with your configuration
+
+# 3. Start services
+docker-compose up -d
+
+# 4. Check logs
+docker-compose logs -f backend
+```
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
+
+## 📧 Notification System
+
+The system supports automated notifications for crawling events:
+
+### Supported Channels
+- **Email**: SMTP notifications (Gmail, Outlook, SendGrid, etc.)
+- **Slack**: Webhook-based notifications
+
+### Notification Events
+- 🚀 Crawl started
+- ✅ Crawl successful
+- ❌ Crawl failed
+- ⚠️ Data validation issues
+
+### Configuration
+
+Set environment variables in `.env`:
+
+```bash
+# Email Notifications
+EMAIL_NOTIFICATIONS_ENABLED=true
+EMAIL_SMTP_HOST=smtp.gmail.com
+EMAIL_SMTP_PORT=587
+EMAIL_SMTP_USER=your-email@gmail.com
+EMAIL_SMTP_PASSWORD=your-app-password
+EMAIL_TO=admin@example.com
+
+# Slack Notifications
+SLACK_NOTIFICATIONS_ENABLED=true
+SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
+SLACK_CHANNEL=#afcfta-monitoring
+```
+
+See [NOTIFICATIONS.md](NOTIFICATIONS.md) for detailed setup instructions.
 
 ## 📦 Data Sources
 
@@ -146,10 +222,26 @@ Data is automatically updated daily at 2:00 AM UTC via GitHub Actions. See [docs
 
 ## 🌍 Coverage
 
-- **54 African Countries**
+- **54 African Countries** - Complete support for all AfCFTA member states
 - **97 HS2 Sectors** with rules of origin
 - **Real-time Trade Data**
 - **Economic Projections** through 2030
+- **Regional Tariff Systems**:
+  - TEC CEDEAO (ECOWAS) - 15 countries
+  - CET EAC (East African Community) - 6 countries
+  - TDC CEMAC (Central Africa) - 6 countries
+  - SACU (Southern African Customs Union) - 5 countries
+  - Individual national tariffs - 22 countries
+
+## 🤖 Automated Crawler System
+
+The system includes automated scrapers for all 54 African countries:
+
+- **Generic Scraper**: Fallback for countries without specific implementations
+- **Regional Tariff Support**: Automatic handling of regional customs unions
+- **Priority-based Crawling**: High-priority countries (major economies) crawled first
+- **Data Validation**: Multi-level validation (quality, consistency, tariff rules)
+- **Notification Integration**: Real-time alerts for crawl status
 
 ## 🚦 Status Badges Explained
 

@@ -2,6 +2,7 @@ from fastapi import FastAPI, APIRouter, HTTPException, UploadFile, File, Form, Q
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
+from contextlib import asynccontextmanager
 import os
 import logging
 from pathlib import Path
@@ -114,8 +115,49 @@ db = client[os.environ['DB_NAME']]
 # Translations moved to translations.py
 # Gold reserves data moved to gold_reserves_data.py
 
-# Create the main app without a prefix
-app = FastAPI(title="Système Commercial ZLECAf - API Complète", version="2.0.0")
+# Initialize notification manager as global
+_notification_manager = None
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    Lifespan event handler for application startup and shutdown.
+    Initializes notifications and other services.
+    """
+    global _notification_manager
+    
+    # Startup
+    logger.info("Starting AfCFTA Crawler API...")
+    
+    try:
+        from backend.notifications.notification_manager import NotificationManager
+        _notification_manager = NotificationManager()
+        enabled_channels = _notification_manager.get_enabled_channels()
+        logger.info(f"Notification system initialized with channels: {enabled_channels}")
+    except Exception as e:
+        logger.error(f"Failed to initialize notification system: {e}")
+    
+    yield
+    
+    # Shutdown
+    logger.info("Shutting down AfCFTA Crawler API...")
+
+# Create the main app with lifespan handler
+app = FastAPI(
+    title="Système Commercial ZLECAf - API Complète", 
+    version="2.0.0",
+    lifespan=lifespan
+)
+
+# Configure CORS
+allowed_origins = os.environ.get("CORS_ORIGINS", "http://localhost:3000,http://localhost:8000").split(",")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=allowed_origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
@@ -2160,15 +2202,42 @@ async def get_all_unctad():
 
 from routes.substitution import register_routes as register_substitution_routes
 
-# Initialize export router with database connection
+# Initialize and include export router
 try:
-    from backend.routers.export_router import init_db as init_export_db
+    from backend.routers.export_router import router as export_router, init_db as init_export_db
     init_export_db(db)
-except ImportError:
-    pass
+    app.include_router(export_router)
+    logger.info("Export router initialized and included")
+except ImportError as e:
+    logger.error(f"Failed to import export router: {e}")
 
 register_routes(api_router)
 register_substitution_routes(api_router)
 
-# Include the router in the main app
+# Include the main API router in the app
 app.include_router(api_router)
+
+# Health check endpoint (available at root level)
+@app.get("/health")
+async def health_check():
+    """
+    Health check endpoint for monitoring and container orchestration.
+    """
+    return {
+        "status": "healthy",
+        "service": "afcfta-crawler-api",
+        "version": "2.0.0",
+        "timestamp": datetime.utcnow().isoformat()
+    }
+
+
+@app.get("/")
+async def root():
+    """Root endpoint with API information"""
+    return {
+        "message": "AfCFTA Customs Data Crawler API",
+        "version": "2.0.0",
+        "status": "operational",
+        "documentation": "/docs",
+        "api_prefix": "/api"
+    }
