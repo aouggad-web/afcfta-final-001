@@ -35,6 +35,13 @@ from .substitution import router as substitution_router
 from .gemini_analysis import router as gemini_router
 from .trade_data import router as trade_data_router
 
+# Import export router from backend.routers
+try:
+    from backend.routers.export_router import router as export_router
+    EXPORT_ROUTER_AVAILABLE = True
+except ImportError:
+    EXPORT_ROUTER_AVAILABLE = False
+
 def register_routes(api_router: APIRouter):
     """Register all route modules to the main API router"""
     api_router.include_router(health_router, tags=["Health"])
@@ -50,3 +57,7 @@ def register_routes(api_router: APIRouter):
     api_router.include_router(substitution_router, tags=["Trade Substitution"])
     api_router.include_router(gemini_router, tags=["AI Analysis"])
     api_router.include_router(trade_data_router, tags=["Trade Data Sources"])
+    
+    # Register export router if available
+    if EXPORT_ROUTER_AVAILABLE:
+        api_router.include_router(export_router, tags=["Export"])
