@@ -9,6 +9,7 @@ permissions:
   contents: write    # nécessaire pour push
   actions: read
   checks: read
+  pull-requests: write    # nécessaire pour créer des PRs
 
 jobs:
   refresh-data:
