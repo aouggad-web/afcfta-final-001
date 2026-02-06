@@ -5,11 +5,75 @@ API Documentation: https://data.wto.org/
 """
 
 import requests
+import time
 from typing import Dict, Optional
 from datetime import datetime
+from requests.exceptions import HTTPError
 import logging
 
 logger = logging.getLogger(__name__)
+
+
+def make_wto_request_with_retry(url, params=None, max_retries=5):
+    """
+    Make WTO API request with exponential backoff for rate limits
+    
+    Args:
+        url: API endpoint URL
+        params: Optional query parameters
+        max_retries: Maximum number of retry attempts (default: 5)
+    
+    Returns:
+        Response object or None if all retries failed
+    """
+    def calculate_backoff(attempt):
+        """
+        Calculate exponential backoff wait time formula: (2^attempt) * 2 seconds.
+        
+        Note: This is a pure calculation function. Calling code is responsible for
+        not invoking it on the final failed attempt (when attempt >= max_retries - 1).
+        For max_retries=5, this should only be called for attempts 0-3, yielding
+        wait times of 2, 4, 8, 16 seconds.
+        """
+        return (2 ** attempt) * 2
+    
+    for attempt in range(max_retries):
+        try:
+            response = requests.get(url, params=params, timeout=30)
+            response.raise_for_status()
+            return response
+        except HTTPError as e:
+            if e.response.status_code == 429:  # Rate limit
+                if attempt < max_retries - 1:
+                    wait_time = calculate_backoff(attempt)
+                    logger.warning(f"⚠️ Rate limit hit (429), retrying in {wait_time}s (attempt {attempt + 1}/{max_retries})...")
+                    time.sleep(wait_time)
+                else:
+                    logger.error(f"❌ Rate limit exceeded after {max_retries} attempts")
+                    return None
+            elif e.response.status_code == 400:
+                logger.warning(f"⚠️ Bad request (400) for URL: {url}. Skipping...")
+                return None
+            elif e.response.status_code == 401:
+                logger.warning(f"⚠️ Unauthorized (401) for URL: {url}. Check API credentials. Skipping...")
+                return None
+            else:
+                logger.error(f"❌ HTTP error {e.response.status_code}: {e}")
+                return None
+        except requests.exceptions.Timeout:
+            if attempt < max_retries - 1:
+                wait_time = calculate_backoff(attempt)
+                logger.warning(f"⚠️ Request timeout, retrying in {wait_time}s (attempt {attempt + 1}/{max_retries})...")
+                time.sleep(wait_time)
+            else:
+                logger.error(f"❌ Request timed out after {max_retries} attempts")
+                return None
+        except Exception as e:
+            logger.error(f"❌ Error fetching data: {e}")
+            return None
+    
+    # All paths in the loop should return, but include this as a safety fallback
+    raise RuntimeError(f"Unexpected: retry loop completed without returning (max_retries={max_retries})")
 
 
 class WTOService:
@@ -53,8 +117,10 @@ class WTOService:
             params["pc"] = product_code
             
         try:
-            response = requests.get(endpoint, params=params, timeout=30)
-            response.raise_for_status()
+            response = make_wto_request_with_retry(endpoint, params=params, max_retries=5)
+            
+            if response is None:
+                return None
             
             data = response.json()
             
@@ -102,8 +168,10 @@ class WTOService:
         }
         
         try:
-            response = requests.get(endpoint, params=params, timeout=30)
-            response.raise_for_status()
+            response = make_wto_request_with_retry(endpoint, params=params, max_retries=5)
+            
+            if response is None:
+                return None
             
             data = response.json()
             return {

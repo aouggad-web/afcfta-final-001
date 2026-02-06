@@ -222,6 +222,31 @@ oec_client = OECAPIClient()
 async def root():
     return {"message": "Système Commercial ZLECAf API - Version Complète"}
 
+@api_router.get("/comtrade/health")
+async def check_comtrade_health():
+    """Check Comtrade API health and configuration"""
+    from services.comtrade_service import comtrade_service
+    
+    try:
+        health_status = comtrade_service.health_check()
+        return {
+            "status": "operational" if health_status["connected"] else "error",
+            "using_key": "secondary" if health_status["using_secondary"] else "primary",
+            "api_calls_today": health_status["calls_today"],
+            "rate_limit_remaining": health_status["rate_limit_remaining"],
+            "last_error": health_status["last_error"],
+            "primary_key_configured": health_status["primary_key_configured"],
+            "secondary_key_configured": health_status["secondary_key_configured"],
+            "timestamp": health_status["timestamp"]
+        }
+    except Exception as e:
+        logging.error(f"Error checking Comtrade health: {str(e)}")
+        return {
+            "status": "error",
+            "error": str(e),
+            "timestamp": datetime.utcnow().isoformat()
+        }
+
 # NOTE: /health and /health/status endpoints migrated to /routes/health.py
 
 # NOTE: /countries endpoint MIGRATED to /routes/countries.py
@@ -246,14 +271,21 @@ async def get_rules_of_origin(hs_code: str, lang: str = "fr"):
     # Obtenir les règles d'origine officielles
     roo_data = get_rule_of_origin(hs_code, lang)
     
-    if roo_data.get("status") == "UNKNOWN":
+    # Check status - UNKNOWN means no rules exist (404)
+    # YTB (Yet to be agreed) is intentionally allowed to return 200 with messaging
+    # that negotiations are ongoing, as these headings have complete data structures
+    status = roo_data.get("status", "AGREED")
+    
+    if status == "UNKNOWN":
         error_msg = "Rules of origin not found for this HS code" if lang == "en" else "Règles d'origine non trouvées pour ce code SH"
         raise HTTPException(status_code=404, detail=error_msg)
+    
+    # YTB headings return complete data with appropriate "under negotiation" messaging
+    # This is intentional - users should see that rules exist but are being negotiated
     
     primary_rule = roo_data.get("primary_rule", {})
     alt_rule = roo_data.get("alternative_rule", {})
     regional_content = roo_data.get("regional_content", 40)
-    status = roo_data.get("status", "AGREED")
     
     # Documentation labels
     if lang == "en":

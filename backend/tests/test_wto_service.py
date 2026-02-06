@@ -26,8 +26,8 @@ class TestWTOService:
         """Test service initializes correctly"""
         assert self.service.BASE_URL == "https://api.wto.org/timeseries/v1"
     
-    @patch('services.wto_service.requests.get')
-    def test_get_tariff_data_success(self, mock_get):
+    @patch('services.wto_service.make_wto_request_with_retry')
+    def test_get_tariff_data_success(self, mock_retry):
         """Test successful tariff data retrieval"""
         # Mock response
         mock_response = Mock()
@@ -42,8 +42,7 @@ class TestWTOService:
                 ]
             }
         }
-        mock_response.raise_for_status = Mock()
-        mock_get.return_value = mock_response
+        mock_retry.return_value = mock_response
         
         # Call service
         result = self.service.get_tariff_data("KEN", "wld")
@@ -54,8 +53,8 @@ class TestWTOService:
         assert result["latest_period"] == "2023"
         assert "data" in result
     
-    @patch('services.wto_service.requests.get')
-    def test_get_tariff_data_with_product_code(self, mock_get):
+    @patch('services.wto_service.make_wto_request_with_retry')
+    def test_get_tariff_data_with_product_code(self, mock_retry):
         """Test tariff data with product code filter"""
         mock_response = Mock()
         mock_response.json.return_value = {
@@ -67,28 +66,27 @@ class TestWTOService:
                 ]
             }
         }
-        mock_response.raise_for_status = Mock()
-        mock_get.return_value = mock_response
+        mock_retry.return_value = mock_response
         
         result = self.service.get_tariff_data("KEN", "wld", product_code="080300")
         
         assert result is not None
         
         # Verify product code was passed in params
-        call_args = mock_get.call_args
+        call_args = mock_retry.call_args
         assert call_args[1]["params"]["pc"] == "080300"
     
-    @patch('services.wto_service.requests.get')
-    def test_get_tariff_data_api_error(self, mock_get):
+    @patch('services.wto_service.make_wto_request_with_retry')
+    def test_get_tariff_data_api_error(self, mock_retry):
         """Test handling of API errors"""
-        mock_get.side_effect = Exception("API connection failed")
+        mock_retry.side_effect = Exception("API connection failed")
         
         result = self.service.get_tariff_data("KEN", "wld")
         
         assert result is None
     
-    @patch('services.wto_service.requests.get')
-    def test_get_tariff_data_no_observations(self, mock_get):
+    @patch('services.wto_service.make_wto_request_with_retry')
+    def test_get_tariff_data_no_observations(self, mock_retry):
         """Test handling of response with no observations"""
         mock_response = Mock()
         mock_response.json.return_value = {
@@ -96,16 +94,15 @@ class TestWTOService:
                 "Series": []
             }
         }
-        mock_response.raise_for_status = Mock()
-        mock_get.return_value = mock_response
+        mock_retry.return_value = mock_response
         
         result = self.service.get_tariff_data("KEN", "wld")
         
         assert result is not None
         assert result["latest_period"] is None
     
-    @patch('services.wto_service.requests.get')
-    def test_get_trade_indicators_success(self, mock_get):
+    @patch('services.wto_service.make_wto_request_with_retry')
+    def test_get_trade_indicators_success(self, mock_retry):
         """Test successful trade indicators retrieval"""
         mock_response = Mock()
         mock_response.json.return_value = {
@@ -114,8 +111,7 @@ class TestWTOService:
                 "Series": [{"Value": 1000000}]
             }
         }
-        mock_response.raise_for_status = Mock()
-        mock_get.return_value = mock_response
+        mock_retry.return_value = mock_response
         
         result = self.service.get_trade_indicators("KEN", "TRADE_VALUE")
         
@@ -124,17 +120,17 @@ class TestWTOService:
         assert result["indicator"] == "TRADE_VALUE"
         assert "data" in result
     
-    @patch('services.wto_service.requests.get')
-    def test_get_trade_indicators_api_error(self, mock_get):
+    @patch('services.wto_service.make_wto_request_with_retry')
+    def test_get_trade_indicators_api_error(self, mock_retry):
         """Test handling of API errors for trade indicators"""
-        mock_get.side_effect = Exception("Network error")
+        mock_retry.side_effect = Exception("Network error")
         
         result = self.service.get_trade_indicators("KEN")
         
         assert result is None
     
-    @patch('services.wto_service.requests.get')
-    def test_get_latest_available_year(self, mock_get):
+    @patch('services.wto_service.make_wto_request_with_retry')
+    def test_get_latest_available_year(self, mock_retry):
         """Test getting latest available year"""
         mock_response = Mock()
         mock_response.json.return_value = {
@@ -150,12 +146,20 @@ class TestWTOService:
                 ]
             }
         }
-        mock_response.raise_for_status = Mock()
-        mock_get.return_value = mock_response
+        mock_retry.return_value = mock_response
         
         latest_year = self.service.get_latest_available_year("KEN")
         
         assert latest_year == "2023"
+    
+    @patch('services.wto_service.make_wto_request_with_retry')
+    def test_get_tariff_data_retry_returns_none(self, mock_retry):
+        """Test handling when retry function returns None"""
+        mock_retry.return_value = None
+        
+        result = self.service.get_tariff_data("KEN", "wld")
+        
+        assert result is None
 
 
 class TestWTOIntegration:
