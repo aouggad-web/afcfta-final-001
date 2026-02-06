@@ -3,7 +3,7 @@ API endpoints pour exporter les données
 """
 from fastapi import APIRouter, HTTPException, Query, Response
 from fastapi.responses import StreamingResponse
-from datetime import datetime
+from datetime import datetime, timezone
 import csv
 import io
 import pandas as pd
@@ -71,7 +71,7 @@ async def export_tariffs_csv(
             writer.writeheader()
             writer.writerows(rows)
 
-        filename = f"tariffs_{country}_{datetime.utcnow().strftime('%Y%m%d')}.csv"
+        filename = f"tariffs_{country}_{datetime.now(timezone.utc).strftime('%Y%m%d')}.csv"
 
         return Response(
             content=output.getvalue(),
@@ -119,7 +119,7 @@ async def export_tariffs_excel(
                     df.to_excel(writer, sheet_name=country[:31], index=False)  # Excel sheet name limit is 31 chars
 
         output.seek(0)
-        filename = f"tariffs_{datetime.utcnow().strftime('%Y%m%d')}.xlsx"
+        filename = f"tariffs_{datetime.now(timezone.utc).strftime('%Y%m%d')}.xlsx"
 
         return StreamingResponse(
             io.BytesIO(output.read()),
