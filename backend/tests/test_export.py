@@ -14,46 +14,55 @@ def mock_db():
     """Mock MongoDB database"""
     db = MagicMock()
     
-    # Mock find_one for single document queries
+    # Mock data structure
+    sample_data = {
+        "country_code": "KE",
+        "imported_at": "2024-01-01T00:00:00Z",
+        "tariffs": {
+            "tariff_lines": [
+                {
+                    "hs_code": "010110",
+                    "description": "Live horses for breeding",
+                    "unit": "Number",
+                    "customs_duty": "10%",
+                    "vat": "16%",
+                    "source": "Kenya Revenue Authority"
+                },
+                {
+                    "hs_code": "010120",
+                    "description": "Live horses, other than breeding",
+                    "unit": "Number",
+                    "customs_duty": "25%",
+                    "vat": "16%",
+                    "source": "Kenya Revenue Authority"
+                }
+            ]
+        },
+        "regulations": [
+            {"type": "import_license", "description": "Import license required"}
+        ],
+        "validation": {
+            "is_valid": True,
+            "score": 95.5,
+            "issues": [],
+            "warnings": ["Minor data inconsistency"]
+        }
+    }
+    
+    # Create mock collection
+    mock_collection = MagicMock()
+    
+    # Mock find_one
     async def mock_find_one(*args, **kwargs):
         query = args[0] if args else kwargs.get('filter', {})
         country = query.get('country_code', 'KE')
-        
-        return {
-            "country_code": country,
-            "imported_at": "2024-01-01T00:00:00Z",
-            "tariffs": {
-                "tariff_lines": [
-                    {
-                        "hs_code": "010110",
-                        "description": "Live horses for breeding",
-                        "unit": "Number",
-                        "customs_duty": "10%",
-                        "vat": "16%",
-                        "source": "Kenya Revenue Authority"
-                    },
-                    {
-                        "hs_code": "010120",
-                        "description": "Live horses, other than breeding",
-                        "unit": "Number",
-                        "customs_duty": "25%",
-                        "vat": "16%",
-                        "source": "Kenya Revenue Authority"
-                    }
-                ]
-            },
-            "regulations": [
-                {"type": "import_license", "description": "Import license required"}
-            ],
-            "validation": {
-                "is_valid": True,
-                "score": 95.5,
-                "issues": [],
-                "warnings": ["Minor data inconsistency"]
-            }
-        }
+        data = sample_data.copy()
+        data['country_code'] = country
+        return data
     
-    # Mock find for multiple document queries
+    mock_collection.find_one = mock_find_one
+    
+    # Mock find - return synchronous mock cursor
     class MockCursor:
         def __init__(self, data_list):
             self.data_list = data_list
@@ -64,24 +73,27 @@ def mock_db():
         async def to_list(self, length=None):
             return self.data_list
     
-    async def mock_find(*args, **kwargs):
-        query = args[0] if args else kwargs.get('filter', {})
+    def mock_find(*args, **kwargs):
+        query = args[0] if args else {}
         country = query.get('country_code')
         
         if country:
-            doc = await mock_find_one(*args, **kwargs)
-            return MockCursor([doc] if doc else [])
+            # Single country
+            data = sample_data.copy()
+            data['country_code'] = country
+            return MockCursor([data])
         else:
-            # Return multiple countries for validation report
-            return MockCursor([
-                await mock_find_one({"country_code": "KE"}),
-                await mock_find_one({"country_code": "TZ"})
-            ])
+            # Multiple countries
+            ke_data = sample_data.copy()
+            ke_data['country_code'] = 'KE'
+            tz_data = sample_data.copy()
+            tz_data['country_code'] = 'TZ'
+            return MockCursor([ke_data, tz_data])
     
-    db.__getitem__ = MagicMock(return_value=MagicMock(
-        find_one=mock_find_one,
-        find=mock_find
-    ))
+    mock_collection.find = mock_find
+    
+    # Mock __getitem__ to return the mock collection
+    db.__getitem__ = MagicMock(return_value=mock_collection)
     
     return db
 
