@@ -15,6 +15,8 @@ A comprehensive tariff calculator and trade information system for the African C
 - **Trade Statistics**: Comprehensive trade statistics and projections
 - **Real-time Data**: Integration with World Bank, UN COMTRADE v1, and OEC APIs
 - **Automated Data Updates**: Daily automated updates from multiple data sources
+- **Data Export**: Export tariff data in CSV and Excel formats (NEW)
+- **Notifications**: Email and Slack notifications for system events (NEW)
 
 ## 📊 API Endpoints
 
@@ -51,6 +53,15 @@ The health endpoints provide real-time monitoring of:
 | `/api/trade-data/comtrade/{reporter}/{partner}` | GET | Get UN COMTRADE bilateral trade data directly |
 | `/api/trade-data/wto/{reporter}/{partner}` | GET | Get WTO tariff and trade data directly |
 
+### Data Export Endpoints (NEW)
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/export/tariffs/csv` | GET | Export tariff data as CSV |
+| `/api/export/tariffs/excel` | GET | Export tariff data as multi-sheet Excel |
+| `/api/export/validation-report/json` | GET | Export validation report with quality metrics |
+| `/api/export/comparison/csv` | GET | Compare tariffs between countries |
+
 #### Examples:
 
 **Get Latest Trade Data with Smart Selection:**
@@ -71,6 +82,28 @@ GET /api/trade-data/comtrade/KEN/GHA?period=2025&hs_code=080300
 **Direct WTO Access:**
 ```bash
 GET /api/trade-data/wto/KEN/GHA?product_code=080300
+```
+
+### Data Export Examples
+
+**Export Tariffs as CSV:**
+```bash
+GET /api/export/tariffs/csv?country=KE&latest=true
+```
+
+**Export Multiple Countries as Excel:**
+```bash
+GET /api/export/tariffs/excel?countries=KE,TZ,UG,RW
+```
+
+**Get Validation Report:**
+```bash
+GET /api/export/validation-report/json?min_score=90.0
+```
+
+**Compare Tariffs Between Countries:**
+```bash
+GET /api/export/comparison/csv?countries=KE,TZ&hs_codes=080300,080400
 ```
 
 ## 🏥 Health Monitoring
@@ -122,6 +155,37 @@ GET /api/trade-data/wto/KEN/GHA?product_code=080300
 - **Frontend**: React with Shadcn/UI components
 - **Database**: MongoDB
 - **External APIs**: World Bank API, OEC API, UN COMTRADE API, WTO API
+- **Notifications**: Email (SMTP) and Slack webhooks
+- **Deployment**: Docker with docker-compose
+
+## 📧 Notification System
+
+The system supports real-time notifications via Email and Slack for:
+- Crawl job start/completion/failure events
+- Validation issues and warnings
+- System health alerts
+
+### Configuration
+
+Set up notifications using environment variables:
+
+```bash
+# Email Notifications
+EMAIL_NOTIFICATIONS_ENABLED=true
+EMAIL_SMTP_HOST=smtp.gmail.com
+EMAIL_SMTP_PORT=587
+EMAIL_SMTP_USER=your-email@gmail.com
+EMAIL_SMTP_PASSWORD=your-app-password
+EMAIL_FROM=noreply@afcfta.com
+EMAIL_TO=admin@afcfta.com
+
+# Slack Notifications
+SLACK_NOTIFICATIONS_ENABLED=true
+SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
+SLACK_CHANNEL=#afcfta-monitoring
+```
+
+See [NOTIFICATIONS.md](NOTIFICATIONS.md) for detailed setup instructions.
 
 ## 📦 Data Sources
 
@@ -164,6 +228,37 @@ Data is automatically updated daily at 2:00 AM UTC via GitHub Actions. See [docs
 3. **Database Monitoring**: Monitor MongoDB connection status
 4. **API Response Times**: Track endpoint response times
 5. **Error Rates**: Monitor 4xx and 5xx response rates
+
+## 🐳 Docker Deployment
+
+Deploy the entire stack with Docker Compose:
+
+```bash
+# Clone the repository
+git clone https://github.com/aouggad-web/afcfta-final-001.git
+cd afcfta-final-001
+
+# Copy and configure environment variables
+cp .env.example .env
+# Edit .env with your configuration
+
+# Start services
+docker-compose up -d
+
+# Check logs
+docker-compose logs -f backend
+
+# Stop services
+docker-compose down
+```
+
+The docker-compose setup includes:
+- MongoDB 7.0 with persistent storage
+- FastAPI backend with auto-restart
+- Health checks for all services
+- Volume mounts for logs
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
 
 ## 🔍 Quick Start
 

@@ -33,7 +33,24 @@ async def detailed_health():
         "database": {"status": "up", "type": "MongoDB"},
         "cache": {"status": "up", "type": "In-Memory"}
     }
-    
+
+    # Check notification system
+    try:
+        from backend.notifications import NotificationManager
+        manager = NotificationManager()
+        enabled_channels = manager.get_enabled_channels()
+        stats = manager.get_stats()
+        checks["notifications"] = {
+            "status": "healthy" if enabled_channels else "disabled",
+            "channels": enabled_channels,
+            "total_sent": stats.get("manager", {}).get("total_sent", 0)
+        }
+    except Exception as e:
+        checks["notifications"] = {
+            "status": "error",
+            "message": f"Notification system error: {str(e)}"
+        }
+
     # Check COMTRADE API
     try:
         from services.comtrade_service import comtrade_service
@@ -49,7 +66,7 @@ async def detailed_health():
             "status": "unhealthy",
             "message": f"COMTRADE API error: {str(e)}"
         }
-    
+
     # Check WTO API
     try:
         from services.wto_service import wto_service
@@ -63,7 +80,7 @@ async def detailed_health():
             "status": "unhealthy",
             "message": f"WTO API error: {str(e)}"
         }
-    
+
     return {
         "status": "healthy",
         "timestamp": datetime.now().isoformat(),
@@ -75,6 +92,12 @@ async def detailed_health():
             "oec_integration": "enabled",
             "comtrade_integration": "enabled",
             "wto_integration": "enabled",
-            "news_feed": "enabled"
+            "news_feed": "enabled",
+            "notifications": (
+                "enabled"
+                if checks.get("notifications", {}).get("status") in ["healthy", "disabled"]
+                else "error"
+            ),
+            "data_export": "enabled"
         }
     }

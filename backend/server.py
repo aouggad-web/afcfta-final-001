@@ -103,6 +103,9 @@ from etl.hs6_database import (
 # Import routes module for modular endpoint registration
 from routes import register_routes
 
+# Import notification manager for system-wide notifications
+from backend.notifications import NotificationManager
+
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
@@ -110,6 +113,10 @@ load_dotenv(ROOT_DIR / '.env')
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
+
+# Initialize notification manager for system-wide alerts
+notification_manager = NotificationManager()
+logging.info(f"Notification manager initialized with channels: {notification_manager.get_enabled_channels()}")
 
 # Translations moved to translations.py
 # Gold reserves data moved to gold_reserves_data.py
