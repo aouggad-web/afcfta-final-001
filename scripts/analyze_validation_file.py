@@ -1,18 +1,48 @@
 #!/usr/bin/env python3
 """
-Analyser le fichier de validation fourni par l'utilisateur
+Analyze validation files (Excel) and display their structure.
 """
 import pandas as pd
 import numpy as np
+import sys
+import os
 
-def analyze_validation_file():
+def analyze_validation_file(file_path=None):
+    """Analyze an Excel validation file.
+    
+    Args:
+        file_path: Path to the Excel file. If None, tries multiple default locations.
+    """
+    if file_path is None:
+        # Try multiple possible paths
+        possible_paths = [
+            '/app/validation_master.xlsx',  # Docker path
+            'validation_master.xlsx',       # Current directory
+        ]
+        for path in possible_paths:
+            if os.path.exists(path):
+                file_path = path
+                break
+        
+        if file_path is None:
+            print("❌ Error: Could not find validation_master.xlsx")
+            print(f"   Searched in: {possible_paths}")
+            print("   Usage: python analyze_validation_file.py [path/to/validation.xlsx]")
+            return None, []
+    
+    if not os.path.exists(file_path):
+        print(f"❌ Error: File not found: {file_path}")
+        return None, []
+    
+    print(f"📂 Processing file: {file_path}")
+    
     try:
         # Lire le fichier Excel
         print("📋 ANALYSE DU FICHIER DE VALIDATION FOURNI")
         print("=" * 60)
         
         # Lire toutes les feuilles
-        excel_file = pd.ExcelFile('/app/validation_master.xlsx')
+        excel_file = pd.ExcelFile(file_path)
         print(f"📊 Feuilles disponibles: {excel_file.sheet_names}")
         
         # Analyser chaque feuille
@@ -21,7 +51,7 @@ def analyze_validation_file():
             print("-" * 40)
             
             try:
-                df = pd.read_excel('/app/validation_master.xlsx', sheet_name=sheet_name)
+                df = pd.read_excel(file_path, sheet_name=sheet_name)
                 print(f"   Dimensions: {df.shape[0]} lignes × {df.shape[1]} colonnes")
                 print(f"   Colonnes: {list(df.columns)}")
                 
@@ -35,7 +65,7 @@ def analyze_validation_file():
         
         # Se concentrer sur la feuille principale (probablement la première)
         main_sheet = excel_file.sheet_names[0]
-        df_main = pd.read_excel('/app/validation_master.xlsx', sheet_name=main_sheet)
+        df_main = pd.read_excel(file_path, sheet_name=main_sheet)
         
         print(f"\n🎯 ANALYSE DÉTAILLÉE DE LA FEUILLE PRINCIPALE: {main_sheet}")
         print("=" * 60)
@@ -61,4 +91,7 @@ def analyze_validation_file():
         return None, []
 
 if __name__ == "__main__":
-    analyze_validation_file()
+    # Get file path from command line argument if provided
+    file_path = sys.argv[1] if len(sys.argv) > 1 else None
+    result, sheets = analyze_validation_file(file_path)
+    sys.exit(0 if result is not None else 1)

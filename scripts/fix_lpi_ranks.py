@@ -1,5 +1,11 @@
-
+#!/usr/bin/env python3
+"""
+Fix LPI (Logistics Performance Index) rankings with 2023 World Bank data.
+"""
 import json
+import sys
+import os
+from pathlib import Path
 
 # Données LPI 2023 (Banque Mondiale) - Scores et Rangs Mondiaux Vérifiés
 # Source: LPI 2023 Report & Interactive Data
@@ -35,8 +41,35 @@ LPI_2023_DATA = {
 
 # AIDI 2025 (Déjà mis à jour, on ne touche pas, on garde les valeurs existantes)
 
-def fix_lpi_ranks():
-    json_path = '/app/classement_infrastructure_afrique.json'
+def fix_lpi_ranks(json_path=None):
+    """Fix LPI rankings in the infrastructure classification file.
+    
+    Args:
+        json_path: Path to the JSON file. If None, tries multiple default locations.
+    """
+    if json_path is None:
+        # Try multiple possible paths
+        possible_paths = [
+            '/app/classement_infrastructure_afrique.json',  # Docker path
+            'classement_infrastructure_afrique.json',       # Current directory
+            '../classement_infrastructure_afrique.json',    # Parent directory
+        ]
+        for path in possible_paths:
+            if os.path.exists(path):
+                json_path = path
+                break
+        
+        if json_path is None:
+            print("❌ Error: Could not find classement_infrastructure_afrique.json")
+            print(f"   Searched in: {possible_paths}")
+            print("   Usage: python fix_lpi_ranks.py [path/to/classement_infrastructure_afrique.json]")
+            return False
+    
+    if not os.path.exists(json_path):
+        print(f"❌ Error: File not found: {json_path}")
+        return False
+    
+    print(f"📂 Processing file: {json_path}")
     
     with open(json_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
@@ -62,6 +95,10 @@ def fix_lpi_ranks():
         json.dump(data, f, indent=2, ensure_ascii=False)
         
     print(f"✅ Correction terminée : {updates} pays mis à jour avec les rangs LPI 2023 mondiaux exacts.")
+    return True
 
 if __name__ == "__main__":
-    fix_lpi_ranks()
+    # Get file path from command line argument if provided
+    file_path = sys.argv[1] if len(sys.argv) > 1 else None
+    success = fix_lpi_ranks(file_path)
+    sys.exit(0 if success else 1)

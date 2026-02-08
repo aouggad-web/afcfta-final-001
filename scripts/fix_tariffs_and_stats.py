@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """
-Corriger les taux de droits de douanes et enrichir les statistiques avec données OEC
+Fix ZLECAf tariff rates and enrich trade statistics with OEC data.
 """
 import json
-import requests
-import asyncio
+import sys
+import os
+# Note: requests and asyncio imported but not used - kept for future enhancements
+# import requests
+# import asyncio
 from datetime import datetime
 
 # Vrais taux tarifaires ZLECAf basés sur les schedules officiels
@@ -258,8 +261,12 @@ def create_enhanced_statistics():
     
     return base_stats
 
-def generate_correction_files():
-    """Générer les fichiers de correction"""
+def generate_correction_files(output_file=None):
+    """Generate correction files with official ZLECAf tariff rates and trade statistics.
+    
+    Args:
+        output_file: Optional output file path. If None, uses 'zlecaf_corrections_2024.json'
+    """
     print("\n📄 GÉNÉRATION DES FICHIERS DE CORRECTION")
     print("=" * 60)
     
@@ -281,20 +288,42 @@ def generate_correction_files():
         }
     }
     
-    with open('/app/zlecaf_corrections_2024.json', 'w', encoding='utf-8') as f:
-        json.dump(corrections, f, indent=2, ensure_ascii=False)
+    # Determine output path
+    output_path = output_file if output_file else 'zlecaf_corrections_2024.json'
     
-    print(f"   ✅ Fichier de corrections créé: zlecaf_corrections_2024.json")
-    print(f"   ✅ Taux tarifaires: {len(tariff_structure['normal_rates'])} secteurs HS2")
-    print(f"   ✅ Statistiques: {len(enhanced_stats)} sections enrichies")
+    try:
+        with open(output_path, 'w', encoding='utf-8') as f:
+            json.dump(corrections, f, indent=2, ensure_ascii=False)
+    except Exception as e:
+        print(f"   ❌ Error saving file: {e}")
+        return None
+    
+    print(f"   ✅ Corrections file created: {output_path}")
+    print(f"   ✅ Tariff rates: {len(tariff_structure['normal_rates'])} HS2 sectors")
+    print(f"   ✅ Statistics: {len(enhanced_stats)} sections enriched")
     
     return corrections
 
+def main(output_file=None):
+    """Main function with error handling.
+    
+    Args:
+        output_file: Optional output file path
+    """
+    corrections = generate_correction_files(output_file)
+    if corrections is None:
+        return False
+        
+    print(f"\n🎉 CORRECTIONS GENERATED SUCCESSFULLY")
+    print(f"   • Official ZLECAf tariff rates integrated")
+    print(f"   • 2023-2024 statistics with OEC data")
+    print(f"   • Top trading partners by region")
+    print(f"   • Detailed product groups")
+    print(f"   • Updated projections for 2025-2030")
+    return True
+
 if __name__ == "__main__":
-    corrections = generate_correction_files()
-    print(f"\n🎉 CORRECTIONS GÉNÉRÉES AVEC SUCCÈS")
-    print(f"   • Taux tarifaires ZLECAf officiels intégrés")
-    print(f"   • Statistiques 2023-2024 avec données OEC")
-    print(f"   • Top partenaires commerciaux par région")
-    print(f"   • Groupes de produits détaillés")
-    print(f"   • Projections mises à jour pour 2025-2030")
+    # Get output file path from command line argument if provided
+    output = sys.argv[1] if len(sys.argv) > 1 else None
+    success = main(output)
+    sys.exit(0 if success else 1)
