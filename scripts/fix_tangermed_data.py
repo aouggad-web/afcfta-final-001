@@ -62,10 +62,10 @@ def fix_tanger(file_path=None):
     }
 
     # 2. Correction Historique Trafic (Cohérence)
-    # On garde les TEU mais on corrige les temps d'attente avec des valeurs fixes
+    # Use fixed average wait time of 3.0h
     if 'traffic_evolution' in tanger:
         for stat in tanger['traffic_evolution']:
-            # Use fixed realistic wait times (2-4h) instead of random
+            # Use fixed realistic wait time (average of 2-4h range)
             stat['avg_wait_time'] = 3.0
 
     # 3. Ajout Autorité Portuaire

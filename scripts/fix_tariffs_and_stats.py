@@ -267,7 +267,6 @@ def generate_correction_files(output_file=None):
     Args:
         output_file: Optional output file path. If None, uses 'zlecaf_corrections_2024.json'
     """
-    """Générer les fichiers de correction"""
     print("\n📄 GÉNÉRATION DES FICHIERS DE CORRECTION")
     print("=" * 60)
     

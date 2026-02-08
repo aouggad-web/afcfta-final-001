@@ -108,7 +108,7 @@ python scripts/fix_tangermed_data.py
 - Adds agent details and contact information
 - Fixes performance metrics (containers handled, cargo volume, efficiency)
 
-**Dependencies:** json, pathlib, random
+**Dependencies:** json, pathlib
 
 **Updates:**
 - Container handling capacity
@@ -172,23 +172,34 @@ python scripts/update_comtrade_data.py
 
 ## File Path Configuration
 
-Most scripts use hard-coded paths for Docker deployment (`/app/...`). When running locally, you may need to:
+All scripts now support flexible path resolution and command-line arguments:
 
-1. Update file paths in the scripts to match your local directory structure
-2. Set environment variables for data directories
-3. Use symbolic links to maintain compatibility
+**Automatic Path Detection:**
+Scripts automatically search for data files in multiple locations:
+1. Docker paths (`/app/...`)
+2. Current directory
+3. Parent directory (where applicable)
 
-**Example local setup:**
+**Command-Line Usage:**
+All scripts accept file paths as command-line arguments:
+
 ```bash
-# Create data directory
-mkdir -p data
+# Use default auto-detected paths
+python scripts/fix_lpi_ranks.py
 
-# Copy validation files
-cp validation_master.xlsx data/
-cp ZLECAF_*.csv data/
+# Specify custom file path
+python scripts/fix_lpi_ranks.py /custom/path/to/classement_infrastructure_afrique.json
 
-# Update paths in scripts or create symlinks
-ln -s data/validation_master.xlsx validation_master.xlsx
+# For scripts with multiple files
+python scripts/export_validation_csv.py source.csv output.csv
+```
+
+**Environment Variables (Optional):**
+You can still use environment variables for consistency:
+
+```bash
+export DATA_DIR=/path/to/data
+python scripts/fix_lpi_ranks.py $DATA_DIR/classement_infrastructure_afrique.json
 ```
 
 ---
