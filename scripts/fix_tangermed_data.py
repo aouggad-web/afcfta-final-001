@@ -1,27 +1,56 @@
-
+#!/usr/bin/env python3
+"""
+Fix Tanger Med port data with accurate performance metrics.
+"""
 import json
 from pathlib import Path
 import os
+import sys
 
-# Support both Docker (/app/) and local environments
-ROOT_DIR = Path(os.environ.get('APP_ROOT', Path(__file__).parent))
-FILE_PATH = ROOT_DIR / 'ports_africains.json'
-
-def fix_tanger():
+def fix_tanger(file_path=None):
+    """Fix Tanger Med port data in the ports JSON file.
+    
+    Args:
+        file_path: Path to the ports JSON file. If None, tries multiple default locations.
+    """
+    if file_path is None:
+        # Try multiple possible paths
+        possible_paths = [
+            '/app/ports_africains.json',      # Docker path
+            'ports_africains.json',           # Current directory
+            '../ports_africains.json',        # Parent directory
+        ]
+        for path in possible_paths:
+            if os.path.exists(path):
+                file_path = path
+                break
+        
+        if file_path is None:
+            print("❌ Error: Could not find ports_africains.json")
+            print(f"   Searched in: {possible_paths}")
+            print("   Usage: python fix_tangermed_data.py [path/to/ports_africains.json]")
+            return False
+    
+    if not os.path.exists(file_path):
+        print(f"❌ Error: File not found: {file_path}")
+        return False
+    
+    print(f"📂 Processing file: {file_path}")
+    
     try:
-        with open(FILE_PATH, 'r', encoding='utf-8') as f:
+        with open(file_path, 'r', encoding='utf-8') as f:
             ports = json.load(f)
-    except FileNotFoundError:
-        print("Erreur: Fichier introuvable")
-        return
+    except Exception as e:
+        print(f"❌ Error reading JSON: {e}")
+        return False
 
     tanger = next((p for p in ports if p['un_locode'] == 'MAPTM'), None)
     
     if not tanger:
-        print("Tanger Med introuvable")
-        return
+        print("❌ Tanger Med not found in ports data")
+        return False
 
-    print("Correction des données pour Tanger Med...")
+    print("✨ Fixing Tanger Med data...")
 
     # 1. Correction Performance Metrics (Haute Précision)
     tanger['performance_metrics'] = {
@@ -33,11 +62,11 @@ def fix_tanger():
     }
 
     # 2. Correction Historique Trafic (Cohérence)
-    # On garde les TEU mais on corrige les temps d'attente
-    for stat in tanger['traffic_evolution']:
-        # Générer des temps d'attente réalistes (2-4h)
-        import random
-        stat['avg_wait_time'] = round(random.uniform(2.0, 4.5), 1)
+    # On garde les TEU mais on corrige les temps d'attente avec des valeurs fixes
+    if 'traffic_evolution' in tanger:
+        for stat in tanger['traffic_evolution']:
+            # Use fixed realistic wait times (2-4h) instead of random
+            stat['avg_wait_time'] = 3.0
 
     # 3. Ajout Autorité Portuaire
     tanger['port_authority'] = {
@@ -68,21 +97,30 @@ def fix_tanger():
         }
     }
 
-    for agent in tanger['agents']:
-        if agent['agent_name'] in agent_details:
-            details = agent_details[agent['agent_name']]
-            agent['address'] = details['address']
-            agent['website'] = details['website']
-            agent['contact'] = details['phone']
+    if 'agents' in tanger:
+        for agent in tanger['agents']:
+            if agent['agent_name'] in agent_details:
+                details = agent_details[agent['agent_name']]
+                agent['address'] = details['address']
+                agent['website'] = details['website']
+                agent['contact'] = details['phone']
 
     # Sauvegarde
-    with open(FILE_PATH, 'w', encoding='utf-8') as f:
-        json.dump(ports, f, indent=2, ensure_ascii=False)
+    try:
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(ports, f, indent=2, ensure_ascii=False)
+    except Exception as e:
+        print(f"❌ Error saving file: {e}")
+        return False
 
-    print("✅ Tanger Med mis à jour avec succès :")
-    print(f"- Temps d'attente: {tanger['performance_metrics']['avg_waiting_time_hours']}h")
-    print(f"- Autorité: {tanger['port_authority']['name']}")
-    print(f"- Agents enrichis: {len(agent_details)}")
+    print("✅ Tanger Med updated successfully:")
+    print(f"   - Avg waiting time: {tanger['performance_metrics']['avg_waiting_time_hours']}h")
+    print(f"   - Port authority: {tanger['port_authority']['name']}")
+    print(f"   - Agents enriched: {len(agent_details)}")
+    return True
 
 if __name__ == "__main__":
-    fix_tanger()
+    # Get file path from command line argument if provided
+    file_path = sys.argv[1] if len(sys.argv) > 1 else None
+    success = fix_tanger(file_path)
+    sys.exit(0 if success else 1)
