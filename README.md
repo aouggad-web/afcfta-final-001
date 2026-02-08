@@ -305,6 +305,33 @@ To manually trigger an update:
 2. Select "Auto Update Data" workflow
 3. Click "Run workflow"
 
+## 🛠️ Data Analysis and Utility Scripts
+
+The `scripts/` directory contains utility tools for CSV data analysis, validation, and corrections:
+
+- **analyze_validation_file.py** - Analyzes Excel validation files and displays structure
+- **check_missing_csv.py** - Validates CSV completeness for all 54 African countries
+- **export_validation_csv.py** - Converts Excel validation data to CSV format
+- **fix_lpi_ranks.py** - Updates Logistics Performance Index rankings (World Bank LPI 2023)
+- **fix_tangermed_data.py** - Updates Tanger Med port data with accurate metrics
+- **fix_tariffs_and_stats.py** - Corrects ZLECAf tariff rates and enriches trade statistics
+- **update_comtrade_data.py** - Updates trade data from UN COMTRADE API
+
+For detailed documentation on each script, see [scripts/README.md](scripts/README.md).
+
+### Usage Example
+
+```bash
+# Analyze validation file
+python scripts/analyze_validation_file.py
+
+# Check for missing countries in CSV
+python scripts/check_missing_csv.py
+
+# Update LPI rankings
+python scripts/fix_lpi_ranks.py
+```
+
 ## 📝 License
 
 MIT License - See LICENSE file for details
