@@ -8,7 +8,7 @@ Provides more recent trade data than OEC (monthly updates vs annual)
 import os
 import logging
 from typing import Dict, List, Optional
-from datetime import datetime
+from datetime import datetime, timezone
 import time
 import httpx
 import asyncio
@@ -41,7 +41,7 @@ class COMTRADEService:
         if key not in self._cache:
             return False
         entry = self._cache[key]
-        return (datetime.utcnow() - entry["timestamp"]).seconds < self._cache_ttl
+        return (datetime.now(timezone.utc) - entry["timestamp"]).seconds < self._cache_ttl
     
     async def get_bilateral_trade(
         self,
@@ -68,7 +68,7 @@ class COMTRADEService:
         
         # Default to current year if not specified
         if not period:
-            period = str(datetime.now().year - 1)  # Use previous year for complete data
+            period = str(datetime.now(timezone.utc).year - 1)  # Use previous year for complete data
         
         # Build cache key
         cache_key = self._get_cache_key("bilateral", reporter_code, partner_code, period, hs_code or "all")
@@ -109,14 +109,14 @@ class COMTRADEService:
                             "period": period,
                             "hs_code": hs_code
                         },
-                        "timestamp": datetime.utcnow().isoformat(),
+                        "timestamp": datetime.now(timezone.utc).isoformat(),
                         "latest_period": period
                     }
                     
                     # Cache the result
                     self._cache[cache_key] = {
                         "data": result,
-                        "timestamp": datetime.utcnow()
+                        "timestamp": datetime.now(timezone.utc)
                     }
                     
                     return result
@@ -148,7 +148,7 @@ class COMTRADEService:
             Summary with total exports and imports
         """
         if not period:
-            period = str(datetime.now().year - 1)
+            period = str(datetime.now(timezone.utc).year - 1)
             
         cache_key = self._get_cache_key("summary", reporter_code, period)
         if self._is_cache_valid(cache_key):
@@ -191,12 +191,12 @@ class COMTRADEService:
                     "total_exports_usd": exports_total,
                     "total_imports_usd": imports_total,
                     "trade_balance_usd": exports_total - imports_total,
-                    "timestamp": datetime.utcnow().isoformat()
+                    "timestamp": datetime.now(timezone.utc).isoformat()
                 }
                 
                 self._cache[cache_key] = {
                     "data": result,
-                    "timestamp": datetime.utcnow()
+                    "timestamp": datetime.now(timezone.utc)
                 }
                 
                 return result
@@ -221,7 +221,7 @@ class COMTRADEService:
             List of trade data per country
         """
         if not period:
-            period = str(datetime.now().year - 1)
+            period = str(datetime.now(timezone.utc).year - 1)
             
         results = []
         
@@ -265,7 +265,7 @@ class COMTRADEService:
             List of country trade data for the product
         """
         if not period:
-            period = str(datetime.now().year - 1)
+            period = str(datetime.now(timezone.utc).year - 1)
         
         # Major African trading countries to sample
         major_traders = ["ZAF", "EGY", "NGA", "MAR", "DZA", "KEN", "ETH", "GHA", "TUN", "CIV"]
@@ -311,7 +311,7 @@ class COMTRADEService:
         Returns:
             Latest period (YYYY) or None
         """
-        current_year = datetime.now().year
+        current_year = datetime.now(timezone.utc).year
         
         # Try current year first, then previous years
         for year in range(current_year, current_year - 3, -1):
