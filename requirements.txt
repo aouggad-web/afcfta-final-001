@@ -17,7 +17,7 @@ requests==2.32.5
 
 # Data processing and export
 pandas==2.3.3
-numpy==2.3.3
+numpy==1.26.4
 openpyxl==3.1.2
 
 # Email support
@@ -57,4 +57,4 @@ email-validator==2.3.0
 feedparser==6.0.12
 rich==14.2.0
 typer==0.19.2
-markdown-it-py==4.0.0
+markdown-it-py==3.0.0
