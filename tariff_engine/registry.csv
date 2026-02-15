@@ -1,2 +1,7 @@
-bloc,country,hs_version,local_path,parser
-EAC,MULTI,HS2022,tariff_engine/pdf_sources/EAC/eac_cet_2022.pdf,eac_parser
+bloc;country;hs_version;local_path;parser
+EAC;MULTI;HS2022;tariff_engine/pdf_sources/EAC/eac_cet_2022.pdf;eac_parser_v1_2
+bloc;country;hs_version;local_path;parser
+bloc;country;hs_version;local_path;parser
+EAC;EAC;2022;tariff_engine/pdf_sources/EAC/EAC.pdf;eac_parser_v1_2
+COMESA;COMESA;2022;tariff_engine/pdf_sources/COMESA/comesa_cet_2022.pdf;eac_parser_v1_2
+
